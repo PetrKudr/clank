@@ -475,7 +475,7 @@ public final class ObjCMessageExpr extends /*public*/ Expr implements /*private*
             Object.class, SourceLocation.class,
             NumArgs + 1, NumStoredSelLocs);
     type$ptr $Mem = C.Allocate$JavaRef(Size,
-            AlignOf.<ObjCMessageExpr/*P*/>Unnamed_enum.Alignment$Java);
+            AlignOf./*<ObjCMessageExpr*>*/Unnamed_enum.Alignment$Java);
     // SourceLocation objects must be allocated
     for (int idx = Size-1, count = NumStoredSelLocs; count > 0; idx--, count--) {
       $Mem.$set(idx, new SourceLocation());

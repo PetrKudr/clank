@@ -205,7 +205,7 @@ public class AttributeFactory implements Destructors.ClassWithDestructor {
     }
     
     // Otherwise, allocate something new.
-    return Alloc.Allocate(size, AlignOf.<AttributeFactory>Unnamed_enum.Alignment$Native);
+    return Alloc.Allocate(size, AlignOf./*<AttributeFactory>*/Unnamed_enum.Alignment$Native);
   }
 
   

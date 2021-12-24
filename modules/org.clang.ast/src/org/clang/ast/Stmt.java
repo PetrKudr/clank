@@ -1192,7 +1192,7 @@ public class Stmt {
   }
   @Converted(kind = Converted.Kind.MANUAL_ADDED)
   public void $Stmt(StmtClass SC) {
-    static_assert($rem_uint(sizeof(/*Deref*/this), AlignOf.<Object/*void P*/ >Unnamed_enum.Alignment$Java) == 0, $("Insufficient alignment!"));
+    static_assert($rem_uint(sizeof(/*Deref*/this), AlignOf./*<Object *>*/Unnamed_enum.Alignment$Java) == 0, $("Insufficient alignment!"));
     Unnamed_field.StmtBits.sClass = $uint2uint_8bits(SC.getValue());
     if (StatisticsEnabled) {
       Stmt.addStmtClass(SC);

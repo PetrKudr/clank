@@ -101,7 +101,7 @@ public class TypeSpecTypeLoc extends /*public*/ Concrete$UnqualTypeLoc<TypeSpecT
   //</editor-fold>
   public enum Unnamed_enum implements Native.ComparableLower {
     LocalDataSize($sizeof_TypeSpecLocInfo()),
-    LocalDataAlignment(AlignOf.<TypeSpecLocInfo>Unnamed_enum.Alignment$Java);
+    LocalDataAlignment(AlignOf./*<TypeSpecLocInfo>*/Unnamed_enum.Alignment$Java);
 
     //<editor-fold defaultstate="collapsed" desc="hidden">
     public static Unnamed_enum valueOf(int val) {

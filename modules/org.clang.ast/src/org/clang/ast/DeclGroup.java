@@ -139,9 +139,9 @@ public final class DeclGroup extends TrailingObjectsJavaBase<DeclGroup, Decl /*P
     // JAVA: MEMORY
     Object/*void P*/ Mem;
     if (false) {
-      Mem = C.Allocate(Size, AlignOf.<DeclGroup>Unnamed_enum.Alignment$Native);
+      Mem = C.Allocate(Size, AlignOf./*<DeclGroup>*/Unnamed_enum.Alignment$Native);
     } else {
-      Mem = C.Allocate$JavaRef(Size, AlignOf.<DeclGroup>Unnamed_enum.Alignment$Java);
+      Mem = C.Allocate$JavaRef(Size, AlignOf./*<DeclGroup>*/Unnamed_enum.Alignment$Java);
     }
     /*NEW_EXPR [System]*/Mem = TrailingObjectsUtils.$new_uint_voidPtr(Mem, (type$ptr<?> New$Mem)->{
         return new DeclGroup(NumDecls, Decls);

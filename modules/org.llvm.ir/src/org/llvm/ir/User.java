@@ -297,9 +297,9 @@ public class User extends /*public*/ Value implements IUser, Destructors.ClassWi
   protected void allocHungoffUses(/*uint*/int N, boolean IsPhi/*= false*/) {
     assert (HasHungOffUses) : "alloc must have hung off uses";
 
-    static_assert($greatereq_uint(AlignOf.<Use>Unnamed_enum.Alignment$Java, AlignOf.<PointerUIntPair<User/*P*/>>Unnamed_enum.Alignment$Java), $("Alignment is insufficient for 'hung-off-uses' pieces"));
-    static_assert($greatereq_uint(AlignOf.<PointerUIntPair<User /*P*/ > >Unnamed_enum.Alignment$Java
-      , AlignOf.<BasicBlock /*P*/ >Unnamed_enum.Alignment$Java), $("Alignment is insufficient for 'hung-off-uses' pieces"));
+    static_assert($greatereq_uint(AlignOf./*<Use>*/Unnamed_enum.Alignment$Java, AlignOf./*<PointerUIntPair<User*>>*/Unnamed_enum.Alignment$Java), $("Alignment is insufficient for 'hung-off-uses' pieces"));
+    static_assert($greatereq_uint(AlignOf./*<PointerUIntPair<User*> >*/Unnamed_enum.Alignment$Java
+      , AlignOf./*<BasicBlock*>*/Unnamed_enum.Alignment$Java), $("Alignment is insufficient for 'hung-off-uses' pieces"));
 
     // Allocate the array of Uses, followed by a pointer (with bottom bit set) to
     // the User.

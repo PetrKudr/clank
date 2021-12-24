@@ -1236,7 +1236,7 @@ public class CFGBuilder implements Destructors.ClassWithDestructor {
         E = DS.decl_rend();
          $noteq_reverse_iterator$C(I, E); I.$preInc()) {
       // Get the alignment of the new DeclStmt, padding out to >=8 bytes.
-      /*uint*/int A = $less_uint(AlignOf.<DeclStmt>Unnamed_enum.Alignment$Java, 8) ? 8 : AlignOf.<DeclStmt>Unnamed_enum.Alignment$Java;
+      /*uint*/int A = $less_uint(AlignOf./*<DeclStmt>*/Unnamed_enum.Alignment$Java, 8) ? 8 : AlignOf./*<DeclStmt>*/Unnamed_enum.Alignment$Java;
       
       // Allocate the DeclStmt using the BumpPtrAllocator.  It will get
       // automatically freed with the CFG.

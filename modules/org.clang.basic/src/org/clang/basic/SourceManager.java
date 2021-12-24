@@ -4886,7 +4886,7 @@ public final class SourceManager extends RefCountedBase<SourceManager> implement
     // so that FileInfo can use the low 3 bits of the pointer for its own
     // nefarious purposes.
     if (false) {
-      /*uint*/int EntryAlign = AlignOf.<SrcMgr.ContentCache>Unnamed_enum.Alignment$Native;
+      /*uint*/int EntryAlign = AlignOf./*<SrcMgr.ContentCache>*/Unnamed_enum.Alignment$Native;
       EntryAlign = std.max(8/*U*/, EntryAlign);
       Entry.second = (ContentCacheAlloc.Allocate_T(SrcMgr.ContentCache.class, 1, EntryAlign).$star());
     }
