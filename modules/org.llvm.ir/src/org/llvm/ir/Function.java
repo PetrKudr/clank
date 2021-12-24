@@ -107,7 +107,7 @@ import static org.llvm.support.AdtsupportLlvmGlobals.*;
  FQN="llvm::Function", NM="_ZN4llvm8FunctionE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/AsmWriter.cpp -nm=_ZN4llvm8FunctionE")
 //</editor-fold>
-public class Function extends /*public*/ GlobalObject implements /*public*/ IChild<Module>, IValueSymbolTableProvider, ilist_node<Function>, Iterable<BasicBlock>, Destructors.ClassWithDestructor {
+public class Function extends /*public*/ GlobalObject implements /*public*/ IChild<Module$IR>, IValueSymbolTableProvider, ilist_node<Function>, Iterable<BasicBlock>, Destructors.ClassWithDestructor {
 /*public:*/
   // JAVA: typedef SymbolTableList<Argument> ArgumentListType
 //  public final class ArgumentListType extends SymbolTableList<Argument, Function>{ };
@@ -162,7 +162,7 @@ public class Function extends /*public*/ GlobalObject implements /*public*/ IChi
    FQN="llvm::Function::setParent", NM="_ZN4llvm8Function9setParentEPNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/Function.cpp -nm=_ZN4llvm8Function9setParentEPNS_6ModuleE")
   //</editor-fold>
-  public /*friend*//*private*/ void setParent(Module /*P*/ parent) {
+  public /*friend*//*private*/ void setParent(Module$IR /*P*/ parent) {
     Parent = parent;
   }
 
@@ -255,14 +255,14 @@ public class Function extends /*public*/ GlobalObject implements /*public*/ IChi
   //</editor-fold>
   private Function(FunctionType /*P*/ Ty, GlobalValue.LinkageTypes Linkage) {
     this(Ty, Linkage, new Twine(/*KEEP_STR*/$EMPTY), 
-      (Module /*P*/ )null);
+      (Module$IR /*P*/ )null);
   }
   private Function(FunctionType /*P*/ Ty, GlobalValue.LinkageTypes Linkage, final /*const*/ Twine /*&*/ name/*= ""*/) {
     this(Ty, Linkage, name, 
-      (Module /*P*/ )null);
+      (Module$IR /*P*/ )null);
   }
   private Function(FunctionType /*P*/ Ty, GlobalValue.LinkageTypes Linkage, final /*const*/ Twine /*&*/ name/*= ""*/, 
-      Module /*P*/ ParentModule/*= null*/) {
+      Module$IR /*P*/ ParentModule/*= null*/) {
     // : GlobalObject(Ty, Value::FunctionVal, OperandTraits<Function>::op_begin(this), 0, Linkage, name), ilist_node<Function>(), BasicBlocks(), ArgumentList(), AttributeSets() 
     //START JInit
     super(Ty, Value.ValueTy.FunctionVal, 
@@ -302,15 +302,15 @@ public class Function extends /*public*/ GlobalObject implements /*public*/ IChi
   //</editor-fold>
   public static Function /*P*/ Create(FunctionType /*P*/ Ty, GlobalValue.LinkageTypes Linkage) {
     return Create(Ty, Linkage, 
-        new Twine(/*KEEP_STR*/$EMPTY), (Module /*P*/ )null);
+        new Twine(/*KEEP_STR*/$EMPTY), (Module$IR /*P*/ )null);
   }
   public static Function /*P*/ Create(FunctionType /*P*/ Ty, GlobalValue.LinkageTypes Linkage, 
         final /*const*/ Twine /*&*/ N/*= ""*/) {
     return Create(Ty, Linkage, 
-        N, (Module /*P*/ )null);
+        N, (Module$IR /*P*/ )null);
   }
   public static Function /*P*/ Create(FunctionType /*P*/ Ty, GlobalValue.LinkageTypes Linkage, 
-        final /*const*/ Twine /*&*/ N/*= ""*/, Module /*P*/ M/*= null*/) {
+        final /*const*/ Twine /*&*/ N/*= ""*/, Module$IR /*P*/ M/*= null*/) {
     return /*NEW_EXPR [User::new]*/User.$new_HangOffUses((type$ptr<?> New$Mem)->{
         return new Function(Ty, Linkage, N, M);
      });

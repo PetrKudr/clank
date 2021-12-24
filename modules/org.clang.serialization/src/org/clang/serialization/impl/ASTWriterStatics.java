@@ -661,9 +661,9 @@ public static boolean shouldIgnoreMacro(MacroDirective /*P*/ MD, boolean IsModul
  FQN="getNumberOfModules", NM="_ZL18getNumberOfModulesPN5clang6ModuleE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.serialization/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Serialization/ASTWriter.cpp -nm=_ZL18getNumberOfModulesPN5clang6ModuleE")
 //</editor-fold>
-public static /*uint*/int getNumberOfModules(Module /*P*/ Mod) {
+public static /*uint*/int getNumberOfModules(Module$B /*P*/ Mod) {
   /*uint*/int ChildModules = 0;
-  for (StdVector.iterator<Module> Sub = Mod.submodule_begin(), SubEnd = Mod.submodule_end();
+  for (StdVector.iterator<Module$B> Sub = Mod.submodule_begin(), SubEnd = Mod.submodule_end();
        $noteq___normal_iterator$C(Sub, SubEnd); Sub.$preInc())  {
     ChildModules += getNumberOfModules(Sub.$star());
   }

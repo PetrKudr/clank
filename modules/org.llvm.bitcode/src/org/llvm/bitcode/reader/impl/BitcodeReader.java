@@ -93,7 +93,7 @@ import org.llvm.bitcode.*;
 //</editor-fold>
 public class BitcodeReader extends /*public*/ GVMaterializer implements Destructors.ClassWithDestructor {
   private LLVMContext /*&*/ Context;
-  private Module /*P*/ TheModule/* = null*/;
+  private Module$IR /*P*/ TheModule/* = null*/;
   private std.unique_ptr<MemoryBuffer> Buffer;
   private std.unique_ptr<BitstreamReader> StreamFile;
   private BitstreamCursor Stream;
@@ -324,12 +324,12 @@ public class BitcodeReader extends /*public*/ GVMaterializer implements Destruct
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.bitcode/llvmToClangType ${LLVM_SRC}/llvm/lib/Bitcode/Reader/BitcodeReader.cpp -nm=_ZN12_GLOBAL__N_113BitcodeReader16parseBitcodeIntoESt10unique_ptrIN4llvm12DataStreamerESt14default_deleteIS3_EEPNS2_6ModuleEb")
   //</editor-fold>
   public std.error_code parseBitcodeInto(std.unique_ptr<DataStreamer> Streamer, 
-                  Module /*P*/ M) {
+                  Module$IR /*P*/ M) {
     return parseBitcodeInto(Streamer, 
                   M, false);
   }
   public std.error_code parseBitcodeInto(std.unique_ptr<DataStreamer> Streamer, 
-                  Module /*P*/ M, boolean ShouldLazyLoadMetadata/*= false*/) {
+                  Module$IR /*P*/ M, boolean ShouldLazyLoadMetadata/*= false*/) {
     throw new UnsupportedOperationException("EmptyBody");
   }
 

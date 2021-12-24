@@ -252,7 +252,7 @@ public class FunctionPassManagerImpl extends /*public*/ Pass implements /*public
    FQN="llvm::legacy::FunctionPassManagerImpl::doInitialization", NM="_ZN4llvm6legacy23FunctionPassManagerImpl16doInitializationERNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/LegacyPassManager.cpp -nm=_ZN4llvm6legacy23FunctionPassManagerImpl16doInitializationERNS_6ModuleE")
   //</editor-fold>
-  @Override public boolean doInitialization(final Module /*&*/ M)/* override*/ {
+  @Override public boolean doInitialization(final Module$IR /*&*/ M)/* override*/ {
     boolean Changed = false;
 
     dumpArguments();
@@ -278,7 +278,7 @@ public class FunctionPassManagerImpl extends /*public*/ Pass implements /*public
    FQN="llvm::legacy::FunctionPassManagerImpl::doFinalization", NM="_ZN4llvm6legacy23FunctionPassManagerImpl14doFinalizationERNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/LegacyPassManager.cpp -nm=_ZN4llvm6legacy23FunctionPassManagerImpl14doFinalizationERNS_6ModuleE")
   //</editor-fold>
-  @Override public boolean doFinalization(final Module /*&*/ M)/* override*/ {
+  @Override public boolean doFinalization(final Module$IR /*&*/ M)/* override*/ {
     boolean Changed = false;
 
     for (int Index = getNumContainedManagers() - 1; Index >= 0; --Index)  {

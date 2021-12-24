@@ -84,7 +84,7 @@ import org.llvm.adt.aliases.*;
 import org.clang.ast.*;
 import static org.clang.ast.java.AstDeclarationsRTTI.dyn_cast_or_null_FunctionDecl;
 import org.llvm.ir.*;
-import org.llvm.ir.Module;
+import org.llvm.ir.Module$IR;
 import org.clang.codegen.CodeGen.impl.*;
 import org.clang.codegen.CodeGen.target.impl.*;
 import org.clang.codegen.target.impl.*;
@@ -187,7 +187,7 @@ public class NVPTXTargetCodeGenInfo extends /*public*/ TargetCodeGenInfo impleme
   //</editor-fold>
   private static void addNVVMMetadata(Function /*P*/ F, StringRef Name, 
                  int Operand) {
-    Module /*P*/ M = F.getParent();
+    Module$IR /*P*/ M = F.getParent();
     final LLVMContext /*&*/ Ctx = M.getContext();
     
     // Get "nvvm.annotations" metadata node

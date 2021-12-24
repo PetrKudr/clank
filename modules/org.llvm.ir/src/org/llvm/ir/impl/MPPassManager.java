@@ -203,7 +203,7 @@ public class MPPassManager extends /*public*/ Pass implements /*public*/ PMDataM
    FQN="(anonymous namespace)::MPPassManager::runOnModule", NM="_ZN12_GLOBAL__N_113MPPassManager11runOnModuleERN4llvm6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/LegacyPassManager.cpp -nm=_ZN12_GLOBAL__N_113MPPassManager11runOnModuleERN4llvm6ModuleE")
   //</editor-fold>
-  public boolean runOnModule(final Module /*&*/ M) {
+  public boolean runOnModule(final Module$IR /*&*/ M) {
     boolean Changed = false;
 
     // Initialize on-the-fly passes

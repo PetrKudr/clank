@@ -208,7 +208,7 @@ public class DependencyGraphCallback extends /*public*/ PPCallbacks implements D
                     /*const*/ FileEntry /*P*/ File, 
                     StringRef SearchPath, 
                     StringRef RelativePath, 
-                    /*const*/ Module /*P*/ Imported)/* override*/ {
+                    /*const*/ Module$B /*P*/ Imported)/* override*/ {
     if (!(File != null)) {
       return;
     }

@@ -84,7 +84,7 @@ import org.llvm.ir.GlobalAlias;
 import org.llvm.ir.GlobalIFunc;
 import org.llvm.ir.GlobalVariable;
 import org.llvm.ir.Instruction;
-import org.llvm.ir.Module;
+import org.llvm.ir.Module$IR;
 import org.llvm.ir.Value;
 import org.llvm.ir.java.IRMemberPointers.Void2SymbolTableList;
 
@@ -106,13 +106,13 @@ public interface ISublistAccessProvider<NodeTy extends Value & ilist_node<NodeTy
     } else if (childClass.equals(BasicBlock.class)) {
       return (Void2SymbolTableList<NodeTy, ItemParentClass>) (Void2SymbolTableList) Function.getSublistAccess((BasicBlock) child);
     } else if (childClass.equals(GlobalVariable.class)) {
-      return (Void2SymbolTableList<NodeTy, ItemParentClass>) (Void2SymbolTableList) Module.getSublistAccess((GlobalVariable) child);
+      return (Void2SymbolTableList<NodeTy, ItemParentClass>) (Void2SymbolTableList) Module$IR.getSublistAccess((GlobalVariable) child);
     } else if (childClass.equals(Function.class)) {
-      return (Void2SymbolTableList<NodeTy, ItemParentClass>) (Void2SymbolTableList) Module.getSublistAccess((Function) child);
+      return (Void2SymbolTableList<NodeTy, ItemParentClass>) (Void2SymbolTableList) Module$IR.getSublistAccess((Function) child);
     } else if (childClass.equals(GlobalAlias.class)) {
-      return (Void2SymbolTableList<NodeTy, ItemParentClass>) (Void2SymbolTableList) Module.getSublistAccess((GlobalAlias) child);
+      return (Void2SymbolTableList<NodeTy, ItemParentClass>) (Void2SymbolTableList) Module$IR.getSublistAccess((GlobalAlias) child);
     } else if (childClass.equals(GlobalIFunc.class)) {
-      return (Void2SymbolTableList<NodeTy, ItemParentClass>) (Void2SymbolTableList) Module.getSublistAccess((GlobalIFunc) child);   
+      return (Void2SymbolTableList<NodeTy, ItemParentClass>) (Void2SymbolTableList) Module$IR.getSublistAccess((GlobalIFunc) child);   
     } else {
       throw new UnsupportedOperationException("Not supported for " +  childClass.getName());
     }

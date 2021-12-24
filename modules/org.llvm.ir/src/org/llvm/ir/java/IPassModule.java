@@ -77,12 +77,12 @@
 package org.llvm.ir.java;
 
 import org.llvm.ir.AnalysisManager;
-import org.llvm.ir.Module;
+import org.llvm.ir.Module$IR;
 
 /**
  *
  * @author alex
  */
 public interface IPassModule<ResultT> {
- ResultT run(final Module /*&*/ IR, final AnalysisManager<Module> /*&*/ AM);
+ ResultT run(final Module$IR /*&*/ IR, final AnalysisManager<Module$IR> /*&*/ AM);
 }

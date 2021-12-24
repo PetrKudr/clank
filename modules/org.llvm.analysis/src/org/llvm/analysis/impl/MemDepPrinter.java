@@ -217,9 +217,9 @@ public class/*struct*/ MemDepPrinter extends /*public*/ FunctionPass implements 
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/MemDepPrinter.cpp -nm=_ZNK12_GLOBAL__N_113MemDepPrinter5printERN4llvm11raw_ostreamEPKNS1_6ModuleE")
   //</editor-fold>
   public void print(final raw_ostream /*&*/ OS) /*const*//* override*/ {
-    print(OS, (/*const*/ Module /*P*/ )null);
+    print(OS, (/*const*/ Module$IR /*P*/ )null);
   }
-  @Override public void print(final raw_ostream /*&*/ OS, /*const*/ Module /*P*/ M/*= null*/) /*const*//* override*/ {
+  @Override public void print(final raw_ostream /*&*/ OS, /*const*/ Module$IR /*P*/ M/*= null*/) /*const*//* override*/ {
     throw new UnsupportedOperationException("EmptyBody");
   }
 

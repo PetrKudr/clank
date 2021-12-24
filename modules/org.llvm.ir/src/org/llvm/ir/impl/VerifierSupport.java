@@ -95,7 +95,7 @@ import org.llvm.pass.*;
 //</editor-fold>
 public class/*struct*/ VerifierSupport implements Destructors.ClassWithDestructor {
   public raw_ostream /*P*/ OS;
-  public /*const*/ Module /*P*/ M/* = null*/;
+  public /*const*/ Module$IR /*P*/ M/* = null*/;
   public Optional<ModuleSlotTracker> MST;
   
   /// Track the brokenness of the module while recursively visiting.
@@ -142,7 +142,7 @@ public class/*struct*/ VerifierSupport implements Destructors.ClassWithDestructo
    FQN="(anonymous namespace)::VerifierSupport::Write", NM="_ZN12_GLOBAL__N_115VerifierSupport5WriteEPKN4llvm6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/Verifier.cpp -nm=_ZN12_GLOBAL__N_115VerifierSupport5WriteEPKN4llvm6ModuleE")
   //</editor-fold>
-  private void Write(/*const*/ Module /*P*/ M) {
+  private void Write(/*const*/ Module$IR /*P*/ M) {
     if (!(M != null)) {
       return;
     }
@@ -376,8 +376,8 @@ public class/*struct*/ VerifierSupport implements Destructors.ClassWithDestructo
   
   @Converted(kind = Converted.Kind.MANUAL_ADDED)
   private <T> void Write(T t) {
-    if (t instanceof Module) {
-      Write((Module)t);
+    if (t instanceof Module$IR) {
+      Write((Module$IR)t);
     } else if (t instanceof Value) {
       Write((Value)t);
     } else if (t instanceof ImmutableCallSite) {

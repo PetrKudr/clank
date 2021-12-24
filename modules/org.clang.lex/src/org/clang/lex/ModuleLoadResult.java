@@ -90,7 +90,7 @@ import org.clang.basic.*;
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Frontend/CompilerInstance.cpp -nm=_ZN5clang16ModuleLoadResultE")
 //</editor-fold>
 public class ModuleLoadResult {
-  private PointerBoolPair</*const*/ Module/*P*/> Storage;
+  private PointerBoolPair</*const*/ Module$B/*P*/> Storage;
 /*public:*/
   //<editor-fold defaultstate="collapsed" desc="clang::ModuleLoadResult::ModuleLoadResult">
   @Converted(kind = Converted.Kind.AUTO,
@@ -101,7 +101,7 @@ public class ModuleLoadResult {
   public ModuleLoadResult() {
     /* : Storage()*/ 
     //START JInit
-    this.Storage = new PointerBoolPair</*const*/ Module/*P*/>();
+    this.Storage = new PointerBoolPair</*const*/ Module$B/*P*/>();
     //END JInit
   }
 
@@ -112,10 +112,10 @@ public class ModuleLoadResult {
    FQN="clang::ModuleLoadResult::ModuleLoadResult", NM="_ZN5clang16ModuleLoadResultC1EPNS_6ModuleEb",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/TokenLexer.cpp -nm=_ZN5clang16ModuleLoadResultC1EPNS_6ModuleEb")
   //</editor-fold>
-  public ModuleLoadResult(Module /*P*/ module, boolean missingExpected) {
+  public ModuleLoadResult(Module$B /*P*/ module, boolean missingExpected) {
     /* : Storage(module, missingExpected)*/ 
     //START JInit
-    this.Storage = new PointerBoolPair</*const*/ Module/*P*/>(module, missingExpected);
+    this.Storage = new PointerBoolPair</*const*/ Module$B/*P*/>(module, missingExpected);
     //END JInit
   }
 
@@ -126,7 +126,7 @@ public class ModuleLoadResult {
    FQN="clang::ModuleLoadResult::operator Module * ", NM="_ZNK5clang16ModuleLoadResultcvPNS_6ModuleEEv",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/TokenLexer.cpp -nm=_ZNK5clang16ModuleLoadResultcvPNS_6ModuleEEv")
   //</editor-fold>
-  public Module /*P*/ $ModulePtr() /*const*/ {
+  public Module$B /*P*/ $ModulePtr() /*const*/ {
     return Storage.getPointer();
   }
 
@@ -154,7 +154,7 @@ public class ModuleLoadResult {
   public /*inline*/ ModuleLoadResult(/*const*/ ModuleLoadResult /*&*/ $Prm0) {
     /* : Storage(.Storage)*/ 
     //START JInit
-    this.Storage = new PointerBoolPair</*const*/ Module/*P*/>($Prm0.Storage);
+    this.Storage = new PointerBoolPair</*const*/ Module$B/*P*/>($Prm0.Storage);
     //END JInit
   }
   
@@ -167,7 +167,7 @@ public class ModuleLoadResult {
   public /*inline*/ ModuleLoadResult(JD$Move _dparam, ModuleLoadResult /*&&*/$Prm0) {
     /* : Storage(static_cast<ModuleLoadResult &&>().Storage)*/ 
     //START JInit
-    this.Storage = new PointerBoolPair</*const*/ Module/*P*/>(JD$Move.INSTANCE, $Prm0.Storage);
+    this.Storage = new PointerBoolPair</*const*/ Module$B/*P*/>(JD$Move.INSTANCE, $Prm0.Storage);
     //END JInit
   }
   

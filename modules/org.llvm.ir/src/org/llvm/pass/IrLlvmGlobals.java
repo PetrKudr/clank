@@ -488,7 +488,7 @@ public static /*inline*/  LLVMOpaqueBasicBlock /*P*/ wrap(/*const*/ BasicBlock /
  FQN="llvm::operator<<", NM="_ZN4llvmlsERNS_11raw_ostreamERKNS_6ModuleE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType -body-delegate ${LLVM_SRC}/llvm/tools/clang/lib/CodeGen/BackendUtil.cpp -nm=_ZN4llvmlsERNS_11raw_ostreamERKNS_6ModuleE")
 //</editor-fold>
-public static /*inline*/ raw_ostream /*&*/ $out_raw_ostream_Module$C(final raw_ostream /*&*/ O, final /*const*/ Module /*&*/ M) {
+public static /*inline*/ raw_ostream /*&*/ $out_raw_ostream_Module$C(final raw_ostream /*&*/ O, final /*const*/ Module$IR /*&*/ M) {
   return /*delegate*/org.llvm.ir.impl.ModuleLlvmGlobals.
     $out_raw_ostream_Module$C(O, M);
 }
@@ -501,7 +501,7 @@ public static /*inline*/ raw_ostream /*&*/ $out_raw_ostream_Module$C(final raw_o
  FQN="llvm::unwrap", NM="_ZN4llvm6unwrapEP16LLVMOpaqueModule",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType -body-delegate ${LLVM_SRC}/llvm/tools/clang/lib/CodeGen/BackendUtil.cpp -nm=_ZN4llvm6unwrapEP16LLVMOpaqueModule")
 //</editor-fold>
-public static /*inline*/ Module /*P*/ unwrap( LLVMOpaqueModule /*P*/ P) {
+public static /*inline*/ Module$IR /*P*/ unwrap( LLVMOpaqueModule /*P*/ P) {
   return /*delegate*/org.llvm.ir.impl.ModuleLlvmGlobals.
     unwrap(P);
 }
@@ -512,7 +512,7 @@ public static /*inline*/ Module /*P*/ unwrap( LLVMOpaqueModule /*P*/ P) {
  FQN="llvm::wrap", NM="_ZN4llvm4wrapEPKNS_6ModuleE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType -body-delegate ${LLVM_SRC}/llvm/tools/clang/lib/CodeGen/BackendUtil.cpp -nm=_ZN4llvm4wrapEPKNS_6ModuleE")
 //</editor-fold>
-public static /*inline*/  LLVMOpaqueModule /*P*/ wrap(/*const*/ Module /*P*/ P) {
+public static /*inline*/  LLVMOpaqueModule /*P*/ wrap(/*const*/ Module$IR /*P*/ P) {
   return /*delegate*/org.llvm.ir.impl.ModuleLlvmGlobals.
     wrap(P);
 }
@@ -527,7 +527,7 @@ public static /*inline*/  LLVMOpaqueModule /*P*/ wrap(/*const*/ Module /*P*/ P) 
  FQN="llvm::unwrap", NM="_ZN4llvm6unwrapEP24LLVMOpaqueModuleProvider",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType -body-delegate ${LLVM_SRC}/llvm/tools/clang/lib/CodeGen/BackendUtil.cpp -nm=_ZN4llvm6unwrapEP24LLVMOpaqueModuleProvider")
 //</editor-fold>
-public static /*inline*/ Module /*P*/ unwrap( LLVMOpaqueModuleProvider /*P*/ MP) {
+public static /*inline*/ Module$IR /*P*/ unwrap( LLVMOpaqueModuleProvider /*P*/ MP) {
   return /*delegate*/org.llvm.ir.impl.ModuleLlvmGlobals.
     unwrap(MP);
 }
@@ -4172,7 +4172,7 @@ public static void printLLVMNameWithoutPrefix(final raw_ostream /*&*/ OS, String
  FQN="llvm::collectUsedGlobalVariables", NM="_ZN4llvm26collectUsedGlobalVariablesERKNS_6ModuleERNS_15SmallPtrSetImplIPNS_11GlobalValueEEEb",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType -body-delegate ${LLVM_SRC}/llvm/lib/IR/Verifier.cpp -nm=_ZN4llvm26collectUsedGlobalVariablesERKNS_6ModuleERNS_15SmallPtrSetImplIPNS_11GlobalValueEEEb")
 //</editor-fold>
-public static GlobalVariable /*P*/ collectUsedGlobalVariables(final /*const*/ Module /*&*/ M, 
+public static GlobalVariable /*P*/ collectUsedGlobalVariables(final /*const*/ Module$IR /*&*/ M, 
                           final SmallPtrSetImpl<GlobalValue /*P*/ > /*&*/ Set, 
                           boolean CompilerUsed) {
   return /*delegate*/org.llvm.ir.impl.ModuleLlvmGlobals.
@@ -4223,15 +4223,15 @@ public static boolean verifyFunction(final /*const*/ Function /*&*/ f, raw_ostre
  FQN="llvm::verifyModule", NM="_ZN4llvm12verifyModuleERKNS_6ModuleEPNS_11raw_ostreamEPb",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType -body-delegate ${LLVM_SRC}/llvm/lib/IR/Verifier.cpp -nm=_ZN4llvm12verifyModuleERKNS_6ModuleEPNS_11raw_ostreamEPb")
 //</editor-fold>
-public static boolean verifyModule(final /*const*/ Module /*&*/ M) {
+public static boolean verifyModule(final /*const*/ Module$IR /*&*/ M) {
   return verifyModule(M, (raw_ostream /*P*/ )null, 
             (bool$ptr/*bool P*/ )null);
 }
-public static boolean verifyModule(final /*const*/ Module /*&*/ M, raw_ostream /*P*/ OS/*= null*/) {
+public static boolean verifyModule(final /*const*/ Module$IR /*&*/ M, raw_ostream /*P*/ OS/*= null*/) {
   return verifyModule(M, OS, 
             (bool$ptr/*bool P*/ )null);
 }
-public static boolean verifyModule(final /*const*/ Module /*&*/ M, raw_ostream /*P*/ OS/*= null*/, 
+public static boolean verifyModule(final /*const*/ Module$IR /*&*/ M, raw_ostream /*P*/ OS/*= null*/, 
             bool$ptr/*bool P*/ BrokenDebugInfo/*= null*/) {
   return /*delegate*/org.llvm.ir.impl.VerifierLlvmGlobals.
     verifyModule(M, OS, 
@@ -4277,7 +4277,7 @@ public static DISubprogram /*P*/ getDISubprogram(/*const*/ MDNode /*P*/ Scope) {
  FQN="llvm::StripDebugInfo", NM="_ZN4llvm14StripDebugInfoERNS_6ModuleE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType -body-delegate ${LLVM_SRC}/llvm/lib/IR/Verifier.cpp -nm=_ZN4llvm14StripDebugInfoERNS_6ModuleE")
 //</editor-fold>
-public static boolean StripDebugInfo(final Module /*&*/ M) {
+public static boolean StripDebugInfo(final Module$IR /*&*/ M) {
   return /*delegate*/org.llvm.ir.impl.DebugInfoLlvmGlobals.
     StripDebugInfo(M);
 }
@@ -4301,7 +4301,7 @@ public static boolean stripDebugInfo(final Function /*&*/ F) {
  FQN="llvm::getDebugMetadataVersionFromModule", NM="_ZN4llvm33getDebugMetadataVersionFromModuleERKNS_6ModuleE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType -body-delegate ${LLVM_SRC}/llvm/lib/IR/Verifier.cpp -nm=_ZN4llvm33getDebugMetadataVersionFromModuleERKNS_6ModuleE")
 //</editor-fold>
-public static /*uint*/int getDebugMetadataVersionFromModule(final /*const*/ Module /*&*/ M) {
+public static /*uint*/int getDebugMetadataVersionFromModule(final /*const*/ Module$IR /*&*/ M) {
   return /*delegate*/org.llvm.ir.impl.DebugInfoLlvmGlobals.
     getDebugMetadataVersionFromModule(M);
 }

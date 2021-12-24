@@ -260,8 +260,8 @@ public class AAManager implements /*public*/ AnalysisInfoMixin<AAManager>, Destr
   //</editor-fold>
   private static </*typename*/ AnalysisT extends AnalysisInfoMixin<AnalysisT>> void getModuleAAResultImpl(Class<AnalysisT> cls, final Function /*&*/ F, final AnalysisManager<Function> /*&*/ AM, 
                        final AAResults /*&*/ $AAResults) {
-    IAnalysisResult result = AM.getResult((Class<OuterAnalysisManagerProxy<AnalysisManager<Module>, Function>>)(Class<?>)OuterAnalysisManagerProxy.class, F);
-    final /*constconst*/AnalysisManager<Module> /*&*/ MAM = (AnalysisManager<Module> /*&*/) ((OuterAnalysisManagerProxy.Result)result).getManager();
+    IAnalysisResult result = AM.getResult((Class<OuterAnalysisManagerProxy<AnalysisManager<Module$IR>, Function>>)(Class<?>)OuterAnalysisManagerProxy.class, F);
+    final /*constconst*/AnalysisManager<Module$IR> /*&*/ MAM = (AnalysisManager<Module$IR> /*&*/) ((OuterAnalysisManagerProxy.Result)result).getManager();
     {
       IAnalysisResult R = MAM.getCachedResult(cls, $Deref(F.getParent()));
       if (R != null) {

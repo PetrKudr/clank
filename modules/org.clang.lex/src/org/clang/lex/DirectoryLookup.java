@@ -550,7 +550,7 @@ public final class DirectoryLookup implements Native.NativePOD<DirectoryLookup> 
             SourceLocation IncludeLoc, 
             SmallString/*P*/ SearchPath, 
             SmallString/*P*/ RelativePath, 
-            Module /*P*/ RequestingModule, 
+            Module$B /*P*/ RequestingModule, 
             ModuleMap.KnownHeader /*P*/ SuggestedModule, 
             bool$ref/*bool &*/ InUserSpecifiedSystemFramework, 
             bool$ref/*bool &*/ HasBeenMapped, 
@@ -579,7 +579,7 @@ public final class DirectoryLookup implements Native.NativePOD<DirectoryLookup> 
             SourceLocation IncludeLoc, 
             SmallString/*P*/ SearchPath, 
             SmallString/*P*/ RelativePath, 
-            Module /*P*/ RequestingModule, 
+            Module$B /*P*/ RequestingModule, 
             ModuleMap.KnownHeader /*P*/ SuggestedModule, 
             bool$ref/*bool &*/ InUserSpecifiedSystemFramework, 
             bool$ref/*bool &*/ HasBeenMapped, 
@@ -663,7 +663,7 @@ public final class DirectoryLookup implements Native.NativePOD<DirectoryLookup> 
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/HeaderSearch.cpp -nm=_ZNK5clang15DirectoryLookup17DoFrameworkLookupEN4llvm9StringRefERNS_12HeaderSearchEPNS1_15SmallVectorImplIcEES7_PNS_6ModuleEPNS_9ModuleMap11KnownHeaderERb")
   //</editor-fold>
   private /*const*/ FileEntry /*P*/ DoFrameworkLookup(StringRef Filename, HeaderSearch /*&*/ HS, SmallString/*P*/ SearchPath, 
-                   SmallString/*P*/ RelativePath, Module /*P*/ RequestingModule, 
+                   SmallString/*P*/ RelativePath, Module$B /*P*/ RequestingModule, 
                    ModuleMap.KnownHeader /*P*/ SuggestedModule, 
                    bool$ref/*bool &*/ InUserSpecifiedSystemFramework) /*const*/ {
     FileManager /*&*/ FileMgr = HS.getFileMgr();

@@ -252,15 +252,15 @@ private final /*split clang::Parser*/ Parser $this() { return (Parser)this; }
         return false;
        case tok.TokenKind.annot_module_include:
         $this().Actions.ActOnModuleInclude($this().Tok.getLocation(), 
-            reinterpret_cast(Module /*P*/ .class, $this().Tok.getAnnotationValue()));
+            reinterpret_cast(Module$B /*P*/ .class, $this().Tok.getAnnotationValue()));
         $this().ConsumeToken();
         return false;
        case tok.TokenKind.annot_module_begin:
-        $this().Actions.ActOnModuleBegin($this().Tok.getLocation(), reinterpret_cast(Module /*P*/ .class, $this().Tok.getAnnotationValue()));
+        $this().Actions.ActOnModuleBegin($this().Tok.getLocation(), reinterpret_cast(Module$B /*P*/ .class, $this().Tok.getAnnotationValue()));
         $this().ConsumeToken();
         return false;
        case tok.TokenKind.annot_module_end:
-        $this().Actions.ActOnModuleEnd($this().Tok.getLocation(), reinterpret_cast(Module /*P*/ .class, $this().Tok.getAnnotationValue()));
+        $this().Actions.ActOnModuleEnd($this().Tok.getLocation(), reinterpret_cast(Module$B /*P*/ .class, $this().Tok.getAnnotationValue()));
         $this().ConsumeToken();
         return false;
        case tok.TokenKind.eof:
@@ -2641,13 +2641,13 @@ private final /*split clang::Parser*/ Parser $this() { return (Parser)this; }
         // level.
         return true;
        case tok.TokenKind.annot_module_begin:
-        $this().Actions.diagnoseMisplacedModuleImport(reinterpret_cast(Module /*P*/ .class, $this().Tok.getAnnotationValue()), $this().Tok.getLocation());
+        $this().Actions.diagnoseMisplacedModuleImport(reinterpret_cast(Module$B /*P*/ .class, $this().Tok.getAnnotationValue()), $this().Tok.getLocation());
         return true;
        case tok.TokenKind.annot_module_include:
         // Module import found where it should not be, for instance, inside a
         // namespace. Recover by importing the module.
         $this().Actions.ActOnModuleInclude($this().Tok.getLocation(), 
-            reinterpret_cast(Module /*P*/ .class, $this().Tok.getAnnotationValue()));
+            reinterpret_cast(Module$B /*P*/ .class, $this().Tok.getAnnotationValue()));
         $this().ConsumeToken();
         // If there is another module import, process it.
         continue;

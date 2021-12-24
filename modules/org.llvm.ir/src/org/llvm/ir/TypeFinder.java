@@ -162,7 +162,7 @@ public class TypeFinder implements Iterable<StructType /*P*/>, Destructors.Class
    FQN="llvm::TypeFinder::run", NM="_ZN4llvm10TypeFinder3runERKNS_6ModuleEb",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/TypeFinder.cpp -nm=_ZN4llvm10TypeFinder3runERKNS_6ModuleEb")
   //</editor-fold>
-  public void run(final /*const*/ Module /*&*/ M, boolean onlyNamed) {
+  public void run(final /*const*/ Module$IR /*&*/ M, boolean onlyNamed) {
     OnlyNamed = onlyNamed;
 
     // Get types from global variables.

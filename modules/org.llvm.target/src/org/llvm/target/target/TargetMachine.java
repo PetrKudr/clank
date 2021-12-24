@@ -453,7 +453,7 @@ public class TargetMachine implements TargetMachineForward, Destructors.ClassWit
    FQN="llvm::TargetMachine::shouldAssumeDSOLocal", NM="_ZNK4llvm13TargetMachine20shouldAssumeDSOLocalERKNS_6ModuleEPKNS_11GlobalValueE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.target/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/CodeGen/BackendUtil.cpp -nm=_ZNK4llvm13TargetMachine20shouldAssumeDSOLocalERKNS_6ModuleEPKNS_11GlobalValueE")
   //</editor-fold>
-  public boolean shouldAssumeDSOLocal(final /*const*/ Module /*&*/ M, /*const*/ GlobalValue /*P*/ GV) /*const*/ {
+  public boolean shouldAssumeDSOLocal(final /*const*/ Module$IR /*&*/ M, /*const*/ GlobalValue /*P*/ GV) /*const*/ {
     throw new UnsupportedOperationException("EmptyBody");
   }
 

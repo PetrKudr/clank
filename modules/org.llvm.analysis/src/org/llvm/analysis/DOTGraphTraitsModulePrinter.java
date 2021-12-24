@@ -123,7 +123,7 @@ public class DOTGraphTraitsModulePrinter</*typename*/ AnalysisT extends ModulePa
    FQN="llvm::DOTGraphTraitsModulePrinter::runOnModule", NM="_ZN4llvm27DOTGraphTraitsModulePrinter11runOnModuleERNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/CallPrinter.cpp -nm=_ZN4llvm27DOTGraphTraitsModulePrinter11runOnModuleERNS_6ModuleE")
   //</editor-fold>
-  @Override public boolean runOnModule(final Module /*&*/ M)/* override*/ {
+  @Override public boolean runOnModule(final Module$IR /*&*/ M)/* override*/ {
     raw_fd_ostream File = null;
     try {
       GraphT Graph = $Traits.getGraph($AddrOf(getAnalysis(cls)));

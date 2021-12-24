@@ -142,15 +142,15 @@ public static boolean verifyFunction(final /*const*/ Function /*&*/ f, raw_ostre
  FQN="llvm::verifyModule", NM="_ZN4llvm12verifyModuleERKNS_6ModuleEPNS_11raw_ostreamEPb",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/Verifier.cpp -nm=_ZN4llvm12verifyModuleERKNS_6ModuleEPNS_11raw_ostreamEPb")
 //</editor-fold>
-public static boolean verifyModule(final /*const*/ Module /*&*/ M) {
+public static boolean verifyModule(final /*const*/ Module$IR /*&*/ M) {
   return verifyModule(M, (raw_ostream /*P*/ )null, 
             (bool$ptr/*bool P*/ )null);
 }
-public static boolean verifyModule(final /*const*/ Module /*&*/ M, raw_ostream /*P*/ OS/*= null*/) {
+public static boolean verifyModule(final /*const*/ Module$IR /*&*/ M, raw_ostream /*P*/ OS/*= null*/) {
   return verifyModule(M, OS, 
             (bool$ptr/*bool P*/ )null);
 }
-public static boolean verifyModule(final /*const*/ Module /*&*/ M, raw_ostream /*P*/ OS/*= null*/, 
+public static boolean verifyModule(final /*const*/ Module$IR /*&*/ M, raw_ostream /*P*/ OS/*= null*/, 
             bool$ptr/*bool P*/ BrokenDebugInfo/*= null*/) {
   Verifier V = null;
   try {

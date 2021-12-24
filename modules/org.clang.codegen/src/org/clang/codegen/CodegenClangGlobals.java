@@ -105,7 +105,7 @@ public static void EmitBackendOutput(final DiagnosticsEngine /*&*/ Diags,
                  final /*const*/ CodeGenOptions /*&*/ CGOpts, 
                  final /*const*/ TargetOptions /*&*/ TOpts, 
                  final /*const*/ LangOptions /*&*/ LOpts, final /*const*/ DataLayout /*&*/ TDesc, 
-                 org.llvm.ir.Module /*P*/ M, BackendAction Action, 
+                 org.llvm.ir.Module$IR /*P*/ M, BackendAction Action, 
                  std.unique_ptr<raw_pwrite_stream> OS) {
   /*delegate*/org.clang.codegen.impl.BackendUtilClangGlobals.
     EmitBackendOutput(Diags, 
@@ -125,7 +125,7 @@ public static void EmitBackendOutput(final DiagnosticsEngine /*&*/ Diags,
  FQN="clang::EmbedBitcode", NM="_ZN5clang12EmbedBitcodeEPN4llvm6ModuleERKNS_14CodeGenOptionsENS0_15MemoryBufferRefE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.codegen/llvmToClangType -body-delegate ${LLVM_SRC}/llvm/tools/clang/lib/CodeGen/BackendUtil.cpp -nm=_ZN5clang12EmbedBitcodeEPN4llvm6ModuleERKNS_14CodeGenOptionsENS0_15MemoryBufferRefE")
 //</editor-fold>
-public static void EmbedBitcode(org.llvm.ir.Module /*P*/ M, final /*const*/ CodeGenOptions /*&*/ CGOpts, 
+public static void EmbedBitcode(org.llvm.ir.Module$IR /*P*/ M, final /*const*/ CodeGenOptions /*&*/ CGOpts, 
             MemoryBufferRef Buf) {
   /*delegate*/org.clang.codegen.impl.BackendUtilClangGlobals.
     EmbedBitcode(M, CGOpts, 

@@ -208,7 +208,7 @@ private final /*split clang::Preprocessor*/ Preprocessor $this() { return (Prepr
    FQN="clang::Preprocessor::addModuleMacro", NM="_ZN5clang12Preprocessor14addModuleMacroEPNS_6ModuleEPNS_14IdentifierInfoEPNS_9MacroInfoEN4llvm8ArrayRefIPNS_11ModuleMacroEEERb",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/PPMacroExpansion.cpp -nm=_ZN5clang12Preprocessor14addModuleMacroEPNS_6ModuleEPNS_14IdentifierInfoEPNS_9MacroInfoEN4llvm8ArrayRefIPNS_11ModuleMacroEEERb")
   //</editor-fold>
-  public ModuleMacro /*P*/ addModuleMacro(Module /*P*/ Mod, IdentifierInfo /*P*/ II, 
+  public ModuleMacro /*P*/ addModuleMacro(Module$B /*P*/ Mod, IdentifierInfo /*P*/ II, 
                 MacroInfo /*P*/ Macro, 
                 ArrayRef<ModuleMacro /*P*/ > Overrides, 
                 bool$ref/*bool &*/ New) {
@@ -265,7 +265,7 @@ private final /*split clang::Preprocessor*/ Preprocessor $this() { return (Prepr
    FQN="clang::Preprocessor::getModuleMacro", NM="_ZN5clang12Preprocessor14getModuleMacroEPNS_6ModuleEPNS_14IdentifierInfoE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/PPMacroExpansion.cpp -nm=_ZN5clang12Preprocessor14getModuleMacroEPNS_6ModuleEPNS_14IdentifierInfoE")
   //</editor-fold>
-  public ModuleMacro /*P*/ getModuleMacro(Module /*P*/ Mod, IdentifierInfo /*P*/ II) {
+  public ModuleMacro /*P*/ getModuleMacro(Module$B /*P*/ Mod, IdentifierInfo /*P*/ II) {
     FoldingSetNodeID ID = null;
     try {
       ID/*J*/= new FoldingSetNodeID();

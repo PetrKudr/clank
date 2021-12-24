@@ -208,7 +208,7 @@ public abstract class Pass implements Destructors.ClassWithDestructor {
    FQN="llvm::Pass::doInitialization", NM="_ZN4llvm4Pass16doInitializationERNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/Pass.cpp -nm=_ZN4llvm4Pass16doInitializationERNS_6ModuleE")
   //</editor-fold>
-  public /*virtual*/ boolean doInitialization(final Module /*&*/ $Prm0) {
+  public /*virtual*/ boolean doInitialization(final Module$IR /*&*/ $Prm0) {
     return false;
   }
 
@@ -222,7 +222,7 @@ public abstract class Pass implements Destructors.ClassWithDestructor {
    FQN="llvm::Pass::doFinalization", NM="_ZN4llvm4Pass14doFinalizationERNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/Pass.cpp -nm=_ZN4llvm4Pass14doFinalizationERNS_6ModuleE")
   //</editor-fold>
-  public /*virtual*/ boolean doFinalization(final Module /*&*/ $Prm0) {
+  public /*virtual*/ boolean doFinalization(final Module$IR /*&*/ $Prm0) {
     return false;
   }
 
@@ -245,7 +245,7 @@ public abstract class Pass implements Destructors.ClassWithDestructor {
    FQN="llvm::Pass::print", NM="_ZNK4llvm4Pass5printERNS_11raw_ostreamEPKNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/Pass.cpp -nm=_ZNK4llvm4Pass5printERNS_11raw_ostreamEPKNS_6ModuleE")
   //</editor-fold>
-  public void print(final raw_ostream /*&*/ O, /*const*/ Module /*P*/ $Prm1) /*const*/ {
+  public void print(final raw_ostream /*&*/ O, /*const*/ Module$IR /*P*/ $Prm1) /*const*/ {
     O.$out(/*KEEP_STR*/"Pass::print not implemented for pass: '").$out(getPassName()).$out(/*KEEP_STR*/"'!\n");
   }
 
@@ -258,7 +258,7 @@ public abstract class Pass implements Destructors.ClassWithDestructor {
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/Pass.cpp -nm=_ZNK4llvm4Pass4dumpEv")
   //</editor-fold>
   public void dump() /*const*//* __attribute__((used)) __attribute__((noinline))*/ {
-    print(dbgs(), (/*const*/ Module /*P*/ )null);
+    print(dbgs(), (/*const*/ Module$IR /*P*/ )null);
   }
  // dump - Print to stderr.
   

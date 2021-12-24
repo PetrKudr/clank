@@ -187,7 +187,7 @@ public static optBool EvalAAMD/*J*/= new optBool($("evaluate-aa-metadata"), Opti
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/AliasAnalysisEvaluator.cpp -nm=_ZL12PrintResultsPKcbPKN4llvm5ValueES4_PKNS1_6ModuleE")
 //</editor-fold>
 public static void PrintResults(/*const*/char$ptr/*char P*/ Msg, boolean P, /*const*/ Value /*P*/ V1, 
-            /*const*/ Value /*P*/ V2, /*const*/ Module /*P*/ M) {
+            /*const*/ Value /*P*/ V2, /*const*/ Module$IR /*P*/ M) {
   throw new UnsupportedOperationException("EmptyBody");
 }
 
@@ -198,7 +198,7 @@ public static void PrintResults(/*const*/char$ptr/*char P*/ Msg, boolean P, /*co
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/AliasAnalysisEvaluator.cpp -nm=_ZL18PrintModRefResultsPKcbPN4llvm11InstructionEPNS1_5ValueEPNS1_6ModuleE")
 //</editor-fold>
 public static /*inline*/ void PrintModRefResults(/*const*/char$ptr/*char P*/ Msg, boolean P, Instruction /*P*/ I, Value /*P*/ Ptr, 
-                  Module /*P*/ M) {
+                  Module$IR /*P*/ M) {
   throw new UnsupportedOperationException("EmptyBody");
 }
 
@@ -209,7 +209,7 @@ public static /*inline*/ void PrintModRefResults(/*const*/char$ptr/*char P*/ Msg
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/AliasAnalysisEvaluator.cpp -nm=_ZL18PrintModRefResultsPKcbN4llvm8CallSiteES2_PNS1_6ModuleE")
 //</editor-fold>
 public static /*inline*/ void PrintModRefResults(/*const*/char$ptr/*char P*/ Msg, boolean P, CallSite CSA, CallSite CSB, 
-                  Module /*P*/ M) {
+                  Module$IR /*P*/ M) {
   throw new UnsupportedOperationException("EmptyBody");
 }
 
@@ -220,7 +220,7 @@ public static /*inline*/ void PrintModRefResults(/*const*/char$ptr/*char P*/ Msg
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/AliasAnalysisEvaluator.cpp -nm=_ZL21PrintLoadStoreResultsPKcbPKN4llvm5ValueES4_PKNS1_6ModuleE")
 //</editor-fold>
 public static /*inline*/ void PrintLoadStoreResults(/*const*/char$ptr/*char P*/ Msg, boolean P, /*const*/ Value /*P*/ V1, 
-                     /*const*/ Value /*P*/ V2, /*const*/ Module /*P*/ M) {
+                     /*const*/ Value /*P*/ V2, /*const*/ Module$IR /*P*/ M) {
   throw new UnsupportedOperationException("EmptyBody");
 }
 

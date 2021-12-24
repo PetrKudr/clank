@@ -205,7 +205,7 @@ public class CompilerInstance extends /*public*/ ModuleLoader implements Destruc
   
   /// \brief The set of top-level modules that has already been loaded,
   /// along with the module map
-  private DenseMap</*const*/ IdentifierInfo /*P*/ , Module /*P*/ > KnownModules;
+  private DenseMap</*const*/ IdentifierInfo /*P*/ , Module$B/*P*/ > KnownModules;
   
   /// \brief The location of the module-import keyword for the last module
   /// import. 
@@ -364,7 +364,7 @@ public class CompilerInstance extends /*public*/ ModuleLoader implements Destruc
     this.ThePCHContainerOperations = new std.shared_ptr<PCHContainerOperations>(JD$Move.INSTANCE, std.move(PCHContainerOps));
     this.TheDependencyFileGenerator = new std.unique_ptr<DependencyFileGenerator>();
     this.DependencyCollectors = new std.vector<std.shared_ptr<DependencyCollector>>(new std.shared_ptr<DependencyCollector>());
-    this.KnownModules = new DenseMap</*const*/ IdentifierInfo /*P*/ , Module /*P*/ >(IdentifierInfo.DMI$IdentifierInfoPtr, (Module)null);
+    this.KnownModules = new DenseMap</*const*/ IdentifierInfo /*P*/ , Module$B/*P*/ >(IdentifierInfo.DMI$IdentifierInfoPtr, (Module$B)null);
     this.LastModuleImportLoc = new SourceLocation();
     this.LastModuleImportResult = new ModuleLoadResult();
     this.BuildGlobalModuleIndex = false;
@@ -2515,7 +2515,7 @@ public class CompilerInstance extends /*public*/ ModuleLoader implements Destruc
             /*CurDir=*/ UnusedCurDir, new SmallVectorPtrPairFileEntryDirectoryEntry(Includers), 
             /*SearchPath=*/ (SmallString/*P*/ )null, 
             /*RelativePath=*/ (SmallString/*P*/ )null, 
-            /*RequestingModule=*/ (Module /*P*/ )null, 
+            /*RequestingModule=*/ (Module$B /*P*/ )null, 
             /*SuggestedModule=*/ (ModuleMap.KnownHeader /*P*/ )null, /*SkipCache=*/ true);
         // Also add the header to /showIncludes output.
         if ((File != null)) {
@@ -2730,7 +2730,7 @@ public class CompilerInstance extends /*public*/ ModuleLoader implements Destruc
     public void markAllUnavailable() {
       for (IdentifierInfo /*P*/ II : LoadedModules) {
         {
-          Module /*P*/ M = CI.getPreprocessor().
+          Module$B /*P*/ M = CI.getPreprocessor().
               getHeaderSearchInfo().
               getModuleMap().
               findModule(II.getName());
@@ -2833,7 +2833,7 @@ public class CompilerInstance extends /*public*/ ModuleLoader implements Destruc
   //</editor-fold>
   @Override public ModuleLoadResult loadModule(SourceLocation ImportLoc, 
             ModuleIdPath Path, 
-            Module.NameVisibilityKind Visibility, 
+            Module$B.NameVisibilityKind Visibility, 
             boolean IsInclusionDirective)/* override*/ {
     // Determine what file we're searching from.
     StringRef ModuleName = Path.$at(0).first.getName();
@@ -2851,10 +2851,10 @@ public class CompilerInstance extends /*public*/ ModuleLoader implements Destruc
       return new ModuleLoadResult(LastModuleImportResult);
     }
     
-    Module /*P*/ Module = null;
+    Module$B /*P*/ Module = null;
     
     // If we don't already have information on this module, load the module now.
-    DenseMapIterator</*const*/ IdentifierInfo /*P*/, Module /*P*/> Known = KnownModules.find(Path.$at(0).first);
+    DenseMapIterator</*const*/ IdentifierInfo /*P*/, Module$B/*P*/> Known = KnownModules.find(Path.$at(0).first);
     if (Known.$noteq(/*NO_ITER_COPY*/KnownModules.end())) {
       // Retrieve the cached top-level module.
       Module = Known.$arrow().second;
@@ -2888,7 +2888,7 @@ public class CompilerInstance extends /*public*/ ModuleLoader implements Destruc
             if (Module.HasIncompatibleModuleFile) {
               // We tried and failed to load a module file for this module. Fall
               // back to textual inclusion for its headers.
-              return new ModuleLoadResult((Module /*P*/ )null, /*missingExpected*/ true);
+              return new ModuleLoadResult((Module$B /*P*/ )null, /*missingExpected*/ true);
             }
             
             $c$.clean($out_DiagnosticBuilder$C_StringRef($c$.track(getDiagnostics().Report(/*NO_COPY*/ModuleNameLoc, diag.err_module_build_disabled)), 
@@ -3014,13 +3014,13 @@ public class CompilerInstance extends /*public*/ ModuleLoader implements Destruc
     if ($greater_uint(Path.size(), 1)) {
       for (/*uint*/int I = 1, N = Path.size(); I != N; ++I) {
         StringRef Name = Path.$at(I).first.getName();
-        Module /*P*/ Sub = Module.findSubmodule(new StringRef(Name));
+        Module$B /*P*/ Sub = Module.findSubmodule(new StringRef(Name));
         if (!(Sub != null)) {
           // Attempt to perform typo correction to find a module name that works.
           SmallVector<StringRef> Best/*J*/= new SmallVector<StringRef>(2, new StringRef());
           /*uint*/int BestEditDistance = (std.numeric_limitsUInt.max());
           
-          for (std.vector.iterator<Module /*P*/ > J = Module.submodule_begin(), 
+          for (std.vector.iterator<Module$B/*P*/ > J = Module.submodule_begin(), 
               JEnd = Module.submodule_end();
                $noteq___normal_iterator$C(J, JEnd); J.$preInc()) {
             /*uint*/int ED = Name.edit_distance(new StringRef((J.$star()).Name), 
@@ -3074,7 +3074,7 @@ public class CompilerInstance extends /*public*/ ModuleLoader implements Destruc
     // Make the named module visible, if it's not already part of the module
     // we are parsing.
     if ($noteq_StringRef(/*NO_COPY*/ModuleName, new StringRef(getLangOpts().CurrentModule))) {
-      Module.UnresolvedHeaderDirective MissingHeader = null;
+      Module$B.UnresolvedHeaderDirective MissingHeader = null;
       try {
         if (!Module.IsFromModuleFile) {
           JavaCleaner $c$ = $createJavaCleaner();
@@ -3089,7 +3089,7 @@ public class CompilerInstance extends /*public*/ ModuleLoader implements Destruc
                     new StringRef(Module.getFullModuleName())), 
                 new SourceRange(/*NO_COPY*/Path.front().second, /*NO_COPY*/Path.back().second)));
             
-            return new ModuleLoadResult((Module /*P*/ )null, true);
+            return new ModuleLoadResult((Module$B /*P*/ )null, true);
           } finally {
             $c$.$destroy();
           }
@@ -3097,7 +3097,7 @@ public class CompilerInstance extends /*public*/ ModuleLoader implements Destruc
         
         // Check whether this module is available.
         std.pairTypeBool<std.string> Requirement/*J*/= new std.pairTypeBool<std.string>(new std.string(), false);
-        MissingHeader/*J*/= new Module.UnresolvedHeaderDirective();
+        MissingHeader/*J*/= new Module$B.UnresolvedHeaderDirective();
         if (!Module.isAvailable(getLangOpts(), getTarget(), Requirement, 
             MissingHeader)) {
           if (MissingHeader.FileNameLoc.isValid()) {
@@ -3132,7 +3132,7 @@ public class CompilerInstance extends /*public*/ ModuleLoader implements Destruc
     }
     
     // Check for any configuration macros that have changed.
-    Module /*P*/ TopModule = Module.getTopLevelModule();
+    Module$B /*P*/ TopModule = Module.getTopLevelModule();
     for (/*uint*/int I = 0, N = TopModule.ConfigMacros.size(); I != N; ++I) {
       checkConfigMacro(getPreprocessor(), /*JAVA: pass std.string*/TopModule.ConfigMacros.$at(I), 
           Module, new SourceLocation(ImportLoc));
@@ -3151,8 +3151,8 @@ public class CompilerInstance extends /*public*/ ModuleLoader implements Destruc
    FQN="clang::CompilerInstance::makeModuleVisible", NM="_ZN5clang16CompilerInstance17makeModuleVisibleEPNS_6ModuleENS1_18NameVisibilityKindENS_14SourceLocationE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.frontend/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Frontend/CompilerInstance.cpp -nm=_ZN5clang16CompilerInstance17makeModuleVisibleEPNS_6ModuleENS1_18NameVisibilityKindENS_14SourceLocationE")
   //</editor-fold>
-  @Override public void makeModuleVisible(Module /*P*/ Mod, 
-                   Module.NameVisibilityKind Visibility, 
+  @Override public void makeModuleVisible(Module$B /*P*/ Mod, 
+                   Module$B.NameVisibilityKind Visibility, 
                    SourceLocation ImportLoc)/* override*/ {
     if (!ModuleManager.$bool()) {
       createModuleManager();
@@ -3215,16 +3215,16 @@ public class CompilerInstance extends /*public*/ ModuleLoader implements Destruc
     if (!HaveFullGlobalModuleIndex && (GlobalIndex != null) && !buildingModule()) {
       ModuleMap /*&*/ MMap = getPreprocessor().getHeaderSearchInfo().getModuleMap();
       boolean RecreateIndex = false;
-      for (StringMapIterator<Module /*P*//*, MallocAllocator*/> I = MMap.module_begin(), 
+      for (StringMapIterator<Module$B/*P*//*, MallocAllocator*/> I = MMap.module_begin(), 
           E = MMap.module_end(); I.$noteq(E); I.$preInc()) {
-        Module /*P*/ TheModule = I.$arrow().second;
+        Module$B /*P*/ TheModule = I.$arrow().second;
         /*const*/ FileEntry /*P*/ Entry = TheModule.getASTFile();
         if (!(Entry != null)) {
           SmallVector<std.pair<IdentifierInfo /*P*/ , SourceLocation>> Path/*J*/= new SmallVector<std.pair<IdentifierInfo /*P*/ , SourceLocation>>(2, new std.pairPtrType<IdentifierInfo /*P*/ , SourceLocation>(null, new SourceLocation()));
           Path.push_back(std.make_pair_Ptr_T(getPreprocessor().getIdentifierInfo(/*JAVA: new StringRef*/(TheModule.Name)), TriggerLoc));
           std.reverse(Path.begin(), Path.end());
           // Load a module as hidden.  This also adds it to the global index.
-          loadModule(new SourceLocation(TheModule.DefinitionLoc), new ModuleIdPath(Path), Module.NameVisibilityKind.Hidden, false);
+          loadModule(new SourceLocation(TheModule.DefinitionLoc), new ModuleIdPath(Path), Module$B.NameVisibilityKind.Hidden, false);
           RecreateIndex = true;
         }
       }

@@ -719,7 +719,7 @@ public class ASTReader extends /*public*/ ExternalSemaSource implements /*public
   ///
   /// This vector is indexed by the Submodule ID (-1). NULL submodule entries
   /// indicate that the particular submodule ID has not yet been loaded.
-  private SmallVector<Module /*P*/> SubmodulesLoaded;
+  private SmallVector<Module$B/*P*/> SubmodulesLoaded;
   
   // JAVA: typedef ContinuousRangeMap<serialization::SubmoduleID, ModuleFile *, 4> GlobalSubmoduleMapType
 //  public final class GlobalSubmoduleMapType extends ContinuousRangeMapUInt<ModuleFile /*P*/ >{ };
@@ -737,7 +737,7 @@ public class ASTReader extends /*public*/ ExternalSemaSource implements /*public
   
   /// \brief A mapping from each of the hidden submodules to the deserialized
   /// declarations in that submodule that could be made visible.
-  /*friend*/public DenseMapPtrType<Module /*P*/ , SmallVector<Decl /*P*/>> HiddenNamesMap;
+  /*friend*/public DenseMapPtrType<Module$B/*P*/ , SmallVector<Decl /*P*/>> HiddenNamesMap;
   
   /// \brief A module import, export, or conflict that hasn't yet been resolved.
   //<editor-fold defaultstate="collapsed" desc="clang::ASTReader::UnresolvedModuleRef">
@@ -751,7 +751,7 @@ public class ASTReader extends /*public*/ ExternalSemaSource implements /*public
     public ModuleFile /*P*/ File;
     
     /// \brief The module that is importing or exporting.
-    public Module /*P*/ Mod;
+    public Module$B /*P*/ Mod;
     
     /// \brief The kind of module reference.
     //<editor-fold defaultstate="collapsed" desc="clang::ASTReader::UnresolvedModuleRef::(anonymous)">
@@ -3462,7 +3462,7 @@ public class ASTReader extends /*public*/ ExternalSemaSource implements /*public
           assert (!F.ModuleName.empty()) : "MODULE_DIRECTORY found before MODULE_NAME";
           // If we've already loaded a module map file covering this module, we may
           // have a better path for it (relative to the current build).
-          Module /*P*/ M = PP.getHeaderSearchInfo().lookupModule(new StringRef(F.ModuleName));
+          Module$B /*P*/ M = PP.getHeaderSearchInfo().lookupModule(new StringRef(F.ModuleName));
           if ((M != null) && (M.Directory != null)) {
             // If we're implicitly loading a module, the base directory can't
             // change between the build and use.
@@ -4635,7 +4635,7 @@ public class ASTReader extends /*public*/ ExternalSemaSource implements /*public
        && (ModuleMgr.begin().$star()).Kind != ModuleKind.MK_MainFile) {
       // An implicitly-loaded module file should have its module listed in some
       // module map file that we've already loaded.
-      Module /*P*/ M = PP.getHeaderSearchInfo().lookupModule(new StringRef(F.ModuleName));
+      Module$B /*P*/ M = PP.getHeaderSearchInfo().lookupModule(new StringRef(F.ModuleName));
       final ModuleMap /*&*/ Map = PP.getHeaderSearchInfo().getModuleMap();
       /*const*/ FileEntry /*P*/ ModMap = (M != null) ? Map.getModuleMapFileForUniquing(M) : null;
       if (!(ModMap != null)) {
@@ -4761,7 +4761,7 @@ public class ASTReader extends /*public*/ ExternalSemaSource implements /*public
     
     final ModuleMap /*&*/ ModMap = PP.getHeaderSearchInfo().getModuleMap();
     boolean First = true;
-    Module /*P*/ CurrentModule = null;
+    Module$B /*P*/ CurrentModule = null;
     SmallVectorULong Record/*J*/= new SmallVectorULong(64, (long/*uint64_t*/)0);
     while (true) {
       BitstreamEntry Entry = F.Stream.advanceSkippingSubblocks();
@@ -4816,7 +4816,7 @@ public class ASTReader extends /*public*/ ExternalSemaSource implements /*public
           boolean InferExportWildcard = (Record.$at(Idx++) != 0);
           boolean ConfigMacrosExhaustive = (Record.$at(Idx++) != 0);
           
-          Module /*P*/ ParentModule = null;
+          Module$B /*P*/ ParentModule = null;
           if ((Parent != 0)) {
             ParentModule = getSubmodule(Parent);
           }
@@ -5013,7 +5013,7 @@ public class ASTReader extends /*public*/ ExternalSemaSource implements /*public
           break;
         }
        case SubmoduleRecordTypes.SUBMODULE_LINK_LIBRARY:
-        CurrentModule.LinkLibraries.push_back_T$RR(new Module.LinkLibrary(Blob.$string(), (Record.$at(0) != 0)));
+        CurrentModule.LinkLibraries.push_back_T$RR(new Module$B.LinkLibrary(Blob.$string(), (Record.$at(0) != 0)));
         break;
        case SubmoduleRecordTypes.SUBMODULE_CONFIG_MACRO:
         CurrentModule.ConfigMacros.push_back_T$RR(Blob.str());
@@ -7914,9 +7914,9 @@ public class ASTReader extends /*public*/ ExternalSemaSource implements /*public
     this.MacrosLoaded = new std.vector<MacroInfo /*P*/ >((MacroInfo /*P*/ )null);
     this.LoadedUndefs = new DenseSet<std.pairPtrUInt<IdentifierInfo /*P*/ >>(DenseMapInfoPairPtrUInt.$Info());
     this.GlobalMacroMap = new ContinuousRangeMapUIntPtr<ModuleFile /*P*/ >(4);
-    this.SubmodulesLoaded = new SmallVector<Module /*P*/>(2, (Module /*P*/)null);
+    this.SubmodulesLoaded = new SmallVector<Module$B/*P*/>(2, (Module$B /*P*/)null);
     this.GlobalSubmoduleMap = new ContinuousRangeMapUIntPtr<ModuleFile /*P*/ >(4);
-    this.HiddenNamesMap = new DenseMapPtrType<Module /*P*/ , SmallVector<Decl /*P*/>>(DenseMapInfo$LikePtr.$Info(), new SmallVector<Decl /*P*/>(2));
+    this.HiddenNamesMap = new DenseMapPtrType<Module$B/*P*/ , SmallVector<Decl /*P*/>>(DenseMapInfo$LikePtr.$Info(), new SmallVector<Decl /*P*/>(2));
     this.UnresolvedModuleRefs = new SmallVector<UnresolvedModuleRef>(2, new UnresolvedModuleRef());
     this.SelectorsLoaded = new SmallVector<Selector>(16, new Selector());
     this.GlobalSelectorMap = new ContinuousRangeMapUIntPtr<ModuleFile /*P*/ >(4);
@@ -8369,11 +8369,11 @@ public class ASTReader extends /*public*/ ExternalSemaSource implements /*public
       for (/*uint*/int I = 0, N = UnresolvedModuleRefs.size(); I != N; ++I) {
         final UnresolvedModuleRef /*&*/ Unresolved = UnresolvedModuleRefs.$at(I);
         /*uint32_t*/int GlobalID = getGlobalSubmoduleID($Deref(Unresolved.File), Unresolved.ID);
-        Module /*P*/ ResolvedMod = getSubmodule(GlobalID);
+        Module$B /*P*/ ResolvedMod = getSubmodule(GlobalID);
         switch (Unresolved.Kind) {
          case Conflict:
           if ((ResolvedMod != null)) {
-            Module.Conflict Conflict/*J*/= new Module.Conflict();
+            Module$B.Conflict Conflict/*J*/= new Module$B.Conflict();
             Conflict.Other = ResolvedMod;
             Conflict.Message.$assignMove(Unresolved.String.str());
             Unresolved.Mod.Conflicts.push_back_T$C$R(Conflict);
@@ -8386,7 +8386,7 @@ public class ASTReader extends /*public*/ ExternalSemaSource implements /*public
           continue;
          case Export:
           if ((ResolvedMod != null) || Unresolved.IsWildcard) {
-            Unresolved.Mod.Exports.push_back(new PointerInt2Pair</*const*/ Module/*P*/>(ResolvedMod, Unresolved.IsWildcard));
+            Unresolved.Mod.Exports.push_back(new PointerInt2Pair</*const*/ Module$B/*P*/>(ResolvedMod, Unresolved.IsWildcard));
           }
           continue;
         }
@@ -8466,11 +8466,11 @@ public class ASTReader extends /*public*/ ExternalSemaSource implements /*public
    FQN="clang::ASTReader::makeModuleVisible", NM="_ZN5clang9ASTReader17makeModuleVisibleEPNS_6ModuleENS1_18NameVisibilityKindENS_14SourceLocationE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.serialization/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Serialization/ASTReader.cpp -nm=_ZN5clang9ASTReader17makeModuleVisibleEPNS_6ModuleENS1_18NameVisibilityKindENS_14SourceLocationE")
   //</editor-fold>
-  public void makeModuleVisible(Module /*P*/ Mod, 
-                   Module.NameVisibilityKind NameVisibility, 
+  public void makeModuleVisible(Module$B /*P*/ Mod, 
+                   Module$B.NameVisibilityKind NameVisibility, 
                    SourceLocation ImportLoc) {
-    SmallPtrSet<Module /*P*/ > Visited/*J*/= new SmallPtrSet<Module /*P*/ >(DenseMapInfo$LikePtr.$Info(), 4);
-    SmallVector<Module /*P*/> Stack/*J*/= new SmallVector<Module /*P*/>(4, (Module /*P*/)null);
+    SmallPtrSet<Module$B/*P*/ > Visited/*J*/= new SmallPtrSet<Module$B/*P*/ >(DenseMapInfo$LikePtr.$Info(), 4);
+    SmallVector<Module$B/*P*/> Stack/*J*/= new SmallVector<Module$B/*P*/>(4, (Module$B /*P*/)null);
     Stack.push_back(Mod);
     while (!Stack.empty()) {
       Mod = Stack.pop_back_val();
@@ -8489,12 +8489,12 @@ public class ASTReader extends /*public*/ ExternalSemaSource implements /*public
       
       // If we've already deserialized any names from this module,
       // mark them as visible.
-      DenseMapIteratorPtrType<Module /*P*/ , SmallVector<Decl /*P*/>> Hidden = HiddenNamesMap.find(Mod);
+      DenseMapIteratorPtrType<Module$B/*P*/ , SmallVector<Decl /*P*/>> Hidden = HiddenNamesMap.find(Mod);
       if (Hidden.$noteq(/*NO_ITER_COPY*/HiddenNamesMap.end())) {
-        std.pairPtrType<Module /*P*/ , SmallVector<Decl /*P*/>> HiddenNames = null;
+        std.pairPtrType<Module$B/*P*/ , SmallVector<Decl /*P*/>> HiddenNames = null;
         try {
-          HiddenNames = new std.pairPtrType<Module /*P*/ , SmallVector<Decl /*P*/>>(JD$Move.INSTANCE, std.move(Hidden.$star()));
-          HiddenNamesMap.erase(new DenseMapIteratorPtrType<Module /*P*/ , SmallVector<Decl /*P*/>>(Hidden));
+          HiddenNames = new std.pairPtrType<Module$B/*P*/ , SmallVector<Decl /*P*/>>(JD$Move.INSTANCE, std.move(Hidden.$star()));
+          HiddenNamesMap.erase(new DenseMapIteratorPtrType<Module$B/*P*/ , SmallVector<Decl /*P*/>>(Hidden));
           makeNamesVisible(HiddenNames.second, HiddenNames.first);
           assert (HiddenNamesMap.find(Mod).$eq(/*NO_ITER_COPY*/HiddenNamesMap.end())) : "making names visible added hidden names";
         } finally {
@@ -8503,10 +8503,10 @@ public class ASTReader extends /*public*/ ExternalSemaSource implements /*public
       }
       
       // Push any exported modules onto the stack to be marked as visible.
-      SmallVector<Module /*P*/> Exports/*J*/= new SmallVector<Module /*P*/>(16, (Module /*P*/)null);
+      SmallVector<Module$B/*P*/> Exports/*J*/= new SmallVector<Module$B/*P*/>(16, (Module$B /*P*/)null);
       Mod.getExportedModules(Exports);
-      for (type$ptr<Module /*P*/ /*P*/> I = $tryClone(Exports.begin()), /*P*/ E = $tryClone(Exports.end()); $noteq_ptr(I, E); I.$preInc()) {
-        Module /*P*/ Exported = I.$star();
+      for (type$ptr<Module$B/*P*/ /*P*/> I = $tryClone(Exports.begin()), /*P*/ E = $tryClone(Exports.end()); $noteq_ptr(I, E); I.$preInc()) {
+        Module$B /*P*/ Exported = I.$star();
         if (Visited.insert(Exported).second) {
           Stack.push_back(Exported);
         }
@@ -8522,8 +8522,8 @@ public class ASTReader extends /*public*/ ExternalSemaSource implements /*public
    FQN="clang::ASTReader::makeNamesVisible", NM="_ZN5clang9ASTReader16makeNamesVisibleERKN4llvm11SmallVectorIPNS_4DeclELj2EEEPNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.serialization/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Serialization/ASTReader.cpp -nm=_ZN5clang9ASTReader16makeNamesVisibleERKN4llvm11SmallVectorIPNS_4DeclELj2EEEPNS_6ModuleE")
   //</editor-fold>
-  public void makeNamesVisible(final /*const*/SmallVector<Decl /*P*/> /*&*/ Names, Module /*P*/ Owner) {
-    assert (Owner.NameVisibility != Module.NameVisibilityKind.Hidden) : "nothing to make visible?";
+  public void makeNamesVisible(final /*const*/SmallVector<Decl /*P*/> /*&*/ Names, Module$B /*P*/ Owner) {
+    assert (Owner.NameVisibility != Module$B.NameVisibilityKind.Hidden) : "nothing to make visible?";
     for (Decl /*P*/ D : Names) {
       boolean wasHidden = D.Hidden;
       D.Hidden = false;
@@ -8926,9 +8926,9 @@ public class ASTReader extends /*public*/ ExternalSemaSource implements /*public
     // FIXME: This does not make macro-only imports visible again.
     for (final ImportedSubmodule /*&*/ Import : ImportedModules) {
       {
-        Module /*P*/ Imported = getSubmodule(Import.ID);
+        Module$B /*P*/ Imported = getSubmodule(Import.ID);
         if ((Imported != null)) {
-          makeModuleVisible(Imported, Module.NameVisibilityKind.AllVisible, 
+          makeModuleVisible(Imported, Module$B.NameVisibilityKind.AllVisible, 
               /*ImportLoc=*/ new SourceLocation(Import.ImportLoc));
           if (Import.ImportLoc.isValid()) {
             PP.makeModuleVisible(Imported, /*NO_COPY*/Import.ImportLoc);
@@ -10283,7 +10283,7 @@ public class ASTReader extends /*public*/ ExternalSemaSource implements /*public
   public std.string getOwningModuleNameForDiagnostic(/*const*/ Decl /*P*/ D) {
     {
       // If we know the owning module, use it.
-      Module /*P*/ M = D.getImportedOwningModule();
+      Module$B /*P*/ M = D.getImportedOwningModule();
       if ((M != null)) {
         return M.getFullModuleName();
       }
@@ -11921,14 +11921,14 @@ public class ASTReader extends /*public*/ ExternalSemaSource implements /*public
         for (final resolvePendingMacro$$.ModuleMacroRecord /*&*/ MMR : ModuleMacros) {
           Overrides.clear();
           for (/*uint*/int ModID : MMR.Overrides) {
-            Module /*P*/ Mod = getSubmodule(ModID);
+            Module$B /*P*/ Mod = getSubmodule(ModID);
             ModuleMacro /*P*/ Macro = PP.getModuleMacro(Mod, II);
             assert ((Macro != null)) : "missing definition for overridden macro";
             Overrides.push_back(Macro);
           }
           
           bool$ref Inserted = create_bool$ref(false);
-          Module /*P*/ Owner = getSubmodule(MMR.SubModID);
+          Module$B /*P*/ Owner = getSubmodule(MMR.SubModID);
           PP.addModuleMacro(Owner, II, MMR.MI, new ArrayRef<ModuleMacro /*P*/ >(Overrides, true), Inserted);
         }
       }
@@ -12343,7 +12343,7 @@ public class ASTReader extends /*public*/ ExternalSemaSource implements /*public
    FQN="clang::ASTReader::getSubmodule", NM="_ZN5clang9ASTReader12getSubmoduleEj",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.serialization/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Serialization/ASTReader.cpp -nm=_ZN5clang9ASTReader12getSubmoduleEj")
   //</editor-fold>
-  public Module /*P*/ getSubmodule(/*uint32_t*/int GlobalID) {
+  public Module$B /*P*/ getSubmodule(/*uint32_t*/int GlobalID) {
     if ($less_uint(GlobalID, NUM_PREDEF_SUBMODULE_IDS)) {
       assert (GlobalID == 0) : "Unhandled global submodule ID";
       return null;
@@ -12366,7 +12366,7 @@ public class ASTReader extends /*public*/ ExternalSemaSource implements /*public
    FQN="clang::ASTReader::getModule", NM="_ZN5clang9ASTReader9getModuleEj",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.serialization/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Serialization/ASTReader.cpp -nm=_ZN5clang9ASTReader9getModuleEj")
   //</editor-fold>
-  @Override public Module /*P*/ getModule(/*uint*/int ID)/* override*/ {
+  @Override public Module$B /*P*/ getModule(/*uint*/int ID)/* override*/ {
     return getSubmodule(ID);
   }
 
@@ -12429,7 +12429,7 @@ public class ASTReader extends /*public*/ ExternalSemaSource implements /*public
   //</editor-fold>
   @Override public Optional<ExternalASTSource.ASTSourceDescriptor> getSourceDescriptor(/*uint*/int ID)/* override*/ {
     {
-      /*const*/ Module /*P*/ M = getSubmodule(ID);
+      /*const*/ Module$B /*P*/ M = getSubmodule(ID);
       if ((M != null)) {
         return new Optional<ExternalASTSource.ASTSourceDescriptor>(JD$T$RR.INSTANCE, new ExternalASTSource.ASTSourceDescriptor($Deref(M)));
       }

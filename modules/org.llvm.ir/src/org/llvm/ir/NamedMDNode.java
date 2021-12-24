@@ -148,7 +148,7 @@ public class NamedMDNode implements /*public*/ ilist_node<NamedMDNode>, Destruct
 
 
   private std.string Name;
-  private Module /*P*/ Parent;
+  private Module$IR /*P*/ Parent;
   private Object/*void P*/ Operands; // SmallVector<TrackingMDRef, 4>
 
   //<editor-fold defaultstate="collapsed" desc="llvm::NamedMDNode::setParent">
@@ -157,7 +157,7 @@ public class NamedMDNode implements /*public*/ ilist_node<NamedMDNode>, Destruct
    FQN="llvm::NamedMDNode::setParent", NM="_ZN4llvm11NamedMDNode9setParentEPNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/AsmWriter.cpp -nm=_ZN4llvm11NamedMDNode9setParentEPNS_6ModuleE")
   //</editor-fold>
-  /*friend*//*private*/ void setParent(Module /*P*/ M) {
+  /*friend*//*private*/ void setParent(Module$IR /*P*/ M) {
     Parent = M;
   }
 
@@ -369,7 +369,7 @@ public class NamedMDNode implements /*public*/ ilist_node<NamedMDNode>, Destruct
    FQN="llvm::NamedMDNode::getParent", NM="_ZN4llvm11NamedMDNode9getParentEv",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/AsmWriter.cpp -nm=_ZN4llvm11NamedMDNode9getParentEv")
   //</editor-fold>
-  public /*inline*/ Module /*P*/ getParent() {
+  public /*inline*/ Module$IR /*P*/ getParent() {
     return Parent;
   }
 
@@ -379,7 +379,7 @@ public class NamedMDNode implements /*public*/ ilist_node<NamedMDNode>, Destruct
    FQN="llvm::NamedMDNode::getParent", NM="_ZNK4llvm11NamedMDNode9getParentEv",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/AsmWriter.cpp -nm=_ZNK4llvm11NamedMDNode9getParentEv")
   //</editor-fold>
-  public /*inline*/ /*const*/ Module /*P*/ getParent$Const() /*const*/ {
+  public /*inline*/ /*const*/ Module$IR /*P*/ getParent$Const() /*const*/ {
     return Parent;
   }
 

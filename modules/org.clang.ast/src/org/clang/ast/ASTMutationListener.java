@@ -321,7 +321,7 @@ public interface/*class*/ ASTMutationListener extends Destructors.ClassWithDestr
    FQN="clang::ASTMutationListener::RedefinedHiddenDefinition", NM="_ZN5clang19ASTMutationListener25RedefinedHiddenDefinitionEPKNS_9NamedDeclEPNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.ast/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/AST/ASTContext.cpp -nm=_ZN5clang19ASTMutationListener25RedefinedHiddenDefinitionEPKNS_9NamedDeclEPNS_6ModuleE")
   //</editor-fold>
-  public default/*interface*/ /*virtual*/ void RedefinedHiddenDefinition(/*const*/ NamedDecl /*P*/ D, Module /*P*/ M) {
+  public default/*interface*/ /*virtual*/ void RedefinedHiddenDefinition(/*const*/ NamedDecl /*P*/ D, Module$B /*P*/ M) {
   }
 
   

@@ -140,7 +140,7 @@ public static void orderValue(/*const*/ Value /*P*/ V, final OrderMap /*&*/ OM) 
  FQN="orderModule", NM="_ZL11orderModulePKN4llvm6ModuleE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/AsmWriter.cpp -nm=_ZL11orderModulePKN4llvm6ModuleE")
 //</editor-fold>
-public static OrderMap orderModule(/*const*/ Module /*P*/ M) {
+public static OrderMap orderModule(/*const*/ Module$IR /*P*/ M) {
   OrderMap OM = null;
   try {
     // This needs to match the order used by ValueEnumerator::ValueEnumerator()
@@ -330,7 +330,7 @@ public static void predictValueUseListOrder(/*const*/ Value /*P*/ V, /*const*/ F
  FQN="predictUseListOrder", NM="_ZL19predictUseListOrderPKN4llvm6ModuleE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/AsmWriter.cpp -nm=_ZL19predictUseListOrderPKN4llvm6ModuleE")
 //</editor-fold>
-public static std.vector<UseListOrder> predictUseListOrder(/*const*/ Module /*P*/ M) {
+public static std.vector<UseListOrder> predictUseListOrder(/*const*/ Module$IR /*P*/ M) {
   OrderMap OM = null;
   std.vector<UseListOrder> Stack = null;
   try {
@@ -416,7 +416,7 @@ public static std.vector<UseListOrder> predictUseListOrder(/*const*/ Module /*P*
  FQN="getModuleFromVal", NM="_ZL16getModuleFromValPKN4llvm5ValueE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/AsmWriter.cpp -nm=_ZL16getModuleFromValPKN4llvm5ValueE")
 //</editor-fold>
-public static /*const*/ Module /*P*/ getModuleFromVal(/*const*/ Value /*P*/ V) {
+public static /*const*/ Module$IR /*P*/ getModuleFromVal(/*const*/ Value /*P*/ V) {
   {
     /*const*/ Argument /*P*/ MA = dyn_cast_Argument(V);
     if ((MA != null)) {
@@ -452,7 +452,7 @@ public static /*const*/ Module /*P*/ getModuleFromVal(/*const*/ Value /*P*/ V) {
       for (/*const*/ User /*P*/ U : MAV.users$Const())  {
         if (isa_Instruction(U)) {
           {
-            /*const*/ Module /*P*/ M = getModuleFromVal(U);
+            /*const*/ Module$IR /*P*/ M = getModuleFromVal(U);
             if ((M != null)) {
               return M;
             }
@@ -723,7 +723,7 @@ public static SlotTracker /*P*/ createSlotTracker(/*const*/ Value /*P*/ V) {
 public static void WriteAsOperandInternal(final raw_ostream /*&*/ Out, /*const*/ Value /*P*/ V, 
                       TypePrinting /*P*/ TypePrinter, 
                       SlotTracker /*P*/ Machine, 
-                      /*const*/ Module /*P*/ Context) {
+                      /*const*/ Module$IR /*P*/ Context) {
   if (V.hasName()) {
     PrintLLVMName(Out, V);
     return;
@@ -822,7 +822,7 @@ public static void WriteAsOperandInternal(final raw_ostream /*&*/ Out, /*const*/
 //</editor-fold>
 public static void WriteAsOperandInternal(final raw_ostream /*&*/ Out, /*const*/ Metadata /*P*/ MD, 
                       TypePrinting /*P*/ TypePrinter, 
-                      SlotTracker /*P*/ Machine, /*const*/ Module /*P*/ Context) {
+                      SlotTracker /*P*/ Machine, /*const*/ Module$IR /*P*/ Context) {
   WriteAsOperandInternal(Out, MD, 
                       TypePrinter, 
                       Machine, Context, 
@@ -830,7 +830,7 @@ public static void WriteAsOperandInternal(final raw_ostream /*&*/ Out, /*const*/
 }
 public static void WriteAsOperandInternal(final raw_ostream /*&*/ Out, /*const*/ Metadata /*P*/ MD, 
                       TypePrinting /*P*/ TypePrinter, 
-                      SlotTracker /*P*/ Machine, /*const*/ Module /*P*/ Context, 
+                      SlotTracker /*P*/ Machine, /*const*/ Module$IR /*P*/ Context, 
                       boolean FromValue/*= false*/) {
   {
     /*const*/ MDNode /*P*/ N = dyn_cast_MDNode(MD);
@@ -1086,7 +1086,7 @@ public static void WriteOptimizationInfo(final raw_ostream /*&*/ Out, /*const*/ 
 public static void WriteConstantInternal(final raw_ostream /*&*/ Out, /*const*/ Constant /*P*/ CV, 
                      final TypePrinting /*&*/ TypePrinter, 
                      SlotTracker /*P*/ Machine, 
-                     /*const*/ Module /*P*/ Context) {
+                     /*const*/ Module$IR /*P*/ Context) {
   {
     /*const*/ ConstantInt /*P*/ CI = dyn_cast_ConstantInt(CV);
     if ((CI != null)) {
@@ -1375,7 +1375,7 @@ public static void WriteConstantInternal(final raw_ostream /*&*/ Out, /*const*/ 
 //</editor-fold>
 public static void writeMDTuple(final raw_ostream /*&*/ Out, /*const*/ MDTuple /*P*/ Node, 
             TypePrinting /*P*/ TypePrinter, SlotTracker /*P*/ Machine, 
-            /*const*/ Module /*P*/ Context) {
+            /*const*/ Module$IR /*P*/ Context) {
   Out.$out(/*KEEP_STR*/"!{");
   for (/*uint*/int mi = 0, me = Node.getNumOperands(); mi != me; ++mi) {
     /*const*/ Metadata /*P*/ MD = Node.getOperand(mi).$Metadata$P();
@@ -1423,7 +1423,7 @@ public static raw_ostream /*&*/ $out_raw_ostream_FieldSeparator(final raw_ostrea
 public static void writeMetadataAsOperand(final raw_ostream /*&*/ Out, /*const*/ Metadata /*P*/ MD, 
                       TypePrinting /*P*/ TypePrinter, 
                       SlotTracker /*P*/ Machine, 
-                      /*const*/ Module /*P*/ Context) {
+                      /*const*/ Module$IR /*P*/ Context) {
   if (!(MD != null)) {
     Out.$out(/*KEEP_STR*/"null");
     return;
@@ -1439,7 +1439,7 @@ public static void writeMetadataAsOperand(final raw_ostream /*&*/ Out, /*const*/
 //</editor-fold>
 public static void writeGenericDINode(final raw_ostream /*&*/ Out, /*const*/ GenericDINode /*P*/ N, 
                   TypePrinting /*P*/ TypePrinter, SlotTracker /*P*/ Machine, 
-                  /*const*/ Module /*P*/ Context) {
+                  /*const*/ Module$IR /*P*/ Context) {
   Out.$out(/*KEEP_STR*/"!GenericDINode(");
   MDFieldPrinter Printer/*J*/= new MDFieldPrinter(Out, TypePrinter, Machine, Context);
   Printer.printTag(N);
@@ -1464,7 +1464,7 @@ public static void writeGenericDINode(final raw_ostream /*&*/ Out, /*const*/ Gen
 //</editor-fold>
 public static void writeDILocation(final raw_ostream /*&*/ Out, /*const*/ DILocation /*P*/ DL, 
                TypePrinting /*P*/ TypePrinter, SlotTracker /*P*/ Machine, 
-               /*const*/ Module /*P*/ Context) {
+               /*const*/ Module$IR /*P*/ Context) {
   Out.$out(/*KEEP_STR*/"!DILocation(");
   MDFieldPrinter Printer/*J*/= new MDFieldPrinter(Out, TypePrinter, Machine, Context);
   // Always output the line, since 0 is a relevant and important value for it.
@@ -1482,7 +1482,7 @@ public static void writeDILocation(final raw_ostream /*&*/ Out, /*const*/ DILoca
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/AsmWriter.cpp -nm=_ZL15writeDISubrangeRN4llvm11raw_ostreamEPKNS_10DISubrangeEPN12_GLOBAL__N_112TypePrintingEPNS_11SlotTrackerEPKNS_6ModuleE")
 //</editor-fold>
 public static void writeDISubrange(final raw_ostream /*&*/ Out, /*const*/ DISubrange /*P*/ N, 
-               TypePrinting /*P*/ $Prm2, SlotTracker /*P*/ $Prm3, /*const*/ Module /*P*/ $Prm4) {
+               TypePrinting /*P*/ $Prm2, SlotTracker /*P*/ $Prm3, /*const*/ Module$IR /*P*/ $Prm4) {
   Out.$out(/*KEEP_STR*/"!DISubrange(");
   MDFieldPrinter Printer/*J*/= new MDFieldPrinter(Out);
   Printer.printInt$LLong(new StringRef(/*KEEP_STR*/"count"), N.getCount(), /* ShouldSkipZero */ false);
@@ -1497,7 +1497,7 @@ public static void writeDISubrange(final raw_ostream /*&*/ Out, /*const*/ DISubr
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/AsmWriter.cpp -nm=_ZL17writeDIEnumeratorRN4llvm11raw_ostreamEPKNS_12DIEnumeratorEPN12_GLOBAL__N_112TypePrintingEPNS_11SlotTrackerEPKNS_6ModuleE")
 //</editor-fold>
 public static void writeDIEnumerator(final raw_ostream /*&*/ Out, /*const*/ DIEnumerator /*P*/ N, 
-                 TypePrinting /*P*/ $Prm2, SlotTracker /*P*/ $Prm3, /*const*/ Module /*P*/ $Prm4) {
+                 TypePrinting /*P*/ $Prm2, SlotTracker /*P*/ $Prm3, /*const*/ Module$IR /*P*/ $Prm4) {
   Out.$out(/*KEEP_STR*/"!DIEnumerator(");
   MDFieldPrinter Printer/*J*/= new MDFieldPrinter(Out);
   Printer.printString(new StringRef(/*KEEP_STR*/"name"), N.getName(), /* ShouldSkipEmpty */ false);
@@ -1512,7 +1512,7 @@ public static void writeDIEnumerator(final raw_ostream /*&*/ Out, /*const*/ DIEn
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/AsmWriter.cpp -nm=_ZL16writeDIBasicTypeRN4llvm11raw_ostreamEPKNS_11DIBasicTypeEPN12_GLOBAL__N_112TypePrintingEPNS_11SlotTrackerEPKNS_6ModuleE")
 //</editor-fold>
 public static void writeDIBasicType(final raw_ostream /*&*/ Out, /*const*/ DIBasicType /*P*/ N, 
-                TypePrinting /*P*/ $Prm2, SlotTracker /*P*/ $Prm3, /*const*/ Module /*P*/ $Prm4) {
+                TypePrinting /*P*/ $Prm2, SlotTracker /*P*/ $Prm3, /*const*/ Module$IR /*P*/ $Prm4) {
   Out.$out(/*KEEP_STR*/"!DIBasicType(");
   MDFieldPrinter Printer/*J*/= new MDFieldPrinter(Out);
   if (N.getTag() != $ushort2uint(Tag.DW_TAG_base_type)) {
@@ -1534,7 +1534,7 @@ public static void writeDIBasicType(final raw_ostream /*&*/ Out, /*const*/ DIBas
 //</editor-fold>
 public static void writeDIDerivedType(final raw_ostream /*&*/ Out, /*const*/ DIDerivedType /*P*/ N, 
                   TypePrinting /*P*/ TypePrinter, SlotTracker /*P*/ Machine, 
-                  /*const*/ Module /*P*/ Context) {
+                  /*const*/ Module$IR /*P*/ Context) {
   Out.$out(/*KEEP_STR*/"!DIDerivedType(");
   MDFieldPrinter Printer/*J*/= new MDFieldPrinter(Out, TypePrinter, Machine, Context);
   Printer.printTag(N);
@@ -1560,7 +1560,7 @@ public static void writeDIDerivedType(final raw_ostream /*&*/ Out, /*const*/ DID
 //</editor-fold>
 public static void writeDICompositeType(final raw_ostream /*&*/ Out, /*const*/ DICompositeType /*P*/ N, 
                     TypePrinting /*P*/ TypePrinter, 
-                    SlotTracker /*P*/ Machine, /*const*/ Module /*P*/ Context) {
+                    SlotTracker /*P*/ Machine, /*const*/ Module$IR /*P*/ Context) {
   Out.$out(/*KEEP_STR*/"!DICompositeType(");
   MDFieldPrinter Printer/*J*/= new MDFieldPrinter(Out, TypePrinter, Machine, Context);
   Printer.printTag(N);
@@ -1590,7 +1590,7 @@ public static void writeDICompositeType(final raw_ostream /*&*/ Out, /*const*/ D
 //</editor-fold>
 public static void writeDISubroutineType(final raw_ostream /*&*/ Out, /*const*/ DISubroutineType /*P*/ N, 
                      TypePrinting /*P*/ TypePrinter, 
-                     SlotTracker /*P*/ Machine, /*const*/ Module /*P*/ Context) {
+                     SlotTracker /*P*/ Machine, /*const*/ Module$IR /*P*/ Context) {
   Out.$out(/*KEEP_STR*/"!DISubroutineType(");
   MDFieldPrinter Printer/*J*/= new MDFieldPrinter(Out, TypePrinter, Machine, Context);
   Printer.printDIFlags(new StringRef(/*KEEP_STR*/"flags"), N.getFlags());
@@ -1607,7 +1607,7 @@ public static void writeDISubroutineType(final raw_ostream /*&*/ Out, /*const*/ 
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/AsmWriter.cpp -nm=_ZL11writeDIFileRN4llvm11raw_ostreamEPKNS_6DIFileEPN12_GLOBAL__N_112TypePrintingEPNS_11SlotTrackerEPKNS_6ModuleE")
 //</editor-fold>
 public static void writeDIFile(final raw_ostream /*&*/ Out, /*const*/ DIFile /*P*/ N, TypePrinting /*P*/ $Prm2, 
-           SlotTracker /*P*/ $Prm3, /*const*/ Module /*P*/ $Prm4) {
+           SlotTracker /*P*/ $Prm3, /*const*/ Module$IR /*P*/ $Prm4) {
   Out.$out(/*KEEP_STR*/"!DIFile(");
   MDFieldPrinter Printer/*J*/= new MDFieldPrinter(Out);
   Printer.printString(new StringRef(/*KEEP_STR*/"filename"), N.getFilename(), 
@@ -1625,7 +1625,7 @@ public static void writeDIFile(final raw_ostream /*&*/ Out, /*const*/ DIFile /*P
 //</editor-fold>
 public static void writeDICompileUnit(final raw_ostream /*&*/ Out, /*const*/ DICompileUnit /*P*/ N, 
                   TypePrinting /*P*/ TypePrinter, SlotTracker /*P*/ Machine, 
-                  /*const*/ Module /*P*/ Context) {
+                  /*const*/ Module$IR /*P*/ Context) {
   Out.$out(/*KEEP_STR*/"!DICompileUnit(");
   MDFieldPrinter Printer/*J*/= new MDFieldPrinter(Out, TypePrinter, Machine, Context);
   Printer.printDwarfEnum$UInt(new StringRef(/*KEEP_STR*/"language"), N.getSourceLanguage(), 
@@ -1655,7 +1655,7 @@ public static void writeDICompileUnit(final raw_ostream /*&*/ Out, /*const*/ DIC
 //</editor-fold>
 public static void writeDISubprogram(final raw_ostream /*&*/ Out, /*const*/ DISubprogram /*P*/ N, 
                  TypePrinting /*P*/ TypePrinter, SlotTracker /*P*/ Machine, 
-                 /*const*/ Module /*P*/ Context) {
+                 /*const*/ Module$IR /*P*/ Context) {
   Out.$out(/*KEEP_STR*/"!DISubprogram(");
   MDFieldPrinter Printer/*J*/= new MDFieldPrinter(Out, TypePrinter, Machine, Context);
   Printer.printString(new StringRef(/*KEEP_STR*/"name"), N.getName());
@@ -1692,7 +1692,7 @@ public static void writeDISubprogram(final raw_ostream /*&*/ Out, /*const*/ DISu
 //</editor-fold>
 public static void writeDILexicalBlock(final raw_ostream /*&*/ Out, /*const*/ DILexicalBlock /*P*/ N, 
                    TypePrinting /*P*/ TypePrinter, SlotTracker /*P*/ Machine, 
-                   /*const*/ Module /*P*/ Context) {
+                   /*const*/ Module$IR /*P*/ Context) {
   Out.$out(/*KEEP_STR*/"!DILexicalBlock(");
   MDFieldPrinter Printer/*J*/= new MDFieldPrinter(Out, TypePrinter, Machine, Context);
   Printer.printMetadata(new StringRef(/*KEEP_STR*/"scope"), N.getRawScope(), /* ShouldSkipNull */ false);
@@ -1712,7 +1712,7 @@ public static void writeDILexicalBlockFile(final raw_ostream /*&*/ Out,
                        /*const*/ DILexicalBlockFile /*P*/ N, 
                        TypePrinting /*P*/ TypePrinter, 
                        SlotTracker /*P*/ Machine, 
-                       /*const*/ Module /*P*/ Context) {
+                       /*const*/ Module$IR /*P*/ Context) {
   Out.$out(/*KEEP_STR*/"!DILexicalBlockFile(");
   MDFieldPrinter Printer/*J*/= new MDFieldPrinter(Out, TypePrinter, Machine, Context);
   Printer.printMetadata(new StringRef(/*KEEP_STR*/"scope"), N.getRawScope(), /* ShouldSkipNull */ false);
@@ -1730,7 +1730,7 @@ public static void writeDILexicalBlockFile(final raw_ostream /*&*/ Out,
 //</editor-fold>
 public static void writeDINamespace(final raw_ostream /*&*/ Out, /*const*/ DINamespace /*P*/ N, 
                 TypePrinting /*P*/ TypePrinter, SlotTracker /*P*/ Machine, 
-                /*const*/ Module /*P*/ Context) {
+                /*const*/ Module$IR /*P*/ Context) {
   Out.$out(/*KEEP_STR*/"!DINamespace(");
   MDFieldPrinter Printer/*J*/= new MDFieldPrinter(Out, TypePrinter, Machine, Context);
   Printer.printString(new StringRef(/*KEEP_STR*/"name"), N.getName());
@@ -1748,7 +1748,7 @@ public static void writeDINamespace(final raw_ostream /*&*/ Out, /*const*/ DINam
 //</editor-fold>
 public static void writeDIMacro(final raw_ostream /*&*/ Out, /*const*/ DIMacro /*P*/ N, 
             TypePrinting /*P*/ TypePrinter, SlotTracker /*P*/ Machine, 
-            /*const*/ Module /*P*/ Context) {
+            /*const*/ Module$IR /*P*/ Context) {
   Out.$out(/*KEEP_STR*/"!DIMacro(");
   MDFieldPrinter Printer/*J*/= new MDFieldPrinter(Out, TypePrinter, Machine, Context);
   Printer.printMacinfoType(N);
@@ -1766,7 +1766,7 @@ public static void writeDIMacro(final raw_ostream /*&*/ Out, /*const*/ DIMacro /
 //</editor-fold>
 public static void writeDIMacroFile(final raw_ostream /*&*/ Out, /*const*/ DIMacroFile /*P*/ N, 
                 TypePrinting /*P*/ TypePrinter, SlotTracker /*P*/ Machine, 
-                /*const*/ Module /*P*/ Context) {
+                /*const*/ Module$IR /*P*/ Context) {
   Out.$out(/*KEEP_STR*/"!DIMacroFile(");
   MDFieldPrinter Printer/*J*/= new MDFieldPrinter(Out, TypePrinter, Machine, Context);
   Printer.printInt$UInt(new StringRef(/*KEEP_STR*/$line), N.getLine());
@@ -1783,7 +1783,7 @@ public static void writeDIMacroFile(final raw_ostream /*&*/ Out, /*const*/ DIMac
 //</editor-fold>
 public static void writeDIModule(final raw_ostream /*&*/ Out, /*const*/ DIModule /*P*/ N, 
              TypePrinting /*P*/ TypePrinter, SlotTracker /*P*/ Machine, 
-             /*const*/ Module /*P*/ Context) {
+             /*const*/ Module$IR /*P*/ Context) {
   Out.$out(/*KEEP_STR*/"!DIModule(");
   MDFieldPrinter Printer/*J*/= new MDFieldPrinter(Out, TypePrinter, Machine, Context);
   Printer.printMetadata(new StringRef(/*KEEP_STR*/"scope"), N.getRawScope(), /* ShouldSkipNull */ false);
@@ -1804,7 +1804,7 @@ public static void writeDITemplateTypeParameter(final raw_ostream /*&*/ Out,
                             /*const*/ DITemplateTypeParameter /*P*/ N, 
                             TypePrinting /*P*/ TypePrinter, 
                             SlotTracker /*P*/ Machine, 
-                            /*const*/ Module /*P*/ Context) {
+                            /*const*/ Module$IR /*P*/ Context) {
   Out.$out(/*KEEP_STR*/"!DITemplateTypeParameter(");
   MDFieldPrinter Printer/*J*/= new MDFieldPrinter(Out, TypePrinter, Machine, Context);
   Printer.printString(new StringRef(/*KEEP_STR*/"name"), N.getName());
@@ -1822,7 +1822,7 @@ public static void writeDITemplateValueParameter(final raw_ostream /*&*/ Out,
                              /*const*/ DITemplateValueParameter /*P*/ N, 
                              TypePrinting /*P*/ TypePrinter, 
                              SlotTracker /*P*/ Machine, 
-                             /*const*/ Module /*P*/ Context) {
+                             /*const*/ Module$IR /*P*/ Context) {
   Out.$out(/*KEEP_STR*/"!DITemplateValueParameter(");
   MDFieldPrinter Printer/*J*/= new MDFieldPrinter(Out, TypePrinter, Machine, Context);
   if (N.getTag() != $ushort2uint(Tag.DW_TAG_template_value_parameter)) {
@@ -1842,7 +1842,7 @@ public static void writeDITemplateValueParameter(final raw_ostream /*&*/ Out,
 //</editor-fold>
 public static void writeDIGlobalVariable(final raw_ostream /*&*/ Out, /*const*/ DIGlobalVariable /*P*/ N, 
                      TypePrinting /*P*/ TypePrinter, 
-                     SlotTracker /*P*/ Machine, /*const*/ Module /*P*/ Context) {
+                     SlotTracker /*P*/ Machine, /*const*/ Module$IR /*P*/ Context) {
   Out.$out(/*KEEP_STR*/"!DIGlobalVariable(");
   MDFieldPrinter Printer/*J*/= new MDFieldPrinter(Out, TypePrinter, Machine, Context);
   Printer.printString(new StringRef(/*KEEP_STR*/"name"), N.getName());
@@ -1866,7 +1866,7 @@ public static void writeDIGlobalVariable(final raw_ostream /*&*/ Out, /*const*/ 
 //</editor-fold>
 public static void writeDILocalVariable(final raw_ostream /*&*/ Out, /*const*/ DILocalVariable /*P*/ N, 
                     TypePrinting /*P*/ TypePrinter, 
-                    SlotTracker /*P*/ Machine, /*const*/ Module /*P*/ Context) {
+                    SlotTracker /*P*/ Machine, /*const*/ Module$IR /*P*/ Context) {
   Out.$out(/*KEEP_STR*/"!DILocalVariable(");
   MDFieldPrinter Printer/*J*/= new MDFieldPrinter(Out, TypePrinter, Machine, Context);
   Printer.printString(new StringRef(/*KEEP_STR*/"name"), N.getName());
@@ -1887,7 +1887,7 @@ public static void writeDILocalVariable(final raw_ostream /*&*/ Out, /*const*/ D
 //</editor-fold>
 public static void writeDIExpression(final raw_ostream /*&*/ Out, /*const*/ DIExpression /*P*/ N, 
                  TypePrinting /*P*/ TypePrinter, SlotTracker /*P*/ Machine, 
-                 /*const*/ Module /*P*/ Context) {
+                 /*const*/ Module$IR /*P*/ Context) {
   Out.$out(/*KEEP_STR*/"!DIExpression(");
   FieldSeparator FS/*J*/= new FieldSeparator();
   if (N.isValid()) {
@@ -1916,7 +1916,7 @@ public static void writeDIExpression(final raw_ostream /*&*/ Out, /*const*/ DIEx
 //</editor-fold>
 public static void writeDIObjCProperty(final raw_ostream /*&*/ Out, /*const*/ DIObjCProperty /*P*/ N, 
                    TypePrinting /*P*/ TypePrinter, SlotTracker /*P*/ Machine, 
-                   /*const*/ Module /*P*/ Context) {
+                   /*const*/ Module$IR /*P*/ Context) {
   Out.$out(/*KEEP_STR*/"!DIObjCProperty(");
   MDFieldPrinter Printer/*J*/= new MDFieldPrinter(Out, TypePrinter, Machine, Context);
   Printer.printString(new StringRef(/*KEEP_STR*/"name"), N.getName());
@@ -1937,7 +1937,7 @@ public static void writeDIObjCProperty(final raw_ostream /*&*/ Out, /*const*/ DI
 //</editor-fold>
 public static void writeDIImportedEntity(final raw_ostream /*&*/ Out, /*const*/ DIImportedEntity /*P*/ N, 
                      TypePrinting /*P*/ TypePrinter, 
-                     SlotTracker /*P*/ Machine, /*const*/ Module /*P*/ Context) {
+                     SlotTracker /*P*/ Machine, /*const*/ Module$IR /*P*/ Context) {
   Out.$out(/*KEEP_STR*/"!DIImportedEntity(");
   MDFieldPrinter Printer/*J*/= new MDFieldPrinter(Out, TypePrinter, Machine, Context);
   Printer.printTag(N);
@@ -1957,7 +1957,7 @@ public static void writeDIImportedEntity(final raw_ostream /*&*/ Out, /*const*/ 
 public static void WriteMDNodeBodyInternal(final raw_ostream /*&*/ Out, /*const*/ MDNode /*P*/ Node, 
                        TypePrinting /*P*/ TypePrinter, 
                        SlotTracker /*P*/ Machine, 
-                       /*const*/ Module /*P*/ Context) {
+                       /*const*/ Module$IR /*P*/ Context) {
   if (Node.isDistinct()) {
     Out.$out(/*KEEP_STR*/"distinct ");
   } else if (Node.isTemporary()) {
@@ -2259,7 +2259,7 @@ public static boolean isReferencingMDNode(final /*const*/ Instruction /*&*/ I) {
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/AsmWriter.cpp -nm=_ZL16printWithoutTypeRKN4llvm5ValueERNS_11raw_ostreamEPNS_11SlotTrackerEPKNS_6ModuleE")
 //</editor-fold>
 public static boolean printWithoutType(final /*const*/ Value /*&*/ V, final raw_ostream /*&*/ O, 
-                SlotTracker /*P*/ Machine, /*const*/ Module /*P*/ M) {
+                SlotTracker /*P*/ Machine, /*const*/ Module$IR /*P*/ M) {
   if (V.hasName() || isa_GlobalValue(V)
      || (!isa_Constant(V) && !isa_MetadataAsValue(V))) {
     WriteAsOperandInternal(O, $AddrOf(V), (TypePrinting /*P*/ )null, Machine, M);
@@ -2280,7 +2280,7 @@ public static void printAsOperandImpl(final /*const*/ Value /*&*/ V, final raw_o
   try {
     TypePrinter/*J*/= new TypePrinting();
     {
-      /*const*/ Module /*P*/ M = MST.getModule();
+      /*const*/ Module$IR /*P*/ M = MST.getModule();
       if ((M != null)) {
         TypePrinter.incorporateTypes($Deref(M));
       }
@@ -2304,7 +2304,7 @@ public static void printAsOperandImpl(final /*const*/ Value /*&*/ V, final raw_o
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/AsmWriter.cpp -nm=_ZL17printMetadataImplRN4llvm11raw_ostreamERKNS_8MetadataERNS_17ModuleSlotTrackerEPKNS_6ModuleEb")
 //</editor-fold>
 public static void printMetadataImpl(final raw_ostream /*&*/ ROS, final /*const*/ Metadata /*&*/ MD, 
-                 final ModuleSlotTracker /*&*/ MST, /*const*/ Module /*P*/ M, 
+                 final ModuleSlotTracker /*&*/ MST, /*const*/ Module$IR /*P*/ M, 
                  boolean OnlyAsOperand) {
   formatted_raw_ostream OS = null;
   TypePrinting TypePrinter = null;

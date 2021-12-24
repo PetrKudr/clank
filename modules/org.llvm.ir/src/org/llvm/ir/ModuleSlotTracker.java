@@ -141,7 +141,7 @@ public class ModuleSlotTracker implements Destructors.ClassWithDestructor {
   private boolean ShouldCreateStorage/* = false*/;
   private boolean ShouldInitializeAllMetadata/* = false*/;
 
-  private /*const*/ Module /*P*/ M/* = null*/;
+  private /*const*/ Module$IR /*P*/ M/* = null*/;
   private /*const*/ Function /*P*/ F/* = null*/;
   private SlotTracker /*P*/ Machine/* = null*/;
 /*public:*/
@@ -153,11 +153,11 @@ public class ModuleSlotTracker implements Destructors.ClassWithDestructor {
    FQN="llvm::ModuleSlotTracker::ModuleSlotTracker", NM="_ZN4llvm17ModuleSlotTrackerC1ERNS_11SlotTrackerEPKNS_6ModuleEPKNS_8FunctionE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/AsmWriter.cpp -nm=_ZN4llvm17ModuleSlotTrackerC1ERNS_11SlotTrackerEPKNS_6ModuleEPKNS_8FunctionE")
   //</editor-fold>
-  public ModuleSlotTracker(final SlotTracker /*&*/ Machine, /*const*/ Module /*P*/ M) {
+  public ModuleSlotTracker(final SlotTracker /*&*/ Machine, /*const*/ Module$IR /*P*/ M) {
     this(Machine, M,
       (/*const*/ Function /*P*/ )null);
   }
-  public ModuleSlotTracker(final SlotTracker /*&*/ Machine, /*const*/ Module /*P*/ M,
+  public ModuleSlotTracker(final SlotTracker /*&*/ Machine, /*const*/ Module$IR /*P*/ M,
       /*const*/ Function /*P*/ F/*= null*/) {
     // : MachineStorage(), ShouldCreateStorage(false), ShouldInitializeAllMetadata(false), M(M), F(F), Machine(&Machine)
     //START JInit
@@ -184,11 +184,11 @@ public class ModuleSlotTracker implements Destructors.ClassWithDestructor {
    FQN="llvm::ModuleSlotTracker::ModuleSlotTracker", NM="_ZN4llvm17ModuleSlotTrackerC1EPKNS_6ModuleEb",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/AsmWriter.cpp -nm=_ZN4llvm17ModuleSlotTrackerC1EPKNS_6ModuleEb")
   //</editor-fold>
-  public ModuleSlotTracker(/*const*/ Module /*P*/ M) {
+  public ModuleSlotTracker(/*const*/ Module$IR /*P*/ M) {
     this(M,
       true);
   }
-  public ModuleSlotTracker(/*const*/ Module /*P*/ M,
+  public ModuleSlotTracker(/*const*/ Module$IR /*P*/ M,
       boolean ShouldInitializeAllMetadata/*= true*/) {
     // : MachineStorage(), ShouldCreateStorage(M), ShouldInitializeAllMetadata(ShouldInitializeAllMetadata), M(M), F(null), Machine(null)
     //START JInit
@@ -248,7 +248,7 @@ public class ModuleSlotTracker implements Destructors.ClassWithDestructor {
    FQN="llvm::ModuleSlotTracker::getModule", NM="_ZNK4llvm17ModuleSlotTracker9getModuleEv",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/AsmWriter.cpp -nm=_ZNK4llvm17ModuleSlotTracker9getModuleEv")
   //</editor-fold>
-  public /*const*/ Module /*P*/ getModule() /*const*/ {
+  public /*const*/ Module$IR /*P*/ getModule() /*const*/ {
     return M;
   }
 

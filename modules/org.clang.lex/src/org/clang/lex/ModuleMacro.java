@@ -106,7 +106,7 @@ public class ModuleMacro extends /*public*/ FoldingSetImpl.NodeImpl implements F
   /// The body of the #define, or nullptr if this is a #undef.
   private MacroInfo /*P*/ Macro;
   /// The module that exports this macro.
-  private Module /*P*/ OwningModule;
+  private Module$B /*P*/ OwningModule;
   /// The number of module macros that override this one.
   /*friend*//*private*/ /*uint*/int NumOverriddenBy;
   /// The number of modules whose macros are directly overridden by this one.
@@ -126,7 +126,7 @@ public class ModuleMacro extends /*public*/ FoldingSetImpl.NodeImpl implements F
    FQN="clang::ModuleMacro::ModuleMacro", NM="_ZN5clang11ModuleMacroC1EPNS_6ModuleEPNS_14IdentifierInfoEPNS_9MacroInfoEN4llvm8ArrayRefIPS0_EE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/MacroInfo.cpp -nm=_ZN5clang11ModuleMacroC1EPNS_6ModuleEPNS_14IdentifierInfoEPNS_9MacroInfoEN4llvm8ArrayRefIPS0_EE")
   //</editor-fold>
-  private ModuleMacro(Module /*P*/ OwningModule, IdentifierInfo /*P*/ II, MacroInfo /*P*/ Macro, 
+  private ModuleMacro(Module$B /*P*/ OwningModule, IdentifierInfo /*P*/ II, MacroInfo /*P*/ Macro, 
       ArrayRef<ModuleMacro /*P*/ > Overrides) {
     /* : FoldingSetNode(), II(II), Macro(Macro), OwningModule(OwningModule), NumOverriddenBy(0), NumOverrides(Overrides.size())*/ 
     //START JInit
@@ -150,7 +150,7 @@ public class ModuleMacro extends /*public*/ FoldingSetImpl.NodeImpl implements F
    FQN="clang::ModuleMacro::create", NM="_ZN5clang11ModuleMacro6createERNS_12PreprocessorEPNS_6ModuleEPNS_14IdentifierInfoEPNS_9MacroInfoEN4llvm8ArrayRefIPS0_EE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/MacroInfo.cpp -nm=_ZN5clang11ModuleMacro6createERNS_12PreprocessorEPNS_6ModuleEPNS_14IdentifierInfoEPNS_9MacroInfoEN4llvm8ArrayRefIPS0_EE")
   //</editor-fold>
-  public static ModuleMacro /*P*/ create(Preprocessor /*&*/ PP, Module /*P*/ OwningModule, 
+  public static ModuleMacro /*P*/ create(Preprocessor /*&*/ PP, Module$B /*P*/ OwningModule, 
         IdentifierInfo /*P*/ II, MacroInfo /*P*/ Macro, 
         ArrayRef<ModuleMacro /*P*/ > Overrides) {
     // JAVA: 
@@ -177,7 +177,7 @@ public class ModuleMacro extends /*public*/ FoldingSetImpl.NodeImpl implements F
    FQN="clang::ModuleMacro::Profile", NM="_ZN5clang11ModuleMacro7ProfileERN4llvm16FoldingSetNodeIDEPNS_6ModuleEPNS_14IdentifierInfoE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/MacroInfo.cpp -nm=_ZN5clang11ModuleMacro7ProfileERN4llvm16FoldingSetNodeIDEPNS_6ModuleEPNS_14IdentifierInfoE")
   //</editor-fold>
-  public static void Profile(FoldingSetNodeID /*&*/ ID, Module /*P*/ OwningModule, 
+  public static void Profile(FoldingSetNodeID /*&*/ ID, Module$B /*P*/ OwningModule, 
          IdentifierInfo /*P*/ II) {
     ID.AddPointer(OwningModule);
     ID.AddPointer(II);
@@ -191,7 +191,7 @@ public class ModuleMacro extends /*public*/ FoldingSetImpl.NodeImpl implements F
    FQN="clang::ModuleMacro::getOwningModule", NM="_ZNK5clang11ModuleMacro15getOwningModuleEv",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/MacroInfo.cpp -nm=_ZNK5clang11ModuleMacro15getOwningModuleEv")
   //</editor-fold>
-  public Module /*P*/ getOwningModule() /*const*/ {
+  public Module$B /*P*/ getOwningModule() /*const*/ {
     return OwningModule;
   }
 

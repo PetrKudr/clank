@@ -1627,26 +1627,26 @@ public abstract class CGObjCCommonMac extends /*public*/ CGObjCRuntime implement
     
     // Generate module-level named metadata to convey this information to the
     // linker and code-gen.
-    final org.llvm.ir.Module /*&*/ Mod = CGM.getModule();
+    final org.llvm.ir.Module$IR /*&*/ Mod = CGM.getModule();
     
     // Add the ObjC ABI version to the module flags.
-    Mod.addModuleFlag(org.llvm.ir.Module.ModFlagBehavior.Error, new StringRef(/*KEEP_STR*/"Objective-C Version"), ObjCABI);
-    Mod.addModuleFlag(org.llvm.ir.Module.ModFlagBehavior.Error, new StringRef(/*KEEP_STR*/"Objective-C Image Info Version"), 
+    Mod.addModuleFlag(org.llvm.ir.Module$IR.ModFlagBehavior.Error, new StringRef(/*KEEP_STR*/"Objective-C Version"), ObjCABI);
+    Mod.addModuleFlag(org.llvm.ir.Module$IR.ModFlagBehavior.Error, new StringRef(/*KEEP_STR*/"Objective-C Image Info Version"), 
         version);
-    Mod.addModuleFlag(org.llvm.ir.Module.ModFlagBehavior.Error, new StringRef(/*KEEP_STR*/"Objective-C Image Info Section"), 
+    Mod.addModuleFlag(org.llvm.ir.Module$IR.ModFlagBehavior.Error, new StringRef(/*KEEP_STR*/"Objective-C Image Info Section"), 
         MDString.get(VMContext, Section));
     if (CGM.getLangOpts().getGC() == LangOptions.GCMode.NonGC) {
       // Non-GC overrides those files which specify GC.
-      Mod.addModuleFlag(org.llvm.ir.Module.ModFlagBehavior.Override, 
+      Mod.addModuleFlag(org.llvm.ir.Module$IR.ModFlagBehavior.Override, 
           new StringRef(/*KEEP_STR*/"Objective-C Garbage Collection"), (/*uint32_t*/int)0);
     } else {
       // Add the ObjC garbage collection value.
-      Mod.addModuleFlag(org.llvm.ir.Module.ModFlagBehavior.Error, 
+      Mod.addModuleFlag(org.llvm.ir.Module$IR.ModFlagBehavior.Error, 
           new StringRef(/*KEEP_STR*/"Objective-C Garbage Collection"), 
           ImageInfoFlags.eImageInfo_GarbageCollected);
       if (CGM.getLangOpts().getGC() == LangOptions.GCMode.GCOnly) {
         // Add the ObjC GC Only value.
-        Mod.addModuleFlag(org.llvm.ir.Module.ModFlagBehavior.Error, new StringRef(/*KEEP_STR*/"Objective-C GC Only"), 
+        Mod.addModuleFlag(org.llvm.ir.Module$IR.ModFlagBehavior.Error, new StringRef(/*KEEP_STR*/"Objective-C GC Only"), 
             ImageInfoFlags.eImageInfo_GCOnly);
         
         // Require that GC be specified and set to eImageInfo_GarbageCollected.
@@ -1654,7 +1654,7 @@ public abstract class CGObjCCommonMac extends /*public*/ CGObjCRuntime implement
           MDString.get(VMContext, $("Objective-C Garbage Collection")), 
           ConstantAsMetadata.get(ConstantInt.get(org.llvm.ir.Type.getInt32Ty(VMContext), $uint2ulong(ImageInfoFlags.eImageInfo_GarbageCollected)))
         };
-        Mod.addModuleFlag(org.llvm.ir.Module.ModFlagBehavior.Require, new StringRef(/*KEEP_STR*/"Objective-C GC Only"), 
+        Mod.addModuleFlag(org.llvm.ir.Module$IR.ModFlagBehavior.Require, new StringRef(/*KEEP_STR*/"Objective-C GC Only"), 
             MDNode.get(VMContext, new ArrayRef<Metadata /*P*/ >(Ops, true)));
       }
     }
@@ -1664,12 +1664,12 @@ public abstract class CGObjCCommonMac extends /*public*/ CGObjCRuntime implement
     if (($Triple.isiOS() || $Triple.isWatchOS())
        && ($Triple.getArch() == Triple.ArchType.x86
        || $Triple.getArch() == Triple.ArchType.x86_64)) {
-      Mod.addModuleFlag(org.llvm.ir.Module.ModFlagBehavior.Error, new StringRef(/*KEEP_STR*/"Objective-C Is Simulated"), 
+      Mod.addModuleFlag(org.llvm.ir.Module$IR.ModFlagBehavior.Error, new StringRef(/*KEEP_STR*/"Objective-C Is Simulated"), 
           ImageInfoFlags.eImageInfo_ImageIsSimulated);
     }
     
     // Indicate whether we are generating class properties.
-    Mod.addModuleFlag(org.llvm.ir.Module.ModFlagBehavior.Error, new StringRef(/*KEEP_STR*/"Objective-C Class Properties"), 
+    Mod.addModuleFlag(org.llvm.ir.Module$IR.ModFlagBehavior.Error, new StringRef(/*KEEP_STR*/"Objective-C Class Properties"), 
         ImageInfoFlags.eImageInfo_ClassProperties);
   }
 

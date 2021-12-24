@@ -94,7 +94,7 @@ import org.clang.basic.*;
 import static org.clang.basic.BasicClangGlobals.*;
 import org.clang.lex.*;
 import org.llvm.ir.*;
-import org.clang.basic.Module;
+import org.clang.basic.Module$B;
 import org.clang.codegen.java.ClangCodeGenFunctionPointers.*;
 import org.clang.basic.CallingConv;
 import org.clang.ast.ArrayType;
@@ -263,7 +263,7 @@ public class CGDebugInfo implements Destructors.ClassWithDestructor {
   private SmallVector<ObjCInterfaceCacheEntry> ObjCInterfaceCache;
   
   /// Cache of references to clang modules and precompiled headers.
-  private DenseMap</*const*/ Module /*P*/ , TrackingMDRef> ModuleCache;
+  private DenseMap</*const*/ Module$B/*P*/ , TrackingMDRef> ModuleCache;
   
   /// List of interfaces we want to keep even if orphaned.
   private std.vector<Object/*void P*/ > RetainedTypes;
@@ -2505,7 +2505,7 @@ public class CGDebugInfo implements Destructors.ClassWithDestructor {
     this.TypeCache = new DenseMap</*const*/Object/*void P*/ , TrackingMDRef>(DenseMapInfo$LikePtr.$Info(), new TrackingMDRef());
     this.DebugPrefixMap = new SmallDenseMap<StringRef, StringRef>(new DenseMapInfoStringRef(), new StringRef());
     this.ObjCInterfaceCache = new SmallVector<ObjCInterfaceCacheEntry>(32, new ObjCInterfaceCacheEntry());
-    this.ModuleCache = new DenseMap</*const*/ org.clang.basic.Module /*P*/ , TrackingMDRef>(DenseMapInfo$LikePtr.$Info(), new TrackingMDRef());
+    this.ModuleCache = new DenseMap</*const*/ org.clang.basic.Module$B /*P*/ , TrackingMDRef>(DenseMapInfo$LikePtr.$Info(), new TrackingMDRef());
     this.RetainedTypes = new std.vector<Object/*void P*/ >((Object/*void P*/ )null);
     this.ReplaceMap = new std.vector<std.pair</*const*/ TagType /*P*/ , TrackingMDRef>>(new std.pairPtrType</*const*/ TagType /*P*/ , TrackingMDRef>(null, new TrackingMDRef()));
     this.FwdDeclReplaceMap = new std.vector<std.pair</*const*/ DeclaratorDecl /*P*/ , TrackingMDRef>>(new std.pairPtrType</*const*/ DeclaratorDecl /*P*/ , TrackingMDRef>(null, new TrackingMDRef()));
@@ -3460,7 +3460,7 @@ public class CGDebugInfo implements Destructors.ClassWithDestructor {
       return;
     }
     {
-      org.clang.basic.Module /*P*/ M = ID.getImportedModule();
+      org.clang.basic.Module$B /*P*/ M = ID.getImportedModule();
       if ((M != null)) {
         ExternalASTSource.ASTSourceDescriptor Info = new ExternalASTSource.ASTSourceDescriptor($Deref(M));
         DBuilder.createImportedDeclaration(getCurrentContextDescriptor(cast_Decl(ID.getDeclContext$Const())), 
@@ -4214,8 +4214,8 @@ public class CGDebugInfo implements Destructors.ClassWithDestructor {
     // Use the Module pointer as the key into the cache. This is a
     // nullptr if the "Module" is a PCH, which is safe because we don't
     // support chained PCH debug info, so there can only be a single PCH.
-    /*const*/ org.clang.basic.Module /*P*/ M = Mod.getModuleOrNull();
-    DenseMapIterator</*const*/ org.clang.basic.Module /*P*/ , TrackingMDRef> ModRef = ModuleCache.find(M);
+    /*const*/ org.clang.basic.Module$B /*P*/ M = Mod.getModuleOrNull();
+    DenseMapIterator</*const*/ org.clang.basic.Module$B /*P*/ , TrackingMDRef> ModRef = ModuleCache.find(M);
     if (ModRef.$noteq(/*NO_ITER_COPY*/ModuleCache.end())) {
       return cast_DIModule(ModRef.$arrow().second.$star());
     }
@@ -4314,7 +4314,7 @@ public class CGDebugInfo implements Destructors.ClassWithDestructor {
       // option.
       FullSourceLoc Loc/*J*/= new FullSourceLoc(D.getLocation(), CGM.getContext().getSourceManager());
       {
-        org.clang.basic.Module /*P*/ M = ClangModuleMap.inferModuleFromLocation(/*NO_COPY*/Loc);
+        org.clang.basic.Module$B /*P*/ M = ClangModuleMap.inferModuleFromLocation(/*NO_COPY*/Loc);
         if ((M != null)) {
           // This is a (sub-)module.
           ExternalASTSource.ASTSourceDescriptor Info = new ExternalASTSource.ASTSourceDescriptor($Deref(M));

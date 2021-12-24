@@ -175,8 +175,8 @@ public class ProfileSummaryAnalysis implements /*public*/ AnalysisInfoMixin<Prof
    FQN="llvm::ProfileSummaryAnalysis::run", NM="_ZN4llvm22ProfileSummaryAnalysis3runERNS_6ModuleERNS_15AnalysisManagerIS1_EE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/ProfileSummaryInfo.cpp -nm=_ZN4llvm22ProfileSummaryAnalysis3runERNS_6ModuleERNS_15AnalysisManagerIS1_EE")
   //</editor-fold>
-  public ProfileSummaryInfo run(final Module /*&*/ M, 
-     final AnalysisManager<Module>/*&*/ $Prm1) {
+  public ProfileSummaryInfo run(final Module$IR /*&*/ M, 
+     final AnalysisManager<Module$IR>/*&*/ $Prm1) {
     throw new UnsupportedOperationException("EmptyBody");
   }
 

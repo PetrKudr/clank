@@ -299,7 +299,7 @@ public class PrintPPOutputPPCallbacks extends /*public*/ PPCallbacks implements 
                     /*const*/ FileEntry /*P*/ File, 
                     StringRef SearchPath, 
                     StringRef RelativePath, 
-                    /*const*/ Module /*P*/ Imported)/* override*/ {
+                    /*const*/ Module$B /*P*/ Imported)/* override*/ {
     // When preprocessing, turn implicit imports into @imports.
     // FIXME: This is a stop-gap until a more comprehensive "preprocessing with
     // modules" solution is introduced.

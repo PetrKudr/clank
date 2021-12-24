@@ -199,7 +199,7 @@ public class MultiplexASTDeserializationListener implements /*public*/ ASTDeseri
    FQN="clang::MultiplexASTDeserializationListener::ModuleRead", NM="_ZN5clang35MultiplexASTDeserializationListener10ModuleReadEjPNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.frontend/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Frontend/MultiplexConsumer.cpp -nm=_ZN5clang35MultiplexASTDeserializationListener10ModuleReadEjPNS_6ModuleE")
   //</editor-fold>
-  @Override public void ModuleRead(/*uint32_t*/int ID, Module /*P*/ Mod)/* override*/ {
+  @Override public void ModuleRead(/*uint32_t*/int ID, Module$B /*P*/ Mod)/* override*/ {
     for (ASTDeserializationListener /*P*/ /*&*/ Listener : Listeners)  {
       Listener.ModuleRead(ID, Mod);
     }

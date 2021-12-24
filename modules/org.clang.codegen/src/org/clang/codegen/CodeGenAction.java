@@ -91,7 +91,7 @@ import org.clang.basic.*;
 import static org.clang.basic.BasicClangGlobals.*;
 import org.clang.lex.*;
 import org.llvm.ir.*;
-import org.llvm.ir.Module;
+import org.llvm.ir.Module$IR;
 import org.clang.codegen.*;
 import org.clang.codegen.impl.*;
 import static org.clang.codegen.CodegenClangGlobals.*;
@@ -110,10 +110,10 @@ import static org.llvm.bitcode.BitcodeLlvmGlobals.*;
 public class CodeGenAction extends /*public*/ ASTFrontendAction implements Destructors.ClassWithDestructor {
 /*private:*/
   private /*uint*/int Act;
-  private std.unique_ptr<Module> TheModule;
+  private std.unique_ptr<Module$IR> TheModule;
   // Vector of {Linker::Flags, Module*} pairs to specify bitcode
   // modules to link in using corresponding linker flags.
-  private SmallVector<std.pairUIntType<Module /*P*/ >> LinkModules;
+  private SmallVector<std.pairUIntType<Module$IR/*P*/ >> LinkModules;
   private LLVMContext /*P*/ VMContext;
   private boolean OwnsVMContext;
 /*protected:*/
@@ -134,8 +134,8 @@ public class CodeGenAction extends /*public*/ ASTFrontendAction implements Destr
     //START JInit
     super();
     this.Act = _Act;
-    this.TheModule = new std.unique_ptr<Module>();
-    this.LinkModules = new SmallVector<std.pairUIntType<Module /*P*/ >>(4, new std.pairUIntPtr<Module /*P*/ >());
+    this.TheModule = new std.unique_ptr<Module$IR>();
+    this.LinkModules = new SmallVector<std.pairUIntType<Module$IR/*P*/ >>(4, new std.pairUIntPtr<Module$IR/*P*/ >());
     this.VMContext = (_VMContext != null) ? _VMContext : new LLVMContext();
     this.OwnsVMContext = !(_VMContext != null);
     //END JInit
@@ -174,7 +174,7 @@ public class CodeGenAction extends /*public*/ ASTFrontendAction implements Destr
       if (LinkModules.empty()) {
         for (final std.pairUIntType<std.string> /*&*/ I : CI.getCodeGenOpts().LinkBitcodeFiles) {
           ErrorOr<unique_ptr<MemoryBuffer> > BCBuf = null;
-          ErrorOr<std.unique_ptr<Module> > ModuleOrErr = null;
+          ErrorOr<std.unique_ptr<Module$IR> > ModuleOrErr = null;
           try {
             final /*const*/std.string/*&*/ LinkBCFile = I.second;
             
@@ -369,7 +369,7 @@ public class CodeGenAction extends /*public*/ ASTFrontendAction implements Destr
    FQN="clang::CodeGenAction::addLinkModule", NM="_ZN5clang13CodeGenAction13addLinkModuleEPN4llvm6ModuleEj",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.codegen/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/CodeGen/CodeGenAction.cpp -nm=_ZN5clang13CodeGenAction13addLinkModuleEPN4llvm6ModuleEj")
   //</editor-fold>
-  public void addLinkModule(Module /*P*/ Mod, /*uint*/int LinkFlags) {
+  public void addLinkModule(Module$IR /*P*/ Mod, /*uint*/int LinkFlags) {
     LinkModules.push_back(std.make_pair_uint_Ptr(LinkFlags, Mod));
   }
 
@@ -382,8 +382,8 @@ public class CodeGenAction extends /*public*/ ASTFrontendAction implements Destr
    FQN="clang::CodeGenAction::takeModule", NM="_ZN5clang13CodeGenAction10takeModuleEv",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.codegen/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/CodeGen/CodeGenAction.cpp -nm=_ZN5clang13CodeGenAction10takeModuleEv")
   //</editor-fold>
-  public std.unique_ptr<Module> takeModule() {
-    return new std.unique_ptr<Module>(JD$Move.INSTANCE, std.move(TheModule));
+  public std.unique_ptr<Module$IR> takeModule() {
+    return new std.unique_ptr<Module$IR>(JD$Move.INSTANCE, std.move(TheModule));
   }
 
   

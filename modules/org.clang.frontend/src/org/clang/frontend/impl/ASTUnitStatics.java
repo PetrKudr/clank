@@ -413,7 +413,7 @@ public static void AddTopLevelDeclarationToHash(Decl /*P*/ D, uint$ref/*uint &*/
     ImportDecl /*P*/ ImportD = dyn_cast(ImportDecl.class, D);
     if ((ImportD != null)) {
       {
-        Module /*P*/ Mod = ImportD.getImportedModule();
+        Module$B /*P*/ Mod = ImportD.getImportedModule();
         if ((Mod != null)) {
           std.string ModName = Mod.getFullModuleName();
           Hash.$set(llvm.HashString(new StringRef(ModName), Hash.$deref()));
@@ -685,7 +685,7 @@ public static boolean serializeUnit(ASTWriter /*&*/ Writer,
              Sema /*&*/ S, 
              boolean hasErrors, 
              raw_ostream /*&*/ OS) {
-  Writer.WriteAST(S, new std.string(), (Module /*P*/ )null, new StringRef(/*KEEP_STR*/$EMPTY), hasErrors);
+  Writer.WriteAST(S, new std.string(), (Module$B /*P*/ )null, new StringRef(/*KEEP_STR*/$EMPTY), hasErrors);
   
   // Write the generated bitstream to "Out".
   if (!Buffer.empty()) {

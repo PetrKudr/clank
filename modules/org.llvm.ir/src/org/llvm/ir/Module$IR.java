@@ -117,7 +117,7 @@ import org.llvm.ir.impl.SymbolTableListTraits$GlobalVariable.SymbolTableList$Glo
  FQN="llvm::Module", NM="_ZN4llvm6ModuleE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/AsmWriter.cpp -nm=_ZN4llvm6ModuleE")
 //</editor-fold>
-public class Module implements Iterable<Function>, IValueSymbolTableProvider, Destructors.ClassWithDestructor {
+public class Module$IR implements Iterable<Function>, IValueSymbolTableProvider, Destructors.ClassWithDestructor {
 /// @name Types And Enumerations
   /// @{
   /*public:*/
@@ -350,10 +350,10 @@ public class Module implements Iterable<Function>, IValueSymbolTableProvider, De
   /*private:*/
   private final LLVMContext /*&*/ Context; ///< The LLVMContext from which types and
   ///< constants are allocated.
-  private final SymbolTableList<GlobalVariable, Module> GlobalList; ///< The Global Variables in the module
-  private final SymbolTableList<Function, Module> FunctionList; ///< The Functions in the module
-  private final SymbolTableList<GlobalAlias, Module> AliasList; ///< The Aliases in the module
-  private final SymbolTableList<GlobalIFunc, Module> IFuncList; ///< The IFuncs in the module
+  private final SymbolTableList<GlobalVariable, Module$IR> GlobalList; ///< The Global Variables in the module
+  private final SymbolTableList<Function, Module$IR> FunctionList; ///< The Functions in the module
+  private final SymbolTableList<GlobalAlias, Module$IR> AliasList; ///< The Aliases in the module
+  private final SymbolTableList<GlobalIFunc, Module$IR> IFuncList; ///< The IFuncs in the module
   private ilist<NamedMDNode> NamedMDList; ///< The named metadata in the module
   private std.string GlobalScopeAsm; ///< Inline Asm at global scope.
   private ValueSymbolTable /*P*/ ValSymTab; ///< Symbol table for values
@@ -387,7 +387,7 @@ public class Module implements Iterable<Function>, IValueSymbolTableProvider, De
    FQN="llvm::Module::Module", NM="_ZN4llvm6ModuleC1ENS_9StringRefERNS_11LLVMContextE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/Module.cpp -nm=_ZN4llvm6ModuleC1ENS_9StringRefERNS_11LLVMContextE")
   //</editor-fold>
-  public Module(StringRef MID, final LLVMContext /*&*/ C) {
+  public Module$IR(StringRef MID, final LLVMContext /*&*/ C) {
     // : Context(C), GlobalList(), FunctionList(), AliasList(), IFuncList(), NamedMDList(), GlobalScopeAsm(), ComdatSymTab(), Materializer(), ModuleID(MID.operator basic_string()), SourceFileName(MID.operator basic_string()), TargetTriple(), DL("") 
     //START JInit
     this./*&*/Context=/*&*/C;
@@ -1092,7 +1092,7 @@ public class Module implements Iterable<Function>, IValueSymbolTableProvider, De
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/AsmWriter.cpp -nm=_ZNK4llvm6Module17getGlobalVariableENS_9StringRefEb")
   //</editor-fold>
   public GlobalVariable /*P*/ getGlobalVariable$Const(StringRef Name, boolean AllowInternal) /*const*/ {
-    return ((/*const_cast*/Module /*P*/ )(this)).getGlobalVariable(new StringRef(Name), AllowInternal);
+    return ((/*const_cast*/Module$IR /*P*/ )(this)).getGlobalVariable(new StringRef(Name), AllowInternal);
   }
 
   
@@ -1150,7 +1150,7 @@ public class Module implements Iterable<Function>, IValueSymbolTableProvider, De
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/AsmWriter.cpp -nm=_ZNK4llvm6Module14getNamedGlobalENS_9StringRefE")
   //</editor-fold>
   public /*const*/ GlobalVariable /*P*/ getNamedGlobal$Const(StringRef Name) /*const*/ {
-    return ((/*const_cast*/Module /*P*/ )(this)).getNamedGlobal(new StringRef(Name));
+    return ((/*const_cast*/Module$IR /*P*/ )(this)).getNamedGlobal(new StringRef(Name));
   }
 
   
@@ -1430,7 +1430,7 @@ public class Module implements Iterable<Function>, IValueSymbolTableProvider, De
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/Module.cpp -nm=_ZNK4llvm6Module13getModuleFlagENS_9StringRefE")
   //</editor-fold>
   public Metadata /*P*/ getModuleFlag(StringRef Key) /*const*/ {
-    SmallVector<Module.ModuleFlagEntry> ModuleFlags/*J*/= new SmallVector<Module.ModuleFlagEntry>(8, new Module.ModuleFlagEntry());
+    SmallVector<Module$IR.ModuleFlagEntry> ModuleFlags/*J*/= new SmallVector<Module$IR.ModuleFlagEntry>(8, new Module$IR.ModuleFlagEntry());
     getModuleFlagsMetadata(ModuleFlags);
     for (final /*const*/ ModuleFlagEntry /*&*/ MFE : ModuleFlags) {
       if ($eq_StringRef(/*NO_COPY*/Key, MFE.Key.getString())) {
@@ -1680,7 +1680,7 @@ public class Module implements Iterable<Function>, IValueSymbolTableProvider, De
    FQN="llvm::Module::getGlobalList", NM="_ZNK4llvm6Module13getGlobalListEv",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/AsmWriter.cpp -nm=_ZNK4llvm6Module13getGlobalListEv")
   //</editor-fold>
-  public /*const*/ SymbolTableList<GlobalVariable, Module> /*&*/ getGlobalList$Const() /*const*/ {
+  public /*const*/ SymbolTableList<GlobalVariable, Module$IR> /*&*/ getGlobalList$Const() /*const*/ {
     return GlobalList;
   }
 
@@ -1691,7 +1691,7 @@ public class Module implements Iterable<Function>, IValueSymbolTableProvider, De
    FQN="llvm::Module::getGlobalList", NM="_ZN4llvm6Module13getGlobalListEv",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/AsmWriter.cpp -nm=_ZN4llvm6Module13getGlobalListEv")
   //</editor-fold>
-  public SymbolTableList<GlobalVariable, Module> /*&*/ getGlobalList() {
+  public SymbolTableList<GlobalVariable, Module$IR> /*&*/ getGlobalList() {
     return GlobalList;
   }
 
@@ -1701,10 +1701,10 @@ public class Module implements Iterable<Function>, IValueSymbolTableProvider, De
    FQN="llvm::Module::getSublistAccess", NM="_ZN4llvm6Module16getSublistAccessEPNS_14GlobalVariableE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/AsmWriter.cpp -nm=_ZN4llvm6Module16getSublistAccessEPNS_14GlobalVariableE")
   //</editor-fold>
-  public static Void2SymbolTableList<GlobalVariable, Module> getSublistAccess(GlobalVariable /*P*/ $Prm0) {
-    return /*AddrOf*/new Void2SymbolTableList<GlobalVariable, Module>() {
+  public static Void2SymbolTableList<GlobalVariable, Module$IR> getSublistAccess(GlobalVariable /*P*/ $Prm0) {
+    return /*AddrOf*/new Void2SymbolTableList<GlobalVariable, Module$IR>() {
       @Override
-      public SymbolTableList<GlobalVariable, Module> $call(Module $this) {
+      public SymbolTableList<GlobalVariable, Module$IR> $call(Module$IR $this) {
         return $this.GlobalList;
       }
     };
@@ -1717,7 +1717,7 @@ public class Module implements Iterable<Function>, IValueSymbolTableProvider, De
    FQN="llvm::Module::getFunctionList", NM="_ZNK4llvm6Module15getFunctionListEv",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/AsmWriter.cpp -nm=_ZNK4llvm6Module15getFunctionListEv")
   //</editor-fold>
-  public /*const*/ SymbolTableList<Function, Module> /*&*/ getFunctionList$Const() /*const*/ {
+  public /*const*/ SymbolTableList<Function, Module$IR> /*&*/ getFunctionList$Const() /*const*/ {
     return FunctionList;
   }
 
@@ -1728,7 +1728,7 @@ public class Module implements Iterable<Function>, IValueSymbolTableProvider, De
    FQN="llvm::Module::getFunctionList", NM="_ZN4llvm6Module15getFunctionListEv",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/AsmWriter.cpp -nm=_ZN4llvm6Module15getFunctionListEv")
   //</editor-fold>
-  public SymbolTableList<Function, Module> /*&*/ getFunctionList() {
+  public SymbolTableList<Function, Module$IR> /*&*/ getFunctionList() {
     return FunctionList;
   }
 
@@ -1738,10 +1738,10 @@ public class Module implements Iterable<Function>, IValueSymbolTableProvider, De
    FQN="llvm::Module::getSublistAccess", NM="_ZN4llvm6Module16getSublistAccessEPNS_8FunctionE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/AsmWriter.cpp -nm=_ZN4llvm6Module16getSublistAccessEPNS_8FunctionE")
   //</editor-fold>
-  public static Void2SymbolTableList<Function, Module> getSublistAccess(Function /*P*/ $Prm0) {
-    return /*AddrOf*/new Void2SymbolTableList<Function, Module>() {
+  public static Void2SymbolTableList<Function, Module$IR> getSublistAccess(Function /*P*/ $Prm0) {
+    return /*AddrOf*/new Void2SymbolTableList<Function, Module$IR>() {
       @Override
-      public SymbolTableList<Function, Module> $call(Module $this) {
+      public SymbolTableList<Function, Module$IR> $call(Module$IR $this) {
         return $this.FunctionList;
       }
     };    
@@ -1754,7 +1754,7 @@ public class Module implements Iterable<Function>, IValueSymbolTableProvider, De
    FQN="llvm::Module::getAliasList", NM="_ZNK4llvm6Module12getAliasListEv",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/AsmWriter.cpp -nm=_ZNK4llvm6Module12getAliasListEv")
   //</editor-fold>
-  public /*const*/ SymbolTableList<GlobalAlias, Module> /*&*/ getAliasList$Const() /*const*/ {
+  public /*const*/ SymbolTableList<GlobalAlias, Module$IR> /*&*/ getAliasList$Const() /*const*/ {
     return AliasList;
   }
 
@@ -1765,7 +1765,7 @@ public class Module implements Iterable<Function>, IValueSymbolTableProvider, De
    FQN="llvm::Module::getAliasList", NM="_ZN4llvm6Module12getAliasListEv",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/AsmWriter.cpp -nm=_ZN4llvm6Module12getAliasListEv")
   //</editor-fold>
-  public SymbolTableList<GlobalAlias, Module> /*&*/ getAliasList() {
+  public SymbolTableList<GlobalAlias, Module$IR> /*&*/ getAliasList() {
     return AliasList;
   }
 
@@ -1775,10 +1775,10 @@ public class Module implements Iterable<Function>, IValueSymbolTableProvider, De
    FQN="llvm::Module::getSublistAccess", NM="_ZN4llvm6Module16getSublistAccessEPNS_11GlobalAliasE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/AsmWriter.cpp -nm=_ZN4llvm6Module16getSublistAccessEPNS_11GlobalAliasE")
   //</editor-fold>
-  public static Void2SymbolTableList<GlobalAlias, Module> getSublistAccess(GlobalAlias /*P*/ $Prm0) {
-    return /*AddrOf*/new Void2SymbolTableList<GlobalAlias, Module>() {
+  public static Void2SymbolTableList<GlobalAlias, Module$IR> getSublistAccess(GlobalAlias /*P*/ $Prm0) {
+    return /*AddrOf*/new Void2SymbolTableList<GlobalAlias, Module$IR>() {
       @Override
-      public SymbolTableList<GlobalAlias, Module> $call(Module $this) {
+      public SymbolTableList<GlobalAlias, Module$IR> $call(Module$IR $this) {
         return $this.AliasList;
       }
     };
@@ -1791,7 +1791,7 @@ public class Module implements Iterable<Function>, IValueSymbolTableProvider, De
    FQN="llvm::Module::getIFuncList", NM="_ZNK4llvm6Module12getIFuncListEv",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/AsmWriter.cpp -nm=_ZNK4llvm6Module12getIFuncListEv")
   //</editor-fold>
-  public /*const*/ SymbolTableList<GlobalIFunc, Module> /*&*/ getIFuncList$Const() /*const*/ {
+  public /*const*/ SymbolTableList<GlobalIFunc, Module$IR> /*&*/ getIFuncList$Const() /*const*/ {
     return IFuncList;
   }
 
@@ -1802,7 +1802,7 @@ public class Module implements Iterable<Function>, IValueSymbolTableProvider, De
    FQN="llvm::Module::getIFuncList", NM="_ZN4llvm6Module12getIFuncListEv",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/AsmWriter.cpp -nm=_ZN4llvm6Module12getIFuncListEv")
   //</editor-fold>
-  public SymbolTableList<GlobalIFunc, Module> /*&*/ getIFuncList() {
+  public SymbolTableList<GlobalIFunc, Module$IR> /*&*/ getIFuncList() {
     return IFuncList;
   }
 
@@ -1812,10 +1812,10 @@ public class Module implements Iterable<Function>, IValueSymbolTableProvider, De
    FQN="llvm::Module::getSublistAccess", NM="_ZN4llvm6Module16getSublistAccessEPNS_11GlobalIFuncE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/AsmWriter.cpp -nm=_ZN4llvm6Module16getSublistAccessEPNS_11GlobalIFuncE")
   //</editor-fold>
-  public static Void2SymbolTableList<GlobalIFunc, Module> getSublistAccess(GlobalIFunc /*P*/ $Prm0) {
-    return /*AddrOf*/new Void2SymbolTableList<GlobalIFunc, Module>() {
+  public static Void2SymbolTableList<GlobalIFunc, Module$IR> getSublistAccess(GlobalIFunc /*P*/ $Prm0) {
+    return /*AddrOf*/new Void2SymbolTableList<GlobalIFunc, Module$IR>() {
       @Override
-      public SymbolTableList<GlobalIFunc, Module> $call(Module $this) {
+      public SymbolTableList<GlobalIFunc, Module$IR> $call(Module$IR $this) {
         return $this.IFuncList;
       }
     };
@@ -1852,7 +1852,7 @@ public class Module implements Iterable<Function>, IValueSymbolTableProvider, De
   public static Void2NamedMDListType getSublistAccess(NamedMDNode /*P*/ $Prm0) {
     return /*AddrOf*/new Void2NamedMDListType() {
       @Override
-      public ilist<NamedMDNode> $call(Module $this) {
+      public ilist<NamedMDNode> $call(Module$IR $this) {
         return $this.NamedMDList;
       }
     };
@@ -2300,7 +2300,7 @@ public class Module implements Iterable<Function>, IValueSymbolTableProvider, De
      FQN="llvm::Module::global_object_iterator_t::global_object_iterator_t<IsConst>", NM="_ZN4llvm6Module24global_object_iterator_tC1ERNSt11conditionalIXT_EKS0_S0_E4typeE",
      cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/AsmWriter.cpp -nm=_ZN4llvm6Module24global_object_iterator_tC1ERNSt11conditionalIXT_EKS0_S0_E4typeE")
     //</editor-fold>
-    private global_object_iterator_t(final /*conditional<IsConst, Module$C,Module>*//*const*/ Module /*&*/ M) {
+    private global_object_iterator_t(final /*conditional<IsConst, Module$C,Module>*//*const*/ Module$IR /*&*/ M) {
       // : function_i(M.begin()), function_e(M.end()), global_i(M.global_begin()) 
       //START JInit
       this.function_i = /*ParenListExpr*/new /*conditional<IsConst, Ilist_iterator$Function$C,Ilist_iterator$Function>*/ilist_iterator</*const*/ Function>(M.begin());
@@ -2315,7 +2315,7 @@ public class Module implements Iterable<Function>, IValueSymbolTableProvider, De
      FQN="llvm::Module::global_object_iterator_t::global_object_iterator_t<IsConst>", NM="_ZN4llvm6Module24global_object_iterator_tC1ERNSt11conditionalIXT_EKS0_S0_E4typeEi",
      cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/AsmWriter.cpp -nm=_ZN4llvm6Module24global_object_iterator_tC1ERNSt11conditionalIXT_EKS0_S0_E4typeEi")
     //</editor-fold>
-    private global_object_iterator_t(final /*conditional<IsConst, Module$C,Module>*//*const*/ Module /*&*/ M, int $Prm1) {
+    private global_object_iterator_t(final /*conditional<IsConst, Module$C,Module>*//*const*/ Module$IR /*&*/ M, int $Prm1) {
       // : function_i(M.end()), function_e(M.end()), global_i(M.global_end()) 
       //START JInit
       this.function_i = /*ParenListExpr*/new /*conditional<IsConst, Ilist_iterator$Function$C,Ilist_iterator$Function>*/ilist_iterator</*const*/ Function>(M.end());

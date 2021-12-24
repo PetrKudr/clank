@@ -136,7 +136,7 @@ public class CGOpenMPRuntime implements Destructors.ClassWithDestructor {
     StringRef Name = Addr.getName();
     StructType /*P*/ TgtOffloadEntryType = cast_StructType(CGM.getTypes().ConvertTypeForMem(getTgtOffloadEntryQTy()));
     final LLVMContext /*&*/ C = CGM.getModule().getContext();
-    final org.llvm.ir.Module /*&*/ M = CGM.getModule();
+    final org.llvm.ir.Module$IR /*&*/ M = CGM.getModule();
     
     // Make sure the address has the right type.
     Constant /*P*/ AddrPtr = ConstantExpr.getBitCast(ID, CGM.Unnamed_field9.VoidPtrTy);
@@ -1071,7 +1071,7 @@ public class CGOpenMPRuntime implements Destructors.ClassWithDestructor {
         return null;
       }
       
-      final org.llvm.ir.Module /*&*/ M = CGM.getModule();
+      final org.llvm.ir.Module$IR /*&*/ M = CGM.getModule();
       final ASTContext /*&*/ C = CGM.getContext();
       
       // Get list of devices we care about
@@ -1197,7 +1197,7 @@ public class CGOpenMPRuntime implements Destructors.ClassWithDestructor {
       return;
     }
     
-    final org.llvm.ir.Module /*&*/ M = CGM.getModule();
+    final org.llvm.ir.Module$IR /*&*/ M = CGM.getModule();
     final LLVMContext /*&*/ C = M.getContext();
     SmallVector<OffloadEntriesInfoManagerTy.OffloadEntryInfo /*P*/ > OrderedEntries/*J*/= new SmallVector<OffloadEntriesInfoManagerTy.OffloadEntryInfo /*P*/ >(JD$UInt_T$C$R.INSTANCE, 16, OffloadEntriesInfoManager.size(), (OffloadEntriesInfoManagerTy.OffloadEntryInfo /*P*/ )null);
     
@@ -1270,7 +1270,7 @@ public class CGOpenMPRuntime implements Destructors.ClassWithDestructor {
   private void loadOffloadInfoMetadata() {
     ErrorOr<unique_ptr<MemoryBuffer> > Buf = null;
     LLVMContext C = null;
-    ErrorOr<unique_ptr<org.llvm.ir.Module> > ME = null;
+    ErrorOr<unique_ptr<org.llvm.ir.Module$IR> > ME = null;
     try {
       // If we are in target mode, load the metadata from the host IR. This code has
       // to match the metadaata creation in createOffloadEntriesAndInfoMetadata().

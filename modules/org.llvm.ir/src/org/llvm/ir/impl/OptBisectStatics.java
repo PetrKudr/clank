@@ -140,7 +140,7 @@ public static void printCaseMessage(int CaseNum, StringRef Msg, boolean Running)
  FQN="getDescription", NM="_ZL14getDescriptionRKN4llvm6ModuleE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/OptBisect.cpp -nm=_ZL14getDescriptionRKN4llvm6ModuleE")
 //</editor-fold>
-public static std.string getDescription(final /*const*/ Module /*&*/ M) {
+public static std.string getDescription(final /*const*/ Module$IR /*&*/ M) {
   return $add_string_T$C$P($add_T$C$P_string(/*KEEP_STR*/"module (", M.getName().str()), /*KEEP_STR*/")");
 }
 

@@ -157,7 +157,7 @@ public class WriteBitcodePass extends /*public*/ ModulePass implements Destructo
    FQN="(anonymous namespace)::WriteBitcodePass::runOnModule", NM="_ZN12_GLOBAL__N_116WriteBitcodePass11runOnModuleERN4llvm6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.bitcode/llvmToClangType ${LLVM_SRC}/llvm/lib/Bitcode/Writer/BitcodeWriterPass.cpp -nm=_ZN12_GLOBAL__N_116WriteBitcodePass11runOnModuleERN4llvm6ModuleE")
   //</editor-fold>
-  @Override public boolean runOnModule(final Module /*&*/ M)/* override*/ {
+  @Override public boolean runOnModule(final Module$IR /*&*/ M)/* override*/ {
     /*const*/ ModuleSummaryIndex /*P*/ Index = EmitSummaryIndex ? $AddrOf((this.<ModuleSummaryIndexWrapperPass>getAnalysis(ModuleSummaryIndexWrapperPass.class).getIndex())) : null;
     BitcodeWriterLlvmGlobals.WriteBitcodeToFile($AddrOf(M), OS, ShouldPreserveUseListOrder, Index, 
         EmitModuleHash);

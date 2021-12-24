@@ -130,7 +130,7 @@ public class ImmutablePass extends /*public*/ ModulePass implements Destructors.
    FQN="llvm::ImmutablePass::runOnModule", NM="_ZN4llvm13ImmutablePass11runOnModuleERNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/Pass.cpp -nm=_ZN4llvm13ImmutablePass11runOnModuleERNS_6ModuleE")
   //</editor-fold>
-  @Override public boolean runOnModule(final Module /*&*/ $Prm0)/* override*/ {
+  @Override public boolean runOnModule(final Module$IR /*&*/ $Prm0)/* override*/ {
     return false;
   }
 

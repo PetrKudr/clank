@@ -657,8 +657,8 @@ public class Sema extends Sema_SemaType implements Destructors.ClassWithDestruct
     this.VTablesUsed = new DenseMapTypeBool<CXXRecordDecl /*P*/ >(DenseMapInfo$LikePtr.$Info(), false);
     this.AccessCheckingSFINAE = false;
     this.ActiveTemplateInstantiations = new SmallVector<ActiveTemplateInstantiation>(16, new ActiveTemplateInstantiation());
-    this.ActiveTemplateInstantiationLookupModules = new SmallVector<Module /*P*/>(16, (Module /*P*/)null);
-    this.LookupModulesCache = new DenseSet<Module /*P*/ >(DenseMapInfo$LikePtr.$Info());
+    this.ActiveTemplateInstantiationLookupModules = new SmallVector<Module$B/*P*/>(16, (Module$B /*P*/)null);
+    this.LookupModulesCache = new DenseSet<Module$B/*P*/ >(DenseMapInfo$LikePtr.$Info());
     this.VisibleNamespaceCache = new DenseMap<NamedDecl /*P*/ , NamedDecl /*P*/ >(DenseMapInfo$LikePtr.$Info(), (NamedDecl /*P*/ )null);
     this.InNonInstantiationSFINAEContext = false;
     this.NonInstantiationEntries = 0;
@@ -1136,7 +1136,7 @@ public class Sema extends Sema_SemaType implements Destructors.ClassWithDestruct
   protected/*private*/ VisibleModuleSet VisibleModules;
   protected/*private*/ SmallVector<VisibleModuleSet> VisibleModulesStack;
   
-  protected/*private*/ Module /*P*/ CachedFakeTopLevelModule;
+  protected/*private*/ Module$B /*P*/ CachedFakeTopLevelModule;
   
   //<editor-fold defaultstate="collapsed" desc="clang::Sema::isModuleVisible">
   @Converted(kind = Converted.Kind.AUTO,
@@ -1144,7 +1144,7 @@ public class Sema extends Sema_SemaType implements Destructors.ClassWithDestruct
    FQN="clang::Sema::isModuleVisible", NM="_ZN5clang4Sema15isModuleVisibleEPNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.sema/llvmToClangType -split-class=clang::Sema ${LLVM_SRC}/llvm/tools/clang/lib/Sema/Sema.cpp -nm=_ZN5clang4Sema15isModuleVisibleEPNS_6ModuleE")
   //</editor-fold>
-  public final boolean isModuleVisible(Module /*P*/ M) {
+  public final boolean isModuleVisible(Module$B /*P*/ M) {
     return VisibleModules.isVisible(M);
   }
 
@@ -1170,10 +1170,10 @@ public class Sema extends Sema_SemaType implements Destructors.ClassWithDestruct
   //</editor-fold>
   public final boolean hasVisibleDeclaration(/*const*/ NamedDecl /*P*/ D) {
     return hasVisibleDeclaration(D, 
-                       (SmallVectorImpl<Module /*P*/ > /*P*/ )null);
+                       (SmallVectorImpl<Module$B/*P*/ > /*P*/ )null);
   }
   public final boolean hasVisibleDeclaration(/*const*/ NamedDecl /*P*/ D, 
-                       SmallVectorImpl<Module /*P*/ > /*P*/ Modules/*= null*/) {
+                       SmallVectorImpl<Module$B/*P*/ > /*P*/ Modules/*= null*/) {
     return isVisible(D) || hasVisibleDeclarationSlow(D, Modules);
   }
 
@@ -1619,12 +1619,12 @@ public class Sema extends Sema_SemaType implements Destructors.ClassWithDestruct
   
   /// \brief Extra modules inspected when performing a lookup during a template
   /// instantiation. Computed lazily.
-  public SmallVector<Module /*P*/> ActiveTemplateInstantiationLookupModules;
+  public SmallVector<Module$B/*P*/> ActiveTemplateInstantiationLookupModules;
   
   /// \brief Cache of additional modules that should be used for name lookup
   /// within the current template instantiation. Computed lazily; use
   /// getLookupModules() to get a complete set.
-  public DenseSet<Module /*P*/ > LookupModulesCache;
+  public DenseSet<Module$B/*P*/ > LookupModulesCache;
   
   /// \brief Map from the most recent declaration of a namespace to the most
   /// recent visible declaration of that namespace.

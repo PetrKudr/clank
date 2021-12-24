@@ -173,7 +173,7 @@ public class TypePrinting implements Destructors.ClassWithDestructor {
    FQN="(anonymous namespace)::TypePrinting::incorporateTypes", NM="_ZN12_GLOBAL__N_112TypePrinting16incorporateTypesERKN4llvm6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/AsmWriter.cpp -nm=_ZN12_GLOBAL__N_112TypePrinting16incorporateTypesERKN4llvm6ModuleE")
   //</editor-fold>
-  public void incorporateTypes(final /*const*/ Module /*&*/ M) {
+  public void incorporateTypes(final /*const*/ Module$IR /*&*/ M) {
     NamedTypes.run(M, false);
 
     // The list of struct types we got back includes all the struct types, split

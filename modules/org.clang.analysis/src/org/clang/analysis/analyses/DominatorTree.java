@@ -355,9 +355,9 @@ public class DominatorTree extends /*public*/ ManagedAnalysis implements Destruc
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.analysis/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Analysis/Dominators.cpp -nm=_ZNK5clang13DominatorTree5printERN4llvm11raw_ostreamEPKNS1_6ModuleE")
   //</editor-fold>
   public /*virtual*/ void print(final raw_ostream /*&*/ OS) /*const*/ {
-    print(OS, (/*const*/ Module /*P*/ )null);
+    print(OS, (/*const*/ Module$B /*P*/ )null);
   }
-  public /*virtual*/ void print(final raw_ostream /*&*/ OS, /*const*/ Module /*P*/ M/*= null*/) /*const*/ {
+  public /*virtual*/ void print(final raw_ostream /*&*/ OS, /*const*/ Module$B /*P*/ M/*= null*/) /*const*/ {
     DT.print(OS);
   }
 

@@ -84,7 +84,7 @@ import static org.clank.support.Unsigned.*;
 import org.llvm.adt.*;
 import org.llvm.adt.aliases.*;
 import org.clang.basic.*;
-import org.clang.basic.Module.Conflict;
+import org.clang.basic.Module$B.Conflict;
 import org.clang.basic.java.BasicFunctionPointers.*;
 
 
@@ -165,7 +165,7 @@ public class VisibleModuleSet implements Destructors.ClassWithDestructor, Native
    FQN="clang::VisibleModuleSet::isVisible", NM="_ZNK5clang16VisibleModuleSet9isVisibleEPKNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.basic/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Basic/Module.cpp -nm=_ZNK5clang16VisibleModuleSet9isVisibleEPKNS_6ModuleE")
   //</editor-fold>
-  public boolean isVisible(/*const*/ Module /*P*/ M) /*const*/ {
+  public boolean isVisible(/*const*/ Module$B /*P*/ M) /*const*/ {
     return getImportLoc(M).isValid();
   }
 
@@ -177,7 +177,7 @@ public class VisibleModuleSet implements Destructors.ClassWithDestructor, Native
    FQN="clang::VisibleModuleSet::getImportLoc", NM="_ZNK5clang16VisibleModuleSet12getImportLocEPKNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.basic/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Basic/Module.cpp -nm=_ZNK5clang16VisibleModuleSet12getImportLocEPKNS_6ModuleE")
   //</editor-fold>
-  public SourceLocation getImportLoc(/*const*/ Module /*P*/ M) /*const*/ {
+  public SourceLocation getImportLoc(/*const*/ Module$B /*P*/ M) /*const*/ {
     return $less_uint(M.getVisibilityID(), ImportLocs.size()) ? new SourceLocation(ImportLocs.$at(M.getVisibilityID())) : new SourceLocation();
   }
 
@@ -214,11 +214,11 @@ public class VisibleModuleSet implements Destructors.ClassWithDestructor, Native
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.basic/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Basic/Module.cpp -nm=_ZZN5clang16VisibleModuleSet10setVisibleEPNS_6ModuleENS_14SourceLocationEN4llvm12function_refIFvS2_EEENS5_IFvNS4_8ArrayRefIS2_EES2_NS4_9StringRefEEEEE8Visiting")
   //</editor-fold>
   private static class/*struct*/ Visiting {
-    public Module /*P*/ M;
+    public Module$B /*P*/ M;
     public Visiting /*P*/ ExportedBy;
 
     @Converted(kind = Converted.Kind.MANUAL_ADDED)
-    public Visiting(Module M, Visiting ExportedBy) {
+    public Visiting(Module$B M, Visiting ExportedBy) {
       this.M = M;
       this.ExportedBy = ExportedBy;
     }
@@ -252,25 +252,25 @@ public class VisibleModuleSet implements Destructors.ClassWithDestructor, Native
    FQN="clang::VisibleModuleSet::setVisible", NM="_ZN5clang16VisibleModuleSet10setVisibleEPNS_6ModuleENS_14SourceLocationEN4llvm12function_refIFvS2_EEENS5_IFvNS4_8ArrayRefIS2_EES2_NS4_9StringRefEEEE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.basic/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Basic/Module.cpp -nm=_ZN5clang16VisibleModuleSet10setVisibleEPNS_6ModuleENS_14SourceLocationEN4llvm12function_refIFvS2_EEENS5_IFvNS4_8ArrayRefIS2_EES2_NS4_9StringRefEEEE")
   //</editor-fold>
-  public void setVisible(Module /*P*/ M, SourceLocation Loc) {
+  public void setVisible(Module$B /*P*/ M, SourceLocation Loc) {
     setVisible(M, Loc.getRawEncoding(), (Mod) -> {}, (Path, Conflict, Message) -> {});
   }
-  public void setVisible(Module /*P*/ M, SourceLocation Loc, 
+  public void setVisible(Module$B /*P*/ M, SourceLocation Loc, 
             VisibleCallback Vis) {
     setVisible(M, Loc.getRawEncoding(), Vis, (Path, Conflict, Message) -> {});
   }
-  public void setVisible(Module /*P*/ M, SourceLocation Loc, 
+  public void setVisible(Module$B /*P*/ M, SourceLocation Loc, 
             VisibleCallback Vis/*= [] (Module /*P*/, ConflictCallback Cb) {
     setVisible(M, Loc.getRawEncoding(), Vis, Cb);
   }
-  public void setVisible(Module /*P*/ M, /*SourceLocation*/int Loc) {
+  public void setVisible(Module$B /*P*/ M, /*SourceLocation*/int Loc) {
     setVisible(M, Loc, (Mod) -> {}, (Path, Conflict, Message) -> {});
   }
-  public void setVisible(Module /*P*/ M, /*SourceLocation*/int Loc, 
+  public void setVisible(Module$B /*P*/ M, /*SourceLocation*/int Loc, 
             VisibleCallback Vis) {
     setVisible(M, Loc, Vis, (Path, Conflict, Message) -> {});
   }
-  public void setVisible(Module /*P*/ M, /*SourceLocation*/int Loc, 
+  public void setVisible(Module$B /*P*/ M, /*SourceLocation*/int Loc, 
             VisibleCallback Vis/*= [] (Module /*P*/, ConflictCallback Cb) {
     Visiting2Void VisitModule = null;
     try {
@@ -301,19 +301,19 @@ public class VisibleModuleSet implements Destructors.ClassWithDestructor, Native
         Vis.$call(M);
 
         // Make any exported modules visible.
-        SmallVector<Module /*P*/> Exports/*J*/= new SmallVector<Module /*P*/>(16, (Module /*P*/)null);
+        SmallVector<Module$B/*P*/> Exports/*J*/= new SmallVector<Module$B/*P*/>(16, (Module$B /*P*/)null);
         V.M.getExportedModules(Exports);
-        for (Module /*P*/ E : Exports)  {
+        for (Module$B /*P*/ E : Exports)  {
           F.$call(F, new Visiting(E, $AddrOf(V)));
         }
 
         for (Conflict /*&*/ C : V.M.Conflicts) {
           if (isVisible(C.Other)) {
-            SmallVector<Module /*P*/> Path/*J*/= new SmallVector<Module /*P*/>(8, (Module /*P*/)null);
+            SmallVector<Module$B/*P*/> Path/*J*/= new SmallVector<Module$B/*P*/>(8, (Module$B /*P*/)null);
             for (Visiting /*P*/ I = $AddrOf(V); (I != null); I = I.ExportedBy)  {
               Path.push_back(I.M);
             }
-            Cb.$call(new ArrayRef<Module /*P*/ >(Path), C.Other, new StringRef(C.Message));
+            Cb.$call(new ArrayRef<Module$B/*P*/ >(Path), C.Other, new StringRef(C.Message));
           }
         }
       };

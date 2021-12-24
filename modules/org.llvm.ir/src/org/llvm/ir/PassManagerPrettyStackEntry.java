@@ -132,7 +132,7 @@ import static org.llvm.adt.HashingGlobals.*;
 public class PassManagerPrettyStackEntry extends /*public*/ PrettyStackTraceEntry implements Destructors.ClassWithDestructor {
   private Pass /*P*/ P;
   private Value /*P*/ V;
-  private Module /*P*/ M;
+  private Module$IR /*P*/ M;
 /*public:*/
   //<editor-fold defaultstate="collapsed" desc="llvm::PassManagerPrettyStackEntry::PassManagerPrettyStackEntry">
   @Converted(kind = Converted.Kind.AUTO,
@@ -172,7 +172,7 @@ public class PassManagerPrettyStackEntry extends /*public*/ PrettyStackTraceEntr
    FQN="llvm::PassManagerPrettyStackEntry::PassManagerPrettyStackEntry", NM="_ZN4llvm27PassManagerPrettyStackEntryC1EPNS_4PassERNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/LegacyPassManager.cpp -nm=_ZN4llvm27PassManagerPrettyStackEntryC1EPNS_4PassERNS_6ModuleE")
   //</editor-fold>
-  public PassManagerPrettyStackEntry(Pass /*P*/ p, final Module /*&*/ m) {
+  public PassManagerPrettyStackEntry(Pass /*P*/ p, final Module$IR /*&*/ m) {
     // : PrettyStackTraceEntry(), P(p), V(null), M(&m) 
     //START JInit
     super();

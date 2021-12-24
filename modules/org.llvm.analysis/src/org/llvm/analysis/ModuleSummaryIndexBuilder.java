@@ -123,7 +123,7 @@ public class ModuleSummaryIndexBuilder implements Destructors.ClassWithDestructo
   /// The index being built
   private std.unique_ptr<ModuleSummaryIndex> Index;
   /// The module for which we are building an index
-  private /*const*/ Module /*P*/ M;
+  private /*const*/ Module$IR /*P*/ M;
 /*public:*/
   /// Default constructor
   //<editor-fold defaultstate="collapsed" desc="llvm::ModuleSummaryIndexBuilder::ModuleSummaryIndexBuilder">
@@ -146,11 +146,11 @@ public class ModuleSummaryIndexBuilder implements Destructors.ClassWithDestructo
    FQN="llvm::ModuleSummaryIndexBuilder::ModuleSummaryIndexBuilder", NM="_ZN4llvm25ModuleSummaryIndexBuilderC1EPKNS_6ModuleESt8functionIFPNS_18BlockFrequencyInfoERKNS_8FunctionEEE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/ModuleSummaryAnalysis.cpp -nm=_ZN4llvm25ModuleSummaryIndexBuilderC1EPKNS_6ModuleESt8functionIFPNS_18BlockFrequencyInfoERKNS_8FunctionEEE")
   //</editor-fold>
-  public ModuleSummaryIndexBuilder(/*const*/ Module /*P*/ M) {
+  public ModuleSummaryIndexBuilder(/*const*/ Module$IR /*P*/ M) {
     this(M, 
       /*FuncArg*/null);
   }
-  public ModuleSummaryIndexBuilder(/*const*/ Module /*P*/ M, 
+  public ModuleSummaryIndexBuilder(/*const*/ Module$IR /*P*/ M, 
       Function2BlockFrequencyInfo Ftor/*= FuncArgnull*/) {
     // : Index(llvm::make_unique<ModuleSummaryIndex>()), M(M) 
     throw new UnsupportedOperationException("EmptyBody");

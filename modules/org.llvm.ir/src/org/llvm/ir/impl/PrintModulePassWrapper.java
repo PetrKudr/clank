@@ -166,11 +166,11 @@ public class PrintModulePassWrapper extends /*public*/ ModulePass implements Des
    FQN="(anonymous namespace)::PrintModulePassWrapper::runOnModule", NM="_ZN12_GLOBAL__N_122PrintModulePassWrapper11runOnModuleERN4llvm6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/IRPrintingPasses.cpp -nm=_ZN12_GLOBAL__N_122PrintModulePassWrapper11runOnModuleERN4llvm6ModuleE")
   //</editor-fold>
-  @Override public boolean runOnModule(final Module /*&*/ M)/* override*/ {
-    AnalysisManager<Module> DummyMAM = null;
+  @Override public boolean runOnModule(final Module$IR /*&*/ M)/* override*/ {
+    AnalysisManager<Module$IR> DummyMAM = null;
     JavaCleaner $c$ = $createJavaCleaner();
     try {
-      DummyMAM/*J*/= new AnalysisManager<Module>();
+      DummyMAM/*J*/= new AnalysisManager<Module$IR>();
       $c$.clean($c$.track(P.run(M, DummyMAM)));
       return false;
     } finally {

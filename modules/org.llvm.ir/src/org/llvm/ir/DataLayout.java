@@ -699,7 +699,7 @@ public class DataLayout implements Destructors.ClassWithDestructor, Native.Nativ
    FQN="llvm::DataLayout::DataLayout", NM="_ZN4llvm10DataLayoutC1EPKNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/DataLayout.cpp -nm=_ZN4llvm10DataLayoutC1EPKNS_6ModuleE")
   //</editor-fold>
-  public DataLayout(/*const*/ Module /*P*/ M) {
+  public DataLayout(/*const*/ Module$IR /*P*/ M) {
     // : LegalIntWidths(), Alignments(), StringRepresentation(), Pointers(), LayoutMap(null) 
     //START JInit
     this.LegalIntWidths = new SmallVectorUChar(8, $$TERM);
@@ -718,7 +718,7 @@ public class DataLayout implements Destructors.ClassWithDestructor, Native.Nativ
    FQN="llvm::DataLayout::init", NM="_ZN4llvm10DataLayout4initEPKNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/DataLayout.cpp -nm=_ZN4llvm10DataLayout4initEPKNS_6ModuleE")
   //</editor-fold>
-  public void init(/*const*/ Module /*P*/ M) {
+  public void init(/*const*/ Module$IR /*P*/ M) {
     /*Deref*/this.$assign(M.getDataLayout());
   }
 

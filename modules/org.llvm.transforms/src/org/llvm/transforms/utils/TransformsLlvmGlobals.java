@@ -2186,7 +2186,7 @@ public static void remapInstructionsInBlocks(final /*const*/ SmallVectorImpl<Bas
  FQN="llvm::CloneModule", NM="_ZN4llvm11CloneModuleEPKNS_6ModuleE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.transforms/llvmToClangType -body-delegate ${LLVM_SRC}/llvm/lib/Transforms/Utils/CloneModule.cpp -nm=_ZN4llvm11CloneModuleEPKNS_6ModuleE")
 //</editor-fold>
-public static std.unique_ptr<Module> CloneModule(/*const*/ Module /*P*/ M) {
+public static std.unique_ptr<Module$IR> CloneModule(/*const*/ Module$IR /*P*/ M) {
   //  return /*delegate*/org.llvm.transforms.utils.impl.CloneModuleLlvmGlobals.
   //    CloneModule(M);
   throw new UnsupportedOperationException("EmptyBody");
@@ -2198,7 +2198,7 @@ public static std.unique_ptr<Module> CloneModule(/*const*/ Module /*P*/ M) {
  FQN="llvm::CloneModule", NM="_ZN4llvm11CloneModuleEPKNS_6ModuleERNS_8ValueMapIPKNS_5ValueENS_6WeakVHENS_14ValueMapConfigIS6_NS_3sys10SmartMutexILb0EEEEEEE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.transforms/llvmToClangType -body-delegate ${LLVM_SRC}/llvm/lib/Transforms/Utils/CloneModule.cpp -nm=_ZN4llvm11CloneModuleEPKNS_6ModuleERNS_8ValueMapIPKNS_5ValueENS_6WeakVHENS_14ValueMapConfigIS6_NS_3sys10SmartMutexILb0EEEEEEE")
 //</editor-fold>
-public static std.unique_ptr<Module> CloneModule(/*const*/ Module /*P*/ M, 
+public static std.unique_ptr<Module$IR> CloneModule(/*const*/ Module$IR /*P*/ M, 
            final ValueMap</*const*/ Value /*P*/ , WeakVH> /*&*/ VMap) {
   //  return /*delegate*/org.llvm.transforms.utils.impl.CloneModuleLlvmGlobals.
   //    CloneModule(M, 
@@ -2217,7 +2217,7 @@ public static std.unique_ptr<Module> CloneModule(/*const*/ Module /*P*/ M,
  FQN="llvm::CloneModule", NM="_ZN4llvm11CloneModuleEPKNS_6ModuleERNS_8ValueMapIPKNS_5ValueENS_6WeakVHENS_14ValueMapConfigIS6_NS_3sys10SmartMutexILb0EEEEEEENS_12function_refIFbPKNS_11GlobalValueEEEE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.transforms/llvmToClangType -body-delegate ${LLVM_SRC}/llvm/lib/Transforms/Utils/CloneModule.cpp -nm=_ZN4llvm11CloneModuleEPKNS_6ModuleERNS_8ValueMapIPKNS_5ValueENS_6WeakVHENS_14ValueMapConfigIS6_NS_3sys10SmartMutexILb0EEEEEEENS_12function_refIFbPKNS_11GlobalValueEEEE")
 //</editor-fold>
-public static std.unique_ptr<Module> CloneModule(/*const*/ Module /*P*/ M, final ValueMap</*const*/ Value /*P*/ , WeakVH> /*&*/ VMap, 
+public static std.unique_ptr<Module$IR> CloneModule(/*const*/ Module$IR /*P*/ M, final ValueMap</*const*/ Value /*P*/ , WeakVH> /*&*/ VMap, 
            BoolPredicate<GlobalValue> ShouldCloneDefinition) {
   //  return /*delegate*/org.llvm.transforms.utils.impl.CloneModuleLlvmGlobals.
   //    CloneModule(M, VMap, 
@@ -2437,7 +2437,7 @@ public static ModulePass /*P*/ createCrossDSOCFIPass() {
  FQN="llvm::optimizeGlobalCtorsList", NM="_ZN4llvm23optimizeGlobalCtorsListERNS_6ModuleENS_12function_refIFbPNS_8FunctionEEEE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.transforms/llvmToClangType -body-delegate ${LLVM_SRC}/llvm/lib/Transforms/Utils/CtorUtils.cpp -nm=_ZN4llvm23optimizeGlobalCtorsListERNS_6ModuleENS_12function_refIFbPNS_8FunctionEEEE")
 //</editor-fold>
-public static boolean optimizeGlobalCtorsList(final Module /*&*/ M, 
+public static boolean optimizeGlobalCtorsList(final Module$IR /*&*/ M, 
                        BoolPredicate<Function> ShouldRemove) {
   //  return /*delegate*/org.llvm.transforms.utils.impl.CtorUtilsLlvmGlobals.
   //    optimizeGlobalCtorsList(M, 
@@ -2939,7 +2939,7 @@ public static std.error_code EmitImportsFiles(StringRef ModulePath, StringRef Ou
  FQN="llvm::thinLTOResolveWeakForLinkerModule", NM="_ZN4llvm33thinLTOResolveWeakForLinkerModuleERNS_6ModuleERKSt3mapIyPNS_18GlobalValueSummaryESt4lessIyESaISt4pairIKyS4_EEE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.transforms/llvmToClangType -body-delegate ${LLVM_SRC}/llvm/lib/Transforms/IPO/FunctionImport.cpp -nm=_ZN4llvm33thinLTOResolveWeakForLinkerModuleERNS_6ModuleERKSt3mapIyPNS_18GlobalValueSummaryESt4lessIyESaISt4pairIKyS4_EEE")
 //</editor-fold>
-public static void thinLTOResolveWeakForLinkerModule(final Module /*&*/ TheModule, final /*const*/std.mapULongType<GlobalValueSummary /*P*/ /*P*/> /*&*/ DefinedGlobals) {
+public static void thinLTOResolveWeakForLinkerModule(final Module$IR /*&*/ TheModule, final /*const*/std.mapULongType<GlobalValueSummary /*P*/ /*P*/> /*&*/ DefinedGlobals) {
   //  /*delegate*/org.llvm.transforms.ipo.impl.FunctionImportLlvmGlobals.
   //    thinLTOResolveWeakForLinkerModule(TheModule, DefinedGlobals);
   throw new UnsupportedOperationException("EmptyBody");
@@ -2956,7 +2956,7 @@ public static void thinLTOResolveWeakForLinkerModule(final Module /*&*/ TheModul
  FQN="llvm::thinLTOInternalizeModule", NM="_ZN4llvm24thinLTOInternalizeModuleERNS_6ModuleERKSt3mapIyPNS_18GlobalValueSummaryESt4lessIyESaISt4pairIKyS4_EEE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.transforms/llvmToClangType -body-delegate ${LLVM_SRC}/llvm/lib/Transforms/IPO/FunctionImport.cpp -nm=_ZN4llvm24thinLTOInternalizeModuleERNS_6ModuleERKSt3mapIyPNS_18GlobalValueSummaryESt4lessIyESaISt4pairIKyS4_EEE")
 //</editor-fold>
-public static void thinLTOInternalizeModule(final Module /*&*/ TheModule, 
+public static void thinLTOInternalizeModule(final Module$IR /*&*/ TheModule, 
                         final /*const*/std.mapULongType<GlobalValueSummary /*P*/ /*P*/> /*&*/ DefinedGlobals) {
   //  /*delegate*/org.llvm.transforms.ipo.impl.FunctionImportLlvmGlobals.
   //    thinLTOInternalizeModule(TheModule, 
@@ -2972,14 +2972,14 @@ public static void thinLTOInternalizeModule(final Module /*&*/ TheModule,
  FQN="llvm::internalizeModule", NM="_ZN4llvm17internalizeModuleERNS_6ModuleESt8functionIFbRKNS_11GlobalValueEEEPNS_9CallGraphE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.transforms/llvmToClangType -body-delegate ${LLVM_SRC}/llvm/lib/Transforms/IPO/FunctionImport.cpp -nm=_ZN4llvm17internalizeModuleERNS_6ModuleESt8functionIFbRKNS_11GlobalValueEEEPNS_9CallGraphE")
 //</editor-fold>
-public static /*inline*/ boolean internalizeModule(final Module /*&*/ TheModule, 
+public static /*inline*/ boolean internalizeModule(final Module$IR /*&*/ TheModule, 
                  BoolPredicate<GlobalValue> MustPreserveGV) {
   //  return internalizeModule(TheModule, 
   //                 MustPreserveGV, 
   //                 (CallGraph /*P*/ )null);
   throw new UnsupportedOperationException("EmptyBody");
 }
-public static /*inline*/ boolean internalizeModule(final Module /*&*/ TheModule, 
+public static /*inline*/ boolean internalizeModule(final Module$IR /*&*/ TheModule, 
                  BoolPredicate<GlobalValue> MustPreserveGV, 
                  CallGraph /*P*/ CG/*= null*/) {
   //  return /*delegate*/org.llvm.transforms.ipo.impl.InternalizeLlvmGlobals.
@@ -3010,12 +3010,12 @@ public static Pass /*P*/ createFunctionImportPass(/*const*/ ModuleSummaryIndex /
  FQN="llvm::renameModuleForThinLTO", NM="_ZN4llvm22renameModuleForThinLTOERNS_6ModuleERKNS_18ModuleSummaryIndexEPNS_8DenseSetIPKNS_11GlobalValueENS_12DenseMapInfoIS8_EEEE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.transforms/llvmToClangType -body-delegate ${LLVM_SRC}/llvm/lib/Transforms/Utils/FunctionImportUtils.cpp -nm=_ZN4llvm22renameModuleForThinLTOERNS_6ModuleERKNS_18ModuleSummaryIndexEPNS_8DenseSetIPKNS_11GlobalValueENS_12DenseMapInfoIS8_EEEE")
 //</editor-fold>
-public static boolean renameModuleForThinLTO(final Module /*&*/ M, final /*const*/ ModuleSummaryIndex /*&*/ Index) {
+public static boolean renameModuleForThinLTO(final Module$IR /*&*/ M, final /*const*/ ModuleSummaryIndex /*&*/ Index) {
   //  return renameModuleForThinLTO(M, Index, 
   //                      (DenseSet</*const*/ GlobalValue /*P*/ > /*P*/)null);
   throw new UnsupportedOperationException("EmptyBody");
 }
-public static boolean renameModuleForThinLTO(final Module /*&*/ M, final /*const*/ ModuleSummaryIndex /*&*/ Index, 
+public static boolean renameModuleForThinLTO(final Module$IR /*&*/ M, final /*const*/ ModuleSummaryIndex /*&*/ Index, 
                       DenseSet</*const*/ GlobalValue /*P*/ > /*P*/ GlobalsToImport/*= null*/) {
   //  return /*delegate*/org.llvm.transforms.utils.impl.FunctionImportUtilsLlvmGlobals.
   //    renameModuleForThinLTO(M, Index, 
@@ -5672,7 +5672,7 @@ public static ModulePass /*P*/ createMetaRenamerPass() {
  FQN="llvm::appendToGlobalCtors", NM="_ZN4llvm19appendToGlobalCtorsERNS_6ModuleEPNS_8FunctionEiPNS_8ConstantE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.transforms/llvmToClangType -body-delegate ${LLVM_SRC}/llvm/lib/Transforms/Utils/ModuleUtils.cpp -nm=_ZN4llvm19appendToGlobalCtorsERNS_6ModuleEPNS_8FunctionEiPNS_8ConstantE")
 //</editor-fold>
-public static void appendToGlobalCtors(final Module /*&*/ M, Function /*P*/ F, int Priority) {
+public static void appendToGlobalCtors(final Module$IR /*&*/ M, Function /*P*/ F, int Priority) {
   //  appendToGlobalCtors(M, F, Priority, (Constant /*P*/ )null);
   //}
   //public static void appendToGlobalCtors(final Module /*&*/ M, Function /*P*/ F, int Priority, Constant /*P*/ Data/*= null*/) {
@@ -5690,7 +5690,7 @@ public static void appendToGlobalCtors(final Module /*&*/ M, Function /*P*/ F, i
  FQN="llvm::appendToGlobalDtors", NM="_ZN4llvm19appendToGlobalDtorsERNS_6ModuleEPNS_8FunctionEiPNS_8ConstantE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.transforms/llvmToClangType -body-delegate ${LLVM_SRC}/llvm/lib/Transforms/Utils/ModuleUtils.cpp -nm=_ZN4llvm19appendToGlobalDtorsERNS_6ModuleEPNS_8FunctionEiPNS_8ConstantE")
 //</editor-fold>
-public static void appendToGlobalDtors(final Module /*&*/ M, Function /*P*/ F, int Priority) {
+public static void appendToGlobalDtors(final Module$IR /*&*/ M, Function /*P*/ F, int Priority) {
   //  appendToGlobalDtors(M, F, Priority, (Constant /*P*/ )null);
   //}
   //public static void appendToGlobalDtors(final Module /*&*/ M, Function /*P*/ F, int Priority, Constant /*P*/ Data/*= null*/) {
@@ -5728,14 +5728,14 @@ public static Function /*P*/ checkSanitizerInterfaceFunction(Constant /*P*/ Func
  FQN="llvm::createSanitizerCtorAndInitFunctions", NM="_ZN4llvm35createSanitizerCtorAndInitFunctionsERNS_6ModuleENS_9StringRefES2_NS_8ArrayRefIPNS_4TypeEEENS3_IPNS_5ValueEEES2_",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.transforms/llvmToClangType -body-delegate ${LLVM_SRC}/llvm/lib/Transforms/Utils/ModuleUtils.cpp -nm=_ZN4llvm35createSanitizerCtorAndInitFunctionsERNS_6ModuleENS_9StringRefES2_NS_8ArrayRefIPNS_4TypeEEENS3_IPNS_5ValueEEES2_")
 //</editor-fold>
-public static std.pair<Function /*P*/ , Function /*P*/ > createSanitizerCtorAndInitFunctions(final Module /*&*/ M, StringRef CtorName, StringRef InitName, 
+public static std.pair<Function /*P*/ , Function /*P*/ > createSanitizerCtorAndInitFunctions(final Module$IR /*&*/ M, StringRef CtorName, StringRef InitName, 
                                    ArrayRef<Type /*P*/ > InitArgTypes, ArrayRef<Value /*P*/ > InitArgs) {
   //  return createSanitizerCtorAndInitFunctions(M, CtorName, InitName, 
   //                                   InitArgTypes, InitArgs, 
   //                                   new StringRef());
   throw new UnsupportedOperationException("EmptyBody");
 }
-public static std.pair<Function /*P*/ , Function /*P*/ > createSanitizerCtorAndInitFunctions(final Module /*&*/ M, StringRef CtorName, StringRef InitName, 
+public static std.pair<Function /*P*/ , Function /*P*/ > createSanitizerCtorAndInitFunctions(final Module$IR /*&*/ M, StringRef CtorName, StringRef InitName, 
                                    ArrayRef<Type /*P*/ > InitArgTypes, ArrayRef<Value /*P*/ > InitArgs, 
                                    StringRef VersionCheckName/*= StringRef()*/) {
   //  return /*delegate*/org.llvm.transforms.utils.impl.ModuleUtilsLlvmGlobals.
@@ -5756,7 +5756,7 @@ public static std.pair<Function /*P*/ , Function /*P*/ > createSanitizerCtorAndI
  FQN="llvm::nameUnamedFunctions", NM="_ZN4llvm19nameUnamedFunctionsERNS_6ModuleE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.transforms/llvmToClangType -body-delegate ${LLVM_SRC}/llvm/lib/Transforms/Utils/NameAnonFunctions.cpp -nm=_ZN4llvm19nameUnamedFunctionsERNS_6ModuleE")
 //</editor-fold>
-public static boolean nameUnamedFunctions(final Module /*&*/ M) {
+public static boolean nameUnamedFunctions(final Module$IR /*&*/ M) {
   //  return /*delegate*/org.llvm.transforms.utils.impl.NameAnonFunctionsLlvmGlobals.
   //    nameUnamedFunctions(M);
   throw new UnsupportedOperationException("EmptyBody");
@@ -6493,15 +6493,15 @@ public static FunctionPass /*P*/ createSpeculativeExecutionIfHasBranchDivergence
  FQN="llvm::SplitModule", NM="_ZN4llvm11SplitModuleESt10unique_ptrINS_6ModuleESt14default_deleteIS1_EEjNS_12function_refIFvS4_EEEb",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.transforms/llvmToClangType -body-delegate ${LLVM_SRC}/llvm/lib/Transforms/Utils/SplitModule.cpp -nm=_ZN4llvm11SplitModuleESt10unique_ptrINS_6ModuleESt14default_deleteIS1_EEjNS_12function_refIFvS4_EEEb")
 //</editor-fold>
-public static void SplitModule(std.unique_ptr<Module> M, /*uint*/int N, 
-           Type2Void<std.unique_ptr<Module>> ModuleCallback) {
+public static void SplitModule(std.unique_ptr<Module$IR> M, /*uint*/int N, 
+           Type2Void<std.unique_ptr<Module$IR>> ModuleCallback) {
   //  SplitModule(M, N, 
   //           ModuleCallback, 
   //           false);
   throw new UnsupportedOperationException("EmptyBody");
 }
-public static void SplitModule(std.unique_ptr<Module> M, /*uint*/int N, 
-           Type2Void<std.unique_ptr<Module>> ModuleCallback, 
+public static void SplitModule(std.unique_ptr<Module$IR> M, /*uint*/int N, 
+           Type2Void<std.unique_ptr<Module$IR>> ModuleCallback, 
            boolean PreserveLocals/*= false*/) {
   //  /*delegate*/org.llvm.transforms.utils.impl.SplitModuleLlvmGlobals.
   //    SplitModule(M, N, 

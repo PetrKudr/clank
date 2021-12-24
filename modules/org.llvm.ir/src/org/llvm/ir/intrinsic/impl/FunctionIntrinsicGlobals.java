@@ -971,10 +971,10 @@ public static boolean isLeaf(/*Intrinsic.ID*/int id) {
  FQN="llvm::Intrinsic::getDeclaration", NM="_ZN4llvm9Intrinsic14getDeclarationEPNS_6ModuleENS0_2IDENS_8ArrayRefIPNS_4TypeEEE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/Function.cpp -nm=_ZN4llvm9Intrinsic14getDeclarationEPNS_6ModuleENS0_2IDENS_8ArrayRefIPNS_4TypeEEE")
 //</editor-fold>
-public static Function /*P*/ getDeclaration(Module /*P*/ M, /*Intrinsic.ID*/int id) {
+public static Function /*P*/ getDeclaration(Module$IR /*P*/ M, /*Intrinsic.ID*/int id) {
   return getDeclaration(M, id, new ArrayRef<Type /*P*/ >(None, true));
 }
-public static Function /*P*/ getDeclaration(Module /*P*/ M, /*Intrinsic.ID*/int id, ArrayRef<Type /*P*/ > Tys/*= None*/) {
+public static Function /*P*/ getDeclaration(Module$IR /*P*/ M, /*Intrinsic.ID*/int id, ArrayRef<Type /*P*/ > Tys/*= None*/) {
   // There can never be multiple globals with the same name of different types,
   // because intrinsics must be a specific type.
   return cast_Function(M.getOrInsertFunction(new StringRef(getName(id, new ArrayRef<Type /*P*/ >(Tys))), 

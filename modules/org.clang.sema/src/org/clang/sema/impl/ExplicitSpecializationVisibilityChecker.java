@@ -114,7 +114,7 @@ import static org.clang.ast.java.AstDeclarationsRTTI.*;
 public class ExplicitSpecializationVisibilityChecker implements Destructors.ClassWithDestructor {
   private final Sema /*&*/ S;
   private SourceLocation Loc;
-  private SmallVector<Module /*P*/> Modules;
+  private SmallVector<Module$B/*P*/> Modules;
 /*public:*/
   //<editor-fold defaultstate="collapsed" desc="ExplicitSpecializationVisibilityChecker::ExplicitSpecializationVisibilityChecker">
   @Converted(kind = Converted.Kind.AUTO,
@@ -127,7 +127,7 @@ public class ExplicitSpecializationVisibilityChecker implements Destructors.Clas
     //START JInit
     this./*&*/S=/*&*/S;
     this.Loc = new SourceLocation(Loc);
-    this.Modules = new SmallVector<Module /*P*/>(8, (Module /*P*/)null);
+    this.Modules = new SmallVector<Module$B/*P*/>(8, (Module$B /*P*/)null);
     //END JInit
   }
 
@@ -186,7 +186,7 @@ public class ExplicitSpecializationVisibilityChecker implements Destructors.Clas
     if (Modules.empty()) {
       S.diagnoseMissingImport(new SourceLocation(Loc), D, Kind, Recover);
     } else {
-      S.diagnoseMissingImport(new SourceLocation(Loc), D, D.getLocation(), new ArrayRef<Module /*P*/ >(Modules, true), Kind, Recover);
+      S.diagnoseMissingImport(new SourceLocation(Loc), D, D.getLocation(), new ArrayRef<Module$B/*P*/ >(Modules, true), Kind, Recover);
     }
   }
 

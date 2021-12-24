@@ -82,7 +82,7 @@ import static org.clang.basic.BasicClangGlobals.*;
 import org.clang.basic.FileEntry;
 import org.clang.basic.FileID;
 import org.clang.basic.IdentifierInfo;
-import org.clang.basic.Module;
+import org.clang.basic.Module$B;
 import org.clang.basic.SourceLocation;
 import org.clang.basic.SourceManager;
 import org.clang.basic.SourceRange;
@@ -298,7 +298,7 @@ public class FileInfoCallback extends PPCallbacks {
   public final /*virtual*/ void InclusionDirective(SourceLocation HashLoc, SourceLocation EodLoc,
       /*const*/Token /*&*/ IncludeTok, StringRef FileName, boolean IsAngled,
       CharSourceRange FilenameRange, /*const*/FileEntry /*P*/ File,
-      StringRef SearchPath, StringRef RelativePath, /*const*/Module /*P*/ Imported) {
+      StringRef SearchPath, StringRef RelativePath, /*const*/Module$B /*P*/ Imported) {
     long/*<FileID, uint>*/ decomposedLocBegin = SM.getDecomposedLoc(HashLoc.getRawEncoding());
     int begOffset = $second_offset(decomposedLocBegin);
     int EndLocRawEncoding = EodLoc.getRawEncoding();

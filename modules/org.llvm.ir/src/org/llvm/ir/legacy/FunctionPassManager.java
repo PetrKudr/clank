@@ -144,7 +144,7 @@ public class FunctionPassManager extends /*public*/ PassManagerBase implements D
    FQN="llvm::legacy::FunctionPassManager::FunctionPassManager", NM="_ZN4llvm6legacy19FunctionPassManagerC1EPNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/LegacyPassManager.cpp -nm=_ZN4llvm6legacy19FunctionPassManagerC1EPNS_6ModuleE")
   //</editor-fold>
-  public FunctionPassManager(Module /*P*/ m) {
+  public FunctionPassManager(Module$IR /*P*/ m) {
     // : PassManagerBase(), M(m)
     //START JInit
     super();
@@ -240,7 +240,7 @@ public class FunctionPassManager extends /*public*/ PassManagerBase implements D
 
 /*private:*/
   private FunctionPassManagerImpl /*P*/ FPM;
-  private Module /*P*/ M;
+  private Module$IR /*P*/ M;
 
   @Override public String toString() {
     return "" + "FPM=" + FPM // NOI18N

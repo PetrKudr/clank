@@ -98,7 +98,7 @@ public class/*struct*/ MDFieldPrinter {
   public FieldSeparator FS;
   public TypePrinting /*P*/ TypePrinter;
   public SlotTracker /*P*/ Machine;
-  public /*const*/ Module /*P*/ Context;
+  public /*const*/ Module$IR /*P*/ Context;
   
   //<editor-fold defaultstate="collapsed" desc="(anonymous namespace)::MDFieldPrinter::MDFieldPrinter">
   @Converted(kind = Converted.Kind.AUTO,
@@ -124,7 +124,7 @@ public class/*struct*/ MDFieldPrinter {
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/AsmWriter.cpp -nm=_ZN12_GLOBAL__N_114MDFieldPrinterC1ERN4llvm11raw_ostreamEPNS_12TypePrintingEPNS1_11SlotTrackerEPKNS1_6ModuleE")
   //</editor-fold>
   public MDFieldPrinter(final raw_ostream /*&*/ Out, TypePrinting /*P*/ TypePrinter, 
-      SlotTracker /*P*/ Machine, /*const*/ Module /*P*/ Context) {
+      SlotTracker /*P*/ Machine, /*const*/ Module$IR /*P*/ Context) {
     // : Out(Out), FS(), TypePrinter(TypePrinter), Machine(Machine), Context(Context) 
     //START JInit
     this./*&*/Out=/*&*/Out;

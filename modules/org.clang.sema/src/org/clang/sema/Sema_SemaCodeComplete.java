@@ -138,7 +138,7 @@ public final void CodeCompleteModuleImport(SourceLocation ImportLoc,
 //    final class Result extends CodeCompletionResult{ };
     if (Path.empty()) {
       // Enumerate all top-level modules.
-      SmallVector<Module /*P*/> Modules/*J*/= new SmallVector<Module /*P*/>(8, (Module /*P*/)null);
+      SmallVector<Module$B/*P*/> Modules/*J*/= new SmallVector<Module$B/*P*/>(8, (Module$B /*P*/)null);
       $this().PP.getHeaderSearchInfo().collectAllModules(Modules);
       for (/*uint*/int I = 0, N = Modules.size(); I != N; ++I) {
         Builder.AddTypedTextChunk(Builder.getAllocator().CopyString(new Twine(Modules.$at(I).Name)));
@@ -149,12 +149,12 @@ public final void CodeCompleteModuleImport(SourceLocation ImportLoc,
       }
     } else if ($this().getLangOpts().Modules) {
       // Load the named module.
-      Module /*P*/ Mod = $this().PP.getModuleLoader().loadModule(/*NO_COPY*/ImportLoc, /*NO_COPY*/Path, 
-          Module.NameVisibilityKind.AllVisible, 
+      Module$B /*P*/ Mod = $this().PP.getModuleLoader().loadModule(/*NO_COPY*/ImportLoc, /*NO_COPY*/Path, 
+          Module$B.NameVisibilityKind.AllVisible, 
           /*IsInclusionDirective=*/ false).$ModulePtr();
       // Enumerate submodules.
       if ((Mod != null)) {
-        for (std.vector.iterator<Module /*P*/ > Sub = Mod.submodule_begin(), 
+        for (std.vector.iterator<Module$B/*P*/ > Sub = Mod.submodule_begin(), 
             SubEnd = Mod.submodule_end();
              $noteq___normal_iterator$C(Sub, SubEnd); Sub.$preInc()) {
           

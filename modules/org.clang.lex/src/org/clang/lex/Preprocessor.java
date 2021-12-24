@@ -325,7 +325,7 @@ public class Preprocessor extends Preprocessor_Preprocessor implements org.clang
   
   /// \brief If the current lexer is for a submodule that is being built, this
   /// is that submodule.
-  protected /*private*/ Module /*P*/ CurSubmodule;
+  protected /*private*/ Module$B /*P*/ CurSubmodule;
   protected /*private*/ SmallVectorIncludeStackInfo IncludeMacroStack;
   
   /// \brief Actions invoked when some preprocessor activity is
@@ -343,7 +343,7 @@ public class Preprocessor extends Preprocessor_Preprocessor implements org.clang
   
   /*friend  class ASTReader*/
   protected /*private*/ SmallVector<BuildingSubmoduleInfo> BuildingSubmoduleStack;
-  protected /*private*/ std.mapPtrType<Module /*P*/ , SubmoduleState> Submodules;
+  protected /*private*/ std.mapPtrType<Module$B/*P*/ , SubmoduleState> Submodules;
   
   /// The preprocessor state for preprocessing outside of any submodule.
   protected /*private*/ SubmoduleState NullSubmoduleState;
@@ -555,7 +555,7 @@ public class Preprocessor extends Preprocessor_Preprocessor implements org.clang
     this.Callbacks$arrow = null; // JAVA: PERF
     this.DelayedMacroExpandsCallbacks = new SmallVector<MacroExpandsInfo>(2, new MacroExpandsInfo());
     this.BuildingSubmoduleStack = new SmallVector<BuildingSubmoduleInfo>(8, new BuildingSubmoduleInfo());
-    this.Submodules = new std.mapPtrType<Module /*P*/ , SubmoduleState>(SubmoduleState.DEFAULT);  
+    this.Submodules = new std.mapPtrType<Module$B/*P*/ , SubmoduleState>(SubmoduleState.DEFAULT);  
     this.NullSubmoduleState = new SubmoduleState();
     this.CurSubmoduleState = $AddrOf(NullSubmoduleState);
     this.ModuleMacros = new FoldingSet<ModuleMacro>(ModuleMacro.$Trait());
@@ -1107,7 +1107,7 @@ public class Preprocessor extends Preprocessor_Preprocessor implements org.clang
    FQN="clang::Preprocessor::getCurrentSubmodule", NM="_ZNK5clang12Preprocessor19getCurrentSubmoduleEv",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/PPCaching.cpp -nm=_ZNK5clang12Preprocessor19getCurrentSubmoduleEv")
   //</editor-fold>
-  public Module /*P*/ getCurrentSubmodule() /*const*/ {
+  public Module$B /*P*/ getCurrentSubmodule() /*const*/ {
     return CurSubmodule;
   }
 
@@ -1194,11 +1194,11 @@ public class Preprocessor extends Preprocessor_Preprocessor implements org.clang
    FQN="clang::Preprocessor::isMacroDefinedInLocalModule", NM="_ZN5clang12Preprocessor27isMacroDefinedInLocalModuleEPKNS_14IdentifierInfoEPNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/PPCaching.cpp -nm=_ZN5clang12Preprocessor27isMacroDefinedInLocalModuleEPKNS_14IdentifierInfoEPNS_6ModuleE")
   //</editor-fold>
-  public boolean isMacroDefinedInLocalModule(/*const*/ IdentifierInfo /*P*/ II, Module /*P*/ M) {
+  public boolean isMacroDefinedInLocalModule(/*const*/ IdentifierInfo /*P*/ II, Module$B /*P*/ M) {
     if (!II.hasMacroDefinition()) {
       return false;
     }
-    std.mapPtrType.iterator<Module /*P*/ /*const*/, SubmoduleState> I = Submodules.find(M);
+    std.mapPtrType.iterator<Module$B/*P*/ /*const*/, SubmoduleState> I = Submodules.find(M);
     if (I.$eq(Submodules.end())) {
       return false;
     }
@@ -1580,7 +1580,7 @@ public class Preprocessor extends Preprocessor_Preprocessor implements org.clang
    FQN="clang::Preprocessor::getModuleImportLoc", NM="_ZNK5clang12Preprocessor18getModuleImportLocEPNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/PPCaching.cpp -nm=_ZNK5clang12Preprocessor18getModuleImportLocEPNS_6ModuleE")
   //</editor-fold>
-  public SourceLocation getModuleImportLoc(Module /*P*/ M) /*const*/ {
+  public SourceLocation getModuleImportLoc(Module$B /*P*/ M) /*const*/ {
     return CurSubmoduleState.VisibleModules.getImportLoc(M);
   }
 

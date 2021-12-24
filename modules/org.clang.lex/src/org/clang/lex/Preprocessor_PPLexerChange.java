@@ -688,7 +688,7 @@ private final /*split clang::Preprocessor*/ Preprocessor $this() { return (Prepr
       // If we are building a module that has an umbrella header, make sure that
       // each of the headers within the directory covered by the umbrella header
       // was actually included by the umbrella header.
-      Module /*P*/ Mod = $this().getCurrentModule();
+      Module$B /*P*/ Mod = $this().getCurrentModule();
       if ((Mod != null)) {
         if ((Mod.getUmbrellaHeader().$bool())) {
           /*SourceLocation*/int StartLoc = $this().SourceMgr.getLocForStartOfFile($this().SourceMgr.getMainFileID().$ID());
@@ -830,7 +830,7 @@ private final /*split clang::Preprocessor*/ Preprocessor $this() { return (Prepr
    FQN="clang::Preprocessor::EnterSubmodule", NM="_ZN5clang12Preprocessor14EnterSubmoduleEPNS_6ModuleENS_14SourceLocationE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/PPLexerChange.cpp -nm=_ZN5clang12Preprocessor14EnterSubmoduleEPNS_6ModuleENS_14SourceLocationE")
   //</editor-fold>
-  protected /*private*/ void EnterSubmodule(Module /*P*/ M, /*SourceLocation*/int ImportLoc) {
+  protected /*private*/ void EnterSubmodule(Module$B /*P*/ M, /*SourceLocation*/int ImportLoc) {
     if (!$this().getLangOpts().ModulesLocalVisibility) {
       // Just track that we entered this submodule.
       $this().BuildingSubmoduleStack.push_back(new BuildingSubmoduleInfo(M, ImportLoc, $this().CurSubmoduleState, $this().PendingModuleMacroNames.size()));
@@ -847,7 +847,7 @@ private final /*split clang::Preprocessor*/ Preprocessor $this() { return (Prepr
     ModMap.resolveConflicts(M, /*Complain=*/ false);
     
     // If this is the first time we've entered this module, set up its state.
-    std.pairTypeBool<std.mapPtrType.iterator<Module /*P*/ /*const*/, SubmoduleState>> R = $this().Submodules.insert(std.make_pair_Ptr_T(M, $Move(new SubmoduleState())));
+    std.pairTypeBool<std.mapPtrType.iterator<Module$B/*P*/ /*const*/, SubmoduleState>> R = $this().Submodules.insert(std.make_pair_Ptr_T(M, $Move(new SubmoduleState())));
     SubmoduleState /*&*/ State = R.first.$arrow().second;
     boolean FirstTime = R.second;
     if (FirstTime) {
@@ -903,7 +903,7 @@ private final /*split clang::Preprocessor*/ Preprocessor $this() { return (Prepr
   protected /*private*/ void LeaveSubmodule() {
     BuildingSubmoduleInfo /*&*/ Info = $this().BuildingSubmoduleStack.back();
     
-    Module /*P*/ LeavingMod = Info.M;
+    Module$B /*P*/ LeavingMod = Info.M;
     /*SourceLocation*/int ImportLoc = Info.ImportLoc;
     if (!$this().needModuleMacros()
        || (!$this().getLangOpts().ModulesLocalVisibility
@@ -960,7 +960,7 @@ private final /*split clang::Preprocessor*/ Preprocessor $this() { return (Prepr
         // tracking local submodule visibility, since there can be no such
         // directives in our list.
         if (!$this().getLangOpts().ModulesLocalVisibility) {
-          Module /*P*/ Mod = $this().getModuleContainingLocation(MD.getLocation());
+          Module$B /*P*/ Mod = $this().getModuleContainingLocation(MD.getLocation());
           if (Mod != LeavingMod
              && Mod.getTopLevelModule() == LeavingMod.getTopLevelModule()) {
             break;

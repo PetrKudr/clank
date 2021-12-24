@@ -410,7 +410,7 @@ public class ExternalASTSource extends /*public*/ RefCountedBase<ExternalASTSour
    FQN="clang::ExternalASTSource::getModule", NM="_ZN5clang17ExternalASTSource9getModuleEj",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.ast/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/CodeGen/CGDebugInfo.cpp -nm=_ZN5clang17ExternalASTSource9getModuleEj")
   //</editor-fold>
-  public /*virtual*/ Module /*P*/ getModule(/*uint*/int ID) {
+  public /*virtual*/ Module$B /*P*/ getModule(/*uint*/int ID) {
     return null;
   }
 
@@ -429,7 +429,7 @@ public class ExternalASTSource extends /*public*/ RefCountedBase<ExternalASTSour
     private StringRef Path;
     private StringRef ASTFile;
     private long/*uint64_t*/ Signature/* = 0*/;
-    private /*const*/ Module /*P*/ ClangModule/* = null*/;
+    private /*const*/ Module$B /*P*/ ClangModule/* = null*/;
   /*public:*/
     //<editor-fold defaultstate="collapsed" desc="clang::ExternalASTSource::ASTSourceDescriptor::ASTSourceDescriptor">
     @Converted(kind = Converted.Kind.AUTO,
@@ -472,7 +472,7 @@ public class ExternalASTSource extends /*public*/ RefCountedBase<ExternalASTSour
      FQN="clang::ExternalASTSource::ASTSourceDescriptor::ASTSourceDescriptor", NM="_ZN5clang17ExternalASTSource19ASTSourceDescriptorC1ERKNS_6ModuleE",
      cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.ast/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/AST/ExternalASTSource.cpp -nm=_ZN5clang17ExternalASTSource19ASTSourceDescriptorC1ERKNS_6ModuleE")
     //</editor-fold>
-    public ASTSourceDescriptor(final /*const*/ Module /*&*/ M) {
+    public ASTSourceDescriptor(final /*const*/ Module$B /*&*/ M) {
       // : PCHModuleName(), Path(), ASTFile(), Signature(M.Signature), ClangModule(&M) 
       //START JInit
       this.PCHModuleName = new StringRef();
@@ -544,7 +544,7 @@ public class ExternalASTSource extends /*public*/ RefCountedBase<ExternalASTSour
      FQN="clang::ExternalASTSource::ASTSourceDescriptor::getModuleOrNull", NM="_ZNK5clang17ExternalASTSource19ASTSourceDescriptor15getModuleOrNullEv",
      cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.ast/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/CodeGen/CGDebugInfo.cpp -nm=_ZNK5clang17ExternalASTSource19ASTSourceDescriptor15getModuleOrNullEv")
     //</editor-fold>
-    public /*const*/ Module /*P*/ getModuleOrNull() /*const*/ {
+    public /*const*/ Module$B /*P*/ getModuleOrNull() /*const*/ {
       return ClangModule;
     }
 

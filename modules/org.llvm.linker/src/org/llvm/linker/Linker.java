@@ -139,7 +139,7 @@ public class Linker implements Destructors.ClassWithDestructor {
    FQN="llvm::Linker::Linker", NM="_ZN4llvm6LinkerC1ERNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.linker/llvmToClangType ${LLVM_SRC}/llvm/lib/Linker/LinkModules.cpp -nm=_ZN4llvm6LinkerC1ERNS_6ModuleE")
   //</editor-fold>
-  public Linker(final Module /*&*/ M) {
+  public Linker(final Module$IR /*&*/ M) {
     // : Mover(M) 
     //START JInit
     this.Mover = new IRMover(M);
@@ -162,20 +162,20 @@ public class Linker implements Destructors.ClassWithDestructor {
    FQN="llvm::Linker::linkInModule", NM="_ZN4llvm6Linker12linkInModuleESt10unique_ptrINS_6ModuleESt14default_deleteIS2_EEjPNS_8DenseSetIPKNS_11GlobalValueENS_12DenseMapInfoIS9_EEEE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.linker/llvmToClangType ${LLVM_SRC}/llvm/lib/Linker/LinkModules.cpp -nm=_ZN4llvm6Linker12linkInModuleESt10unique_ptrINS_6ModuleESt14default_deleteIS2_EEjPNS_8DenseSetIPKNS_11GlobalValueENS_12DenseMapInfoIS9_EEEE")
   //</editor-fold>
-  public boolean linkInModule(std.unique_ptr<Module> Src) {
+  public boolean linkInModule(std.unique_ptr<Module$IR> Src) {
     return linkInModule(Src, Flags.None, 
               (DenseSet</*const*/ GlobalValue /*P*/ > /*P*/)null);
   }
-  public boolean linkInModule(std.unique_ptr<Module> Src, /*uint*/int Flags/*= Flags::None*/) {
+  public boolean linkInModule(std.unique_ptr<Module$IR> Src, /*uint*/int Flags/*= Flags::None*/) {
     return linkInModule(Src, Flags, 
               (DenseSet</*const*/ GlobalValue /*P*/ > /*P*/)null);
   }
-  public boolean linkInModule(std.unique_ptr<Module> Src, /*uint*/int Flags/*= Flags::None*/, 
+  public boolean linkInModule(std.unique_ptr<Module$IR> Src, /*uint*/int Flags/*= Flags::None*/, 
               DenseSet</*const*/ GlobalValue /*P*/ > /*P*/ GlobalsToImport/*= null*/) {
     ModuleLinker ModLinker = null;
     JavaCleaner $c$ = $createJavaCleaner();
     try {
-      ModLinker/*J*/= $c$.clean(new ModuleLinker(Mover, $c$.track(new std.unique_ptr<Module>(JD$Move.INSTANCE, std.move(Src))), Flags, GlobalsToImport));
+      ModLinker/*J*/= $c$.clean(new ModuleLinker(Mover, $c$.track(new std.unique_ptr<Module$IR>(JD$Move.INSTANCE, std.move(Src))), Flags, GlobalsToImport));
       return ModLinker.run();
     } finally {
       if (ModLinker != null) { ModLinker.$destroy(); }
@@ -200,17 +200,17 @@ public class Linker implements Destructors.ClassWithDestructor {
    FQN="llvm::Linker::linkModules", NM="_ZN4llvm6Linker11linkModulesERNS_6ModuleESt10unique_ptrIS1_St14default_deleteIS1_EEj",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.linker/llvmToClangType ${LLVM_SRC}/llvm/lib/Linker/LinkModules.cpp -nm=_ZN4llvm6Linker11linkModulesERNS_6ModuleESt10unique_ptrIS1_St14default_deleteIS1_EEj")
   //</editor-fold>
-  public static boolean linkModules(final Module /*&*/ Dest, std.unique_ptr<Module> Src) {
+  public static boolean linkModules(final Module$IR /*&*/ Dest, std.unique_ptr<Module$IR> Src) {
     return linkModules(Dest, Src, 
              Flags.None);
   }
-  public static boolean linkModules(final Module /*&*/ Dest, std.unique_ptr<Module> Src, 
+  public static boolean linkModules(final Module$IR /*&*/ Dest, std.unique_ptr<Module$IR> Src, 
              /*uint*/int Flags/*= Flags::None*/) {
     Linker L = null;
     JavaCleaner $c$ = $createJavaCleaner();
     try {
       L/*J*/= new Linker(Dest);
-      return $c$.clean(L.linkInModule($c$.track(new std.unique_ptr<Module>(JD$Move.INSTANCE, std.move(Src))), Flags));
+      return $c$.clean(L.linkInModule($c$.track(new std.unique_ptr<Module$IR>(JD$Move.INSTANCE, std.move(Src))), Flags));
     } finally {
       if (L != null) { L.$destroy(); }
       $c$.$destroy();

@@ -138,7 +138,7 @@ public class/*struct*/ ForceFunctionAttrsLegacyPass extends /*public*/ ModulePas
    FQN="(anonymous namespace)::ForceFunctionAttrsLegacyPass::runOnModule", NM="_ZN12_GLOBAL__N_128ForceFunctionAttrsLegacyPass11runOnModuleERN4llvm6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.transforms/llvmToClangType ${LLVM_SRC}/llvm/lib/Transforms/IPO/ForceFunctionAttrs.cpp -nm=_ZN12_GLOBAL__N_128ForceFunctionAttrsLegacyPass11runOnModuleERN4llvm6ModuleE")
   //</editor-fold>
-  @Override public boolean runOnModule(final Module /*&*/ M)/* override*/ {
+  @Override public boolean runOnModule(final Module$IR /*&*/ M)/* override*/ {
     if (ForceAttributes.empty()) {
       return false;
     }

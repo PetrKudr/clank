@@ -210,8 +210,8 @@ import static org.llvm.adt.HashingGlobals.*;
    FQN="llvm::VerifierAnalysis::run", NM="_ZN4llvm16VerifierAnalysis3runERNS_6ModuleERNS_15AnalysisManagerIS1_EE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/Verifier.cpp -nm=_ZN4llvm16VerifierAnalysis3runERNS_6ModuleERNS_15AnalysisManagerIS1_EE")
   //</editor-fold>
-  public VerifierAnalysis.Result run(final Module /*&*/ M,
-     final AnalysisManager<Module> /*&*/ $Prm1) {
+  public VerifierAnalysis.Result run(final Module$IR /*&*/ M,
+     final AnalysisManager<Module$IR> /*&*/ $Prm1) {
     Result Res/*J*/= new Result();
     bool$ptr DebugInfoBroken$Ptr = create_bool$ptr(Res.DebugInfoBroken);
     Res.IRBroken = VerifierLlvmGlobals.verifyModule(M, $AddrOf(dbgs()), DebugInfoBroken$Ptr);

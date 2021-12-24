@@ -159,7 +159,7 @@ public class Verifier extends /**/ VerifierSupport implements /*public*/ InstVis
    FQN="(anonymous namespace)::Verifier::checkAtomicMemAccessSize", NM="_ZN12_GLOBAL__N_18Verifier24checkAtomicMemAccessSizeEPKN4llvm6ModuleEPNS1_4TypeEPKNS1_11InstructionE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/Verifier.cpp -nm=_ZN12_GLOBAL__N_18Verifier24checkAtomicMemAccessSizeEPKN4llvm6ModuleEPNS1_4TypeEPKNS1_11InstructionE")
   //</editor-fold>
-  private void checkAtomicMemAccessSize(/*const*/ Module /*P*/ M, Type /*P*/ Ty,
+  private void checkAtomicMemAccessSize(/*const*/ Module$IR /*P*/ M, Type /*P*/ Ty,
                           /*const*/ Instruction /*P*/ I) {
     /*uint*/int Size = $ulong2uint(M.getDataLayout().getTypeSizeInBits(Ty));
     do {
@@ -183,7 +183,7 @@ public class Verifier extends /**/ VerifierSupport implements /*public*/ InstVis
    FQN="(anonymous namespace)::Verifier::updateModule", NM="_ZN12_GLOBAL__N_18Verifier12updateModuleEPKN4llvm6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/Verifier.cpp -nm=_ZN12_GLOBAL__N_18Verifier12updateModuleEPKN4llvm6ModuleE")
   //</editor-fold>
-  private void updateModule(/*const*/ Module /*P*/ NewM) {
+  private void updateModule(/*const*/ Module$IR /*P*/ NewM) {
     if (M == NewM) {
       return;
     }
@@ -284,7 +284,7 @@ public class Verifier extends /**/ VerifierSupport implements /*public*/ InstVis
    FQN="(anonymous namespace)::Verifier::verify", NM="_ZN12_GLOBAL__N_18Verifier6verifyERKN4llvm6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/Verifier.cpp -nm=_ZN12_GLOBAL__N_18Verifier6verifyERKN4llvm6ModuleE")
   //</editor-fold>
-  public boolean verify(final /*const*/ Module /*&*/ M) {
+  public boolean verify(final /*const*/ Module$IR /*&*/ M) {
     updateModule($AddrOf(M));
     Context = $AddrOf(M.getContext());
     Broken = false;
@@ -930,7 +930,7 @@ public class Verifier extends /**/ VerifierSupport implements /*public*/ InstVis
    FQN="(anonymous namespace)::Verifier::visitModuleIdents", NM="_ZN12_GLOBAL__N_18Verifier17visitModuleIdentsERKN4llvm6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/Verifier.cpp -nm=_ZN12_GLOBAL__N_18Verifier17visitModuleIdentsERKN4llvm6ModuleE")
   //</editor-fold>
-  private void visitModuleIdents(final /*const*/ Module /*&*/ M) {
+  private void visitModuleIdents(final /*const*/ Module$IR /*&*/ M) {
     /*const*/ NamedMDNode /*P*/ Idents = M.getNamedMetadata(new Twine(/*KEEP_STR*/"llvm.ident"));
     if (!(Idents != null)) {
       return;
@@ -960,7 +960,7 @@ public class Verifier extends /**/ VerifierSupport implements /*public*/ InstVis
    FQN="(anonymous namespace)::Verifier::visitModuleFlags", NM="_ZN12_GLOBAL__N_18Verifier16visitModuleFlagsERKN4llvm6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/Verifier.cpp -nm=_ZN12_GLOBAL__N_18Verifier16visitModuleFlagsERKN4llvm6ModuleE")
   //</editor-fold>
-  private void visitModuleFlags(final /*const*/ Module /*&*/ M) {
+  private void visitModuleFlags(final /*const*/ Module$IR /*&*/ M) {
     /*const*/ NamedMDNode /*P*/ Flags = M.getModuleFlagsMetadata();
     if (!(Flags != null)) {
       return;
@@ -1009,8 +1009,8 @@ public class Verifier extends /**/ VerifierSupport implements /*public*/ InstVis
         return;
       }
     } while (false);
-    type$ref<Module.ModFlagBehavior> MFB = create_type$ref();
-    if (!Module.isValidModFlagBehavior(Op.getOperand(0).$Metadata$P(), MFB)) {
+    type$ref<Module$IR.ModFlagBehavior> MFB = create_type$ref();
+    if (!Module$IR.isValidModFlagBehavior(Op.getOperand(0).$Metadata$P(), MFB)) {
       do {
         if (!((MdconstGlobals.<ConstantInt, /*const*/ MDOperand /*&*/ >dyn_extract_or_null$ValidPointer(ConstantInt.class, Op.getOperand(0))) != null)) {
           CheckFailed$T(new Twine(/*KEEP_STR*/"invalid behavior operand in module flag (expected constant integer)"), Op.getOperand(0));
@@ -1077,7 +1077,7 @@ public class Verifier extends /**/ VerifierSupport implements /*public*/ InstVis
     }
 
     // Unless this is a "requires" flag, check the ID is unique.
-    if (MFB.$deref() != Module.ModFlagBehavior.Require) {
+    if (MFB.$deref() != Module$IR.ModFlagBehavior.Require) {
       boolean Inserted = SeenIDs.insert_pair$KeyT$ValueT(new std.pairPtrPtr</*const*/ MDString /*P*/ , /*const*/ MDNode /*P*/ >(JD$Pair$_U1$_U2.INSTANCE, /*Fwd2*//*Fwd*/ID, /*Fwd2*//*Fwd*/Op)).second;
       do {
         if (!(Inserted)) {

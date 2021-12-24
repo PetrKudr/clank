@@ -113,8 +113,8 @@ public class CallGraphPrinterPass implements /*public*/ PassInfoMixin<CallGraphP
    FQN="llvm::CallGraphPrinterPass::run", NM="_ZN4llvm20CallGraphPrinterPass3runERNS_6ModuleERNS_15AnalysisManagerIS1_EE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/CallGraph.cpp -nm=_ZN4llvm20CallGraphPrinterPass3runERNS_6ModuleERNS_15AnalysisManagerIS1_EE")
   //</editor-fold>
-  public PreservedAnalyses run(final Module /*&*/ M, 
-     final AnalysisManager<Module> /*&*/ AM) {
+  public PreservedAnalyses run(final Module$IR /*&*/ M, 
+     final AnalysisManager<Module$IR> /*&*/ AM) {
     AM.getResult(CallGraphAnalysis.class, M).print(OS);
     return PreservedAnalyses.all();
   }

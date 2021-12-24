@@ -2157,7 +2157,7 @@ public static ModulePass /*P*/ createModuleSummaryIndexWrapperPass() {
  FQN="llvm::moduleCanBeRenamedForThinLTO", NM="_ZN4llvm28moduleCanBeRenamedForThinLTOERKNS_6ModuleE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType -body-delegate ${LLVM_SRC}/llvm/lib/Bitcode/Writer/BitcodeWriterPass.cpp -nm=_ZN4llvm28moduleCanBeRenamedForThinLTOERKNS_6ModuleE")
 //</editor-fold>
-public static boolean moduleCanBeRenamedForThinLTO(final /*const*/ Module /*&*/ M) {
+public static boolean moduleCanBeRenamedForThinLTO(final /*const*/ Module$IR /*&*/ M) {
   return /*delegate*/org.llvm.analysis.impl.ModuleSummaryAnalysisLlvmGlobals.
     moduleCanBeRenamedForThinLTO(M);
 }
@@ -5672,7 +5672,7 @@ public static FunctionPass /*P*/ createLintPass() {
  FQN="llvm::lintModule", NM="_ZN4llvm10lintModuleERKNS_6ModuleE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType -body-delegate ${LLVM_SRC}/llvm/lib/Analysis/Lint.cpp -nm=_ZN4llvm10lintModuleERKNS_6ModuleE")
 //</editor-fold>
-public static void lintModule(final /*const*/ Module /*&*/ M) {
+public static void lintModule(final /*const*/ Module$IR /*&*/ M) {
   /*delegate*/org.llvm.analysis.impl.LintLlvmGlobals.
     lintModule(M);
 }

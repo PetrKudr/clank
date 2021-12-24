@@ -198,12 +198,12 @@ public final void diagnoseEquivalentInternalLinkageDeclarations(SourceLocation L
   try {
     $c$.clean($out_SemaDiagnosticBuilder$C_T$C$R($c$.track($this().Diag(new SourceLocation(Loc), diag.ext_equivalent_internal_linkage_decl_in_modules)), D));
     
-    Module /*P*/ M = $this().getOwningModule(((/*const_cast*/NamedDecl /*P*/ )(D)));
+    Module$B /*P*/ M = $this().getOwningModule(((/*const_cast*/NamedDecl /*P*/ )(D)));
     $c$.clean($out_SemaDiagnosticBuilder$C_T$C$R($out_SemaDiagnosticBuilder$C_T$C$R($c$.track($this().Diag(D.getLocation(), diag.note_equivalent_internal_linkage_decl)), 
             !(M != null)), ((M != null) ? M.getFullModuleName() : new std.string(/*KEEP_STR*/$EMPTY))));
     
     for (/*const*/ NamedDecl /*P*/ E : Equiv) {
-      Module /*P*/ M$1 = $this().getOwningModule(((/*const_cast*/NamedDecl /*P*/ )(E)));
+      Module$B /*P*/ M$1 = $this().getOwningModule(((/*const_cast*/NamedDecl /*P*/ )(E)));
       $c$.clean($out_SemaDiagnosticBuilder$C_T$C$R($out_SemaDiagnosticBuilder$C_T$C$R($c$.track($this().Diag(E.getLocation(), diag.note_equivalent_internal_linkage_decl)), 
               !(M$1 != null)), ((M$1 != null) ? M$1.getFullModuleName() : new std.string(/*KEEP_STR*/$EMPTY))));
     }

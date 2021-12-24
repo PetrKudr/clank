@@ -111,7 +111,7 @@ import static org.clang.codegen.impl.CGObjCGNUStatics.*;
 public abstract class CGObjCGNU extends /*public*/ CGObjCRuntime implements Destructors.ClassWithDestructor {
 /*protected:*/
   /// The LLVM module into which output is inserted
-  protected final org.llvm.ir.Module /*&*/ TheModule;
+  protected final org.llvm.ir.Module$IR /*&*/ TheModule;
   /// strut objc_super.  Used for sending messages to super.  This structure
   /// contains the receiver (object) and the expected class.
   protected StructType /*P*/ ObjCSuperTy;

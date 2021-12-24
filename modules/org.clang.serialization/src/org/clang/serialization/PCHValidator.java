@@ -185,7 +185,7 @@ public class PCHValidator extends /*public*/ ASTReaderListener implements Destru
       StringRef ModuleName = new StringRef(TopImport.ModuleName);
       assert (!ModuleName.empty()) : "diagnostic options read before module name";
       
-      Module /*P*/ M = PP.getHeaderSearchInfo().lookupModule(new StringRef(ModuleName));
+      Module$B /*P*/ M = PP.getHeaderSearchInfo().lookupModule(new StringRef(ModuleName));
       assert ((M != null)) : "missing module";
       
       // FIXME: if the diagnostics are incompatible, save a DiagnosticOptions that

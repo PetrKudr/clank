@@ -520,7 +520,7 @@ public class ModuleSummaryIndex implements Iterable<std.pairULongType<std.vector
    FQN="llvm::ModuleSummaryIndex::hasExportedFunctions", NM="_ZNK4llvm18ModuleSummaryIndex20hasExportedFunctionsERKNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/ModuleSummaryAnalysis.cpp -nm=_ZNK4llvm18ModuleSummaryIndex20hasExportedFunctionsERKNS_6ModuleE")
   //</editor-fold>
-  public boolean hasExportedFunctions(final /*const*/ Module /*&*/ M) /*const*/ {
+  public boolean hasExportedFunctions(final /*const*/ Module$IR /*&*/ M) /*const*/ {
     return (ModulePathStringTable.count(new StringRef(M.getModuleIdentifier())) != 0);
   }
 

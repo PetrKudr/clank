@@ -82,7 +82,7 @@ import org.llvm.adt.*;
 import org.llvm.adt.aliases.*;
 import org.clang.ast.*;
 import org.llvm.ir.*;
-import org.llvm.ir.Module;
+import org.llvm.ir.Module$IR;
 import org.clang.codegen.CodeGen.impl.*;
 import org.clang.codegen.CodeGen.target.impl.*;
 import org.clang.codegen.target.impl.*;
@@ -123,7 +123,7 @@ public class SPIRTargetCodeGenInfo extends /*public*/ TargetCodeGenInfo implemen
               final CodeGenModule /*&*/ CGM) /*const*//* override*/ {
     final LLVMContext /*&*/ Ctx = CGM.getModule().getContext();
     Type /*P*/ Int32Ty = Type.getInt32Ty(Ctx);
-    final Module /*&*/ M = CGM.getModule();
+    final Module$IR /*&*/ M = CGM.getModule();
     // SPIR v2.0 s2.12 - The SPIR version used by the module is stored in the
     // opencl.spir.version named metadata.
     Metadata /*P*/ SPIRVerElts[/*2*/] = new Metadata /*P*/  [/*2*/] {

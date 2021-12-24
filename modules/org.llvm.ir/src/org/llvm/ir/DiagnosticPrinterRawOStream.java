@@ -298,7 +298,7 @@ public class DiagnosticPrinterRawOStream extends /*public*/ DiagnosticPrinter im
    FQN="llvm::DiagnosticPrinterRawOStream::operator<<", NM="_ZN4llvm27DiagnosticPrinterRawOStreamlsERKNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/DiagnosticPrinter.cpp -nm=_ZN4llvm27DiagnosticPrinterRawOStreamlsERKNS_6ModuleE")
   //</editor-fold>
-  @Override public DiagnosticPrinter /*&*/ $out(final /*const*/ Module /*&*/ M)/* override*/ {
+  @Override public DiagnosticPrinter /*&*/ $out(final /*const*/ Module$IR /*&*/ M)/* override*/ {
     Stream.$out(M.getModuleIdentifier());
     return /*Deref*/this;
   }

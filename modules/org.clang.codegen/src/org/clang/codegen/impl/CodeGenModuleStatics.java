@@ -306,9 +306,9 @@ public static void emitUsed(final CodeGenModule /*&*/ CGM, StringRef Name,
  FQN="addLinkOptionsPostorder", NM="_ZL23addLinkOptionsPostorderRN5clang7CodeGen13CodeGenModuleEPNS_6ModuleERN4llvm15SmallVectorImplIPNS5_8MetadataEEERNS5_11SmallPtrSetIS4_Lj16EEE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.codegen/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/CodeGen/CodeGenModule.cpp -nm=_ZL23addLinkOptionsPostorderRN5clang7CodeGen13CodeGenModuleEPNS_6ModuleERN4llvm15SmallVectorImplIPNS5_8MetadataEEERNS5_11SmallPtrSetIS4_Lj16EEE")
 //</editor-fold>
-public static void addLinkOptionsPostorder(final CodeGenModule /*&*/ CGM, org.clang.basic.Module /*P*/ Mod, 
+public static void addLinkOptionsPostorder(final CodeGenModule /*&*/ CGM, org.clang.basic.Module$B /*P*/ Mod, 
                        final SmallVectorImpl<Metadata /*P*/ > /*&*/ Metadata, 
-                       final SmallPtrSet<org.clang.basic.Module /*P*/ > /*&*/ Visited) {
+                       final SmallPtrSet<org.clang.basic.Module$B /*P*/ > /*&*/ Visited) {
   // Import this module's parent.
   if ((Mod.Parent != null) && Visited.insert(Mod.Parent).second) {
     addLinkOptionsPostorder(CGM, Mod.Parent, Metadata, Visited);
@@ -691,7 +691,7 @@ public static GlobalVariable /*P*/ GenerateStringLiteral(Constant /*P*/ C, Globa
     AddrSpace = CGM.getContext().getTargetAddressSpace(LangAS.ID.opencl_constant);
   }
   
-  final org.llvm.ir.Module /*&*/ M = CGM.getModule();
+  final org.llvm.ir.Module$IR /*&*/ M = CGM.getModule();
   /*uint*/int AddrSpace_final = AddrSpace;
   // Create a global variable for this string
   GlobalVariable /*P*/ GV = /*NEW_EXPR [GlobalVariable::new]*/GlobalVariable.$new_GlobalVariable((type$ptr<?> New$Mem)->{

@@ -129,7 +129,7 @@ public static void findCallsAtConstantOffset(final SmallVectorImpl<DevirtCallSit
  FQN="findLoadCallsAtConstantOffset", NM="_ZL29findLoadCallsAtConstantOffsetPN4llvm6ModuleERNS_15SmallVectorImplINS_14DevirtCallSiteEEEPNS_5ValueEx",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/TypeMetadataUtils.cpp -nm=_ZL29findLoadCallsAtConstantOffsetPN4llvm6ModuleERNS_15SmallVectorImplINS_14DevirtCallSiteEEEPNS_5ValueEx")
 //</editor-fold>
-public static void findLoadCallsAtConstantOffset(Module /*P*/ M, 
+public static void findLoadCallsAtConstantOffset(Module$IR /*P*/ M, 
                              final SmallVectorImpl<DevirtCallSite> /*&*/ DevirtCalls, 
                              Value /*P*/ VPtr, long/*int64_t*/ Offset) {
   throw new UnsupportedOperationException("EmptyBody");

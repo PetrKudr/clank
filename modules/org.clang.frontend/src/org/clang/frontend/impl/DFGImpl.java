@@ -293,7 +293,7 @@ public class DFGImpl extends /*public*/ PPCallbacks implements Destructors.Class
                     /*const*/ FileEntry /*P*/ File, 
                     StringRef SearchPath, 
                     StringRef RelativePath, 
-                    /*const*/ Module /*P*/ Imported)/* override*/ {
+                    /*const*/ Module$B /*P*/ Imported)/* override*/ {
     if (!(File != null)) {
       if (AddMissingHeaderDeps) {
         AddFilename(new StringRef(FileName));

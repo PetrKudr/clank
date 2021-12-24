@@ -354,7 +354,7 @@ public class AssumptionCacheTracker extends /*public*/ ImmutablePass implements 
    FQN="llvm::AssumptionCacheTracker::doFinalization", NM="_ZN4llvm22AssumptionCacheTracker14doFinalizationERNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/AssumptionCache.cpp -nm=_ZN4llvm22AssumptionCacheTracker14doFinalizationERNS_6ModuleE")
   //</editor-fold>
-  @Override public boolean doFinalization(final Module /*&*/ $Prm0)/* override*/ {
+  @Override public boolean doFinalization(final Module$IR /*&*/ $Prm0)/* override*/ {
     verifyAnalysis();
     return false;
   }

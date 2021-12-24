@@ -93,7 +93,7 @@ import org.llvm.ir.*;
 //</editor-fold>
 public class ModuleBitcodeWriter extends /*public*/ BitcodeWriter implements Destructors.ClassWithDestructor {
   /// The Module to write to bitcode.
-  private /*const*/ Module /*&*/ M;
+  private /*const*/ Module$IR /*&*/ M;
   
   /// Enumerates ids for all values in the module.
   private ValueEnumerator VE;
@@ -123,7 +123,7 @@ public class ModuleBitcodeWriter extends /*public*/ BitcodeWriter implements Des
    FQN="(anonymous namespace)::ModuleBitcodeWriter::ModuleBitcodeWriter", NM="_ZN12_GLOBAL__N_119ModuleBitcodeWriterC1EPKN4llvm6ModuleERNS1_15SmallVectorImplIcEEbPKNS1_18ModuleSummaryIndexEb",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.bitcode/llvmToClangType ${LLVM_SRC}/llvm/lib/Bitcode/Writer/BitcodeWriter.cpp -nm=_ZN12_GLOBAL__N_119ModuleBitcodeWriterC1EPKN4llvm6ModuleERNS1_15SmallVectorImplIcEEbPKNS1_18ModuleSummaryIndexEb")
   //</editor-fold>
-  public ModuleBitcodeWriter(/*const*/ Module /*P*/ M, SmallString/*&*/ Buffer, 
+  public ModuleBitcodeWriter(/*const*/ Module$IR /*P*/ M, SmallString/*&*/ Buffer, 
       boolean ShouldPreserveUseListOrder, 
       /*const*/ ModuleSummaryIndex /*P*/ Index, boolean GenerateHash) {
     // : BitcodeWriter(Buffer), M(*M), VE(*M, ShouldPreserveUseListOrder), Index(Index), GenerateHash(GenerateHash), BitcodeStartBit(0), GUIDToValueIdMap() 

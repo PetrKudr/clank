@@ -193,13 +193,13 @@ public static /*const*//*uint*/int BWH_HeaderSize = 5 * 4;
  FQN="llvm::getLazyBitcodeModule", NM="_ZN4llvm20getLazyBitcodeModuleEOSt10unique_ptrINS_12MemoryBufferESt14default_deleteIS1_EERNS_11LLVMContextEb",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.bitcode/llvmToClangType -body-delegate ${LLVM_SRC}/llvm/lib/Bitcode/Writer/BitcodeWriterPass.cpp -nm=_ZN4llvm20getLazyBitcodeModuleEOSt10unique_ptrINS_12MemoryBufferESt14default_deleteIS1_EERNS_11LLVMContextEb")
 //</editor-fold>
-public static ErrorOr<std.unique_ptr<Module> > getLazyBitcodeModule(final std.unique_ptr<MemoryBuffer> /*&&*/Buffer, 
+public static ErrorOr<std.unique_ptr<Module$IR> > getLazyBitcodeModule(final std.unique_ptr<MemoryBuffer> /*&&*/Buffer, 
                     final LLVMContext /*&*/ Context) {
   return getLazyBitcodeModule(Buffer, 
                     Context, 
                     false);
 }
-public static ErrorOr<std.unique_ptr<Module> > getLazyBitcodeModule(final std.unique_ptr<MemoryBuffer> /*&&*/Buffer, 
+public static ErrorOr<std.unique_ptr<Module$IR> > getLazyBitcodeModule(final std.unique_ptr<MemoryBuffer> /*&&*/Buffer, 
                     final LLVMContext /*&*/ Context, 
                     boolean ShouldLazyLoadMetadata/*= false*/) {
   return /*delegate*/org.llvm.bitcode.impl.BitcodeReaderLlvmGlobals.
@@ -217,7 +217,7 @@ public static ErrorOr<std.unique_ptr<Module> > getLazyBitcodeModule(final std.un
  FQN="llvm::getStreamedBitcodeModule", NM="_ZN4llvm24getStreamedBitcodeModuleENS_9StringRefESt10unique_ptrINS_12DataStreamerESt14default_deleteIS2_EERNS_11LLVMContextE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.bitcode/llvmToClangType -body-delegate ${LLVM_SRC}/llvm/lib/Bitcode/Writer/BitcodeWriterPass.cpp -nm=_ZN4llvm24getStreamedBitcodeModuleENS_9StringRefESt10unique_ptrINS_12DataStreamerESt14default_deleteIS2_EERNS_11LLVMContextE")
 //</editor-fold>
-public static ErrorOr<std.unique_ptr<Module> > getStreamedBitcodeModule(StringRef Name, 
+public static ErrorOr<std.unique_ptr<Module$IR> > getStreamedBitcodeModule(StringRef Name, 
                         std.unique_ptr<DataStreamer> Streamer, 
                         final LLVMContext /*&*/ Context) {
   return /*delegate*/org.llvm.bitcode.impl.BitcodeReaderLlvmGlobals.
@@ -280,7 +280,7 @@ public static std.string getBitcodeProducerString(MemoryBufferRef Buffer,
  FQN="llvm::parseBitcodeFile", NM="_ZN4llvm16parseBitcodeFileENS_15MemoryBufferRefERNS_11LLVMContextE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.bitcode/llvmToClangType -body-delegate ${LLVM_SRC}/llvm/lib/Bitcode/Writer/BitcodeWriterPass.cpp -nm=_ZN4llvm16parseBitcodeFileENS_15MemoryBufferRefERNS_11LLVMContextE")
 //</editor-fold>
-public static ErrorOr<std.unique_ptr<Module> > parseBitcodeFile(MemoryBufferRef Buffer, 
+public static ErrorOr<std.unique_ptr<Module$IR> > parseBitcodeFile(MemoryBufferRef Buffer, 
                 final LLVMContext /*&*/ Context) {
   return /*delegate*/org.llvm.bitcode.impl.BitcodeReaderLlvmGlobals.
     parseBitcodeFile(Buffer, 
@@ -335,20 +335,20 @@ public static ErrorOr<std.unique_ptr<ModuleSummaryIndex> > getModuleSummaryIndex
  FQN="llvm::WriteBitcodeToFile", NM="_ZN4llvm18WriteBitcodeToFileEPKNS_6ModuleERNS_11raw_ostreamEbPKNS_18ModuleSummaryIndexEb",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.bitcode/llvmToClangType -body-delegate ${LLVM_SRC}/llvm/lib/Bitcode/Writer/BitcodeWriterPass.cpp -nm=_ZN4llvm18WriteBitcodeToFileEPKNS_6ModuleERNS_11raw_ostreamEbPKNS_18ModuleSummaryIndexEb")
 //</editor-fold>
-public static void WriteBitcodeToFile(/*const*/ Module /*P*/ M, final raw_ostream /*&*/ Out) {
+public static void WriteBitcodeToFile(/*const*/ Module$IR /*P*/ M, final raw_ostream /*&*/ Out) {
   WriteBitcodeToFile(M, Out, 
                   false, 
                   (/*const*/ ModuleSummaryIndex /*P*/ )null, 
                   false);
 }
-public static void WriteBitcodeToFile(/*const*/ Module /*P*/ M, final raw_ostream /*&*/ Out, 
+public static void WriteBitcodeToFile(/*const*/ Module$IR /*P*/ M, final raw_ostream /*&*/ Out, 
                   boolean ShouldPreserveUseListOrder/*= false*/) {
   WriteBitcodeToFile(M, Out, 
                   ShouldPreserveUseListOrder, 
                   (/*const*/ ModuleSummaryIndex /*P*/ )null, 
                   false);
 }
-public static void WriteBitcodeToFile(/*const*/ Module /*P*/ M, final raw_ostream /*&*/ Out, 
+public static void WriteBitcodeToFile(/*const*/ Module$IR /*P*/ M, final raw_ostream /*&*/ Out, 
                   boolean ShouldPreserveUseListOrder/*= false*/, 
                   /*const*/ ModuleSummaryIndex /*P*/ Index/*= null*/) {
   WriteBitcodeToFile(M, Out, 
@@ -356,7 +356,7 @@ public static void WriteBitcodeToFile(/*const*/ Module /*P*/ M, final raw_ostrea
                   Index, 
                   false);
 }
-public static void WriteBitcodeToFile(/*const*/ Module /*P*/ M, final raw_ostream /*&*/ Out, 
+public static void WriteBitcodeToFile(/*const*/ Module$IR /*P*/ M, final raw_ostream /*&*/ Out, 
                   boolean ShouldPreserveUseListOrder/*= false*/, 
                   /*const*/ ModuleSummaryIndex /*P*/ Index/*= null*/, 
                   boolean GenerateHash/*= false*/) {

@@ -217,7 +217,7 @@ public static boolean addDiscriminators(final Function /*&*/ F) {
     }
     
     boolean Changed = false;
-    Module /*P*/ M = F.getParent();
+    Module$IR /*P*/ M = F.getParent();
     final LLVMContext /*&*/ Ctx = M.getContext();
     Builder/*J*/= new DIBuilder($Deref(M), /*AllowUnresolved*/ false);
     

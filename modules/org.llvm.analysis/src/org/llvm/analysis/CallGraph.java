@@ -103,7 +103,7 @@ import org.llvm.ir.intrinsic.IntrinsicGlobals;
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/CallGraph.cpp -nm=_ZN4llvm9CallGraphE")
 //</editor-fold>
 public class CallGraph implements Iterable<std.pairPtrType<Function,unique_ptr<CallGraphNode>>>, Destructors.ClassWithDestructor {
-  private final Module /*&*/ M;
+  private final Module$IR /*&*/ M;
 
   // JAVA: typedef std::map<const Function *, std::unique_ptr<CallGraphNode> > FunctionMapTy
 //  public final class FunctionMapTy extends std.mapPtrType</*const*/ Function /*P*/ , std.unique_ptr<CallGraphNode>>{ };
@@ -218,7 +218,7 @@ public class CallGraph implements Iterable<std.pairPtrType<Function,unique_ptr<C
    FQN="llvm::CallGraph::CallGraph", NM="_ZN4llvm9CallGraphC1ERNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/CallGraph.cpp -nm=_ZN4llvm9CallGraphC1ERNS_6ModuleE")
   //</editor-fold>
-  public CallGraph(final Module /*&*/ M) {
+  public CallGraph(final Module$IR /*&*/ M) {
     // : M(M), FunctionMap(), Root(null), ExternalCallingNode(getOrInsertFunction(null)), CallsExternalNode($c$.track(llvm::make_unique<CallGraphNode>(null)))
     //START JInit
     this./*&*/M=/*&*/M;
@@ -350,7 +350,7 @@ public class CallGraph implements Iterable<std.pairPtrType<Function,unique_ptr<C
    FQN="llvm::CallGraph::getModule", NM="_ZNK4llvm9CallGraph9getModuleEv",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/CallGraph.cpp -nm=_ZNK4llvm9CallGraph9getModuleEv")
   //</editor-fold>
-  public Module /*&*/ getModule() /*const*/ {
+  public Module$IR /*&*/ getModule() /*const*/ {
     return M;
   }
 

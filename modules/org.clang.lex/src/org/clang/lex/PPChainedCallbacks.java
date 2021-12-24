@@ -189,7 +189,7 @@ public class PPChainedCallbacks extends /*public*/ PPCallbacks implements Destru
                     StringRef FileName, boolean IsAngled, 
                     CharSourceRange FilenameRange, /*const*/ FileEntry /*P*/ File, 
                     StringRef SearchPath, StringRef RelativePath, 
-                    /*const*/ Module /*P*/ Imported)/* override*/ {
+                    /*const*/ Module$B /*P*/ Imported)/* override*/ {
     First.$arrow().InclusionDirective(/*NO_COPY*/HashLoc, /*NO_COPY*/EodLoc, IncludeTok, FileName, IsAngled, 
         /*NO_COPY*/FilenameRange, File, /*NO_COPY*/SearchPath, /*NO_COPY*/RelativePath, 
         Imported);
@@ -207,7 +207,7 @@ public class PPChainedCallbacks extends /*public*/ PPCallbacks implements Destru
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/PPCallbacks.cpp -nm=_ZN5clang18PPChainedCallbacks12moduleImportENS_14SourceLocationEN4llvm8ArrayRefISt4pairIPNS_14IdentifierInfoES1_EEEPKNS_6ModuleE")
   //</editor-fold>
   @Override public void moduleImport(SourceLocation ImportLoc, ModuleIdPath Path, 
-              /*const*/ Module /*P*/ Imported)/* override*/ {
+              /*const*/ Module$B /*P*/ Imported)/* override*/ {
     First.$arrow().moduleImport(/*NO_COPY*/ImportLoc, /*NO_COPY*/Path, Imported);
     Second.$arrow().moduleImport(/*NO_COPY*/ImportLoc, /*NO_COPY*/Path, Imported);
   }

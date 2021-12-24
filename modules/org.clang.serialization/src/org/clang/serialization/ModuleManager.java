@@ -791,7 +791,7 @@ public class ModuleManager implements NativeReverseIterable<std.reverse_iterator
       if ((modMap != null)) {
         StringRef ModuleName = new StringRef((victim.$star()).ModuleName);
         {
-          Module /*P*/ mod = modMap.findModule(/*NO_COPY*/ModuleName);
+          Module$B /*P*/ mod = modMap.findModule(/*NO_COPY*/ModuleName);
           if ((mod != null)) {
             mod.setASTFile((/*const*/ FileEntry /*P*/ )null);
           }

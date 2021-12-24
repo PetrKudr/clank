@@ -426,7 +426,7 @@ public class/*struct*/ MSRTTIBuilder {
   public final CodeGenModule /*&*/ CGM;
   public final ASTContext /*&*/ Context;
   public final LLVMContext /*&*/ VMContext;
-  public final org.llvm.ir.Module /*&*/ Module;
+  public final org.llvm.ir.Module$IR /*&*/ Module;
   public /*const*/ CXXRecordDecl /*P*/ RD;
   public GlobalVariable.LinkageTypes Linkage;
   public final MicrosoftCXXABI /*&*/ ABI;

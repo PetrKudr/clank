@@ -185,7 +185,7 @@ public class/*struct*/ VerifierLegacyPass extends /*public*/ FunctionPass implem
    FQN="(anonymous namespace)::VerifierLegacyPass::doFinalization", NM="_ZN12_GLOBAL__N_118VerifierLegacyPass14doFinalizationERN4llvm6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/Verifier.cpp -nm=_ZN12_GLOBAL__N_118VerifierLegacyPass14doFinalizationERN4llvm6ModuleE")
   //</editor-fold>
-  @Override public boolean doFinalization(final Module /*&*/ M)/* override*/ {
+  @Override public boolean doFinalization(final Module$IR /*&*/ M)/* override*/ {
     boolean HasErrors = false;
     for (final Function /*&*/ F : M)  {
       if (F.isDeclaration()) {

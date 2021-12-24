@@ -125,7 +125,7 @@ public class LazyCallGraphAnalysis implements /*public*/ AnalysisInfoMixin<LazyC
    FQN="llvm::LazyCallGraphAnalysis::run", NM="_ZN4llvm21LazyCallGraphAnalysis3runERNS_6ModuleERNS_15AnalysisManagerIS1_EE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/LazyCallGraph.cpp -nm=_ZN4llvm21LazyCallGraphAnalysis3runERNS_6ModuleERNS_15AnalysisManagerIS1_EE")
   //</editor-fold>
-  public LazyCallGraph run(final Module /*&*/ M, final AnalysisManager<Module>/*&*/ $Prm1) {
+  public LazyCallGraph run(final Module$IR /*&*/ M, final AnalysisManager<Module$IR>/*&*/ $Prm1) {
     throw new UnsupportedOperationException("EmptyBody");
   }
 

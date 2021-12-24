@@ -91,7 +91,7 @@ import org.clang.ast.*;
 import org.clang.basic.*;
 import static org.clang.basic.BasicClangGlobals.*;
 import org.llvm.ir.*;
-import org.llvm.ir.Module;
+import org.llvm.ir.Module$IR;
 import org.clang.codegen.impl.*;
 import org.clang.codegen.CodeGen.*;
 import org.llvm.ir.ArrayType;
@@ -342,25 +342,25 @@ public final void Release() {
   if (($3bits_uint2uint($this().CodeGenOpts.DwarfVersion) != 0)) {
     // We actually want the latest version when there are conflicts.
     // We can change from Warning to Latest if such mode is supported.
-    $this().getModule().addModuleFlag(Module.ModFlagBehavior.Warning, new StringRef(/*KEEP_STR*/"Dwarf Version"), 
+    $this().getModule().addModuleFlag(Module$IR.ModFlagBehavior.Warning, new StringRef(/*KEEP_STR*/"Dwarf Version"), 
         $3bits_uint2uint($this().CodeGenOpts.DwarfVersion));
   }
   if ($this().CodeGenOpts.EmitCodeView) {
     // Indicate that we want CodeView in the metadata.
-    $this().getModule().addModuleFlag(Module.ModFlagBehavior.Warning, new StringRef(/*KEEP_STR*/"CodeView"), 1);
+    $this().getModule().addModuleFlag(Module$IR.ModFlagBehavior.Warning, new StringRef(/*KEEP_STR*/"CodeView"), 1);
   }
   if ($2bits_uint2uint($this().CodeGenOpts.OptimizationLevel) > 0 && $this().CodeGenOpts.StrictVTablePointers) {
     // We don't support LTO with 2 with different StrictVTablePointers
     // FIXME: we could support it by stripping all the information introduced
     // by StrictVTablePointers.
-    $this().getModule().addModuleFlag(Module.ModFlagBehavior.Error, new StringRef(/*KEEP_STR*/"StrictVTablePointers"), 1);
+    $this().getModule().addModuleFlag(Module$IR.ModFlagBehavior.Error, new StringRef(/*KEEP_STR*/"StrictVTablePointers"), 1);
     
     Metadata /*P*/ Ops[/*2*/] = new Metadata /*P*/  [/*2*/] {
       MDString.get($this().VMContext, $("StrictVTablePointers")), 
       ConstantAsMetadata.get(ConstantInt.get(Type.getInt32Ty($this().VMContext), $int2ulong(1)))
     };
     
-    $this().getModule().addModuleFlag(Module.ModFlagBehavior.Require, 
+    $this().getModule().addModuleFlag(Module$IR.ModFlagBehavior.Require, 
         new StringRef(/*KEEP_STR*/"StrictVTablePointersRequirement"), 
         MDNode.get($this().VMContext, new ArrayRef<Metadata /*P*/ >(Ops, true)));
   }
@@ -368,7 +368,7 @@ public final void Release() {
     // We support a single version in the linked module. The LLVM
     // parser will drop debug info with a different version number
     // (and warn about it, too).
-    $this().getModule().addModuleFlag(Module.ModFlagBehavior.Warning, new StringRef(/*KEEP_STR*/"Debug Info Version"), 
+    $this().getModule().addModuleFlag(Module$IR.ModFlagBehavior.Warning, new StringRef(/*KEEP_STR*/"Debug Info Version"), 
         LLVMConstants.DEBUG_METADATA_VERSION.getValue());
   }
   
@@ -381,21 +381,21 @@ public final void Release() {
      || Arch == Triple.ArchType.thumbeb) {
     // Width of wchar_t in bytes
     long/*uint64_t*/ WCharWidth = $this().Context.getTypeSizeInChars($this().Context.getWideCharType()).getQuantity();
-    $this().getModule().addModuleFlag(Module.ModFlagBehavior.Error, new StringRef(/*KEEP_STR*/"wchar_size"), $ulong2uint(WCharWidth));
+    $this().getModule().addModuleFlag(Module$IR.ModFlagBehavior.Error, new StringRef(/*KEEP_STR*/"wchar_size"), $ulong2uint(WCharWidth));
     
     // The minimum width of an enum in bytes
     long/*uint64_t*/ EnumWidth = $int2ulong($this().Context.getLangOpts().ShortEnums ? 1 : 4);
-    $this().getModule().addModuleFlag(Module.ModFlagBehavior.Error, new StringRef(/*KEEP_STR*/"min_enum_size"), $ulong2uint(EnumWidth));
+    $this().getModule().addModuleFlag(Module$IR.ModFlagBehavior.Error, new StringRef(/*KEEP_STR*/"min_enum_size"), $ulong2uint(EnumWidth));
   }
   if ($this().CodeGenOpts.SanitizeCfiCrossDso) {
     // Indicate that we want cross-DSO control flow integrity checks.
-    $this().getModule().addModuleFlag(Module.ModFlagBehavior.Override, new StringRef(/*KEEP_STR*/"Cross-DSO CFI"), 1);
+    $this().getModule().addModuleFlag(Module$IR.ModFlagBehavior.Override, new StringRef(/*KEEP_STR*/"Cross-DSO CFI"), 1);
   }
   if ($this().LangOpts.CUDAIsDevice && $this().getTarget().getTriple().isNVPTX()) {
     // Indicate whether __nvvm_reflect should be configured to flush denormal
     // floating point values to 0.  (This corresponds to its "__CUDA_FTZ"
     // property.)
-    $this().getModule().addModuleFlag(Module.ModFlagBehavior.Override, new StringRef(/*KEEP_STR*/"nvvm-reflect-ftz"), 
+    $this().getModule().addModuleFlag(Module$IR.ModFlagBehavior.Override, new StringRef(/*KEEP_STR*/"nvvm-reflect-ftz"), 
         $this().LangOpts.CUDADeviceFlushDenormalsToZero ? 1 : 0);
   }
   {
@@ -5017,17 +5017,17 @@ protected/*private*/ final void emitLLVMUsed() {
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.codegen/llvmToClangType -split-class=clang::CodeGen::CodeGenModule@this ${LLVM_SRC}/llvm/tools/clang/lib/CodeGen/CodeGenModule.cpp -nm=_ZN5clang7CodeGen13CodeGenModule21EmitModuleLinkOptionsEv")
 //</editor-fold>
 protected/*private*/ final void EmitModuleLinkOptions() {
-  SetVector<org.clang.basic.Module /*P*/ > LinkModules = null;
+  SetVector<org.clang.basic.Module$B /*P*/ > LinkModules = null;
   try {
     // Collect the set of all of the modules we want to visit to emit link
     // options, which is essentially the imported modules and all of their
     // non-explicit child modules.
-    LinkModules/*J*/= new SetVector<org.clang.basic.Module /*P*/ >((org.clang.basic.Module /*P*/ )null);
-    SmallPtrSet<org.clang.basic.Module /*P*/ > Visited/*J*/= new SmallPtrSet<org.clang.basic.Module /*P*/ >(DenseMapInfo$LikePtr.$Info(), 16);
-    SmallVector<org.clang.basic.Module /*P*/> Stack/*J*/= new SmallVector<org.clang.basic.Module /*P*/>(16, (org.clang.basic.Module /*P*/)null);
+    LinkModules/*J*/= new SetVector<org.clang.basic.Module$B /*P*/ >((org.clang.basic.Module$B /*P*/ )null);
+    SmallPtrSet<org.clang.basic.Module$B /*P*/ > Visited/*J*/= new SmallPtrSet<org.clang.basic.Module$B /*P*/ >(DenseMapInfo$LikePtr.$Info(), 16);
+    SmallVector<org.clang.basic.Module$B /*P*/> Stack/*J*/= new SmallVector<org.clang.basic.Module$B /*P*/>(16, (org.clang.basic.Module$B /*P*/)null);
     
     // Seed the stack with imported modules.
-    for (org.clang.basic.Module /*P*/ M : $this().ImportedModules)  {
+    for (org.clang.basic.Module$B /*P*/ M : $this().ImportedModules)  {
       if (Visited.insert(M).second) {
         Stack.push_back(M);
       }
@@ -5036,12 +5036,12 @@ protected/*private*/ final void EmitModuleLinkOptions() {
     // Find all of the modules to import, making a little effort to prune
     // non-leaf modules.
     while (!Stack.empty()) {
-      org.clang.basic.Module /*P*/ Mod = Stack.pop_back_val();
+      org.clang.basic.Module$B /*P*/ Mod = Stack.pop_back_val();
       
       boolean AnyChildren = false;
       
       // Visit the submodules of this module.
-      for (std.vector.iterator<org.clang.basic.Module /*P*/ > Sub = Mod.submodule_begin(), 
+      for (std.vector.iterator<org.clang.basic.Module$B /*P*/ > Sub = Mod.submodule_begin(), 
           SubEnd = Mod.submodule_end();
            $noteq___normal_iterator$C(Sub, SubEnd); Sub.$preInc()) {
         // Skip explicit children; they need to be explicitly imported to be
@@ -5067,7 +5067,7 @@ protected/*private*/ final void EmitModuleLinkOptions() {
     // to linker options inserted by things like #pragma comment().
     SmallVector<Metadata /*P*/ > MetadataArgs/*J*/= new SmallVector<Metadata /*P*/ >(16, (Metadata /*P*/ )null);
     Visited.clear();
-    for (org.clang.basic.Module /*P*/ M : LinkModules)  {
+    for (org.clang.basic.Module$B /*P*/ M : LinkModules)  {
       if (Visited.insert(M).second) {
         addLinkOptionsPostorder(/*Deref*/$this(), M, MetadataArgs, Visited);
       }
@@ -5076,7 +5076,7 @@ protected/*private*/ final void EmitModuleLinkOptions() {
     $this().LinkerOptionsMetadata.append_T(MetadataArgs.begin(), MetadataArgs.end());
     
     // Add the linker options metadata flag.
-    $this().getModule().addModuleFlag(Module.ModFlagBehavior.AppendUnique, new StringRef(/*KEEP_STR*/"Linker Options"), 
+    $this().getModule().addModuleFlag(Module$IR.ModFlagBehavior.AppendUnique, new StringRef(/*KEEP_STR*/"Linker Options"), 
         MDNode.get($this().getLLVMContext(), 
             new ArrayRef<Metadata /*P*/ >($this().LinkerOptionsMetadata, true)));
   } finally {

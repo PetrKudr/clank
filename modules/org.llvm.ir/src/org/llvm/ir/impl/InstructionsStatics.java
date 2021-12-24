@@ -160,7 +160,7 @@ public static Instruction /*P*/ createMalloc(Instruction /*P*/ InsertBefore,
   assert (AllocSize.getType() == IntPtrTy) : "malloc arg is wrong size";
   // Create the call to Malloc.
   BasicBlock /*P*/ BB = (InsertBefore != null) ? InsertBefore.getParent() : InsertAtEnd;
-  Module /*P*/ M = BB.getParent().getParent();
+  Module$IR /*P*/ M = BB.getParent().getParent();
   Type /*P*/ BPTy = Type.getInt8PtrTy(BB.getContext());
   Value /*P*/ MallocFunc = MallocF;
   if (!(MallocFunc != null)) {
@@ -222,7 +222,7 @@ public static Instruction /*P*/ createFree(Value /*P*/ Source,
   assert (Source.getType().isPointerTy()) : "Can not free something of nonpointer type!";
   
   BasicBlock /*P*/ BB = (InsertBefore != null) ? InsertBefore.getParent() : InsertAtEnd;
-  Module /*P*/ M = BB.getParent().getParent();
+  Module$IR /*P*/ M = BB.getParent().getParent();
   
   Type /*P*/ VoidTy = Type.getVoidTy(M.getContext());
   Type /*P*/ IntPtrTy = Type.getInt8PtrTy(M.getContext());

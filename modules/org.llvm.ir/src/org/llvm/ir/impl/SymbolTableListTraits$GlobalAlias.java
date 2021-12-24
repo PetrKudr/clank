@@ -83,7 +83,7 @@ import org.llvm.adt.ilist_nextprev_traits;
 import org.llvm.adt.ilist_node_traits;
 import org.llvm.adt.iplist;
 import org.llvm.ir.GlobalAlias;
-import org.llvm.ir.Module;
+import org.llvm.ir.Module$IR;
 import org.llvm.ir.SymbolTableList;
 import org.llvm.ir.SymbolTableListTraits;
 import org.llvm.ir.ValueSymbolTable;
@@ -94,7 +94,7 @@ import org.llvm.ir.ValueSymbolTable;
  FQN="llvm::SymbolTableListTraits<GlobalAlias>", NM="_ZN4llvm21SymbolTableListTraitsINS_11GlobalAliasEEE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/Module.cpp -nm=_ZN4llvm21SymbolTableListTraitsINS_11GlobalAliasEEE")
 //</editor-fold>
-public class SymbolTableListTraits$GlobalAlias implements /*public*/ SymbolTableListTraits<GlobalAlias, Module>, /*public*/ ilist_nextprev_traits<GlobalAlias>, /*public*/ ilist_node_traits<GlobalAlias> {
+public class SymbolTableListTraits$GlobalAlias implements /*public*/ SymbolTableListTraits<GlobalAlias, Module$IR>, /*public*/ ilist_nextprev_traits<GlobalAlias>, /*public*/ ilist_node_traits<GlobalAlias> {
 // JAVA: typedef SymbolTableList<GlobalAlias> ListTy
 //  public final class ListTy extends SymbolTableList<GlobalAlias, Module>{ };
   // JAVA: typedef typename SymbolTableListParentType<GlobalAlias>::type ItemParentClass
@@ -123,7 +123,7 @@ public class SymbolTableListTraits$GlobalAlias implements /*public*/ SymbolTable
    FQN="llvm::SymbolTableListTraits<GlobalAlias>::getListOwner", NM="_ZN4llvm21SymbolTableListTraitsINS_11GlobalAliasEE12getListOwnerEv",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/Module.cpp -nm=_ZN4llvm21SymbolTableListTraitsINS_11GlobalAliasEE12getListOwnerEv")
   //</editor-fold>
-  public Module getListOwner( /*typename*/ /*P*/ iplist<GlobalAlias> list) {
+  public Module$IR getListOwner( /*typename*/ /*P*/ iplist<GlobalAlias> list) {
     assert list instanceof SymbolTableList$GlobalAlias : "forgot to pass valid list object?" + NativeTrace.getIdentityStr(list);
     return ((SymbolTableList$GlobalAlias) list).getListOwner(list);
   }
@@ -135,7 +135,7 @@ public class SymbolTableListTraits$GlobalAlias implements /*public*/ SymbolTable
    FQN="llvm::SymbolTableListTraits<GlobalAlias>::getList", NM="_ZN4llvm21SymbolTableListTraitsINS_11GlobalAliasEE7getListEPNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/Module.cpp -nm=_ZN4llvm21SymbolTableListTraitsINS_11GlobalAliasEE7getListEPNS_6ModuleE")
   //</editor-fold>
-  public SymbolTableList<GlobalAlias, Module>/*&*/ getList(Module /*P*/ Par) {
+  public SymbolTableList<GlobalAlias, Module$IR>/*&*/ getList(Module$IR /*P*/ Par) {
     // return Par ->* (Par.getSublistAccess((GlobalAlias /*P*/ )(GlobalAlias /*P*/ )null));
     return /*P*/ Par.getSublistAccess((GlobalAlias) null).$call(Par);
   }
@@ -188,9 +188,9 @@ public class SymbolTableListTraits$GlobalAlias implements /*public*/ SymbolTable
   }
 
   @Converted(kind = Converted.Kind.MANUAL_ADDED)
-  public static class SymbolTableList$GlobalAlias extends SymbolTableList<GlobalAlias, Module> {
+  public static class SymbolTableList$GlobalAlias extends SymbolTableList<GlobalAlias, Module$IR> {
 
-    public SymbolTableList$GlobalAlias(Module/*P*/ Owner) {
+    public SymbolTableList$GlobalAlias(Module$IR/*P*/ Owner) {
       super(Owner);
     }
     

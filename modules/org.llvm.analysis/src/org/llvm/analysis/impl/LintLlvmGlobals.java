@@ -140,7 +140,7 @@ public static FunctionPass /*P*/ createLintPass() {
  FQN="llvm::lintModule", NM="_ZN4llvm10lintModuleERKNS_6ModuleE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/Lint.cpp -nm=_ZN4llvm10lintModuleERKNS_6ModuleE")
 //</editor-fold>
-public static void lintModule(final /*const*/ Module /*&*/ M) {
+public static void lintModule(final /*const*/ Module$IR /*&*/ M) {
   throw new UnsupportedOperationException("EmptyBody");
 }
 

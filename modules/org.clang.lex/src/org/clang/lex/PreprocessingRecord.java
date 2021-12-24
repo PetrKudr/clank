@@ -943,7 +943,7 @@ public class PreprocessingRecord extends /*public*/ PPCallbacks implements Destr
                   /*const*/ FileEntry /*P*/ File, 
                   StringRef SearchPath, 
                   StringRef RelativePath, 
-                  /*const*/ Module /*P*/ Imported)/* override*/ {
+                  /*const*/ Module$B /*P*/ Imported)/* override*/ {
     InclusionDirective.InclusionKind Kind = InclusionDirective.InclusionKind.Include;
     switch (IncludeTok.getIdentifierInfo().getPPKeywordID()) {
      case tok.PPKeywordKind.pp_include:

@@ -166,7 +166,7 @@ public class CodeGeneratorImpl extends /*public*/ CodeGenerator implements Destr
   
   private CoverageSourceInfo /*P*/ CoverageInfo;
 /*protected:*/
-  protected std.unique_ptr<org.llvm.ir.Module> M;
+  protected std.unique_ptr<org.llvm.ir.Module$IR> M;
   protected std.unique_ptr<CodeGenModule> Builder;
 /*private:*/
   private SmallVector<CXXMethodDecl /*P*/ > DeferredInlineMethodDefinitions;
@@ -202,7 +202,7 @@ public class CodeGeneratorImpl extends /*public*/ CodeGenerator implements Destr
     this.CodeGenOpts = new CodeGenOptions(CGO);
     this.HandlingTopLevelDecls = 0;
     this.CoverageInfo = CoverageInfo;
-    this.M = new std.unique_ptr<org.llvm.ir.Module>(new org.llvm.ir.Module(new StringRef(ModuleName), C));
+    this.M = new std.unique_ptr<org.llvm.ir.Module$IR>(new org.llvm.ir.Module$IR(new StringRef(ModuleName), C));
     this.Builder = new std.unique_ptr<CodeGenModule>();
     this.DeferredInlineMethodDefinitions = new SmallVector<CXXMethodDecl /*P*/ >(8, (CXXMethodDecl /*P*/ )null);
     //END JInit
@@ -246,7 +246,7 @@ public class CodeGeneratorImpl extends /*public*/ CodeGenerator implements Destr
    FQN="(anonymous namespace)::CodeGeneratorImpl::GetModule", NM="_ZN12_GLOBAL__N_117CodeGeneratorImpl9GetModuleEv",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.codegen/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/CodeGen/ModuleBuilder.cpp -nm=_ZN12_GLOBAL__N_117CodeGeneratorImpl9GetModuleEv")
   //</editor-fold>
-  public org.llvm.ir.Module /*P*/ GetModule() {
+  public org.llvm.ir.Module$IR /*P*/ GetModule() {
     return M.get();
   }
 
@@ -257,7 +257,7 @@ public class CodeGeneratorImpl extends /*public*/ CodeGenerator implements Destr
    FQN="(anonymous namespace)::CodeGeneratorImpl::ReleaseModule", NM="_ZN12_GLOBAL__N_117CodeGeneratorImpl13ReleaseModuleEv",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.codegen/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/CodeGen/ModuleBuilder.cpp -nm=_ZN12_GLOBAL__N_117CodeGeneratorImpl13ReleaseModuleEv")
   //</editor-fold>
-  public org.llvm.ir.Module /*P*/ ReleaseModule() {
+  public org.llvm.ir.Module$IR /*P*/ ReleaseModule() {
     return M.release();
   }
 

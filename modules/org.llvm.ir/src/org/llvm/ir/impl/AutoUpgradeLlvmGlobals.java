@@ -224,7 +224,7 @@ public static void UpgradeIntrinsicCall(CallInst /*P*/ CI, Function /*P*/ NewFn)
           Rep = Builder.CreateFPExt(Rep, DstTy, new Twine(/*KEEP_STR*/"cvtps2pd"));
         }
       } else if (IsX86 && Name.startswith(/*STRINGREF_STR*/"sse4a.movnt.")) {
-        Module /*P*/ M = F.getParent();
+        Module$IR /*P*/ M = F.getParent();
         SmallVector<Metadata /*P*/ > Elts/*J*/= new SmallVector<Metadata /*P*/ >(1, (Metadata /*P*/ )null);
         Elts.push_back(ConstantAsMetadata.get(ConstantInt.get(Type.getInt32Ty(C), $int2ulong(1))));
         MDNode /*P*/ Node = MDNode.get(C, new ArrayRef<Metadata /*P*/ >(Elts, true));
@@ -247,7 +247,7 @@ public static void UpgradeIntrinsicCall(CallInst /*P*/ CI, Function /*P*/ NewFn)
         return;
       } else if (IsX86 && (Name.startswith(/*STRINGREF_STR*/"avx.movnt.")
          || Name.startswith(/*STRINGREF_STR*/"avx512.storent."))) {
-        Module /*P*/ M = F.getParent();
+        Module$IR /*P*/ M = F.getParent();
         SmallVector<Metadata /*P*/ > Elts/*J*/= new SmallVector<Metadata /*P*/ >(1, (Metadata /*P*/ )null);
         Elts.push_back(ConstantAsMetadata.get(ConstantInt.get(Type.getInt32Ty(C), $int2ulong(1))));
         MDNode /*P*/ Node = MDNode.get(C, new ArrayRef<Metadata /*P*/ >(Elts, true));
@@ -927,7 +927,7 @@ public static boolean UpgradeGlobalVariable(GlobalVariable /*P*/ GV) {
  FQN="llvm::UpgradeModuleFlags", NM="_ZN4llvm18UpgradeModuleFlagsERNS_6ModuleE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/AutoUpgrade.cpp -nm=_ZN4llvm18UpgradeModuleFlagsERNS_6ModuleE")
 //</editor-fold>
-public static boolean UpgradeModuleFlags(final Module /*&*/ M) {
+public static boolean UpgradeModuleFlags(final Module$IR /*&*/ M) {
   /*const*/ NamedMDNode /*P*/ ModFlags = M.getModuleFlagsMetadata();
   if (!(ModFlags != null)) {
     return false;
@@ -957,7 +957,7 @@ public static boolean UpgradeModuleFlags(final Module /*&*/ M) {
   // an ObjC bitcode without this module flag with an ObjC bitcode with this
   // module flag.
   if (HasObjCFlag && !HasClassProperties) {
-    M.addModuleFlag(Module.ModFlagBehavior.Error, new StringRef(/*KEEP_STR*/"Objective-C Class Properties"), 
+    M.addModuleFlag(Module$IR.ModFlagBehavior.Error, new StringRef(/*KEEP_STR*/"Objective-C Class Properties"), 
         (/*uint32_t*/int)0);
     return true;
   }
@@ -1073,7 +1073,7 @@ public static Value /*P*/ UpgradeBitCastExpr(/*uint*/int Opc, Constant /*P*/ C, 
  FQN="llvm::UpgradeDebugInfo", NM="_ZN4llvm16UpgradeDebugInfoERNS_6ModuleE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/AutoUpgrade.cpp -nm=_ZN4llvm16UpgradeDebugInfoERNS_6ModuleE")
 //</editor-fold>
-public static boolean UpgradeDebugInfo(final Module /*&*/ M) {
+public static boolean UpgradeDebugInfo(final Module$IR /*&*/ M) {
   /*uint*/int Version = IrLlvmGlobals.getDebugMetadataVersionFromModule(M);
   if (Version == LLVMConstants.DEBUG_METADATA_VERSION.getValue()) {
     return false;

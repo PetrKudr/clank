@@ -169,7 +169,7 @@ public static IntrusiveRefCntPtr<ExternalSemaSource> createChainedIncludesSource
         
         Buffer = std.make_shared(new PCHBuffer());
         ArrayRef<IntrusiveRefCntPtr<ModuleFileExtension> > Extensions/*J*/= new ArrayRef<IntrusiveRefCntPtr<ModuleFileExtension> >();
-        consumer = llvm.make_unique(new PCHGenerator(Clang.$arrow().getPreprocessor(), StringRef.R$MINUS, (Module)null, /*isysroot=*/ StringRef.R$EMPTY, Buffer, 
+        consumer = llvm.make_unique(new PCHGenerator(Clang.$arrow().getPreprocessor(), StringRef.R$MINUS, (Module$B)null, /*isysroot=*/ StringRef.R$EMPTY, Buffer, 
             Extensions, /*AllowASTWithErrors=*/ true));
         Clang.$arrow().getASTContext().setASTMutationListener(consumer.$arrow().GetASTMutationListener());
         Clang.$arrow().setASTConsumer($c$.track(new std.unique_ptr<ASTConsumer>(JD$Unique_ptr$_Up$_Ep.INSTANCE, std.move(consumer)))); $c$.clean();

@@ -363,7 +363,7 @@ public class HeaderFileInfoTrait implements OnDiskChainedHashTable.InfoInterface
         // This header is part of a module. Associate it with the module to enable
         // implicit module import.
         /*uint32_t*/int GlobalSMID = Reader.getGlobalSubmoduleID(M, LocalSMID);
-        Module /*P*/ Mod = Reader.getSubmodule(GlobalSMID);
+        Module$B /*P*/ Mod = Reader.getSubmodule(GlobalSMID);
         final FileManager /*&*/ FileMgr = Reader.getFileManager();
         final ModuleMap /*&*/ ModMap = Reader.getPreprocessor().getHeaderSearchInfo().getModuleMap();
         
@@ -374,8 +374,8 @@ public class HeaderFileInfoTrait implements OnDiskChainedHashTable.InfoInterface
         // FIXME: This is not always the right filename-as-written, but we're not
         // going to use this information to rebuild the module, so it doesn't make
         // a lot of difference.
-        Module.Header H = new Module.Header(key.Filename, FileMgr.getFile(new StringRef(Filename)));
-        ModMap.addHeader(Mod, $c$.track(new Module.Header(H)), HeaderRole, /*Imported*/ true); $c$.clean();
+        Module$B.Header H = new Module$B.Header(key.Filename, FileMgr.getFile(new StringRef(Filename)));
+        ModMap.addHeader(Mod, $c$.track(new Module$B.Header(H)), HeaderRole, /*Imported*/ true); $c$.clean();
         HFI.isModuleHeader |= !((HeaderRole & ModuleMap.ModuleHeaderRole.TextualHeader) != 0);
       } finally {
         $c$.$destroy();

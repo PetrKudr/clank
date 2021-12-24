@@ -8327,7 +8327,7 @@ public final Decl /*P*/ ActOnFileScopeAsmDecl(Expr /*P*/ expr,
 public final ActionResult<Decl /*P*/ > ActOnModuleImport(SourceLocation AtLoc, 
                  SourceLocation ImportLoc, 
                  ModuleIdPath Path) {
-  Module /*P*/ Mod = $this().getModuleLoader().loadModule(/*NO_COPY*/ImportLoc, /*NO_COPY*/Path, Module.NameVisibilityKind.AllVisible, 
+  Module$B /*P*/ Mod = $this().getModuleLoader().loadModule(/*NO_COPY*/ImportLoc, /*NO_COPY*/Path, Module$B.NameVisibilityKind.AllVisible, 
       /*IsIncludeDirective=*/ false).$ModulePtr();
   if (!(Mod != null)) {
     return new ActionResult<Decl /*P*/ >(true);
@@ -8351,7 +8351,7 @@ public final ActionResult<Decl /*P*/ > ActOnModuleImport(SourceLocation AtLoc,
   }
   
   SmallVector<SourceLocation> IdentifierLocs/*J*/= new SmallVector<SourceLocation>(2, new SourceLocation());
-  Module /*P*/ ModCheck = Mod;
+  Module$B /*P*/ ModCheck = Mod;
   for (/*uint*/int I = 0, N = Path.size(); I != N; ++I) {
     // If we've run out of module parents, just drop the remaining identifiers.
     // We need the length to be consistent.
@@ -8380,7 +8380,7 @@ public final ActionResult<Decl /*P*/ > ActOnModuleImport(SourceLocation AtLoc,
  FQN="clang::Sema::ActOnModuleInclude", NM="_ZN5clang4Sema18ActOnModuleIncludeENS_14SourceLocationEPNS_6ModuleE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.sema/llvmToClangType -split-class=clang::Sema@this ${LLVM_SRC}/llvm/tools/clang/lib/Sema/SemaDecl.cpp -nm=_ZN5clang4Sema18ActOnModuleIncludeENS_14SourceLocationEPNS_6ModuleE")
 //</editor-fold>
-public final void ActOnModuleInclude(SourceLocation DirectiveLoc, Module /*P*/ Mod) {
+public final void ActOnModuleInclude(SourceLocation DirectiveLoc, Module$B /*P*/ Mod) {
   checkModuleImportContext(/*Deref*/$this(), Mod, new SourceLocation(DirectiveLoc), $this().CurContext, true);
   
   // Determine whether we're in the #include buffer for a module. The #includes
@@ -8409,7 +8409,7 @@ public final void ActOnModuleInclude(SourceLocation DirectiveLoc, Module /*P*/ M
     $this().Consumer.HandleImplicitImportDecl(ImportD);
   }
   
-  $this().getModuleLoader().makeModuleVisible(Mod, Module.NameVisibilityKind.AllVisible, /*NO_COPY*/DirectiveLoc);
+  $this().getModuleLoader().makeModuleVisible(Mod, Module$B.NameVisibilityKind.AllVisible, /*NO_COPY*/DirectiveLoc);
   $this().VisibleModules.setVisible(Mod, /*NO_COPY*/DirectiveLoc);
 }
 
@@ -8421,7 +8421,7 @@ public final void ActOnModuleInclude(SourceLocation DirectiveLoc, Module /*P*/ M
  FQN="clang::Sema::ActOnModuleBegin", NM="_ZN5clang4Sema16ActOnModuleBeginENS_14SourceLocationEPNS_6ModuleE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.sema/llvmToClangType -split-class=clang::Sema@this ${LLVM_SRC}/llvm/tools/clang/lib/Sema/SemaDecl.cpp -nm=_ZN5clang4Sema16ActOnModuleBeginENS_14SourceLocationEPNS_6ModuleE")
 //</editor-fold>
-public final void ActOnModuleBegin(SourceLocation DirectiveLoc, Module /*P*/ Mod) {
+public final void ActOnModuleBegin(SourceLocation DirectiveLoc, Module$B /*P*/ Mod) {
   checkModuleImportContext(/*Deref*/$this(), Mod, new SourceLocation(DirectiveLoc), $this().CurContext);
   if ($this().getLangOpts().ModulesLocalVisibility) {
     $this().VisibleModulesStack.push_back_T$RR(std.move($this().VisibleModules));
@@ -8436,7 +8436,7 @@ public final void ActOnModuleBegin(SourceLocation DirectiveLoc, Module /*P*/ Mod
  FQN="clang::Sema::ActOnModuleEnd", NM="_ZN5clang4Sema14ActOnModuleEndENS_14SourceLocationEPNS_6ModuleE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.sema/llvmToClangType -split-class=clang::Sema@this ${LLVM_SRC}/llvm/tools/clang/lib/Sema/SemaDecl.cpp -nm=_ZN5clang4Sema14ActOnModuleEndENS_14SourceLocationEPNS_6ModuleE")
 //</editor-fold>
-public final void ActOnModuleEnd(SourceLocation DirectiveLoc, Module /*P*/ Mod) {
+public final void ActOnModuleEnd(SourceLocation DirectiveLoc, Module$B /*P*/ Mod) {
   checkModuleImportContext(/*Deref*/$this(), Mod, new SourceLocation(DirectiveLoc), $this().CurContext);
   if ($this().getLangOpts().ModulesLocalVisibility) {
     $this().VisibleModules.$assignMove(std.move($this().VisibleModulesStack.back()));
@@ -8457,7 +8457,7 @@ public final void ActOnModuleEnd(SourceLocation DirectiveLoc, Module /*P*/ Mod) 
  FQN="clang::Sema::diagnoseMisplacedModuleImport", NM="_ZN5clang4Sema29diagnoseMisplacedModuleImportEPNS_6ModuleENS_14SourceLocationE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.sema/llvmToClangType -split-class=clang::Sema@this ${LLVM_SRC}/llvm/tools/clang/lib/Sema/SemaDecl.cpp -nm=_ZN5clang4Sema29diagnoseMisplacedModuleImportEPNS_6ModuleENS_14SourceLocationE")
 //</editor-fold>
-public final void diagnoseMisplacedModuleImport(Module /*P*/ M, SourceLocation ImportLoc) {
+public final void diagnoseMisplacedModuleImport(Module$B /*P*/ M, SourceLocation ImportLoc) {
   checkModuleImportContext(/*Deref*/$this(), M, new SourceLocation(ImportLoc), $this().CurContext);
   /*JAVA:return*/return;
 }
@@ -8476,7 +8476,7 @@ public final void diagnoseMisplacedModuleImport(Module /*P*/ M, SourceLocation I
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.sema/llvmToClangType -split-class=clang::Sema@this ${LLVM_SRC}/llvm/tools/clang/lib/Sema/SemaDecl.cpp -nm=_ZN5clang4Sema42createImplicitModuleImportForErrorRecoveryENS_14SourceLocationEPNS_6ModuleE")
 //</editor-fold>
 public final void createImplicitModuleImportForErrorRecovery(SourceLocation Loc, 
-                                          Module /*P*/ Mod) {
+                                          Module$B /*P*/ Mod) {
   // Bail if we're not allowed to implicitly import a module here.
   if ($this().isSFINAEContext().$bool() || !$this().getLangOpts().ModulesErrorRecovery) {
     return;
@@ -8490,7 +8490,7 @@ public final void createImplicitModuleImportForErrorRecovery(SourceLocation Loc,
   $this().Consumer.HandleImplicitImportDecl(ImportD);
   
   // Make the module visible.
-  $this().getModuleLoader().makeModuleVisible(Mod, Module.NameVisibilityKind.AllVisible, /*NO_COPY*/Loc);
+  $this().getModuleLoader().makeModuleVisible(Mod, Module$B.NameVisibilityKind.AllVisible, /*NO_COPY*/Loc);
   $this().VisibleModules.setVisible(Mod, /*NO_COPY*/Loc);
 }
 

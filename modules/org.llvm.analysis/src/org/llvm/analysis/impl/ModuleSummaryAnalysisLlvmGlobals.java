@@ -134,7 +134,7 @@ public static ModulePass /*P*/ createModuleSummaryIndexWrapperPass() {
  FQN="llvm::moduleCanBeRenamedForThinLTO", NM="_ZN4llvm28moduleCanBeRenamedForThinLTOERKNS_6ModuleE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/ModuleSummaryAnalysis.cpp -nm=_ZN4llvm28moduleCanBeRenamedForThinLTOERKNS_6ModuleE")
 //</editor-fold>
-public static boolean moduleCanBeRenamedForThinLTO(final /*const*/ Module /*&*/ M) {
+public static boolean moduleCanBeRenamedForThinLTO(final /*const*/ Module$IR /*&*/ M) {
   throw new UnsupportedOperationException("EmptyBody");
 }
 

@@ -80,7 +80,7 @@ import org.clank.support.*;
 import org.llvm.adt.*;
 import org.clang.ast.*;
 import org.llvm.ir.*;
-import org.llvm.ir.Module;
+import org.llvm.ir.Module$IR;
 import org.clang.codegen.impl.*;
 import org.clang.codegen.CodeGen.impl.*;
 
@@ -133,7 +133,7 @@ public class CodeGenerator extends /*public*/ ASTConsumer implements Destructors
    FQN="clang::CodeGenerator::GetModule", NM="_ZN5clang13CodeGenerator9GetModuleEv",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.codegen/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/CodeGen/ModuleBuilder.cpp -nm=_ZN5clang13CodeGenerator9GetModuleEv")
   //</editor-fold>
-  public org.llvm.ir.Module /*P*/ GetModule() {
+  public org.llvm.ir.Module$IR /*P*/ GetModule() {
     return ((/*static_cast*/CodeGeneratorImpl /*P*/ )(this)).GetModule();
   }
 
@@ -148,7 +148,7 @@ public class CodeGenerator extends /*public*/ ASTConsumer implements Destructors
    FQN="clang::CodeGenerator::ReleaseModule", NM="_ZN5clang13CodeGenerator13ReleaseModuleEv",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.codegen/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/CodeGen/ModuleBuilder.cpp -nm=_ZN5clang13CodeGenerator13ReleaseModuleEv")
   //</editor-fold>
-  public org.llvm.ir.Module /*P*/ ReleaseModule() {
+  public org.llvm.ir.Module$IR /*P*/ ReleaseModule() {
     return ((/*static_cast*/CodeGeneratorImpl /*P*/ )(this)).ReleaseModule();
   }
 

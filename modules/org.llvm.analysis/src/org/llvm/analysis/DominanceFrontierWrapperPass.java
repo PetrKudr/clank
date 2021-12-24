@@ -175,9 +175,9 @@ public class DominanceFrontierWrapperPass extends /*public*/ FunctionPass implem
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/DominanceFrontier.cpp -nm=_ZNK4llvm28DominanceFrontierWrapperPass5printERNS_11raw_ostreamEPKNS_6ModuleE")
   //</editor-fold>
   public void print(final raw_ostream /*&*/ OS) /*const*//* override*/ {
-    print(OS, (/*const*/ Module /*P*/ )null);
+    print(OS, (/*const*/ Module$IR /*P*/ )null);
   }
-  @Override public void print(final raw_ostream /*&*/ OS, /*const*/ Module /*P*/ $Prm1/*= null*/) /*const*//* override*/ {
+  @Override public void print(final raw_ostream /*&*/ OS, /*const*/ Module$IR /*P*/ $Prm1/*= null*/) /*const*//* override*/ {
     DF.print(OS);
   }
 

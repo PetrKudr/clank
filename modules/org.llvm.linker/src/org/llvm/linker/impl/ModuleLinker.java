@@ -119,7 +119,7 @@ import org.llvm.transforms.utils.*;
 //</editor-fold>
 public class ModuleLinker implements Destructors.ClassWithDestructor {
   private final IRMover /*&*/ Mover;
-  private std.unique_ptr<Module> SrcM;
+  private std.unique_ptr<Module$IR> SrcM;
   
   private SetVector<GlobalValue /*P*/ > ValuesToLink;
   private StringSet/*<MallocAllocator>*/ Internalize;
@@ -337,7 +337,7 @@ public class ModuleLinker implements Destructors.ClassWithDestructor {
    FQN="(anonymous namespace)::ModuleLinker::getComdatLeader", NM="_ZN12_GLOBAL__N_112ModuleLinker15getComdatLeaderERN4llvm6ModuleENS1_9StringRefERPKNS1_14GlobalVariableE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.linker/llvmToClangType ${LLVM_SRC}/llvm/lib/Linker/LinkModules.cpp -nm=_ZN12_GLOBAL__N_112ModuleLinker15getComdatLeaderERN4llvm6ModuleENS1_9StringRefERPKNS1_14GlobalVariableE")
   //</editor-fold>
-  private boolean getComdatLeader(final Module /*&*/ M, StringRef ComdatName, 
+  private boolean getComdatLeader(final Module$IR /*&*/ M, StringRef ComdatName, 
                  final type$ptr</*const*/ GlobalVariable /*P*/ /*&*/> GVar) {
     throw new UnsupportedOperationException("EmptyBody");
   }
@@ -366,7 +366,7 @@ public class ModuleLinker implements Destructors.ClassWithDestructor {
   private boolean getComdatResult(/*const*/ Comdat /*P*/ SrcC, 
                  final type$ref<Comdat.SelectionKind /*&*/> Result, 
                  final bool$ref/*bool &*/ LinkFromSrc) {
-    final Module /*&*/ DstM = Mover.getModule();
+    final Module$IR /*&*/ DstM = Mover.getModule();
     Comdat.SelectionKind SSK = SrcC.getSelectionKind();
     StringRef ComdatName = SrcC.getName();
     final StringMap<Comdat> /*&*/ ComdatSymTab = DstM.getComdatSymbolTable();
@@ -396,7 +396,7 @@ public class ModuleLinker implements Destructors.ClassWithDestructor {
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.linker/llvmToClangType ${LLVM_SRC}/llvm/lib/Linker/LinkModules.cpp -nm=_ZN12_GLOBAL__N_112ModuleLinker17getLinkedToGlobalEPKN4llvm11GlobalValueE")
   //</editor-fold>
   private GlobalValue /*P*/ getLinkedToGlobal(/*const*/ GlobalValue /*P*/ SrcGV) {
-    final Module /*&*/ DstM = Mover.getModule();
+    final Module$IR /*&*/ DstM = Mover.getModule();
     // If the source has no name it can't link.  If it has local linkage,
     // there is no name match-up going on.
     if (!SrcGV.hasName() || GlobalValue.isLocalLinkage(SrcGV.getLinkage())) {
@@ -451,7 +451,7 @@ public class ModuleLinker implements Destructors.ClassWithDestructor {
           Var.setInitializer((Constant /*P*/ )null);
         } else {
           final GlobalAlias /*&*/ Alias = cast_GlobalAlias(GV);
-          final Module /*&*/ M = /*Deref*/Alias.getParent();
+          final Module$IR /*&*/ M = /*Deref*/Alias.getParent();
           final PointerType /*&*/ Ty = /*Deref*/cast_PointerType(Alias.getType());
           GlobalValue /*P*/ Declaration;
           {
@@ -587,16 +587,16 @@ public class ModuleLinker implements Destructors.ClassWithDestructor {
    FQN="(anonymous namespace)::ModuleLinker::ModuleLinker", NM="_ZN12_GLOBAL__N_112ModuleLinkerC1ERN4llvm7IRMoverESt10unique_ptrINS1_6ModuleESt14default_deleteIS5_EEjPNS1_8DenseSetIPKNS1_11GlobalValueENS1_12DenseMapInfoISC_EEEE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.linker/llvmToClangType ${LLVM_SRC}/llvm/lib/Linker/LinkModules.cpp -nm=_ZN12_GLOBAL__N_112ModuleLinkerC1ERN4llvm7IRMoverESt10unique_ptrINS1_6ModuleESt14default_deleteIS5_EEjPNS1_8DenseSetIPKNS1_11GlobalValueENS1_12DenseMapInfoISC_EEEE")
   //</editor-fold>
-  public ModuleLinker(final IRMover /*&*/ Mover, std.unique_ptr<Module> SrcM, /*uint*/int Flags) {
+  public ModuleLinker(final IRMover /*&*/ Mover, std.unique_ptr<Module$IR> SrcM, /*uint*/int Flags) {
     this(Mover, SrcM, Flags, 
       (DenseSet</*const*/ GlobalValue /*P*/ > /*P*/)null);
   }
-  public ModuleLinker(final IRMover /*&*/ Mover, std.unique_ptr<Module> SrcM, /*uint*/int Flags, 
+  public ModuleLinker(final IRMover /*&*/ Mover, std.unique_ptr<Module$IR> SrcM, /*uint*/int Flags, 
       DenseSet</*const*/ GlobalValue /*P*/ > /*P*/ GlobalsToImport/*= null*/) {
     // : Mover(Mover), SrcM(std::move(SrcM)), ValuesToLink(), Internalize(), Flags(Flags), GlobalsToImport(GlobalsToImport), ComdatsChosen(), LazyComdatMembers() 
     //START JInit
     this./*&*/Mover=/*&*/Mover;
-    this.SrcM = new std.unique_ptr<Module>(JD$Move.INSTANCE, std.move(SrcM));
+    this.SrcM = new std.unique_ptr<Module$IR>(JD$Move.INSTANCE, std.move(SrcM));
     this.ValuesToLink = new SetVector<GlobalValue /*P*/ >((GlobalValue /*P*/ )null);
     this.Internalize = new StringSet/*<MallocAllocator>*/();
     this.Flags = Flags;

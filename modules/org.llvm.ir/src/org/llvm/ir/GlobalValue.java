@@ -404,7 +404,7 @@ public abstract class GlobalValue extends /*public*/ Constant implements Destruc
   }
 
   
-  protected Module /*P*/ Parent; // The containing module.
+  protected Module$IR /*P*/ Parent; // The containing module.
 /*public:*/
   //<editor-fold defaultstate="collapsed" desc="llvm::GlobalValue::ThreadLocalMode">
   @Converted(kind = Converted.Kind.AUTO,
@@ -1650,7 +1650,7 @@ public abstract class GlobalValue extends /*public*/ Constant implements Destruc
    FQN="llvm::GlobalValue::getParent", NM="_ZN4llvm11GlobalValue9getParentEv",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/Globals.cpp -nm=_ZN4llvm11GlobalValue9getParentEv")
   //</editor-fold>
-  public Module /*P*/ getParent() {
+  public Module$IR /*P*/ getParent() {
     return Parent;
   }
 
@@ -1660,7 +1660,7 @@ public abstract class GlobalValue extends /*public*/ Constant implements Destruc
    FQN="llvm::GlobalValue::getParent", NM="_ZNK4llvm11GlobalValue9getParentEv",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/Globals.cpp -nm=_ZNK4llvm11GlobalValue9getParentEv")
   //</editor-fold>
-  public /*const*/ Module /*P*/ getParent$Const() /*const*/ {
+  public /*const*/ Module$IR /*P*/ getParent$Const() /*const*/ {
     return Parent;
   }
 

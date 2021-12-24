@@ -78,7 +78,7 @@ package org.llvm.ir.java;
 
 import org.llvm.adt.ilist;
 import org.llvm.adt.ilist_node;
-import org.llvm.ir.Module;
+import org.llvm.ir.Module$IR;
 import org.llvm.ir.NamedMDNode;
 import org.llvm.ir.SymbolTableList;
 import org.llvm.ir.Value;
@@ -96,6 +96,6 @@ public class IRMemberPointers {
 
   @FunctionalInterface
   public interface Void2NamedMDListType {
-    ilist<NamedMDNode> $call(Module $this);
+    ilist<NamedMDNode> $call(Module$IR $this);
   }
 }

@@ -77,7 +77,7 @@
 package org.clang.basic.java;
 
 import org.clang.basic.IdentifierInfo;
-import org.clang.basic.Module;
+import org.clang.basic.Module$B;
 import org.clang.basic.SourceLocation;
 import org.clang.basic.SourceRange;
 import org.clang.basic.VersionTuple;
@@ -99,11 +99,11 @@ public final class BasicFunctionPointers {
   // extracted from VisbleModuleSet
   @FunctionalInterface
   public interface VisibleCallback {
-    public void $call(Module /*P*/ M);
+    public void $call(Module$B /*P*/ M);
   }  
   @FunctionalInterface
   public interface ConflictCallback {
-    public void $call(ArrayRef<Module /*P*/ > Path, Module /*P*/ Conflict, StringRef Message);
+    public void $call(ArrayRef<Module$B/*P*/ > Path, Module$B /*P*/ Conflict, StringRef Message);
   }
   // end of VisbleModuleSet
   

@@ -184,7 +184,7 @@ private final /*split clang::Preprocessor*/ Preprocessor $this() { return (Prepr
     public static final IncludeStackInfo DEFAULT = new IncludeStackInfo();
     
     public CurLexerKindEnum CurLexerKind;
-    public Module /*P*/ TheSubmodule;
+    public Module$B /*P*/ TheSubmodule;
     public std.unique_ptr<Lexer> TheLexer;
     public std.unique_ptr<PTHLexer> ThePTHLexer;
     public PreprocessorLexer /*P*/ ThePPLexer;
@@ -208,7 +208,7 @@ private final /*split clang::Preprocessor*/ Preprocessor $this() { return (Prepr
      FQN="clang::Preprocessor::IncludeStackInfo::IncludeStackInfo", NM="_ZN5clang12Preprocessor16IncludeStackInfoC1ENS0_12CurLexerKindEPNS_6ModuleEOSt10unique_ptrINS_5LexerESt14default_deleteIS6_EEOS5_INS_8PTHLexerES7_ISB_EEPNS_17PreprocessorLexerEOS5_INS_10TokenLexerES7_ISH_EEPKNS_15DirectoryLookupE",
      cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/PPCaching.cpp -nm=_ZN5clang12Preprocessor16IncludeStackInfoC1ENS0_12CurLexerKindEPNS_6ModuleEOSt10unique_ptrINS_5LexerESt14default_deleteIS6_EEOS5_INS_8PTHLexerES7_ISB_EEPNS_17PreprocessorLexerEOS5_INS_10TokenLexerES7_ISH_EEPKNS_15DirectoryLookupE")
     //</editor-fold>
-    public IncludeStackInfo(CurLexerKindEnum CurLexerKind, Module /*P*/ TheSubmodule, 
+    public IncludeStackInfo(CurLexerKindEnum CurLexerKind, Module$B /*P*/ TheSubmodule, 
         std.unique_ptr<Lexer> /*&&*/TheLexer, 
         std.unique_ptr<PTHLexer> /*&&*/ThePTHLexer, 
         PreprocessorLexer /*P*/ ThePPLexer, 
@@ -841,7 +841,7 @@ private final /*split clang::Preprocessor*/ Preprocessor $this() { return (Prepr
      FQN="clang::Preprocessor::BuildingSubmoduleInfo::BuildingSubmoduleInfo", NM="_ZN5clang12Preprocessor21BuildingSubmoduleInfoC1EPNS_6ModuleENS_14SourceLocationEPNS0_14SubmoduleStateEj",
      cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/PPCaching.cpp -nm=_ZN5clang12Preprocessor21BuildingSubmoduleInfoC1EPNS_6ModuleENS_14SourceLocationEPNS0_14SubmoduleStateEj")
     //</editor-fold>
-    public BuildingSubmoduleInfo(Module /*P*/ M, /*SourceLocation*/int ImportLoc, 
+    public BuildingSubmoduleInfo(Module$B /*P*/ M, /*SourceLocation*/int ImportLoc, 
         SubmoduleState /*P*/ OuterSubmoduleState, 
         /*uint*/int OuterPendingModuleMacroNames) {
       /* : M(M), ImportLoc(ImportLoc), OuterSubmoduleState(OuterSubmoduleState), OuterPendingModuleMacroNames(OuterPendingModuleMacroNames)*/ 
@@ -862,7 +862,7 @@ private final /*split clang::Preprocessor*/ Preprocessor $this() { return (Prepr
     }
     
     /// The module that we are building.
-    public Module /*P*/ M;
+    public Module$B /*P*/ M;
     /// The location at which the module was included.
     public /*SourceLocation*/int ImportLoc;
     /// The previous SubmoduleState.

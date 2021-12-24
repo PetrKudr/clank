@@ -82,7 +82,7 @@ import static org.clank.support.Native.$AddrOf;
 import org.clank.support.NativeTrace;
 import org.llvm.adt.iplist;
 import org.llvm.ir.GlobalVariable;
-import org.llvm.ir.Module;
+import org.llvm.ir.Module$IR;
 import org.llvm.ir.SymbolTableList;
 import org.llvm.ir.SymbolTableListTraits;
 import org.llvm.ir.ValueSymbolTable;
@@ -93,7 +93,7 @@ import org.llvm.ir.ValueSymbolTable;
  FQN="llvm::SymbolTableListTraits<GlobalVariable>", NM="_ZN4llvm21SymbolTableListTraitsINS_14GlobalVariableEEE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/Module.cpp -nm=_ZN4llvm21SymbolTableListTraitsINS_14GlobalVariableEEE")
 //</editor-fold>
-public class SymbolTableListTraits$GlobalVariable implements /*public*/ /*public*/ SymbolTableListTraits<GlobalVariable, Module> {
+public class SymbolTableListTraits$GlobalVariable implements /*public*/ /*public*/ SymbolTableListTraits<GlobalVariable, Module$IR> {
   // JAVA: typedef SymbolTableList<GlobalVariable> ListTy
 //  public final class ListTy extends SymbolTableList<GlobalVariable, Module>{ };
   // JAVA: typedef typename SymbolTableListParentType<GlobalVariable>::type ItemParentClass
@@ -122,7 +122,7 @@ public class SymbolTableListTraits$GlobalVariable implements /*public*/ /*public
    FQN="llvm::SymbolTableListTraits<GlobalVariable>::getListOwner", NM="_ZN4llvm21SymbolTableListTraitsINS_14GlobalVariableEE12getListOwnerEv",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/Module.cpp -nm=_ZN4llvm21SymbolTableListTraitsINS_14GlobalVariableEE12getListOwnerEv")
   //</editor-fold>
-  @Override public Module getListOwner( /*typename*/ /*P*/ iplist<GlobalVariable> list) {
+  @Override public Module$IR getListOwner( /*typename*/ /*P*/ iplist<GlobalVariable> list) {
     assert list instanceof SymbolTableList$GlobalVariable : "forgot to pass valid list object?" + NativeTrace.getIdentityStr(list);
     return ((SymbolTableList$GlobalVariable) list).getListOwner(list);
     //      /*size_t*/int Offset/*J*/= ((/*size_t*/int)($AddrOf(((Module /*P*/ )null ->* Module.getSublistAccess(((/*static_cast*/GlobalVariable /*P*/ )((GlobalVariable /*P*/ )null)))))));
@@ -137,7 +137,7 @@ public class SymbolTableListTraits$GlobalVariable implements /*public*/ /*public
    FQN="llvm::SymbolTableListTraits<GlobalVariable>::getList", NM="_ZN4llvm21SymbolTableListTraitsINS_14GlobalVariableEE7getListEPNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/Module.cpp -nm=_ZN4llvm21SymbolTableListTraitsINS_14GlobalVariableEE7getListEPNS_6ModuleE")
   //</editor-fold>
-  public SymbolTableList<GlobalVariable, Module> /*&*/ getList( /*P*/ Module Par) {
+  public SymbolTableList<GlobalVariable, Module$IR> /*&*/ getList( /*P*/ Module$IR Par) {
     //      return Par ->* (Par.getSublistAccess((GlobalVariable /*P*/ )(GlobalVariable /*P*/ )null));
     return /*P*/ Par.getSublistAccess((GlobalVariable) null).$call(Par);
   }
@@ -190,9 +190,9 @@ public class SymbolTableListTraits$GlobalVariable implements /*public*/ /*public
   }
 
   @Converted(kind = Converted.Kind.MANUAL_ADDED)
-  public static class SymbolTableList$GlobalVariable extends SymbolTableList<GlobalVariable, Module> {
+  public static class SymbolTableList$GlobalVariable extends SymbolTableList<GlobalVariable, Module$IR> {
 
-    public SymbolTableList$GlobalVariable( /*P*/ Module Owner) {
+    public SymbolTableList$GlobalVariable( /*P*/ Module$IR Owner) {
       super(Owner);
     } /*P*/
 

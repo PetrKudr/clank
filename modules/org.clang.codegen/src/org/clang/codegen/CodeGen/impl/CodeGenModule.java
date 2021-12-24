@@ -91,7 +91,7 @@ import org.clang.basic.*;
 import static org.clang.basic.BasicClangGlobals.*;
 import org.clang.lex.*;
 import org.llvm.ir.*;
-import org.llvm.ir.Module;
+import org.llvm.ir.Module$IR;
 import org.llvm.profiledata.*;
 import org.clang.codegen.impl.*;
 import org.clang.codegen.CodeGen.target.impl.*;
@@ -125,7 +125,7 @@ public class CodeGenModule extends CodeGenModule_TargetInfo implements Destructo
   protected/*private*/ final /*const*/ HeaderSearchOptions /*&*/ HeaderSearchOpts; // Only used for debug info.
   protected/*private*/ final /*const*/ PreprocessorOptions /*&*/ PreprocessorOpts; // Only used for debug info.
   protected/*private*/ final /*const*/ CodeGenOptions /*&*/ CodeGenOpts;
-  protected/*private*/ final Module /*&*/ TheModule;
+  protected/*private*/ final Module$IR /*&*/ TheModule;
   protected/*private*/ final DiagnosticsEngine /*&*/ Diags;
   protected/*private*/ final /*const*/ TargetInfo /*&*/ Target;
   protected/*private*/ std.unique_ptr<CGCXXABI> ABI;
@@ -270,7 +270,7 @@ public class CodeGenModule extends CodeGenModule_TargetInfo implements Destructo
   
   /// \brief The complete set of modules that has been imported.
   @Converted(kind = Converted.Kind.MANUAL_COMPILATION)
-  protected/*private*/ SetVector<org.clang.basic.Module /*P*/ > ImportedModules;
+  protected/*private*/ SetVector<org.clang.basic.Module$B /*P*/ > ImportedModules;
   
   /// \brief A vector of metadata strings.
   protected/*private*/ SmallVector<Metadata /*P*/ > LinkerOptionsMetadata;
@@ -626,7 +626,7 @@ public class CodeGenModule extends CodeGenModule_TargetInfo implements Destructo
    FQN="clang::CodeGen::CodeGenModule::getModule", NM="_ZNK5clang7CodeGen13CodeGenModule9getModuleEv",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.codegen/llvmToClangType -split-class=clang::CodeGen::CodeGenModule ${LLVM_SRC}/llvm/tools/clang/lib/CodeGen/CodeGenModule.cpp -nm=_ZNK5clang7CodeGen13CodeGenModule9getModuleEv")
   //</editor-fold>
-  public final Module /*&*/ getModule() /*const*/ {
+  public final Module$IR /*&*/ getModule() /*const*/ {
     return TheModule;
   }
 
@@ -893,7 +893,7 @@ public class CodeGenModule extends CodeGenModule_TargetInfo implements Destructo
   //</editor-fold>
   public CodeGenModule(final ASTContext /*&*/ C, final /*const*/ HeaderSearchOptions /*&*/ HSO, 
       final /*const*/ PreprocessorOptions /*&*/ PPO, 
-      final /*const*/ CodeGenOptions /*&*/ CGO, final Module /*&*/ M, 
+      final /*const*/ CodeGenOptions /*&*/ CGO, final Module$IR /*&*/ M, 
       final DiagnosticsEngine /*&*/ diags) {
     this(C, HSO, 
       PPO, 
@@ -903,7 +903,7 @@ public class CodeGenModule extends CodeGenModule_TargetInfo implements Destructo
   }
   public CodeGenModule(final ASTContext /*&*/ C, final /*const*/ HeaderSearchOptions /*&*/ HSO, 
       final /*const*/ PreprocessorOptions /*&*/ PPO, 
-      final /*const*/ CodeGenOptions /*&*/ CGO, final Module /*&*/ M, 
+      final /*const*/ CodeGenOptions /*&*/ CGO, final Module$IR /*&*/ M, 
       final DiagnosticsEngine /*&*/ diags, 
       CoverageSourceInfo /*P*/ CoverageInfo/*= null*/) {
     // : CodeGenTypeCache(), Context(C), LangOpts(C.getLangOpts()), HeaderSearchOpts(HSO), PreprocessorOpts(PPO), CodeGenOpts(CGO), TheModule(M), Diags(diags), Target(C.getTargetInfo()), ABI(createCXXABI(*this)), VMContext(M.getContext()), TBAA(), TheTargetCodeGenInfo(), Types(*this), VTables(*this), ObjCRuntime(), OpenCLRuntime(), OpenMPRuntime(), CUDARuntime(), DebugInfo(), ObjCData(), NoObjCARCExceptionsMetadata(null), PGOReader(), PGOStats(), SanStats(), WeakRefReferences(), DeferredDecls(), DeferredDeclsToEmit(), Aliases(), Replacements(), GlobalValReplacements(), DiagnosedConflictingDefinitions(), DeferredVTables(), LLVMUsed(), LLVMCompilerUsed(), GlobalCtors(), GlobalDtors(), MangledDeclNames(), Manglings(), Annotations(), AnnotationStrings(), CFConstantStringMap(), ConstantStringMap(), StaticLocalDeclMap(), StaticLocalDeclGuardMap(), MaterializedGlobalTemporaryMap(), AtomicSetterHelperFnMap(), AtomicGetterHelperFnMap(), TypeDescriptorMap(), StaticExternCValues(), CXXThreadLocals(), CXXThreadLocalInits(), CXXThreadLocalInitVars(), CXXGlobalInits(), DelayedCXXInitPosition(), PrioritizedCXXGlobalInits(), CXXGlobalDtors(), ImportedModules(), LinkerOptionsMetadata(), CFConstantStringClassRef(), ConstantStringClassRef(), NSConstantStringType(null), ObjCFastEnumerationStateType(), NSConcreteGlobalBlock(null), NSConcreteStackBlock(null), BlockObjectAssign(null), BlockObjectDispose(null), BlockDescriptorType(null), GenericBlockLiteralType(null), Block(), LifetimeStartFn(null), LifetimeEndFn(null), initializedGlobalDecl(), SanitizerMD(new SanitizerMetadata(*this)), DeferredEmptyCoverageMappingDecls(), CoverageMapping(), MetadataIdMap(), ByrefHelpersCache() 
@@ -965,7 +965,7 @@ public class CodeGenModule extends CodeGenModule_TargetInfo implements Destructo
     this.DelayedCXXInitPosition = new DenseMapTypeUInt</*const*/ Decl /*P*/ >(DenseMapInfo$LikePtr.$Info(), 0);
     this.PrioritizedCXXGlobalInits = new SmallVector<std.pair<OrderGlobalInits, Function /*P*/ >>(8, new std.pairTypePtr<OrderGlobalInits, Function /*P*/ >(new OrderGlobalInits(), null));
     this.CXXGlobalDtors = new std.vector<std.pair<WeakVH, Constant /*P*/ >>(new std.pairTypePtr<WeakVH, Constant /*P*/ >(new WeakVH(), null));
-    this.ImportedModules = new SetVector<org.clang.basic.Module /*P*/ >((org.clang.basic.Module /*P*/ )null);
+    this.ImportedModules = new SetVector<org.clang.basic.Module$B /*P*/ >((org.clang.basic.Module$B /*P*/ )null);
     this.LinkerOptionsMetadata = new SmallVector<Metadata /*P*/ >(16, (Metadata /*P*/ )null);
     this.CFConstantStringClassRef = new WeakVH();
     this.ConstantStringClassRef = new WeakVH();

@@ -2080,7 +2080,7 @@ public class Decl extends FoldingSetImpl.NodeImpl implements Destructors.ClassWi
    FQN="clang::Decl::getOwningModuleSlow", NM="_ZNK5clang4Decl19getOwningModuleSlowEv",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.ast/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/AST/DeclBase.cpp -nm=_ZNK5clang4Decl19getOwningModuleSlowEv")
   //</editor-fold>
-  private Module /*P*/ getOwningModuleSlow() /*const*/ {
+  private Module$B /*P*/ getOwningModuleSlow() /*const*/ {
     assert (isFromASTFile()) : "Not from AST file?";
     return getASTContext().getExternalSource().getModule(getOwningModuleID());
   }
@@ -2107,7 +2107,7 @@ public class Decl extends FoldingSetImpl.NodeImpl implements Destructors.ClassWi
    FQN="clang::Decl::getImportedOwningModule", NM="_ZNK5clang4Decl23getImportedOwningModuleEv",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.ast/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/AST/ASTDumper.cpp -nm=_ZNK5clang4Decl23getImportedOwningModuleEv")
   //</editor-fold>
-  public Module /*P*/ getImportedOwningModule() /*const*/ {
+  public Module$B /*P*/ getImportedOwningModule() /*const*/ {
     if (!isFromASTFile()) {
       return null;
     }
@@ -2124,11 +2124,11 @@ public class Decl extends FoldingSetImpl.NodeImpl implements Destructors.ClassWi
    FQN="clang::Decl::getLocalOwningModule", NM="_ZNK5clang4Decl20getLocalOwningModuleEv",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.ast/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/AST/ASTDumper.cpp -nm=_ZNK5clang4Decl20getLocalOwningModuleEv")
   //</editor-fold>
-  public Module /*P*/ getLocalOwningModule() /*const*/ {
+  public Module$B /*P*/ getLocalOwningModule() /*const*/ {
     if (isFromASTFile() || !Hidden) {
       return null;
     }
-    return ((type$ptr<Module /*P*/ /*const*/ /*P*/>)$This$InASTContext).$at(-1);
+    return ((type$ptr<Module$B/*P*/ /*const*/ /*P*/>)$This$InASTContext).$at(-1);
   }
 
   //<editor-fold defaultstate="collapsed" desc="clang::Decl::setLocalOwningModule">
@@ -2137,9 +2137,9 @@ public class Decl extends FoldingSetImpl.NodeImpl implements Destructors.ClassWi
    FQN="clang::Decl::setLocalOwningModule", NM="_ZN5clang4Decl20setLocalOwningModuleEPNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.ast/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/AST/ASTDumper.cpp -nm=_ZN5clang4Decl20setLocalOwningModuleEPNS_6ModuleE")
   //</editor-fold>
-  public void setLocalOwningModule(Module /*P*/ M) {
+  public void setLocalOwningModule(Module$B /*P*/ M) {
     assert (!isFromASTFile() && Hidden && hasLocalOwningModuleStorage()) : "should not have a cached owning module";
-    ((type$ptr<Module /*P*/ /*P*/>)$This$InASTContext).$set(-1, M);
+    ((type$ptr<Module$B/*P*/ /*P*/>)$This$InASTContext).$set(-1, M);
   }
 
   
@@ -4206,7 +4206,7 @@ public class Decl extends FoldingSetImpl.NodeImpl implements Destructors.ClassWi
 //      char$ptr/*char P*/ Buffer = $tryClone(reinterpret_cast(char$ptr/*char P*/ .class, /*::*/$new_uint_ASTContext$C_uint(ExtraAlign + $sizeof_ptr(/*Module  */) + Size + Extra, Context)));
 //      Buffer.$inc(ExtraAlign);
 //      return /*FIXME:NEW_EXPR*//*new (Buffer)*/ new Module /*P*/ (Buffer.$add(1));
-      Start.$set((Module/*P*/)null);
+      Start.$set((Module$B/*P*/)null);
     } else {
       Result = Context.Allocate$JavaRef(1/*Decl object*/ + Extra);
     }

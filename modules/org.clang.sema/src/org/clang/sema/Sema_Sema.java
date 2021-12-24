@@ -860,14 +860,14 @@ public final void ActOnEndOfTranslationUnit() {
       {
         // If we are building a module, resolve all of the exported declarations
         // now.
-        Module /*P*/ CurrentModule = $this().PP.getCurrentModule();
+        Module$B /*P*/ CurrentModule = $this().PP.getCurrentModule();
         if ((CurrentModule != null)) {
           final ModuleMap /*&*/ ModMap = $this().PP.getHeaderSearchInfo().getModuleMap();
           
-          SmallVector<Module /*P*/> Stack/*J*/= new SmallVector<Module /*P*/>(2, (Module /*P*/)null);
+          SmallVector<Module$B/*P*/> Stack/*J*/= new SmallVector<Module$B/*P*/>(2, (Module$B /*P*/)null);
           Stack.push_back(CurrentModule);
           while (!Stack.empty()) {
-            Module /*P*/ Mod = Stack.pop_back_val();
+            Module$B /*P*/ Mod = Stack.pop_back_val();
             
             // Resolve the exported declarations and conflicts.
             // FIXME: Actually complain, once we figure out how to teach the

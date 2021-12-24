@@ -100,7 +100,7 @@ import static org.clang.frontend.impl.FrontendActionsStatics.*;
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.frontend/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Frontend/FrontendActions.cpp -nm=_ZN5clang20GenerateModuleActionE")
 //</editor-fold>
 public class GenerateModuleAction extends /*public*/ ASTFrontendAction implements Destructors.ClassWithDestructor {
-  private Module /*P*/ Module;
+  private Module$B /*P*/ Module;
   private /*const*/ FileEntry /*P*/ ModuleMapForUniquing;
   private boolean IsSystem;
 /*protected:*/
@@ -200,7 +200,7 @@ public class GenerateModuleAction extends /*public*/ ASTFrontendAction implement
   //</editor-fold>
   @Override public boolean BeginSourceFileAction(CompilerInstance /*&*/ CI, 
                        StringRef Filename)/* override*/ {
-    Module.UnresolvedHeaderDirective MissingHeader = null;
+    Module$B.UnresolvedHeaderDirective MissingHeader = null;
     std.unique_ptr<MemoryBuffer> InputBuffer = null;
     JavaCleaner $c$ = $createJavaCleaner();
     try {
@@ -266,7 +266,7 @@ public class GenerateModuleAction extends /*public*/ ASTFrontendAction implement
       
       // Check whether we can build this module at all.
       std.pairTypeBool<std.string> Requirement/*J*/= new std.pairTypeBool<std.string>(new std.string(), false);
-      MissingHeader/*J*/= new Module.UnresolvedHeaderDirective();
+      MissingHeader/*J*/= new Module$B.UnresolvedHeaderDirective();
       if (!Module.isAvailable(CI.getLangOpts(), CI.getTarget(), Requirement, 
           MissingHeader)) {
         if (MissingHeader.FileNameLoc.isValid()) {
@@ -294,7 +294,7 @@ public class GenerateModuleAction extends /*public*/ ASTFrontendAction implement
       SmallString/*256*/ HeaderContents/*J*/= new SmallString/*256*/(256);
       std.error_code Err = new std.error_code();
       {
-        Module.Header UmbrellaHeader = null;
+        Module$B.Header UmbrellaHeader = null;
         try {
           UmbrellaHeader = Module.getUmbrellaHeader();
           if (UmbrellaHeader.$bool()) {

@@ -185,9 +185,9 @@ public class IntervalPartition extends /*public*/ FunctionPass implements Destru
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/IntervalPartition.cpp -nm=_ZNK4llvm17IntervalPartition5printERNS_11raw_ostreamEPKNS_6ModuleE")
   //</editor-fold>
   public void print(final raw_ostream /*&*/ O) /*const*//* override*/ {
-    print(O, (/*const*/ Module /*P*/ )null);
+    print(O, (/*const*/ Module$IR /*P*/ )null);
   }
-  @Override public void print(final raw_ostream /*&*/ O, /*const*/ Module /*P*/ $Prm1/*= null*/) /*const*//* override*/ {
+  @Override public void print(final raw_ostream /*&*/ O, /*const*/ Module$IR /*P*/ $Prm1/*= null*/) /*const*//* override*/ {
     throw new UnsupportedOperationException("EmptyBody");
   }
 

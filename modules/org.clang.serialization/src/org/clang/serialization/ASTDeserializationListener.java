@@ -183,7 +183,7 @@ public interface/*class*/ ASTDeserializationListener extends org.clang.ast.ASTDe
    FQN="clang::ASTDeserializationListener::ModuleRead", NM="_ZN5clang26ASTDeserializationListener10ModuleReadEjPNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.serialization/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Serialization/ASTCommon.cpp -nm=_ZN5clang26ASTDeserializationListener10ModuleReadEjPNS_6ModuleE")
   //</editor-fold>
-  public default/*interface*/ /*virtual*/ void ModuleRead(/*uint32_t*/int ID, Module /*P*/ Mod) {
+  public default/*interface*/ /*virtual*/ void ModuleRead(/*uint32_t*/int ID, Module$B /*P*/ Mod) {
   }
 
 

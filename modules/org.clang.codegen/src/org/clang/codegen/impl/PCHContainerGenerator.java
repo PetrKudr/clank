@@ -122,7 +122,7 @@ public class PCHContainerGenerator extends /*public*/ ASTConsumer implements Des
   private /*const*/ TargetOptions TargetOpts;
   private /*const*/ LangOptions LangOpts;
   private std.unique_ptr<LLVMContext> VMContext;
-  private std.unique_ptr<org.llvm.ir.Module> M;
+  private std.unique_ptr<org.llvm.ir.Module$IR> M;
   private std.unique_ptr<CodeGenModule> Builder;
   private std.unique_ptr<raw_pwrite_stream> OS;
   private std.shared_ptr<PCHBuffer> Buffer;
@@ -310,7 +310,7 @@ public class PCHContainerGenerator extends /*public*/ ASTConsumer implements Des
     this.TargetOpts = new TargetOptions(CI.getTargetOpts());
     this.LangOpts = new LangOptions(CI.getLangOpts());
     this.VMContext = new std.unique_ptr<LLVMContext>();
-    this.M = new std.unique_ptr<org.llvm.ir.Module>();
+    this.M = new std.unique_ptr<org.llvm.ir.Module$IR>();
     this.Builder = new std.unique_ptr<CodeGenModule>();
     this.OS = new std.unique_ptr<raw_pwrite_stream>(JD$Move.INSTANCE, std.move(OS));
     this.Buffer = new std.shared_ptr<PCHBuffer>(JD$Move.INSTANCE, std.move(Buffer));
@@ -359,7 +359,7 @@ public class PCHContainerGenerator extends /*public*/ ASTConsumer implements Des
     
     Ctx = $AddrOf(Context);
     VMContext.reset(new LLVMContext());
-    M.reset(new org.llvm.ir.Module(new StringRef(MainFileName), VMContext.$star()));
+    M.reset(new org.llvm.ir.Module$IR(new StringRef(MainFileName), VMContext.$star()));
     M.$arrow().setDataLayout(Ctx.getTargetInfo().getDataLayout());
     Builder.reset(new CodeGenModule($Deref(Ctx), HeaderSearchOpts, PreprocessorOpts, CodeGenOpts, M.$star(), Diags));
     
@@ -472,14 +472,14 @@ public class PCHContainerGenerator extends /*public*/ ASTConsumer implements Des
   //</editor-fold>
   @Override public void HandleTranslationUnit(final ASTContext /*&*/ Ctx)/* override*/ {
     std.unique_ptr<LLVMContext> VMContext = null;
-    std.unique_ptr<org.llvm.ir.Module> M = null;
+    std.unique_ptr<org.llvm.ir.Module$IR> M = null;
     std.unique_ptr<CodeGenModule> Builder = null;
     JavaCleaner $c$ = $createJavaCleaner();
     try {
       assert (M.$bool() && VMContext.$bool() && Builder.$bool());
       // Delete these on function exit.
       VMContext = new std.unique_ptr<LLVMContext>(JD$Move.INSTANCE, std.move(this.VMContext));
-      M = new std.unique_ptr<org.llvm.ir.Module>(JD$Move.INSTANCE, std.move(this.M));
+      M = new std.unique_ptr<org.llvm.ir.Module$IR>(JD$Move.INSTANCE, std.move(this.M));
       Builder = new std.unique_ptr<CodeGenModule>(JD$Move.INSTANCE, std.move(this.Builder));
       if (Diags.hasErrorOccurred()) {
         return;
@@ -513,7 +513,7 @@ public class PCHContainerGenerator extends /*public*/ ASTConsumer implements Des
       org.llvm.ir.ArrayType /*P*/ Ty = org.llvm.ir.ArrayType.get(Int8Ty, $uint2ulong(Size));
       Constant /*P*/ Data = ConstantDataArray.getString(VMContext.$star(), new StringRef(SerializedAST.data(), Size), 
           /*AddNull=*/ false);
-      std.unique_ptr<org.llvm.ir.Module> M_final = M;
+      std.unique_ptr<org.llvm.ir.Module$IR> M_final = M;
       GlobalVariable /*P*/ ASTSym = /*NEW_EXPR [GlobalVariable::new]*/GlobalVariable.$new_GlobalVariable((type$ptr<?> New$Mem)->{
           return new GlobalVariable(M_final.$star(), Ty, /*constant*/ true, GlobalVariable.LinkageTypes.InternalLinkage, Data, 
           new Twine(/*KEEP_STR*/"__clang_ast"));

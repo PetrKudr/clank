@@ -955,7 +955,7 @@ public class LLVMContext implements LLVMOpaqueContext, Destructors.ClassWithDest
    FQN="llvm::LLVMContext::addModule", NM="_ZN4llvm11LLVMContext9addModuleEPNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/LLVMContext.cpp -nm=_ZN4llvm11LLVMContext9addModuleEPNS_6ModuleE")
   //</editor-fold>
-  /*friend*//*private*/ void addModule(Module /*P*/ M) {
+  /*friend*//*private*/ void addModule(Module$IR /*P*/ M) {
     pImpl.OwnedModules.insert(M);
   }
 
@@ -967,7 +967,7 @@ public class LLVMContext implements LLVMOpaqueContext, Destructors.ClassWithDest
    FQN="llvm::LLVMContext::removeModule", NM="_ZN4llvm11LLVMContext12removeModuleEPNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/LLVMContext.cpp -nm=_ZN4llvm11LLVMContext12removeModuleEPNS_6ModuleE")
   //</editor-fold>
-  /*friend*//*private*/ void removeModule(Module /*P*/ M) {
+  /*friend*//*private*/ void removeModule(Module$IR /*P*/ M) {
     pImpl.OwnedModules.erase(M);
   }
 

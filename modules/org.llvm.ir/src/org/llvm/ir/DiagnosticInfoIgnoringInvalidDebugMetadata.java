@@ -90,7 +90,7 @@ import org.llvm.ir.*;
 public class DiagnosticInfoIgnoringInvalidDebugMetadata extends /*public*/ DiagnosticInfo implements Destructors.ClassWithDestructor {
 /*private:*/
   /// The module that is concerned by this debug metadata version diagnostic.
-  private final /*const*/ Module /*&*/ M;
+  private final /*const*/ Module$IR /*&*/ M;
 /*public:*/
   /// \p The module that is concerned by this debug metadata version diagnostic.
   //<editor-fold defaultstate="collapsed" desc="llvm::DiagnosticInfoIgnoringInvalidDebugMetadata::DiagnosticInfoIgnoringInvalidDebugMetadata">
@@ -99,10 +99,10 @@ public class DiagnosticInfoIgnoringInvalidDebugMetadata extends /*public*/ Diagn
    FQN="llvm::DiagnosticInfoIgnoringInvalidDebugMetadata::DiagnosticInfoIgnoringInvalidDebugMetadata", NM="_ZN4llvm42DiagnosticInfoIgnoringInvalidDebugMetadataC1ERKNS_6ModuleENS_18DiagnosticSeverityE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/DiagnosticInfo.cpp -nm=_ZN4llvm42DiagnosticInfoIgnoringInvalidDebugMetadataC1ERKNS_6ModuleENS_18DiagnosticSeverityE")
   //</editor-fold>
-  public DiagnosticInfoIgnoringInvalidDebugMetadata(final /*const*/ Module /*&*/ M) {
+  public DiagnosticInfoIgnoringInvalidDebugMetadata(final /*const*/ Module$IR /*&*/ M) {
     this(M, DiagnosticSeverity.DS_Warning);
   }
-  public DiagnosticInfoIgnoringInvalidDebugMetadata(final /*const*/ Module /*&*/ M, DiagnosticSeverity Severity/*= DS_Warning*/) {
+  public DiagnosticInfoIgnoringInvalidDebugMetadata(final /*const*/ Module$IR /*&*/ M, DiagnosticSeverity Severity/*= DS_Warning*/) {
     // : DiagnosticInfo(DK_DebugMetadataVersion, Severity), M(M)
     //START JInit
     super(DiagnosticKind.DK_DebugMetadataVersion.getValue(), Severity);
@@ -117,7 +117,7 @@ public class DiagnosticInfoIgnoringInvalidDebugMetadata extends /*public*/ Diagn
    FQN="llvm::DiagnosticInfoIgnoringInvalidDebugMetadata::getModule", NM="_ZNK4llvm42DiagnosticInfoIgnoringInvalidDebugMetadata9getModuleEv",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/DiagnosticInfo.cpp -nm=_ZNK4llvm42DiagnosticInfoIgnoringInvalidDebugMetadata9getModuleEv")
   //</editor-fold>
-  public /*const*/ Module /*&*/ getModule() /*const*/ {
+  public /*const*/ Module$IR /*&*/ getModule() /*const*/ {
     return M;
   }
 

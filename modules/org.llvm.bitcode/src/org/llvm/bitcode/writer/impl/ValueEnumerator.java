@@ -369,7 +369,7 @@ public class ValueEnumerator implements Destructors.ClassWithDestructor {
    FQN="llvm::ValueEnumerator::ValueEnumerator", NM="_ZN4llvm15ValueEnumeratorC1ERKNS_6ModuleEb",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.bitcode/llvmToClangType ${LLVM_SRC}/llvm/lib/Bitcode/Writer/ValueEnumerator.cpp -nm=_ZN4llvm15ValueEnumeratorC1ERKNS_6ModuleEb")
   //</editor-fold>
-  public ValueEnumerator(/*const*/ Module /*&*/ M, 
+  public ValueEnumerator(/*const*/ Module$IR /*&*/ M, 
       boolean ShouldPreserveUseListOrder) {
     // : UseListOrders(), TypeMap(), Types(), ValueMap(), Values(), Comdats(), MDs(), FunctionMDs(), MetadataMap(), FunctionMDInfo(), ShouldPreserveUseListOrder(ShouldPreserveUseListOrder), AttributeGroupMap(), AttributeGroups(), AttributeMap(), Attribute(), GlobalBasicBlockIDs(), InstructionMap(), BasicBlocks(), NumModuleMDs(0), NumMDStrings(0) 
     throw new UnsupportedOperationException("EmptyBody");
@@ -976,7 +976,7 @@ public class ValueEnumerator implements Destructors.ClassWithDestructor {
    FQN="llvm::ValueEnumerator::EnumerateNamedMetadata", NM="_ZN4llvm15ValueEnumerator22EnumerateNamedMetadataERKNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.bitcode/llvmToClangType ${LLVM_SRC}/llvm/lib/Bitcode/Writer/ValueEnumerator.cpp -nm=_ZN4llvm15ValueEnumerator22EnumerateNamedMetadataERKNS_6ModuleE")
   //</editor-fold>
-  private void EnumerateNamedMetadata(/*const*/ Module /*&*/ M) {
+  private void EnumerateNamedMetadata(/*const*/ Module$IR /*&*/ M) {
     throw new UnsupportedOperationException("EmptyBody");
   }
 

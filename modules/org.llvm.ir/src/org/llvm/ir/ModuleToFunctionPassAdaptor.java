@@ -190,11 +190,11 @@ public class ModuleToFunctionPassAdaptor</*typename*/ FunctionPassT extends IPas
    FQN="llvm::ModuleToFunctionPassAdaptor::run", NM="_ZN4llvm27ModuleToFunctionPassAdaptor3runERNS_6ModuleERNS_15AnalysisManagerIS1_EE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/PassManager.cpp -nm=_ZN4llvm27ModuleToFunctionPassAdaptor3runERNS_6ModuleERNS_15AnalysisManagerIS1_EE")
   //</editor-fold>
-  public PreservedAnalyses run(final Module /*&*/ M, final AnalysisManager<Module> /*&*/ AM) {
+  public PreservedAnalyses run(final Module$IR /*&*/ M, final AnalysisManager<Module$IR> /*&*/ AM) {
     PreservedAnalyses PA = null;
     try {
       // Setup the function analysis manager from its proxy.
-      final AnalysisManager<Function> /*&*/ FAM = AM.getResult((Class<InnerAnalysisManagerProxy<AnalysisManager<Function>, Module>>)(Class<?>)InnerAnalysisManagerProxy.class, M).getManager();
+      final AnalysisManager<Function> /*&*/ FAM = AM.getResult((Class<InnerAnalysisManagerProxy<AnalysisManager<Function>, Module$IR>>)(Class<?>)InnerAnalysisManagerProxy.class, M).getManager();
       
       PA = PreservedAnalyses.all();
       for (final Function /*&*/ F : M) {
@@ -225,7 +225,7 @@ public class ModuleToFunctionPassAdaptor</*typename*/ FunctionPassT extends IPas
       // of function analyses by the proxy, but that's OK because we've taken
       // care to invalidate analyses in the function analysis manager
       // incrementally above.
-      PA.<InnerAnalysisManagerProxy<AnalysisManager<Function>, Module> >preserve(InnerAnalysisManagerProxy.class);
+      PA.<InnerAnalysisManagerProxy<AnalysisManager<Function>, Module$IR> >preserve(InnerAnalysisManagerProxy.class);
       return new PreservedAnalyses(JD$Move.INSTANCE, PA);
     } finally {
       if (PA != null) { PA.$destroy(); }

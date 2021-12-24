@@ -175,7 +175,7 @@ public class CostModelAnalysis extends /*public*/ FunctionPass implements Destru
    FQN="(anonymous namespace)::CostModelAnalysis::print", NM="_ZNK12_GLOBAL__N_117CostModelAnalysis5printERN4llvm11raw_ostreamEPKNS1_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/CostModel.cpp -nm=_ZNK12_GLOBAL__N_117CostModelAnalysis5printERN4llvm11raw_ostreamEPKNS1_6ModuleE")
   //</editor-fold>
-  @Override public/*private*/ void print(final raw_ostream /*&*/ OS, /*const*/ Module /*P*/ $Prm1) /*const*//* override*/ {
+  @Override public/*private*/ void print(final raw_ostream /*&*/ OS, /*const*/ Module$IR /*P*/ $Prm1) /*const*//* override*/ {
     throw new UnsupportedOperationException("EmptyBody");
   }
 

@@ -83,7 +83,7 @@ import static org.clank.support.Native.*;
 import org.llvm.adt.*;
 import org.llvm.adt.aliases.*;
 import org.clang.basic.*;
-import org.clang.basic.Module.HeaderKind;
+import org.clang.basic.Module$B.HeaderKind;
 import org.clang.basic.vfs.*;
 import org.clang.lex.*;
 import org.llvm.support.sys.path;
@@ -155,7 +155,7 @@ public static void addHeaderInclude(StringRef HeaderName,
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.frontend/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Frontend/FrontendActions.cpp -nm=_ZL27collectModuleHeaderIncludesRKN5clang11LangOptionsERNS_11FileManagerERNS_9ModuleMapEPNS_6ModuleERN4llvm15SmallVectorImplIcEE")
 //</editor-fold>
 public static std.error_code collectModuleHeaderIncludes(/*const*/ LangOptions /*&*/ LangOpts, FileManager /*&*/ FileMgr, 
-                           ModuleMap /*&*/ ModMap, Module /*P*/ _Module, 
+                           ModuleMap /*&*/ ModMap, Module$B /*P*/ _Module, 
                            SmallString/*&*/ Includes) {
   // Don't collect any headers for unavailable modules.
   if (!_Module.isAvailable()) {
@@ -163,8 +163,8 @@ public static std.error_code collectModuleHeaderIncludes(/*const*/ LangOptions /
   }
   
   // Add includes for each of these headers.
-  for (HeaderKind HK : new /*const*/ HeaderKind [/*2*/] {Module.HeaderKind.HK_Normal, Module.HeaderKind.HK_Private}) {
-    for (Module.Header /*&*/ H : _Module.Headers[HK.getValue()]) {
+  for (HeaderKind HK : new /*const*/ HeaderKind [/*2*/] {Module$B.HeaderKind.HK_Normal, Module$B.HeaderKind.HK_Private}) {
+    for (Module$B.Header /*&*/ H : _Module.Headers[HK.getValue()]) {
       _Module.addTopHeader(H.Entry);
       // Use the path as specified in the module map file. We'll look for this
       // file relative to the module build directory (the directory containing
@@ -174,7 +174,7 @@ public static std.error_code collectModuleHeaderIncludes(/*const*/ LangOptions /
     }
   }
   {
-    Module.Header UmbrellaHeader = null;
+    Module$B.Header UmbrellaHeader = null;
     try {
       // Note that Module->PrivateHeaders will not be a TopHeader.
       UmbrellaHeader = _Module.getUmbrellaHeader();
@@ -186,7 +186,7 @@ public static std.error_code collectModuleHeaderIncludes(/*const*/ LangOptions /
               _Module.IsExternC);
         }
       } else {
-        Module.DirectoryName UmbrellaDir = null;
+        Module$B.DirectoryName UmbrellaDir = null;
         try {
           UmbrellaDir = _Module.getUmbrellaDir();
           if (UmbrellaDir.$bool()) {
@@ -254,7 +254,7 @@ public static std.error_code collectModuleHeaderIncludes(/*const*/ LangOptions /
   }
   
   // Recurse into submodules.
-  for (std.vector.iterator<Module /*P*/ > Sub = _Module.submodule_begin(), 
+  for (std.vector.iterator<Module$B/*P*/ > Sub = _Module.submodule_begin(), 
       SubEnd = _Module.submodule_end();
        $noteq___normal_iterator$C(Sub, SubEnd); Sub.$preInc())  {
     {

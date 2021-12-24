@@ -103,7 +103,7 @@ import org.llvm.support.dwarf.SourceLanguage;
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/DIBuilder.cpp -nm=_ZN4llvm9DIBuilderE")
 //</editor-fold>
 public class DIBuilder implements Destructors.ClassWithDestructor {
-  private final Module /*&*/ M;
+  private final Module$IR /*&*/ M;
   private final LLVMContext /*&*/ VMContext;
 
   private DICompileUnit /*P*/ CUNode; ///< The one compile unit created by this DIBuiler.
@@ -176,10 +176,10 @@ public class DIBuilder implements Destructors.ClassWithDestructor {
    FQN="llvm::DIBuilder::DIBuilder", NM="_ZN4llvm9DIBuilderC1ERNS_6ModuleEb",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/DIBuilder.cpp -nm=_ZN4llvm9DIBuilderC1ERNS_6ModuleEb")
   //</editor-fold>
-  public DIBuilder(final Module /*&*/ m) {
+  public DIBuilder(final Module$IR /*&*/ m) {
     this(m, true);
   }
-  public DIBuilder(final Module /*&*/ m, boolean AllowUnresolvedNodes/*= true*/) {
+  public DIBuilder(final Module$IR /*&*/ m, boolean AllowUnresolvedNodes/*= true*/) {
     // : M(m), VMContext(M.getContext()), CUNode(null), DeclareFn(null), ValueFn(null), AllEnumTypes(), AllRetainTypes(), AllSubprograms(), AllGVs(), AllImportedModules(), UnresolvedNodes(), AllowUnresolvedNodes(AllowUnresolvedNodes), PreservedVariables()
     //START JInit
     this./*&*/M=/*&*/m;

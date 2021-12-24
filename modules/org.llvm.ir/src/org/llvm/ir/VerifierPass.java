@@ -163,7 +163,7 @@ public class VerifierPass implements /*public*/ PassInfoMixin<VerifierPass>, IPa
    FQN="llvm::VerifierPass::run", NM="_ZN4llvm12VerifierPass3runERNS_6ModuleERNS_15AnalysisManagerIS1_EE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/Verifier.cpp -nm=_ZN4llvm12VerifierPass3runERNS_6ModuleERNS_15AnalysisManagerIS1_EE")
   //</editor-fold>
-  public PreservedAnalyses run(final Module /*&*/ M, final AnalysisManager<Module> /*&*/ AM) {
+  public PreservedAnalyses run(final Module$IR /*&*/ M, final AnalysisManager<Module$IR> /*&*/ AM) {
     VerifierAnalysis.Result Res = new VerifierAnalysis.Result(AM.getResult(VerifierAnalysis.class, M));
     if (FatalErrors) {
       if (Res.IRBroken) {

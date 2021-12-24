@@ -83,7 +83,7 @@ import org.llvm.adt.ilist_nextprev_traits;
 import org.llvm.adt.ilist_node_traits;
 import org.llvm.adt.iplist;
 import org.llvm.ir.Function;
-import org.llvm.ir.Module;
+import org.llvm.ir.Module$IR;
 import org.llvm.ir.SymbolTableList;
 import org.llvm.ir.SymbolTableListTraits;
 import org.llvm.ir.ValueSymbolTable;
@@ -101,7 +101,7 @@ import org.llvm.ir.ValueSymbolTable;
  FQN="llvm::SymbolTableListTraits<Function>", NM="_ZN4llvm21SymbolTableListTraitsINS_8FunctionEEE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/Module.cpp -nm=_ZN4llvm21SymbolTableListTraitsINS_8FunctionEEE")
 //</editor-fold>
-public class SymbolTableListTraits$Function implements /*public*/ SymbolTableListTraits<Function, Module>, /*public*/ ilist_nextprev_traits<Function>, /*public*/ ilist_node_traits<Function> {
+public class SymbolTableListTraits$Function implements /*public*/ SymbolTableListTraits<Function, Module$IR>, /*public*/ ilist_nextprev_traits<Function>, /*public*/ ilist_node_traits<Function> {
   // JAVA: typedef SymbolTableList<Function> ListTy
 //  public final class ListTy extends SymbolTableList<Function, Module>{ };
   // JAVA: typedef typename SymbolTableListParentType<Function>::type ItemParentClass
@@ -130,7 +130,7 @@ public class SymbolTableListTraits$Function implements /*public*/ SymbolTableLis
    FQN="llvm::SymbolTableListTraits<Function>::getListOwner", NM="_ZN4llvm21SymbolTableListTraitsINS_8FunctionEE12getListOwnerEv",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/Module.cpp -nm=_ZN4llvm21SymbolTableListTraitsINS_8FunctionEE12getListOwnerEv")
   //</editor-fold>
-  public Module getListOwner( /*typename*/ /*P*/ iplist<Function> list) {
+  public Module$IR getListOwner( /*typename*/ /*P*/ iplist<Function> list) {
     assert list instanceof SymbolTableList$Function : "forgot to pass valid list object?" + NativeTrace.getIdentityStr(list);
     return ((SymbolTableList$Function) list).getListOwner(list);
   }
@@ -142,7 +142,7 @@ public class SymbolTableListTraits$Function implements /*public*/ SymbolTableLis
    FQN="llvm::SymbolTableListTraits<Function>::getList", NM="_ZN4llvm21SymbolTableListTraitsINS_8FunctionEE7getListEPNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/Module.cpp -nm=_ZN4llvm21SymbolTableListTraitsINS_8FunctionEE7getListEPNS_6ModuleE")
   //</editor-fold>
-  public SymbolTableList<Function, Module>/*&*/ getList(Module /*P*/ Par) {
+  public SymbolTableList<Function, Module$IR>/*&*/ getList(Module$IR /*P*/ Par) {
     // return Par ->* (Par.getSublistAccess((Function /*P*/ )(GlobalAlias /*P*/ )null));
     return /*P*/ Par.getSublistAccess((Function) null).$call(Par);
   }
@@ -195,9 +195,9 @@ public class SymbolTableListTraits$Function implements /*public*/ SymbolTableLis
   }
 
   @Converted(kind = Converted.Kind.MANUAL_ADDED)
-  public static class SymbolTableList$Function extends SymbolTableList<Function, Module> {
+  public static class SymbolTableList$Function extends SymbolTableList<Function, Module$IR> {
 
-    public SymbolTableList$Function(Module/*P*/ Owner) {
+    public SymbolTableList$Function(Module$IR/*P*/ Owner) {
       super(Owner);
     }
     

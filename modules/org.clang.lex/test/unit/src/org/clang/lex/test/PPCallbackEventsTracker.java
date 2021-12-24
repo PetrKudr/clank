@@ -82,7 +82,7 @@ import org.clang.basic.CharSourceRange;
 import org.clang.basic.FileEntry;
 import org.clang.basic.FileID;
 import org.clang.basic.IdentifierInfo;
-import org.clang.basic.Module;
+import org.clang.basic.Module$B;
 import org.clang.basic.SourceLocation;
 import org.clang.basic.SourceRange;
 import org.clang.basic.SrcMgr;
@@ -397,7 +397,7 @@ public class PPCallbackEventsTracker extends /*public*/ PPCallbacks implements D
     public final String FileEntryName;
     public final SmallString/*16*/ SearchPath;
     public final SmallString/*16*/ RelativePath;
-    public final /*const*/ Module /*P*/ Imported;
+    public final /*const*/ Module$B /*P*/ Imported;
     
     public PPInclusionDirectiveEvent(
             PPCallbackEventKind kind,
@@ -405,7 +405,7 @@ public class PPCallbackEventsTracker extends /*public*/ PPCallbacks implements D
             /*const*/ Token /*&*/ IncludeTok, StringRef FileName, boolean IsAngled,
             CharSourceRange FilenameRange, /*const*/ FileEntry /*P*/ File,
             StringRef SearchPath, StringRef RelativePath,
-            /*const*/ Module /*P*/ Imported) {
+            /*const*/ Module$B /*P*/ Imported) {
       super(kind, HashLoc, EodLoc, IncludeTok.getLocation());
       
       this.IncludeTok = new Token();
@@ -430,7 +430,7 @@ public class PPCallbackEventsTracker extends /*public*/ PPCallbacks implements D
             SourceLocation IncludeTokLoc, StringRef FileName, boolean IsAngled,
             CharSourceRange FilenameRange, String File,
             StringRef SearchPath, StringRef RelativePath,
-            /*const*/ Module /*P*/ Imported) {
+            /*const*/ Module$B /*P*/ Imported) {
       super(kind, HashLoc, EodLoc, IncludeTokLoc);
       
       this.IncludeTok = new Token();
@@ -675,12 +675,12 @@ public class PPCallbackEventsTracker extends /*public*/ PPCallbacks implements D
   // #inclusion handling
   
   @Override
-  public void InclusionDirective(SourceLocation HashLoc, SourceLocation EodLoc, /*const*/ Token /*&*/ IncludeTok, StringRef FileName, boolean IsAngled, CharSourceRange FilenameRange, /*const*/ FileEntry /*P*/ File, StringRef SearchPath, StringRef RelativePath, /*const*/ Module /*P*/ Imported) {
+  public void InclusionDirective(SourceLocation HashLoc, SourceLocation EodLoc, /*const*/ Token /*&*/ IncludeTok, StringRef FileName, boolean IsAngled, CharSourceRange FilenameRange, /*const*/ FileEntry /*P*/ File, StringRef SearchPath, StringRef RelativePath, /*const*/ Module$B /*P*/ Imported) {
     events.add(new PPInclusionDirectiveEvent(INCLUSION_DIRECTIVE, HashLoc, EodLoc, IncludeTok, FileName, IsAngled, FilenameRange, File, SearchPath, RelativePath, Imported));
   }
   
   static PPInclusionDirectiveEvent INCLUSION_DIRECTIVE(/*SourceLocation*/int  HashLoc, /*SourceLocation*/int EodLoc, /*SourceLocation*/int IncludeTokLoc, /*StringRef*/String FileName, boolean IsAngled,
-          CharSourceRange FilenameRange, String File, /*StringRef*/String SearchPath, /*StringRef*/String RelativePath, /*const*/ Module /*P*/ Imported) {
+          CharSourceRange FilenameRange, String File, /*StringRef*/String SearchPath, /*StringRef*/String RelativePath, /*const*/ Module$B /*P*/ Imported) {
     return new PPInclusionDirectiveEvent(INCLUSION_DIRECTIVE, SourceLocation.getFromRawEncoding(HashLoc), SourceLocation.getFromRawEncoding(EodLoc), SourceLocation.getFromRawEncoding(IncludeTokLoc), new StringRef(FileName), IsAngled,
             FilenameRange,  File, new StringRef(SearchPath),  new StringRef(RelativePath), Imported);
   }

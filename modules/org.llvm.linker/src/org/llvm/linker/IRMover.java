@@ -406,7 +406,7 @@ public class IRMover implements Destructors.ClassWithDestructor {
    FQN="llvm::IRMover::IRMover", NM="_ZN4llvm7IRMoverC1ERNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.linker/llvmToClangType ${LLVM_SRC}/llvm/lib/Linker/IRMover.cpp -nm=_ZN4llvm7IRMoverC1ERNS_6ModuleE")
   //</editor-fold>
-  public IRMover(final Module /*&*/ M) {
+  public IRMover(final Module$IR /*&*/ M) {
     // : Composite(M), IdentifiedStructTypes(), SharedMDs() 
     //START JInit
     this./*&*/Composite=/*&*/M;
@@ -446,14 +446,14 @@ public class IRMover implements Destructors.ClassWithDestructor {
    FQN="llvm::IRMover::move", NM="_ZN4llvm7IRMover4moveESt10unique_ptrINS_6ModuleESt14default_deleteIS2_EENS_8ArrayRefIPNS_11GlobalValueEEESt8functionIFvRS7_SA_IFvSB_EEEE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.linker/llvmToClangType ${LLVM_SRC}/llvm/lib/Linker/IRMover.cpp -nm=_ZN4llvm7IRMover4moveESt10unique_ptrINS_6ModuleESt14default_deleteIS2_EENS_8ArrayRefIPNS_11GlobalValueEEESt8functionIFvRS7_SA_IFvSB_EEEE")
   //</editor-fold>
-  public Error move(std.unique_ptr<Module> Src, ArrayRef<GlobalValue /*P*/ > ValuesToLink, 
+  public Error move(std.unique_ptr<Module$IR> Src, ArrayRef<GlobalValue /*P*/ > ValuesToLink, 
       GlobalValueValueAdder2Void AddLazyFor) {
     IRLinker TheIRLinker = null;
     Error E = null;
     JavaCleaner $c$ = $createJavaCleaner();
     try {
       TheIRLinker/*J*/= $c$.clean(new IRLinker(Composite, SharedMDs, IdentifiedStructTypes, 
-          $c$.track(new std.unique_ptr<Module>(JD$Move.INSTANCE, std.move(Src))), new ArrayRef<GlobalValue /*P*/ >(ValuesToLink), AddLazyFor));
+          $c$.track(new std.unique_ptr<Module$IR>(JD$Move.INSTANCE, std.move(Src))), new ArrayRef<GlobalValue /*P*/ >(ValuesToLink), AddLazyFor));
       E = TheIRLinker.run();
       Composite.dropTriviallyDeadConstantArrays();
       return new Error(JD$Move.INSTANCE, E);
@@ -470,12 +470,12 @@ public class IRMover implements Destructors.ClassWithDestructor {
    FQN="llvm::IRMover::getModule", NM="_ZN4llvm7IRMover9getModuleEv",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.linker/llvmToClangType ${LLVM_SRC}/llvm/lib/Linker/IRMover.cpp -nm=_ZN4llvm7IRMover9getModuleEv")
   //</editor-fold>
-  public Module /*&*/ getModule() {
+  public Module$IR /*&*/ getModule() {
     return Composite;
   }
 
 /*private:*/
-  private final Module /*&*/ Composite;
+  private final Module$IR /*&*/ Composite;
   private IdentifiedStructTypeSet IdentifiedStructTypes;
   private DenseMap</*const*/ Metadata /*P*/ , TrackingMDRef> SharedMDs; ///< A Metadata map to use for all calls to \a move().
   //<editor-fold defaultstate="collapsed" desc="llvm::IRMover::~IRMover">

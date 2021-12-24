@@ -180,10 +180,10 @@ public static AttributeSet getAttributes(final LLVMContext /*&*/ C, /*Intrinsic.
  FQN="llvm::Intrinsic::getDeclaration", NM="_ZN4llvm9Intrinsic14getDeclarationEPNS_6ModuleENS0_2IDENS_8ArrayRefIPNS_4TypeEEE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType -body-delegate ${LLVM_SRC}/llvm/lib/AsmParser/LLParser.cpp -nm=_ZN4llvm9Intrinsic14getDeclarationEPNS_6ModuleENS0_2IDENS_8ArrayRefIPNS_4TypeEEE")
 //</editor-fold>
-public static Function /*P*/ getDeclaration(Module /*P*/ M, /*Intrinsic.ID*/int id) {
+public static Function /*P*/ getDeclaration(Module$IR /*P*/ M, /*Intrinsic.ID*/int id) {
   return getDeclaration(M, id, new ArrayRef<Type /*P*/ >(None, true));
 }
-public static Function /*P*/ getDeclaration(Module /*P*/ M, /*Intrinsic.ID*/int id, ArrayRef<Type /*P*/ > Tys/*= None*/) {
+public static Function /*P*/ getDeclaration(Module$IR /*P*/ M, /*Intrinsic.ID*/int id, ArrayRef<Type /*P*/ > Tys/*= None*/) {
   return /*delegate*/org.llvm.ir.intrinsic.impl.FunctionIntrinsicGlobals.
     getDeclaration(M, id, Tys);
 }

@@ -330,7 +330,7 @@ public static InputKind getSourceInputKindFromOptions(/*const*/ LangOptions /*&*
 //</editor-fold>
 public static boolean compileModuleImpl(CompilerInstance /*&*/ ImportingInstance, 
                  SourceLocation ImportLoc, 
-                 Module /*P*/ Module, 
+                 Module$B /*P*/ Module, 
                  StringRef ModuleFileName) {
   IntrusiveRefCntPtr<CompilerInvocation> Invocation = null;
   CompilerInstance Instance = null;
@@ -501,7 +501,7 @@ public static boolean compileModuleImpl(CompilerInstance /*&*/ ImportingInstance
 //</editor-fold>
 public static boolean compileAndLoadModule(CompilerInstance /*&*/ ImportingInstance, 
                     SourceLocation ImportLoc, 
-                    SourceLocation ModuleNameLoc, Module /*P*/ Module, 
+                    SourceLocation ModuleNameLoc, Module$B /*P*/ Module, 
                     StringRef ModuleFileName) {
   DiagnosticsEngine /*&*/ Diags = ImportingInstance.getDiagnostics();
   
@@ -596,7 +596,7 @@ public static boolean compileAndLoadModule(CompilerInstance /*&*/ ImportingInsta
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.frontend/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Frontend/CompilerInstance.cpp -nm=_ZL16checkConfigMacroRN5clang12PreprocessorEN4llvm9StringRefEPNS_6ModuleENS_14SourceLocationE")
 //</editor-fold>
 public static void checkConfigMacro(Preprocessor /*&*/ PP, std.string ConfigMacro, 
-                Module /*P*/ Mod, SourceLocation ImportLoc) {
+                Module$B /*P*/ Mod, SourceLocation ImportLoc) {
   IdentifierInfo /*P*/ Id = PP.getIdentifierInfo(ConfigMacro);
   SourceManager /*&*/ SourceMgr = PP.getSourceManager();
   

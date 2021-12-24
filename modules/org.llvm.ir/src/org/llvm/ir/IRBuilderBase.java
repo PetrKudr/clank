@@ -751,7 +751,7 @@ public class IRBuilderBase implements Destructors.ClassWithDestructor {
                     final /*const*/ Twine /*&*/ Name/*= ""*/,
                     /*uint*/int AddressSpace/*= 0*/) {
     Constant /*P*/ StrConstant = ConstantDataArray.getString(Context, new StringRef(Str));
-    final Module /*&*/ M = $Deref(BB.getParent().getParent());
+    final Module$IR /*&*/ M = $Deref(BB.getParent().getParent());
     GlobalVariable /*P*/ GV = /*NEW_EXPR [GlobalVariable::new]*/GlobalVariable.$new_GlobalVariable((type$ptr<?> New$Mem)->{
         return new GlobalVariable(M, StrConstant.getType(),
                 true, GlobalValue.LinkageTypes.PrivateLinkage,
@@ -1127,7 +1127,7 @@ public class IRBuilderBase implements Destructors.ClassWithDestructor {
     Ptr = getCastedInt8PtrValue(Ptr);
     Value /*P*/ Ops[/*5*/] = new Value /*P*/  [/*5*/] {Ptr, Val, Size, getInt32(Align), getInt1(isVolatile)};
     Type /*P*/ Tys[/*2*/] = new Type /*P*/  [/*2*/] {Ptr.getType(), Size.getType()};
-    Module /*P*/ M = BB.getParent().getParent();
+    Module$IR /*P*/ M = BB.getParent().getParent();
     Value /*P*/ TheFn = IntrinsicGlobals.getDeclaration(M, ID.memset, new ArrayRef<Type /*P*/ >(Tys, true));
 
     CallInst /*P*/ CI = IRBuilderStatics.createCallHelper(TheFn, new ArrayRef<Value /*P*/ >(Ops, true), this);
@@ -1254,7 +1254,7 @@ public class IRBuilderBase implements Destructors.ClassWithDestructor {
 
     Value /*P*/ Ops[/*5*/] = new Value /*P*/  [/*5*/] {Dst, Src, Size, getInt32(Align), getInt1(isVolatile)};
     Type /*P*/ Tys[/*3*/] = new Type /*P*/  [/*3*/] {Dst.getType(), Src.getType(), Size.getType()};
-    Module /*P*/ M = BB.getParent().getParent();
+    Module$IR /*P*/ M = BB.getParent().getParent();
     Value /*P*/ TheFn = IntrinsicGlobals.getDeclaration(M, ID.memcpy, new ArrayRef<Type /*P*/ >(Tys, true));
 
     CallInst /*P*/ CI = IRBuilderStatics.createCallHelper(TheFn, new ArrayRef<Value /*P*/ >(Ops, true), this);
@@ -1365,7 +1365,7 @@ public class IRBuilderBase implements Destructors.ClassWithDestructor {
 
     Value /*P*/ Ops[/*5*/] = new Value /*P*/  [/*5*/] {Dst, Src, Size, getInt32(Align), getInt1(isVolatile)};
     Type /*P*/ Tys[/*3*/] = new Type /*P*/  [/*3*/] {Dst.getType(), Src.getType(), Size.getType()};
-    Module /*P*/ M = BB.getParent().getParent();
+    Module$IR /*P*/ M = BB.getParent().getParent();
     Value /*P*/ TheFn = IntrinsicGlobals.getDeclaration(M, ID.memmove, new ArrayRef<Type /*P*/ >(Tys, true));
 
     CallInst /*P*/ CI = IRBuilderStatics.createCallHelper(TheFn, new ArrayRef<Value /*P*/ >(Ops, true), this);
@@ -1411,7 +1411,7 @@ public class IRBuilderBase implements Destructors.ClassWithDestructor {
       assert (Size.getType() == getInt64Ty()) : "lifetime.start requires the size to be an i64";
     }
     Value /*P*/ Ops[/*2*/] = new Value /*P*/  [/*2*/] {Size, Ptr};
-    Module /*P*/ M = BB.getParent().getParent();
+    Module$IR /*P*/ M = BB.getParent().getParent();
     Value /*P*/ TheFn = IntrinsicGlobals.getDeclaration(M, ID.lifetime_start);
     return IRBuilderStatics.createCallHelper(TheFn, new ArrayRef<Value /*P*/ >(Ops, true), this);
   }
@@ -1443,7 +1443,7 @@ public class IRBuilderBase implements Destructors.ClassWithDestructor {
       assert (Size.getType() == getInt64Ty()) : "lifetime.end requires the size to be an i64";
     }
     Value /*P*/ Ops[/*2*/] = new Value /*P*/  [/*2*/] {Size, Ptr};
-    Module /*P*/ M = BB.getParent().getParent();
+    Module$IR /*P*/ M = BB.getParent().getParent();
     Value /*P*/ TheFn = IntrinsicGlobals.getDeclaration(M, ID.lifetime_end);
     return IRBuilderStatics.createCallHelper(TheFn, new ArrayRef<Value /*P*/ >(Ops, true), this);
   }
@@ -1638,7 +1638,7 @@ public class IRBuilderBase implements Destructors.ClassWithDestructor {
     assert (Cond.getType() == getInt1Ty()) : "an assumption condition must be of type i1";
 
     Value /*P*/ Ops[/*1*/] = new Value /*P*/  [/*1*/] {Cond};
-    Module /*P*/ M = BB.getParent().getParent();
+    Module$IR /*P*/ M = BB.getParent().getParent();
     Value /*P*/ FnAssume = IntrinsicGlobals.getDeclaration(M, ID.assume);
     return IRBuilderStatics.createCallHelper(FnAssume, new ArrayRef<Value /*P*/ >(Ops, true), this);
   }
@@ -1840,7 +1840,7 @@ public class IRBuilderBase implements Destructors.ClassWithDestructor {
                 Type /*P*/ ResultType,
                 final /*const*/ Twine /*&*/ Name/*= ""*/) {
     /*Intrinsic.ID*/int _ID = ID.experimental_gc_result;
-    Module /*P*/ M = BB.getParent().getParent();
+    Module$IR /*P*/ M = BB.getParent().getParent();
     Type /*P*/ Types[/*1*/] = new Type /*P*/  [/*1*/] {ResultType};
     Value /*P*/ FnGCResult = IntrinsicGlobals.getDeclaration(M, _ID, new ArrayRef<Type /*P*/ >(Types, true));
 
@@ -1876,7 +1876,7 @@ public class IRBuilderBase implements Destructors.ClassWithDestructor {
                   int DerivedOffset,
                   Type /*P*/ ResultType,
                   final /*const*/ Twine /*&*/ Name/*= ""*/) {
-    Module /*P*/ M = BB.getParent().getParent();
+    Module$IR /*P*/ M = BB.getParent().getParent();
     Type /*P*/ Types[/*1*/] = new Type /*P*/  [/*1*/] {ResultType};
     Value /*P*/ FnGCRelocate = IntrinsicGlobals.getDeclaration(M, ID.experimental_gc_relocate, new ArrayRef<Type /*P*/ >(Types, true));
 
@@ -1913,7 +1913,7 @@ public class IRBuilderBase implements Destructors.ClassWithDestructor {
                        ArrayRef<Value /*P*/ > Ops,
                        ArrayRef<Type /*P*/ > OverloadedTypes,
                        final /*const*/ Twine /*&*/ Name/*= ""*/) {
-    Module /*P*/ M = BB.getParent().getParent();
+    Module$IR /*P*/ M = BB.getParent().getParent();
     Value /*P*/ TheFn = IntrinsicGlobals.getDeclaration(M, Id, new ArrayRef<Type /*P*/ >(OverloadedTypes));
     return IRBuilderStatics.createCallHelper(TheFn, new ArrayRef<Value /*P*/ >(Ops), this, Name);
   }

@@ -329,7 +329,7 @@ public class BasicBlock extends /*public*/ Value implements /*public*/ ilist_nod
    FQN="llvm::BasicBlock::getModule", NM="_ZNK4llvm10BasicBlock9getModuleEv",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/BasicBlock.cpp -nm=_ZNK4llvm10BasicBlock9getModuleEv")
   //</editor-fold>
-  public /*const*/ Module /*P*/ getModule$Const() /*const*/ {
+  public /*const*/ Module$IR /*P*/ getModule$Const() /*const*/ {
     return getParent$Const().getParent$Const();
   }
 
@@ -339,7 +339,7 @@ public class BasicBlock extends /*public*/ Value implements /*public*/ ilist_nod
    FQN="llvm::BasicBlock::getModule", NM="_ZN4llvm10BasicBlock9getModuleEv",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/BasicBlock.cpp -nm=_ZN4llvm10BasicBlock9getModuleEv")
   //</editor-fold>
-  public Module /*P*/ getModule() {
+  public Module$IR /*P*/ getModule() {
     return getParent().getParent();
   }
 

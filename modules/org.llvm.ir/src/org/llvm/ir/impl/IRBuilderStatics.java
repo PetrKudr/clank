@@ -285,7 +285,7 @@ public static CallInst /*P*/ CreateGCStatepointCallCommon$Value(IRBuilderBase /*
     PointerType /*P*/ FuncPtrType = cast_PointerType(ActualCallee.getType());
     assert (isa_FunctionType(FuncPtrType.getElementType())) : "actual callee must be a callable value";
     
-    Module /*P*/ M = Builder.GetInsertBlock().getParent().getParent();
+    Module$IR /*P*/ M = Builder.GetInsertBlock().getParent().getParent();
     // Fill in the one generic type'd argument (the function is also vararg)
     Type /*P*/ ArgTypes[/*1*/] = new Type /*P*/  [/*1*/] {FuncPtrType};
     Function /*P*/ FnStatepoint = IntrinsicGlobals.getDeclaration(M, org.llvm.ir.intrinsic.ID.experimental_gc_statepoint, 
@@ -314,7 +314,7 @@ public static CallInst /*P*/ CreateGCStatepointCallCommon$Use(IRBuilderBase /*P*
     PointerType /*P*/ FuncPtrType = cast_PointerType(ActualCallee.getType());
     assert (isa_FunctionType(FuncPtrType.getElementType())) : "actual callee must be a callable value";
     
-    Module /*P*/ M = Builder.GetInsertBlock().getParent().getParent();
+    Module$IR /*P*/ M = Builder.GetInsertBlock().getParent().getParent();
     Type /*P*/ ArgTypes[/*1*/] = new Type /*P*/  [/*1*/] {FuncPtrType};
     Function /*P*/ FnStatepoint = IntrinsicGlobals.getDeclaration(M, org.llvm.ir.intrinsic.ID.experimental_gc_statepoint, 
         new ArrayRef<Type /*P*/ >(ArgTypes, true));
@@ -342,7 +342,7 @@ public static CallInst /*P*/ CreateGCStatepointCallCommon$UseValue(IRBuilderBase
     PointerType /*P*/ FuncPtrType = cast_PointerType(ActualCallee.getType());
     assert (isa_FunctionType(FuncPtrType.getElementType())) : "actual callee must be a callable value";
     
-    Module /*P*/ M = Builder.GetInsertBlock().getParent().getParent();
+    Module$IR /*P*/ M = Builder.GetInsertBlock().getParent().getParent();
     Type /*P*/ ArgTypes[/*1*/] = new Type /*P*/  [/*1*/] {FuncPtrType};
     Function /*P*/ FnStatepoint = IntrinsicGlobals.getDeclaration(M, org.llvm.ir.intrinsic.ID.experimental_gc_statepoint, 
         new ArrayRef<Type /*P*/ >(ArgTypes, true));
@@ -395,7 +395,7 @@ public static InvokeInst /*P*/ CreateGCStatepointInvokeCommon$Value(IRBuilderBas
     PointerType /*P*/ FuncPtrType = cast_PointerType(ActualInvokee.getType());
     assert (isa_FunctionType(FuncPtrType.getElementType())) : "actual callee must be a callable value";
     
-    Module /*P*/ M = Builder.GetInsertBlock().getParent().getParent();
+    Module$IR /*P*/ M = Builder.GetInsertBlock().getParent().getParent();
     // Fill in the one generic type'd argument (the function is also vararg)
     Function /*P*/ FnStatepoint = IntrinsicGlobals.getDeclaration(M, org.llvm.ir.intrinsic.ID.experimental_gc_statepoint, /*{ */new ArrayRef<Type /*P*/ >(new Type /*P*/ /*const*/ [/*1*/] {FuncPtrType}, true)/* }*/);
     
@@ -423,7 +423,7 @@ public static InvokeInst /*P*/ CreateGCStatepointInvokeCommon$Use(IRBuilderBase 
     PointerType /*P*/ FuncPtrType = cast_PointerType(ActualInvokee.getType());
     assert (isa_FunctionType(FuncPtrType.getElementType())) : "actual callee must be a callable value";
     
-    Module /*P*/ M = Builder.GetInsertBlock().getParent().getParent();
+    Module$IR /*P*/ M = Builder.GetInsertBlock().getParent().getParent();
     Function /*P*/ FnStatepoint = IntrinsicGlobals.getDeclaration(M, org.llvm.ir.intrinsic.ID.experimental_gc_statepoint, /*{ */new ArrayRef<Type /*P*/ >(new Type /*P*/ /*const*/ [/*1*/] {FuncPtrType}, true)/* }*/);
     
     Args = IRBuilderStatics.getStatepointArgs$Use($Deref(Builder), ID, NumPatchBytes, ActualInvokee, Flags, 
@@ -450,7 +450,7 @@ public static InvokeInst /*P*/ CreateGCStatepointInvokeCommon$UseValue(IRBuilder
     PointerType /*P*/ FuncPtrType = cast_PointerType(ActualInvokee.getType());
     assert (isa_FunctionType(FuncPtrType.getElementType())) : "actual callee must be a callable value";
     
-    Module /*P*/ M = Builder.GetInsertBlock().getParent().getParent();
+    Module$IR /*P*/ M = Builder.GetInsertBlock().getParent().getParent();
     Function /*P*/ FnStatepoint = IntrinsicGlobals.getDeclaration(M, org.llvm.ir.intrinsic.ID.experimental_gc_statepoint, /*{ */new ArrayRef<Type /*P*/ >(new Type /*P*/ /*const*/ [/*1*/] {FuncPtrType}, true)/* }*/);
     
     Args = IRBuilderStatics.getStatepointArgs$UseValue($Deref(Builder), ID, NumPatchBytes, ActualInvokee, Flags, 

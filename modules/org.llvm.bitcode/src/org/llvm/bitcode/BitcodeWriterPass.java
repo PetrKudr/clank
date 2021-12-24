@@ -158,7 +158,7 @@ public class BitcodeWriterPass {
    FQN="llvm::BitcodeWriterPass::run", NM="_ZN4llvm17BitcodeWriterPass3runERNS_6ModuleERNS_15AnalysisManagerIS1_EE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.bitcode/llvmToClangType ${LLVM_SRC}/llvm/lib/Bitcode/Writer/BitcodeWriterPass.cpp -nm=_ZN4llvm17BitcodeWriterPass3runERNS_6ModuleERNS_15AnalysisManagerIS1_EE")
   //</editor-fold>
-  public PreservedAnalyses run(final Module /*&*/ M, final AnalysisManager<Module>/*&*/ $Prm1) {
+  public PreservedAnalyses run(final Module$IR /*&*/ M, final AnalysisManager<Module$IR>/*&*/ $Prm1) {
     std.unique_ptr<ModuleSummaryIndex> Index = null;
     try {
       Index/*J*/= new std.unique_ptr<ModuleSummaryIndex>();

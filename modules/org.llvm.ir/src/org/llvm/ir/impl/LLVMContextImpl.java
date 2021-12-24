@@ -98,7 +98,7 @@ public class LLVMContextImpl implements Destructors.ClassWithDestructor {
 /*public:*/
   /// OwnedModules - The set of modules instantiated in this context, and which
   /// will be automatically deleted if this context is deleted.
-  public SmallPtrSet<Module /*P*/ > OwnedModules;
+  public SmallPtrSet<Module$IR/*P*/ > OwnedModules;
   
   public SMDiagnosticHandler InlineAsmDiagHandler;
   public Object/*void P*/ InlineAsmDiagContext;
@@ -338,7 +338,7 @@ public class LLVMContextImpl implements Destructors.ClassWithDestructor {
   public LLVMContextImpl(final LLVMContext /*&*/ C) {
     // : OwnedModules(), IntConstants(), FPConstants(), AttrsSet(), AttrsLists(), AttrsSetNodes(), MDStringCache(), ValuesAsMetadata(), MetadataAsValues(), ValueNames(), MDTuples(), DILocations(), DIExpressions(), GenericDINodes(), DISubranges(), DIEnumerators(), DIBasicTypes(), DIDerivedTypes(), DICompositeTypes(), DISubroutineTypes(), DIFiles(), DISubprograms(), DILexicalBlocks(), DILexicalBlockFiles(), DINamespaces(), DIModules(), DITemplateTypeParameters(), DITemplateValueParameters(), DIGlobalVariables(), DILocalVariables(), DIObjCPropertys(), DIImportedEntitys(), DIMacros(), DIMacroFiles(), DITypeMap(), DistinctMDNodes(), CAZConstants(), ArrayConstants(), StructConstants(), VectorConstants(), CPNConstants(), UVConstants(), CDSConstants(), BlockAddresses(), ExprConstants(), InlineAsms(), TheTrueVal(null), TheFalseVal(null), TheNoneToken(), VoidTy(C, Type::VoidTyID), LabelTy(C, Type::LabelTyID), HalfTy(C, Type::HalfTyID), FloatTy(C, Type::FloatTyID), DoubleTy(C, Type::DoubleTyID), MetadataTy(C, Type::MetadataTyID), TokenTy(C, Type::TokenTyID), X86_FP80Ty(C, Type::X86_FP80TyID), FP128Ty(C, Type::FP128TyID), PPC_FP128Ty(C, Type::PPC_FP128TyID), X86_MMXTy(C, Type::X86_MMXTyID), Int1Ty(C, 1), Int8Ty(C, 8), Int16Ty(C, 16), Int32Ty(C, 32), Int64Ty(C, 64), Int128Ty(C, 128), TypeAllocator(), IntegerTypes(), FunctionTypes(), AnonStructTypes(), NamedStructTypes(), ArrayTypes(), VectorTypes(), PointerTypes(), ASPointerTypes(), ValueHandles(), CustomMDKindNames(), InstructionMetadata(), GlobalObjectMetadata(), DiscriminatorTable(), BundleTagCache(), GCNames(), DiscardValueNames(false) 
     //START JInit
-    this.OwnedModules = new SmallPtrSet<Module /*P*/ >(DenseMapInfo$LikePtr.$Info(), 4);
+    this.OwnedModules = new SmallPtrSet<Module$IR/*P*/ >(DenseMapInfo$LikePtr.$Info(), 4);
     this.IntConstants = new DenseMap<APInt, ConstantInt /*P*/ >(DenseMapAPIntKeyInfo.$Info(), (ConstantInt /*P*/ )null);
     this.FPConstants = new DenseMap<APFloat, ConstantFP /*P*/ >(DenseMapAPFloatKeyInfo.$Info(), (ConstantFP /*P*/ )null);
     this.AttrsSet = new FoldingSet<AttributeImpl>(AttributeImpl.$Trait());

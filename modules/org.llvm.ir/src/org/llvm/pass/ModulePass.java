@@ -121,7 +121,7 @@ public abstract class ModulePass extends /*public*/ Pass implements Destructors.
    FQN="llvm::ModulePass::runOnModule", NM="_ZN4llvm10ModulePass11runOnModuleERNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/LegacyPassManager.cpp -nm=_ZN4llvm10ModulePass11runOnModuleERNS_6ModuleE")
   //</editor-fold>
-  public abstract /*virtual*/ boolean runOnModule(final Module /*&*/ M)/* = 0*/;
+  public abstract /*virtual*/ boolean runOnModule(final Module$IR /*&*/ M)/* = 0*/;
 
   
   
@@ -205,7 +205,7 @@ public abstract class ModulePass extends /*public*/ Pass implements Destructors.
    FQN="llvm::ModulePass::skipModule", NM="_ZNK4llvm10ModulePass10skipModuleERNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/Pass.cpp -nm=_ZNK4llvm10ModulePass10skipModuleERNS_6ModuleE")
   //</editor-fold>
-  protected boolean skipModule(final Module /*&*/ M) /*const*/ {
+  protected boolean skipModule(final Module$IR /*&*/ M) /*const*/ {
     return !M.getContext().getOptBisect().shouldRunPass(this, M);
   }
 

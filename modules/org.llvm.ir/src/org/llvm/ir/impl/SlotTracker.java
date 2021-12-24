@@ -102,7 +102,7 @@ public class SlotTracker implements Destructors.ClassWithDestructor {
 //  public final class ValueMap extends DenseMapTypeUInt</*const*/ Value /*P*/ >{ };
 /*private:*/
   /// TheModule - The module for which we are holding slot numbers.
-  private /*const*/ Module /*P*/ TheModule;
+  private /*const*/ Module$IR /*P*/ TheModule;
   
   /// TheFunction - The function for which we are holding slot numbers.
   private /*const*/ Function /*P*/ TheFunction;
@@ -139,10 +139,10 @@ public class SlotTracker implements Destructors.ClassWithDestructor {
    FQN="llvm::SlotTracker::SlotTracker", NM="_ZN4llvm11SlotTrackerC1EPKNS_6ModuleEb",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/AsmWriter.cpp -nm=_ZN4llvm11SlotTrackerC1EPKNS_6ModuleEb")
   //</editor-fold>
-  public SlotTracker(/*const*/ Module /*P*/ M) {
+  public SlotTracker(/*const*/ Module$IR /*P*/ M) {
     this(M, false);
   }
-  public SlotTracker(/*const*/ Module /*P*/ M, boolean ShouldInitializeAllMetadata/*= false*/) {
+  public SlotTracker(/*const*/ Module$IR /*P*/ M, boolean ShouldInitializeAllMetadata/*= false*/) {
     // : TheModule(M), TheFunction(null), FunctionProcessed(false), ShouldInitializeAllMetadata(ShouldInitializeAllMetadata), mMap(), mNext(0), fMap(), fNext(0), mdnMap(), mdnNext(0), asMap(), asNext(0) 
     //START JInit
     this.TheModule = M;

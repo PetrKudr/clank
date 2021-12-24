@@ -103,7 +103,7 @@ public final class ModuleLlvmGlobals {
  FQN="llvm::collectUsedGlobalVariables", NM="_ZN4llvm26collectUsedGlobalVariablesERKNS_6ModuleERNS_15SmallPtrSetImplIPNS_11GlobalValueEEEb",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/Module.cpp -nm=_ZN4llvm26collectUsedGlobalVariablesERKNS_6ModuleERNS_15SmallPtrSetImplIPNS_11GlobalValueEEEb")
 //</editor-fold>
-public static GlobalVariable /*P*/ collectUsedGlobalVariables(final /*const*/ Module /*&*/ M, final SmallPtrSetImpl<GlobalValue /*P*/ > /*&*/ Set, boolean CompilerUsed) {
+public static GlobalVariable /*P*/ collectUsedGlobalVariables(final /*const*/ Module$IR /*&*/ M, final SmallPtrSetImpl<GlobalValue /*P*/ > /*&*/ Set, boolean CompilerUsed) {
   /*const*/char$ptr/*char P*/ Name = $tryClone(CompilerUsed ? $("llvm.compiler.used") : $("llvm.used"));
   GlobalVariable /*P*/ GV = M.getGlobalVariable$Const(new StringRef(Name));
   if (!(GV != null) || !GV.hasInitializer()) {
@@ -127,7 +127,7 @@ public static GlobalVariable /*P*/ collectUsedGlobalVariables(final /*const*/ Mo
  FQN="llvm::operator<<", NM="_ZN4llvmlsERNS_11raw_ostreamERKNS_6ModuleE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/Module.cpp -nm=_ZN4llvmlsERNS_11raw_ostreamERKNS_6ModuleE")
 //</editor-fold>
-public static /*inline*/ raw_ostream /*&*/ $out_raw_ostream_Module$C(final raw_ostream /*&*/ O, final /*const*/ Module /*&*/ M) {
+public static /*inline*/ raw_ostream /*&*/ $out_raw_ostream_Module$C(final raw_ostream /*&*/ O, final /*const*/ Module$IR /*&*/ M) {
   M.print(O, (AssemblyAnnotationWriter /*P*/ )null);
   return O;
 }
@@ -140,8 +140,8 @@ public static /*inline*/ raw_ostream /*&*/ $out_raw_ostream_Module$C(final raw_o
  FQN="llvm::unwrap", NM="_ZN4llvm6unwrapEP16LLVMOpaqueModule",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/Module.cpp -nm=_ZN4llvm6unwrapEP16LLVMOpaqueModule")
 //</editor-fold>
-public static /*inline*/ Module /*P*/ unwrap( LLVMOpaqueModule /*P*/ P) {
-  return reinterpret_cast(Module /*P*/ .class, P);
+public static /*inline*/ Module$IR /*P*/ unwrap( LLVMOpaqueModule /*P*/ P) {
+  return reinterpret_cast(Module$IR /*P*/ .class, P);
 }
 
 //<editor-fold defaultstate="collapsed" desc="llvm::wrap">
@@ -150,8 +150,8 @@ public static /*inline*/ Module /*P*/ unwrap( LLVMOpaqueModule /*P*/ P) {
  FQN="llvm::wrap", NM="_ZN4llvm4wrapEPKNS_6ModuleE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/Module.cpp -nm=_ZN4llvm4wrapEPKNS_6ModuleE")
 //</editor-fold>
-public static /*inline*/  LLVMOpaqueModule /*P*/ wrap(/*const*/ Module /*P*/ P) {
-  return reinterpret_cast( LLVMOpaqueModule /*P*/ .class, ((/*const_cast*/Module /*P*/ )(P)));
+public static /*inline*/  LLVMOpaqueModule /*P*/ wrap(/*const*/ Module$IR /*P*/ P) {
+  return reinterpret_cast( LLVMOpaqueModule /*P*/ .class, ((/*const_cast*/Module$IR /*P*/ )(P)));
 }
 
 
@@ -164,8 +164,8 @@ public static /*inline*/  LLVMOpaqueModule /*P*/ wrap(/*const*/ Module /*P*/ P) 
  FQN="llvm::unwrap", NM="_ZN4llvm6unwrapEP24LLVMOpaqueModuleProvider",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/Module.cpp -nm=_ZN4llvm6unwrapEP24LLVMOpaqueModuleProvider")
 //</editor-fold>
-public static /*inline*/ Module /*P*/ unwrap( LLVMOpaqueModuleProvider /*P*/ MP) {
-  return reinterpret_cast(Module /*P*/ .class, MP);
+public static /*inline*/ Module$IR /*P*/ unwrap( LLVMOpaqueModuleProvider /*P*/ MP) {
+  return reinterpret_cast(Module$IR /*P*/ .class, MP);
 }
 
 } // END OF class ModuleLlvmGlobals

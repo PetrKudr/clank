@@ -171,7 +171,7 @@ public class ASTWriter implements /*public*/ ASTDeserializationListener, /*publi
   /*friend*/public ASTReader /*P*/ Chain;
   
   /// \brief The module we're currently writing, if any.
-  private Module /*P*/ WritingModule;
+  private Module$B /*P*/ WritingModule;
   
   /// \brief The base directory for any relative paths we emit.
   private std.string BaseDirectory;
@@ -634,7 +634,7 @@ public class ASTWriter implements /*public*/ ASTDeserializationListener, /*publi
       public Object/*void P*/ Type;
       public /*uint*/int Loc;
       public /*uint*/int Val;
-      public Module /*P*/ Mod;
+      public Module$B /*P*/ Mod;
       public /*const*/ Attr /*P*/ Attribute;
       //<editor-fold defaultstate="collapsed" desc="clang::ASTWriter::DeclUpdate::(anonymous union)::operator=">
       @Converted(kind = Converted.Kind.MANUAL_SEMANTIC,
@@ -756,7 +756,7 @@ public class ASTWriter implements /*public*/ ASTDeserializationListener, /*publi
      FQN="clang::ASTWriter::DeclUpdate::DeclUpdate", NM="_ZN5clang9ASTWriter10DeclUpdateC1EjPNS_6ModuleE",
      cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.serialization/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Serialization/ASTWriter.cpp -nm=_ZN5clang9ASTWriter10DeclUpdateC1EjPNS_6ModuleE")
     //</editor-fold>
-    public DeclUpdate(/*uint*/int Kind, Module /*P*/ M) {
+    public DeclUpdate(/*uint*/int Kind, Module$B /*P*/ M) {
       // : Kind(Kind), Mod(M) 
       //START JInit
       this.Kind = Kind;
@@ -835,7 +835,7 @@ public class ASTWriter implements /*public*/ ASTDeserializationListener, /*publi
      FQN="clang::ASTWriter::DeclUpdate::getModule", NM="_ZNK5clang9ASTWriter10DeclUpdate9getModuleEv",
      cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.serialization/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Serialization/ASTWriter.cpp -nm=_ZNK5clang9ASTWriter10DeclUpdate9getModuleEv")
     //</editor-fold>
-    public Module /*P*/ getModule() /*const*/ {
+    public Module$B /*P*/ getModule() /*const*/ {
       return Unnamed_field1.Mod;
     }
 
@@ -958,7 +958,7 @@ public class ASTWriter implements /*public*/ ASTDeserializationListener, /*publi
   
   /// \brief A mapping from each known submodule to its ID number, which will
   /// be a positive integer.
-  private DenseMapTypeUInt<Module /*P*/ > SubmoduleIDs;
+  private DenseMapTypeUInt<Module$B/*P*/ > SubmoduleIDs;
   
   /// \brief A list of the module file extension writers.
   private std.vector<std.unique_ptr<ModuleFileExtensionWriter>> ModuleFileExtensionWriters;
@@ -970,7 +970,7 @@ public class ASTWriter implements /*public*/ ASTDeserializationListener, /*publi
    FQN="clang::ASTWriter::getSubmoduleID", NM="_ZN5clang9ASTWriter14getSubmoduleIDEPNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.serialization/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Serialization/ASTWriter.cpp -nm=_ZN5clang9ASTWriter14getSubmoduleIDEPNS_6ModuleE")
   //</editor-fold>
-  /*friend*/public /*uint*/int getSubmoduleID(Module /*P*/ Mod) {
+  /*friend*/public /*uint*/int getSubmoduleID(Module$B /*P*/ Mod) {
     // FIXME: This can easily happen, if we have a reference to a submodule that
     // did not result in us loading a module file for that submodule. For
     // instance, a cross-top-level-module 'conflict' declaration will hit this.
@@ -2664,8 +2664,8 @@ public class ASTWriter implements /*public*/ ASTDeserializationListener, /*publi
    FQN="clang::ASTWriter::WriteSubmodules", NM="_ZN5clang9ASTWriter15WriteSubmodulesEPNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.serialization/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Serialization/ASTWriter.cpp -nm=_ZN5clang9ASTWriter15WriteSubmodulesEPNS_6ModuleE")
   //</editor-fold>
-  private void WriteSubmodules(Module /*P*/ WritingModule) {
-    std.queue<Module /*P*/ > Q = null;
+  private void WriteSubmodules(Module$B /*P*/ WritingModule) {
+    std.queue<Module$B/*P*/ > Q = null;
     try {
       // Enter the submodule description block.
       Stream.EnterSubblock(BlockIDs.SUBMODULE_BLOCK_ID, /*bits for abbreviations*/ 5);
@@ -2760,10 +2760,10 @@ public class ASTWriter implements /*public*/ ASTDeserializationListener, /*publi
       Stream.EmitRecord(SubmoduleRecordTypes.SUBMODULE_METADATA, new ArrayRefULong(Record));
       
       // Write all of the submodules.
-      Q/*J*/= new std.queue<Module /*P*/ >(true);
+      Q/*J*/= new std.queue<Module$B/*P*/ >(true);
       Q.push_value_type$C(WritingModule);
       while (!Q.empty()) {
-        Module /*P*/ Mod = Q.front();
+        Module$B /*P*/ Mod = Q.front();
         Q.pop();
         /*uint*/int ID = getSubmoduleID(Mod);
         
@@ -2787,7 +2787,7 @@ public class ASTWriter implements /*public*/ ASTDeserializationListener, /*publi
           Stream.EmitRecordWithBlob(RequiresAbbrev, Record$1, new StringRef(R.first));
         }
         {
-          Module.Header UmbrellaHeader = null;
+          Module$B.Header UmbrellaHeader = null;
           try {
             
             // Emit the umbrella header, if there is one.
@@ -2797,7 +2797,7 @@ public class ASTWriter implements /*public*/ ASTDeserializationListener, /*publi
               Stream.EmitRecordWithBlob(UmbrellaAbbrev, Record$1, 
                   new StringRef(UmbrellaHeader.NameAsWritten));
             } else {
-              Module.DirectoryName UmbrellaDir = null;
+              Module$B.DirectoryName UmbrellaDir = null;
               try {
                 UmbrellaDir = Mod.getUmbrellaDir();
                 if (UmbrellaDir.$bool()) {
@@ -2824,9 +2824,9 @@ public class ASTWriter implements /*public*/ ASTDeserializationListener, /*publi
          class/*struct*/ Unnamed_struct {
           public /*uint*/int RecordKind;
           public /*uint*/int Abbrev;
-          public Module.HeaderKind HeaderKind;
+          public Module$B.HeaderKind HeaderKind;
 
-          public Unnamed_struct(int RecordKind, int Abbrev, Module.HeaderKind HeaderKind) {
+          public Unnamed_struct(int RecordKind, int Abbrev, Module$B.HeaderKind HeaderKind) {
             this.RecordKind = RecordKind;
             this.Abbrev = Abbrev;
             this.HeaderKind = HeaderKind;
@@ -2840,17 +2840,17 @@ public class ASTWriter implements /*public*/ ASTDeserializationListener, /*publi
         }
 ;
         Unnamed_struct HeaderLists[/*5*/] = new Unnamed_struct [/*5*/] {
-          new Unnamed_struct(SubmoduleRecordTypes.SUBMODULE_HEADER, HeaderAbbrev, Module.HeaderKind.HK_Normal), 
-          new Unnamed_struct(SubmoduleRecordTypes.SUBMODULE_TEXTUAL_HEADER, TextualHeaderAbbrev, Module.HeaderKind.HK_Textual), 
-          new Unnamed_struct(SubmoduleRecordTypes.SUBMODULE_PRIVATE_HEADER, PrivateHeaderAbbrev, Module.HeaderKind.HK_Private), 
+          new Unnamed_struct(SubmoduleRecordTypes.SUBMODULE_HEADER, HeaderAbbrev, Module$B.HeaderKind.HK_Normal), 
+          new Unnamed_struct(SubmoduleRecordTypes.SUBMODULE_TEXTUAL_HEADER, TextualHeaderAbbrev, Module$B.HeaderKind.HK_Textual), 
+          new Unnamed_struct(SubmoduleRecordTypes.SUBMODULE_PRIVATE_HEADER, PrivateHeaderAbbrev, Module$B.HeaderKind.HK_Private), 
           new Unnamed_struct(
             SubmoduleRecordTypes.SUBMODULE_PRIVATE_TEXTUAL_HEADER, PrivateTextualHeaderAbbrev, 
-            Module.HeaderKind.HK_PrivateTextual), 
-          new Unnamed_struct(SubmoduleRecordTypes.SUBMODULE_EXCLUDED_HEADER, ExcludedHeaderAbbrev, Module.HeaderKind.HK_Excluded)
+            Module$B.HeaderKind.HK_PrivateTextual), 
+          new Unnamed_struct(SubmoduleRecordTypes.SUBMODULE_EXCLUDED_HEADER, ExcludedHeaderAbbrev, Module$B.HeaderKind.HK_Excluded)
         };
         for (final Unnamed_struct HL : HeaderLists) {
           long Record$1[/*1*/] = new /*ullong*/long [/*1*/] {HL.RecordKind};
-          for (final Module.Header /*&*/ H : Mod.Headers[HL.HeaderKind.getValue()])  {
+          for (final Module$B.Header /*&*/ H : Mod.Headers[HL.HeaderKind.getValue()])  {
             Stream.EmitRecordWithBlob(HL.Abbrev, Record$1, new StringRef(H.NameAsWritten));
           }
         }
@@ -2865,7 +2865,7 @@ public class ASTWriter implements /*public*/ ASTDeserializationListener, /*publi
         // Emit the imports. 
         if (!Mod.Imports.empty()) {
           SmallVectorULong Record$1/*J*/= new SmallVectorULong(64, (long/*uint64_t*/)0);
-          for (Module /*P*/ I : Mod.Imports)  {
+          for (Module$B /*P*/ I : Mod.Imports)  {
             Record$1.push_back($uint2ullong(getSubmoduleID(I)));
           }
           Stream.EmitRecord(SubmoduleRecordTypes.SUBMODULE_IMPORTS, Record$1);
@@ -2874,7 +2874,7 @@ public class ASTWriter implements /*public*/ ASTDeserializationListener, /*publi
         // Emit the exports. 
         if (!Mod.Exports.empty()) {
           SmallVectorULong Record$1/*J*/= new SmallVectorULong(64, (long/*uint64_t*/)0);
-          for (final /*const*/PointerInt2Pair</*const*/ Module/*P*/> /*&*/ E : Mod.Exports) {
+          for (final /*const*/PointerInt2Pair</*const*/ Module$B/*P*/> /*&*/ E : Mod.Exports) {
             // FIXME: This may fail; we don't require that all exported modules
             // are local or imported.
             Record$1.push_back($uint2ullong(getSubmoduleID(E.getPointer())));
@@ -2888,7 +2888,7 @@ public class ASTWriter implements /*public*/ ASTDeserializationListener, /*publi
         // module itself.
         
         // Emit the link libraries.
-        for (final /*const*/ Module.LinkLibrary /*&*/ LL : Mod.LinkLibraries) {
+        for (final /*const*/ Module$B.LinkLibrary /*&*/ LL : Mod.LinkLibraries) {
           long Record$1[/*2*/] = new /*ullong*/long [/*2*/] {
             SubmoduleRecordTypes.SUBMODULE_LINK_LIBRARY, 
             $uint2ullong(LL.IsFramework)};
@@ -2896,7 +2896,7 @@ public class ASTWriter implements /*public*/ ASTDeserializationListener, /*publi
         }
         
         // Emit the conflicts.
-        for (final /*const*/ Module.Conflict /*&*/ C : Mod.Conflicts) {
+        for (final /*const*/ Module$B.Conflict /*&*/ C : Mod.Conflicts) {
           // FIXME: This may fail; we don't require that all conflicting modules
           // are local or imported.
           long Record$1[/*2*/] = new /*ullong*/long [/*2*/] {
@@ -2912,7 +2912,7 @@ public class ASTWriter implements /*public*/ ASTDeserializationListener, /*publi
         }
         
         // Queue up the submodules of this module.
-        for (Module /*P*/ M : Mod.submodules())  {
+        for (Module$B /*P*/ M : Mod.submodules())  {
           Q.push_value_type$C(M);
         }
       }
@@ -4748,7 +4748,7 @@ public class ASTWriter implements /*public*/ ASTDeserializationListener, /*publi
   //</editor-fold>
   private long/*uint64_t*/ WriteASTCore(final Sema /*&*/ SemaRef, StringRef isysroot, 
               final /*const*/std.string/*&*/ OutputFile, 
-              Module /*P*/ WritingModule) {
+              Module$B /*P*/ WritingModule) {
     //JAVA: using namespace llvm;
     
     boolean isModule = WritingModule != null;
@@ -5283,14 +5283,14 @@ public class ASTWriter implements /*public*/ ASTDeserializationListener, /*publi
    //</editor-fold>
     public static class/*struct*/ ModuleInfo implements NativePOD<ModuleInfo>, NativeMoveable<ModuleInfo> {
      public long/*uint64_t*/ ID;
-     public Module /*P*/ M;
+     public Module$B /*P*/ M;
      //<editor-fold defaultstate="collapsed" desc="clang::ASTWriter::WriteASTCore(Sema & , StringRef, const std::string & , Module * )::ModuleInfo::ModuleInfo">
      @Converted(kind = Converted.Kind.AUTO,
       source = "${LLVM_SRC}/llvm/tools/clang/lib/Serialization/ASTWriter.cpp", line = 4587,
       FQN="clang::ASTWriter::WriteASTCore(Sema & , StringRef, const std::string & , Module * )::ModuleInfo::ModuleInfo", NM="_ZZN5clang9ASTWriter12WriteASTCoreERNS_4SemaEN4llvm9StringRefERKSsPNS_6ModuleEEN10ModuleInfoC1EyS8_",
       cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.serialization/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Serialization/ASTWriter.cpp -nm=_ZZN5clang9ASTWriter12WriteASTCoreERNS_4SemaEN4llvm9StringRefERKSsPNS_6ModuleEEN10ModuleInfoC1EyS8_")
      //</editor-fold>
-     public ModuleInfo(long/*uint64_t*/ ID, Module /*P*/ M) {
+     public ModuleInfo(long/*uint64_t*/ ID, Module$B /*P*/ M) {
        // : ID(ID), M(M) 
        //START JInit
        this.ID = ID;
@@ -5433,7 +5433,7 @@ public class ASTWriter implements /*public*/ ASTDeserializationListener, /*publi
     this.NumMacros = 0;
     this.NumLexicalDeclContexts = 0;
     this.NumVisibleDeclContexts = 0;
-    this.SubmoduleIDs = new DenseMapTypeUInt<Module /*P*/ >(DenseMapInfo$LikePtr.$Info(), 0);
+    this.SubmoduleIDs = new DenseMapTypeUInt<Module$B/*P*/ >(DenseMapInfo$LikePtr.$Info(), 0);
     this.ModuleFileExtensionWriters = new std.vector<std.unique_ptr<ModuleFileExtensionWriter>>(new std.unique_ptr<ModuleFileExtensionWriter>());
     this.TypeExtQualAbbrev = 0;
     this.TypeFunctionProtoAbbrev = 0;
@@ -5560,13 +5560,13 @@ public class ASTWriter implements /*public*/ ASTDeserializationListener, /*publi
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.serialization/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Serialization/ASTWriter.cpp -nm=_ZN5clang9ASTWriter8WriteASTERNS_4SemaERKSsPNS_6ModuleEN4llvm9StringRefEb")
   //</editor-fold>
   public long/*uint64_t*/ WriteAST(final Sema /*&*/ SemaRef, final /*const*/std.string/*&*/ OutputFile, 
-          Module /*P*/ WritingModule, StringRef isysroot) {
+          Module$B /*P*/ WritingModule, StringRef isysroot) {
     return WriteAST(SemaRef, OutputFile, 
           WritingModule, isysroot, 
           false);
   }
   public long/*uint64_t*/ WriteAST(final Sema /*&*/ SemaRef, final /*const*/std.string/*&*/ OutputFile, 
-          Module /*P*/ WritingModule, StringRef isysroot, 
+          Module$B /*P*/ WritingModule, StringRef isysroot, 
           boolean hasErrors/*= false*/) {
     WritingAST = true;
     
@@ -6079,7 +6079,7 @@ public class ASTWriter implements /*public*/ ASTDeserializationListener, /*publi
     
     // Find the module that owns this location.
     final ModuleMap /*&*/ ModMap = PP.getHeaderSearchInfo().getModuleMap();
-    Module /*P*/ OwningMod = ModMap.inferModuleFromLocation(new FullSourceLoc(/*NO_COPY*/Loc, PP.getSourceManager()));
+    Module$B /*P*/ OwningMod = ModMap.inferModuleFromLocation(new FullSourceLoc(/*NO_COPY*/Loc, PP.getSourceManager()));
     if (!(OwningMod != null)) {
       return 0;
     }
@@ -6102,12 +6102,12 @@ public class ASTWriter implements /*public*/ ASTDeserializationListener, /*publi
    FQN="clang::ASTWriter::getLocalOrImportedSubmoduleID", NM="_ZN5clang9ASTWriter29getLocalOrImportedSubmoduleIDEPNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.serialization/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Serialization/ASTWriter.cpp -nm=_ZN5clang9ASTWriter29getLocalOrImportedSubmoduleIDEPNS_6ModuleE")
   //</editor-fold>
-  public /*uint*/int getLocalOrImportedSubmoduleID(Module /*P*/ Mod) {
+  public /*uint*/int getLocalOrImportedSubmoduleID(Module$B /*P*/ Mod) {
     if (!(Mod != null)) {
       return 0;
     }
     
-    DenseMapIteratorTypeUInt<Module /*P*/ /*P*/> Known = SubmoduleIDs.find(Mod);
+    DenseMapIteratorTypeUInt<Module$B/*P*/ /*P*/> Known = SubmoduleIDs.find(Mod);
     if (Known.$noteq(/*NO_ITER_COPY*/SubmoduleIDs.end())) {
       return Known.$arrow().second;
     }
@@ -6484,7 +6484,7 @@ public class ASTWriter implements /*public*/ ASTDeserializationListener, /*publi
    FQN="clang::ASTWriter::ModuleRead", NM="_ZN5clang9ASTWriter10ModuleReadEjPNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.serialization/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Serialization/ASTWriter.cpp -nm=_ZN5clang9ASTWriter10ModuleReadEjPNS_6ModuleE")
   //</editor-fold>
-  @Override public/*private*/ void ModuleRead(/*uint32_t*/int ID, Module /*P*/ Mod)/* override*/ {
+  @Override public/*private*/ void ModuleRead(/*uint32_t*/int ID, Module$B /*P*/ Mod)/* override*/ {
     assert (SubmoduleIDs.find(Mod).$eq(/*NO_ITER_COPY*/SubmoduleIDs.end()));
     SubmoduleIDs.$set(Mod, ID);
   }
@@ -6817,7 +6817,7 @@ public class ASTWriter implements /*public*/ ASTDeserializationListener, /*publi
    FQN="clang::ASTWriter::RedefinedHiddenDefinition", NM="_ZN5clang9ASTWriter25RedefinedHiddenDefinitionEPKNS_9NamedDeclEPNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.serialization/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Serialization/ASTWriter.cpp -nm=_ZN5clang9ASTWriter25RedefinedHiddenDefinitionEPKNS_9NamedDeclEPNS_6ModuleE")
   //</editor-fold>
-  @Override public/*private*/ void RedefinedHiddenDefinition(/*const*/ NamedDecl /*P*/ D, Module /*P*/ M)/* override*/ {
+  @Override public/*private*/ void RedefinedHiddenDefinition(/*const*/ NamedDecl /*P*/ D, Module$B /*P*/ M)/* override*/ {
     if ((Chain != null) && Chain.isProcessingUpdateRecords()) {
       return;
     }

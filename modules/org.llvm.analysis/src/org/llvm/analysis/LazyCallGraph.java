@@ -1419,7 +1419,7 @@ public class LazyCallGraph implements Destructors.ClassWithDestructor {
    FQN="llvm::LazyCallGraph::LazyCallGraph", NM="_ZN4llvm13LazyCallGraphC1ERNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/LazyCallGraph.cpp -nm=_ZN4llvm13LazyCallGraphC1ERNS_6ModuleE")
   //</editor-fold>
-  public LazyCallGraph(final Module /*&*/ M) {
+  public LazyCallGraph(final Module$IR /*&*/ M) {
     // : BPA(), NodeMap(), EntryEdges(), EntryIndexMap(), SCCBPA(), SCCMap(), RefSCCBPA(), LeafRefSCCs(), DFSStack(), RefSCCEntryNodes(), PendingRefSCCStack(), NextDFSNumber(0) 
     throw new UnsupportedOperationException("EmptyBody");
   }

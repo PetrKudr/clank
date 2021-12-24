@@ -629,7 +629,7 @@ private final /*split clang::Preprocessor*/ Preprocessor $this() { return (Prepr
             SmallString/*P*/ RelativePath, 
             ModuleMap.KnownHeader /*P*/ SuggestedModule, 
             boolean SkipCache/*= false*/) {
-    Module /*P*/ RequestingModule = $this().getModuleForLocation(/*NO_COPY*/FilenameLoc);
+    Module$B /*P*/ RequestingModule = $this().getModuleForLocation(/*NO_COPY*/FilenameLoc);
     boolean RequestingModuleIsModuleInterface = !$this().SourceMgr.isInMainFile(/*NO_COPY*/FilenameLoc);
      
     // If the header lookup mechanism may be relative to the current inclusion
@@ -2354,12 +2354,12 @@ private final /*split clang::Preprocessor*/ Preprocessor $this() { return (Prepr
          && !SuggestedModule.getModule().
           getTopLevelModule().
           HasIncompatibleModuleFile) {
-        Module.UnresolvedHeaderDirective MissingHeader = null;
+        Module$B.UnresolvedHeaderDirective MissingHeader = null;
         JavaCleaner $c$ = $createJavaCleaner();
         try {
           std.pairTypeBool<std.string> Requirement/*J*/= new std.pairTypeBool<std.string>(new std.string(), false);
-          MissingHeader/*J*/= new Module.UnresolvedHeaderDirective();
-          Module /*P*/ M = SuggestedModule.getModule();
+          MissingHeader/*J*/= new Module$B.UnresolvedHeaderDirective();
+          Module$B /*P*/ M = SuggestedModule.getModule();
           // Identify the cause.
           /*(void)*/M.isAvailable($this().getLangOpts(), $this().getTargetInfo(), Requirement, 
               MissingHeader);
@@ -2384,7 +2384,7 @@ private final /*split clang::Preprocessor*/ Preprocessor $this() { return (Prepr
       // FIXME: Should we have a second loadModule() overload to avoid this
       // extra lookup step?
       SmallVector<std.pair<IdentifierInfo /*P*/ , SourceLocation>> Path/*J*/= new SmallVector<std.pair<IdentifierInfo /*P*/ , SourceLocation>>(2, new std.pairPtrType<IdentifierInfo /*P*/ , SourceLocation>(null, new SourceLocation()));
-      for (Module /*P*/ Mod = SuggestedModule.getModule(); (Mod != null); Mod = Mod.Parent)  {
+      for (Module$B /*P*/ Mod = SuggestedModule.getModule(); (Mod != null); Mod = Mod.Parent)  {
         Path.push_back(std.make_pair_Ptr_T($this().getIdentifierInfo(Mod.Name.$array(), 0, Mod.Name.size()), 
                 FilenameTok.getLocation()));
       }
@@ -2400,7 +2400,7 @@ private final /*split clang::Preprocessor*/ Preprocessor $this() { return (Prepr
       // visible when the parser gets here.
       // FIXME: Pass SuggestedModule in here rather than converting it to a path
       // and making the module loader convert it back again.
-      ModuleLoadResult Imported = $this().TheModuleLoader.loadModule(IncludeTok.getLocation(), new ModuleIdPath(Path), Module.NameVisibilityKind.Hidden, 
+      ModuleLoadResult Imported = $this().TheModuleLoader.loadModule(IncludeTok.getLocation(), new ModuleIdPath(Path), Module$B.NameVisibilityKind.Hidden, 
           /*IsIncludeDirective=*/ true);
       assert ((Imported.$ModulePtr() == null || Imported.$ModulePtr() == SuggestedModule.getModule())) : "the imported module is different than the suggested one";
       if (((Imported.$ModulePtr()) != null)) {
@@ -2435,7 +2435,7 @@ private final /*split clang::Preprocessor*/ Preprocessor $this() { return (Prepr
       $this().Callbacks$arrow.InclusionDirective(/*NO_COPY*/$this().$CallbackHashLoc(HashLoc), $this().$CallbackEodLoc(EodLoc), IncludeTok, 
           $this().LangOpts.MSVCCompat ? new StringRef(NormalizedPath.c_str()) : new StringRef(Filename), isAngled, 
           /*NO_COPY*/FilenameRange, File, $helper.$SearchPathStringRef(SearchPath), $helper.$RelativePathStringRef(RelativePath), 
-          ShouldEnter ? (Module /*P*/ )null : SuggestedModule.getModule());
+          ShouldEnter ? (Module$B /*P*/ )null : SuggestedModule.getModule());
     }
     if (!(File != null)) {
       return;
@@ -2498,7 +2498,7 @@ private final /*split clang::Preprocessor*/ Preprocessor $this() { return (Prepr
     if (!ShouldEnter) {
       {
         // If this is a module import, make it visible if needed.
-        Module /*P*/ M = SuggestedModule.getModule();
+        Module$B /*P*/ M = SuggestedModule.getModule();
         if ((M != null)) {
           $this().makeModuleVisible(M, SourceLocation.getFromRawEncoding(HashLoc));
           if (IncludeTok.getIdentifierInfo().getPPKeywordID()
@@ -2527,7 +2527,7 @@ private final /*split clang::Preprocessor*/ Preprocessor $this() { return (Prepr
     {
       
       // Determine if we're switching to building a new submodule, and which one.
-      Module /*P*/ M = SuggestedModule.getModule();
+      Module$B /*P*/ M = SuggestedModule.getModule();
       if ((M != null)) {
         assert (!($this().CurSubmodule != null)) : "should not have marked this as a module yet";
         $this().CurSubmodule = M;
@@ -2682,7 +2682,7 @@ private final /*split clang::Preprocessor*/ Preprocessor $this() { return (Prepr
    FQN="clang::Preprocessor::getModuleForLocation", NM="_ZN5clang12Preprocessor20getModuleForLocationENS_14SourceLocationE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/PPDirectives.cpp -nm=_ZN5clang12Preprocessor20getModuleForLocationENS_14SourceLocationE")
   //</editor-fold>
-  public Module /*P*/ getModuleForLocation(SourceLocation Loc) {
+  public Module$B /*P*/ getModuleForLocation(SourceLocation Loc) {
     if (!$this().SourceMgr.isInMainFile(/*NO_COPY*/Loc)) {
       // Try to determine the module of the include directive.
       // FIXME: Look into directly passing the FileEntry from LookupFile instead.
@@ -2713,7 +2713,7 @@ private final /*split clang::Preprocessor*/ Preprocessor $this() { return (Prepr
    FQN="clang::Preprocessor::getModuleContainingLocation", NM="_ZN5clang12Preprocessor27getModuleContainingLocationENS_14SourceLocationE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/PPDirectives.cpp -nm=_ZN5clang12Preprocessor27getModuleContainingLocationENS_14SourceLocationE")
   //</editor-fold>
-  public Module /*P*/ getModuleContainingLocation(SourceLocation Loc) {
+  public Module$B /*P*/ getModuleContainingLocation(SourceLocation Loc) {
     return $this().HeaderInfo.getModuleMap().inferModuleFromLocation(new FullSourceLoc(/*NO_COPY*/Loc, $this().SourceMgr));
   }
 
@@ -2743,13 +2743,13 @@ private final /*split clang::Preprocessor*/ Preprocessor $this() { return (Prepr
     }
 
     // Figure out which module we'd want to import.
-    Module /*P*/ M = $this().getModuleContainingLocation(/*NO_COPY*/Loc);
+    Module$B /*P*/ M = $this().getModuleContainingLocation(/*NO_COPY*/Loc);
     if (!(M != null)) {
       return null;
     }
 
-    Module /*P*/ TopM = M.getTopLevelModule();
-    Module /*P*/ IncM = $this().getModuleForLocation(/*NO_COPY*/IncLoc);
+    Module$B /*P*/ TopM = M.getTopLevelModule();
+    Module$B /*P*/ IncM = $this().getModuleForLocation(/*NO_COPY*/IncLoc);
 
     // Walk up through the include stack, looking through textual headers of M
     // until we hit a non-textual header that we can #include. (We assume textual

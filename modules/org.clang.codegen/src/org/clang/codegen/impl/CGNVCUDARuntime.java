@@ -111,7 +111,7 @@ public class CGNVCUDARuntime extends /*public*/ CGCUDARuntime implements Destruc
   /// Convenience reference to LLVM Context
   private final LLVMContext /*&*/ Context;
   /// Convenience reference to the current module
-  private final org.llvm.ir.Module /*&*/ TheModule;
+  private final org.llvm.ir.Module$IR /*&*/ TheModule;
   /// Keeps track of kernel launch stubs emitted in this module
   private SmallVector<Function /*P*/ > EmittedKernels;
   private SmallVector<std.pairPtrUInt<GlobalVariable /*P*/ >> DeviceVars;

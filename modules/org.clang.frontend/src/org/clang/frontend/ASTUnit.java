@@ -4831,7 +4831,7 @@ public class ASTUnit extends /*public*/ ModuleLoader implements Destructors.Clas
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.frontend/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Frontend/ASTUnit.cpp -nm=_ZN5clang7ASTUnit10loadModuleENS_14SourceLocationEN4llvm8ArrayRefISt4pairIPNS_14IdentifierInfoES1_EEENS_6Module18NameVisibilityKindEb")
   //</editor-fold>
   @Override public ModuleLoadResult loadModule(SourceLocation ImportLoc, ModuleIdPath Path, 
-            Module.NameVisibilityKind Visibility, 
+            Module$B.NameVisibilityKind Visibility, 
             boolean IsInclusionDirective)/* override*/ {
     // ASTUnit doesn't know how to load modules (not that this matters).
     return new ModuleLoadResult();
@@ -4844,7 +4844,7 @@ public class ASTUnit extends /*public*/ ModuleLoader implements Destructors.Clas
    FQN="clang::ASTUnit::makeModuleVisible", NM="_ZN5clang7ASTUnit17makeModuleVisibleEPNS_6ModuleENS1_18NameVisibilityKindENS_14SourceLocationE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.frontend/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Frontend/ASTUnit.cpp -nm=_ZN5clang7ASTUnit17makeModuleVisibleEPNS_6ModuleENS1_18NameVisibilityKindENS_14SourceLocationE")
   //</editor-fold>
-  @Override public void makeModuleVisible(Module /*P*/ Mod, Module.NameVisibilityKind Visibility, 
+  @Override public void makeModuleVisible(Module$B /*P*/ Mod, Module$B.NameVisibilityKind Visibility, 
                    SourceLocation ImportLoc)/* override*/ {
   }
 

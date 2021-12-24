@@ -176,7 +176,7 @@ public class OptBisect {
    FQN="llvm::OptBisect::shouldRunPass", NM="Tpl__ZN4llvm9OptBisect13shouldRunPassEPKNS_4PassERKT_",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/OptBisect.cpp -nm=Tpl__ZN4llvm9OptBisect13shouldRunPassEPKNS_4PassERKT_")
   //</editor-fold>
-  public </*class*/ UnitT> boolean shouldRunPass(/*const*/ Pass /*P*/ P, final /*const*/ Module /*&*/ U) {
+  public </*class*/ UnitT> boolean shouldRunPass(/*const*/ Pass /*P*/ P, final /*const*/ Module$IR /*&*/ U) {
     if (!BisectEnabled) {
       return true;
     }

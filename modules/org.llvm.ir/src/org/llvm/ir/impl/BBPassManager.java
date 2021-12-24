@@ -202,7 +202,7 @@ public class BBPassManager extends /*public*/ FunctionPass implements /*public*/
    FQN="(anonymous namespace)::BBPassManager::doInitialization", NM="_ZN12_GLOBAL__N_113BBPassManager16doInitializationERN4llvm6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/LegacyPassManager.cpp -nm=_ZN12_GLOBAL__N_113BBPassManager16doInitializationERN4llvm6ModuleE")
   //</editor-fold>
-  @Override public boolean doInitialization(final Module /*&*/ M)/* override*/ {
+  @Override public boolean doInitialization(final Module$IR /*&*/ M)/* override*/ {
     boolean Changed = false;
     
     for (/*uint*/int Index = 0; $less_uint(Index, getNumContainedPasses()); ++Index)  {
@@ -235,7 +235,7 @@ public class BBPassManager extends /*public*/ FunctionPass implements /*public*/
    FQN="(anonymous namespace)::BBPassManager::doFinalization", NM="_ZN12_GLOBAL__N_113BBPassManager14doFinalizationERN4llvm6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/LegacyPassManager.cpp -nm=_ZN12_GLOBAL__N_113BBPassManager14doFinalizationERN4llvm6ModuleE")
   //</editor-fold>
-  @Override public boolean doFinalization(final Module /*&*/ M)/* override*/ {
+  @Override public boolean doFinalization(final Module$IR /*&*/ M)/* override*/ {
     boolean Changed = false;
     
     for (int Index = getNumContainedPasses() - 1; Index >= 0; --Index)  {

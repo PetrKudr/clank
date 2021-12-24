@@ -75,7 +75,7 @@
  */
 package org.clang.lex.java.impl;
 
-import org.clang.basic.Module;
+import org.clang.basic.Module$B;
 import org.clang.lex.DirectoryLookup;
 import org.clang.lex.Lexer;
 import org.clang.lex.PTHLexer;
@@ -238,7 +238,7 @@ public final class SmallVectorIncludeStackInfo implements NativeType.SizeofCapab
     end++;
   }    
 
-  public void emplace_back(Preprocessor.CurLexerKindEnum K, Module /*P*/ TheSubmodule, Lexer /*P*/ L, PTHLexer /*P*/ P, PreprocessorLexer /*P*/ PPL, TokenLexer /*P*/ TL, /*const*/type$ptr<DirectoryLookup> /*P*/ D) {
+  public void emplace_back(Preprocessor.CurLexerKindEnum K, Module$B /*P*/ TheSubmodule, Lexer /*P*/ L, PTHLexer /*P*/ P, PreprocessorLexer /*P*/ PPL, TokenLexer /*P*/ TL, /*const*/type$ptr<DirectoryLookup> /*P*/ D) {
     if (this.size() >= this.capacity()) {
       this.grow();
     }

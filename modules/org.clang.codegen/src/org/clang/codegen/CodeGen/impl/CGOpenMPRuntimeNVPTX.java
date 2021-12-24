@@ -567,7 +567,7 @@ public class CGOpenMPRuntimeNVPTX extends /*public*/ CGOpenMPRuntime implements 
     if (!(F != null)) {
       return;
     }
-    org.llvm.ir.Module /*P*/ M = F.getParent();
+    org.llvm.ir.Module$IR /*P*/ M = F.getParent();
     final LLVMContext /*&*/ Ctx = M.getContext();
     
     // Get "nvvm.annotations" metadata node

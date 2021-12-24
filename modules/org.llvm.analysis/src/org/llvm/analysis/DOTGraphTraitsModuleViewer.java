@@ -120,7 +120,7 @@ public class DOTGraphTraitsModuleViewer</*typename*/ AnalysisT extends ModulePas
    FQN="llvm::DOTGraphTraitsModuleViewer::runOnModule", NM="_ZN4llvm26DOTGraphTraitsModuleViewer11runOnModuleERNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/CallPrinter.cpp -nm=_ZN4llvm26DOTGraphTraitsModuleViewer11runOnModuleERNS_6ModuleE")
   //</editor-fold>
-  @Override public boolean runOnModule(final Module /*&*/ M)/* override*/ {
+  @Override public boolean runOnModule(final Module$IR /*&*/ M)/* override*/ {
     GraphT Graph = $Traits.getGraph($AddrOf(getAnalysis(cls)));
     std.string Title = DOTGraphTraits.<GraphT>getGraphName(Graph);
     

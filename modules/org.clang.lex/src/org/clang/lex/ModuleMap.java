@@ -95,7 +95,7 @@ import org.clang.lex.*;
 import org.clang.lex.impl.*;
 import org.clang.basic.target.*;
 import static org.clang.basic.BasicClangGlobals.*;
-import org.clang.basic.Module.*;
+import org.clang.basic.Module$B.*;
 import org.clang.basic.SrcMgr.CharacteristicKind;
 import org.clang.basic.java.ClankAliases;
 import org.clang.basic.vfs.FileSystem;
@@ -134,10 +134,10 @@ public class ModuleMap implements Destructors.ClassWithDestructor {
   
   // The module that the main source file is associated with (the module
   // named LangOpts::CurrentModule, if we've loaded it).
-  public /*friend*/ Module /*P*/ SourceModule;
+  public /*friend*/ Module$B /*P*/ SourceModule;
   
   /// \brief The top-level modules that are known.
-  private StringMap<Module /*P*//*, MallocAllocator*/> Modules;
+  private StringMap<Module$B/*P*//*, MallocAllocator*/> Modules;
   
   /// \brief The number of modules we have created in total.
   private /*uint*/int NumCreatedModules;
@@ -176,7 +176,7 @@ public class ModuleMap implements Destructors.ClassWithDestructor {
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/ModuleMap.cpp -nm=_ZN5clang9ModuleMap11KnownHeaderE")
   //</editor-fold>
   public static class KnownHeader implements Native.NativePOD<KnownHeader>, NativeMoveable<KnownHeader>, Native.Native$Bool  {
-    private PointerInt2Pair</*const*/ Module/*P*//*, 2, ModuleHeaderRole*/ > Storage;
+    private PointerInt2Pair</*const*/ Module$B/*P*//*, 2, ModuleHeaderRole*/ > Storage;
   /*public:*/
     //<editor-fold defaultstate="collapsed" desc="clang::ModuleMap::KnownHeader::KnownHeader">
     @Converted(kind = Converted.Kind.AUTO,
@@ -188,7 +188,7 @@ public class ModuleMap implements Destructors.ClassWithDestructor {
     public KnownHeader() {
       /* : Storage(null, NormalHeader)*/ 
       //START JInit
-      this.Storage = new PointerInt2Pair</*const*/ Module/*P*//*, 2, ModuleHeaderRole*/ >((Module /*P*/ )null, ModuleHeaderRole.NormalHeader);
+      this.Storage = new PointerInt2Pair</*const*/ Module$B/*P*//*, 2, ModuleHeaderRole*/ >((Module$B /*P*/ )null, ModuleHeaderRole.NormalHeader);
       //END JInit
     }
 
@@ -199,11 +199,11 @@ public class ModuleMap implements Destructors.ClassWithDestructor {
      FQN="clang::ModuleMap::KnownHeader::KnownHeader", NM="_ZN5clang9ModuleMap11KnownHeaderC1EPNS_6ModuleENS0_16ModuleHeaderRoleE",
      cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/ModuleMap.cpp -nm=_ZN5clang9ModuleMap11KnownHeaderC1EPNS_6ModuleENS0_16ModuleHeaderRoleE")
     //</editor-fold>
-    public KnownHeader(Module /*P*/ M, /*ModuleHeaderRole*//*uint*/int Role) {
+    public KnownHeader(Module$B /*P*/ M, /*ModuleHeaderRole*//*uint*/int Role) {
       /* : Storage(M, Role)*/ 
       assert M != null;
       //START JInit
-      this.Storage = new PointerInt2Pair</*const*/ Module/*P*//*, 2, ModuleHeaderRole*/ >(M, Role);
+      this.Storage = new PointerInt2Pair</*const*/ Module$B/*P*//*, 2, ModuleHeaderRole*/ >(M, Role);
       //END JInit
     }
 
@@ -239,7 +239,7 @@ public class ModuleMap implements Destructors.ClassWithDestructor {
      FQN="clang::ModuleMap::KnownHeader::getModule", NM="_ZNK5clang9ModuleMap11KnownHeader9getModuleEv",
      cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/ModuleMap.cpp -nm=_ZNK5clang9ModuleMap11KnownHeader9getModuleEv")
     //</editor-fold>
-    public Module /*P*/ getModule() /*const*/ {
+    public Module$B /*P*/ getModule() /*const*/ {
       return Storage.getPointer();
     }
 
@@ -277,7 +277,7 @@ public class ModuleMap implements Destructors.ClassWithDestructor {
      FQN="clang::ModuleMap::KnownHeader::isAccessibleFrom", NM="_ZNK5clang9ModuleMap11KnownHeader16isAccessibleFromEPNS_6ModuleE",
      cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/ModuleMap.cpp -nm=_ZNK5clang9ModuleMap11KnownHeader16isAccessibleFromEPNS_6ModuleE")
     //</editor-fold>
-    public boolean isAccessibleFrom(Module /*P*/ M) /*const*/ {
+    public boolean isAccessibleFrom(Module$B /*P*/ M) /*const*/ {
       return !((getRole() & ModuleHeaderRole.PrivateHeader) != 0)
          || ((M != null) && M.getTopLevelModule() == getModule().getTopLevelModule());
     }
@@ -306,7 +306,7 @@ public class ModuleMap implements Destructors.ClassWithDestructor {
     public /*inline*/ KnownHeader(/*const*/ KnownHeader /*&*/ $Prm0) {
       /* : Storage(.Storage)*/ 
       //START JInit
-      this.Storage = new PointerInt2Pair</*const*/ Module/*P*//*, 2, ModuleHeaderRole*/ >($Prm0.Storage);
+      this.Storage = new PointerInt2Pair</*const*/ Module$B/*P*//*, 2, ModuleHeaderRole*/ >($Prm0.Storage);
       //END JInit
     }
 
@@ -320,7 +320,7 @@ public class ModuleMap implements Destructors.ClassWithDestructor {
     public /*inline*/ KnownHeader(JD$Move _dparam, KnownHeader /*&&*/$Prm0) {
       /* : Storage(static_cast<KnownHeader &&>().Storage)*/ 
       //START JInit
-      this.Storage = new PointerInt2Pair</*const*/ Module/*P*//*, 2, ModuleHeaderRole*/ >(JD$Move.INSTANCE, $Prm0.Storage);
+      this.Storage = new PointerInt2Pair</*const*/ Module$B/*P*//*, 2, ModuleHeaderRole*/ >(JD$Move.INSTANCE, $Prm0.Storage);
       //END JInit
     }
 
@@ -389,7 +389,7 @@ public class ModuleMap implements Destructors.ClassWithDestructor {
   /// This mapping is used to map headers that haven't explicitly been named
   /// in the module map over to the module that includes them via its umbrella
   /// header.
-  public /*friend*/ DenseMap</*const*/ DirectoryEntry /*P*/ , Module /*P*/ > UmbrellaDirs;
+  public /*friend*/ DenseMap</*const*/ DirectoryEntry /*P*/ , Module$B/*P*/ > UmbrellaDirs;
   
   /// \brief The set of attributes that can be attached to a module.
   //<editor-fold defaultstate="collapsed" desc="clang::ModuleMap::Attributes">
@@ -638,9 +638,9 @@ public class ModuleMap implements Destructors.ClassWithDestructor {
   
   /// A mapping from an inferred module to the module map that allowed the
   /// inference.
-  private DenseMap</*const*/ Module /*P*/ , /*const*/ FileEntry /*P*/ > InferredModuleAllowedBy;
+  private DenseMap</*const*/ Module$B/*P*/ , /*const*/ FileEntry /*P*/ > InferredModuleAllowedBy;
   
-  private DenseMap</*const*/ Module /*P*/ , SmallPtrSet</*const*/ FileEntry /*P*/> > AdditionalModMaps;
+  private DenseMap</*const*/ Module$B/*P*/ , SmallPtrSet</*const*/ FileEntry /*P*/> > AdditionalModMaps;
   
   /// \brief Describes whether we haved parsed a particular file as a module
   /// map.
@@ -666,22 +666,22 @@ public class ModuleMap implements Destructors.ClassWithDestructor {
    FQN="clang::ModuleMap::resolveExport", NM="_ZNK5clang9ModuleMap13resolveExportEPNS_6ModuleERKNS1_20UnresolvedExportDeclEb",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/ModuleMap.cpp -nm=_ZNK5clang9ModuleMap13resolveExportEPNS_6ModuleERKNS1_20UnresolvedExportDeclEb")
   //</editor-fold>
-  private PointerInt2Pair</*const*/ Module/*P*/> resolveExport(Module /*P*/ Mod, 
-               /*const*/ Module.UnresolvedExportDecl /*&*/ Unresolved, 
+  private PointerInt2Pair</*const*/ Module$B/*P*/> resolveExport(Module$B /*P*/ Mod, 
+               /*const*/ Module$B.UnresolvedExportDecl /*&*/ Unresolved, 
                boolean Complain) /*const*/ {
     // We may have just a wildcard.
     if (Unresolved.Id.empty()) {
       assert (Unresolved.Wildcard) : "Invalid unresolved export";
-      return new PointerInt2Pair</*const*/ Module/*P*/>((Module /*P*/ )null, true);
+      return new PointerInt2Pair</*const*/ Module$B/*P*/>((Module$B /*P*/ )null, true);
     }
     
     // Resolve the module-id.
-    Module /*P*/ Context = resolveModuleId(Unresolved.Id, Mod, Complain);
+    Module$B /*P*/ Context = resolveModuleId(Unresolved.Id, Mod, Complain);
     if (!(Context != null)) {
-      return new PointerInt2Pair</*const*/ Module/*P*/>();
+      return new PointerInt2Pair</*const*/ Module$B/*P*/>();
     }
     
-    return new PointerInt2Pair</*const*/ Module/*P*/>(Context, Unresolved.Wildcard);
+    return new PointerInt2Pair</*const*/ Module$B/*P*/>(Context, Unresolved.Wildcard);
   }
 
   
@@ -702,10 +702,10 @@ public class ModuleMap implements Destructors.ClassWithDestructor {
    FQN="clang::ModuleMap::resolveModuleId", NM="_ZNK5clang9ModuleMap15resolveModuleIdERKN4llvm11SmallVectorISt4pairISsNS_14SourceLocationEELj2EEEPNS_6ModuleEb",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/ModuleMap.cpp -nm=_ZNK5clang9ModuleMap15resolveModuleIdERKN4llvm11SmallVectorISt4pairISsNS_14SourceLocationEELj2EEEPNS_6ModuleEb")
   //</editor-fold>
-  private Module /*P*/ resolveModuleId(/*const*/ClankAliases.ModuleId/*&*/ Id, Module /*P*/ Mod, 
+  private Module$B /*P*/ resolveModuleId(/*const*/ClankAliases.ModuleId/*&*/ Id, Module$B /*P*/ Mod, 
                  boolean Complain) /*const*/ {
     // Find the starting module.
-    Module /*P*/ Context = lookupModuleUnqualified(new StringRef(Id.$at(0).first), Mod);
+    Module$B /*P*/ Context = lookupModuleUnqualified(new StringRef(Id.$at(0).first), Mod);
     if (!(Context != null)) {
       if (Complain) {
         JavaCleaner $c$ = $createJavaCleaner();
@@ -722,7 +722,7 @@ public class ModuleMap implements Destructors.ClassWithDestructor {
     
     // Dig into the module path.
     for (/*uint*/int I = 1, N = Id.size(); I != N; ++I) {
-      Module /*P*/ Sub = lookupModuleQualified(new StringRef(Id.$at(I).first), Context);
+      Module$B /*P*/ Sub = lookupModuleQualified(new StringRef(Id.$at(I).first), Context);
       if (!(Sub != null)) {
         if (Complain) {
           JavaCleaner $c$ = $createJavaCleaner();
@@ -800,7 +800,7 @@ public class ModuleMap implements Destructors.ClassWithDestructor {
     // Keep walking up the directory hierarchy, looking for a directory with
     // an umbrella header.
     do {
-      DenseMapIterator</*const*/ DirectoryEntry /*P*/ , Module /*P*/> KnownDir = UmbrellaDirs.find(Dir);
+      DenseMapIterator</*const*/ DirectoryEntry /*P*/ , Module$B/*P*/> KnownDir = UmbrellaDirs.find(Dir);
       if (KnownDir.$noteq(/*NO_ITER_COPY*/UmbrellaDirs.end())) {
         return new KnownHeader(KnownDir.$arrow().second, ModuleHeaderRole.NormalHeader);
       }
@@ -837,11 +837,11 @@ public class ModuleMap implements Destructors.ClassWithDestructor {
     if (H.$bool()) {
       JavaCleaner $c$ = $createJavaCleaner();
       try {
-        Module /*P*/ Result = H.getModule();
+        Module$B /*P*/ Result = H.getModule();
         
         // Search up the module stack until we find a module with an umbrella
         // directory.
-        Module /*P*/ UmbrellaModule = Result;
+        Module$B /*P*/ UmbrellaModule = Result;
         while ($c$.clean(!$c$.track(UmbrellaModule.getUmbrellaDir()).$bool() && (UmbrellaModule.Parent != null))) {
           UmbrellaModule = UmbrellaModule.Parent;
         }
@@ -868,7 +868,7 @@ public class ModuleMap implements Destructors.ClassWithDestructor {
             // If inferred submodules export everything they import, add a
             // wildcard to the set of exports.
             if (UmbrellaModule.InferExportWildcard && Result.Exports.empty()) {
-              Result.Exports.push_back(new PointerInt2Pair</*const*/ Module/*P*/>((Module /*P*/ )null, true));
+              Result.Exports.push_back(new PointerInt2Pair</*const*/ Module$B/*P*/>((Module$B /*P*/ )null, true));
             }
           }
           
@@ -884,7 +884,7 @@ public class ModuleMap implements Destructors.ClassWithDestructor {
           // If inferred submodules export everything they import, add a
           // wildcard to the set of exports.
           if (UmbrellaModule.InferExportWildcard && Result.Exports.empty()) {
-            Result.Exports.push_back(new PointerInt2Pair</*const*/ Module/*P*/>((Module /*P*/ )null, true));
+            Result.Exports.push_back(new PointerInt2Pair</*const*/ Module$B/*P*/>((Module$B /*P*/ )null, true));
           }
         } else {
           // Record each of the directories we stepped through as being part of
@@ -928,8 +928,8 @@ public class ModuleMap implements Destructors.ClassWithDestructor {
    FQN="clang::ModuleMap::inferFrameworkModule", NM="_ZN5clang9ModuleMap20inferFrameworkModuleEPKNS_14DirectoryEntryENS0_10AttributesEPNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/ModuleMap.cpp -nm=_ZN5clang9ModuleMap20inferFrameworkModuleEPKNS_14DirectoryEntryENS0_10AttributesEPNS_6ModuleE")
   //</editor-fold>
-  private Module /*P*/ inferFrameworkModule(/*const*/ DirectoryEntry /*P*/ FrameworkDir, 
-                      Attributes Attrs, Module /*P*/ Parent) {
+  private Module$B /*P*/ inferFrameworkModule(/*const*/ DirectoryEntry /*P*/ FrameworkDir, 
+                      Attributes Attrs, Module$B /*P*/ Parent) {
     // Note: as an egregious but useful hack we use the real path here, because
     // we might be looking at an embedded framework that symlinks out to a
     // top-level framework, and we need to infer as if we were naming the
@@ -944,7 +944,7 @@ public class ModuleMap implements Destructors.ClassWithDestructor {
     {
       
       // Check whether we've already found this module.
-      Module /*P*/ Mod = lookupModuleQualified(/*NO_COPY*/ModuleName, Parent);
+      Module$B /*P*/ Mod = lookupModuleQualified(/*NO_COPY*/ModuleName, Parent);
       if ((Mod != null)) {
         return Mod;
       }
@@ -1019,7 +1019,7 @@ public class ModuleMap implements Destructors.ClassWithDestructor {
       return null;
     }
     
-    Module /*P*/ Result = new Module(/*NO_COPY*/ModuleName, new SourceLocation(), Parent, 
+    Module$B /*P*/ Result = new Module$B(/*NO_COPY*/ModuleName, new SourceLocation(), Parent, 
         /*IsFramework=*/ true, /*IsExplicit=*/ false, 
         NumCreatedModules++);
     InferredModuleAllowedBy.$set(Result, ModuleMapFile);
@@ -1043,7 +1043,7 @@ public class ModuleMap implements Destructors.ClassWithDestructor {
     setUmbrellaHeader(Result, UmbrellaHeader, $add_StringRef_char$ptr$C(ModuleName, /*KEEP_STR*/".h"));
     
     // export *
-    Result.Exports.push_back(new PointerInt2Pair</*const*/ Module/*P*/>((Module /*P*/ )null, true));
+    Result.Exports.push_back(new PointerInt2Pair</*const*/ Module$B/*P*/>((Module$B /*P*/ )null, true));
     
     // module * { export * }
     Result.InferSubmodules = true;
@@ -1133,13 +1133,13 @@ public class ModuleMap implements Destructors.ClassWithDestructor {
     this.BuiltinIncludeDir = null;
     this.MMapLangOpts = new LangOptions();
     this.SourceModule = null;
-    this.Modules = new StringMap<Module /*P*//*, MallocAllocator*/>(null);
+    this.Modules = new StringMap<Module$B/*P*//*, MallocAllocator*/>(null);
     this.NumCreatedModules = 0;
     this.Headers = new /*HeadersMap*/DenseMap</*const*/ FileEntry /*P*/ , SmallVector<KnownHeader> >(FileEntry.DMI$FileEntryPtr, new SmallVector(1, new KnownHeader()));
-    this.UmbrellaDirs = new DenseMap</*const*/ DirectoryEntry /*P*/ , Module /*P*/ >(DenseMapInfo$LikePtr.$Info(), null);
+    this.UmbrellaDirs = new DenseMap</*const*/ DirectoryEntry /*P*/ , Module$B/*P*/ >(DenseMapInfo$LikePtr.$Info(), null);
     this.InferredDirectories = new DenseMap</*const*/ DirectoryEntry /*P*/ , InferredDirectory>(DenseMapInfo$LikePtr.$Info(), new InferredDirectory());
-    this.InferredModuleAllowedBy = new DenseMap</*const*/ Module /*P*/ , /*const*/ FileEntry /*P*/ >(DenseMapInfo$LikePtr.$Info(), null);
-    this.AdditionalModMaps = new DenseMap</*const*/ Module /*P*/ , SmallPtrSet</*const*/ FileEntry /*P*/> >(DenseMapInfo$LikePtr.$Info(), new SmallPtrSet<FileEntry>(FileEntry.DMI$FileEntryPtr, 1));
+    this.InferredModuleAllowedBy = new DenseMap</*const*/ Module$B/*P*/ , /*const*/ FileEntry /*P*/ >(DenseMapInfo$LikePtr.$Info(), null);
+    this.AdditionalModMaps = new DenseMap</*const*/ Module$B/*P*/ , SmallPtrSet</*const*/ FileEntry /*P*/> >(DenseMapInfo$LikePtr.$Info(), new SmallPtrSet<FileEntry>(FileEntry.DMI$FileEntryPtr, 1));
     this.ParsedModuleMap = new DenseMapTypeBool</*const*/ FileEntry /*P*/>(FileEntry.DMI$FileEntryPtr, false);
     //END JInit
     MMapLangOpts.LineComment = true;
@@ -1155,7 +1155,7 @@ public class ModuleMap implements Destructors.ClassWithDestructor {
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/ModuleMap.cpp -nm=_ZN5clang9ModuleMapD0Ev")
   //</editor-fold>
   public void $destroy() {
-    for (StringMapEntry<Module /*P*/ > /*&*/ M : Modules)  {
+    for (StringMapEntry<Module$B/*P*/ > /*&*/ M : Modules)  {
       if (M.getValue() != null) { M.getValue().$destroy();};
     }
     //START JDestroy
@@ -1304,7 +1304,7 @@ public class ModuleMap implements Destructors.ClassWithDestructor {
    FQN="clang::ModuleMap::diagnoseHeaderInclusion", NM="_ZN5clang9ModuleMap23diagnoseHeaderInclusionEPNS_6ModuleEbNS_14SourceLocationEN4llvm9StringRefEPKNS_9FileEntryE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/ModuleMap.cpp -nm=_ZN5clang9ModuleMap23diagnoseHeaderInclusionEPNS_6ModuleEbNS_14SourceLocationEN4llvm9StringRefEPKNS_9FileEntryE")
   //</editor-fold>
-  public void diagnoseHeaderInclusion(Module /*P*/ RequestingModule, 
+  public void diagnoseHeaderInclusion(Module$B /*P*/ RequestingModule, 
                          boolean RequestingModuleIsModuleInterface, 
                          SourceLocation FilenameLoc, 
                          StringRef Filename, 
@@ -1319,8 +1319,8 @@ public class ModuleMap implements Destructors.ClassWithDestructor {
     }
     
     boolean Excluded = false;
-    Module /*P*/ Private = null;
-    Module /*P*/ NotUsed = null;
+    Module$B /*P*/ Private = null;
+    Module$B /*P*/ NotUsed = null;
     
     DenseMapIterator</*const*/ FileEntry /*P*/ , SmallVector<KnownHeader> > Known = findKnownHeader(File);
     if (Known.$noteq(/*NO_ITER_COPY*/Headers.end())) {
@@ -1404,12 +1404,12 @@ public class ModuleMap implements Destructors.ClassWithDestructor {
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/ModuleMap.cpp -nm=_ZNK5clang9ModuleMap27isHeaderInUnavailableModuleEPKNS_9FileEntryE")
   //</editor-fold>
   public boolean isHeaderInUnavailableModule(/*const*/ FileEntry /*P*/ Header) /*const*/ {
-    return isHeaderUnavailableInModule(Header, (/*const*/ Module /*P*/ )null);
+    return isHeaderUnavailableInModule(Header, (/*const*/ Module$B /*P*/ )null);
   }
 
   // JAVA: lambda for method isHeaderUnavailableInModule
   private static interface isHeaderUnavailableInModule$IsUnavailableLambda {
-    boolean $call(/*const*/ Module /*P*/ M);
+    boolean $call(/*const*/ Module$B /*P*/ M);
   }
   
   /// \brief Determine whether the given header is unavailable as part
@@ -1422,7 +1422,7 @@ public class ModuleMap implements Destructors.ClassWithDestructor {
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/ModuleMap.cpp -nm=_ZNK5clang9ModuleMap27isHeaderUnavailableInModuleEPKNS_9FileEntryEPKNS_6ModuleE")
   //</editor-fold>
   public boolean isHeaderUnavailableInModule(/*const*/ FileEntry /*P*/ Header, 
-                             /*const*/ Module /*P*/ RequestingModule) /*const*/ {
+                             /*const*/ Module$B /*P*/ RequestingModule) /*const*/ {
     DenseMapIterator</*const*/ FileEntry /*P*/ , SmallVector<KnownHeader> > Known = Headers.find(Header);
     if (Known.$noteq(Headers.end())) {
       for (type$ptr<KnownHeader> I = Known.$arrow().second.begin(), 
@@ -1450,18 +1450,18 @@ public class ModuleMap implements Destructors.ClassWithDestructor {
     // Keep walking up the directory hierarchy, looking for a directory with
     // an umbrella header.
     do {
-      DenseMapIterator</*const*/ DirectoryEntry /*P*/ , Module /*P*/ > KnownDir = UmbrellaDirs.find(Dir);
+      DenseMapIterator</*const*/ DirectoryEntry /*P*/ , Module$B/*P*/ > KnownDir = UmbrellaDirs.find(Dir);
       if (KnownDir.$noteq(UmbrellaDirs.end())) {
         JavaCleaner $c$ = $createJavaCleaner();
         try {
-          Module /*P*/ Found = KnownDir.$arrow().second;
+          Module$B /*P*/ Found = KnownDir.$arrow().second;
           if (IsUnavailable.$call(Found)) {
             return true;
           }
           
           // Search up the module stack until we find a module with an umbrella
           // directory.
-          Module /*P*/ UmbrellaModule = Found;
+          Module$B /*P*/ UmbrellaModule = Found;
           while ($c$.clean(!$c$.track(UmbrellaModule.getUmbrellaDir()).$bool() && (UmbrellaModule.Parent != null))) {
             UmbrellaModule = UmbrellaModule.Parent;
           }
@@ -1524,8 +1524,8 @@ public class ModuleMap implements Destructors.ClassWithDestructor {
    FQN="clang::ModuleMap::findModule", NM="_ZNK5clang9ModuleMap10findModuleEN4llvm9StringRefE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/ModuleMap.cpp -nm=_ZNK5clang9ModuleMap10findModuleEN4llvm9StringRefE")
   //</editor-fold>
-  public Module /*P*/ findModule(StringRef Name) /*const*/ {
-    StringMapIterator<Module /*P*//*, MallocAllocator*/> Known = Modules.find(/*NO_COPY*/Name);
+  public Module$B /*P*/ findModule(StringRef Name) /*const*/ {
+    StringMapIterator<Module$B/*P*//*, MallocAllocator*/> Known = Modules.find(/*NO_COPY*/Name);
     if (Known.$noteq(Modules.end())) {
       return Known.$arrow().getValue();
     }
@@ -1550,11 +1550,11 @@ public class ModuleMap implements Destructors.ClassWithDestructor {
    FQN="clang::ModuleMap::lookupModuleUnqualified", NM="_ZNK5clang9ModuleMap23lookupModuleUnqualifiedEN4llvm9StringRefEPNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/ModuleMap.cpp -nm=_ZNK5clang9ModuleMap23lookupModuleUnqualifiedEN4llvm9StringRefEPNS_6ModuleE")
   //</editor-fold>
-  public Module /*P*/ lookupModuleUnqualified(StringRef Name, 
-                         Module /*P*/ Context) /*const*/ {
+  public Module$B /*P*/ lookupModuleUnqualified(StringRef Name, 
+                         Module$B /*P*/ Context) /*const*/ {
     for (; (Context != null); Context = Context.Parent) {
       {
-        Module /*P*/ Sub = lookupModuleQualified(/*NO_COPY*/Name, Context);
+        Module$B /*P*/ Sub = lookupModuleQualified(/*NO_COPY*/Name, Context);
         if ((Sub != null)) {
           return Sub;
         }
@@ -1581,7 +1581,7 @@ public class ModuleMap implements Destructors.ClassWithDestructor {
    FQN="clang::ModuleMap::lookupModuleQualified", NM="_ZNK5clang9ModuleMap21lookupModuleQualifiedEN4llvm9StringRefEPNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/ModuleMap.cpp -nm=_ZNK5clang9ModuleMap21lookupModuleQualifiedEN4llvm9StringRefEPNS_6ModuleE")
   //</editor-fold>
-  public Module /*P*/ lookupModuleQualified(StringRef Name, Module /*P*/ Context) /*const*/ {
+  public Module$B /*P*/ lookupModuleQualified(StringRef Name, Module$B /*P*/ Context) /*const*/ {
     if (!(Context != null)) {
       return findModule(/*NO_COPY*/Name);
     }
@@ -1611,18 +1611,18 @@ public class ModuleMap implements Destructors.ClassWithDestructor {
    FQN="clang::ModuleMap::findOrCreateModule", NM="_ZN5clang9ModuleMap18findOrCreateModuleEN4llvm9StringRefEPNS_6ModuleEbb",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/ModuleMap.cpp -nm=_ZN5clang9ModuleMap18findOrCreateModuleEN4llvm9StringRefEPNS_6ModuleEbb")
   //</editor-fold>
-  public std.pairTypeBool<Module /*P*/> findOrCreateModule(StringRef Name, Module /*P*/ Parent, boolean IsFramework, 
+  public std.pairTypeBool<Module$B/*P*/> findOrCreateModule(StringRef Name, Module$B /*P*/ Parent, boolean IsFramework, 
                     boolean IsExplicit) {
     {
       // Try to find an existing module with this name.
-      Module /*P*/ Sub = lookupModuleQualified(/*NO_COPY*/Name, Parent);
+      Module$B /*P*/ Sub = lookupModuleQualified(/*NO_COPY*/Name, Parent);
       if ((Sub != null)) {
         return std.make_pair_Ptr_bool(Sub, false);
       }
     }
     
     // Create a new module with this name.
-    Module /*P*/ Result = new Module(/*NO_COPY*/Name, new SourceLocation(), Parent, 
+    Module$B /*P*/ Result = new Module$B(/*NO_COPY*/Name, new SourceLocation(), Parent, 
         IsFramework, IsExplicit, NumCreatedModules++);
     if (!(Parent != null)) {
       if ($eq_StringRef(new StringRef(LangOpts.CurrentModule), /*NO_COPY*/Name)) {
@@ -1643,8 +1643,8 @@ public class ModuleMap implements Destructors.ClassWithDestructor {
    FQN="clang::ModuleMap::inferFrameworkModule", NM="_ZN5clang9ModuleMap20inferFrameworkModuleEPKNS_14DirectoryEntryEbPNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/ModuleMap.cpp -nm=_ZN5clang9ModuleMap20inferFrameworkModuleEPKNS_14DirectoryEntryEbPNS_6ModuleE")
   //</editor-fold>
-  public Module /*P*/ inferFrameworkModule(/*const*/ DirectoryEntry /*P*/ FrameworkDir, 
-                      boolean IsSystem, Module /*P*/ Parent) {
+  public Module$B /*P*/ inferFrameworkModule(/*const*/ DirectoryEntry /*P*/ FrameworkDir, 
+                      boolean IsSystem, Module$B /*P*/ Parent) {
     Attributes Attrs/*J*/= new Attributes();
     Attrs.IsSystem = IsSystem;
     return inferFrameworkModule(FrameworkDir, /*NO_COPY*/Attrs, Parent);
@@ -1665,7 +1665,7 @@ public class ModuleMap implements Destructors.ClassWithDestructor {
    FQN="clang::ModuleMap::getContainingModuleMapFile", NM="_ZNK5clang9ModuleMap26getContainingModuleMapFileEPKNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/ModuleMap.cpp -nm=_ZNK5clang9ModuleMap26getContainingModuleMapFileEPKNS_6ModuleE")
   //</editor-fold>
-  public /*const*/ FileEntry /*P*/ getContainingModuleMapFile(/*const*/ Module /*P*/ Module) /*const*/ {
+  public /*const*/ FileEntry /*P*/ getContainingModuleMapFile(/*const*/ Module$B /*P*/ Module) /*const*/ {
     if (Module.DefinitionLoc.isInvalid()) {
       return null;
     }
@@ -1690,7 +1690,7 @@ public class ModuleMap implements Destructors.ClassWithDestructor {
    FQN="clang::ModuleMap::getModuleMapFileForUniquing", NM="_ZNK5clang9ModuleMap27getModuleMapFileForUniquingEPKNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/ModuleMap.cpp -nm=_ZNK5clang9ModuleMap27getModuleMapFileForUniquingEPKNS_6ModuleE")
   //</editor-fold>
-  public /*const*/ FileEntry /*P*/ getModuleMapFileForUniquing(/*const*/ Module /*P*/ M) /*const*/ {
+  public /*const*/ FileEntry /*P*/ getModuleMapFileForUniquing(/*const*/ Module$B /*P*/ M) /*const*/ {
     if (M.IsInferred) {
       assert ((InferredModuleAllowedBy.count(M) != 0)) : "missing inferred module map";
       return InferredModuleAllowedBy.find(M).$arrow().second;
@@ -1706,7 +1706,7 @@ public class ModuleMap implements Destructors.ClassWithDestructor {
    FQN="clang::ModuleMap::setInferredModuleAllowedBy", NM="_ZN5clang9ModuleMap26setInferredModuleAllowedByEPNS_6ModuleEPKNS_9FileEntryE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/ModuleMap.cpp -nm=_ZN5clang9ModuleMap26setInferredModuleAllowedByEPNS_6ModuleEPKNS_9FileEntryE")
   //</editor-fold>
-  public void setInferredModuleAllowedBy(Module /*P*/ M, /*const*/ FileEntry /*P*/ ModMap) {
+  public void setInferredModuleAllowedBy(Module$B /*P*/ M, /*const*/ FileEntry /*P*/ ModMap) {
     assert (M.IsInferred) : "module not inferred";
     InferredModuleAllowedBy.$set(M, ModMap);
   }
@@ -1723,8 +1723,8 @@ public class ModuleMap implements Destructors.ClassWithDestructor {
    FQN="clang::ModuleMap::getAdditionalModuleMapFiles", NM="_ZN5clang9ModuleMap27getAdditionalModuleMapFilesEPKNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/ModuleMap.cpp -nm=_ZN5clang9ModuleMap27getAdditionalModuleMapFilesEPKNS_6ModuleE")
   //</editor-fold>
-  public SmallPtrSet</*const*/ FileEntry /*P*/>/*P*/ getAdditionalModuleMapFiles(/*const*/ Module /*P*/ M) {
-    DenseMapIterator</*const*/ Module /*P*/ , SmallPtrSet</*const*/ FileEntry /*P*/>> I = AdditionalModMaps.find(M);
+  public SmallPtrSet</*const*/ FileEntry /*P*/>/*P*/ getAdditionalModuleMapFiles(/*const*/ Module$B /*P*/ M) {
+    DenseMapIterator</*const*/ Module$B/*P*/ , SmallPtrSet</*const*/ FileEntry /*P*/>> I = AdditionalModMaps.find(M);
     if (I.$eq(/*NO_ITER_COPY*/AdditionalModMaps.end())) {
       return null;
     }
@@ -1739,7 +1739,7 @@ public class ModuleMap implements Destructors.ClassWithDestructor {
    FQN="clang::ModuleMap::addAdditionalModuleMapFile", NM="_ZN5clang9ModuleMap26addAdditionalModuleMapFileEPKNS_6ModuleEPKNS_9FileEntryE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/ModuleMap.cpp -nm=_ZN5clang9ModuleMap26addAdditionalModuleMapFileEPKNS_6ModuleEPKNS_9FileEntryE")
   //</editor-fold>
-  public void addAdditionalModuleMapFile(/*const*/ Module /*P*/ M, /*const*/ FileEntry /*P*/ ModuleMap) {
+  public void addAdditionalModuleMapFile(/*const*/ Module$B /*P*/ M, /*const*/ FileEntry /*P*/ ModuleMap) {
     AdditionalModMaps.$at(M).insert(ModuleMap);
   }
 
@@ -1759,11 +1759,11 @@ public class ModuleMap implements Destructors.ClassWithDestructor {
    FQN="clang::ModuleMap::resolveExports", NM="_ZN5clang9ModuleMap14resolveExportsEPNS_6ModuleEb",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/ModuleMap.cpp -nm=_ZN5clang9ModuleMap14resolveExportsEPNS_6ModuleEb")
   //</editor-fold>
-  public boolean resolveExports(Module /*P*/ Mod, boolean Complain) {
+  public boolean resolveExports(Module$B /*P*/ Mod, boolean Complain) {
     SmallVector<UnresolvedExportDecl> Unresolved = new SmallVector<UnresolvedExportDecl>(JD$Move.INSTANCE, std.move(Mod.UnresolvedExports));
     Mod.UnresolvedExports.clear();
     for (UnresolvedExportDecl /*&*/ UE : Unresolved) {
-      PointerInt2Pair</*const*/ Module/*P*/> Export = resolveExport(Mod, UE, Complain);
+      PointerInt2Pair</*const*/ Module$B/*P*/> Export = resolveExport(Mod, UE, Complain);
       if ((Export.getPointer() != null) || (Export.getInt() != 0)) {
         Mod.Exports.push_back(Export);
       } else {
@@ -1789,11 +1789,11 @@ public class ModuleMap implements Destructors.ClassWithDestructor {
    FQN="clang::ModuleMap::resolveUses", NM="_ZN5clang9ModuleMap11resolveUsesEPNS_6ModuleEb",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/ModuleMap.cpp -nm=_ZN5clang9ModuleMap11resolveUsesEPNS_6ModuleEb")
   //</editor-fold>
-  public boolean resolveUses(Module /*P*/ Mod, boolean Complain) {
+  public boolean resolveUses(Module$B /*P*/ Mod, boolean Complain) {
     SmallVector<ClankAliases.ModuleId> Unresolved = new SmallVector<>(Mod.UnresolvedDirectUses);
     Mod.UnresolvedDirectUses.clear();
     for (ClankAliases.ModuleId /*&*/ UDU : Unresolved) {
-      Module /*P*/ DirectUse = resolveModuleId(UDU, Mod, Complain);
+      Module$B /*P*/ DirectUse = resolveModuleId(UDU, Mod, Complain);
       if ((DirectUse != null)) {
         Mod.DirectUses.push_back(DirectUse);
       } else {
@@ -1819,16 +1819,16 @@ public class ModuleMap implements Destructors.ClassWithDestructor {
    FQN="clang::ModuleMap::resolveConflicts", NM="_ZN5clang9ModuleMap16resolveConflictsEPNS_6ModuleEb",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/ModuleMap.cpp -nm=_ZN5clang9ModuleMap16resolveConflictsEPNS_6ModuleEb")
   //</editor-fold>
-  public boolean resolveConflicts(Module /*P*/ Mod, boolean Complain) {
+  public boolean resolveConflicts(Module$B /*P*/ Mod, boolean Complain) {
     vector<UnresolvedConflict> Unresolved = new vector<UnresolvedConflict>(JD$Move.INSTANCE, std.move(Mod.UnresolvedConflicts));
     Mod.UnresolvedConflicts.clear();
     for (UnresolvedConflict /*&*/ UC : Unresolved) {
       {
-        Module /*P*/ OtherMod = resolveModuleId(UC.Id, Mod, Complain);
+        Module$B /*P*/ OtherMod = resolveModuleId(UC.Id, Mod, Complain);
         if ((OtherMod != null)) {
-          Module.Conflict Conflict = null;
+          Module$B.Conflict Conflict = null;
           try {
-            Conflict/*J*/= new Module.Conflict();
+            Conflict/*J*/= new Module$B.Conflict();
             Conflict.Other = OtherMod;
             Conflict.Message.$assign(UC.Message);
             Mod.Conflicts.push_back(Conflict);
@@ -1859,7 +1859,7 @@ public class ModuleMap implements Destructors.ClassWithDestructor {
    FQN="clang::ModuleMap::inferModuleFromLocation", NM="_ZN5clang9ModuleMap23inferModuleFromLocationENS_13FullSourceLocE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/ModuleMap.cpp -nm=_ZN5clang9ModuleMap23inferModuleFromLocationENS_13FullSourceLocE")
   //</editor-fold>
-  public Module /*P*/ inferModuleFromLocation(FullSourceLoc Loc) {
+  public Module$B /*P*/ inferModuleFromLocation(FullSourceLoc Loc) {
     if (Loc.isInvalid()) {
       return null;
     }
@@ -1881,7 +1881,7 @@ public class ModuleMap implements Destructors.ClassWithDestructor {
       while (((/*P*/ ExpansionFile = SrcMgr.getFileEntryForID(/*NO_COPY*/ExpansionFileID)) != null)) {
         {
           // Find the module that owns this header (if any).
-          Module /*P*/ Mod = findModuleForHeader(ExpansionFile).getModule();
+          Module$B /*P*/ Mod = findModuleForHeader(ExpansionFile).getModule();
           if ((Mod != null)) {
             return Mod;
           }
@@ -1911,7 +1911,7 @@ public class ModuleMap implements Destructors.ClassWithDestructor {
    FQN="clang::ModuleMap::setUmbrellaHeader", NM="_ZN5clang9ModuleMap17setUmbrellaHeaderEPNS_6ModuleEPKNS_9FileEntryEN4llvm5TwineE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/ModuleMap.cpp -nm=_ZN5clang9ModuleMap17setUmbrellaHeaderEPNS_6ModuleEPKNS_9FileEntryEN4llvm5TwineE")
   //</editor-fold>
-  public void setUmbrellaHeader(Module /*P*/ Mod, /*const*/ FileEntry /*P*/ UmbrellaHeader, 
+  public void setUmbrellaHeader(Module$B /*P*/ Mod, /*const*/ FileEntry /*P*/ UmbrellaHeader, 
                    Twine NameAsWritten) {
     Headers.$at_T1$C$R(UmbrellaHeader).push_back(new KnownHeader(Mod, ModuleHeaderRole.NormalHeader));
     Mod.Umbrella.$assign_T1$C$R(FileEntry /*P*/.class, UmbrellaHeader);
@@ -1934,7 +1934,7 @@ public class ModuleMap implements Destructors.ClassWithDestructor {
    FQN="clang::ModuleMap::setUmbrellaDir", NM="_ZN5clang9ModuleMap14setUmbrellaDirEPNS_6ModuleEPKNS_14DirectoryEntryEN4llvm5TwineE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/ModuleMap.cpp -nm=_ZN5clang9ModuleMap14setUmbrellaDirEPNS_6ModuleEPKNS_14DirectoryEntryEN4llvm5TwineE")
   //</editor-fold>
-  public void setUmbrellaDir(Module /*P*/ Mod, /*const*/ DirectoryEntry /*P*/ UmbrellaDir, 
+  public void setUmbrellaDir(Module$B /*P*/ Mod, /*const*/ DirectoryEntry /*P*/ UmbrellaDir, 
                 Twine NameAsWritten) {
     Mod.Umbrella.$assign_T$C$R(DirectoryEntry /*P*/.class, UmbrellaDir);
     Mod.UmbrellaAsWritten.$assignMove(NameAsWritten.str());
@@ -1951,12 +1951,12 @@ public class ModuleMap implements Destructors.ClassWithDestructor {
    FQN="clang::ModuleMap::addHeader", NM="_ZN5clang9ModuleMap9addHeaderEPNS_6ModuleENS1_6HeaderENS0_16ModuleHeaderRoleEb",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/ModuleMap.cpp -nm=_ZN5clang9ModuleMap9addHeaderEPNS_6ModuleENS1_6HeaderENS0_16ModuleHeaderRoleEb")
   //</editor-fold>
-  public void addHeader(Module /*P*/ Mod, Module.Header Header, 
+  public void addHeader(Module$B /*P*/ Mod, Module$B.Header Header, 
            /*ModuleHeaderRole*//*uint*/int Role) {
     addHeader(Mod, Header, 
            Role, false);
   }
-  public void addHeader(Module /*P*/ Mod, Module.Header Header, 
+  public void addHeader(Module$B /*P*/ Mod, Module$B.Header Header, 
            /*ModuleHeaderRole*//*uint*/int Role, boolean Imported/*= false*/) {
     KnownHeader KH/*J*/= new KnownHeader(Mod, Role);
     
@@ -1996,14 +1996,14 @@ public class ModuleMap implements Destructors.ClassWithDestructor {
    FQN="clang::ModuleMap::excludeHeader", NM="_ZN5clang9ModuleMap13excludeHeaderEPNS_6ModuleENS1_6HeaderE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/ModuleMap.cpp -nm=_ZN5clang9ModuleMap13excludeHeaderEPNS_6ModuleENS1_6HeaderE")
   //</editor-fold>
-  public void excludeHeader(Module /*P*/ Mod, Module.Header Header) {
+  public void excludeHeader(Module$B /*P*/ Mod, Module$B.Header Header) {
     // Add this as a known header so we won't implicitly add it to any
     // umbrella directory module.
     // FIXME: Should we only exclude it from umbrella modules within the
     // specified module?
     /*(void)*/Headers.$at(Header.Entry);
     
-    Mod.Headers[Module.HeaderKind.HK_Excluded.getValue()].push_back_T$RR(std.move(Header));
+    Mod.Headers[Module$B.HeaderKind.HK_Excluded.getValue()].push_back_T$RR(std.move(Header));
   }
 
   
@@ -2083,7 +2083,7 @@ public class ModuleMap implements Destructors.ClassWithDestructor {
   //</editor-fold>
   public void dump()/* __attribute__((used)) __attribute__((noinline))*/ {
     llvm.errs().$out(/*KEEP_STR*/"Modules:");
-    for (StringMapIterator<Module /*P*//*, MallocAllocator*/> M = Modules.begin(), 
+    for (StringMapIterator<Module$B/*P*//*, MallocAllocator*/> M = Modules.begin(), 
         MEnd = Modules.end();
          M.$noteq(MEnd); M.$preInc())  {
       M.$arrow().getValue().print(llvm.errs(), 2);
@@ -2115,7 +2115,7 @@ public class ModuleMap implements Destructors.ClassWithDestructor {
    FQN="clang::ModuleMap::module_begin", NM="_ZNK5clang9ModuleMap12module_beginEv",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/ModuleMap.cpp -nm=_ZNK5clang9ModuleMap12module_beginEv")
   //</editor-fold>
-  public StringMapIterator<Module /*P*//*, MallocAllocator*/> module_begin() /*const*/ {
+  public StringMapIterator<Module$B/*P*//*, MallocAllocator*/> module_begin() /*const*/ {
     return Modules.begin();
   }
 
@@ -2126,7 +2126,7 @@ public class ModuleMap implements Destructors.ClassWithDestructor {
    FQN="clang::ModuleMap::module_end", NM="_ZNK5clang9ModuleMap10module_endEv",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/ModuleMap.cpp -nm=_ZNK5clang9ModuleMap10module_endEv")
   //</editor-fold>
-  public StringMapIterator<Module /*P*//*, MallocAllocator*/> module_end() /*const*/ {
+  public StringMapIterator<Module$B/*P*//*, MallocAllocator*/> module_end() /*const*/ {
     return Modules.end();
   }
 

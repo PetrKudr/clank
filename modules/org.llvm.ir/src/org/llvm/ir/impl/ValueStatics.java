@@ -141,7 +141,7 @@ public static boolean getSymTab(Value /*P*/ V, final type$ref<ValueSymbolTable /
         GlobalValue /*P*/ GV = dyn_cast_GlobalValue(V);
         if ((GV != null)) {
           {
-            Module /*P*/ P = GV.getParent();
+            Module$IR /*P*/ P = GV.getParent();
             if ((P != null)) {
               ST.$set($AddrOf(P.getValueSymbolTable()));
             }

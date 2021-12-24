@@ -97,7 +97,7 @@ import org.llvm.pass.*;
  FQN="llvm::PrintModulePass", NM="_ZN4llvm15PrintModulePassE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/IRPrintingPasses.cpp -nm=_ZN4llvm15PrintModulePassE")
 //</editor-fold>
-public class PrintModulePass implements Destructors.ClassWithDestructor, IPass<PreservedAnalyses, Module> {
+public class PrintModulePass implements Destructors.ClassWithDestructor, IPass<PreservedAnalyses, Module$IR> {
   private final raw_ostream /*&*/ OS;
   private std.string Banner;
   private boolean ShouldPreserveUseListOrder;
@@ -147,7 +147,7 @@ public class PrintModulePass implements Destructors.ClassWithDestructor, IPass<P
    FQN="llvm::PrintModulePass::run", NM="_ZN4llvm15PrintModulePass3runERNS_6ModuleERNS_15AnalysisManagerIS1_EE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/IRPrintingPasses.cpp -nm=_ZN4llvm15PrintModulePass3runERNS_6ModuleERNS_15AnalysisManagerIS1_EE")
   //</editor-fold>
-  public PreservedAnalyses run(final Module /*&*/ M, final AnalysisManager<Module>/*&*/ $Prm1) {
+  public PreservedAnalyses run(final Module$IR /*&*/ M, final AnalysisManager<Module$IR>/*&*/ $Prm1) {
     OS.$out(Banner);
     if (IrLlvmGlobals.isFunctionInPrintList(new StringRef(/*KEEP_STR*/$STAR))) {
       M.print(OS, (AssemblyAnnotationWriter /*P*/ )null, ShouldPreserveUseListOrder);

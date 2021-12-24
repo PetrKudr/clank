@@ -99,7 +99,7 @@ import static org.llvm.support.AdtsupportLlvmGlobals.toIRString;
 //</editor-fold>
 public class AssemblyWriter implements Destructors.ClassWithDestructor {
   private final formatted_raw_ostream /*&*/ Out;
-  private /*const*/ Module /*P*/ TheModule;
+  private /*const*/ Module$IR /*P*/ TheModule;
   private std.unique_ptr<SlotTracker> SlotTrackerStorage;
   private final SlotTracker /*&*/ Machine;
   private TypePrinting TypePrinter;
@@ -119,14 +119,14 @@ public class AssemblyWriter implements Destructors.ClassWithDestructor {
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/AsmWriter.cpp -nm=_ZN12_GLOBAL__N_114AssemblyWriterC1ERN4llvm21formatted_raw_ostreamERNS1_11SlotTrackerEPKNS1_6ModuleEPNS1_24AssemblyAnnotationWriterEbb")
   //</editor-fold>
   public AssemblyWriter(final formatted_raw_ostream /*&*/ o, final SlotTracker /*&*/ Mac, 
-      /*const*/ Module /*P*/ M, AssemblyAnnotationWriter /*P*/ AAW, 
+      /*const*/ Module$IR /*P*/ M, AssemblyAnnotationWriter /*P*/ AAW, 
       boolean IsForDebug) {
     this(o, Mac, 
       M, AAW, 
       IsForDebug, false);
   }
   public AssemblyWriter(final formatted_raw_ostream /*&*/ o, final SlotTracker /*&*/ Mac, 
-      /*const*/ Module /*P*/ M, AssemblyAnnotationWriter /*P*/ AAW, 
+      /*const*/ Module$IR /*P*/ M, AssemblyAnnotationWriter /*P*/ AAW, 
       boolean IsForDebug, boolean ShouldPreserveUseListOrder/*= false*/) {
     // : Out(o), TheModule(M), SlotTrackerStorage(), Machine(Mac), TypePrinter(), AnnotationWriter(AAW), Comdats(), IsForDebug(IsForDebug), ShouldPreserveUseListOrder(ShouldPreserveUseListOrder), UseListOrders(), MDNames() 
     //START JInit
@@ -198,7 +198,7 @@ public class AssemblyWriter implements Destructors.ClassWithDestructor {
    FQN="(anonymous namespace)::AssemblyWriter::printModule", NM="_ZN12_GLOBAL__N_114AssemblyWriter11printModuleEPKN4llvm6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/AsmWriter.cpp -nm=_ZN12_GLOBAL__N_114AssemblyWriter11printModuleEPKN4llvm6ModuleE")
   //</editor-fold>
-  public void printModule(/*const*/ Module /*P*/ M) {
+  public void printModule(/*const*/ Module$IR /*P*/ M) {
     Machine.initialize();
     if (ShouldPreserveUseListOrder) {
       JavaCleaner $c$ = $createJavaCleaner();

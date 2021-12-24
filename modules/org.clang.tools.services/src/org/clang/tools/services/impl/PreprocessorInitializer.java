@@ -123,7 +123,7 @@ import org.clang.basic.DiagnosticsEngine;
 import org.clang.basic.FileEntry;
 import org.clang.basic.FileManager;
 import org.clang.basic.LangOptions;
-import org.clang.basic.Module;
+import org.clang.basic.Module$B;
 import org.clang.basic.SourceLocation;
 import org.clang.basic.SourceManager;
 import org.clang.basic.diag;
@@ -402,7 +402,7 @@ public class PreprocessorInitializer {
                 cmd = "jclank.sh ${LLVM_SRC}/llvm/tools/clang/unittests/Lex/LexerTest.cpp -filter=<anonymous namespace>::VoidModuleLoader::loadModule")
         //</editor-fold>
         @Override
-        public/*private*/ /*virtual*/ ModuleLoadResult loadModule(SourceLocation ImportLoc, ModuleIdPath Path, Module.NameVisibilityKind Visibility, boolean IsInclusionDirective) {
+        public/*private*/ /*virtual*/ ModuleLoadResult loadModule(SourceLocation ImportLoc, ModuleIdPath Path, Module$B.NameVisibilityKind Visibility, boolean IsInclusionDirective) {
             return new ModuleLoadResult();
         }
 
@@ -411,7 +411,7 @@ public class PreprocessorInitializer {
                 cmd = "jclank.sh ${LLVM_SRC}/llvm/tools/clang/unittests/Lex/LexerTest.cpp -filter=<anonymous namespace>::VoidModuleLoader::makeModuleVisible")
         //</editor-fold>
         @Override
-        public/*private*/ /*virtual*/ void makeModuleVisible(Module /*P*/ Mod, Module.NameVisibilityKind Visibility, SourceLocation ImportLoc) {
+        public/*private*/ /*virtual*/ void makeModuleVisible(Module$B /*P*/ Mod, Module$B.NameVisibilityKind Visibility, SourceLocation ImportLoc) {
         }
         
         @Override

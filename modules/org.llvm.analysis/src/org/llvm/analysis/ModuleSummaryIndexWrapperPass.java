@@ -153,7 +153,7 @@ public class ModuleSummaryIndexWrapperPass extends /*public*/ ModulePass impleme
    FQN="llvm::ModuleSummaryIndexWrapperPass::runOnModule", NM="_ZN4llvm29ModuleSummaryIndexWrapperPass11runOnModuleERNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/ModuleSummaryAnalysis.cpp -nm=_ZN4llvm29ModuleSummaryIndexWrapperPass11runOnModuleERNS_6ModuleE")
   //</editor-fold>
-  @Override public boolean runOnModule(final Module /*&*/ M)/* override*/ {
+  @Override public boolean runOnModule(final Module$IR /*&*/ M)/* override*/ {
     throw new UnsupportedOperationException("EmptyBody");
   }
 
@@ -163,7 +163,7 @@ public class ModuleSummaryIndexWrapperPass extends /*public*/ ModulePass impleme
    FQN="llvm::ModuleSummaryIndexWrapperPass::doFinalization", NM="_ZN4llvm29ModuleSummaryIndexWrapperPass14doFinalizationERNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/ModuleSummaryAnalysis.cpp -nm=_ZN4llvm29ModuleSummaryIndexWrapperPass14doFinalizationERNS_6ModuleE")
   //</editor-fold>
-  @Override public boolean doFinalization(final Module /*&*/ M)/* override*/ {
+  @Override public boolean doFinalization(final Module$IR /*&*/ M)/* override*/ {
     throw new UnsupportedOperationException("EmptyBody");
   }
 

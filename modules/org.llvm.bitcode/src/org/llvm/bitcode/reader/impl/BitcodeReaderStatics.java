@@ -420,7 +420,7 @@ public static ManagedStatic<BitcodeErrorCategoryType> ErrorCategory/*J*/= new Ma
  FQN="getBitcodeModuleImpl", NM="_ZL20getBitcodeModuleImplSt10unique_ptrIN4llvm12DataStreamerESt14default_deleteIS1_EENS0_9StringRefEPN12_GLOBAL__N_113BitcodeReaderERNS0_11LLVMContextEbb",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.bitcode/llvmToClangType ${LLVM_SRC}/llvm/lib/Bitcode/Reader/BitcodeReader.cpp -nm=_ZL20getBitcodeModuleImplSt10unique_ptrIN4llvm12DataStreamerESt14default_deleteIS1_EENS0_9StringRefEPN12_GLOBAL__N_113BitcodeReaderERNS0_11LLVMContextEbb")
 //</editor-fold>
-public static ErrorOr<std.unique_ptr<Module> > getBitcodeModuleImpl(std.unique_ptr<DataStreamer> Streamer, StringRef Name, 
+public static ErrorOr<std.unique_ptr<Module$IR> > getBitcodeModuleImpl(std.unique_ptr<DataStreamer> Streamer, StringRef Name, 
                     BitcodeReader /*P*/ R, LLVMContext /*&*/ Context, 
                     boolean MaterializeAll, boolean ShouldLazyLoadMetadata) {
   throw new UnsupportedOperationException("EmptyBody");
@@ -441,13 +441,13 @@ public static ErrorOr<std.unique_ptr<Module> > getBitcodeModuleImpl(std.unique_p
  FQN="getLazyBitcodeModuleImpl", NM="_ZL24getLazyBitcodeModuleImplOSt10unique_ptrIN4llvm12MemoryBufferESt14default_deleteIS1_EERNS0_11LLVMContextEbb",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.bitcode/llvmToClangType ${LLVM_SRC}/llvm/lib/Bitcode/Reader/BitcodeReader.cpp -nm=_ZL24getLazyBitcodeModuleImplOSt10unique_ptrIN4llvm12MemoryBufferESt14default_deleteIS1_EERNS0_11LLVMContextEbb")
 //</editor-fold>
-public static ErrorOr<std.unique_ptr<Module> > getLazyBitcodeModuleImpl(std.unique_ptr<MemoryBuffer> /*&&*/Buffer, 
+public static ErrorOr<std.unique_ptr<Module$IR> > getLazyBitcodeModuleImpl(std.unique_ptr<MemoryBuffer> /*&&*/Buffer, 
                         LLVMContext /*&*/ Context, boolean MaterializeAll) {
   return getLazyBitcodeModuleImpl(Buffer, 
                         Context, MaterializeAll, 
                         false);
 }
-public static ErrorOr<std.unique_ptr<Module> > getLazyBitcodeModuleImpl(std.unique_ptr<MemoryBuffer> /*&&*/Buffer, 
+public static ErrorOr<std.unique_ptr<Module$IR> > getLazyBitcodeModuleImpl(std.unique_ptr<MemoryBuffer> /*&&*/Buffer, 
                         LLVMContext /*&*/ Context, boolean MaterializeAll, 
                         boolean ShouldLazyLoadMetadata/*= false*/) {
   throw new UnsupportedOperationException("EmptyBody");

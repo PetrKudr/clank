@@ -222,7 +222,7 @@ public abstract class RewriteDescriptor implements /*public*/ ilist_node<Rewrite
    FQN="llvm::SymbolRewriter::RewriteDescriptor::performOnModule", NM="_ZN4llvm14SymbolRewriter17RewriteDescriptor15performOnModuleERNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.transforms/llvmToClangType ${LLVM_SRC}/llvm/lib/Transforms/Utils/SymbolRewriter.cpp -nm=_ZN4llvm14SymbolRewriter17RewriteDescriptor15performOnModuleERNS_6ModuleE")
   //</editor-fold>
-  public abstract /*virtual*/ boolean performOnModule(final Module /*&*/ M)/* = 0*/;
+  public abstract /*virtual*/ boolean performOnModule(final Module$IR /*&*/ M)/* = 0*/;
 
 /*protected:*/
   //<editor-fold defaultstate="collapsed" desc="llvm::SymbolRewriter::RewriteDescriptor::RewriteDescriptor">
@@ -256,7 +256,7 @@ public abstract class RewriteDescriptor implements /*public*/ ilist_node<Rewrite
     }
     
     @Override
-    public boolean performOnModule(Module M) {
+    public boolean performOnModule(Module$IR M) {
       throw new IllegalStateException("Not supported in sentinels.");
     }
   }

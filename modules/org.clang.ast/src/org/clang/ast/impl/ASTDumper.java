@@ -345,11 +345,11 @@ public class ASTDumper implements /*public*/ ConstDeclVisitorVoid<ASTDumper>, /*
               OS.$out_char($$SPACE);
               dumpLocation(L$D.getLocation());
               {
-                Module /*P*/ M = L$D.getImportedOwningModule();
+                Module$B /*P*/ M = L$D.getImportedOwningModule();
                 if ((M != null)) {
                   OS.$out(/*KEEP_STR*/" in ").$out(M.getFullModuleName());
                 } else {
-                  Module /*P*/ M$1 = L$D.getLocalOwningModule();
+                  Module$B /*P*/ M$1 = L$D.getLocalOwningModule();
                   if ((M$1 != null)) {
                     OS.$out(/*KEEP_STR*/" in (local) ").$out(M$1.getFullModuleName());
                   }
@@ -358,8 +358,8 @@ public class ASTDumper implements /*public*/ ConstDeclVisitorVoid<ASTDumper>, /*
               {
                 /*const*/ NamedDecl /*P*/ ND = dyn_cast_NamedDecl(L$D);
                 if ((ND != null)) {
-                  for (Module /*P*/ M : L$D.getASTContext().getModulesWithMergedDefinition(((/*const_cast*/NamedDecl /*P*/ )(ND))))  {
-                    Module L$M = M;
+                  for (Module$B /*P*/ M : L$D.getASTContext().getModulesWithMergedDefinition(((/*const_cast*/NamedDecl /*P*/ )(ND))))  {
+                    Module$B L$M = M;
                     dumpChild(/*[=, this, =L$M(M)]*/() -> {
                               OS.$out(/*KEEP_STR*/"also in ").$out(L$M.getFullModuleName());
                             });

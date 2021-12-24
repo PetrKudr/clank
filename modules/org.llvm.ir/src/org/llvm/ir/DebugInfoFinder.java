@@ -107,7 +107,7 @@ public class DebugInfoFinder implements Destructors.ClassWithDestructor {
    FQN="llvm::DebugInfoFinder::processModule", NM="_ZN4llvm15DebugInfoFinder13processModuleERKNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/DebugInfo.cpp -nm=_ZN4llvm15DebugInfoFinder13processModuleERKNS_6ModuleE")
   //</editor-fold>
-  public void processModule(final /*const*/ Module /*&*/ M) {
+  public void processModule(final /*const*/ Module$IR /*&*/ M) {
     for (DICompileUnit /*P*/ CU : M.debug_compile_units()) {
       addCompileUnit(CU);
       for (DIGlobalVariable /*P*/ DIG : CU.getGlobalVariables()) {
@@ -172,7 +172,7 @@ public class DebugInfoFinder implements Destructors.ClassWithDestructor {
    FQN="llvm::DebugInfoFinder::processDeclare", NM="_ZN4llvm15DebugInfoFinder14processDeclareERKNS_6ModuleEPKNS_14DbgDeclareInstE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/DebugInfo.cpp -nm=_ZN4llvm15DebugInfoFinder14processDeclareERKNS_6ModuleEPKNS_14DbgDeclareInstE")
   //</editor-fold>
-  public void processDeclare(final /*const*/ Module /*&*/ M,
+  public void processDeclare(final /*const*/ Module$IR /*&*/ M,
                 /*const*/ DbgDeclareInst /*P*/ DDI) {
     MDNode /*P*/ N = dyn_cast_MDNode(DDI.getVariable());
     if (!(N != null)) {
@@ -197,7 +197,7 @@ public class DebugInfoFinder implements Destructors.ClassWithDestructor {
    FQN="llvm::DebugInfoFinder::processValue", NM="_ZN4llvm15DebugInfoFinder12processValueERKNS_6ModuleEPKNS_12DbgValueInstE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/DebugInfo.cpp -nm=_ZN4llvm15DebugInfoFinder12processValueERKNS_6ModuleEPKNS_12DbgValueInstE")
   //</editor-fold>
-  public void processValue(final /*const*/ Module /*&*/ M, /*const*/ DbgValueInst /*P*/ DVI) {
+  public void processValue(final /*const*/ Module$IR /*&*/ M, /*const*/ DbgValueInst /*P*/ DVI) {
     MDNode /*P*/ N = dyn_cast_MDNode(DVI.getVariable());
     if (!(N != null)) {
       return;
@@ -221,7 +221,7 @@ public class DebugInfoFinder implements Destructors.ClassWithDestructor {
    FQN="llvm::DebugInfoFinder::processLocation", NM="_ZN4llvm15DebugInfoFinder15processLocationERKNS_6ModuleEPKNS_10DILocationE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/DebugInfo.cpp -nm=_ZN4llvm15DebugInfoFinder15processLocationERKNS_6ModuleEPKNS_10DILocationE")
   //</editor-fold>
-  public void processLocation(final /*const*/ Module /*&*/ M, /*const*/ DILocation /*P*/ Loc) {
+  public void processLocation(final /*const*/ Module$IR /*&*/ M, /*const*/ DILocation /*P*/ Loc) {
     if (!(Loc != null)) {
       return;
     }
@@ -257,7 +257,7 @@ public class DebugInfoFinder implements Destructors.ClassWithDestructor {
    FQN="llvm::DebugInfoFinder::InitializeTypeMap", NM="_ZN4llvm15DebugInfoFinder17InitializeTypeMapERKNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/DebugInfo.cpp -nm=_ZN4llvm15DebugInfoFinder17InitializeTypeMapERKNS_6ModuleE")
   //</editor-fold>
-  private void InitializeTypeMap(final /*const*/ Module /*&*/ M) {
+  private void InitializeTypeMap(final /*const*/ Module$IR /*&*/ M) {
     throw new UnsupportedOperationException("<<<DeclJavaPrinter::VisitFunctionDecl NULL BODY IN USED Translation Unit>>>");
   }
 

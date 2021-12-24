@@ -776,7 +776,7 @@ public static Decl /*P*/ getInstantiatedFrom(Decl /*P*/ D, MemberSpecializationI
  FQN="getDefiningModule", NM="_ZL17getDefiningModuleRN5clang4SemaEPNS_4DeclE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.sema/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Sema/SemaLookup.cpp -nm=_ZL17getDefiningModuleRN5clang4SemaEPNS_4DeclE")
 //</editor-fold>
-public static Module /*P*/ getDefiningModule(final Sema /*&*/ S, Decl /*P*/ Entity) {
+public static Module$B /*P*/ getDefiningModule(final Sema /*&*/ S, Decl /*P*/ Entity) {
   {
     FunctionDecl /*P*/ FD = dyn_cast_FunctionDecl(Entity);
     if ((FD != null)) {
@@ -839,7 +839,7 @@ public static Module /*P*/ getDefiningModule(final Sema /*&*/ S, Decl /*P*/ Enti
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.sema/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Sema/SemaLookup.cpp -nm=Tpl__ZL25hasVisibleDefaultArgumentRN5clang4SemaEPKT_PN4llvm15SmallVectorImplIPNS_6ModuleEEE")
 //</editor-fold>
 public static </*typename*/ ParmDecl extends NamedDecl & Common$TemplateParmDecl<ParmDecl, ?>> boolean hasVisibleDefaultArgument$T(final Sema /*&*/ S, /*const*/ ParmDecl /*P*/ D, 
-                           SmallVectorImpl<Module /*P*/ > /*P*/ Modules) {
+                           SmallVectorImpl<Module$B/*P*/ > /*P*/ Modules) {
   if (!D.hasDefaultArgument()) {
     return false;
   }
@@ -851,7 +851,7 @@ public static </*typename*/ ParmDecl extends NamedDecl & Common$TemplateParmDecl
     if (!DefaultArg.isInherited() && (Modules != null)) {
       /*const_cast*/ParmDecl /*P*/ /*P*/ NonConstD = ((/*const_cast*/ParmDecl /*P*/ )(D));
       Modules.push_back(S.getOwningModule(NonConstD));
-      final /*const*/ArrayRef<Module /*P*/ > /*&*/ Merged = S.Context.getModulesWithMergedDefinition(NonConstD);
+      final /*const*/ArrayRef<Module$B/*P*/ > /*&*/ Merged = S.Context.getModulesWithMergedDefinition(NonConstD);
       Modules.insert$T$value_T(Modules.end(), Merged.begin(), Merged.end());
     }
     

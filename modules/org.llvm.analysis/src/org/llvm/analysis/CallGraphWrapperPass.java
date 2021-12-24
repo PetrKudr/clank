@@ -177,7 +177,7 @@ public class CallGraphWrapperPass extends /*public*/ ModulePass implements Destr
    FQN="llvm::CallGraphWrapperPass::getModule", NM="_ZNK4llvm20CallGraphWrapperPass9getModuleEv",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/CallGraph.cpp -nm=_ZNK4llvm20CallGraphWrapperPass9getModuleEv")
   //</editor-fold>
-  public Module /*&*/ getModule() /*const*/ {
+  public Module$IR /*&*/ getModule() /*const*/ {
     return G.$arrow().getModule();
   }
 
@@ -325,7 +325,7 @@ public class CallGraphWrapperPass extends /*public*/ ModulePass implements Destr
    FQN="llvm::CallGraphWrapperPass::runOnModule", NM="_ZN4llvm20CallGraphWrapperPass11runOnModuleERNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/CallGraph.cpp -nm=_ZN4llvm20CallGraphWrapperPass11runOnModuleERNS_6ModuleE")
   //</editor-fold>
-  @Override public boolean runOnModule(final Module /*&*/ M)/* override*/ {
+  @Override public boolean runOnModule(final Module$IR /*&*/ M)/* override*/ {
     // All the real work is done in the constructor for the CallGraph.
     G.reset(new CallGraph(M));
     return false;
@@ -348,7 +348,7 @@ public class CallGraphWrapperPass extends /*public*/ ModulePass implements Destr
    FQN="llvm::CallGraphWrapperPass::print", NM="_ZNK4llvm20CallGraphWrapperPass5printERNS_11raw_ostreamEPKNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/CallGraph.cpp -nm=_ZNK4llvm20CallGraphWrapperPass5printERNS_11raw_ostreamEPKNS_6ModuleE")
   //</editor-fold>
-  @Override public void print(final raw_ostream /*&*/ OS, /*const*/ Module /*P*/ $Prm1) /*const*//* override*/ {
+  @Override public void print(final raw_ostream /*&*/ OS, /*const*/ Module$IR /*P*/ $Prm1) /*const*//* override*/ {
     if (!G.$bool()) {
       OS.$out(/*KEEP_STR*/"No call graph has been built!\n");
       return;
@@ -365,7 +365,7 @@ public class CallGraphWrapperPass extends /*public*/ ModulePass implements Destr
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/CallGraph.cpp -nm=_ZNK4llvm20CallGraphWrapperPass4dumpEv")
   //</editor-fold>
   public void dump() /*const*//* __attribute__((used)) __attribute__((noinline))*/ {
-    print(dbgs(), (/*const*/ Module /*P*/ )null);
+    print(dbgs(), (/*const*/ Module$IR /*P*/ )null);
   }
 
   //////////////////////////////////////////////////////////////

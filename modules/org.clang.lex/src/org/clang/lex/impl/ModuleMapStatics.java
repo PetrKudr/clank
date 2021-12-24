@@ -89,7 +89,7 @@ import org.llvm.support.*;
 import org.llvm.adt.*;
 import org.llvm.adt.aliases.*;
 import org.clang.basic.*;
-import org.clang.basic.Module.Header;
+import org.clang.basic.Module$B.Header;
 import org.clang.lex.*;
 import static org.clank.support.Native.$createJavaCleaner;
 import static org.clank.support.Native.$noteq_ptr;
@@ -584,7 +584,7 @@ public static boolean isBuiltinHeader(StringRef FileName) {
  FQN="violatesPrivateInclude", NM="_ZL22violatesPrivateIncludePN5clang6ModuleEPKNS_9FileEntryENS_9ModuleMap11KnownHeaderE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/ModuleMap.cpp -nm=_ZL22violatesPrivateIncludePN5clang6ModuleEPKNS_9FileEntryENS_9ModuleMap11KnownHeaderE")
 //</editor-fold>
-public static boolean violatesPrivateInclude(Module /*P*/ RequestingModule, 
+public static boolean violatesPrivateInclude(Module$B /*P*/ RequestingModule, 
                       /*const*/ FileEntry /*P*/ IncFileEnt, 
                       ModuleMap.KnownHeader Header) {
   if (((Header.getRole() & ModuleMap.ModuleHeaderRole.PrivateHeader) != 0)) {
@@ -592,9 +592,9 @@ public static boolean violatesPrivateInclude(Module /*P*/ RequestingModule,
     // as obtained from the lookup and as obtained from the module.
     // This check is not cheap, so enable it only for debugging.
     boolean IsPrivate = false;
-    SmallVectorImpl<Module.Header> /*P*/ HeaderList[/*2*/] = new SmallVectorImpl /*P*/ [/*2*/] {
-      $AddrOf(Header.getModule().Headers[Module.HeaderKind.HK_Private.getValue()]), 
-      $AddrOf(Header.getModule().Headers[Module.HeaderKind.HK_PrivateTextual.getValue()])};
+    SmallVectorImpl<Module$B.Header> /*P*/ HeaderList[/*2*/] = new SmallVectorImpl /*P*/ [/*2*/] {
+      $AddrOf(Header.getModule().Headers[Module$B.HeaderKind.HK_Private.getValue()]), 
+      $AddrOf(Header.getModule().Headers[Module$B.HeaderKind.HK_PrivateTextual.getValue()])};
     for (SmallVectorImpl<Header> /*P*/ Hs : HeaderList)  {
       IsPrivate |= std.find_if(Hs.begin(), Hs.end(),  (H) -> 
             {
@@ -614,7 +614,7 @@ public static boolean violatesPrivateInclude(Module /*P*/ RequestingModule,
  FQN="getTopLevelOrNull", NM="_ZL17getTopLevelOrNullPN5clang6ModuleE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/ModuleMap.cpp -nm=_ZL17getTopLevelOrNullPN5clang6ModuleE")
 //</editor-fold>
-public static Module /*P*/ getTopLevelOrNull(Module /*P*/ M) {
+public static Module$B /*P*/ getTopLevelOrNull(Module$B /*P*/ M) {
   return (M != null) ? M.getTopLevelModule() : null;
 }
 
@@ -658,7 +658,7 @@ public static boolean isBetterKnownHeader(/*const*/ ModuleMap.KnownHeader /*&*/ 
  FQN="inferFrameworkLink", NM="_ZL18inferFrameworkLinkPN5clang6ModuleEPKNS_14DirectoryEntryERNS_11FileManagerE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/ModuleMap.cpp -nm=_ZL18inferFrameworkLinkPN5clang6ModuleEPKNS_14DirectoryEntryERNS_11FileManagerE")
 //</editor-fold>
-public static void inferFrameworkLink(Module /*P*/ Mod, /*const*/ DirectoryEntry /*P*/ FrameworkDir, 
+public static void inferFrameworkLink(Module$B /*P*/ Mod, /*const*/ DirectoryEntry /*P*/ FrameworkDir, 
                   FileManager /*&*/ FileMgr) {
   assert (Mod.IsFramework) : "Can only infer linking for framework modules";
   assert (!Mod.isSubFramework()) : "Can only infer linking for top-level frameworks";
@@ -676,7 +676,7 @@ public static void inferFrameworkLink(Module /*P*/ Mod, /*const*/ DirectoryEntry
     if ((FileMgr.getFile(LibName.$StringRef()) != null)) {
       JavaCleaner $c$ = $createJavaCleaner();
       try {
-        Mod.LinkLibraries.push_back($c$.track(new Module.LinkLibrary(Mod.Name, 
+        Mod.LinkLibraries.push_back($c$.track(new Module$B.LinkLibrary(Mod.Name, 
                 /*IsFramework=*/ true))); $c$.clean();
         return;
       } finally {
@@ -696,18 +696,18 @@ private static final class inferFrameworkLink$$ {
  FQN="headerRoleToKind", NM="_ZL16headerRoleToKindN5clang9ModuleMap16ModuleHeaderRoleE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/ModuleMap.cpp -nm=_ZL16headerRoleToKindN5clang9ModuleMap16ModuleHeaderRoleE")
 //</editor-fold>
-public static Module.HeaderKind headerRoleToKind(/*ModuleMap::ModuleHeaderRole*//*uint*/int Role) {
+public static Module$B.HeaderKind headerRoleToKind(/*ModuleMap::ModuleHeaderRole*//*uint*/int Role) {
   switch ((int)Role) {
    default:
     throw new llvm_unreachable("unknown header role");
    case ModuleMap.ModuleHeaderRole.NormalHeader:
-    return Module.HeaderKind.HK_Normal;
+    return Module$B.HeaderKind.HK_Normal;
    case ModuleMap.ModuleHeaderRole.PrivateHeader:
-    return Module.HeaderKind.HK_Private;
+    return Module$B.HeaderKind.HK_Private;
    case ModuleMap.ModuleHeaderRole.TextualHeader:
-    return Module.HeaderKind.HK_Textual;
+    return Module$B.HeaderKind.HK_Textual;
    case ModuleMap.ModuleHeaderRole.PrivateHeader | ModuleMap.ModuleHeaderRole.TextualHeader:
-    return Module.HeaderKind.HK_PrivateTextual;
+    return Module$B.HeaderKind.HK_PrivateTextual;
   }
 }
 
@@ -734,7 +734,7 @@ public static Module.HeaderKind headerRoleToKind(/*ModuleMap::ModuleHeaderRole*/
  FQN="shouldAddRequirement", NM="_ZL20shouldAddRequirementPN5clang6ModuleEN4llvm9StringRefERb",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/ModuleMap.cpp -nm=_ZL20shouldAddRequirementPN5clang6ModuleEN4llvm9StringRefERb")
 //</editor-fold>
-public static boolean shouldAddRequirement(Module /*P*/ M, StringRef Feature, 
+public static boolean shouldAddRequirement(Module$B /*P*/ M, StringRef Feature, 
                     bool$ref/*bool &*/ IsRequiresExcludedHack) {
   final/*static*/ /*const*/ StringRef DarwinCExcluded[/*3*/] = shouldAddRequirement$$.DarwinCExcluded;
   final/*static*/ /*const*/ StringRef TclPrivate[/*2*/] = shouldAddRequirement$$.TclPrivate;
@@ -765,7 +765,7 @@ private static final class shouldAddRequirement$$ {
  FQN="appendSubframeworkPaths", NM="_ZL23appendSubframeworkPathsPN5clang6ModuleERN4llvm15SmallVectorImplIcEE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/ModuleMap.cpp -nm=_ZL23appendSubframeworkPathsPN5clang6ModuleERN4llvm15SmallVectorImplIcEE")
 //</editor-fold>
-public static void appendSubframeworkPaths(Module /*P*/ Mod, 
+public static void appendSubframeworkPaths(Module$B /*P*/ Mod, 
         SmallString/*&*/ Path) {
   // Collect the framework names from the given module to the top-level module.
   SmallVector<StringRef> Paths/*J*/= new SmallVector<StringRef>(2, new StringRef());
@@ -791,8 +791,8 @@ public static void appendSubframeworkPaths(Module /*P*/ Mod,
  FQN="compareModuleHeaders", NM="_ZL20compareModuleHeadersPKN5clang6Module6HeaderES3_",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/ModuleMap.cpp -nm=_ZL20compareModuleHeadersPKN5clang6Module6HeaderES3_")
 //</editor-fold>
-public static int compareModuleHeaders(/*const*/ Module.Header /*P*/ A, 
-                    /*const*/ Module.Header /*P*/ B) {
+public static int compareModuleHeaders(/*const*/ Module$B.Header /*P*/ A, 
+                    /*const*/ Module$B.Header /*P*/ B) {
   return A.NameAsWritten.compare(B.NameAsWritten);
 }
 

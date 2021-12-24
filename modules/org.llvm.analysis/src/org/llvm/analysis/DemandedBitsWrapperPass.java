@@ -167,7 +167,7 @@ public class DemandedBitsWrapperPass extends /*public*/ FunctionPass implements 
    FQN="llvm::DemandedBitsWrapperPass::print", NM="_ZNK4llvm23DemandedBitsWrapperPass5printERNS_11raw_ostreamEPKNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/DemandedBits.cpp -nm=_ZNK4llvm23DemandedBitsWrapperPass5printERNS_11raw_ostreamEPKNS_6ModuleE")
   //</editor-fold>
-  @Override public void print(final raw_ostream /*&*/ OS, /*const*/ Module /*P*/ M) /*const*//* override*/ {
+  @Override public void print(final raw_ostream /*&*/ OS, /*const*/ Module$IR /*P*/ M) /*const*//* override*/ {
     DB.$arrow().print(OS);
   }
 

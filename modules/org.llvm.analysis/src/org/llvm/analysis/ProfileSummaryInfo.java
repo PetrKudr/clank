@@ -132,7 +132,7 @@ import static org.llvm.analysis.java.AnalysisRTTI.*;
 //</editor-fold>
 public class ProfileSummaryInfo implements Destructors.ClassWithDestructor {
 /*private:*/
-  private final Module /*&*/ M;
+  private final Module$IR /*&*/ M;
   private std.unique_ptr<ProfileSummary> Summary;
 
   // The profile summary metadata may be attached either by the frontend or by
@@ -190,7 +190,7 @@ public class ProfileSummaryInfo implements Destructors.ClassWithDestructor {
    FQN="llvm::ProfileSummaryInfo::ProfileSummaryInfo", NM="_ZN4llvm18ProfileSummaryInfoC1ERNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/ProfileSummaryInfo.cpp -nm=_ZN4llvm18ProfileSummaryInfoC1ERNS_6ModuleE")
   //</editor-fold>
-  public ProfileSummaryInfo(final Module /*&*/ M) {
+  public ProfileSummaryInfo(final Module$IR /*&*/ M) {
     // : M(M), Summary(), HotCountThreshold(), ColdCountThreshold()
     //START JInit
     this./*&*/M=/*&*/M;

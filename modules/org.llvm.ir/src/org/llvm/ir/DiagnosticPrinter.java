@@ -240,7 +240,7 @@ public abstract class DiagnosticPrinter implements Destructors.ClassWithDestruct
    FQN="llvm::DiagnosticPrinter::operator<<", NM="_ZN4llvm17DiagnosticPrinterlsERKNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/DiagnosticPrinter.cpp -nm=_ZN4llvm17DiagnosticPrinterlsERKNS_6ModuleE")
   //</editor-fold>
-  public abstract /*virtual*/ DiagnosticPrinter /*&*/ $out(final /*const*/ Module /*&*/ M)/* = 0*/;
+  public abstract /*virtual*/ DiagnosticPrinter /*&*/ $out(final /*const*/ Module$IR /*&*/ M)/* = 0*/;
 
 
   // Other types.

@@ -155,9 +155,9 @@ public final void checkSpecializationVisibility(SourceLocation Loc, NamedDecl /*
 //</editor-fold>
 public final void checkPartialSpecializationVisibility(SourceLocation Loc, 
                                     NamedDecl /*P*/ Spec) {
-  SmallVector<Module /*P*/> Modules/*J*/= new SmallVector<Module /*P*/>(8, (Module /*P*/)null);
+  SmallVector<Module$B/*P*/> Modules/*J*/= new SmallVector<Module$B/*P*/>(8, (Module$B /*P*/)null);
   if (!$this().hasVisibleDeclaration(Spec, $AddrOf(Modules))) {
-    $this().diagnoseMissingImport(new SourceLocation(Loc), Spec, Spec.getLocation(), new ArrayRef<Module /*P*/ >(Modules, true), 
+    $this().diagnoseMissingImport(new SourceLocation(Loc), Spec, Spec.getLocation(), new ArrayRef<Module$B/*P*/ >(Modules, true), 
         MissingImportKind.PartialSpecialization, 
         /*Recover*/ true);
   }

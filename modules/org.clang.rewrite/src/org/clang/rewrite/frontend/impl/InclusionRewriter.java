@@ -186,7 +186,7 @@ public class InclusionRewriter extends /*public*/ PPCallbacks implements Destruc
   /// Tracks where inclusions that change the file are found.
   private std.mapUIntType<IncludedFile> FileIncludes;
   /// Tracks where inclusions that import modules are found.
-  private std.mapUIntPtr</*const*/ Module /*P*/ /*P*/> ModuleIncludes;
+  private std.mapUIntPtr</*const*/ Module$B/*P*/ /*P*/> ModuleIncludes;
   /// Used transitively for building up the FileIncludes mapping over the
   /// various \c PPCallbacks callbacks.
   private SourceLocation LastInclusionLocation;
@@ -214,7 +214,7 @@ public class InclusionRewriter extends /*public*/ PPCallbacks implements Destruc
     this.ShowLineMarkers = ShowLineMarkers;
     this.UseLineDirectives = UseLineDirectives;
     this.FileIncludes = new std.mapUIntType<IncludedFile>(new IncludedFile());
-    this.ModuleIncludes = new std.mapUIntPtr</*const*/ Module /*P*/ /*P*/>();
+    this.ModuleIncludes = new std.mapUIntPtr</*const*/ Module$B/*P*/ /*P*/>();
     this.LastInclusionLocation = new SourceLocation();
     //END JInit
   }
@@ -284,7 +284,7 @@ public class InclusionRewriter extends /*public*/ PPCallbacks implements Destruc
                 StringRef LineInfoExtra/*J*/= new StringRef();
                 SourceLocation Loc = HashToken.getLocation();
                 {
-                  /*const*/ Module /*P*/ Mod = PP.getLangOpts().ObjC2 ? FindModuleAtLocation(new SourceLocation(Loc)) : null;
+                  /*const*/ Module$B /*P*/ Mod = PP.getLangOpts().ObjC2 ? FindModuleAtLocation(new SourceLocation(Loc)) : null;
                   if ((Mod != null)) {
                     WriteImplicitModuleImport(Mod);
                   } else {
@@ -509,10 +509,10 @@ public class InclusionRewriter extends /*public*/ PPCallbacks implements Destruc
                     /*const*/ FileEntry /*P*/ $Prm5/*File*/, 
                     StringRef $Prm6/*SearchPath*/, 
                     StringRef $Prm7/*RelativePath*/, 
-                    /*const*/ Module /*P*/ Imported)/* override*/ {
+                    /*const*/ Module$B /*P*/ Imported)/* override*/ {
     assert (LastInclusionLocation.isInvalid()) : "Another inclusion directive was found before the previous one was processed";
     if ((Imported != null)) {
-      std.pairTypeBool<std.mapUIntPtr.iterator</*const*/ Module /*P*/>> P = ModuleIncludes.insert$T(std.make_pair_uint_Ptr(HashLoc.getRawEncoding(), Imported));
+      std.pairTypeBool<std.mapUIntPtr.iterator</*const*/ Module$B/*P*/>> P = ModuleIncludes.insert$T(std.make_pair_uint_Ptr(HashLoc.getRawEncoding(), Imported));
       /*(void)P;*/
       assert (P.second) : "Unexpected revisitation of the same include directive";
     } else {
@@ -575,7 +575,7 @@ public class InclusionRewriter extends /*public*/ PPCallbacks implements Destruc
    FQN="(anonymous namespace)::InclusionRewriter::WriteImplicitModuleImport", NM="_ZN12_GLOBAL__N_117InclusionRewriter25WriteImplicitModuleImportEPKN5clang6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.rewrite/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Frontend/Rewrite/InclusionRewriter.cpp -nm=_ZN12_GLOBAL__N_117InclusionRewriter25WriteImplicitModuleImportEPKN5clang6ModuleE")
   //</editor-fold>
-  private void WriteImplicitModuleImport(/*const*/ Module /*P*/ Mod) {
+  private void WriteImplicitModuleImport(/*const*/ Module$B /*P*/ Mod) {
     OS.$out(/*KEEP_STR*/"@import ").$out(Mod.getFullModuleName()).$out(/*KEEP_STR*/$SEMI).$out(
         /*KEEP_STR*/" /* clang -frewrite-includes: implicit import */"
     ).$out(/*NO_COPY*/MainEOL);
@@ -757,7 +757,7 @@ public class InclusionRewriter extends /*public*/ PPCallbacks implements Destruc
     Includers.push_back(std.make_pair_Ptr_Ptr(FileEnt, FileEnt.getDir()));
     // FIXME: Why don't we call PP.LookupFile here?
     /*const*/ FileEntry /*P*/ File = PP.getHeaderSearchInfo().LookupFile(/*NO_COPY*/Filename, new SourceLocation(), isAngled, (/*const*/type$ptr<DirectoryLookup> /*P*/ )null, CurDir, new SmallVectorPtrPairFileEntryDirectoryEntry(Includers), (SmallString/*P*/ )null, 
-        (SmallString/*P*/ )null, (Module /*P*/ )null, (ModuleMap.KnownHeader /*P*/ )null, false);
+        (SmallString/*P*/ )null, (Module$B /*P*/ )null, (ModuleMap.KnownHeader /*P*/ )null, false);
     
     FileExists.$set(File != null);
     return true;
@@ -789,8 +789,8 @@ public class InclusionRewriter extends /*public*/ PPCallbacks implements Destruc
    FQN="(anonymous namespace)::InclusionRewriter::FindModuleAtLocation", NM="_ZNK12_GLOBAL__N_117InclusionRewriter20FindModuleAtLocationEN5clang14SourceLocationE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.rewrite/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Frontend/Rewrite/InclusionRewriter.cpp -nm=_ZNK12_GLOBAL__N_117InclusionRewriter20FindModuleAtLocationEN5clang14SourceLocationE")
   //</editor-fold>
-  private /*const*/ Module /*P*/ FindModuleAtLocation(SourceLocation Loc) /*const*/ {
-    /*const*/std.mapUIntPtr.iterator</*const*/ Module /*P*/> I = ModuleIncludes.find$Const(Loc.getRawEncoding());
+  private /*const*/ Module$B /*P*/ FindModuleAtLocation(SourceLocation Loc) /*const*/ {
+    /*const*/std.mapUIntPtr.iterator</*const*/ Module$B/*P*/> I = ModuleIncludes.find$Const(Loc.getRawEncoding());
     if (I.$noteq(ModuleIncludes.end$Const())) {
       return I.$arrow().second;
     }

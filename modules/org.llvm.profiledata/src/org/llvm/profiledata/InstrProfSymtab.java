@@ -96,7 +96,7 @@ import org.llvm.support.*;
 import org.llvm.adt.*;
 import org.llvm.adt.aliases.*;
 import org.llvm.ir.Function;
-import org.llvm.ir.Module;
+import org.llvm.ir.Module$IR;
 import org.llvm.object.SectionRef;
 import org.llvm.support.Error;
 
@@ -197,10 +197,10 @@ public class InstrProfSymtab implements Destructors.ClassWithDestructor {
    FQN="llvm::InstrProfSymtab::create", NM="_ZN4llvm15InstrProfSymtab6createERNS_6ModuleEb",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.profiledata/llvmToClangType ${LLVM_SRC}/llvm/lib/ProfileData/InstrProf.cpp -nm=_ZN4llvm15InstrProfSymtab6createERNS_6ModuleEb")
   //</editor-fold>
-  public void create(final Module /*&*/ M) {
+  public void create(final Module$IR /*&*/ M) {
     create(M, false);
   }
-  public void create(final Module /*&*/ M, boolean InLTO/*= false*/) {
+  public void create(final Module$IR /*&*/ M, boolean InLTO/*= false*/) {
     throw new UnsupportedOperationException("EmptyBody");
   }
 

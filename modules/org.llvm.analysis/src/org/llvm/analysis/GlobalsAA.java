@@ -103,7 +103,7 @@ public class GlobalsAA implements /*public*/ AnalysisInfoMixin<GlobalsAA>, IPass
    FQN="llvm::GlobalsAA::run", NM="_ZN4llvm9GlobalsAA3runERNS_6ModuleERNS_15AnalysisManagerIS1_EE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/GlobalsModRef.cpp -nm=_ZN4llvm9GlobalsAA3runERNS_6ModuleERNS_15AnalysisManagerIS1_EE")
   //</editor-fold>
-  public GlobalsAAResult run(final Module /*&*/ M, final AnalysisManager<Module> /*&*/ AM) {
+  public GlobalsAAResult run(final Module$IR /*&*/ M, final AnalysisManager<Module$IR> /*&*/ AM) {
     return GlobalsAAResult.analyzeModule(M, 
         AM.getResult(TargetLibraryAnalysis.class, M), 
         AM.getResult(CallGraphAnalysis.class, M));

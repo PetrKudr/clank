@@ -693,7 +693,7 @@ public class GlobalsAAResult extends /*public*/ AAResultBase<GlobalsAAResult> im
    FQN="llvm::GlobalsAAResult::analyzeModule", NM="_ZN4llvm15GlobalsAAResult13analyzeModuleERNS_6ModuleERKNS_17TargetLibraryInfoERNS_9CallGraphE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/GlobalsModRef.cpp -nm=_ZN4llvm15GlobalsAAResult13analyzeModuleERNS_6ModuleERKNS_17TargetLibraryInfoERNS_9CallGraphE")
   //</editor-fold>
-  public static GlobalsAAResult analyzeModule(final Module /*&*/ M, final /*const*/ TargetLibraryInfo /*&*/ TLI, 
+  public static GlobalsAAResult analyzeModule(final Module$IR /*&*/ M, final /*const*/ TargetLibraryInfo /*&*/ TLI, 
                final CallGraph /*&*/ CG) {
     GlobalsAAResult Result = null;
     try {
@@ -966,7 +966,7 @@ public class GlobalsAAResult extends /*public*/ AAResultBase<GlobalsAAResult> im
    FQN="llvm::GlobalsAAResult::AnalyzeGlobals", NM="_ZN4llvm15GlobalsAAResult14AnalyzeGlobalsERNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/GlobalsModRef.cpp -nm=_ZN4llvm15GlobalsAAResult14AnalyzeGlobalsERNS_6ModuleE")
   //</editor-fold>
-  private void AnalyzeGlobals(final Module /*&*/ M) {
+  private void AnalyzeGlobals(final Module$IR /*&*/ M) {
     SmallPtrSet<Function /*P*/ > TrackedFunctions/*J*/= new SmallPtrSet<Function /*P*/ >(DenseMapInfo$LikePtr.$Info(), 32);
     for (final Function /*&*/ F : M)  {
       if (F.hasLocalLinkage()) {
@@ -1033,7 +1033,7 @@ public class GlobalsAAResult extends /*public*/ AAResultBase<GlobalsAAResult> im
    FQN="llvm::GlobalsAAResult::AnalyzeCallGraph", NM="_ZN4llvm15GlobalsAAResult16AnalyzeCallGraphERNS_9CallGraphERNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/GlobalsModRef.cpp -nm=_ZN4llvm15GlobalsAAResult16AnalyzeCallGraphERNS_9CallGraphERNS_6ModuleE")
   //</editor-fold>
-  private void AnalyzeCallGraph(final CallGraph /*&*/ CG, final Module /*&*/ M) {
+  private void AnalyzeCallGraph(final CallGraph /*&*/ CG, final Module$IR /*&*/ M) {
     scc_iterator<CallGraph /*P*/, CallGraphNode, CallGraphNode > I = null;
     try {
       // We do a bottom-up SCC traversal of the call graph.  In other words, we

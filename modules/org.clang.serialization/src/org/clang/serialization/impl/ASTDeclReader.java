@@ -316,7 +316,7 @@ public class ASTDeclReader implements /*public*/ DeclVisitorVoid<ASTDeclReader> 
    FQN="clang::ASTDeclReader::readModule", NM="_ZN5clang13ASTDeclReader10readModuleERKN4llvm11SmallVectorIyLj64EEERj",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.serialization/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Serialization/ASTReaderDecl.cpp -nm=_ZN5clang13ASTDeclReader10readModuleERKN4llvm11SmallVectorIyLj64EEERj")
   //</editor-fold>
-  private Module /*P*/ readModule(final /*const*/SmallVectorULong /*&*/ R, final uint$ref/*uint &*/ I) {
+  private Module$B /*P*/ readModule(final /*const*/SmallVectorULong /*&*/ R, final uint$ref/*uint &*/ I) {
     return Reader.getSubmodule(readSubmoduleID(R, I));
   }
 
@@ -2185,12 +2185,12 @@ public class ASTDeclReader implements /*public*/ DeclVisitorVoid<ASTDeclReader> 
               Exported = TD.getDefinition();
             }
           }
-          Module /*P*/ Owner = (SubmoduleID != 0) ? Reader.getSubmodule(SubmoduleID) : null;
+          Module$B /*P*/ Owner = (SubmoduleID != 0) ? Reader.getSubmodule(SubmoduleID) : null;
           if (Reader.getContext().getLangOpts().ModulesLocalVisibility) {
             Reader.getContext().mergeDefinitionIntoModule(cast_NamedDecl(Exported), 
                 Owner);
             Reader.PendingMergedDefinitionsToDeduplicate.insert(cast_NamedDecl(Exported));
-          } else if ((Owner != null) && Owner.NameVisibility != Module.NameVisibilityKind.AllVisible) {
+          } else if ((Owner != null) && Owner.NameVisibility != Module$B.NameVisibilityKind.AllVisible) {
             // If Owner is made visible at some later point, make this declaration
             // visible too.
             Reader.HiddenNamesMap.$at_T1$C$R(Owner).push_back(Exported);
@@ -2294,9 +2294,9 @@ public class ASTDeclReader implements /*public*/ DeclVisitorVoid<ASTDeclReader> 
           // declaration might not be visible.
           D.Hidden = true;
         } else {
-          Module /*P*/ Owner = Reader.getSubmodule(SubmoduleID);
+          Module$B /*P*/ Owner = Reader.getSubmodule(SubmoduleID);
           if ((Owner != null)) {
-            if (Owner.NameVisibility != Module.NameVisibilityKind.AllVisible) {
+            if (Owner.NameVisibility != Module$B.NameVisibilityKind.AllVisible) {
               // The owning module is not visible. Mark this declaration as hidden.
               D.Hidden = true;
               

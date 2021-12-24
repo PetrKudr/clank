@@ -288,7 +288,7 @@ public class PPCallbacks implements Destructors.ClassWithDestructor {
           /*const*/ FileEntry /*P*/ File, 
           StringRef SearchPath, 
           StringRef RelativePath, 
-          /*const*/ Module /*P*/ Imported) {
+          /*const*/ Module$B /*P*/ Imported) {
   }
   
   
@@ -311,7 +311,7 @@ public class PPCallbacks implements Destructors.ClassWithDestructor {
   //</editor-fold>
   public /*virtual*/ void moduleImport(SourceLocation ImportLoc, 
           ModuleIdPath Path, 
-          /*const*/ Module /*P*/ Imported) {
+          /*const*/ Module$B /*P*/ Imported) {
   }
 
   

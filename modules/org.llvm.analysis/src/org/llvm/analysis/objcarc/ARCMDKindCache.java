@@ -109,7 +109,7 @@ import static org.llvm.analysis.java.AnalysisFunctionPointers.*;
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Transforms/ObjCARC/ObjCARCOpts.cpp -nm=_ZN4llvm7objcarc14ARCMDKindCacheE")
 //</editor-fold>
 public class ARCMDKindCache implements Destructors.ClassWithDestructor {
-  private Module /*P*/ M;
+  private Module$IR /*P*/ M;
   
   /// The Metadata Kind for clang.imprecise_release metadata.
   private OptionalUInt ImpreciseReleaseMDKind;
@@ -126,7 +126,7 @@ public class ARCMDKindCache implements Destructors.ClassWithDestructor {
    FQN="llvm::objcarc::ARCMDKindCache::init", NM="_ZN4llvm7objcarc14ARCMDKindCache4initEPNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Transforms/ObjCARC/ObjCARCOpts.cpp -nm=_ZN4llvm7objcarc14ARCMDKindCache4initEPNS_6ModuleE")
   //</editor-fold>
-  public void init(Module /*P*/ Mod) {
+  public void init(Module$IR /*P*/ Mod) {
     throw new UnsupportedOperationException("EmptyBody");
   }
 

@@ -100,7 +100,7 @@ import static org.clang.basic.impl.ModuleStatics.*;
  FQN = "clang::Module", NM = "_ZN5clang6ModuleE",
  cmd = "jclank.sh -java-options=${SPUTNIK}/modules/org.clang.basic/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Basic/Module.cpp -nm=_ZN5clang6ModuleE")
 //</editor-fold>
-public class Module implements Destructors.ClassWithDestructor {
+public class Module$B implements Destructors.ClassWithDestructor {
     
 /*public:*/
   /// \brief The name of this module.
@@ -111,7 +111,7 @@ public class Module implements Destructors.ClassWithDestructor {
   
   /// \brief The parent of this module. This will be NULL for the top-level
   /// module.
-  public Module /*P*/ Parent;
+  public Module$B /*P*/ Parent;
   
   /// \brief The build directory of this module. This is the directory in
   /// which the module is notionally built, and relative to which its headers
@@ -128,7 +128,7 @@ public class Module implements Destructors.ClassWithDestructor {
   public std.string UmbrellaAsWritten;
 /*private:*/
   /// \brief The submodules of this module, indexed by name.
-  private std.vector<Module /*P*/ > SubModules;
+  private std.vector<Module$B/*P*/ > SubModules;
   
   /// \brief A mapping from the submodule name to the index into the 
   /// \c SubModules vector at which that submodule resides.
@@ -145,7 +145,7 @@ public class Module implements Destructors.ClassWithDestructor {
   private std.vectorString TopHeaderNames;
   
   /// \brief Cache of modules visible to lookup in this module.
-  private /*mutable */DenseSet</*const*/ Module /*P*/ > VisibleModulesCache;
+  private /*mutable */DenseSet</*const*/ Module$B/*P*/ > VisibleModulesCache;
   
   /// The ID used when referencing this module within a VisibleModuleSet.
   private /*uint*/int VisibilityID;
@@ -664,7 +664,7 @@ public class Module implements Destructors.ClassWithDestructor {
   
   /// \brief The set of modules imported by this module, and on which this
   /// module depends.
-  public SmallSetVector<Module /*P*/> Imports;
+  public SmallSetVector<Module$B/*P*/> Imports;
   
   /// \brief Describes an exported module.
   ///
@@ -674,7 +674,7 @@ public class Module implements Destructors.ClassWithDestructor {
 //  public final class ExportDecl extends PointerBoolPair</*const*/ Module/*P*/>{ };
   
   /// \brief The set of export declarations.
-  public SmallVector<PointerInt2Pair</*const*/ Module/*P*/>> Exports;
+  public SmallVector<PointerInt2Pair</*const*/ Module$B/*P*/>> Exports;
   
   /// \brief Describes an exported module that has not yet been resolved
   /// (perhaps because the module it refers to has not yet been loaded).
@@ -801,7 +801,7 @@ public class Module implements Destructors.ClassWithDestructor {
   public SmallVector<UnresolvedExportDecl> UnresolvedExports;
   
   /// \brief The directly used modules.
-  public SmallVector<Module /*P*/> DirectUses;
+  public SmallVector<Module$B/*P*/> DirectUses;
   
   /// \brief The set of use declarations that have yet to be resolved.
   public SmallVector<ClankAliases.ModuleId> UnresolvedDirectUses;
@@ -1013,7 +1013,7 @@ public class Module implements Destructors.ClassWithDestructor {
   //</editor-fold>
   public static class/*struct*/ Conflict implements Destructors.ClassWithDestructor, NativePOD<Conflict> {
     /// \brief The module that this module conflicts with.
-    public Module /*P*/ Other;
+    public Module$B /*P*/ Other;
     
     /// \brief The message provided to the user when there is a conflict.
     public std.string Message;
@@ -1110,7 +1110,7 @@ public class Module implements Destructors.ClassWithDestructor {
    FQN="clang::Module::Module", NM="_ZN5clang6ModuleC1EN4llvm9StringRefENS_14SourceLocationEPS0_bbj",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.basic/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Basic/Module.cpp -nm=_ZN5clang6ModuleC1EN4llvm9StringRefENS_14SourceLocationEPS0_bbj")
   //</editor-fold>
-  public Module(StringRef Name, SourceLocation DefinitionLoc, Module /*P*/ Parent, 
+  public Module$B(StringRef Name, SourceLocation DefinitionLoc, Module$B /*P*/ Parent, 
       boolean IsFramework, boolean IsExplicit, /*uint*/int VisibilityID) {
     /* : Name(Name.operator basic_string()), DefinitionLoc(DefinitionLoc), Parent(Parent), Directory(implicit const DirectoryEntry * ()), Umbrella(), Signature(0), UmbrellaAsWritten(), SubModules(), SubModuleIndex(), ASTFile(null), TopHeaders(), TopHeaderNames(), VisibleModulesCache(), VisibilityID(VisibilityID), Headers(), MissingHeaders(), Requirements(), IsMissingRequirement(false), HasIncompatibleModuleFile(false), IsAvailable(true), IsFromModuleFile(false), IsFramework(IsFramework), IsExplicit(IsExplicit), IsSystem(false), IsExternC(false), IsInferred(false), InferSubmodules(false), InferExplicitSubmodules(false), InferExportWildcard(false), ConfigMacrosExhaustive(false), NameVisibility(Hidden), InferredSubmoduleLoc(), Imports(), Exports(), UnresolvedExports(), DirectUses(), UnresolvedDirectUses(), LinkLibraries(), ConfigMacros(), UnresolvedConflicts(), Conflicts()*/ 
     //START JInit
@@ -1121,12 +1121,12 @@ public class Module implements Destructors.ClassWithDestructor {
     this.Umbrella = new PointerUnion</*const*/ DirectoryEntry /*P*/ , /*const*/ FileEntry /*P*/ >(DirectoryEntry.class);
     this.Signature = 0;
     this.UmbrellaAsWritten = new std.string();
-    this.SubModules = new std.vector<Module /*P*/ >((Module /*P*/) null);
+    this.SubModules = new std.vector<Module$B/*P*/ >((Module$B /*P*/) null);
     this.SubModuleIndex = new StringMapUInt(0);
     this.ASTFile = null;
     this.TopHeaders = new SmallSetVector</*const*/ FileEntry /*P*/>(2, (FileEntry/*P*/)null);
     this.TopHeaderNames = new std.vectorString(std.string.EMPTY);
-    this.VisibleModulesCache = new DenseSet</*const*/ Module /*P*/ >(DenseMapInfo$LikePtr.$Info());
+    this.VisibleModulesCache = new DenseSet</*const*/ Module$B/*P*/ >(DenseMapInfo$LikePtr.$Info());
     this.VisibilityID = VisibilityID;
     this.Headers = new$T(new SmallVector[5], ()->new SmallVector<Header>(2, Header.EMPTY));
     this.MissingHeaders = new SmallVector<UnresolvedHeaderDirective>(1, new UnresolvedHeaderDirective());
@@ -1146,10 +1146,10 @@ public class Module implements Destructors.ClassWithDestructor {
     this.ConfigMacrosExhaustive = false;
     this.NameVisibility = NameVisibilityKind.Hidden;
     this.InferredSubmoduleLoc = new SourceLocation();
-    this.Imports = new SmallSetVector<Module /*P*/>(2, (Module /*P*/) null);
-    this.Exports = new SmallVector<PointerInt2Pair</*const*/ Module/*P*/>>(2, new PointerInt2Pair</*const*/ Module/*P*/>());
+    this.Imports = new SmallSetVector<Module$B/*P*/>(2, (Module$B /*P*/) null);
+    this.Exports = new SmallVector<PointerInt2Pair</*const*/ Module$B/*P*/>>(2, new PointerInt2Pair</*const*/ Module$B/*P*/>());
     this.UnresolvedExports = new SmallVector<UnresolvedExportDecl>(2, new UnresolvedExportDecl());
-    this.DirectUses = new SmallVector<Module /*P*/>(2, (Module /*P*/)null);
+    this.DirectUses = new SmallVector<Module$B/*P*/>(2, (Module$B /*P*/)null);
     this.UnresolvedDirectUses = new SmallVector<ClankAliases.ModuleId>(2, new ClankAliases.ModuleId());
     this.LinkLibraries = new SmallVector<LinkLibrary>(2, new LinkLibrary());
     this.ConfigMacros = new std.vectorString(std.string.EMPTY);
@@ -1173,7 +1173,7 @@ public class Module implements Destructors.ClassWithDestructor {
     }
   }
 
-  public Module(char$ptr/*char P*/ Buffer) {
+  public Module$B(char$ptr/*char P*/ Buffer) {
     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
   }
 
@@ -1184,7 +1184,7 @@ public class Module implements Destructors.ClassWithDestructor {
    cmd = "jclank.sh -java-options=${SPUTNIK}/modules/org.clang.basic/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Basic/Module.cpp -nm=_ZN5clang6ModuleD0Ev")
   //</editor-fold>
   public void $destroy() {
-    for (std.vector.iterator<Module /*P*/ > I = submodule_begin(), IEnd = submodule_end();
+    for (std.vector.iterator<Module$B/*P*/ > I = submodule_begin(), IEnd = submodule_end();
          $noteq___normal_iterator$C(I, IEnd); I.$preInc()) {
       if (I.$star() != null) { I.$star().$destroy();};
     }
@@ -1249,7 +1249,7 @@ public class Module implements Destructors.ClassWithDestructor {
       return true;
     }
     
-    for (/*const*/ Module /*P*/ Current = this; (Current != null); Current = Current.Parent) {
+    for (/*const*/ Module$B /*P*/ Current = this; (Current != null); Current = Current.Parent) {
       for (/*uint*/int I = 0, N = Current.Requirements.size(); I != N; ++I) {
         if (hasFeature(new StringRef(Current.Requirements.$at(I).first), LangOpts, Target)
            != Current.Requirements.$at(I).second) {
@@ -1286,8 +1286,8 @@ public class Module implements Destructors.ClassWithDestructor {
    FQN = "clang::Module::isSubModuleOf", NM = "_ZNK5clang6Module13isSubModuleOfEPKS0_",
    cmd = "jclank.sh -java-options=${SPUTNIK}/modules/org.clang.basic/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Basic/Module.cpp -nm=_ZNK5clang6Module13isSubModuleOfEPKS0_")
   //</editor-fold>
-  public boolean isSubModuleOf(/*const*/ Module /*P*/ Other) /*const*/ {
-    /*const*/ Module /*P*/ This = this;
+  public boolean isSubModuleOf(/*const*/ Module$B /*P*/ Other) /*const*/ {
+    /*const*/ Module$B /*P*/ This = this;
     do {
       if (This == Other) {
         return true;
@@ -1310,7 +1310,7 @@ public class Module implements Destructors.ClassWithDestructor {
    cmd = "jclank.sh -java-options=${SPUTNIK}/modules/org.clang.basic/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Basic/Module.cpp -nm=_ZNK5clang6Module17isPartOfFrameworkEv")
   //</editor-fold>
   public boolean isPartOfFramework() /*const*/ {
-    for (/*const*/ Module /*P*/ Mod = this; (Mod != null); Mod = Mod.Parent)  {
+    for (/*const*/ Module$B /*P*/ Mod = this; (Mod != null); Mod = Mod.Parent)  {
       if (Mod.IsFramework) {
         return true;
       }
@@ -1345,7 +1345,7 @@ public class Module implements Destructors.ClassWithDestructor {
     SmallVector<StringRef> Names/*J*/= new SmallVector<StringRef>(2, new StringRef());
     
     // Build up the set of module names (from innermost to outermost).
-    for (/*const*/ Module /*P*/ M = this; (M != null); M = M.Parent)  {
+    for (/*const*/ Module$B /*P*/ M = this; (M != null); M = M.Parent)  {
       Names.push_back(new StringRef(M.Name));
     }
     
@@ -1374,7 +1374,7 @@ public class Module implements Destructors.ClassWithDestructor {
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.basic/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Basic/Module.cpp -nm=_ZNK5clang6Module16fullModuleNameIsEN4llvm8ArrayRefINS1_9StringRefEEE")
   //</editor-fold>
   public boolean fullModuleNameIs(ArrayRef<StringRef> nameParts) /*const*/ {
-    for (/*const*/ Module /*P*/ M = this; (M != null); M = M.Parent) {
+    for (/*const*/ Module$B /*P*/ M = this; (M != null); M = M.Parent) {
       if (nameParts.empty() || $noteq_StringRef(new StringRef(M.Name), /*NO_COPY*/nameParts.back())) {
         return false;
       }
@@ -1389,8 +1389,8 @@ public class Module implements Destructors.ClassWithDestructor {
    FQN="clang::Module::getTopLevelModule", NM="_ZN5clang6Module17getTopLevelModuleEv",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.basic/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Basic/Module.cpp -nm=_ZN5clang6Module17getTopLevelModuleEv")
   //</editor-fold>
-  public Module /*P*/ getTopLevelModule() {
-    return ((/*const_cast*/Module /*P*/ )(((/*const_cast*//*const*/ Module /*P*/ )(this)).getTopLevelModule$Const()));
+  public Module$B /*P*/ getTopLevelModule() {
+    return ((/*const_cast*/Module$B /*P*/ )(((/*const_cast*//*const*/ Module$B /*P*/ )(this)).getTopLevelModule$Const()));
   }
 
   // JAVA: commented out function above and uncommented the one below
@@ -1401,8 +1401,8 @@ public class Module implements Destructors.ClassWithDestructor {
    FQN="clang::Module::getTopLevelModule", NM="_ZNK5clang6Module17getTopLevelModuleEv",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.basic/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Basic/Module.cpp -nm=_ZNK5clang6Module17getTopLevelModuleEv")
   //</editor-fold>
-  public /*const*/ Module /*P*/ getTopLevelModule$Const() /*const*/ {
-    /*const*/ Module /*P*/ Result = this;
+  public /*const*/ Module$B /*P*/ getTopLevelModule$Const() /*const*/ {
+    /*const*/ Module$B /*P*/ Result = this;
     while ((Result.Parent != null)) {
       Result = Result.Parent;
     }
@@ -1458,20 +1458,20 @@ public class Module implements Destructors.ClassWithDestructor {
    FQN="clang::Module::getUmbrellaDir", NM="_ZNK5clang6Module14getUmbrellaDirEv",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.basic/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Basic/Module.cpp -nm=_ZNK5clang6Module14getUmbrellaDirEv")
   //</editor-fold>
-  public Module.DirectoryName getUmbrellaDir() /*const*/ {
+  public Module$B.DirectoryName getUmbrellaDir() /*const*/ {
     {
       Header U = null;
       try {
         U = getUmbrellaHeader();
         if (U.$bool()) {
-          return new Module.DirectoryName($EMPTY, U.Entry.getDir());
+          return new Module$B.DirectoryName($EMPTY, U.Entry.getDir());
         }
       } finally {
         if (U != null) { U.$destroy(); }
       }
     }
 
-    return new Module.DirectoryName(UmbrellaAsWritten, Umbrella.dyn_cast(/*const*/ DirectoryEntry.class /*P*/));
+    return new Module$B.DirectoryName(UmbrellaAsWritten, Umbrella.dyn_cast(/*const*/ DirectoryEntry.class /*P*/));
   }
 
   
@@ -1563,15 +1563,15 @@ public class Module implements Destructors.ClassWithDestructor {
    FQN="clang::Module::directlyUses", NM="_ZNK5clang6Module12directlyUsesEPKS0_",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.basic/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Basic/Module.cpp -nm=_ZNK5clang6Module12directlyUsesEPKS0_")
   //</editor-fold>
-  public boolean directlyUses(/*const*/ Module /*P*/ Requested) /*const*/ {
-    /*const*/ Module /*P*/ Top = getTopLevelModule();
+  public boolean directlyUses(/*const*/ Module$B /*P*/ Requested) /*const*/ {
+    /*const*/ Module$B /*P*/ Top = getTopLevelModule();
 
     // A top-level module implicitly uses itself.
     if (Requested.isSubModuleOf(Top)) {
       return true;
     }
 
-    for (Module /*P*/ Use : Top.DirectUses)  {
+    for (Module$B /*P*/ Use : Top.DirectUses)  {
       if (Requested.isSubModuleOf(Use)) {
         return true;
       }
@@ -1616,7 +1616,7 @@ public class Module implements Destructors.ClassWithDestructor {
   @Converted(kind = Converted.Kind.MANUAL_ADDED)
   @FunctionalInterface
   private interface markUnavailable_lambda {
-    boolean $call(Module /*P*/ M);
+    boolean $call(Module$B /*P*/ M);
   }
   
   /// \brief Mark this module and all of its submodules as unavailable.
@@ -1639,10 +1639,10 @@ public class Module implements Destructors.ClassWithDestructor {
       return;
     }
 
-    SmallVector<Module /*P*/> Stack/*J*/= new SmallVector<Module /*P*/>(2, (Module /*P*/)null);
+    SmallVector<Module$B/*P*/> Stack/*J*/= new SmallVector<Module$B/*P*/>(2, (Module$B /*P*/)null);
     Stack.push_back(this);
     while (!Stack.empty()) {
-      Module /*P*/ Current = Stack.back();
+      Module$B /*P*/ Current = Stack.back();
       Stack.pop_back();
       if (!needUpdate.$call(Current)) {
         continue;
@@ -1650,7 +1650,7 @@ public class Module implements Destructors.ClassWithDestructor {
 
       Current.IsAvailable = false;
       Current.IsMissingRequirement |= MissingRequirement;
-      for (std.vector.iterator<Module /*P*/ > Sub = Current.submodule_begin(), 
+      for (std.vector.iterator<Module$B/*P*/ > Sub = Current.submodule_begin(), 
           SubEnd = Current.submodule_end();
            $noteq___normal_iterator$C(Sub, SubEnd); Sub.$preInc()) {
         if (needUpdate.$call(Sub.$star())) {
@@ -1670,7 +1670,7 @@ public class Module implements Destructors.ClassWithDestructor {
    FQN = "clang::Module::findSubmodule", NM = "_ZNK5clang6Module13findSubmoduleEN4llvm9StringRefE",
    cmd = "jclank.sh -java-options=${SPUTNIK}/modules/org.clang.basic/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Basic/Module.cpp -nm=_ZNK5clang6Module13findSubmoduleEN4llvm9StringRefE")
   //</editor-fold>
-  public Module /*P*/ findSubmodule(StringRef Name) /*const*/ {
+  public Module$B /*P*/ findSubmodule(StringRef Name) /*const*/ {
     StringMapIteratorUInt Pos = SubModuleIndex.find(/*NO_COPY*/Name);
     if (Pos.$eq(SubModuleIndex.end())) {
       return null;
@@ -1692,7 +1692,7 @@ public class Module implements Destructors.ClassWithDestructor {
    FQN = "clang::Module::isModuleVisible", NM = "_ZNK5clang6Module15isModuleVisibleEPKS0_",
    cmd = "jclank.sh -java-options=${SPUTNIK}/modules/org.clang.basic/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Basic/Module.cpp -nm=_ZNK5clang6Module15isModuleVisibleEPKS0_")
   //</editor-fold>
-  public boolean isModuleVisible(/*const*/ Module /*P*/ M) /*const*/ {
+  public boolean isModuleVisible(/*const*/ Module$B /*P*/ M) /*const*/ {
     if (VisibleModulesCache.empty()) {
       buildVisibleModulesCache();
     }
@@ -1721,7 +1721,7 @@ public class Module implements Destructors.ClassWithDestructor {
    FQN = "clang::Module::submodule_begin", NM = "_ZN5clang6Module15submodule_beginEv",
    cmd = "jclank.sh -java-options=${SPUTNIK}/modules/org.clang.basic/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Basic/Module.cpp -nm=_ZN5clang6Module15submodule_beginEv")
   //</editor-fold>
-  public std.vector.iterator<Module /*P*/ > submodule_begin() {
+  public std.vector.iterator<Module$B/*P*/ > submodule_begin() {
     return SubModules.begin();
   }
 
@@ -1741,7 +1741,7 @@ public class Module implements Destructors.ClassWithDestructor {
    FQN = "clang::Module::submodule_end", NM = "_ZN5clang6Module13submodule_endEv",
    cmd = "jclank.sh -java-options=${SPUTNIK}/modules/org.clang.basic/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Basic/Module.cpp -nm=_ZN5clang6Module13submodule_endEv")
   //</editor-fold>
-  public std.vector.iterator<Module /*P*/ > submodule_end() {
+  public std.vector.iterator<Module$B/*P*/ > submodule_end() {
     return SubModules.end();
   }
 
@@ -1761,7 +1761,7 @@ public class Module implements Destructors.ClassWithDestructor {
    FQN="clang::Module::submodules", NM="_ZN5clang6Module10submodulesEv",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.basic/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Basic/Module.cpp -nm=_ZN5clang6Module10submodulesEv")
   //</editor-fold>
-  public iterator_range<Module /*P*/ > submodules() {
+  public iterator_range<Module$B/*P*/ > submodules() {
     return llvm.make_range(submodule_begin(), submodule_end());
   }
   
@@ -1785,12 +1785,12 @@ public class Module implements Destructors.ClassWithDestructor {
    FQN = "clang::Module::getExportedModules", NM = "_ZNK5clang6Module18getExportedModulesERN4llvm15SmallVectorImplIPS0_EE",
    cmd = "jclank.sh -java-options=${SPUTNIK}/modules/org.clang.basic/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Basic/Module.cpp -nm=_ZNK5clang6Module18getExportedModulesERN4llvm15SmallVectorImplIPS0_EE")
   //</editor-fold>
-  public void getExportedModules(SmallVectorImpl<Module /*P*/ > /*&*/ Exported) /*const*/ {
+  public void getExportedModules(SmallVectorImpl<Module$B/*P*/ > /*&*/ Exported) /*const*/ {
     // All non-explicit submodules are exported.
-    for (std.vector.iterator<Module /*P*/ > I = SubModules.begin(), 
+    for (std.vector.iterator<Module$B/*P*/ > I = SubModules.begin(), 
         E = SubModules.end();
          $noteq___normal_iterator(I, E); I.$preInc()) {
-      Module /*P*/ Mod = I.$star();
+      Module$B /*P*/ Mod = I.$star();
       if (!Mod.IsExplicit) {
         Exported.push_back(Mod);
       }
@@ -1799,9 +1799,9 @@ public class Module implements Destructors.ClassWithDestructor {
     // Find re-exported modules by filtering the list of imported modules.
     boolean AnyWildcard = false;
     boolean UnrestrictedWildcard = false;
-    SmallVector<Module /*P*/> WildcardRestrictions/*J*/= new SmallVector<Module /*P*/>(4, (Module /*P*/)null);
+    SmallVector<Module$B/*P*/> WildcardRestrictions/*J*/= new SmallVector<Module$B/*P*/>(4, (Module$B /*P*/)null);
     for (/*uint*/int I = 0, N = Exports.size(); I != N; ++I) {
-      Module /*P*/ Mod = Exports.$at(I).getPointer();
+      Module$B /*P*/ Mod = Exports.$at(I).getPointer();
       if (!(Exports.$at(I).getInt() != 0)) {
         // Export a named module directly; no wildcards involved.
         Exported.push_back(Mod);
@@ -1817,7 +1817,7 @@ public class Module implements Destructors.ClassWithDestructor {
       }
       {
 
-        Module /*P*/ Restriction = Exports.$at(I).getPointer();
+        Module$B /*P*/ Restriction = Exports.$at(I).getPointer();
         if ((Restriction != null)) {
           WildcardRestrictions.push_back(Restriction);
         } else {
@@ -1834,12 +1834,12 @@ public class Module implements Destructors.ClassWithDestructor {
     }
 
     for (/*uint*/int I = 0, N = Imports.size(); I != N; ++I) {
-      Module /*P*/ Mod = Imports.$at(I);
+      Module$B /*P*/ Mod = Imports.$at(I);
       boolean Acceptable = UnrestrictedWildcard;
       if (!Acceptable) {
         // Check whether this module meets one of the restrictions.
         for (/*uint*/int R = 0, NR = WildcardRestrictions.size(); R != NR; ++R) {
-          Module /*P*/ Restriction = WildcardRestrictions.$at(R);
+          Module$B /*P*/ Restriction = WildcardRestrictions.$at(R);
           if (Mod == Restriction || Mod.isSubModuleOf(Restriction)) {
             Acceptable = true;
             break;
@@ -1990,7 +1990,7 @@ public class Module implements Destructors.ClassWithDestructor {
       }
     }
     
-    for (std.vector.iterator<Module /*P*/ > MI = submodule_begin(), MIEnd = submodule_end();
+    for (std.vector.iterator<Module$B/*P*/ > MI = submodule_begin(), MIEnd = submodule_end();
          $noteq___normal_iterator$C(MI, MIEnd); MI.$preInc())  {
       // Print inferred subframework modules so that we don't need to re-infer
       // them (requires expensive directory iteration + stat calls) when we build
@@ -2005,7 +2005,7 @@ public class Module implements Destructors.ClassWithDestructor {
       OS.indent(Indent + 2);
       OS.$out(/*KEEP_STR*/"export ");
       {
-        Module /*P*/ Restriction = Exports.$at(I).getPointer();
+        Module$B /*P*/ Restriction = Exports.$at(I).getPointer();
         if ((Restriction != null)) {
           OS.$out(Restriction.getFullModuleName());
           if (Exports.$at(I).getInt() != 0) {
@@ -2115,9 +2115,9 @@ public class Module implements Destructors.ClassWithDestructor {
     VisibleModulesCache.insert(this);
 
     // Every imported module is visible.
-    SmallVector<Module /*P*/> Stack/*J*/= new SmallVector<Module /*P*/>(16, Imports.begin(), Imports.end(), (Module /*P*/)null);
+    SmallVector<Module$B/*P*/> Stack/*J*/= new SmallVector<Module$B/*P*/>(16, Imports.begin(), Imports.end(), (Module$B /*P*/)null);
     while (!Stack.empty()) {
-      Module /*P*/ CurrModule = Stack.pop_back_val();
+      Module$B /*P*/ CurrModule = Stack.pop_back_val();
 
       // Every module transitively exported by an imported module is visible.
       if (VisibleModulesCache.insert(CurrModule).second) {

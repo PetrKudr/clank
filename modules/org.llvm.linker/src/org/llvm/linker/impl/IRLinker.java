@@ -118,8 +118,8 @@ import org.llvm.transforms.utils.*;
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.linker/llvmToClangType ${LLVM_SRC}/llvm/lib/Linker/IRMover.cpp -nm=_ZN12_GLOBAL__N_18IRLinkerE")
 //</editor-fold>
 public class IRLinker implements Destructors.ClassWithDestructor {
-  private final Module /*&*/ DstM;
-  private std.unique_ptr<Module> SrcM;
+  private final Module$IR /*&*/ DstM;
+  private std.unique_ptr<Module$IR> SrcM;
   
   /// See IRMover::move().
   private GlobalValueValueAdder2Void AddLazyFor;
@@ -733,8 +733,8 @@ public class IRLinker implements Destructors.ClassWithDestructor {
    FQN="(anonymous namespace)::IRLinker::IRLinker", NM="_ZN12_GLOBAL__N_18IRLinkerC1ERN4llvm6ModuleERNS1_8DenseMapIPKNS1_8MetadataENS1_13TrackingMDRefENS1_12DenseMapInfoIS7_EENS1_6detail12DenseMapPairIS7_S8_EEEERNS1_7IRMover23IdentifiedStructTypeSetESt10unique_ptrIS2_St14default_deleteIS2_EENS1_8ArrayRefIPNS1_11GlobalValueEEESt8functionIFvRSO_SR_IFvSS_EEEE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.linker/llvmToClangType ${LLVM_SRC}/llvm/lib/Linker/IRMover.cpp -nm=_ZN12_GLOBAL__N_18IRLinkerC1ERN4llvm6ModuleERNS1_8DenseMapIPKNS1_8MetadataENS1_13TrackingMDRefENS1_12DenseMapInfoIS7_EENS1_6detail12DenseMapPairIS7_S8_EEEERNS1_7IRMover23IdentifiedStructTypeSetESt10unique_ptrIS2_St14default_deleteIS2_EENS1_8ArrayRefIPNS1_11GlobalValueEEESt8functionIFvRSO_SR_IFvSS_EEEE")
   //</editor-fold>
-  public IRLinker(final Module /*&*/ DstM, final DenseMap</*const*/ Metadata /*P*/ , TrackingMDRef> /*&*/ SharedMDs, 
-      final IRMover.IdentifiedStructTypeSet /*&*/ Set, std.unique_ptr<Module> SrcM, 
+  public IRLinker(final Module$IR /*&*/ DstM, final DenseMap</*const*/ Metadata /*P*/ , TrackingMDRef> /*&*/ SharedMDs, 
+      final IRMover.IdentifiedStructTypeSet /*&*/ Set, std.unique_ptr<Module$IR> SrcM, 
       ArrayRef<GlobalValue /*P*/ > ValuesToLink, 
       GlobalValueValueAdder2Void AddLazyFor) {
     // : DstM(DstM), SrcM(std::move(SrcM)), AddLazyFor(std::move(AddLazyFor)), TypeMap(Set), GValMaterializer(*this), LValMaterializer(*this), SharedMDs(SharedMDs), ValueMap(), AliasValueMap(), ValuesToLink(), Worklist(), DoneLinkingBodies(false), FoundError(), Mapper(ValueMap, RF_MoveDistinctMDs | RF_IgnoreMissingLocals, &TypeMap, &GValMaterializer), AliasMCID(Mapper.registerAlternateMappingContext(AliasValueMap, &LValMaterializer)) 

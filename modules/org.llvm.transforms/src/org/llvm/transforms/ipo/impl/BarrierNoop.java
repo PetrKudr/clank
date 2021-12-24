@@ -144,7 +144,7 @@ public class BarrierNoop extends /*public*/ ModulePass implements Destructors.Cl
    FQN="(anonymous namespace)::BarrierNoop::runOnModule", NM="_ZN12_GLOBAL__N_111BarrierNoop11runOnModuleERN4llvm6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.transforms/llvmToClangType ${LLVM_SRC}/llvm/lib/Transforms/IPO/BarrierNoopPass.cpp -nm=_ZN12_GLOBAL__N_111BarrierNoop11runOnModuleERN4llvm6ModuleE")
   //</editor-fold>
-  @Override public boolean runOnModule(final Module /*&*/ M)/* override*/ {
+  @Override public boolean runOnModule(final Module$IR /*&*/ M)/* override*/ {
     return false;
   }
 

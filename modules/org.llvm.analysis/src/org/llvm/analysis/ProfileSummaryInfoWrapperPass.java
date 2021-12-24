@@ -145,7 +145,7 @@ public class ProfileSummaryInfoWrapperPass extends /*public*/ ImmutablePass impl
    FQN="llvm::ProfileSummaryInfoWrapperPass::getPSI", NM="_ZN4llvm29ProfileSummaryInfoWrapperPass6getPSIERNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/ProfileSummaryInfo.cpp -nm=_ZN4llvm29ProfileSummaryInfoWrapperPass6getPSIERNS_6ModuleE")
   //</editor-fold>
-  public ProfileSummaryInfo /*P*/ getPSI(final Module /*&*/ M) {
+  public ProfileSummaryInfo /*P*/ getPSI(final Module$IR /*&*/ M) {
     if (!PSI.$bool()) {
       PSI.reset(new ProfileSummaryInfo(M));
     }

@@ -129,7 +129,7 @@ public class ModuleDebugInfoPrinter extends /*public*/ ModulePass implements Des
    FQN="(anonymous namespace)::ModuleDebugInfoPrinter::runOnModule", NM="_ZN12_GLOBAL__N_122ModuleDebugInfoPrinter11runOnModuleERN4llvm6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/ModuleDebugInfoPrinter.cpp -nm=_ZN12_GLOBAL__N_122ModuleDebugInfoPrinter11runOnModuleERN4llvm6ModuleE")
   //</editor-fold>
-  @Override public boolean runOnModule(final Module /*&*/ M)/* override*/ {
+  @Override public boolean runOnModule(final Module$IR /*&*/ M)/* override*/ {
     throw new UnsupportedOperationException("EmptyBody");
   }
 
@@ -150,7 +150,7 @@ public class ModuleDebugInfoPrinter extends /*public*/ ModulePass implements Des
    FQN="(anonymous namespace)::ModuleDebugInfoPrinter::print", NM="_ZNK12_GLOBAL__N_122ModuleDebugInfoPrinter5printERN4llvm11raw_ostreamEPKNS1_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/ModuleDebugInfoPrinter.cpp -nm=_ZNK12_GLOBAL__N_122ModuleDebugInfoPrinter5printERN4llvm11raw_ostreamEPKNS1_6ModuleE")
   //</editor-fold>
-  @Override public void print(final raw_ostream /*&*/ O, /*const*/ Module /*P*/ M) /*const*//* override*/ {
+  @Override public void print(final raw_ostream /*&*/ O, /*const*/ Module$IR /*P*/ M) /*const*//* override*/ {
     throw new UnsupportedOperationException("EmptyBody");
   }
 

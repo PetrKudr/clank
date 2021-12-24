@@ -80,7 +80,7 @@ import org.clank.support.Converted;
 import org.clank.support.aliases.type$ref;
 import org.llvm.adt.ilist_half_node;
 import org.llvm.adt.ilist_traits;
-import org.llvm.ir.Module;
+import org.llvm.ir.Module$IR;
 
 /**
  *

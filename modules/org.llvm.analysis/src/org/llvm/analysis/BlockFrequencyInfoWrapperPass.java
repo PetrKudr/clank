@@ -189,7 +189,7 @@ public class BlockFrequencyInfoWrapperPass extends /*public*/ FunctionPass imple
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/BlockFrequencyInfo.cpp -nm=_ZNK4llvm29BlockFrequencyInfoWrapperPass5printERNS_11raw_ostreamEPKNS_6ModuleE")
   //</editor-fold>
   @Override public void print(final raw_ostream /*&*/ OS, 
-       /*const*/ Module /*P*/ $Prm1) /*const*//* override*/ {
+       /*const*/ Module$IR /*P*/ $Prm1) /*const*//* override*/ {
     BFI.print(OS);
   }
 

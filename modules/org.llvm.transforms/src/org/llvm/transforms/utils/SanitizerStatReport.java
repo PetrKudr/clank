@@ -110,7 +110,7 @@ public class/*struct*/ SanitizerStatReport implements Destructors.ClassWithDestr
    FQN="llvm::SanitizerStatReport::SanitizerStatReport", NM="_ZN4llvm19SanitizerStatReportC1EPNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.transforms/llvmToClangType ${LLVM_SRC}/llvm/lib/Transforms/Utils/SanitizerStats.cpp -nm=_ZN4llvm19SanitizerStatReportC1EPNS_6ModuleE")
   //</editor-fold>
-  public SanitizerStatReport(Module /*P*/ M) {
+  public SanitizerStatReport(Module$IR /*P*/ M) {
     // : M(M), Inits() 
     throw new UnsupportedOperationException("EmptyBody");
   }
@@ -149,7 +149,7 @@ public class/*struct*/ SanitizerStatReport implements Destructors.ClassWithDestr
 
 
 /*private:*/
-  private Module /*P*/ M;
+  private Module$IR /*P*/ M;
   private GlobalVariable /*P*/ ModuleStatsGV;
   private ArrayType /*P*/ StatTy;
   private StructType /*P*/ EmptyModuleStatsTy;

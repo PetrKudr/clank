@@ -122,7 +122,7 @@ public static DISubprogram /*P*/ getDISubprogram(/*const*/ MDNode /*P*/ Scope) {
  FQN="llvm::StripDebugInfo", NM="_ZN4llvm14StripDebugInfoERNS_6ModuleE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/DebugInfo.cpp -nm=_ZN4llvm14StripDebugInfoERNS_6ModuleE")
 //</editor-fold>
-public static boolean StripDebugInfo(final Module /*&*/ M) {
+public static boolean StripDebugInfo(final Module$IR /*&*/ M) {
   boolean Changed = false;
   
   for (ilist_iterator<NamedMDNode> NMI = M.named_metadata_begin(), 
@@ -192,7 +192,7 @@ public static boolean stripDebugInfo(final Function /*&*/ F) {
  FQN="llvm::getDebugMetadataVersionFromModule", NM="_ZN4llvm33getDebugMetadataVersionFromModuleERKNS_6ModuleE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/DebugInfo.cpp -nm=_ZN4llvm33getDebugMetadataVersionFromModuleERKNS_6ModuleE")
 //</editor-fold>
-public static /*uint*/int getDebugMetadataVersionFromModule(final /*const*/ Module /*&*/ M) {
+public static /*uint*/int getDebugMetadataVersionFromModule(final /*const*/ Module$IR /*&*/ M) {
   {
     ConstantInt /*P*/ Val = MdconstGlobals.dyn_extract_or_null$ValidReference(ConstantInt.class, M.getModuleFlag(new StringRef(/*KEEP_STR*/"Debug Info Version")));
     if ((Val != null)) {

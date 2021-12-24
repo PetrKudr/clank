@@ -3858,7 +3858,7 @@ public class IRBuilder</*typename*/ T extends IFolder<Constant, Constant>/* = Co
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/IRBuilder.cpp -nm=_ZN4llvm9IRBuilder27CreateInvariantGroupBarrierEPNS_5ValueE")
   //</editor-fold>
   public Value /*P*/ CreateInvariantGroupBarrier(Value /*P*/ Ptr) {
-    Module /*P*/ M = BB.getParent().getParent();
+    Module$IR /*P*/ M = BB.getParent().getParent();
     Function /*P*/ FnInvariantGroupBarrier = IntrinsicGlobals.getDeclaration(M,
         ID.invariant_group_barrier);
 

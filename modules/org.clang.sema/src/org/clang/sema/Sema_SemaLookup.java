@@ -144,9 +144,9 @@ protected/*private*/ final boolean shouldLinkPossiblyHiddenDecl(final LookupResu
  FQN="clang::Sema::getOwningModule", NM="_ZN5clang4Sema15getOwningModuleEPNS_4DeclE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.sema/llvmToClangType -split-class=clang::Sema@this ${LLVM_SRC}/llvm/tools/clang/lib/Sema/SemaLookup.cpp -nm=_ZN5clang4Sema15getOwningModuleEPNS_4DeclE")
 //</editor-fold>
-public final Module /*P*/ getOwningModule(Decl /*P*/ Entity) {
+public final Module$B /*P*/ getOwningModule(Decl /*P*/ Entity) {
   // If it's imported, grab its owning module.
-  Module /*P*/ M = Entity.getImportedOwningModule();
+  Module$B /*P*/ M = Entity.getImportedOwningModule();
   if ((M != null) || !isa_NamedDecl(Entity) || !cast_NamedDecl(Entity).isHidden()) {
     return M;
   }
@@ -168,7 +168,7 @@ public final Module /*P*/ getOwningModule(Decl /*P*/ Entity) {
   }
   {
     
-    Module /*P*/ Containing = $this().PP.getModuleContainingLocation(Entity.getLocation());
+    Module$B /*P*/ Containing = $this().PP.getModuleContainingLocation(Entity.getLocation());
     if ((Containing != null)) {
       M = Containing;
     } else if (Entity.isInvalidDecl() || Entity.getLocation().isInvalid()) {
@@ -181,7 +181,7 @@ public final Module /*P*/ getOwningModule(Decl /*P*/ Entity) {
       // Invent a fake module for all such entities.
       if (!($this().CachedFakeTopLevelModule != null)) {
         $this().CachedFakeTopLevelModule
-           = $this().PP.getHeaderSearchInfo().getModuleMap().findOrCreateModule(new StringRef(/*KEEP_STR*/"<top-level>"), (Module /*P*/ )null, false, false).first;
+           = $this().PP.getHeaderSearchInfo().getModuleMap().findOrCreateModule(new StringRef(/*KEEP_STR*/"<top-level>"), (Module$B /*P*/ )null, false, false).first;
         
         final SourceManager /*&*/ SrcMgr = $this().PP.getSourceManager();
         SourceLocation StartLoc = SrcMgr.getLocForStartOfFile(SrcMgr.getMainFileID());
@@ -209,7 +209,7 @@ public final Module /*P*/ getOwningModule(Decl /*P*/ Entity) {
 //</editor-fold>
 public final void makeMergedDefinitionVisible(NamedDecl /*P*/ ND, SourceLocation Loc) {
   {
-    Module /*P*/ M = $this().PP.getModuleContainingLocation(/*NO_COPY*/Loc);
+    Module$B /*P*/ M = $this().PP.getModuleContainingLocation(/*NO_COPY*/Loc);
     if ((M != null)) {
       $this().Context.mergeDefinitionIntoModule(ND, M);
     } else {
@@ -237,7 +237,7 @@ public final void makeMergedDefinitionVisible(NamedDecl /*P*/ ND, SourceLocation
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.sema/llvmToClangType -split-class=clang::Sema@this ${LLVM_SRC}/llvm/tools/clang/lib/Sema/SemaLookup.cpp -nm=_ZN5clang4Sema25hasVisibleDeclarationSlowEPKNS_9NamedDeclEPN4llvm15SmallVectorImplIPNS_6ModuleEEE")
 //</editor-fold>
 public final boolean hasVisibleDeclarationSlow(/*const*/ NamedDecl /*P*/ D, 
-                         SmallVectorImpl<Module /*P*/ > /*P*/ Modules) {
+                         SmallVectorImpl<Module$B/*P*/ > /*P*/ Modules) {
   assert (!$this().isVisible(D)) : "not in slow case";
   
   for (Decl /*P*/ Redecl : D.decl_redecls()) {
@@ -247,7 +247,7 @@ public final boolean hasVisibleDeclarationSlow(/*const*/ NamedDecl /*P*/ D,
     }
     if ((Modules != null)) {
       Modules.push_back($this().getOwningModule(NonConstR));
-      final /*const*/ArrayRef<Module /*P*/ > /*&*/ Merged = $this().Context.getModulesWithMergedDefinition(NonConstR);
+      final /*const*/ArrayRef<Module$B/*P*/ > /*&*/ Merged = $this().Context.getModulesWithMergedDefinition(NonConstR);
       Modules.insert$T$value_T(Modules.end(), Merged.begin(), Merged.end());
     }
   }
@@ -262,7 +262,7 @@ public final boolean hasVisibleDeclarationSlow(/*const*/ NamedDecl /*P*/ D,
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.sema/llvmToClangType -split-class=clang::Sema@this ${LLVM_SRC}/llvm/tools/clang/lib/Sema/SemaLookup.cpp -nm=_ZN5clang4Sema26hasVisibleMergedDefinitionEPNS_9NamedDeclE")
 //</editor-fold>
 public final boolean hasVisibleMergedDefinition(NamedDecl /*P*/ Def) {
-  for (Module /*P*/ Merged : $this().Context.getModulesWithMergedDefinition(Def))  {
+  for (Module$B /*P*/ Merged : $this().Context.getModulesWithMergedDefinition(Def))  {
     if ($this().isModuleVisible(Merged)) {
       return true;
     }
@@ -280,10 +280,10 @@ public final boolean hasVisibleMergedDefinition(NamedDecl /*P*/ Def) {
 //</editor-fold>
 public final boolean hasVisibleDefaultArgument(/*const*/ NamedDecl /*P*/ D) {
   return hasVisibleDefaultArgument(D, 
-                         (SmallVectorImpl<Module /*P*/ > /*P*/ )null);
+                         (SmallVectorImpl<Module$B/*P*/ > /*P*/ )null);
 }
 public final boolean hasVisibleDefaultArgument(/*const*/ NamedDecl /*P*/ D, 
-                         SmallVectorImpl<Module /*P*/ > /*P*/ Modules/*= null*/) {
+                         SmallVectorImpl<Module$B/*P*/ > /*P*/ Modules/*= null*/) {
   {
     /*const*/ TemplateTypeParmDecl /*P*/ P = dyn_cast_TemplateTypeParmDecl(D);
     if ((P != null)) {
@@ -310,9 +310,9 @@ public final boolean hasVisibleDefaultArgument(/*const*/ NamedDecl /*P*/ D,
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.sema/llvmToClangType -split-class=clang::Sema@this ${LLVM_SRC}/llvm/tools/clang/lib/Sema/SemaLookup.cpp -nm=_ZN5clang4Sema30hasVisibleMemberSpecializationEPKNS_9NamedDeclEPN4llvm15SmallVectorImplIPNS_6ModuleEEE")
 //</editor-fold>
 public final boolean hasVisibleMemberSpecialization(/*const*/ NamedDecl /*P*/ D) {
-  return hasVisibleMemberSpecialization(D, (SmallVectorImpl<Module /*P*/ > /*P*/ )null);
+  return hasVisibleMemberSpecialization(D, (SmallVectorImpl<Module$B/*P*/ > /*P*/ )null);
 }
-public final boolean hasVisibleMemberSpecialization(/*const*/ NamedDecl /*P*/ D, SmallVectorImpl<Module /*P*/ > /*P*/ Modules/*= null*/) {
+public final boolean hasVisibleMemberSpecialization(/*const*/ NamedDecl /*P*/ D, SmallVectorImpl<Module$B/*P*/ > /*P*/ Modules/*= null*/) {
   assert (isa_CXXRecordDecl(D.getDeclContext$Const())) : "not a member specialization";
   for (Decl /*P*/ Redecl : D.decl_redecls()) {
     // If the specialization is declared at namespace scope, then it's a member
@@ -329,7 +329,7 @@ public final boolean hasVisibleMemberSpecialization(/*const*/ NamedDecl /*P*/ D,
       }
       if ((Modules != null)) {
         Modules.push_back($this().getOwningModule(NonConstR));
-        final /*const*/ArrayRef<Module /*P*/ > /*&*/ Merged = $this().Context.getModulesWithMergedDefinition(NonConstR);
+        final /*const*/ArrayRef<Module$B/*P*/ > /*&*/ Merged = $this().Context.getModulesWithMergedDefinition(NonConstR);
         Modules.insert$T$value_T(Modules.end(), Merged.begin(), Merged.end());
       }
     }
@@ -363,15 +363,15 @@ public final void diagnoseMissingImport(SourceLocation Loc, NamedDecl /*P*/ Decl
     Def = Decl;
   }
   
-  Module /*P*/ Owner = $this().getOwningModule(Decl);
+  Module$B /*P*/ Owner = $this().getOwningModule(Decl);
   assert ((Owner != null)) : "definition of hidden declaration is not in a module";
   
-  SmallVector<Module /*P*/> OwningModules/*J*/= new SmallVector<Module /*P*/>(8, (Module /*P*/)null);
+  SmallVector<Module$B/*P*/> OwningModules/*J*/= new SmallVector<Module$B/*P*/>(8, (Module$B /*P*/)null);
   OwningModules.push_back(Owner);
-  ArrayRef<Module /*P*/ > Merged = $this().Context.getModulesWithMergedDefinition(Decl);
+  ArrayRef<Module$B/*P*/ > Merged = $this().Context.getModulesWithMergedDefinition(Decl);
   OwningModules.insert$T$value_T(OwningModules.end(), Merged.begin(), Merged.end());
   
-  $this().diagnoseMissingImport(new SourceLocation(Loc), Decl, Decl.getLocation(), new ArrayRef<Module /*P*/ >(OwningModules, true), MIK, 
+  $this().diagnoseMissingImport(new SourceLocation(Loc), Decl, Decl.getLocation(), new ArrayRef<Module$B/*P*/ >(OwningModules, true), MIK, 
       Recover);
 }
 
@@ -383,7 +383,7 @@ public final void diagnoseMissingImport(SourceLocation Loc, NamedDecl /*P*/ Decl
 //</editor-fold>
 public final void diagnoseMissingImport(SourceLocation UseLoc, NamedDecl /*P*/ Decl, 
                      SourceLocation DeclLoc, 
-                     ArrayRef<Module /*P*/ > Modules, 
+                     ArrayRef<Module$B/*P*/ > Modules, 
                      MissingImportKind MIK, boolean Recover) {
   JavaCleaner $c$ = $createJavaCleaner();
   try {
@@ -391,7 +391,7 @@ public final void diagnoseMissingImport(SourceLocation UseLoc, NamedDecl /*P*/ D
     if ($greater_uint(Modules.size(), 1)) {
       std.string ModuleList/*J*/= new std.string();
       /*uint*/int N = 0;
-      for (Module /*P*/ M : Modules) {
+      for (Module$B /*P*/ M : Modules) {
         ModuleList.$addassign_T$C$P(/*KEEP_STR*/"\n        ");
         if (++N == 5 && N != Modules.size()) {
           ModuleList.$addassign_T$C$P(/*KEEP_STR*/"[...]");
@@ -3045,11 +3045,11 @@ public final void ForceDeclarationOfImplicitMembers(CXXRecordDecl /*P*/ Class) {
  FQN="clang::Sema::getLookupModules", NM="_ZN5clang4Sema16getLookupModulesEv",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.sema/llvmToClangType -split-class=clang::Sema@this ${LLVM_SRC}/llvm/tools/clang/lib/Sema/SemaLookup.cpp -nm=_ZN5clang4Sema16getLookupModulesEv")
 //</editor-fold>
-public final DenseSet<Module /*P*/ > /*&*/ getLookupModules() {
+public final DenseSet<Module$B/*P*/ > /*&*/ getLookupModules() {
   /*uint*/int N = $this().ActiveTemplateInstantiations.size();
   for (/*uint*/int I = $this().ActiveTemplateInstantiationLookupModules.size();
        I != N; ++I) {
-    Module /*P*/ M = SemaLookupStatics.getDefiningModule(/*Deref*/$this(), $this().ActiveTemplateInstantiations.$at(I).Entity);
+    Module$B /*P*/ M = SemaLookupStatics.getDefiningModule(/*Deref*/$this(), $this().ActiveTemplateInstantiations.$at(I).Entity);
     if ((M != null) && !$this().LookupModulesCache.insert(M).second) {
       M = null;
     }

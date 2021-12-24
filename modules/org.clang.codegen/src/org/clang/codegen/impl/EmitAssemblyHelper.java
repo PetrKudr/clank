@@ -130,7 +130,7 @@ public class EmitAssemblyHelper implements Destructors.ClassWithDestructor {
   private final /*const*/ CodeGenOptions /*&*/ CodeGenOpts;
   private final /*const*/ org.clang.basic.target.TargetOptions /*&*/ TargetOpts;
   private final /*const*/ LangOptions /*&*/ LangOpts;
-  private org.llvm.ir.Module /*P*/ TheModule;
+  private org.llvm.ir.Module$IR /*P*/ TheModule;
   
   private Timer CodeGenerationTime;
   
@@ -595,7 +595,7 @@ public class EmitAssemblyHelper implements Destructors.ClassWithDestructor {
   //</editor-fold>
   public EmitAssemblyHelper(final DiagnosticsEngine /*&*/ _Diags, final /*const*/ CodeGenOptions /*&*/ CGOpts, 
       final /*const*/ org.clang.basic.target.TargetOptions /*&*/ TOpts, 
-      final /*const*/ LangOptions /*&*/ LOpts, org.llvm.ir.Module /*P*/ M) {
+      final /*const*/ LangOptions /*&*/ LOpts, org.llvm.ir.Module$IR /*P*/ M) {
     // : Diags(_Diags), CodeGenOpts(CGOpts), TargetOpts(TOpts), LangOpts(LOpts), TheModule(M), CodeGenerationTime("Code Generation Time"), OS(), TM() 
     //START JInit
     this./*&*/Diags=/*&*/_Diags;

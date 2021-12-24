@@ -505,7 +505,7 @@ public static GlobalVariable /*P*/ createPGOFuncNameVar(final Function /*&*/ F, 
  FQN="llvm::createPGOFuncNameVar", NM="_ZN4llvm20createPGOFuncNameVarERNS_6ModuleENS_11GlobalValue12LinkageTypesENS_9StringRefE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.profiledata/llvmToClangType ${LLVM_SRC}/llvm/lib/ProfileData/InstrProf.cpp -nm=_ZN4llvm20createPGOFuncNameVarERNS_6ModuleENS_11GlobalValue12LinkageTypesENS_9StringRefE")
 //</editor-fold>
-public static GlobalVariable /*P*/ createPGOFuncNameVar(final Module /*&*/ M, 
+public static GlobalVariable /*P*/ createPGOFuncNameVar(final Module$IR /*&*/ M, 
                     GlobalValue.LinkageTypes Linkage, 
                     StringRef PGOFuncName) {
   throw new UnsupportedOperationException("EmptyBody");
@@ -600,7 +600,7 @@ public static Error readPGOFuncNameStrings(StringRef NameStrings, final InstrPro
  FQN="llvm::annotateValueSite", NM="_ZN4llvm17annotateValueSiteERNS_6ModuleERNS_11InstructionERKNS_15InstrProfRecordENS_18InstrProfValueKindEjj",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.profiledata/llvmToClangType ${LLVM_SRC}/llvm/lib/ProfileData/InstrProf.cpp -nm=_ZN4llvm17annotateValueSiteERNS_6ModuleERNS_11InstructionERKNS_15InstrProfRecordENS_18InstrProfValueKindEjj")
 //</editor-fold>
-public static void annotateValueSite(final Module /*&*/ M, final Instruction /*&*/ Inst, 
+public static void annotateValueSite(final Module$IR /*&*/ M, final Instruction /*&*/ Inst, 
                  final /*const*/ InstrProfRecord /*&*/ InstrProfR, 
                  InstrProfValueKind ValueKind, /*uint32_t*/int SiteIdx) {
   annotateValueSite(M, Inst, 
@@ -608,7 +608,7 @@ public static void annotateValueSite(final Module /*&*/ M, final Instruction /*&
                  ValueKind, SiteIdx, 
                  3);
 }
-public static void annotateValueSite(final Module /*&*/ M, final Instruction /*&*/ Inst, 
+public static void annotateValueSite(final Module$IR /*&*/ M, final Instruction /*&*/ Inst, 
                  final /*const*/ InstrProfRecord /*&*/ InstrProfR, 
                  InstrProfValueKind ValueKind, /*uint32_t*/int SiteIdx, 
                  /*uint32_t*/int MaxMDCount/*= 3*/) {
@@ -622,7 +622,7 @@ public static void annotateValueSite(final Module /*&*/ M, final Instruction /*&
  FQN="llvm::annotateValueSite", NM="_ZN4llvm17annotateValueSiteERNS_6ModuleERNS_11InstructionENS_8ArrayRefI18InstrProfValueDataEEyNS_18InstrProfValueKindEj",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.profiledata/llvmToClangType ${LLVM_SRC}/llvm/lib/ProfileData/InstrProf.cpp -nm=_ZN4llvm17annotateValueSiteERNS_6ModuleERNS_11InstructionENS_8ArrayRefI18InstrProfValueDataEEyNS_18InstrProfValueKindEj")
 //</editor-fold>
-public static void annotateValueSite(final Module /*&*/ M, final Instruction /*&*/ Inst, 
+public static void annotateValueSite(final Module$IR /*&*/ M, final Instruction /*&*/ Inst, 
                  ArrayRef< InstrProfValueData> VDs, 
                  long/*uint64_t*/ Sum, InstrProfValueKind ValueKind, 
                  /*uint32_t*/int MaxMDCount) {

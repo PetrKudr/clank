@@ -123,7 +123,7 @@ import static org.llvm.adt.HashingGlobals.*;
  FQN="llvm::GlobalIFunc", NM="_ZN4llvm11GlobalIFuncE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/Globals.cpp -nm=_ZN4llvm11GlobalIFuncE")
 //</editor-fold>
-public final class GlobalIFunc extends /*public*/ GlobalIndirectSymbol implements /*public*/ ilist_node<GlobalIFunc>, IChild<Module>, Destructors.ClassWithDestructor {
+public final class GlobalIFunc extends /*public*/ GlobalIndirectSymbol implements /*public*/ ilist_node<GlobalIFunc>, IChild<Module$IR>, Destructors.ClassWithDestructor {
   /*friend  class SymbolTableListTraits<GlobalIFunc>*/
   //<editor-fold defaultstate="collapsed" desc="llvm::GlobalIFunc::operator=">
   @Converted(kind = Converted.Kind.AUTO,
@@ -148,7 +148,7 @@ public final class GlobalIFunc extends /*public*/ GlobalIndirectSymbol implement
    FQN="llvm::GlobalIFunc::setParent", NM="_ZN4llvm11GlobalIFunc9setParentEPNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/Globals.cpp -nm=_ZN4llvm11GlobalIFunc9setParentEPNS_6ModuleE")
   //</editor-fold>
-  public /*friend*//*private*/ void setParent(Module /*P*/ parent) {
+  public /*friend*//*private*/ void setParent(Module$IR /*P*/ parent) {
     Parent = parent;
   }
 
@@ -165,7 +165,7 @@ public final class GlobalIFunc extends /*public*/ GlobalIndirectSymbol implement
   //</editor-fold>
   private GlobalIFunc(Type /*P*/ Ty, /*uint*/int AddressSpace, GlobalValue.LinkageTypes Link,
       final /*const*/ Twine /*&*/ Name, Constant /*P*/ Resolver,
-      Module /*P*/ ParentModule) {
+      Module$IR /*P*/ ParentModule) {
     // : GlobalIndirectSymbol(Ty, Value::GlobalIFuncVal, AddressSpace, Link, Name, Resolver), ilist_node<GlobalIFunc>()
     //START JInit
     super(Ty, Value.ValueTy.GlobalIFuncVal, AddressSpace, Link, Name,
@@ -188,7 +188,7 @@ public final class GlobalIFunc extends /*public*/ GlobalIndirectSymbol implement
   //</editor-fold>
   public static GlobalIFunc /*P*/ create(Type /*P*/ Ty, /*uint*/int AddressSpace,
         GlobalValue.LinkageTypes Link, final /*const*/ Twine /*&*/ Name,
-        Constant /*P*/ Resolver, Module /*P*/ ParentModule) {
+        Constant /*P*/ Resolver, Module$IR /*P*/ ParentModule) {
     return /*NEW_EXPR [GlobalIndirectSymbol::new]*/GlobalIndirectSymbol.$new_GlobalIndirectSymbol((type$ptr<?> New$Mem)->{
         return new GlobalIFunc(Ty, AddressSpace, Link, Name, Resolver, ParentModule);
      });

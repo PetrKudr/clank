@@ -103,7 +103,7 @@ public static void orderValue(/*const*/ Value /*P*/ V, OrderMap /*&*/ OM) {
  FQN="orderModule", NM="_ZL11orderModuleRKN4llvm6ModuleE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.bitcode/llvmToClangType ${LLVM_SRC}/llvm/lib/Bitcode/Writer/ValueEnumerator.cpp -nm=_ZL11orderModuleRKN4llvm6ModuleE")
 //</editor-fold>
-public static OrderMap orderModule(/*const*/ Module /*&*/ M) {
+public static OrderMap orderModule(/*const*/ Module$IR /*&*/ M) {
   throw new UnsupportedOperationException("EmptyBody");
 }
 
@@ -136,7 +136,7 @@ public static void predictValueUseListOrder(/*const*/ Value /*P*/ V, /*const*/ F
  FQN="predictUseListOrder", NM="_ZL19predictUseListOrderRKN4llvm6ModuleE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.bitcode/llvmToClangType ${LLVM_SRC}/llvm/lib/Bitcode/Writer/ValueEnumerator.cpp -nm=_ZL19predictUseListOrderRKN4llvm6ModuleE")
 //</editor-fold>
-public static std.vector<UseListOrder> predictUseListOrder(/*const*/ Module /*&*/ M) {
+public static std.vector<UseListOrder> predictUseListOrder(/*const*/ Module$IR /*&*/ M) {
   throw new UnsupportedOperationException("EmptyBody");
 }
 

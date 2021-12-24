@@ -514,11 +514,11 @@ private final /*split clang::Preprocessor*/ Preprocessor $this() { return (Prepr
 
     // If we have a non-empty module path, load the named module.
     if (!$this().ModuleImportPath.empty()) {
-      Module /*P*/ Imported = null;
+      Module$B /*P*/ Imported = null;
       if ($this().getLangOpts().Modules) {
         Imported = $this().TheModuleLoader.loadModule(/*NO_COPY*/$this().ModuleImportLoc, 
             new ModuleIdPath($this().ModuleImportPath), 
-            Module.NameVisibilityKind.Hidden, 
+            Module$B.NameVisibilityKind.Hidden, 
             /*IsIncludeDirective=*/ false).$ModulePtr();
         if ((Imported != null)) {
           $this().makeModuleVisible(Imported, /*NO_COPY*/$this().ModuleImportLoc);
@@ -537,10 +537,10 @@ private final /*split clang::Preprocessor*/ Preprocessor $this() { return (Prepr
    FQN="clang::Preprocessor::makeModuleVisible", NM="_ZN5clang12Preprocessor17makeModuleVisibleEPNS_6ModuleENS_14SourceLocationE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/Preprocessor.cpp -nm=_ZN5clang12Preprocessor17makeModuleVisibleEPNS_6ModuleENS_14SourceLocationE")
   //</editor-fold>
-  public void makeModuleVisible(Module /*P*/ M, SourceLocation Loc) {
+  public void makeModuleVisible(Module$B /*P*/ M, SourceLocation Loc) {
     $this().makeModuleVisible(M, Loc.getRawEncoding());
   }
-  public void makeModuleVisible(Module /*P*/ M, /*SourceLocation*/int Loc) {
+  public void makeModuleVisible(Module$B /*P*/ M, /*SourceLocation*/int Loc) {
     $this().CurSubmoduleState.VisibleModules.setVisible(M, /*NO_COPY*/Loc, (Mod) -> {}, 
         (Path, Conflict, Message) -> 
         {
@@ -1297,7 +1297,7 @@ private final /*split clang::Preprocessor*/ Preprocessor $this() { return (Prepr
    FQN="clang::Preprocessor::getCurrentModule", NM="_ZN5clang12Preprocessor16getCurrentModuleEv",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/Preprocessor.cpp -nm=_ZN5clang12Preprocessor16getCurrentModuleEv")
   //</editor-fold>
-  public Module /*P*/ getCurrentModule() {
+  public Module$B /*P*/ getCurrentModule() {
     if (!$this().getLangOpts().CompilingModule) {
       return null;
     }

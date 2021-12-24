@@ -158,7 +158,7 @@ public class CGPassManager extends /*public*/ ModulePass implements /*public*/ P
    FQN="(anonymous namespace)::CGPassManager::runOnModule", NM="_ZN12_GLOBAL__N_113CGPassManager11runOnModuleERN4llvm6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/CallGraphSCCPass.cpp -nm=_ZN12_GLOBAL__N_113CGPassManager11runOnModuleERN4llvm6ModuleE")
   //</editor-fold>
-  @Override public boolean runOnModule(final Module /*&*/ M)/* override*/ {
+  @Override public boolean runOnModule(final Module$IR /*&*/ M)/* override*/ {
     scc_iterator<CallGraph /*P*/, CallGraphNode, CallGraphNode> CGI = null;
     CallGraphSCC CurSCC = null;
     try {

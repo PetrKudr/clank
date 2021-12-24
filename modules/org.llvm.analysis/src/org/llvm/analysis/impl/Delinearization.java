@@ -175,9 +175,9 @@ public class Delinearization extends /*public*/ FunctionPass implements Destruct
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/Delinearization.cpp -nm=_ZNK12_GLOBAL__N_115Delinearization5printERN4llvm11raw_ostreamEPKNS1_6ModuleE")
   //</editor-fold>
   public void print(final raw_ostream /*&*/ O) /*const*//* override*/ {
-    print(O, (/*const*/ Module /*P*/ )null);
+    print(O, (/*const*/ Module$IR /*P*/ )null);
   }
-  @Override public void print(final raw_ostream /*&*/ O, /*const*/ Module /*P*/ $Prm1/*= null*/) /*const*//* override*/ {
+  @Override public void print(final raw_ostream /*&*/ O, /*const*/ Module$IR /*P*/ $Prm1/*= null*/) /*const*//* override*/ {
     throw new UnsupportedOperationException("EmptyBody");
   }
 

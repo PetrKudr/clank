@@ -409,7 +409,7 @@ public class Lint extends /*public*/ FunctionPass implements /*public*/ InstVisi
   }
 
 /*public:*/
-  public Module /*P*/ Mod;
+  public Module$IR /*P*/ Mod;
   public /*const*/ DataLayout /*P*/ DL;
   public AAResults /*P*/ AA;
   public AssumptionCache /*P*/ AC;
@@ -465,7 +465,7 @@ public class Lint extends /*public*/ FunctionPass implements /*public*/ InstVisi
    FQN="(anonymous namespace)::Lint::print", NM="_ZNK12_GLOBAL__N_14Lint5printERN4llvm11raw_ostreamEPKNS1_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/Lint.cpp -nm=_ZNK12_GLOBAL__N_14Lint5printERN4llvm11raw_ostreamEPKNS1_6ModuleE")
   //</editor-fold>
-  @Override public void print(final raw_ostream /*&*/ O, /*const*/ Module /*P*/ M) /*const*//* override*/ {
+  @Override public void print(final raw_ostream /*&*/ O, /*const*/ Module$IR /*P*/ M) /*const*//* override*/ {
     throw new UnsupportedOperationException("EmptyBody");
   }
 

@@ -153,7 +153,7 @@ public class ObjCARCAAWrapperPass extends /*public*/ ImmutablePass implements De
    FQN="llvm::objcarc::ObjCARCAAWrapperPass::doInitialization", NM="_ZN4llvm7objcarc20ObjCARCAAWrapperPass16doInitializationERNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/ObjCARCAliasAnalysis.cpp -nm=_ZN4llvm7objcarc20ObjCARCAAWrapperPass16doInitializationERNS_6ModuleE")
   //</editor-fold>
-  @Override public boolean doInitialization(final Module /*&*/ M)/* override*/ {
+  @Override public boolean doInitialization(final Module$IR /*&*/ M)/* override*/ {
     throw new UnsupportedOperationException("EmptyBody");
   }
 
@@ -163,7 +163,7 @@ public class ObjCARCAAWrapperPass extends /*public*/ ImmutablePass implements De
    FQN="llvm::objcarc::ObjCARCAAWrapperPass::doFinalization", NM="_ZN4llvm7objcarc20ObjCARCAAWrapperPass14doFinalizationERNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/ObjCARCAliasAnalysis.cpp -nm=_ZN4llvm7objcarc20ObjCARCAAWrapperPass14doFinalizationERNS_6ModuleE")
   //</editor-fold>
-  @Override public boolean doFinalization(final Module /*&*/ M)/* override*/ {
+  @Override public boolean doFinalization(final Module$IR /*&*/ M)/* override*/ {
     throw new UnsupportedOperationException("EmptyBody");
   }
 

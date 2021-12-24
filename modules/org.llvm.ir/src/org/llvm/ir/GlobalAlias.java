@@ -88,7 +88,7 @@ import org.llvm.ir.java.*;
  FQN="llvm::GlobalAlias", NM="_ZN4llvm11GlobalAliasE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/Globals.cpp -nm=_ZN4llvm11GlobalAliasE")
 //</editor-fold>
-public class GlobalAlias extends /*public*/ GlobalIndirectSymbol implements /*public*/ ilist_node<GlobalAlias>, IChild<Module>, Destructors.ClassWithDestructor {
+public class GlobalAlias extends /*public*/ GlobalIndirectSymbol implements /*public*/ ilist_node<GlobalAlias>, IChild<Module$IR>, Destructors.ClassWithDestructor {
   /*friend  class SymbolTableListTraits<GlobalAlias>*/
   //<editor-fold defaultstate="collapsed" desc="llvm::GlobalAlias::operator=">
   @Converted(kind = Converted.Kind.AUTO,
@@ -113,7 +113,7 @@ public class GlobalAlias extends /*public*/ GlobalIndirectSymbol implements /*pu
    FQN="llvm::GlobalAlias::setParent", NM="_ZN4llvm11GlobalAlias9setParentEPNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/Globals.cpp -nm=_ZN4llvm11GlobalAlias9setParentEPNS_6ModuleE")
   //</editor-fold>
-  public /*friend*//*private*/ void setParent(Module /*P*/ parent) {
+  public /*friend*//*private*/ void setParent(Module$IR /*P*/ parent) {
     Parent = parent;
   }
 
@@ -130,7 +130,7 @@ public class GlobalAlias extends /*public*/ GlobalIndirectSymbol implements /*pu
   //</editor-fold>
   private GlobalAlias(Type /*P*/ Ty, /*uint*/int AddressSpace, GlobalValue.LinkageTypes Link, 
       final /*const*/ Twine /*&*/ Name, Constant /*P*/ Aliasee, 
-      Module /*P*/ ParentModule) {
+      Module$IR /*P*/ ParentModule) {
     // : GlobalIndirectSymbol(Ty, Value::GlobalAliasVal, AddressSpace, Link, Name, Aliasee), ilist_node<GlobalAlias>() 
     //START JInit
     super(Ty, Value.ValueTy.GlobalAliasVal, AddressSpace, Link, Name, 
@@ -153,7 +153,7 @@ public class GlobalAlias extends /*public*/ GlobalIndirectSymbol implements /*pu
   //</editor-fold>
   public static GlobalAlias /*P*/ create(Type /*P*/ Ty, /*uint*/int AddressSpace, 
         GlobalValue.LinkageTypes Link, final /*const*/ Twine /*&*/ Name, 
-        Constant /*P*/ Aliasee, Module /*P*/ ParentModule) {
+        Constant /*P*/ Aliasee, Module$IR /*P*/ ParentModule) {
     return /*NEW_EXPR [GlobalIndirectSymbol::new]*/GlobalIndirectSymbol.$new_GlobalIndirectSymbol((type$ptr<?> New$Mem)->{
         return new GlobalAlias(Ty, AddressSpace, Link, Name, Aliasee, ParentModule);
      });
@@ -169,7 +169,7 @@ public class GlobalAlias extends /*public*/ GlobalIndirectSymbol implements /*pu
   //</editor-fold>
   public static GlobalAlias /*P*/ create(Type /*P*/ Ty, /*uint*/int AddressSpace, 
         GlobalValue.LinkageTypes Linkage, final /*const*/ Twine /*&*/ Name, 
-        Module /*P*/ Parent) {
+        Module$IR /*P*/ Parent) {
     return create(Ty, AddressSpace, Linkage, Name, (Constant /*P*/ )null, Parent);
   }
 

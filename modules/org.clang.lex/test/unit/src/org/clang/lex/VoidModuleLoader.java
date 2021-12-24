@@ -92,7 +92,7 @@ public class VoidModuleLoader extends /*public*/ ModuleLoader implements Destruc
   @Converted(kind = Converted.Kind.AUTO, source = "${LLVM_SRC}/llvm/tools/clang/unittests/Lex/LexerTest.cpp", line = 32,
    cmd = "jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/unittests/Lex/LexerTest.cpp -filter=__anonymous_namespace::VoidModuleLoader::loadModule")
   //</editor-fold>
-  @Override public/*private*/ /*virtual*/ ModuleLoadResult loadModule(SourceLocation ImportLoc, ModuleIdPath Path, Module.NameVisibilityKind Visibility, boolean IsInclusionDirective) {
+  @Override public/*private*/ /*virtual*/ ModuleLoadResult loadModule(SourceLocation ImportLoc, ModuleIdPath Path, Module$B.NameVisibilityKind Visibility, boolean IsInclusionDirective) {
     return new ModuleLoadResult();
   }
 
@@ -102,8 +102,8 @@ public class VoidModuleLoader extends /*public*/ ModuleLoader implements Destruc
    FQN="(anonymous namespace)::VoidModuleLoader::makeModuleVisible", NM="_ZN12_GLOBAL__N_116VoidModuleLoader17makeModuleVisibleEPN5clang6ModuleENS2_18NameVisibilityKindENS1_14SourceLocationE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/unittests/Lex/LexerTest.cpp -nm=_ZN12_GLOBAL__N_116VoidModuleLoader17makeModuleVisibleEPN5clang6ModuleENS2_18NameVisibilityKindENS1_14SourceLocationE")
   //</editor-fold>
-  @Override public/*private*/ void makeModuleVisible(Module /*P*/ Mod, 
-                   Module.NameVisibilityKind Visibility, 
+  @Override public/*private*/ void makeModuleVisible(Module$B /*P*/ Mod, 
+                   Module$B.NameVisibilityKind Visibility, 
                    SourceLocation ImportLoc)/* override*/ {
   }
 

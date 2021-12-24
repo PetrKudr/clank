@@ -295,9 +295,9 @@ public class IVUsers implements Destructors.ClassWithDestructor {
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/IVUsers.cpp -nm=_ZNK4llvm7IVUsers5printERNS_11raw_ostreamEPKNS_6ModuleE")
   //</editor-fold>
   public void print(final raw_ostream /*&*/ OS) /*const*/ {
-    print(OS, (/*const*/ Module /*P*/ )null);
+    print(OS, (/*const*/ Module$IR /*P*/ )null);
   }
-  public void print(final raw_ostream /*&*/ OS, /*const*/ Module /*P*/ M/*= null*/) /*const*/ {
+  public void print(final raw_ostream /*&*/ OS, /*const*/ Module$IR /*P*/ M/*= null*/) /*const*/ {
     throw new UnsupportedOperationException("EmptyBody");
   }
 

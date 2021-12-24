@@ -91,7 +91,7 @@ import org.llvm.ir.*;
 public class DiagnosticInfoDebugMetadataVersion extends /*public*/ DiagnosticInfo implements Destructors.ClassWithDestructor {
 /*private:*/
   /// The module that is concerned by this debug metadata version diagnostic.
-  private final /*const*/ Module /*&*/ M;
+  private final /*const*/ Module$IR /*&*/ M;
   /// The actual metadata version.
   private /*uint*/int MetadataVersion;
 /*public:*/
@@ -103,11 +103,11 @@ public class DiagnosticInfoDebugMetadataVersion extends /*public*/ DiagnosticInf
    FQN="llvm::DiagnosticInfoDebugMetadataVersion::DiagnosticInfoDebugMetadataVersion", NM="_ZN4llvm34DiagnosticInfoDebugMetadataVersionC1ERKNS_6ModuleEjNS_18DiagnosticSeverityE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/DiagnosticInfo.cpp -nm=_ZN4llvm34DiagnosticInfoDebugMetadataVersionC1ERKNS_6ModuleEjNS_18DiagnosticSeverityE")
   //</editor-fold>
-  public DiagnosticInfoDebugMetadataVersion(final /*const*/ Module /*&*/ M, /*uint*/int MetadataVersion) {
+  public DiagnosticInfoDebugMetadataVersion(final /*const*/ Module$IR /*&*/ M, /*uint*/int MetadataVersion) {
     this(M, MetadataVersion,
       DiagnosticSeverity.DS_Warning);
   }
-  public DiagnosticInfoDebugMetadataVersion(final /*const*/ Module /*&*/ M, /*uint*/int MetadataVersion,
+  public DiagnosticInfoDebugMetadataVersion(final /*const*/ Module$IR /*&*/ M, /*uint*/int MetadataVersion,
       DiagnosticSeverity Severity/*= DS_Warning*/) {
     // : DiagnosticInfo(DK_DebugMetadataVersion, Severity), M(M), MetadataVersion(MetadataVersion)
     //START JInit
@@ -124,7 +124,7 @@ public class DiagnosticInfoDebugMetadataVersion extends /*public*/ DiagnosticInf
    FQN="llvm::DiagnosticInfoDebugMetadataVersion::getModule", NM="_ZNK4llvm34DiagnosticInfoDebugMetadataVersion9getModuleEv",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/DiagnosticInfo.cpp -nm=_ZNK4llvm34DiagnosticInfoDebugMetadataVersion9getModuleEv")
   //</editor-fold>
-  public /*const*/ Module /*&*/ getModule() /*const*/ {
+  public /*const*/ Module$IR /*&*/ getModule() /*const*/ {
     return M;
   }
 

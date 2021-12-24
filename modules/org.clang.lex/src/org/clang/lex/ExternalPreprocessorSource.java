@@ -146,7 +146,7 @@ public abstract interface/*class*/ ExternalPreprocessorSource extends Destructor
    FQN="clang::ExternalPreprocessorSource::getModule", NM="_ZN5clang26ExternalPreprocessorSource9getModuleEj",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Serialization/ASTReader.cpp -nm=_ZN5clang26ExternalPreprocessorSource9getModuleEj")
   //</editor-fold>
-  public /*interface*/ abstract /*virtual*/ Module /*P*/ getModule(/*uint*/int ModuleID)/* = 0*/;
+  public /*interface*/ abstract /*virtual*/ Module$B /*P*/ getModule(/*uint*/int ModuleID);
 
   //<editor-fold defaultstate="collapsed" desc="clang::ExternalPreprocessorSource::ExternalPreprocessorSource">
   @Converted(kind = Converted.Kind.AUTO,

@@ -128,7 +128,7 @@ public static void forceRenaming(GlobalValue /*P*/ GV, StringRef Name) {
     return;
   }
   
-  Module /*P*/ M = GV.getParent();
+  Module$IR /*P*/ M = GV.getParent();
   {
     
     // If there is a conflict, rename the conflict.

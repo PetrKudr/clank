@@ -367,7 +367,7 @@ public class TargetLibraryInfo {
    FQN="llvm::TargetLibraryInfo::invalidate", NM="_ZN4llvm17TargetLibraryInfo10invalidateERNS_6ModuleERKNS_17PreservedAnalysesE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/TargetLibraryInfo.cpp -nm=_ZN4llvm17TargetLibraryInfo10invalidateERNS_6ModuleERKNS_17PreservedAnalysesE")
   //</editor-fold>
-  public boolean invalidate(final Module /*&*/ $Prm0, final /*const*/ PreservedAnalyses /*&*/ $Prm1) {
+  public boolean invalidate(final Module$IR /*&*/ $Prm0, final /*const*/ PreservedAnalyses /*&*/ $Prm1) {
     return false;
   }
 

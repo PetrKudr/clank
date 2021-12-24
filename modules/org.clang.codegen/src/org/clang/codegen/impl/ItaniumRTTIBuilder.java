@@ -798,7 +798,7 @@ public class ItaniumRTTIBuilder implements Destructors.ClassWithDestructor {
       
       Constant /*P*/ Init = ConstantStruct.getAnon(new ArrayRef<Constant /*P*/ >(Fields, true));
       
-      final org.llvm.ir.Module /*&*/ M = CGM.getModule();
+      final org.llvm.ir.Module$IR /*&*/ M = CGM.getModule();
       GlobalVariable /*P*/ GV = /*NEW_EXPR [GlobalVariable::new]*/GlobalVariable.$new_GlobalVariable((type$ptr<?> New$Mem)->{
           return new GlobalVariable(M, Init.getType(), 
           /*Constant=*/ true, Linkage, Init, new Twine(Name));

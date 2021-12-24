@@ -206,7 +206,7 @@ public class Instruction extends /*public*/ User implements /*public*/ ilist_nod
    FQN="llvm::Instruction::getModule", NM="_ZNK4llvm11Instruction9getModuleEv",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/Instruction.cpp -nm=_ZNK4llvm11Instruction9getModuleEv")
   //</editor-fold>
-  public /*const*/ Module /*P*/ getModule$Const() /*const*/ {
+  public /*const*/ Module$IR /*P*/ getModule$Const() /*const*/ {
     return getParent$Const().getModule$Const();
   }
 
@@ -216,7 +216,7 @@ public class Instruction extends /*public*/ User implements /*public*/ ilist_nod
    FQN="llvm::Instruction::getModule", NM="_ZN4llvm11Instruction9getModuleEv",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/Instruction.cpp -nm=_ZN4llvm11Instruction9getModuleEv")
   //</editor-fold>
-  public Module /*P*/ getModule() {
+  public Module$IR /*P*/ getModule() {
     return getParent().getModule();
   }
 

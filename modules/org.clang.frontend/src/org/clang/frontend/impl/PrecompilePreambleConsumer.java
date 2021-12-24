@@ -117,7 +117,7 @@ public class PrecompilePreambleConsumer extends /*public*/ PCHGenerator implemen
       std.unique_ptr<raw_ostream> Out) {
     // : PCHGenerator(PP, "", null, isysroot, std::make_shared<PCHBuffer>(), ArrayRef<IntrusiveRefCntPtr<ModuleFileExtension> >(), /*AllowASTWithErrors=*/ true), Unit(Unit), Hash(Unit.getCurrentTopLevelHashValue()), TopLevelDecls(), Action(Action), Out(std::move(Out)) 
     //START JInit
-    /*ExprWithCleanups*/super(PP, new StringRef(/*KEEP_STR*/$EMPTY), (Module /*P*/ )null, new StringRef(isysroot), std.make_shared(new PCHBuffer()), 
+    /*ExprWithCleanups*/super(PP, new StringRef(/*KEEP_STR*/$EMPTY), (Module$B /*P*/ )null, new StringRef(isysroot), std.make_shared(new PCHBuffer()), 
         new ArrayRef<IntrusiveRefCntPtr<ModuleFileExtension> >(), 
         true);
     this./*&*/Unit=/*&*/Unit;

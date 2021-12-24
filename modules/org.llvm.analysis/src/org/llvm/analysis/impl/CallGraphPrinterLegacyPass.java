@@ -136,7 +136,7 @@ public class/*struct*/ CallGraphPrinterLegacyPass extends /*public*/ ModulePass 
    FQN="(anonymous namespace)::CallGraphPrinterLegacyPass::runOnModule", NM="_ZN12_GLOBAL__N_126CallGraphPrinterLegacyPass11runOnModuleERN4llvm6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/CallGraph.cpp -nm=_ZN12_GLOBAL__N_126CallGraphPrinterLegacyPass11runOnModuleERN4llvm6ModuleE")
   //</editor-fold>
-  @Override public boolean runOnModule(final Module /*&*/ M)/* override*/ {
+  @Override public boolean runOnModule(final Module$IR /*&*/ M)/* override*/ {
     throw new UnsupportedOperationException("EmptyBody");
   }
 

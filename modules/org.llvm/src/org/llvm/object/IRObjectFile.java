@@ -113,7 +113,7 @@ import org.llvm.ir.*;
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm/llvmToClangType ${LLVM_SRC}/llvm/lib/Transforms/IPO/FunctionImport.cpp -nm=_ZN4llvm6object12IRObjectFileE")
 //</editor-fold>
 public class IRObjectFile extends /*public*/ SymbolicFile implements Destructors.ClassWithDestructor {
-  private std.unique_ptr<Module> M;
+  private std.unique_ptr<Module$IR> M;
   private std.unique_ptr<Mangler> Mang;
   private std.vector<std.pairTypeUInt<std.string>> AsmSymbols;
 /*public:*/
@@ -123,7 +123,7 @@ public class IRObjectFile extends /*public*/ SymbolicFile implements Destructors
    FQN="llvm::object::IRObjectFile::IRObjectFile", NM="_ZN4llvm6object12IRObjectFileC1ENS_15MemoryBufferRefESt10unique_ptrINS_6ModuleESt14default_deleteIS4_EE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm/llvmToClangType ${LLVM_SRC}/llvm/lib/Transforms/IPO/FunctionImport.cpp -nm=_ZN4llvm6object12IRObjectFileC1ENS_15MemoryBufferRefESt10unique_ptrINS_6ModuleESt14default_deleteIS4_EE")
   //</editor-fold>
-  public IRObjectFile(MemoryBufferRef Object, std.unique_ptr<Module> M) {
+  public IRObjectFile(MemoryBufferRef Object, std.unique_ptr<Module$IR> M) {
     throw new UnsupportedOperationException("EmptyBody");
   }
 
@@ -223,7 +223,7 @@ public class IRObjectFile extends /*public*/ SymbolicFile implements Destructors
    FQN="llvm::object::IRObjectFile::getModule", NM="_ZNK4llvm6object12IRObjectFile9getModuleEv",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm/llvmToClangType ${LLVM_SRC}/llvm/lib/Transforms/IPO/FunctionImport.cpp -nm=_ZNK4llvm6object12IRObjectFile9getModuleEv")
   //</editor-fold>
-  public /*const*/ Module /*&*/ getModule$Const() /*const*/ {
+  public /*const*/ Module$IR /*&*/ getModule$Const() /*const*/ {
     throw new UnsupportedOperationException("EmptyBody");
   }
 
@@ -233,7 +233,7 @@ public class IRObjectFile extends /*public*/ SymbolicFile implements Destructors
    FQN="llvm::object::IRObjectFile::getModule", NM="_ZN4llvm6object12IRObjectFile9getModuleEv",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm/llvmToClangType ${LLVM_SRC}/llvm/lib/Transforms/IPO/FunctionImport.cpp -nm=_ZN4llvm6object12IRObjectFile9getModuleEv")
   //</editor-fold>
-  public Module /*&*/ getModule() {
+  public Module$IR /*&*/ getModule() {
     throw new UnsupportedOperationException("EmptyBody");
   }
 
@@ -243,7 +243,7 @@ public class IRObjectFile extends /*public*/ SymbolicFile implements Destructors
    FQN="llvm::object::IRObjectFile::takeModule", NM="_ZN4llvm6object12IRObjectFile10takeModuleEv",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm/llvmToClangType ${LLVM_SRC}/llvm/lib/Transforms/IPO/FunctionImport.cpp -nm=_ZN4llvm6object12IRObjectFile10takeModuleEv")
   //</editor-fold>
-  public std.unique_ptr<Module> takeModule() {
+  public std.unique_ptr<Module$IR> takeModule() {
     throw new UnsupportedOperationException("EmptyBody");
   }
 

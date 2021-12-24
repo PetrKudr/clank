@@ -842,7 +842,7 @@ public class LookupResult implements Iterable<NamedDecl>, NativeIterable<Unresol
   //</editor-fold>
   private static boolean isVisibleSlow(final Sema /*&*/ SemaRef, NamedDecl /*P*/ D) {
     assert (D.isHidden()) : "should not call this: not in slow case";
-    Module /*P*/ DeclModule = null;
+    Module$B /*P*/ DeclModule = null;
     if (SemaRef.getLangOpts().ModulesLocalVisibility) {
       DeclModule = SemaRef.getOwningModule(D);
       if (!(DeclModule != null)) {
@@ -883,7 +883,7 @@ public class LookupResult implements Iterable<NamedDecl>, NativeIterable<Unresol
     }
     
     // Find the extra places where we need to look.
-    final DenseSet<Module /*P*/ > /*&*/ LookupModules = SemaRef.getLookupModules();
+    final DenseSet<Module$B/*P*/ > /*&*/ LookupModules = SemaRef.getLookupModules();
     if (LookupModules.empty()) {
       return false;
     }
@@ -904,7 +904,7 @@ public class LookupResult implements Iterable<NamedDecl>, NativeIterable<Unresol
     
     // Check whether DeclModule is transitively exported to an import of
     // the lookup set.
-    Module DeclModuleFinal = DeclModule;
+    Module$B DeclModuleFinal = DeclModule;
     return std.any_of(LookupModules.begin(), LookupModules.end(), 
          (M) -> 
           {

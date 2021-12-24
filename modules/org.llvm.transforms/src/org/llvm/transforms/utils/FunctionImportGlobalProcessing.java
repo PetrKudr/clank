@@ -108,7 +108,7 @@ import org.llvm.ir.*;
 //</editor-fold>
 public class FunctionImportGlobalProcessing {
   /// The Module which we are exporting or importing functions from.
-  private final Module /*&*/ M;
+  private final Module$IR /*&*/ M;
   
   /// Module summary index passed in for function importing/exporting handling.
   private final /*const*/ ModuleSummaryIndex /*&*/ ImportIndex;
@@ -236,11 +236,11 @@ public class FunctionImportGlobalProcessing {
    FQN="llvm::FunctionImportGlobalProcessing::FunctionImportGlobalProcessing", NM="_ZN4llvm30FunctionImportGlobalProcessingC1ERNS_6ModuleERKNS_18ModuleSummaryIndexEPNS_8DenseSetIPKNS_11GlobalValueENS_12DenseMapInfoIS9_EEEE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.transforms/llvmToClangType ${LLVM_SRC}/llvm/lib/Linker/LinkModules.cpp -nm=_ZN4llvm30FunctionImportGlobalProcessingC1ERNS_6ModuleERKNS_18ModuleSummaryIndexEPNS_8DenseSetIPKNS_11GlobalValueENS_12DenseMapInfoIS9_EEEE")
   //</editor-fold>
-  public FunctionImportGlobalProcessing(final Module /*&*/ M, final /*const*/ ModuleSummaryIndex /*&*/ Index) {
+  public FunctionImportGlobalProcessing(final Module$IR /*&*/ M, final /*const*/ ModuleSummaryIndex /*&*/ Index) {
     this(M, Index, 
       (DenseSet</*const*/ GlobalValue /*P*/ > /*P*/)null);
   }
-  public FunctionImportGlobalProcessing(final Module /*&*/ M, final /*const*/ ModuleSummaryIndex /*&*/ Index, 
+  public FunctionImportGlobalProcessing(final Module$IR /*&*/ M, final /*const*/ ModuleSummaryIndex /*&*/ Index, 
       DenseSet</*const*/ GlobalValue /*P*/ > /*P*/ GlobalsToImport/*= null*/) {
     // : M(M), ImportIndex(Index), GlobalsToImport(GlobalsToImport), HasExportedFunctions(false) 
     throw new UnsupportedOperationException("EmptyBody");

@@ -654,7 +654,7 @@ public class Value implements LLVMOpaqueValue, Destructors.ClassWithDestructor {
     SlotTracker EmptySlotTable = null;
     try {
       OS/*J*/= new formatted_raw_ostream(ROS);
-      EmptySlotTable/*J*/= new SlotTracker(((/*static_cast*//*const*/ Module /*P*/ )((/*const*/ Module /*P*/ )null)));
+      EmptySlotTable/*J*/= new SlotTracker(((/*static_cast*//*const*/ Module$IR /*P*/ )((/*const*/ Module$IR /*P*/ )null)));
       final SlotTracker /*&*/ SlotTable = (MST.getMachine() != null) ? $Deref(MST.getMachine()) : EmptySlotTable;
       T2Void<Function/*P*/>/*const*/ incorporateFunction = /*[&, &MST]*/ (/*const*/ Function /*P*/ F) -> {
             if ((F != null)) {
@@ -718,7 +718,7 @@ public class Value implements LLVMOpaqueValue, Destructors.ClassWithDestructor {
                     TypePrinter/*J*/= new TypePrinting();
                     TypePrinter.print(C.getType(), OS);
                     OS.$out_char($$SPACE);
-                    AsmWriterStatics.WriteConstantInternal(OS, C, TypePrinter, MST.getMachine(), (/*const*/ Module /*P*/ )null);
+                    AsmWriterStatics.WriteConstantInternal(OS, C, TypePrinter, MST.getMachine(), (/*const*/ Module$IR /*P*/ )null);
                   } finally {
                     if (TypePrinter != null) { TypePrinter.$destroy(); }
                   }
@@ -755,14 +755,14 @@ public class Value implements LLVMOpaqueValue, Destructors.ClassWithDestructor {
   //</editor-fold>
   public void printAsOperand(final raw_ostream /*&*/ O) /*const*/ {
     printAsOperand(O, true, 
-                (/*const*/ Module /*P*/ )null);
+                (/*const*/ Module$IR /*P*/ )null);
   }
   public void printAsOperand(final raw_ostream /*&*/ O, boolean PrintType/*= true*/) /*const*/ {
     printAsOperand(O, PrintType, 
-                (/*const*/ Module /*P*/ )null);
+                (/*const*/ Module$IR /*P*/ )null);
   }
   public void printAsOperand(final raw_ostream /*&*/ O, boolean PrintType/*= true*/, 
-                /*const*/ Module /*P*/ M/*= null*/) /*const*/ {
+                /*const*/ Module$IR /*P*/ M/*= null*/) /*const*/ {
     SlotTracker Machine = null;
     ModuleSlotTracker MST = null;
     try {
@@ -1236,7 +1236,7 @@ public class Value implements LLVMOpaqueValue, Destructors.ClassWithDestructor {
       if (!(GV != null)) {
         return;
       }
-      /*const*/ Module /*P*/ M = GV.getParent$Const();
+      /*const*/ Module$IR /*P*/ M = GV.getParent$Const();
       if (!(M != null)) {
         return;
       }

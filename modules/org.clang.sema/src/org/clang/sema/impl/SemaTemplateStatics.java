@@ -1239,10 +1239,10 @@ public static </*typename*/ TemplateParmDecl extends NamedDecl & Common$Template
 
   // If there's a default argument that's not visible, diagnose that we're
   // missing a module import.
-  SmallVector<Module /*P*/> Modules/*J*/= new SmallVector<Module /*P*/>(8, (Module /*P*/)null);
+  SmallVector<Module$B/*P*/> Modules/*J*/= new SmallVector<Module$B/*P*/>(8, (Module$B /*P*/)null);
   if (Native.$bool(D.hasDefaultArgument()) && Native.$not(S.hasVisibleDefaultArgument(D, $AddrOf(Modules)))) {
     S.diagnoseMissingImport(Loc, cast_NamedDecl(TD), 
-        D.getDefaultArgumentLoc(), new ArrayRef<Module /*P*/ >(Modules, true), 
+        D.getDefaultArgumentLoc(), new ArrayRef<Module$B/*P*/ >(Modules, true), 
         Sema.MissingImportKind.DefaultArgument, 
         /*Recover*/ true);
     return true;

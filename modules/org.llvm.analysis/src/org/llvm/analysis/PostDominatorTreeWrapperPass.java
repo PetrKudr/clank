@@ -186,7 +186,7 @@ public class/*struct*/ PostDominatorTreeWrapperPass extends /*public*/ FunctionP
    FQN="llvm::PostDominatorTreeWrapperPass::print", NM="_ZNK4llvm28PostDominatorTreeWrapperPass5printERNS_11raw_ostreamEPKNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/PostDominators.cpp -nm=_ZNK4llvm28PostDominatorTreeWrapperPass5printERNS_11raw_ostreamEPKNS_6ModuleE")
   //</editor-fold>
-  @Override public void print(final raw_ostream /*&*/ OS, /*const*/ Module /*P*/ $Prm1) /*const*//* override*/ {
+  @Override public void print(final raw_ostream /*&*/ OS, /*const*/ Module$IR /*P*/ $Prm1) /*const*//* override*/ {
     throw new UnsupportedOperationException("EmptyBody");
   }
 

@@ -100,7 +100,7 @@ import org.clang.serialization.spi.PCHBufferBase;
 public class PCHGenerator extends /*public*/ SemaConsumer implements Destructors.ClassWithDestructor {
   private final /*const*/ Preprocessor /*&*/ PP;
   private std.string OutputFile;
-  private Module /*P*/ Module;
+  private Module$B /*P*/ Module;
   private std.string isysroot;
   private Sema /*P*/ SemaPtr;
   private std.shared_ptr<? extends PCHBufferBase> Buffer;
@@ -146,7 +146,7 @@ public class PCHGenerator extends /*public*/ SemaConsumer implements Destructors
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.serialization/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Serialization/GeneratePCH.cpp -nm=_ZN5clang12PCHGeneratorC1ERKNS_12PreprocessorEN4llvm9StringRefEPNS_6ModuleES5_St10shared_ptrINS_9PCHBufferEENS4_8ArrayRefINS4_18IntrusiveRefCntPtrINS_19ModuleFileExtensionEEEEEbb")
   //</editor-fold>
   public PCHGenerator(final /*const*/ Preprocessor /*&*/ PP, StringRef OutputFile, 
-      Module /*P*/ $Module, StringRef isysroot, 
+      Module$B /*P*/ $Module, StringRef isysroot, 
       std.shared_ptr<? extends PCHBufferBase> Buffer, 
       ArrayRef<IntrusiveRefCntPtr<ModuleFileExtension>> Extensions) {
     this(PP, OutputFile, 
@@ -156,7 +156,7 @@ public class PCHGenerator extends /*public*/ SemaConsumer implements Destructors
       false, true);
   }
   public PCHGenerator(final /*const*/ Preprocessor /*&*/ PP, StringRef OutputFile, 
-      Module /*P*/ $Module, StringRef isysroot, 
+      Module$B /*P*/ $Module, StringRef isysroot, 
       std.shared_ptr<? extends PCHBufferBase> Buffer, 
       ArrayRef<IntrusiveRefCntPtr<ModuleFileExtension>> Extensions, 
       boolean AllowASTWithErrors/*= false*/) {
@@ -167,7 +167,7 @@ public class PCHGenerator extends /*public*/ SemaConsumer implements Destructors
       AllowASTWithErrors, true);
   }
   public PCHGenerator(final /*const*/ Preprocessor /*&*/ PP, StringRef OutputFile, 
-      Module /*P*/ $Module, StringRef isysroot, 
+      Module$B /*P*/ $Module, StringRef isysroot, 
       std.shared_ptr<? extends PCHBufferBase> Buffer, 
       ArrayRef<IntrusiveRefCntPtr<ModuleFileExtension>> Extensions, 
       boolean AllowASTWithErrors/*= false*/, boolean IncludeTimestamps/*= true*/) {

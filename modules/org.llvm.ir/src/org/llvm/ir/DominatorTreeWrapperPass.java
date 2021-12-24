@@ -197,9 +197,9 @@ public class DominatorTreeWrapperPass extends /*public*/ FunctionPass implements
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/Dominators.cpp -nm=_ZNK4llvm24DominatorTreeWrapperPass5printERNS_11raw_ostreamEPKNS_6ModuleE")
   //</editor-fold>
   public void print(final raw_ostream /*&*/ OS) /*const*//* override*/ {
-    print(OS, (/*const*/ Module /*P*/ )null);
+    print(OS, (/*const*/ Module$IR /*P*/ )null);
   }
-  @Override public void print(final raw_ostream /*&*/ OS, /*const*/ Module /*P*/ $Prm1/*= null*/) /*const*//* override*/ {
+  @Override public void print(final raw_ostream /*&*/ OS, /*const*/ Module$IR /*P*/ $Prm1/*= null*/) /*const*//* override*/ {
     DT.print(OS);
   }
 

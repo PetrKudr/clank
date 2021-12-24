@@ -218,7 +218,7 @@ public class FPPassManager extends /*public*/ ModulePass implements /*public*/ P
    FQN="llvm::FPPassManager::runOnModule", NM="_ZN4llvm13FPPassManager11runOnModuleERNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/LegacyPassManager.cpp -nm=_ZN4llvm13FPPassManager11runOnModuleERNS_6ModuleE")
   //</editor-fold>
-  @Override public boolean runOnModule(final Module /*&*/ M)/* override*/ {
+  @Override public boolean runOnModule(final Module$IR /*&*/ M)/* override*/ {
     boolean Changed = false;
 
     for (final Function /*&*/ F : M)  {
@@ -261,7 +261,7 @@ public class FPPassManager extends /*public*/ ModulePass implements /*public*/ P
    FQN="llvm::FPPassManager::doInitialization", NM="_ZN4llvm13FPPassManager16doInitializationERNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/LegacyPassManager.cpp -nm=_ZN4llvm13FPPassManager16doInitializationERNS_6ModuleE")
   //</editor-fold>
-  @Override public boolean doInitialization(final Module /*&*/ M)/* override*/ {
+  @Override public boolean doInitialization(final Module$IR /*&*/ M)/* override*/ {
     boolean Changed = false;
 
     for (/*uint*/int Index = 0; $less_uint(Index, getNumContainedPasses()); ++Index)  {
@@ -285,7 +285,7 @@ public class FPPassManager extends /*public*/ ModulePass implements /*public*/ P
    FQN="llvm::FPPassManager::doFinalization", NM="_ZN4llvm13FPPassManager14doFinalizationERNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/LegacyPassManager.cpp -nm=_ZN4llvm13FPPassManager14doFinalizationERNS_6ModuleE")
   //</editor-fold>
-  @Override public boolean doFinalization(final Module /*&*/ M)/* override*/ {
+  @Override public boolean doFinalization(final Module$IR /*&*/ M)/* override*/ {
     boolean Changed = false;
 
     for (int Index = getNumContainedPasses() - 1; Index >= 0; --Index)  {

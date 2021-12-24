@@ -115,7 +115,7 @@ public class CodeGenTypes implements Destructors.ClassWithDestructor {
   private final CodeGenModule /*&*/ CGM;
   // Some of this stuff should probably be left on the CGM.
   private final ASTContext /*&*/ Context;
-  private final org.llvm.ir.Module /*&*/ TheModule;
+  private final org.llvm.ir.Module$IR /*&*/ TheModule;
   private final /*const*/ TargetInfo /*&*/ Target;
   private final CGCXXABI /*&*/ TheCXXABI;
   

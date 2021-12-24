@@ -394,7 +394,7 @@ public class CallAnalyzer implements /*public*/ InstVisitorBool<CallAnalyzer>, D
    FQN="(anonymous namespace)::CallAnalyzer::visit", NM="_ZN12_GLOBAL__N_112CallAnalyzer5visitEPN4llvm6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/InlineCost.cpp -nm=_ZN12_GLOBAL__N_112CallAnalyzer5visitEPN4llvm6ModuleE")
   //</editor-fold>
-  public/*private*/ void visit_Module$P(Module /*P*/ $Prm0) {
+  public/*private*/ void visit_Module$P(Module$IR /*P*/ $Prm0) {
     throw new UnsupportedOperationException("EmptyBody");
   }
 
@@ -405,7 +405,7 @@ public class CallAnalyzer implements /*public*/ InstVisitorBool<CallAnalyzer>, D
    FQN="(anonymous namespace)::CallAnalyzer::visit", NM="_ZN12_GLOBAL__N_112CallAnalyzer5visitERN4llvm6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/InlineCost.cpp -nm=_ZN12_GLOBAL__N_112CallAnalyzer5visitERN4llvm6ModuleE")
   //</editor-fold>
-  public/*private*/ void visit_Module(final Module /*&*/ $Prm0) {
+  public/*private*/ void visit_Module(final Module$IR /*&*/ $Prm0) {
     throw new UnsupportedOperationException("EmptyBody");
   }
 

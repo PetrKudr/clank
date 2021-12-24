@@ -112,7 +112,7 @@ public class CallGraphAnalysis implements /*public*/ AnalysisInfoMixin<CallGraph
    FQN="llvm::CallGraphAnalysis::run", NM="_ZN4llvm17CallGraphAnalysis3runERNS_6ModuleERNS_15AnalysisManagerIS1_EE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/CallGraph.cpp -nm=_ZN4llvm17CallGraphAnalysis3runERNS_6ModuleERNS_15AnalysisManagerIS1_EE")
   //</editor-fold>
-  public CallGraph run(final Module /*&*/ M, final AnalysisManager<Module> /*&*/ $Prm1) {
+  public CallGraph run(final Module$IR /*&*/ M, final AnalysisManager<Module$IR> /*&*/ $Prm1) {
     return new CallGraph(M);
   }
 

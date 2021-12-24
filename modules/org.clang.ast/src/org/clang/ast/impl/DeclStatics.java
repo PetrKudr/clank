@@ -2117,7 +2117,7 @@ public static boolean RedeclForcesDefC99(/*const*/ FunctionDecl /*P*/ Redecl) {
  FQN="getNumModuleIdentifiers", NM="_ZL23getNumModuleIdentifiersPN5clang6ModuleE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.ast/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/AST/Decl.cpp -nm=_ZL23getNumModuleIdentifiersPN5clang6ModuleE")
 //</editor-fold>
-public static /*uint*/int getNumModuleIdentifiers(Module /*P*/ Mod) {
+public static /*uint*/int getNumModuleIdentifiers(Module$B /*P*/ Mod) {
   /*uint*/int Result = 1;
   while ((Mod.Parent != null)) {
     Mod = Mod.Parent;

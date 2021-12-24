@@ -181,8 +181,8 @@ public class TargetLibraryAnalysis implements /*public*/ AnalysisInfoMixin<Targe
    FQN="llvm::TargetLibraryAnalysis::run", NM="_ZN4llvm21TargetLibraryAnalysis3runERNS_6ModuleERNS_15AnalysisManagerIS1_EE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/TargetLibraryInfo.cpp -nm=_ZN4llvm21TargetLibraryAnalysis3runERNS_6ModuleERNS_15AnalysisManagerIS1_EE")
   //</editor-fold>
-  public TargetLibraryInfo run(final Module /*&*/ M, 
-     final AnalysisManager<Module>/*&*/ $Prm1) {
+  public TargetLibraryInfo run(final Module$IR /*&*/ M, 
+     final AnalysisManager<Module$IR>/*&*/ $Prm1) {
     throw new UnsupportedOperationException("EmptyBody");
   }
 

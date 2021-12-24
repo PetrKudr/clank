@@ -525,7 +525,7 @@ public class ASTContext extends /*public*/ RefCountedBase<ASTContext> implements
   /// \brief A mapping from a defining declaration to a list of modules (other
   /// than the owning module of the declaration) that contain merged
   /// definitions of that entity.
-  private DenseMap<NamedDecl /*P*/ , TinyPtrVector<Module /*P*/ >> MergedDefModules;
+  private DenseMap<NamedDecl /*P*/ , TinyPtrVector<Module$B/*P*/ >> MergedDefModules;
 /*public:*/
   /// \brief A type synonym for the TemplateOrInstantiation mapping.
   /*typedef llvm::PointerUnion<VarTemplateDecl *, MemberSpecializationInfo *> TemplateOrSpecializationInfo*/
@@ -2671,11 +2671,11 @@ public class ASTContext extends /*public*/ RefCountedBase<ASTContext> implements
    FQN="clang::ASTContext::mergeDefinitionIntoModule", NM="_ZN5clang10ASTContext25mergeDefinitionIntoModuleEPNS_9NamedDeclEPNS_6ModuleEb",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.ast/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/AST/ASTContext.cpp -nm=_ZN5clang10ASTContext25mergeDefinitionIntoModuleEPNS_9NamedDeclEPNS_6ModuleEb")
   //</editor-fold>
-  public void mergeDefinitionIntoModule(NamedDecl /*P*/ ND, Module /*P*/ M) {
+  public void mergeDefinitionIntoModule(NamedDecl /*P*/ ND, Module$B /*P*/ M) {
     mergeDefinitionIntoModule(ND, M, 
                            true);
   }
-  public void mergeDefinitionIntoModule(NamedDecl /*P*/ ND, Module /*P*/ M, 
+  public void mergeDefinitionIntoModule(NamedDecl /*P*/ ND, Module$B /*P*/ M, 
                            boolean NotifyListeners/*= true*/) {
     if (NotifyListeners) {
       {
@@ -2701,15 +2701,15 @@ public class ASTContext extends /*public*/ RefCountedBase<ASTContext> implements
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.ast/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/AST/ASTContext.cpp -nm=_ZN5clang10ASTContext30deduplicateMergedDefinitonsForEPNS_9NamedDeclE")
   //</editor-fold>
   public void deduplicateMergedDefinitonsFor(NamedDecl /*P*/ ND) {
-    DenseMapIterator<NamedDecl /*P*/ , TinyPtrVector<Module /*P*/ >> It = MergedDefModules.find(ND);
+    DenseMapIterator<NamedDecl /*P*/ , TinyPtrVector<Module$B/*P*/ >> It = MergedDefModules.find(ND);
     if (It.$eq(/*NO_ITER_COPY*/MergedDefModules.end())) {
       return;
     }
     
-    final TinyPtrVector<Module /*P*/ > /*&*/ Merged = It.$arrow().second;
-    DenseSet<Module /*P*/ > Found/*J*/= new DenseSet<Module /*P*/ >(DenseMapInfo$LikePtr.$Info());
+    final TinyPtrVector<Module$B/*P*/ > /*&*/ Merged = It.$arrow().second;
+    DenseSet<Module$B/*P*/ > Found/*J*/= new DenseSet<Module$B/*P*/ >(DenseMapInfo$LikePtr.$Info());
 // JAVA: for (final type$ref<Module /*P*/ /*&*/> M : Merged)  {
-    for (final Module /*P*/ /*&*/ M : Merged)  {
+    for (final Module$B /*P*/ /*&*/ M : Merged)  {
       if (!Found.insert(M).second) {
 //        M.$set(null);
         assert(false) : "not implemented iteration throw TinyPtrVector elements references";
@@ -2728,12 +2728,12 @@ public class ASTContext extends /*public*/ RefCountedBase<ASTContext> implements
    FQN="clang::ASTContext::getModulesWithMergedDefinition", NM="_ZN5clang10ASTContext30getModulesWithMergedDefinitionEPNS_9NamedDeclE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.ast/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/AST/ASTContext.cpp -nm=_ZN5clang10ASTContext30getModulesWithMergedDefinitionEPNS_9NamedDeclE")
   //</editor-fold>
-  public ArrayRef<Module /*P*/ > getModulesWithMergedDefinition(NamedDecl /*P*/ Def) {
-    DenseMapIterator<NamedDecl /*P*/ , TinyPtrVector<Module /*P*/ >> MergedIt = MergedDefModules.find(Def);
+  public ArrayRef<Module$B/*P*/ > getModulesWithMergedDefinition(NamedDecl /*P*/ Def) {
+    DenseMapIterator<NamedDecl /*P*/ , TinyPtrVector<Module$B/*P*/ >> MergedIt = MergedDefModules.find(Def);
     if (MergedIt.$eq(/*NO_ITER_COPY*/MergedDefModules.end())) {
-      return new ArrayRef<Module /*P*/ >(None, true);
+      return new ArrayRef<Module$B/*P*/ >(None, true);
     }
-    return new ArrayRef<Module /*P*/ >(JD$Move.INSTANCE, MergedIt.$arrow().second.$MutableArrayRef$EltTy());
+    return new ArrayRef<Module$B/*P*/ >(JD$Move.INSTANCE, MergedIt.$arrow().second.$MutableArrayRef$EltTy());
   }
 
   
@@ -2981,7 +2981,7 @@ public class ASTContext extends /*public*/ RefCountedBase<ASTContext> implements
     this.cudaConfigureCallDecl = null;
     this.DeclAttrs = new DenseMap</*const*/ Decl /*P*/ , SmallVector<Attr /*P*/>/*P*/ >(DenseMapInfo$LikePtr.$Info(), (SmallVector<Attr /*P*/>/*P*/ )null);
     this.MergedDecls = new DenseMap<Decl /*P*/ , Decl /*P*/ >(DenseMapInfo$LikePtr.$Info(), (Decl /*P*/ )null);
-    this.MergedDefModules = new DenseMap<NamedDecl /*P*/ , TinyPtrVector<Module /*P*/ >>(DenseMapInfo$LikePtr.$Info(), new TinyPtrVector<Module /*P*/ >());
+    this.MergedDefModules = new DenseMap<NamedDecl /*P*/ , TinyPtrVector<Module$B/*P*/ >>(DenseMapInfo$LikePtr.$Info(), new TinyPtrVector<Module$B/*P*/ >());
     this.TemplateOrInstantiation = new DenseMap</*const*/ VarDecl /*P*/ , PointerUnion<VarTemplateDecl /*P*/ , MemberSpecializationInfo /*P*/ >>(DenseMapInfo$LikePtr.$Info(), new PointerUnion<VarTemplateDecl /*P*/ , MemberSpecializationInfo /*P*/ >(VarTemplateDecl /*P*/.class));
     this.InstantiatedFromUsingDecl = new DenseMap<UsingDecl /*P*/ , NamedDecl /*P*/ >(DenseMapInfo$LikePtr.$Info(), (NamedDecl /*P*/ )null);
     this.InstantiatedFromUsingShadowDecl = new DenseMap<UsingShadowDecl /*P*/ , UsingShadowDecl /*P*/ >(DenseMapInfo$LikePtr.$Info(), (UsingShadowDecl /*P*/ )null);

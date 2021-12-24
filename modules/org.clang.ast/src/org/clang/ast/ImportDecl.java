@@ -111,7 +111,7 @@ public final class ImportDecl extends /*public*/ Decl implements TrailingObjects
   ///
   /// When the bit is false, we only have a single source location for the
   /// end of the import declaration.
-  /*friend*/public PointerBoolPair</*const*/ Module/*P*/> ImportedAndComplete;
+  /*friend*/public PointerBoolPair</*const*/ Module$B/*P*/> ImportedAndComplete;
   
   /// \brief The next import in the list of imports local to the translation
   /// unit being parsed (not loaded from an AST file).
@@ -129,13 +129,13 @@ public final class ImportDecl extends /*public*/ Decl implements TrailingObjects
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.ast/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/AST/Decl.cpp -nm=_ZN5clang10ImportDeclC1EPNS_11DeclContextENS_14SourceLocationEPNS_6ModuleEN4llvm8ArrayRefIS3_EE")
   //</editor-fold>
   private ImportDecl(DeclContext /*P*/ DC, SourceLocation StartLoc, 
-      Module /*P*/ Imported, 
+      Module$B /*P*/ Imported, 
       ArrayRef<SourceLocation> IdentifierLocs) {
     // : Decl(Import, DC, StartLoc), TrailingObjects<ImportDecl, SourceLocation>(), ImportedAndComplete(Imported, true), NextLocalImport(implicit ImportDecl * ()) 
     //START JInit
     super(Kind.Import, DC, new SourceLocation(StartLoc));
     $TrailingObjects();
-    this.ImportedAndComplete = new PointerBoolPair</*const*/ Module/*P*/>(Imported, true);
+    this.ImportedAndComplete = new PointerBoolPair</*const*/ Module$B/*P*/>(Imported, true);
     this.NextLocalImport = /*implicit-init*/((ImportDecl /*P*/ )/*zero-init*/null);
     //END JInit
     assert (getNumModuleIdentifiers(Imported) == IdentifierLocs.size());
@@ -152,12 +152,12 @@ public final class ImportDecl extends /*public*/ Decl implements TrailingObjects
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.ast/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/AST/Decl.cpp -nm=_ZN5clang10ImportDeclC1EPNS_11DeclContextENS_14SourceLocationEPNS_6ModuleES3_")
   //</editor-fold>
   private ImportDecl(DeclContext /*P*/ DC, SourceLocation StartLoc, 
-      Module /*P*/ Imported, SourceLocation EndLoc) {
+      Module$B /*P*/ Imported, SourceLocation EndLoc) {
     // : Decl(Import, DC, StartLoc), TrailingObjects<ImportDecl, SourceLocation>(), ImportedAndComplete(Imported, false), NextLocalImport(implicit ImportDecl * ()) 
     //START JInit
     super(Kind.Import, DC, new SourceLocation(StartLoc));
     $TrailingObjects();
-    this.ImportedAndComplete = new PointerBoolPair</*const*/ Module/*P*/>(Imported, false);
+    this.ImportedAndComplete = new PointerBoolPair</*const*/ Module$B/*P*/>(Imported, false);
     this.NextLocalImport = /*implicit-init*/((ImportDecl /*P*/ )/*zero-init*/null);
     //END JInit
     this.<SourceLocation>getTrailingObjects(SourceLocation.class).$set(EndLoc);
@@ -175,7 +175,7 @@ public final class ImportDecl extends /*public*/ Decl implements TrailingObjects
     //START JInit
     super(Kind.Import, new EmptyShell(Empty));
     $TrailingObjects();
-    this.ImportedAndComplete = new PointerBoolPair</*const*/ Module/*P*/>();
+    this.ImportedAndComplete = new PointerBoolPair</*const*/ Module$B/*P*/>();
     this.NextLocalImport = /*implicit-init*/((ImportDecl /*P*/ )/*zero-init*/null);
     //END JInit
   }
@@ -189,7 +189,7 @@ public final class ImportDecl extends /*public*/ Decl implements TrailingObjects
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.ast/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/AST/Decl.cpp -nm=_ZN5clang10ImportDecl6CreateERNS_10ASTContextEPNS_11DeclContextENS_14SourceLocationEPNS_6ModuleEN4llvm8ArrayRefIS5_EE")
   //</editor-fold>
   public static ImportDecl /*P*/ Create(final ASTContext /*&*/ C, DeclContext /*P*/ DC, 
-        SourceLocation StartLoc, Module /*P*/ Imported, 
+        SourceLocation StartLoc, Module$B /*P*/ Imported, 
         ArrayRef<SourceLocation> IdentifierLocs) {
     final int Extra = TrailingObjects.additionalSizeToAlloc$Same(SourceLocation.class, IdentifierLocs.size());
     return /*NEW_EXPR [Decl::new]*//*new (C, DC, additionalSizeToAlloc<SourceLocation>(IdentifierLocs.size()))*/ Decl.$new(C, DC, Extra, (type$ptr<?> Mem)->{
@@ -210,7 +210,7 @@ public final class ImportDecl extends /*public*/ Decl implements TrailingObjects
   //</editor-fold>
   public static ImportDecl /*P*/ CreateImplicit(final ASTContext /*&*/ C, DeclContext /*P*/ DC, 
                 SourceLocation StartLoc, 
-                Module /*P*/ Imported, 
+                Module$B /*P*/ Imported, 
                 SourceLocation EndLoc) {
     final int Extra = TrailingObjects.additionalSizeToAlloc$Same(SourceLocation.class, 1);
     ImportDecl /*P*/ Import = /*NEW_EXPR [Decl::new]*//*new (C, DC, additionalSizeToAlloc<SourceLocation>(1))*/Decl.$new(C, DC, Extra, (type$ptr<?> Mem)->{
@@ -247,7 +247,7 @@ public final class ImportDecl extends /*public*/ Decl implements TrailingObjects
    FQN="clang::ImportDecl::getImportedModule", NM="_ZNK5clang10ImportDecl17getImportedModuleEv",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.ast/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/AST/Decl.cpp -nm=_ZNK5clang10ImportDecl17getImportedModuleEv")
   //</editor-fold>
-  public Module /*P*/ getImportedModule() /*const*/ {
+  public Module$B /*P*/ getImportedModule() /*const*/ {
     return ImportedAndComplete.getPointer();
   }
 

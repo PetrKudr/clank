@@ -138,7 +138,7 @@ public class InclusionDirectiveCallbacks extends /*public*/ PPCallbacks implemen
   @Converted(kind = Converted.Kind.AUTO, source = "${LLVM_SRC}/llvm/tools/clang/unittests/Lex/PPCallbacksTest.cpp", line = 53,
    cmd = "jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/unittests/Lex/PPCallbacksTest.cpp -filter=__anonymous_namespace::InclusionDirectiveCallbacks::InclusionDirective")
   //</editor-fold>
-  @Override public void InclusionDirective(SourceLocation HashLoc, SourceLocation EodLoc, /*const*/Token /*&*/ IncludeTok, StringRef FileName, boolean IsAngled, CharSourceRange FilenameRange, /*const*/FileEntry /*P*/ File, StringRef SearchPath, StringRef RelativePath, /*const*/Module /*P*/ Imported) {
+  @Override public void InclusionDirective(SourceLocation HashLoc, SourceLocation EodLoc, /*const*/Token /*&*/ IncludeTok, StringRef FileName, boolean IsAngled, CharSourceRange FilenameRange, /*const*/FileEntry /*P*/ File, StringRef SearchPath, StringRef RelativePath, /*const*/Module$B /*P*/ Imported) {
     this.HashLoc.$assign(HashLoc);
     this.IncludeTok.$assign(IncludeTok);
     this.FileName.$assign(FileName);
@@ -158,7 +158,7 @@ public class InclusionDirectiveCallbacks extends /*public*/ PPCallbacks implemen
   public /*const*/FileEntry /*P*/ File;
   public SmallString/*16*/ SearchPath;
   public SmallString/*16*/ RelativePath;
-  public /*const*/Module /*P*/ Imported;
+  public /*const*/Module$B /*P*/ Imported;
   //<editor-fold defaultstate="collapsed" desc="<anonymous namespace>::InclusionDirectiveCallbacks::~InclusionDirectiveCallbacks">
   @Converted(kind = Converted.Kind.AUTO, source = "${LLVM_SRC}/llvm/tools/clang/unittests/Lex/PPCallbacksTest.cpp", line = 51,
    cmd = "jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/unittests/Lex/PPCallbacksTest.cpp -filter=__anonymous_namespace::InclusionDirectiveCallbacks::~InclusionDirectiveCallbacks")

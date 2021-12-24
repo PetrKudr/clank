@@ -4394,7 +4394,7 @@ public static class/*struct*/ InstantiatingTemplate implements Destructors.Class
       if (SemaRef.ActiveTemplateInstantiations.size()
          == SemaRef.ActiveTemplateInstantiationLookupModules.size()) {
         {
-          Module /*P*/ M = SemaRef.ActiveTemplateInstantiationLookupModules.back();
+          Module$B /*P*/ M = SemaRef.ActiveTemplateInstantiationLookupModules.back();
           if ((M != null)) {
             SemaRef.LookupModulesCache.erase(M);
           }

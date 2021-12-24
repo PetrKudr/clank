@@ -722,7 +722,7 @@ public boolean HasIncludeAliasMap() /*const*/ {
             /*const*/type$ptr<DirectoryLookup> /*P*/ FromDir, /*const*/type$ref<type$ptr<DirectoryLookup>> /*P*/ /*&*/ CurDir, 
             SmallVectorPtrPairFileEntryDirectoryEntry Includers, 
             SmallString/*P*/ SearchPath, SmallString/*P*/ RelativePath, 
-            Module /*P*/ RequestingModule, ModuleMap.KnownHeader /*P*/ SuggestedModule) {
+            Module$B /*P*/ RequestingModule, ModuleMap.KnownHeader /*P*/ SuggestedModule) {
     return LookupFile(Filename, IncludeLoc, isAngled, 
             FromDir, CurDir, 
             Includers, 
@@ -734,7 +734,7 @@ public boolean HasIncludeAliasMap() /*const*/ {
             /*const*/type$ptr<DirectoryLookup> /*P*/ FromDir, /*const*/type$ref<type$ptr<DirectoryLookup>> /*P*/ /*&*/ CurDir, 
             SmallVectorPtrPairFileEntryDirectoryEntry Includers, 
             SmallString/*P*/ SearchPath, SmallString/*P*/ RelativePath, 
-            Module /*P*/ RequestingModule, ModuleMap.KnownHeader /*P*/ SuggestedModule,
+            Module$B /*P*/ RequestingModule, ModuleMap.KnownHeader /*P*/ SuggestedModule,
             boolean SkipCache/*= false*/) {
     return LookupFile(Filename, IncludeLoc, isAngled, 
             FromDir, CurDir, 
@@ -747,7 +747,7 @@ public boolean HasIncludeAliasMap() /*const*/ {
             /*const*/type$ptr<DirectoryLookup> /*P*/ FromDir, /*const*/type$ref<type$ptr<DirectoryLookup>> /*P*/ /*&*/ CurDir, 
             SmallVectorPtrPairFileEntryDirectoryEntry Includers, 
             SmallString/*P*/ SearchPath, SmallString/*P*/ RelativePath, 
-            Module /*P*/ RequestingModule, ModuleMap.KnownHeader /*P*/ SuggestedModule, 
+            Module$B /*P*/ RequestingModule, ModuleMap.KnownHeader /*P*/ SuggestedModule, 
             boolean SkipCache/*= false*/, boolean BuildSystemModule/*= false*/) {
     SmallString/*64*/ MappedName = null; // JAVA PERF
     try {
@@ -1059,7 +1059,7 @@ public boolean HasIncludeAliasMap() /*const*/ {
                           /*const*/ FileEntry /*P*/ ContextFileEnt, 
                           SmallString/*P*/ SearchPath, 
                           SmallString/*P*/ RelativePath, 
-                          Module /*P*/ RequestingModule, 
+                          Module$B /*P*/ RequestingModule, 
                           ModuleMap.KnownHeader /*P*/ SuggestedModule) {
     assert ((ContextFileEnt != null)) : "No context file?";
 
@@ -1194,7 +1194,7 @@ public boolean HasIncludeAliasMap() /*const*/ {
   //</editor-fold>
   public boolean ShouldEnterIncludeFile(Preprocessor /*&*/ PP, 
                         /*const*/ FileEntry /*P*/ File, 
-                        boolean isImport, Module /*P*/ M) {
+                        boolean isImport, Module$B /*P*/ M) {
     ++NumIncluded; // Count # of attempted #includes.
     
     // Get information about this file.
@@ -1435,7 +1435,7 @@ public boolean HasIncludeAliasMap() /*const*/ {
    FQN="clang::HeaderSearch::getModuleFileName", NM="_ZN5clang12HeaderSearch17getModuleFileNameEPNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/HeaderSearch.cpp -nm=_ZN5clang12HeaderSearch17getModuleFileNameEPNS_6ModuleE")
   //</editor-fold>
-  public std.string getModuleFileName(Module /*P*/ Module) {
+  public std.string getModuleFileName(Module$B /*P*/ Module) {
     /*const*/ FileEntry /*P*/ ModuleMap = getModuleMap().getModuleMapFileForUniquing(Module);
     return getModuleFileName(new StringRef(Module.Name), new StringRef(ModuleMap.getName()));
   }
@@ -1510,12 +1510,12 @@ public boolean HasIncludeAliasMap() /*const*/ {
    FQN="clang::HeaderSearch::lookupModule", NM="_ZN5clang12HeaderSearch12lookupModuleEN4llvm9StringRefEb",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/HeaderSearch.cpp -nm=_ZN5clang12HeaderSearch12lookupModuleEN4llvm9StringRefEb")
   //</editor-fold>
-  public Module /*P*/ lookupModule(StringRef ModuleName) {
+  public Module$B /*P*/ lookupModule(StringRef ModuleName) {
     return lookupModule(ModuleName, true);
   }
-  public Module /*P*/ lookupModule(StringRef ModuleName, boolean AllowSearch/*= true*/) {
+  public Module$B /*P*/ lookupModule(StringRef ModuleName, boolean AllowSearch/*= true*/) {
     // Look in the module map to determine if there is a module by this name.
-    Module /*P*/ Module = ModMap.findModule(/*NO_COPY*/ModuleName);
+    Module$B /*P*/ Module = ModMap.findModule(/*NO_COPY*/ModuleName);
     if ((Module != null) || !AllowSearch || !HSOpts.$arrow().ImplicitModuleMaps) {
       return Module;
     }
@@ -1785,7 +1785,7 @@ public boolean HasIncludeAliasMap() /*const*/ {
    FQN="clang::HeaderSearch::collectAllModules", NM="_ZN5clang12HeaderSearch17collectAllModulesERN4llvm15SmallVectorImplIPNS_6ModuleEEE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/HeaderSearch.cpp -nm=_ZN5clang12HeaderSearch17collectAllModulesERN4llvm15SmallVectorImplIPNS_6ModuleEEE")
   //</editor-fold>
-  public void collectAllModules(SmallVectorImpl<Module /*P*/ > /*&*/ Modules) {
+  public void collectAllModules(SmallVectorImpl<Module$B/*P*/ > /*&*/ Modules) {
     Modules.clear();
     if (HSOpts.$arrow().ImplicitModuleMaps) {
       // Load module maps for each of the header search directories.
@@ -1833,7 +1833,7 @@ public boolean HasIncludeAliasMap() /*const*/ {
     }
     
     // Populate the list of modules.
-    for (StringMapIterator<Module /*P*//*, MallocAllocator*/> M = ModMap.module_begin(), 
+    for (StringMapIterator<Module$B/*P*//*, MallocAllocator*/> M = ModMap.module_begin(), 
             MEnd = ModMap.module_end(); 
             M.$noteq(MEnd); M.$preInc()) {
       Modules.push_back(M.$arrow().getValue());
@@ -1887,11 +1887,11 @@ public boolean HasIncludeAliasMap() /*const*/ {
    FQN="clang::HeaderSearch::loadFrameworkModule", NM="_ZN5clang12HeaderSearch19loadFrameworkModuleEN4llvm9StringRefEPKNS_14DirectoryEntryEb",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/HeaderSearch.cpp -nm=_ZN5clang12HeaderSearch19loadFrameworkModuleEN4llvm9StringRefEPKNS_14DirectoryEntryEb")
   //</editor-fold>
-  /*friend*//*private*/ Module /*P*/ loadFrameworkModule(StringRef Name, 
+  /*friend*//*private*/ Module$B /*P*/ loadFrameworkModule(StringRef Name, 
                      /*const*/ DirectoryEntry /*P*/ Dir, 
                      boolean IsSystem) {
     {
-      Module /*P*/ Module = ModMap.findModule(/*NO_COPY*/Name);
+      Module$B /*P*/ Module = ModMap.findModule(/*NO_COPY*/Name);
       if ((Module != null)) {
         return Module;
       }
@@ -1902,7 +1902,7 @@ public boolean HasIncludeAliasMap() /*const*/ {
      case LMM_InvalidModuleMap:
       // Try to infer a module map from the framework directory.
       if (HSOpts.$arrow().ImplicitModuleMaps) {
-        ModMap.inferFrameworkModule(Dir, IsSystem, /*Parent=*/ (Module /*P*/ )null);
+        ModMap.inferFrameworkModule(Dir, IsSystem, /*Parent=*/ (Module$B /*P*/ )null);
       }
       break;
      case LMM_AlreadyLoaded:
@@ -1959,7 +1959,7 @@ public boolean HasIncludeAliasMap() /*const*/ {
    FQN="clang::HeaderSearch::findUsableModuleForHeader", NM="_ZN5clang12HeaderSearch25findUsableModuleForHeaderEPKNS_9FileEntryEPKNS_14DirectoryEntryEPNS_6ModuleEPNS_9ModuleMap11KnownHeaderEb",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/HeaderSearch.cpp -nm=_ZN5clang12HeaderSearch25findUsableModuleForHeaderEPKNS_9FileEntryEPKNS_14DirectoryEntryEPNS_6ModuleEPNS_9ModuleMap11KnownHeaderEb")
   //</editor-fold>
-  /*friend*//*private*/ boolean findUsableModuleForHeader(/*const*/ FileEntry /*P*/ File, /*const*/ DirectoryEntry /*P*/ Root, Module /*P*/ RequestingModule, 
+  /*friend*//*private*/ boolean findUsableModuleForHeader(/*const*/ FileEntry /*P*/ File, /*const*/ DirectoryEntry /*P*/ Root, Module$B /*P*/ RequestingModule, 
                            ModuleMap.KnownHeader /*P*/ SuggestedModule, boolean IsSystemHeaderDir) {
     if ((File != null) && (SuggestedModule != null)) {
       // If there is a module that corresponds to this header, suggest it.
@@ -1982,7 +1982,7 @@ public boolean HasIncludeAliasMap() /*const*/ {
    FQN="clang::HeaderSearch::findUsableModuleForFrameworkHeader", NM="_ZN5clang12HeaderSearch34findUsableModuleForFrameworkHeaderEPKNS_9FileEntryEN4llvm9StringRefEPNS_6ModuleEPNS_9ModuleMap11KnownHeaderEb",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/HeaderSearch.cpp -nm=_ZN5clang12HeaderSearch34findUsableModuleForFrameworkHeaderEPKNS_9FileEntryEN4llvm9StringRefEPNS_6ModuleEPNS_9ModuleMap11KnownHeaderEb")
   //</editor-fold>
-  /*friend*//*private*/ boolean findUsableModuleForFrameworkHeader(/*const*/ FileEntry /*P*/ File, StringRef FrameworkName, Module /*P*/ RequestingModule, 
+  /*friend*//*private*/ boolean findUsableModuleForFrameworkHeader(/*const*/ FileEntry /*P*/ File, StringRef FrameworkName, Module$B /*P*/ RequestingModule, 
                                     ModuleMap.KnownHeader /*P*/ SuggestedModule, boolean IsSystemFramework) {
     // If we're supposed to suggest a module, look for one now.
     if ((SuggestedModule != null)) {
@@ -2016,7 +2016,7 @@ public boolean HasIncludeAliasMap() /*const*/ {
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/HeaderSearch.cpp -nm=_ZN5clang12HeaderSearch23getFileAndSuggestModuleEN4llvm9StringRefENS_14SourceLocationEPKNS_14DirectoryEntryEbPNS_6ModuleEPNS_9ModuleMap11KnownHeaderE")
   //</editor-fold>
   /*friend*//*private*/ /*const*/ FileEntry /*P*/ getFileAndSuggestModule(StringRef FileName, SourceLocation IncludeLoc, /*const*/ DirectoryEntry /*P*/ Dir, 
-                         boolean IsSystemHeaderDir, Module /*P*/ RequestingModule, 
+                         boolean IsSystemHeaderDir, Module$B /*P*/ RequestingModule, 
                          ModuleMap.KnownHeader /*P*/ SuggestedModule) {
     // If we have a module map that might map this header, load it and
     // check whether we'll have a suggestion for a module.

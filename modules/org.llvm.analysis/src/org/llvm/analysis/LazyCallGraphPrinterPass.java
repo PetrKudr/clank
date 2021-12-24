@@ -131,8 +131,8 @@ public class LazyCallGraphPrinterPass implements /*public*/ PassInfoMixin<LazyCa
    FQN="llvm::LazyCallGraphPrinterPass::run", NM="_ZN4llvm24LazyCallGraphPrinterPass3runERNS_6ModuleERNS_15AnalysisManagerIS1_EE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/LazyCallGraph.cpp -nm=_ZN4llvm24LazyCallGraphPrinterPass3runERNS_6ModuleERNS_15AnalysisManagerIS1_EE")
   //</editor-fold>
-  public PreservedAnalyses run(final Module /*&*/ M, 
-     final AnalysisManager<Module>/*&*/ AM) {
+  public PreservedAnalyses run(final Module$IR /*&*/ M, 
+     final AnalysisManager<Module$IR>/*&*/ AM) {
     throw new UnsupportedOperationException("EmptyBody");
   }
 

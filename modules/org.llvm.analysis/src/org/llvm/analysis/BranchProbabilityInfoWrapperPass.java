@@ -174,10 +174,10 @@ public class BranchProbabilityInfoWrapperPass extends /*public*/ FunctionPass im
   //</editor-fold>
   public void print(final raw_ostream /*&*/ OS) /*const*//* override*/ {
     print(OS, 
-       (/*const*/ Module /*P*/ )null);
+       (/*const*/ Module$IR /*P*/ )null);
   }
   @Override public void print(final raw_ostream /*&*/ OS, 
-       /*const*/ Module /*P*/ $Prm1/*= null*/) /*const*//* override*/ {
+       /*const*/ Module$IR /*P*/ $Prm1/*= null*/) /*const*//* override*/ {
     BPI.print(OS);
   }
 

@@ -320,7 +320,7 @@ public class Metadata implements Destructors.ClassWithDestructor {
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/AsmWriter.cpp -nm=_ZNK4llvm8Metadata4dumpEv")
   //</editor-fold>
   public void dump() /*const*//* __attribute__((used)) __attribute__((noinline))*/ {
-    dump((/*const*/ Module /*P*/ )null);
+    dump((/*const*/ Module$IR /*P*/ )null);
   }
 
   //<editor-fold defaultstate="collapsed" desc="llvm::Metadata::dump">
@@ -329,7 +329,7 @@ public class Metadata implements Destructors.ClassWithDestructor {
    FQN="llvm::Metadata::dump", NM="_ZNK4llvm8Metadata4dumpEPKNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/AsmWriter.cpp -nm=_ZNK4llvm8Metadata4dumpEPKNS_6ModuleE")
   //</editor-fold>
-  public void dump(/*const*/ Module /*P*/ M) /*const*//* __attribute__((used)) __attribute__((noinline))*/ {
+  public void dump(/*const*/ Module$IR /*P*/ M) /*const*//* __attribute__((used)) __attribute__((noinline))*/ {
     print(dbgs(), M, /*IsForDebug=*/ true);
     dbgs().$out_char($$LF);
   }
@@ -350,14 +350,14 @@ public class Metadata implements Destructors.ClassWithDestructor {
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/AsmWriter.cpp -nm=_ZNK4llvm8Metadata5printERNS_11raw_ostreamEPKNS_6ModuleEb")
   //</editor-fold>
   public void print(final raw_ostream /*&*/ OS) /*const*/ {
-    print(OS, (/*const*/ Module /*P*/ )null, 
+    print(OS, (/*const*/ Module$IR /*P*/ )null, 
        false);
   }
-  public void print(final raw_ostream /*&*/ OS, /*const*/ Module /*P*/ M/*= null*/) /*const*/ {
+  public void print(final raw_ostream /*&*/ OS, /*const*/ Module$IR /*P*/ M/*= null*/) /*const*/ {
     print(OS, M, 
        false);
   }
-  public void print(final raw_ostream /*&*/ OS, /*const*/ Module /*P*/ M/*= null*/, 
+  public void print(final raw_ostream /*&*/ OS, /*const*/ Module$IR /*P*/ M/*= null*/, 
        boolean $Prm2/*= false*//*IsForDebug*/) /*const*/ {
     ModuleSlotTracker MST = null;
     try {
@@ -376,15 +376,15 @@ public class Metadata implements Destructors.ClassWithDestructor {
   //</editor-fold>
   public void print(final raw_ostream /*&*/ OS, final ModuleSlotTracker /*&*/ MST) /*const*/ {
     print(OS, MST, 
-       (/*const*/ Module /*P*/ )null, false);
+       (/*const*/ Module$IR /*P*/ )null, false);
   }
   public void print(final raw_ostream /*&*/ OS, final ModuleSlotTracker /*&*/ MST, 
-       /*const*/ Module /*P*/ M/*= null*/) /*const*/ {
+       /*const*/ Module$IR /*P*/ M/*= null*/) /*const*/ {
     print(OS, MST, 
        M, false);
   }
   public void print(final raw_ostream /*&*/ OS, final ModuleSlotTracker /*&*/ MST, 
-       /*const*/ Module /*P*/ M/*= null*/, boolean $Prm3/*= false*//*IsForDebug*/) /*const*/ {
+       /*const*/ Module$IR /*P*/ M/*= null*/, boolean $Prm3/*= false*//*IsForDebug*/) /*const*/ {
     AsmWriterStatics.printMetadataImpl(OS, /*Deref*/this, MST, M, /* OnlyAsOperand */ false);
   }
 
@@ -404,9 +404,9 @@ public class Metadata implements Destructors.ClassWithDestructor {
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/AsmWriter.cpp -nm=_ZNK4llvm8Metadata14printAsOperandERNS_11raw_ostreamEPKNS_6ModuleE")
   //</editor-fold>
   public void printAsOperand(final raw_ostream /*&*/ OS) /*const*/ {
-    printAsOperand(OS, (/*const*/ Module /*P*/ )null);
+    printAsOperand(OS, (/*const*/ Module$IR /*P*/ )null);
   }
-  public void printAsOperand(final raw_ostream /*&*/ OS, /*const*/ Module /*P*/ M/*= null*/) /*const*/ {
+  public void printAsOperand(final raw_ostream /*&*/ OS, /*const*/ Module$IR /*P*/ M/*= null*/) /*const*/ {
     ModuleSlotTracker MST = null;
     try {
       MST/*J*/= new ModuleSlotTracker(M, isa_MDNode(this));
@@ -424,10 +424,10 @@ public class Metadata implements Destructors.ClassWithDestructor {
   //</editor-fold>
   public void printAsOperand(final raw_ostream /*&*/ OS, final ModuleSlotTracker /*&*/ MST) /*const*/ {
     printAsOperand(OS, MST, 
-                (/*const*/ Module /*P*/ )null);
+                (/*const*/ Module$IR /*P*/ )null);
   }
   public void printAsOperand(final raw_ostream /*&*/ OS, final ModuleSlotTracker /*&*/ MST, 
-                /*const*/ Module /*P*/ M/*= null*/) /*const*/ {
+                /*const*/ Module$IR /*P*/ M/*= null*/) /*const*/ {
     AsmWriterStatics.printMetadataImpl(OS, /*Deref*/this, MST, M, /* OnlyAsOperand */ true);
   }
 

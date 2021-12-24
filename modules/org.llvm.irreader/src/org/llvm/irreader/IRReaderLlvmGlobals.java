@@ -78,7 +78,7 @@ package org.llvm.irreader;
 import org.clank.java.std;
 import org.clank.support.Converted;
 import org.llvm.ir.LLVMContext;
-import org.llvm.ir.Module;
+import org.llvm.ir.Module$IR;
 import org.llvm.support.MemoryBufferRef;
 import org.llvm.support.SMDiagnostic;
 
@@ -96,7 +96,7 @@ public class IRReaderLlvmGlobals {
 /// If the given MemoryBuffer holds a bitcode image, return a Module
 /// for it.  Otherwise, attempt to parse it as LLVM Assembly and return
 /// a Module for it.
-public static std.unique_ptr<Module> parseIR(MemoryBufferRef Buffer, SMDiagnostic /*&*/ Err,
+public static std.unique_ptr<Module$IR> parseIR(MemoryBufferRef Buffer, SMDiagnostic /*&*/ Err,
                                 LLVMContext /*&*/ Context) {
   throw new UnsupportedOperationException();
 }

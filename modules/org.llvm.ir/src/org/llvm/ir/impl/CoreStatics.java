@@ -545,7 +545,7 @@ public static int LLVMIsStringAttribute( LLVMOpaqueAttributeRef /*P*/ A) {
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/Core.cpp -nm=_Z24LLVMModuleCreateWithName")
 //</editor-fold>
 public static  LLVMOpaqueModule /*P*/ LLVMModuleCreateWithName(/*const*/char$ptr/*char P*/ ModuleID) {
-  return IrLlvmGlobals.wrap(new Module(new StringRef(ModuleID), GlobalContext.$star()));
+  return IrLlvmGlobals.wrap(new Module$IR(new StringRef(ModuleID), GlobalContext.$star()));
 }
 
 
@@ -563,7 +563,7 @@ public static  LLVMOpaqueModule /*P*/ LLVMModuleCreateWithName(/*const*/char$ptr
 //</editor-fold>
 public static  LLVMOpaqueModule /*P*/ LLVMModuleCreateWithNameInContext(/*const*/char$ptr/*char P*/ ModuleID, 
                                   LLVMOpaqueContext /*P*/ C) {
-  return IrLlvmGlobals.wrap(new Module(new StringRef(ModuleID), $Deref(IrLlvmGlobals.unwrap_LLVMOpaqueContext$P(C))));
+  return IrLlvmGlobals.wrap(new Module$IR(new StringRef(ModuleID), $Deref(IrLlvmGlobals.unwrap_LLVMOpaqueContext$P(C))));
 }
 
 
@@ -965,7 +965,7 @@ public static  LLVMOpaqueValue /*P*/ LLVMGetNamedFunction( LLVMOpaqueModule /*P*
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/Core.cpp -nm=_Z20LLVMGetFirstFunction")
 //</editor-fold>
 public static  LLVMOpaqueValue /*P*/ LLVMGetFirstFunction( LLVMOpaqueModule /*P*/ M) {
-  Module /*P*/ Mod = IrLlvmGlobals.unwrap(M);
+  Module$IR /*P*/ Mod = IrLlvmGlobals.unwrap(M);
   ilist_iterator<Function> I = Mod.begin();
   if (I.$eq(Mod.end())) {
     return null;
@@ -986,7 +986,7 @@ public static  LLVMOpaqueValue /*P*/ LLVMGetFirstFunction( LLVMOpaqueModule /*P*
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/Core.cpp -nm=_Z19LLVMGetLastFunction")
 //</editor-fold>
 public static  LLVMOpaqueValue /*P*/ LLVMGetLastFunction( LLVMOpaqueModule /*P*/ M) {
-  Module /*P*/ Mod = IrLlvmGlobals.unwrap(M);
+  Module$IR /*P*/ Mod = IrLlvmGlobals.unwrap(M);
   ilist_iterator<Function> I = Mod.end();
   if (I.$eq(Mod.begin())) {
     return null;
@@ -4982,7 +4982,7 @@ public static  LLVMOpaqueValue /*P*/ LLVMGetNamedGlobal( LLVMOpaqueModule /*P*/ 
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/Core.cpp -nm=_Z18LLVMGetFirstGlobal")
 //</editor-fold>
 public static  LLVMOpaqueValue /*P*/ LLVMGetFirstGlobal( LLVMOpaqueModule /*P*/ M) {
-  Module /*P*/ Mod = IrLlvmGlobals.unwrap(M);
+  Module$IR /*P*/ Mod = IrLlvmGlobals.unwrap(M);
   ilist_iterator<GlobalVariable> I = Mod.global_begin();
   if (I.$eq(Mod.global_end())) {
     return null;
@@ -4997,7 +4997,7 @@ public static  LLVMOpaqueValue /*P*/ LLVMGetFirstGlobal( LLVMOpaqueModule /*P*/ 
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/Core.cpp -nm=_Z17LLVMGetLastGlobal")
 //</editor-fold>
 public static  LLVMOpaqueValue /*P*/ LLVMGetLastGlobal( LLVMOpaqueModule /*P*/ M) {
-  Module /*P*/ Mod = IrLlvmGlobals.unwrap(M);
+  Module$IR /*P*/ Mod = IrLlvmGlobals.unwrap(M);
   ilist_iterator<GlobalVariable> I = Mod.global_end();
   if (I.$eq(Mod.global_begin())) {
     return null;

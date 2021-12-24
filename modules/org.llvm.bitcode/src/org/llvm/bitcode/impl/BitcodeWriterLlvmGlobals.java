@@ -120,20 +120,20 @@ public final class BitcodeWriterLlvmGlobals {
  FQN="llvm::WriteBitcodeToFile", NM="_ZN4llvm18WriteBitcodeToFileEPKNS_6ModuleERNS_11raw_ostreamEbPKNS_18ModuleSummaryIndexEb",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.bitcode/llvmToClangType ${LLVM_SRC}/llvm/lib/Bitcode/Writer/BitcodeWriter.cpp -nm=_ZN4llvm18WriteBitcodeToFileEPKNS_6ModuleERNS_11raw_ostreamEbPKNS_18ModuleSummaryIndexEb")
 //</editor-fold>
-public static void WriteBitcodeToFile(/*const*/ Module /*P*/ M, final raw_ostream /*&*/ Out) {
+public static void WriteBitcodeToFile(/*const*/ Module$IR /*P*/ M, final raw_ostream /*&*/ Out) {
   WriteBitcodeToFile(M, Out, 
                   false, 
                   (/*const*/ ModuleSummaryIndex /*P*/ )null, 
                   false);
 }
-public static void WriteBitcodeToFile(/*const*/ Module /*P*/ M, final raw_ostream /*&*/ Out, 
+public static void WriteBitcodeToFile(/*const*/ Module$IR /*P*/ M, final raw_ostream /*&*/ Out, 
                   boolean ShouldPreserveUseListOrder/*= false*/) {
   WriteBitcodeToFile(M, Out, 
                   ShouldPreserveUseListOrder, 
                   (/*const*/ ModuleSummaryIndex /*P*/ )null, 
                   false);
 }
-public static void WriteBitcodeToFile(/*const*/ Module /*P*/ M, final raw_ostream /*&*/ Out, 
+public static void WriteBitcodeToFile(/*const*/ Module$IR /*P*/ M, final raw_ostream /*&*/ Out, 
                   boolean ShouldPreserveUseListOrder/*= false*/, 
                   /*const*/ ModuleSummaryIndex /*P*/ Index/*= null*/) {
   WriteBitcodeToFile(M, Out, 
@@ -141,7 +141,7 @@ public static void WriteBitcodeToFile(/*const*/ Module /*P*/ M, final raw_ostrea
                   Index, 
                   false);
 }
-public static void WriteBitcodeToFile(/*const*/ Module /*P*/ M, final raw_ostream /*&*/ Out, 
+public static void WriteBitcodeToFile(/*const*/ Module$IR /*P*/ M, final raw_ostream /*&*/ Out, 
                   boolean ShouldPreserveUseListOrder/*= false*/, 
                   /*const*/ ModuleSummaryIndex /*P*/ Index/*= null*/, 
                   boolean GenerateHash/*= false*/) {

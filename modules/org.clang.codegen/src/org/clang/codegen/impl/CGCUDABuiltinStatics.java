@@ -79,7 +79,7 @@ import org.clank.support.*;
 import org.llvm.adt.*;
 import org.llvm.adt.aliases.*;
 import org.llvm.ir.*;
-import org.llvm.ir.Module;
+import org.llvm.ir.Module$IR;
 import org.llvm.ir.FunctionType;
 import org.llvm.ir.Type;
 
@@ -96,7 +96,7 @@ public final class CGCUDABuiltinStatics {
  FQN="GetVprintfDeclaration", NM="_ZL21GetVprintfDeclarationRN4llvm6ModuleE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.codegen/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/CodeGen/CGCUDABuiltin.cpp -nm=_ZL21GetVprintfDeclarationRN4llvm6ModuleE")
 //</editor-fold>
-public static Function /*P*/ GetVprintfDeclaration(final Module /*&*/ M) {
+public static Function /*P*/ GetVprintfDeclaration(final Module$IR /*&*/ M) {
   Type /*P*/ ArgTypes[/*2*/] = new Type /*P*/  [/*2*/] {
     Type.getInt8PtrTy(M.getContext()), 
     Type.getInt8PtrTy(M.getContext())};

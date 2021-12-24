@@ -344,7 +344,7 @@ public class MultiplexASTMutationListener implements /*public*/ ASTMutationListe
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.frontend/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Frontend/MultiplexConsumer.cpp -nm=_ZN5clang28MultiplexASTMutationListener25RedefinedHiddenDefinitionEPKNS_9NamedDeclEPNS_6ModuleE")
   //</editor-fold>
   @Override public void RedefinedHiddenDefinition(/*const*/ NamedDecl /*P*/ D, 
-                           Module /*P*/ M)/* override*/ {
+                           Module$B /*P*/ M)/* override*/ {
     for (ASTMutationListener /*P*/ L : Listeners)  {
       L.RedefinedHiddenDefinition(D, M);
     }

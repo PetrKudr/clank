@@ -187,7 +187,7 @@ public class PassManager extends /*public*/ PassManagerBase implements LLVMOpaqu
    FQN="llvm::legacy::PassManager::run", NM="_ZN4llvm6legacy11PassManager3runERNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/LegacyPassManager.cpp -nm=_ZN4llvm6legacy11PassManager3runERNS_6ModuleE")
   //</editor-fold>
-  public boolean run(final Module /*&*/ M) {
+  public boolean run(final Module$IR /*&*/ M) {
     return PM.run(M);
   }
 

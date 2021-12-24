@@ -174,7 +174,7 @@ public interface/*class*/ InstVisitorVoid</*typename*/ SubClass extends InstVisi
    FQN="llvm::InstVisitor::visit", NM="_ZN4llvm11InstVisitor5visitERNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/InstCount.cpp -nm=_ZN4llvm11InstVisitor5visitERNS_6ModuleE")
   //</editor-fold>
-  public default/*interface*/ void visit_Module(final Module /*&*/ M) {
+  public default/*interface*/ void visit_Module(final Module$IR /*&*/ M) {
     ((/*static_cast*/SubClass /*P*/ )(this)).visitModule(M);
     visit_Functions(M.begin(), M.end());
   }
@@ -209,7 +209,7 @@ public interface/*class*/ InstVisitorVoid</*typename*/ SubClass extends InstVisi
    FQN="llvm::InstVisitor::visit", NM="_ZN4llvm11InstVisitor5visitEPNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/InstCount.cpp -nm=_ZN4llvm11InstVisitor5visitEPNS_6ModuleE")
   //</editor-fold>
-  public default/*interface*/ void visit_Module$P(Module /*P*/ M) {
+  public default/*interface*/ void visit_Module$P(Module$IR /*P*/ M) {
     visit_Module($Deref(M));
   }
 
@@ -407,7 +407,7 @@ public interface/*class*/ InstVisitorVoid</*typename*/ SubClass extends InstVisi
    FQN="llvm::InstVisitor::visitModule", NM="_ZN4llvm11InstVisitor11visitModuleERNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/InstCount.cpp -nm=_ZN4llvm11InstVisitor11visitModuleERNS_6ModuleE")
   //</editor-fold>
-  public default/*interface*/ void visitModule(final Module /*&*/ M) {
+  public default/*interface*/ void visitModule(final Module$IR /*&*/ M) {
   }
 
   //<editor-fold defaultstate="collapsed" desc="llvm::InstVisitor::visitFunction">

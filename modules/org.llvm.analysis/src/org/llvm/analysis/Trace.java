@@ -185,7 +185,7 @@ public class Trace implements Destructors.ClassWithDestructor {
    FQN="llvm::Trace::getModule", NM="_ZNK4llvm5Trace9getModuleEv",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/Trace.cpp -nm=_ZNK4llvm5Trace9getModuleEv")
   //</editor-fold>
-  public Module /*P*/ getModule() /*const*/ {
+  public Module$IR /*P*/ getModule() /*const*/ {
     throw new UnsupportedOperationException("EmptyBody");
   }
 

@@ -109,12 +109,12 @@ public final class BitcodeReaderLlvmGlobals {
  FQN="llvm::getLazyBitcodeModule", NM="_ZN4llvm20getLazyBitcodeModuleEOSt10unique_ptrINS_12MemoryBufferESt14default_deleteIS1_EERNS_11LLVMContextEb",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.bitcode/llvmToClangType ${LLVM_SRC}/llvm/lib/Bitcode/Reader/BitcodeReader.cpp -nm=_ZN4llvm20getLazyBitcodeModuleEOSt10unique_ptrINS_12MemoryBufferESt14default_deleteIS1_EERNS_11LLVMContextEb")
 //</editor-fold>
-public static ErrorOr<std.unique_ptr<Module> > getLazyBitcodeModule(final std.unique_ptr<MemoryBuffer> /*&&*/Buffer, 
+public static ErrorOr<std.unique_ptr<Module$IR> > getLazyBitcodeModule(final std.unique_ptr<MemoryBuffer> /*&&*/Buffer, 
                     final LLVMContext /*&*/ Context) {
   return getLazyBitcodeModule(Buffer, 
                     Context, false);
 }
-public static ErrorOr<std.unique_ptr<Module> > getLazyBitcodeModule(final std.unique_ptr<MemoryBuffer> /*&&*/Buffer, 
+public static ErrorOr<std.unique_ptr<Module$IR> > getLazyBitcodeModule(final std.unique_ptr<MemoryBuffer> /*&&*/Buffer, 
                     final LLVMContext /*&*/ Context, boolean ShouldLazyLoadMetadata/*= false*/) {
   return BitcodeReaderStatics.getLazyBitcodeModuleImpl(std.move(Buffer), Context, false, 
       ShouldLazyLoadMetadata);
@@ -129,13 +129,13 @@ public static ErrorOr<std.unique_ptr<Module> > getLazyBitcodeModule(final std.un
  FQN="llvm::getStreamedBitcodeModule", NM="_ZN4llvm24getStreamedBitcodeModuleENS_9StringRefESt10unique_ptrINS_12DataStreamerESt14default_deleteIS2_EERNS_11LLVMContextE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.bitcode/llvmToClangType ${LLVM_SRC}/llvm/lib/Bitcode/Reader/BitcodeReader.cpp -nm=_ZN4llvm24getStreamedBitcodeModuleENS_9StringRefESt10unique_ptrINS_12DataStreamerESt14default_deleteIS2_EERNS_11LLVMContextE")
 //</editor-fold>
-public static ErrorOr<std.unique_ptr<Module> > getStreamedBitcodeModule(StringRef Name, 
+public static ErrorOr<std.unique_ptr<Module$IR> > getStreamedBitcodeModule(StringRef Name, 
                         std.unique_ptr<DataStreamer> Streamer, 
                         final LLVMContext /*&*/ Context) {
-  std.unique_ptr<Module> M = null;
+  std.unique_ptr<Module$IR> M = null;
   JavaCleaner $c$ = $createJavaCleaner();
   try {
-    M = llvm.make_unique(new Module(Name, Context));
+    M = llvm.make_unique(new Module$IR(Name, Context));
     BitcodeReader /*P*/ R = new BitcodeReader(Context);
     
     return $c$.clean(BitcodeReaderStatics.getBitcodeModuleImpl($c$.track(new std.unique_ptr<DataStreamer>(JD$Move.INSTANCE, std.move(Streamer))), new StringRef(Name), R, Context, false, 
@@ -237,7 +237,7 @@ public static std.string getBitcodeProducerString(MemoryBufferRef Buffer,
  FQN="llvm::parseBitcodeFile", NM="_ZN4llvm16parseBitcodeFileENS_15MemoryBufferRefERNS_11LLVMContextE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.bitcode/llvmToClangType ${LLVM_SRC}/llvm/lib/Bitcode/Reader/BitcodeReader.cpp -nm=_ZN4llvm16parseBitcodeFileENS_15MemoryBufferRefERNS_11LLVMContextE")
 //</editor-fold>
-public static ErrorOr<std.unique_ptr<Module> > parseBitcodeFile(MemoryBufferRef Buffer, 
+public static ErrorOr<std.unique_ptr<Module$IR> > parseBitcodeFile(MemoryBufferRef Buffer, 
                 final LLVMContext /*&*/ Context) {
   std.unique_ptr<MemoryBuffer> Buf = null;
   try {

@@ -4172,13 +4172,13 @@ public static void CheckForDuplicateEnumValues(final Sema /*&*/ S, ArrayRef<Decl
  FQN="checkModuleImportContext", NM="_ZL24checkModuleImportContextRN5clang4SemaEPNS_6ModuleENS_14SourceLocationEPNS_11DeclContextEb",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.sema/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Sema/SemaDecl.cpp -nm=_ZL24checkModuleImportContextRN5clang4SemaEPNS_6ModuleENS_14SourceLocationEPNS_11DeclContextEb")
 //</editor-fold>
-public static void checkModuleImportContext(final Sema /*&*/ S, Module /*P*/ M, 
+public static void checkModuleImportContext(final Sema /*&*/ S, Module$B /*P*/ M, 
                         SourceLocation ImportLoc, DeclContext /*P*/ DC) {
   checkModuleImportContext(S, M, 
                         ImportLoc, DC, 
                         false);
 }
-public static void checkModuleImportContext(final Sema /*&*/ S, Module /*P*/ M, 
+public static void checkModuleImportContext(final Sema /*&*/ S, Module$B /*P*/ M, 
                         SourceLocation ImportLoc, DeclContext /*P*/ DC, 
                         boolean FromInclude/*= false*/) {
   SourceLocation ExternCLoc/*J*/= new SourceLocation();

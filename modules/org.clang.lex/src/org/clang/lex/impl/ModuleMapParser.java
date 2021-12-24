@@ -94,7 +94,7 @@ import org.clang.lex.llvm.*;
 import org.clang.lex.impl.*;
 import org.clang.basic.target.*;
 import static org.clang.basic.BasicClangGlobals.*;
-import org.clang.basic.Module.Header;
+import org.clang.basic.Module$B.Header;
 import static org.clang.lex.impl.ModuleMapStatics.*;
 import org.llvm.support.sys.path;
 import org.clang.basic.java.ClankAliases;
@@ -142,7 +142,7 @@ public class ModuleMapParser implements Destructors.ClassWithDestructor {
   private MMToken Tok;
   
   /// \brief The active module.
-  private Module /*P*/ ActiveModule;
+  private Module$B /*P*/ ActiveModule;
   
   /// \brief Whether a module uses the 'requires excluded' hack to mark its
   /// contents as 'textual'.
@@ -152,7 +152,7 @@ public class ModuleMapParser implements Destructors.ClassWithDestructor {
   /// non-modular headers.  For backwards compatibility, we continue to
   /// support this idiom for just these modules, and map the headers to
   /// 'textual' to match the original intent.
-  private SmallPtrSet<Module /*P*/ > UsesRequiresExcludedHack;
+  private SmallPtrSet<Module$B/*P*/ > UsesRequiresExcludedHack;
   
   /// \brief Consume the current token and return its location.
   //<editor-fold defaultstate="collapsed" desc="clang::ModuleMapParser::consumeToken">
@@ -470,15 +470,15 @@ public class ModuleMapParser implements Destructors.ClassWithDestructor {
       }
     }
 
-    Module /*P*/ PreviousActiveModule = ActiveModule;
+    Module$B /*P*/ PreviousActiveModule = ActiveModule;
     if ($greater_uint(Id.size(), 1)) {
       // This module map defines a submodule. Go find the module of which it
       // is a submodule.
       ActiveModule = null;
-      /*const*/ Module /*P*/ TopLevelModule = null;
+      /*const*/ Module$B /*P*/ TopLevelModule = null;
       for (/*uint*/int I = 0, N = Id.size() - 1; I != N; ++I) {
         {
-          Module /*P*/ Next = Map.lookupModuleQualified(new StringRef(Id.$at(I).first), ActiveModule);
+          Module$B /*P*/ Next = Map.lookupModuleQualified(new StringRef(Id.$at(I).first), ActiveModule);
           if ((Next != null)) {
             if (I == 0) {
               TopLevelModule = Next;
@@ -538,7 +538,7 @@ public class ModuleMapParser implements Destructors.ClassWithDestructor {
     {
 
       // Determine whether this (sub)module has already been defined.
-      Module /*P*/ Existing = Map.lookupModuleQualified(/*NO_COPY*/ModuleName, ActiveModule);
+      Module$B /*P*/ Existing = Map.lookupModuleQualified(/*NO_COPY*/ModuleName, ActiveModule);
       if ((Existing != null)) {
         JavaCleaner $c$ = $createJavaCleaner();
         try {
@@ -835,7 +835,7 @@ public class ModuleMapParser implements Destructors.ClassWithDestructor {
   //</editor-fold>
   private void parseHeaderDecl(/*MMToken.TokenKind*/char LeadingToken, 
                  SourceLocation LeadingLoc) {
-    Module.UnresolvedHeaderDirective Header = null;
+    Module$B.UnresolvedHeaderDirective Header = null;
     try {
       // We've already consumed the first token.
       /*ModuleMap::ModuleHeaderRole*//*uint*/int Role = ModuleMap.ModuleHeaderRole.NormalHeader;
@@ -881,7 +881,7 @@ public class ModuleMapParser implements Destructors.ClassWithDestructor {
           $c$.$destroy();
         }
       }
-      Header/*J*/= new Module.UnresolvedHeaderDirective();
+      Header/*J*/= new Module$B.UnresolvedHeaderDirective();
       Header.FileName.$assignMove(Tok.getString().$string());
       Header.FileNameLoc.$assignMove(consumeToken());
 
@@ -966,7 +966,7 @@ public class ModuleMapParser implements Destructors.ClassWithDestructor {
         if (LeadingToken == MMToken.TokenKind.UmbrellaKeyword) {
           /*const*/ DirectoryEntry /*P*/ UmbrellaDir = File.getDir();
           {
-            Module /*P*/ UmbrellaModule = Map.UmbrellaDirs.$at(UmbrellaDir);
+            Module$B /*P*/ UmbrellaModule = Map.UmbrellaDirs.$at(UmbrellaDir);
             if ((UmbrellaModule != null)) {
               JavaCleaner $c$ = $createJavaCleaner();
               try {
@@ -984,8 +984,8 @@ public class ModuleMapParser implements Destructors.ClassWithDestructor {
         } else if (LeadingToken == MMToken.TokenKind.ExcludeKeyword) {
           JavaCleaner $c$ = $createJavaCleaner();
           try {
-            Module.Header H = new Module.Header(RelativePathName.str(), File);
-            Map.excludeHeader(ActiveModule, $c$.track(new Module.Header(H))); $c$.clean();
+            Module$B.Header H = new Module$B.Header(RelativePathName.str(), File);
+            Map.excludeHeader(ActiveModule, $c$.track(new Module$B.Header(H))); $c$.clean();
           } finally {
             $c$.$destroy();
           }
@@ -999,13 +999,13 @@ public class ModuleMapParser implements Destructors.ClassWithDestructor {
               // FIXME: Taking the name from the FileEntry is unstable and can give
               // different results depending on how we've previously named that file
               // in this build.
-              Module.Header H = new Module.Header(BuiltinFile.getName(), BuiltinFile);
-              Map.addHeader(ActiveModule, $c$.track(new Module.Header(H)), Role); $c$.clean();
+              Module$B.Header H = new Module$B.Header(BuiltinFile.getName(), BuiltinFile);
+              Map.addHeader(ActiveModule, $c$.track(new Module$B.Header(H)), Role); $c$.clean();
             }
 
             // Record this header.
-            Module.Header H = new Module.Header(RelativePathName.str(), File);
-            Map.addHeader(ActiveModule, $c$.track(new Module.Header(H)), Role); $c$.clean();
+            Module$B.Header H = new Module$B.Header(RelativePathName.str(), File);
+            Map.addHeader(ActiveModule, $c$.track(new Module$B.Header(H)), Role); $c$.clean();
           } finally {
             $c$.$destroy();
           }
@@ -1088,7 +1088,7 @@ public class ModuleMapParser implements Destructors.ClassWithDestructor {
       }
     }
     if ((UsesRequiresExcludedHack.count(ActiveModule) != 0)) {
-      SmallVector<Module.Header> Headers = null;
+      SmallVector<Module$B.Header> Headers = null;
       JavaCleaner $c$ = $createJavaCleaner();
       try {
         // Mark this header 'textual' (see doc comment for
@@ -1096,7 +1096,7 @@ public class ModuleMapParser implements Destructors.ClassWithDestructor {
         // directory is relatively expensive, in practice this only applies to the
         // uncommonly used Tcl module on Darwin platforms.
         std.error_code EC/*J*/= new std.error_code();
-        Headers/*J*/= new SmallVector<Module.Header>(6, Module.Header.EMPTY);
+        Headers/*J*/= new SmallVector<Module$B.Header>(6, Module$B.Header.EMPTY);
         FileSystem /*&*/ FS = SourceMgr.getFileManager().$getVirtualFileSystem();
         for (recursive_directory_iterator I/*J*/= new recursive_directory_iterator(FS, new Twine(Dir.getName()), EC), E/*J*/= new recursive_directory_iterator();
              I.$noteq(E) && !EC.$bool(); I.increment(EC)) {
@@ -1104,7 +1104,7 @@ public class ModuleMapParser implements Destructors.ClassWithDestructor {
             /*const*/ FileEntry /*P*/ FE = SourceMgr.getFileManager().getFile(I.$arrow().getName());
             if ((FE != null)) {
 
-              Module.Header Header = new Module.Header(I.$arrow().getName(), FE);
+              Module$B.Header Header = new Module$B.Header(I.$arrow().getName(), FE);
               Headers.push_back_T$RR(std.move(Header));
             }
           }
@@ -1114,7 +1114,7 @@ public class ModuleMapParser implements Destructors.ClassWithDestructor {
         llvm.array_pod_sort(Headers.begin(), Headers.end(), ModuleMapStatics::compareModuleHeaders);
         
         for (Header /*&*/ Header : Headers)  {
-          Map.addHeader(ActiveModule, $c$.track(new Module.Header(JD$Move.INSTANCE, std.move(Header))), ModuleMap.ModuleHeaderRole.TextualHeader); $c$.clean();
+          Map.addHeader(ActiveModule, $c$.track(new Module$B.Header(JD$Move.INSTANCE, std.move(Header))), ModuleMap.ModuleHeaderRole.TextualHeader); $c$.clean();
         }
         return;
       } finally {
@@ -1124,7 +1124,7 @@ public class ModuleMapParser implements Destructors.ClassWithDestructor {
     }
     {
       
-      Module /*P*/ OwningModule = Map.UmbrellaDirs.$at(Dir);
+      Module$B /*P*/ OwningModule = Map.UmbrellaDirs.$at(Dir);
       if ((OwningModule != null)) {
         JavaCleaner $c$ = $createJavaCleaner();
         try {
@@ -1195,7 +1195,7 @@ public class ModuleMapParser implements Destructors.ClassWithDestructor {
       }
     } while (true);
     
-    Module.UnresolvedExportDecl Unresolved = new Module.UnresolvedExportDecl(
+    Module$B.UnresolvedExportDecl Unresolved = new Module$B.UnresolvedExportDecl(
       ExportLoc, ParsedModuleId, Wildcard
     );
     ActiveModule.UnresolvedExports.push_back(Unresolved);
@@ -1269,7 +1269,7 @@ public class ModuleMapParser implements Destructors.ClassWithDestructor {
     
     std.string LibraryName = Tok.getString().$string();
     consumeToken();
-    ActiveModule.LinkLibraries.push_back(new Module.LinkLibrary(LibraryName, 
+    ActiveModule.LinkLibraries.push_back(new Module$B.LinkLibrary(LibraryName, 
             IsFramework));
   }
 
@@ -1365,7 +1365,7 @@ public class ModuleMapParser implements Destructors.ClassWithDestructor {
   private void parseConflict() {
     assert (Tok.is(MMToken.TokenKind.Conflict));
     SourceLocation ConflictLoc = consumeToken();
-    Module.UnresolvedConflict Conflict/*J*/= new Module.UnresolvedConflict();
+    Module$B.UnresolvedConflict Conflict/*J*/= new Module$B.UnresolvedConflict();
     
     // Parse the module-id.
     if (parseModuleId(Conflict.Id)) {
@@ -1531,7 +1531,7 @@ public class ModuleMapParser implements Destructors.ClassWithDestructor {
             JavaCleaner $c$ = $createJavaCleaner();
             try {
               $c$.clean($out$Same2Bool($c$.track(Diags.Report(Tok.getLocation(), diag.err_mmap_expected_inferred_member)), 
-                  (ActiveModule != (Module /*P*/ )null)));
+                  (ActiveModule != (Module$B /*P*/ )null)));
               consumeToken();
               break;
             } finally {
@@ -1561,7 +1561,7 @@ public class ModuleMapParser implements Destructors.ClassWithDestructor {
           JavaCleaner $c$ = $createJavaCleaner();
           try {
             $c$.clean($out$Same2Bool($c$.track(Diags.Report(Tok.getLocation(), diag.err_mmap_expected_inferred_member)), 
-                (ActiveModule != (Module /*P*/ )null)));
+                (ActiveModule != (Module$B /*P*/ )null)));
             consumeToken();
             break;
           } finally {
@@ -1593,7 +1593,7 @@ public class ModuleMapParser implements Destructors.ClassWithDestructor {
           JavaCleaner $c$ = $createJavaCleaner();
           try {
             $c$.clean($out$Same2Bool($c$.track(Diags.Report(Tok.getLocation(), diag.err_mmap_expected_inferred_member)), 
-                (ActiveModule != (Module /*P*/ )null)));
+                (ActiveModule != (Module$B /*P*/ )null)));
             consumeToken();
             break;
           } finally {
@@ -1740,7 +1740,7 @@ public class ModuleMapParser implements Destructors.ClassWithDestructor {
     this.StringData = new BumpPtrAllocatorImpl();
     this.Tok = new MMToken();
     this.ActiveModule = null;
-    this.UsesRequiresExcludedHack = new SmallPtrSet<Module /*P*/ >(DenseMapInfo$LikePtr.$Info(), 2);
+    this.UsesRequiresExcludedHack = new SmallPtrSet<Module$B/*P*/ >(DenseMapInfo$LikePtr.$Info(), 2);
     //END JInit
     Tok.clear();
     consumeToken();

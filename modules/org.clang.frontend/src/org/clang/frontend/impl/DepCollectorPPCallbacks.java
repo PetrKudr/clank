@@ -147,7 +147,7 @@ public class/*struct*/ DepCollectorPPCallbacks extends /*public*/ PPCallbacks im
                     StringRef FileName, boolean IsAngled, 
                     CharSourceRange FilenameRange, /*const*/ FileEntry /*P*/ File, 
                     StringRef SearchPath, StringRef RelativePath, 
-                    /*const*/ Module /*P*/ Imported)/* override*/ {
+                    /*const*/ Module$B /*P*/ Imported)/* override*/ {
     if (!(File != null)) {
       DepCollector.maybeAddDependency(new StringRef(FileName), /*FromModule*/ false, 
           /*IsSystem*/ false, /*IsModuleFile*/ false, 

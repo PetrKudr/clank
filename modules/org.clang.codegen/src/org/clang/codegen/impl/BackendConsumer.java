@@ -92,7 +92,7 @@ import org.clang.basic.*;
 import static org.clang.basic.BasicClangGlobals.*;
 import org.clang.lex.*;
 import org.llvm.ir.*;
-import org.llvm.ir.Module;
+import org.llvm.ir.Module$IR;
 import org.llvm.ir.java.IRFunctionPointers.*;
 import org.clang.codegen.*;
 import org.clang.codegen.impl.*;
@@ -133,11 +133,11 @@ public class BackendConsumer extends /*public*/ ASTConsumer implements Destructo
   
   private std.unique_ptr<CodeGenerator> Gen;
   
-  private SmallVector<std.pairUIntType<std.unique_ptr<Module>>> LinkModules;
+  private SmallVector<std.pairUIntType<std.unique_ptr<Module$IR>>> LinkModules;
   
   // This is here so that the diagnostic printer knows the module a diagnostic
   // refers to.
-  private Module /*P*/ CurLinkModule/* = null*/;
+  private Module$IR /*P*/ CurLinkModule/* = null*/;
 /*public:*/
   //<editor-fold defaultstate="collapsed" desc="clang::BackendConsumer::BackendConsumer">
   @Converted(kind = Converted.Kind.MANUAL_COMPILATION,
@@ -150,7 +150,7 @@ public class BackendConsumer extends /*public*/ ASTConsumer implements Destructo
       final /*const*/ PreprocessorOptions /*&*/ PPOpts, final /*const*/ CodeGenOptions /*&*/ CodeGenOpts, 
       final /*const*/ TargetOptions /*&*/ TargetOpts, final /*const*/ LangOptions /*&*/ LangOpts, 
       boolean TimePasses, final /*const*/std.string/*&*/ InFile, 
-      final /*const*/ SmallVectorImpl<std.pairUIntType<Module /*P*/ > > /*&*/ LinkModules, 
+      final /*const*/ SmallVectorImpl<std.pairUIntType<Module$IR/*P*/ > > /*&*/ LinkModules, 
       std.unique_ptr<raw_pwrite_stream> OS, final LLVMContext /*&*/ C) {
     this(Action, Diags, 
       HeaderSearchOpts, 
@@ -166,7 +166,7 @@ public class BackendConsumer extends /*public*/ ASTConsumer implements Destructo
       final /*const*/ PreprocessorOptions /*&*/ PPOpts, final /*const*/ CodeGenOptions /*&*/ CodeGenOpts, 
       final /*const*/ TargetOptions /*&*/ TargetOpts, final /*const*/ LangOptions /*&*/ LangOpts, 
       boolean TimePasses, final /*const*/std.string/*&*/ InFile, 
-      final /*const*/ SmallVectorImpl<std.pairUIntType<Module /*P*/ > > /*&*/ LinkModules, 
+      final /*const*/ SmallVectorImpl<std.pairUIntType<Module$IR/*P*/ > > /*&*/ LinkModules, 
       std.unique_ptr<raw_pwrite_stream> OS, final LLVMContext /*&*/ C, 
       CoverageSourceInfo /*P*/ CoverageInfo/*= null*/) {
     // : ASTConsumer(), Diags(Diags), Action(Action), CodeGenOpts(CodeGenOpts), TargetOpts(TargetOpts), LangOpts(LangOpts), AsmOutStream(std::move(OS)), Context(null), LLVMIRGeneration("LLVM IR Generation Time"), Gen(CreateLLVMCodeGen(Diags, InFile, HeaderSearchOpts, PPOpts, CodeGenOpts, C, CoverageInfo)), LinkModules(), CurLinkModule(null) 
@@ -182,14 +182,14 @@ public class BackendConsumer extends /*public*/ ASTConsumer implements Destructo
     this.LLVMIRGeneration = new Timer(new StringRef(/*KEEP_STR*/"LLVM IR Generation Time"));
     this.Gen = new std.unique_ptr<CodeGenerator>(CreateLLVMCodeGen(Diags, new StringRef(InFile), HeaderSearchOpts, PPOpts, 
             CodeGenOpts, C, CoverageInfo));
-    this.LinkModules = new SmallVector<std.pairUIntType<std.unique_ptr<Module>>>(4, new std.pairUIntType<std.unique_ptr<Module>>(0, new std.unique_ptr<Module>()));
+    this.LinkModules = new SmallVector<std.pairUIntType<std.unique_ptr<Module$IR>>>(4, new std.pairUIntType<std.unique_ptr<Module$IR>>(0, new std.unique_ptr<Module$IR>()));
     /*InClass*/this.CurLinkModule = null;
     //END JInit
     JavaCleaner $c$ = $createJavaCleaner();
     try {
       IrLlvmGlobals.TimePassesIsEnabled = TimePasses;
-      for (final /*constconst*/std.pairUIntType<Module /*P*/ > /*&*/ I : LinkModules)  {
-        this.LinkModules.push_back_T$RR($c$.track(std.make_pair_uint_T(I.first, $c$.track(new std.unique_ptr<Module>(I.second))))); $c$.clean();
+      for (final /*constconst*/std.pairUIntType<Module$IR/*P*/ > /*&*/ I : LinkModules)  {
+        this.LinkModules.push_back_T$RR($c$.track(std.make_pair_uint_T(I.first, $c$.track(new std.unique_ptr<Module$IR>(I.second))))); $c$.clean();
       }
     } finally {
       $c$.$destroy();
@@ -202,7 +202,7 @@ public class BackendConsumer extends /*public*/ ASTConsumer implements Destructo
    FQN="clang::BackendConsumer::getModule", NM="_ZNK5clang15BackendConsumer9getModuleEv",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.codegen/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/CodeGen/CodeGenAction.cpp -nm=_ZNK5clang15BackendConsumer9getModuleEv")
   //</editor-fold>
-  public Module /*P*/ getModule() /*const*/ {
+  public Module$IR /*P*/ getModule() /*const*/ {
     return Gen.$arrow().GetModule();
   }
 
@@ -212,8 +212,8 @@ public class BackendConsumer extends /*public*/ ASTConsumer implements Destructo
    FQN="clang::BackendConsumer::takeModule", NM="_ZN5clang15BackendConsumer10takeModuleEv",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.codegen/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/CodeGen/CodeGenAction.cpp -nm=_ZN5clang15BackendConsumer10takeModuleEv")
   //</editor-fold>
-  public std.unique_ptr<Module> takeModule() {
-    return new std.unique_ptr<Module>(Gen.$arrow().ReleaseModule());
+  public std.unique_ptr<Module$IR> takeModule() {
+    return new std.unique_ptr<Module$IR>(Gen.$arrow().ReleaseModule());
   }
 
   //<editor-fold defaultstate="collapsed" desc="clang::BackendConsumer::releaseLinkModules">
@@ -223,7 +223,7 @@ public class BackendConsumer extends /*public*/ ASTConsumer implements Destructo
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.codegen/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/CodeGen/CodeGenAction.cpp -nm=_ZN5clang15BackendConsumer18releaseLinkModulesEv")
   //</editor-fold>
   public void releaseLinkModules() {
-    for (final std.pairUIntType<unique_ptr<Module>> /*&*/ I : LinkModules)  {
+    for (final std.pairUIntType<unique_ptr<Module$IR>> /*&*/ I : LinkModules)  {
       I.second.release();
     }
   }
@@ -358,10 +358,10 @@ public class BackendConsumer extends /*public*/ ASTConsumer implements Destructo
       Ctx.setDiagnosticHandler(/*FuncRef*/BackendConsumer::DiagnosticHandler, this);
       
       // Link LinkModule into this module if present, preserving its validity.
-      for (final std.pairUIntType<unique_ptr<Module>> /*&*/ I : LinkModules) {
+      for (final std.pairUIntType<unique_ptr<Module$IR>> /*&*/ I : LinkModules) {
         /*uint*/int LinkFlags = I.first;
         CurLinkModule = I.second.get();
-        if ($c$.clean(Linker.linkModules(/*Deref*/getModule(), $c$.track(new std.unique_ptr<Module>(JD$Move.INSTANCE, std.move(I.second))), LinkFlags))) {
+        if ($c$.clean(Linker.linkModules(/*Deref*/getModule(), $c$.track(new std.unique_ptr<Module$IR>(JD$Move.INSTANCE, std.move(I.second))), LinkFlags))) {
           return;
         }
       }

@@ -193,7 +193,7 @@ public final class SourceManagerTest extends ADTSupportTestBase {
     //</editor-fold>
     @Override public/*private*/ ModuleLoadResult loadModule(SourceLocation ImportLoc, 
               ModuleIdPath Path, 
-              Module.NameVisibilityKind Visibility, 
+              Module$B.NameVisibilityKind Visibility, 
               boolean IsInclusionDirective)/* override*/ {
       return new ModuleLoadResult();
     }
@@ -205,8 +205,8 @@ public final class SourceManagerTest extends ADTSupportTestBase {
      FQN="(anonymous namespace)::VoidModuleLoader::makeModuleVisible", NM="_ZN12_GLOBAL__N_116VoidModuleLoader17makeModuleVisibleEPN5clang6ModuleENS2_18NameVisibilityKindENS1_14SourceLocationE",
      cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.basic/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/unittests/Basic/SourceManagerTest.cpp -nm=_ZN12_GLOBAL__N_116VoidModuleLoader17makeModuleVisibleEPN5clang6ModuleENS2_18NameVisibilityKindENS1_14SourceLocationE")
     //</editor-fold>
-    @Override public/*private*/ void makeModuleVisible(Module /*P*/ Mod, 
-                     Module.NameVisibilityKind Visibility, 
+    @Override public/*private*/ void makeModuleVisible(Module$B /*P*/ Mod, 
+                     Module$B.NameVisibilityKind Visibility, 
                      SourceLocation ImportLoc)/* override*/ {
     }
 

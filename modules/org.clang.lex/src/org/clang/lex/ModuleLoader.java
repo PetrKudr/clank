@@ -172,7 +172,7 @@ public abstract class ModuleLoader implements Destructors.ClassWithDestructor {
   //</editor-fold>
   public abstract /*virtual*/ ModuleLoadResult loadModule(SourceLocation ImportLoc, 
             ModuleIdPath Path, 
-            Module.NameVisibilityKind Visibility, 
+            Module$B.NameVisibilityKind Visibility, 
             boolean IsInclusionDirective)/* = 0*/;
 
   
@@ -183,8 +183,8 @@ public abstract class ModuleLoader implements Destructors.ClassWithDestructor {
    FQN="clang::ModuleLoader::makeModuleVisible", NM="_ZN5clang12ModuleLoader17makeModuleVisibleEPNS_6ModuleENS1_18NameVisibilityKindENS_14SourceLocationE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.lex/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/Preprocessor.cpp -nm=_ZN5clang12ModuleLoader17makeModuleVisibleEPNS_6ModuleENS1_18NameVisibilityKindENS_14SourceLocationE")
   //</editor-fold>
-  public abstract /*virtual*/ void makeModuleVisible(Module /*P*/ Mod, 
-                   Module.NameVisibilityKind Visibility, 
+  public abstract /*virtual*/ void makeModuleVisible(Module$B /*P*/ Mod, 
+                   Module$B.NameVisibilityKind Visibility, 
                    SourceLocation ImportLoc)/* = 0*/;
 
   

@@ -152,7 +152,7 @@ public class ScopedNoAliasAAWrapperPass extends /*public*/ ImmutablePass impleme
    FQN="llvm::ScopedNoAliasAAWrapperPass::doInitialization", NM="_ZN4llvm26ScopedNoAliasAAWrapperPass16doInitializationERNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/ScopedNoAliasAA.cpp -nm=_ZN4llvm26ScopedNoAliasAAWrapperPass16doInitializationERNS_6ModuleE")
   //</editor-fold>
-  @Override public boolean doInitialization(final Module /*&*/ M)/* override*/ {
+  @Override public boolean doInitialization(final Module$IR /*&*/ M)/* override*/ {
     throw new UnsupportedOperationException("EmptyBody");
   }
 
@@ -162,7 +162,7 @@ public class ScopedNoAliasAAWrapperPass extends /*public*/ ImmutablePass impleme
    FQN="llvm::ScopedNoAliasAAWrapperPass::doFinalization", NM="_ZN4llvm26ScopedNoAliasAAWrapperPass14doFinalizationERNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/ScopedNoAliasAA.cpp -nm=_ZN4llvm26ScopedNoAliasAAWrapperPass14doFinalizationERNS_6ModuleE")
   //</editor-fold>
-  @Override public boolean doFinalization(final Module /*&*/ M)/* override*/ {
+  @Override public boolean doFinalization(final Module$IR /*&*/ M)/* override*/ {
     throw new UnsupportedOperationException("EmptyBody");
   }
 

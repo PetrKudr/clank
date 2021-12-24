@@ -91,7 +91,7 @@ import org.llvm.ir.java.*;
  FQN="llvm::GlobalVariable", NM="_ZN4llvm14GlobalVariableE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/Globals.cpp -nm=_ZN4llvm14GlobalVariableE")
 //</editor-fold>
-public class GlobalVariable extends /*public*/ GlobalObject implements /*public*/ ilist_node<GlobalVariable>, IChild<Module>, Destructors.ClassWithDestructor {
+public class GlobalVariable extends /*public*/ GlobalObject implements /*public*/ ilist_node<GlobalVariable>, IChild<Module$IR>, Destructors.ClassWithDestructor {
   /*friend  class SymbolTableListTraits<GlobalVariable>*/
   //<editor-fold defaultstate="collapsed" desc="llvm::GlobalVariable::operator new">
   @Converted(kind = Converted.Kind.AUTO,
@@ -124,7 +124,7 @@ public class GlobalVariable extends /*public*/ GlobalObject implements /*public*
    FQN="llvm::GlobalVariable::setParent", NM="_ZN4llvm14GlobalVariable9setParentEPNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/Globals.cpp -nm=_ZN4llvm14GlobalVariable9setParentEPNS_6ModuleE")
   //</editor-fold>
-  public /*friend*//*private*/ void setParent(Module /*P*/ parent) {
+  public /*friend*//*private*/ void setParent(Module$IR /*P*/ parent) {
     Parent = parent;
   }
 
@@ -223,7 +223,7 @@ public class GlobalVariable extends /*public*/ GlobalObject implements /*public*
    FQN="llvm::GlobalVariable::GlobalVariable", NM="_ZN4llvm14GlobalVariableC1ERNS_6ModuleEPNS_4TypeEbNS_11GlobalValue12LinkageTypesEPNS_8ConstantERKNS_5TwineEPS0_NS5_15ThreadLocalModeEjb",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.ir/llvmToClangType ${LLVM_SRC}/llvm/lib/IR/Globals.cpp -nm=_ZN4llvm14GlobalVariableC1ERNS_6ModuleEPNS_4TypeEbNS_11GlobalValue12LinkageTypesEPNS_8ConstantERKNS_5TwineEPS0_NS5_15ThreadLocalModeEjb")
   //</editor-fold>
-  public GlobalVariable(final Module /*&*/ M, Type /*P*/ Ty, boolean constant,
+  public GlobalVariable(final Module$IR /*&*/ M, Type /*P*/ Ty, boolean constant,
       GlobalValue.LinkageTypes Link, Constant /*P*/ InitVal) {
     this(M, Ty, constant,
       Link, InitVal,
@@ -231,7 +231,7 @@ public class GlobalVariable extends /*public*/ GlobalObject implements /*public*
       ThreadLocalMode.NotThreadLocal, 0,
       false);
   }
-  public GlobalVariable(final Module /*&*/ M, Type /*P*/ Ty, boolean constant,
+  public GlobalVariable(final Module$IR /*&*/ M, Type /*P*/ Ty, boolean constant,
       GlobalValue.LinkageTypes Link, Constant /*P*/ InitVal,
       final /*const*/ Twine /*&*/ Name/*= ""*/) {
     this(M, Ty, constant,
@@ -240,7 +240,7 @@ public class GlobalVariable extends /*public*/ GlobalObject implements /*public*
       ThreadLocalMode.NotThreadLocal, 0,
       false);
   }
-  public GlobalVariable(final Module /*&*/ M, Type /*P*/ Ty, boolean constant,
+  public GlobalVariable(final Module$IR /*&*/ M, Type /*P*/ Ty, boolean constant,
       GlobalValue.LinkageTypes Link, Constant /*P*/ InitVal,
       final /*const*/ Twine /*&*/ Name/*= ""*/, GlobalVariable /*P*/ Before/*= null*/) {
     this(M, Ty, constant,
@@ -249,7 +249,7 @@ public class GlobalVariable extends /*public*/ GlobalObject implements /*public*
       ThreadLocalMode.NotThreadLocal, 0,
       false);
   }
-  public GlobalVariable(final Module /*&*/ M, Type /*P*/ Ty, boolean constant,
+  public GlobalVariable(final Module$IR /*&*/ M, Type /*P*/ Ty, boolean constant,
       GlobalValue.LinkageTypes Link, Constant /*P*/ InitVal,
       final /*const*/ Twine /*&*/ Name/*= ""*/, GlobalVariable /*P*/ Before/*= null*/,
       GlobalValue.ThreadLocalMode TLMode/*= NotThreadLocal*/) {
@@ -259,7 +259,7 @@ public class GlobalVariable extends /*public*/ GlobalObject implements /*public*
       TLMode, 0,
       false);
   }
-  public GlobalVariable(final Module /*&*/ M, Type /*P*/ Ty, boolean constant,
+  public GlobalVariable(final Module$IR /*&*/ M, Type /*P*/ Ty, boolean constant,
       GlobalValue.LinkageTypes Link, Constant /*P*/ InitVal,
       final /*const*/ Twine /*&*/ Name/*= ""*/, GlobalVariable /*P*/ Before/*= null*/,
       GlobalValue.ThreadLocalMode TLMode/*= NotThreadLocal*/, /*uint*/int AddressSpace/*= 0*/) {
@@ -269,7 +269,7 @@ public class GlobalVariable extends /*public*/ GlobalObject implements /*public*
       TLMode, AddressSpace,
       false);
   }
-  public GlobalVariable(final Module /*&*/ M, Type /*P*/ Ty, boolean constant,
+  public GlobalVariable(final Module$IR /*&*/ M, Type /*P*/ Ty, boolean constant,
       GlobalValue.LinkageTypes Link, Constant /*P*/ InitVal,
       final /*const*/ Twine /*&*/ Name/*= ""*/, GlobalVariable /*P*/ Before/*= null*/,
       GlobalValue.ThreadLocalMode TLMode/*= NotThreadLocal*/, /*uint*/int AddressSpace/*= 0*/,

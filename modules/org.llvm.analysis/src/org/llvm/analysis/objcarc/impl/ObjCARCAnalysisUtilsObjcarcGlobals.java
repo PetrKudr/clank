@@ -120,7 +120,7 @@ public final class ObjCARCAnalysisUtilsObjcarcGlobals {
  FQN="llvm::objcarc::ModuleHasARC", NM="_ZN4llvm7objcarc12ModuleHasARCERKNS_6ModuleE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/ObjCARCAnalysisUtils.cpp -nm=_ZN4llvm7objcarc12ModuleHasARCERKNS_6ModuleE")
 //</editor-fold>
-public static /*inline*/ boolean ModuleHasARC(final /*const*/ Module /*&*/ M) {
+public static /*inline*/ boolean ModuleHasARC(final /*const*/ Module$IR /*&*/ M) {
   throw new UnsupportedOperationException("EmptyBody");
 }
 

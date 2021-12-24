@@ -140,7 +140,7 @@ public class GlobalsAAWrapperPass extends /*public*/ ModulePass implements Destr
    FQN="llvm::GlobalsAAWrapperPass::runOnModule", NM="_ZN4llvm20GlobalsAAWrapperPass11runOnModuleERNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/GlobalsModRef.cpp -nm=_ZN4llvm20GlobalsAAWrapperPass11runOnModuleERNS_6ModuleE")
   //</editor-fold>
-  @Override public boolean runOnModule(final Module /*&*/ M)/* override*/ {
+  @Override public boolean runOnModule(final Module$IR /*&*/ M)/* override*/ {
     Result.reset(GlobalsAAResult.analyzeModule(M, this.<TargetLibraryInfoWrapperPass>getAnalysis(TargetLibraryInfoWrapperPass.class).getTLI(), 
             this.<CallGraphWrapperPass>getAnalysis(CallGraphWrapperPass.class).getCallGraph()));
     return false;
@@ -152,7 +152,7 @@ public class GlobalsAAWrapperPass extends /*public*/ ModulePass implements Destr
    FQN="llvm::GlobalsAAWrapperPass::doFinalization", NM="_ZN4llvm20GlobalsAAWrapperPass14doFinalizationERNS_6ModuleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.analysis/llvmToClangType ${LLVM_SRC}/llvm/lib/Analysis/GlobalsModRef.cpp -nm=_ZN4llvm20GlobalsAAWrapperPass14doFinalizationERNS_6ModuleE")
   //</editor-fold>
-  @Override public boolean doFinalization(final Module /*&*/ M)/* override*/ {
+  @Override public boolean doFinalization(final Module$IR /*&*/ M)/* override*/ {
     Result.reset();
     return false;
   }
