@@ -82,34 +82,13 @@ import static org.clank.support.NativeType.*;
 import org.clank.support.aliases.*;
 import java.lang.reflect.Field;
 import static org.clank.support.Unsigned.*;
-import sun.misc.Unsafe;
 
 /**
  *
  * @author petrk
  */
 public class NativeMemory {
-  private static final int NATIVE_PAGE_SIZE;
   private static final int FALLBACK_PAGE_SIZE = 1024*4;// 4K
-  static {
-    int pageSize; 
-    try {
-      Field f = Unsafe.class.getDeclaredField("theUnsafe"); // NOI18N
-      f.setAccessible(true);
-      Unsafe unsafe = (Unsafe)f.get(null);
-      pageSize = unsafe.pageSize();
-      if (NativeTrace.VERBOSE_MODE) {
-        System.err.printf("Native Page Size is %d%n", pageSize); // NOI18N
-      }
-    } catch (Throwable ex) {
-      // don't have unsafe
-      pageSize = FALLBACK_PAGE_SIZE;
-      if (NativeTrace.VERBOSE_MODE) {
-        System.err.printf("No Unsafe, Use Native Page Size as %d%n", pageSize); // NOI18N
-      }
-    }
-    NATIVE_PAGE_SIZE = pageSize;
-  }
     
     /*
     ****************************************************************************
@@ -119,7 +98,7 @@ public class NativeMemory {
   
     public static interface Allocator {
         public static final int MaxPageSize = Integer.getInteger("clank.max.page.size", 1 << 16); // 256K
-        public static final int PageSize = Integer.getInteger("clank.page.size",  Math.min(MaxPageSize, NATIVE_PAGE_SIZE));
+        public static final int PageSize = Integer.getInteger("clank.page.size",  Math.min(MaxPageSize, FALLBACK_PAGE_SIZE));
         
         default void Reset()  {
           throw new UnsupportedOperationException();
