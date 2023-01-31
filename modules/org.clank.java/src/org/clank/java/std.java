@@ -107,7 +107,7 @@ import org.clank.support.aliases.*;
 import static org.clank.support.Casts.$char;
 import static org.clank.support.Unsigned.*;
 
-public class std extends std_algo implements std_ptr, std_pair, std_deque, std_functional, std_list, std_map, std_unordered_map {
+public class std extends std_algo implements std_ptr, std_pair, std_deque, std_functional, std_list, std_map, std_unordered_map, std_optional {
   public static boolean $noteq_vector$_Tp$_Alloc$C(vectorString a, vectorString b){
     return a.$noteq(b);
   }
