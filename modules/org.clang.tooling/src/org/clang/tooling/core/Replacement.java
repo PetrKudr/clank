@@ -447,6 +447,7 @@ public class Replacement implements Destructors.ClassWithDestructor, Native.Comp
    FQN="clang::tooling::Replacement::~Replacement", NM="_ZN5clang7tooling11ReplacementD0Ev",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.tooling/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/tools/extra/clang-tidy/ClangTidy.cpp -nm=_ZN5clang7tooling11ReplacementD0Ev")
   //</editor-fold>
+  @Override
   public /*inline*/ void $destroy() {
     //START JDestroy
     ReplacementText.$destroy();
