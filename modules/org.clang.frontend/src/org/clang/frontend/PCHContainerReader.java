@@ -76,11 +76,12 @@
 
 package org.clang.frontend;
 
-import org.clank.support.*;
-import org.llvm.support.*;
-import org.llvm.adt.*;
-import org.clang.serialization.spi.PCHContainerReaderImplementation;
+import org.clank.support.Converted;
+import org.clank.support.Destructors;
+import org.llvm.adt.StringRef;
 import org.llvm.bitcode.BitstreamReader;
+import org.llvm.support.MemoryBufferRef;
+import org.clang.serialization.spi.PCHContainerReaderImplementation;
 
 
 /// This abstract interface provides operations for unwrapping

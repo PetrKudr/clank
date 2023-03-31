@@ -76,17 +76,23 @@
 
 package org.clang.frontend;
 
-import org.clank.java.*;
-import org.clank.support.*;
-import org.clank.support.JavaDifferentiators.*;
-import static org.clank.support.Casts.*;
-import static org.clank.support.Native.*;
-import org.llvm.support.*;
-import org.clang.basic.*;
-import org.clang.lex.*;
-import org.clang.serialization.*;
-import org.clang.frontend.*;
-import org.clang.frontend.impl.*;
+import org.clang.basic.diag;
+import org.clang.frontend.impl.DFGASTReaderListener;
+import org.clang.frontend.impl.DFGImpl;
+import org.clang.frontend.impl.DFGMMCallback;
+import org.clang.lex.ModuleMapCallbacks;
+import org.clang.lex.PPCallbacks;
+import org.clang.lex.Preprocessor;
+import org.clank.java.std;
+import org.clank.support.Converted;
+import org.clank.support.JavaCleaner;
+import org.clank.support.JavaDifferentiators.JD$Unique_ptr$_Up$_Ep;
+import org.llvm.support.llvm;
+import org.clang.serialization.ASTReader;
+import org.clang.serialization.ASTReaderListener;
+
+import static org.clank.support.Casts.reinterpret_cast;
+import static org.clank.support.Native.$createJavaCleaner;
 
 
 /// Builds a depdenency file when attached to a Preprocessor (for includes) and

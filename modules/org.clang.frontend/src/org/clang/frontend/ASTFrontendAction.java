@@ -79,7 +79,7 @@ package org.clang.frontend;
 import org.clang.sema.CodeCompleteConsumer;
 import org.clank.support.Converted;
 import org.clank.support.Destructors;
-import parse.ParseClangGlobals;
+import org.clang.parse.ParseClangGlobals;
 
 
 /// \brief Abstract base class to use for AST consumer-based frontend actions.

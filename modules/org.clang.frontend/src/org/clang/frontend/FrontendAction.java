@@ -88,6 +88,9 @@ import org.clang.lex.Preprocessor;
 import org.clang.lex.PreprocessorOptions;
 import org.clang.sema.ExternalSemaSource;
 import org.clang.sema.Sema;
+import org.clang.serialization.ASTDeserializationListener;
+import org.clang.serialization.ASTReader;
+import org.clang.serialization.GlobalModuleIndex;
 import org.clank.java.std;
 import org.clank.support.Converted;
 import org.clank.support.Destructors;
@@ -714,7 +717,7 @@ public abstract class FrontendAction implements Destructors.ClassWithDestructor 
               for (Dir/*J*/= new fs.directory_iterator(new Twine(DirNative), EC), DirEnd/*J*/= new fs.directory_iterator();
                    Dir.$noteq(DirEnd) && !EC.$bool(); Dir.increment(EC)) {
                 // Check whether this is an acceptable AST file.
-                if (ASTReader.isAcceptableASTFile(new StringRef(Dir.$arrow().getPath()), FileMgr, CI.getPCHContainerReader(), 
+                if (ASTReader.isAcceptableASTFile(new StringRef(Dir.$arrow().getPath()), FileMgr, CI.getPCHContainerReader(),
                     CI.getLangOpts(), CI.getTargetOpts(), CI.getPreprocessorOpts(), 
                     new std.string(SpecificModuleCachePath))) {
                   PPOpts.ImplicitPCHInclude.$assign(Dir.$arrow().getPath());
@@ -931,7 +934,7 @@ public abstract class FrontendAction implements Destructors.ClassWithDestructor 
        && CI.hasPreprocessor()) {
       StringRef Cache = CI.getPreprocessor().getHeaderSearchInfo().getModuleCachePath();
       if (!Cache.empty()) {
-        GlobalModuleIndex.writeIndex(CI.getFileManager(), 
+        GlobalModuleIndex.writeIndex(CI.getFileManager(),
             CI.getPCHContainerReader(), new StringRef(Cache));
       }
     }

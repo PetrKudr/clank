@@ -76,12 +76,12 @@
 
 package org.clang.frontend;
 
-import org.clank.java.*;
-import org.clank.support.*;
-import org.llvm.support.*;
-import org.llvm.adt.*;
-import org.clang.ast.*;
-import org.clang.frontend.*;
+import org.clang.ast.ASTConsumer;
+import org.clank.java.std;
+import org.clank.support.Converted;
+import org.clank.support.Destructors;
+import org.llvm.adt.StringRef;
+import org.llvm.support.raw_pwrite_stream;
 import org.clang.serialization.spi.PCHContainerWriterImplementation;
 
 

@@ -77,23 +77,24 @@
 package org.llvm.adt;
 
 import org.clank.java.std;
+import org.clank.support.Converted;
+import org.clank.support.JavaCleaner;
+import org.clank.support.NativeCallback.Char2Void;
+import org.clank.support.aliases.char$ptr;
 import org.junit.Test;
-import org.clank.support.*;
-import org.clank.support.aliases.*;
-import static org.clank.support.NativePointer.*;
-import static org.clank.support.NativeType.*;
-import static org.clank.support.Native.*;
-import static org.clank.support.Unsigned.*;
-import org.clank.support.NativeCallback.*;
-import org.llvm.adt.*;
 import org.llvm.adt.aliases.*;
+
+import static org.clank.support.Native.$createJavaCleaner;
+import static org.clank.support.NativePointer.*;
+import static org.clank.support.NativeType.sizeof;
+import static org.clank.support.Unsigned.$less_uint;
 
 
 //<editor-fold defaultstate="collapsed" desc="static type ImmutableSetTest">
 @Converted(kind = Converted.Kind.AUTO,
  cmd="jclank.sh -java-options=${SPUTNIK}/contrib/JConvert/llvmToClankType -print -java-options=${SPUTNIK}/modules/org.llvm.adtsupport/llvmToClangType ${LLVM_SRC}/llvm/unittests/ADT/ImmutableSetTest.cpp -test=ImmutableSetTest")
 //</editor-fold>
-public final class ImmutableSetTest extends ADTSupportTestBase {
+public final class ImmutableSetTest extends org.llvm.adt.ADTSupportTestBase {
 
 //JAVA: using namespace llvm
 //JAVA: namespace (anonymous) {

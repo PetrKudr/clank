@@ -76,9 +76,10 @@
 
 package org.clang.frontend;
 
+import org.clank.support.Converted;
+import org.clank.support.Destructors;
+import org.llvm.adt.SmallString;
 import org.clang.serialization.spi.PCHBufferBase;
-import org.clank.support.*;
-import org.llvm.adt.*;
 
 //<editor-fold defaultstate="collapsed" desc="clang::PCHBuffer">
 @Converted(kind = Converted.Kind.AUTO,

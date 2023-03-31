@@ -13,11 +13,8 @@
     <orderEntry type="module" module-name="org.clang.lex" />
     <orderEntry type="module" module-name="org.llvm.option" />
     <orderEntry type="module" module-name="org.clang.staticanalyzer" />
-    <orderEntry type="module" module-name="test15" />
     <orderEntry type="module" module-name="org.clang.driver" />
-    <orderEntry type="module" module-name="test11" />
     <orderEntry type="module" module-name="org.clang.basic" />
-    <orderEntry type="module" module-name="test12" />
     <orderEntry type="module" module-name="org.clang.frontend" />
     <orderEntry type="module" module-name="org.clank.java" />
     <orderEntry type="module" module-name="org.clang.rewrite" />

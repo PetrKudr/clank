@@ -76,13 +76,17 @@
 
 package org.clang.frontend;
 
-import org.clank.java.*;
-import org.clank.support.*;
-import org.llvm.adt.*;
-import org.clang.sema.*;
-import org.clang.serialization.*;
-import org.clang.frontend.*;
 import org.clang.frontend.frontend.ActionKind;
+import org.clang.sema.CodeCompleteOptions;
+import org.clank.java.std;
+import org.clank.support.Converted;
+import org.clank.support.Destructors;
+import org.clank.support.Native;
+import org.clank.support.Unsigned;
+import org.llvm.adt.IntrusiveRefCntPtr;
+import org.llvm.adt.StringRef;
+import org.llvm.adt.StringSwitch;
+import org.clang.serialization.ModuleFileExtension;
 
 
 /// FrontendOptions - Options for controlling the behavior of the frontend.

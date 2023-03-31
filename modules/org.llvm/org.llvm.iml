@@ -9,8 +9,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="org.llvm.adtsupport" />
     <orderEntry type="module" module-name="org.llvm.llvmc" />
-    <orderEntry type="module" module-name="test15" />
-    <orderEntry type="module" module-name="test12" />
     <orderEntry type="module" module-name="org.clank.java" />
     <orderEntry type="module" module-name="org.llvm.ir" />
     <orderEntry type="library" name="public-package-jars" level="project" />

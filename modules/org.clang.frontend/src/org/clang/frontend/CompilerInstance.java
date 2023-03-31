@@ -76,50 +76,58 @@
 
 package org.clang.frontend;
 
-import org.llvm.adt.java.ADTJavaDifferentiators.*;
-import org.clang.driver.frontend.CodeGenOptions;
-import org.clang.lex.llvm.ModuleIdPath;
-import org.llvm.support.sys.sys;
-import org.clang.basic.target.TargetOptions;
-import org.clank.java.*;
-import org.clank.support.*;
-import org.clank.support.aliases.*;
-import org.clank.support.JavaDifferentiators.*;
-import static org.clank.java.io.*;
-import static org.clank.java.std.*;
-import static org.llvm.adt.ADTAliases.*;
-import static org.llvm.support.llvm.*;
-import static org.clank.support.NativePointer.*;
-import static org.clank.support.Native.*;
-import static org.clank.support.Unsigned.*;
-import org.llvm.support.*;
-import org.llvm.adt.*;
-import org.llvm.adt.aliases.*;
-import org.clang.ast.*;
-import static org.clang.basic.BasicClangGlobals.*;
-import static org.clang.frontend.FrontendClangGlobals.*;
+import org.clang.ast.ASTConsumer;
+import org.clang.ast.ASTContext;
+import org.clang.ast.ExternalASTSource;
 import org.clang.basic.*;
 import org.clang.basic.target.TargetInfo;
-import org.clang.basic.vfs.*;
-import org.clang.lex.*;
-import org.clang.sema.*;
-import org.clang.serialization.*;
-import org.clang.serialization.GlobalModuleIndex;
-import org.clang.frontend.*;
-import org.clang.frontend.frontend;
-import static org.clang.frontend.impl.CompilerInstanceStatics.EnableCodeCompletion;
-import static org.clang.frontend.impl.CompilerInstanceStatics.InitializeFileRemapping;
-import static org.clang.frontend.impl.CompilerInstanceStatics.SetUpDiagnosticLog;
-import static org.clang.frontend.impl.CompilerInstanceStatics.SetupSerializedDiagnostics;
-import static org.clang.frontend.impl.CompilerInstanceStatics.checkConfigMacro;
-import static org.clang.frontend.impl.CompilerInstanceStatics.compileAndLoadModule;
-import static org.clang.frontend.impl.CompilerInstanceStatics.pruneModuleCache;
+import org.clang.basic.target.TargetOptions;
+import org.clang.basic.vfs.FileSystem;
+import org.clang.basic.vfs.VfsGlobals;
+import org.clang.driver.frontend.CodeGenOptions;
 import org.clang.frontend.staticanalyzer.AnalyzerOptions;
+import org.clang.lex.*;
+import org.clang.lex.llvm.ModuleIdPath;
 import org.clang.lex.llvm.SmallVectorPtrPairFileEntryDirectoryEntry;
-import static org.clank.support.Unsigned.$greater_uint;
+import org.clang.sema.CodeCompleteConsumer;
+import org.clang.sema.CodeCompleteOptions;
+import org.clang.sema.PrintingCodeCompleteConsumer;
+import org.clang.sema.Sema;
+import org.clang.serialization.*;
+import org.clank.java.std;
+import org.clank.support.Converted;
+import org.clank.support.Destructors;
+import org.clank.support.JavaCleaner;
+import org.clank.support.JavaDifferentiators.JD$Move;
+import org.clank.support.JavaDifferentiators.JD$NullPtr;
+import org.clank.support.JavaDifferentiators.JD$Shared_ptr$_Tp1$C;
+import org.clank.support.JavaDifferentiators.JD$Unique_ptr$_Up$_Ep;
+import org.clank.support.NativeCloneable;
+import org.clank.support.aliases.char$ptr;
+import org.clank.support.aliases.int$ref;
+import org.clank.support.aliases.type$ptr;
+import org.clank.support.aliases.type$ref;
+import org.llvm.adt.*;
+import org.llvm.adt.aliases.*;
+import org.llvm.adt.java.ADTJavaDifferentiators.JD$Timer$P;
+import org.llvm.support.*;
 import org.llvm.support.sys.fs;
 import org.llvm.support.sys.fs.file_status;
 import org.llvm.support.sys.path;
+import org.llvm.support.sys.sys;
+
+import static org.clang.basic.BasicClangGlobals.*;
+import static org.clang.frontend.FrontendClangGlobals.*;
+import static org.clang.frontend.impl.CompilerInstanceStatics.InitializeFileRemapping;
+import static org.clang.frontend.impl.CompilerInstanceStatics.*;
+import static org.clank.java.io.*;
+import static org.clank.java.std.*;
+import static org.clank.support.Native.$createJavaCleaner;
+import static org.clank.support.Native.$tryClone;
+import static org.clank.support.NativePointer.*;
+import static org.clank.support.Unsigned.*;
+import static org.llvm.adt.ADTAliases.JD$IntrusiveRefCntPtr$X$C;
+import static org.llvm.support.llvm.*;
 
 
 /// CompilerInstance - Helper class for managing a single instance of the Clang
@@ -2067,7 +2075,7 @@ public class CompilerInstance extends /*public*/ ModuleLoader implements Destruc
     try {
       HeaderSearchOptions /*&*/ HSOpts = PP.getHeaderSearchInfo().getHeaderSearchOpts();
       
-      Reader/*J*/= new IntrusiveRefCntPtr<ASTReader>(new ASTReader(PP, Context, PCHContainerRdr, new ArrayRef<IntrusiveRefCntPtr<ModuleFileExtension> >(Extensions), 
+      Reader/*J*/= new IntrusiveRefCntPtr<ASTReader>(new ASTReader(PP, Context, PCHContainerRdr, new ArrayRef<IntrusiveRefCntPtr<ModuleFileExtension> >(Extensions),
               new StringRef(Sysroot.empty() ? $EMPTY : Sysroot.data()), DisablePCHValidation, 
               AllowPCHWithCompilerErrors, /*AllowConfigurationMismatch*/ false, 
               HSOpts.ModulesValidateSystemHeaders, UseGlobalModuleIndex));
@@ -2076,10 +2084,10 @@ public class CompilerInstance extends /*public*/ ModuleLoader implements Destruc
       // eagerly-deserialized declarations may use it.
       Context.setExternalSource($c$.track(new IntrusiveRefCntPtr<ExternalASTSource>(Reader.get()))); $c$.clean();
       
-      Reader.$arrow().setDeserializationListener(((/*static_cast*/ASTDeserializationListener /*P*/ )(DeserializationListener)), 
+      Reader.$arrow().setDeserializationListener(((/*static_cast*/ASTDeserializationListener /*P*/ )(DeserializationListener)),
           /*TakeOwnership=*/ OwnDeserializationListener);
       switch (Reader.$arrow().ReadAST(new StringRef(Path), 
-          Preamble ? ModuleKind.MK_Preamble : ModuleKind.MK_PCH, 
+          Preamble ? ModuleKind.MK_Preamble : ModuleKind.MK_PCH,
           new SourceLocation(), 
           ASTReader.LoadFailureCapabilities.ARR_None)) {
        case Success:
@@ -2630,7 +2638,7 @@ public class CompilerInstance extends /*public*/ ModuleLoader implements Destruc
           $c$.clean(ReadTimer.$assignMove($c$.track(llvm.make_unique(new Timer($("Reading modules"), 
                   FrontendTimerGroup.$star())))));
         }
-        $c$.clean(ModuleManager.$assign($c$.track(new IntrusiveRefCntPtr<ASTReader>(new ASTReader(getPreprocessor(), getASTContext(), getPCHContainerReader(), 
+        $c$.clean(ModuleManager.$assign($c$.track(new IntrusiveRefCntPtr<ASTReader>(new ASTReader(getPreprocessor(), getASTContext(), getPCHContainerReader(),
                     new ArrayRef<IntrusiveRefCntPtr<ModuleFileExtension> >(getFrontendOpts().ModuleFileExtensions), 
                     new StringRef(Sysroot.empty() ? $EMPTY : Sysroot.c_str()), PPOpts.DisablePCHValidation, 
                     /*AllowASTWithCompilerErrors=*/ false, 

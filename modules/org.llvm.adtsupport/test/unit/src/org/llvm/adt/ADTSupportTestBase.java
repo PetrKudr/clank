@@ -81,6 +81,8 @@ import org.clank.java.JavaTestBase;
 import org.clank.support.Native;
 import org.clank.support.NativeTrace;
 import org.clank.support.aliases.char$ptr;
+
+import static org.clank.support.NativeTrace.assertTrue;
 import static org.junit.Assert.assertTrue;
 import org.junit.BeforeClass;
 import org.llvm.cl.opt;

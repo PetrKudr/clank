@@ -76,20 +76,33 @@
 
 package org.clang.frontend;
 
-import org.clank.java.*;
-import org.clank.support.*;
-import org.clank.support.JavaDifferentiators.*;
-import static org.clank.support.Native.*;
-import org.llvm.support.*;
-import org.llvm.adt.*;
-import org.llvm.adt.aliases.*;
-import org.clang.basic.vfs.*;
-import org.clang.lex.*;
-import org.clang.serialization.*;
-import org.clang.frontend.*;
-import org.clang.frontend.impl.*;
-import org.llvm.support.sys.*;
-import static org.clang.frontend.impl.ModuleDependencyCollectorStatics.*;
+import org.clang.basic.vfs.YAMLVFSWriter;
+import org.clang.frontend.impl.ModuleDependencyListener;
+import org.clang.frontend.impl.ModuleDependencyMMCallbacks;
+import org.clang.lex.ModuleMapCallbacks;
+import org.clang.lex.Preprocessor;
+import org.clank.java.std;
+import org.clank.support.Converted;
+import org.clank.support.Destructors;
+import org.clank.support.JavaCleaner;
+import org.clank.support.JavaDifferentiators.JD$Move;
+import org.clank.support.JavaDifferentiators.JD$Unique_ptr$_Up$_Ep;
+import org.llvm.adt.SmallString;
+import org.llvm.adt.StringRef;
+import org.llvm.adt.StringSet;
+import org.llvm.adt.Twine;
+import org.llvm.adt.aliases.StringMap;
+import org.llvm.adt.aliases.StringMapIterator;
+import org.llvm.support.llvm;
+import org.llvm.support.raw_fd_ostream;
+import org.llvm.support.sys.fs;
+import org.llvm.support.sys.path;
+import org.clang.serialization.ASTReader;
+import org.clang.serialization.ASTReaderListener;
+
+import static org.clang.frontend.impl.ModuleDependencyCollectorStatics.isCaseSensitivePath;
+import static org.clang.frontend.impl.ModuleDependencyCollectorStatics.real_path;
+import static org.clank.support.Native.$createJavaCleaner;
 
 
 /// Collects the dependencies for imported modules into a directory.  Users
@@ -266,7 +279,7 @@ public class ModuleDependencyCollector extends /*public*/ DependencyCollector im
    FQN="clang::ModuleDependencyCollector::attachToASTReader", NM="_ZN5clang25ModuleDependencyCollector17attachToASTReaderERNS_9ASTReaderE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.frontend/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Frontend/ModuleDependencyCollector.cpp -nm=_ZN5clang25ModuleDependencyCollector17attachToASTReaderERNS_9ASTReaderE")
   //</editor-fold>
-  @Override public void attachToASTReader(ASTReader /*&*/ R)/* override*/ {
+  public void attachToASTReader(ASTReader /*&*/ R)/* override*/ {
     JavaCleaner $c$ = $createJavaCleaner();
     try {
       R.addListener($c$.track(new std.unique_ptr<ASTReaderListener>(JD$Unique_ptr$_Up$_Ep.INSTANCE, $c$.track(llvm.make_unique(new ModuleDependencyListener(/*Deref*/this)))))); $c$.clean();

@@ -76,44 +76,51 @@
 
 package org.clang.frontend;
 
-import org.clank.java.*;
-import org.clank.support.*;
-import org.clank.support.aliases.*;
-import org.clank.support.JavaDifferentiators.*;
-import static org.clank.java.io.*;
-import static org.clank.java.std.*;
-import static org.llvm.adt.ADTAliases.*;
-import static org.llvm.support.llvm.*;
-import static org.clank.support.NativePointer.*;
-import static org.clank.support.NativeType.*;
-import static org.clank.support.Native.*;
-import static org.clank.support.Unsigned.*;
-import org.llvm.support.*;
-import org.llvm.adt.*;
-import org.llvm.adt.aliases.*;
 import org.clang.ast.*;
-import org.clang.ast.java.AstFunctionPointers.*;
-import static org.clang.basic.BasicClangGlobals.*;
-import static org.clang.frontend.FrontendClangGlobals.*;
-import static org.clang.frontend.impl.FrontendClangStatics.*;
-import static org.clang.frontend.impl.ASTUnitStatics.*;
-import static org.clang.frontend.ASTUnit.PreambleFileHash.*;
-import org.clang.basic.*;
-import org.clang.basic.llvm.*;
-import org.clang.basic.target.*;
-import org.clang.basic.vfs.*;
+import org.clang.ast.java.AstFunctionPointers.DeclVisitorFn;
 import org.clang.ast.llvm.DenseMapInfoCanQual$Type;
-import org.clang.clangc.*;
+import org.clang.basic.*;
+import org.clang.basic.llvm.DenseMapInfoFileID;
+import org.clang.basic.target.TargetInfo;
+import org.clang.basic.target.TargetOptions;
+import org.clang.basic.vfs.FileSystem;
+import org.clang.basic.vfs.Status;
+import org.clang.basic.vfs.VfsGlobals;
+import org.clang.clangc.CXAvailabilityKind;
+import org.clang.clangc.CXCursorKind;
+import org.clang.frontend.impl.*;
 import org.clang.lex.*;
+import org.clang.lex.llvm.ModuleIdPath;
+import org.clang.lex.spi.GlobalModuleIndexImplementation;
 import org.clang.sema.*;
 import org.clang.serialization.*;
+import org.clank.java.std;
+import org.clank.support.*;
+import org.clank.support.JavaDifferentiators.*;
+import org.clank.support.aliases.*;
+import org.llvm.adt.*;
+import org.llvm.adt.aliases.*;
+import org.llvm.bitcode.BitstreamWriter;
+import org.llvm.support.*;
+import org.llvm.support.sys.MutexImpl;
+import org.llvm.support.sys.fs;
+
+import static org.clang.basic.BasicClangGlobals.ProcessWarningOptions;
+import static org.clang.frontend.ASTUnit.PreambleFileHash.$noteq_PreambleFileHash$C;
+import static org.clang.frontend.FrontendClangGlobals.createInvocationFromCommandLine;
+import static org.clang.frontend.FrontendClangGlobals.createVFSFromCompilerInvocation;
+import static org.clang.frontend.impl.ASTUnitStatics.*;
+import static org.clang.frontend.impl.FrontendClangStatics.$eq_PreambleFileHash$C;
 import static org.clang.sema.SemaClangGlobals.*;
-import org.clang.frontend.*;
-import org.clang.frontend.impl.*;
-import org.llvm.support.sys.*;
-import org.clang.lex.llvm.*;
-import org.clang.lex.spi.GlobalModuleIndexImplementation;
-import org.llvm.bitcode.*;
+import static org.clank.java.io.fprintf;
+import static org.clank.java.io.stderr;
+import static org.clank.java.std.*;
+import static org.clank.support.Native.*;
+import static org.clank.support.NativePointer.*;
+import static org.clank.support.NativeType.sizeof;
+import static org.clank.support.Unsigned.*;
+import static org.llvm.adt.ADTAliases.JD$IntrusiveRefCntPtr$X$C;
+import static org.llvm.support.llvm.*;
 
 
 /// \brief Utility class for loading a ASTContext from an AST file.
@@ -3498,7 +3505,7 @@ public class ASTUnit extends /*public*/ ModuleLoader implements Destructors.Clas
       // We need the external source to be set up before we read the AST, because
       // eagerly-deserialized declarations may use it.
       Context.setExternalSource($c$.track(new IntrusiveRefCntPtr<ExternalASTSource>(JD$IntrusiveRefCntPtr$X$C.INSTANCE, AST.$arrow().Reader))); $c$.clean();
-      switch (AST.$arrow().Reader.$arrow().ReadAST(new StringRef(Filename), ModuleKind.MK_MainFile, 
+      switch (AST.$arrow().Reader.$arrow().ReadAST(new StringRef(Filename), ModuleKind.MK_MainFile,
           new SourceLocation(), ASTReader.LoadFailureCapabilities.ARR_None)) {
        case Success:
         break;

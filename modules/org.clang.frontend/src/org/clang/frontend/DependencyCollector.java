@@ -76,17 +76,26 @@
 
 package org.clang.frontend;
 
-import org.clank.java.*;
-import org.clank.support.*;
-import org.clank.support.JavaDifferentiators.*;
-import static org.clank.support.Native.*;
-import org.llvm.support.*;
-import org.llvm.adt.*;
-import org.llvm.adt.aliases.*;
-import org.clang.lex.*;
-import org.clang.serialization.*;
-import org.clang.frontend.impl.*;
-import static org.clang.frontend.impl.DependencyFileStatics.*;
+import org.clang.frontend.impl.DepCollectorASTListener;
+import org.clang.frontend.impl.DepCollectorMMCallbacks;
+import org.clang.frontend.impl.DepCollectorPPCallbacks;
+import org.clang.lex.ModuleMapCallbacks;
+import org.clang.lex.PPCallbacks;
+import org.clang.lex.Preprocessor;
+import org.clank.java.std;
+import org.clank.support.Converted;
+import org.clank.support.Destructors;
+import org.clank.support.JavaCleaner;
+import org.clank.support.JavaDifferentiators.JD$Unique_ptr$_Up$_Ep;
+import org.llvm.adt.StringRef;
+import org.llvm.adt.StringSet;
+import org.llvm.adt.aliases.ArrayRef;
+import org.llvm.support.llvm;
+import org.clang.serialization.ASTReader;
+import org.clang.serialization.ASTReaderListener;
+
+import static org.clang.frontend.impl.DependencyFileStatics.isSpecialFilename;
+import static org.clank.support.Native.$createJavaCleaner;
 
 
 /// An interface for collecting the dependencies of a compilation. Users should

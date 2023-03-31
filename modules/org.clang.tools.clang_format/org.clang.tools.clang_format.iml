@@ -7,13 +7,9 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="test3" />
-    <orderEntry type="module" module-name="test11" />
     <orderEntry type="module" module-name="org.llvm.adtsupport" />
     <orderEntry type="module" module-name="org.clang.basic" />
-    <orderEntry type="module" module-name="test15" />
     <orderEntry type="module" module-name="org.clang.tooling" />
-    <orderEntry type="module" module-name="test12" />
     <orderEntry type="module" module-name="org.clang.format" />
     <orderEntry type="module" module-name="org.clank.java" />
     <orderEntry type="module" module-name="org.clang.rewrite" />
