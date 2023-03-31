@@ -197,7 +197,7 @@ public final class ImplicitCastExpr extends /*public*/ CastExpr implements /*pri
    FQN="clang::ImplicitCastExpr::ImplicitCastExpr", NM="_ZN5clang16ImplicitCastExprC1ENS0_9OnStack_tENS_8QualTypeENS_8CastKindEPNS_4ExprENS_13ExprValueKindE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.ast/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/AST/Expr.cpp -nm=_ZN5clang16ImplicitCastExprC1ENS0_9OnStack_tENS_8QualTypeENS_8CastKindEPNS_4ExprENS_13ExprValueKindE")
   //</editor-fold>
-  public ImplicitCastExpr(OnStack_t _, QualType ty, CastKind kind, Expr /*P*/ op, 
+  public ImplicitCastExpr(OnStack_t onStackT, QualType ty, CastKind kind, Expr /*P*/ op,
       ExprValueKind VK) {
     // : CastExpr(ImplicitCastExprClass, ty, VK, kind, op, 0), TrailingObjects<ImplicitCastExpr, CXXBaseSpecifier * >() 
     //START JInit

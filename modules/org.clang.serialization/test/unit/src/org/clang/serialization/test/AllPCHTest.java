@@ -73,10 +73,11 @@
  * ARM contributions   llvm/lib/Target/ARM/LICENSE.TXT
  * md5 contributions   llvm/lib/Support/MD5.cpp llvm/include/llvm/Support/MD5.h
  */
-package org.clang.serialization.test;
+package unit.src.org.clang.serialization.test;
 
 import org.clang.tools.driver.test.DriverTestFileBase;
-import org.junit.*;
+import org.clank.java.JavaTestBase;
+import org.junit.Test;
 
 /**
  * Collection of all test files from test/PCH folder
@@ -85,7 +86,7 @@ import org.junit.*;
 public class AllPCHTest extends DriverTestFileBase {
   private static final String TEST_LOCATION = "${LLVM_SRC}/llvm/tools/clang/test/PCH/";
   public AllPCHTest() {
-    super(TEST_LOCATION, TestState.Successful);
+    super(TEST_LOCATION, JavaTestBase.TestState.Successful);
   }
   
   public static void main(String[] args) {
@@ -95,10 +96,6 @@ public class AllPCHTest extends DriverTestFileBase {
             "${SPUTNIK}/modules/org.clang.serialization/test/unit/src/org/clang/serialization/test/AllPCHTest.txt");
   }  
 
-  @Override
-  protected boolean keepStacksForUnimplementedMethods() {
-    return false;
-  }
 
   @Test
   public void test___va_list_tag_c() throws Throwable {
@@ -108,11 +105,11 @@ public class AllPCHTest extends DriverTestFileBase {
       return;
     }
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc '-triple=x86_64-unknown-freebsd7.0' -include ${LLVM_SRC}/llvm/tools/clang/test/PCH/Inputs/__va_list_tag.h ${LLVM_SRC}/llvm/tools/clang/test/PCH/__va_list_tag.c -emit-llvm -o -
-    RUN(TestState.Failed, "%clang_cc1 -triple=x86_64-unknown-freebsd7.0 -include %S/Inputs/__va_list_tag.h %s -emit-llvm -o -");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -triple=x86_64-unknown-freebsd7.0 -include %S/Inputs/__va_list_tag.h %s -emit-llvm -o -");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc '-triple=x86_64-unknown-freebsd7.0' -emit-pch -x c-header -o ${TEST_TEMP_DIR}/__va_list_tag.c.tmp ${LLVM_SRC}/llvm/tools/clang/test/PCH/Inputs/__va_list_tag.h
-    RUN(TestState.Failed, "%clang_cc1 -triple=x86_64-unknown-freebsd7.0 -emit-pch -x c-header -o %t %S/Inputs/__va_list_tag.h");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -triple=x86_64-unknown-freebsd7.0 -emit-pch -x c-header -o %t %S/Inputs/__va_list_tag.h");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc '-triple=x86_64-unknown-freebsd7.0' -include-pch ${TEST_TEMP_DIR}/__va_list_tag.c.tmp ${LLVM_SRC}/llvm/tools/clang/test/PCH/__va_list_tag.c -verify
-    RUN(TestState.Failed, "%clang_cc1 -triple=x86_64-unknown-freebsd7.0 -include-pch %t %s -verify");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -triple=x86_64-unknown-freebsd7.0 -include-pch %t %s -verify");
   }
 
   @Test
@@ -136,18 +133,18 @@ public class AllPCHTest extends DriverTestFileBase {
       return;
     }
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -fblocks -triple x86_64-apple-darwin11 -fobjc-arc -include ${LLVM_SRC}/llvm/tools/clang/test/PCH/Inputs/arc.h -fsyntax-only -emit-llvm-only ${LLVM_SRC}/llvm/tools/clang/test/PCH/arc.m
-    RUN(TestState.Failed, "%clang_cc1 -fblocks -triple x86_64-apple-darwin11 -fobjc-arc -include %S/Inputs/arc.h -fsyntax-only -emit-llvm-only %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -fblocks -triple x86_64-apple-darwin11 -fobjc-arc -include %S/Inputs/arc.h -fsyntax-only -emit-llvm-only %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -emit-pch -fblocks -triple x86_64-apple-darwin11 -fobjc-arc -x objective-c-header -o ${TEST_TEMP_DIR}/arc.m.tmp ${LLVM_SRC}/llvm/tools/clang/test/PCH/Inputs/arc.h
-    RUN(TestState.Failed, "%clang_cc1 -emit-pch -fblocks -triple x86_64-apple-darwin11 -fobjc-arc -x objective-c-header -o %t %S/Inputs/arc.h");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -emit-pch -fblocks -triple x86_64-apple-darwin11 -fobjc-arc -x objective-c-header -o %t %S/Inputs/arc.h");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -fblocks -triple x86_64-apple-darwin11 -fobjc-arc -include-pch ${TEST_TEMP_DIR}/arc.m.tmp -fsyntax-only -emit-llvm-only ${LLVM_SRC}/llvm/tools/clang/test/PCH/arc.m
-    RUN(TestState.Failed, "%clang_cc1 -fblocks -triple x86_64-apple-darwin11 -fobjc-arc -include-pch %t -fsyntax-only -emit-llvm-only %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -fblocks -triple x86_64-apple-darwin11 -fobjc-arc -include-pch %t -fsyntax-only -emit-llvm-only %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -fblocks -triple x86_64-apple-darwin11 -include-pch ${TEST_TEMP_DIR}/arc.m.tmp -fsyntax-only -emit-llvm-only ${LLVM_SRC}/llvm/tools/clang/test/PCH/arc.m 2>&1 | ${LLVM_SRC}/build/bin/FileCheck '-check-prefix=CHECK-ERR1' ${LLVM_SRC}/llvm/tools/clang/test/PCH/arc.m
-    RUN(TestState.Failed, "not %clang_cc1 -fblocks -triple x86_64-apple-darwin11 -include-pch %t -fsyntax-only -emit-llvm-only %s 2>&1")./*|*/
+    RUN(JavaTestBase.TestState.Failed, "not %clang_cc1 -fblocks -triple x86_64-apple-darwin11 -include-pch %t -fsyntax-only -emit-llvm-only %s 2>&1")./*|*/
       I("FileCheck -check-prefix=CHECK-ERR1 %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -emit-pch -fblocks -triple x86_64-apple-darwin11 -x objective-c-header -o ${TEST_TEMP_DIR}/arc.m.tmp ${LLVM_SRC}/llvm/tools/clang/test/PCH/Inputs/arc.h
-    RUN(TestState.Failed, "%clang_cc1 -emit-pch -fblocks -triple x86_64-apple-darwin11 -x objective-c-header -o %t %S/Inputs/arc.h");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -emit-pch -fblocks -triple x86_64-apple-darwin11 -x objective-c-header -o %t %S/Inputs/arc.h");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -fblocks -triple x86_64-apple-darwin11 -fobjc-arc -include-pch ${TEST_TEMP_DIR}/arc.m.tmp -fsyntax-only -emit-llvm-only ${LLVM_SRC}/llvm/tools/clang/test/PCH/arc.m 2>&1 | ${LLVM_SRC}/build/bin/FileCheck '-check-prefix=CHECK-ERR2' ${LLVM_SRC}/llvm/tools/clang/test/PCH/arc.m
-    RUN(TestState.Failed, "not %clang_cc1 -fblocks -triple x86_64-apple-darwin11 -fobjc-arc -include-pch %t -fsyntax-only -emit-llvm-only %s 2>&1")./*|*/
+    RUN(JavaTestBase.TestState.Failed, "not %clang_cc1 -fblocks -triple x86_64-apple-darwin11 -fobjc-arc -include-pch %t -fsyntax-only -emit-llvm-only %s 2>&1")./*|*/
       I("FileCheck -check-prefix=CHECK-ERR2 %s");
   }
 
@@ -159,11 +156,11 @@ public class AllPCHTest extends DriverTestFileBase {
       return;
     }
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -triple i386-unknown-unknown -include ${LLVM_SRC}/llvm/tools/clang/test/PCH/asm.h -fsyntax-only -verify ${LLVM_SRC}/llvm/tools/clang/test/PCH/asm.c
-    RUN(TestState.Failed, "%clang_cc1 -triple i386-unknown-unknown -include %S/asm.h -fsyntax-only -verify %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -triple i386-unknown-unknown -include %S/asm.h -fsyntax-only -verify %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -triple i386-unknown-unknown -emit-pch -o ${TEST_TEMP_DIR}/asm.c.tmp ${LLVM_SRC}/llvm/tools/clang/test/PCH/asm.h
-    RUN(TestState.Failed, "%clang_cc1 -triple i386-unknown-unknown -emit-pch -o %t %S/asm.h");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -triple i386-unknown-unknown -emit-pch -o %t %S/asm.h");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -triple i386-unknown-unknown -include-pch ${TEST_TEMP_DIR}/asm.c.tmp -fsyntax-only -verify ${LLVM_SRC}/llvm/tools/clang/test/PCH/asm.c
-    RUN(TestState.Failed, "%clang_cc1 -triple i386-unknown-unknown -include-pch %t -fsyntax-only -verify %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -triple i386-unknown-unknown -include-pch %t -fsyntax-only -verify %s");
   }
 
   @Test
@@ -205,11 +202,11 @@ public class AllPCHTest extends DriverTestFileBase {
   public void test_blocks_c() throws Throwable {
     setTestFile("${LLVM_SRC}/llvm/tools/clang/test/PCH/blocks.c");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -fblocks -include ${LLVM_SRC}/llvm/tools/clang/test/PCH/blocks.h -fsyntax-only -emit-llvm -o - ${LLVM_SRC}/llvm/tools/clang/test/PCH/blocks.c
-    RUN(TestState.Failed, "%clang_cc1 -fblocks -include %S/blocks.h -fsyntax-only -emit-llvm -o - %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -fblocks -include %S/blocks.h -fsyntax-only -emit-llvm -o - %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -emit-pch -fblocks -o ${TEST_TEMP_DIR}/blocks.c.tmp ${LLVM_SRC}/llvm/tools/clang/test/PCH/blocks.h
-    RUN(TestState.Failed, "%clang_cc1 -emit-pch -fblocks -o %t %S/blocks.h");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -emit-pch -fblocks -o %t %S/blocks.h");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -fblocks -include-pch ${TEST_TEMP_DIR}/blocks.c.tmp -fsyntax-only -emit-llvm -o - ${LLVM_SRC}/llvm/tools/clang/test/PCH/blocks.c
-    RUN(TestState.Failed, "%clang_cc1 -fblocks -include-pch %t -fsyntax-only -emit-llvm -o - %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -fblocks -include-pch %t -fsyntax-only -emit-llvm -o - %s");
   }
 
   @Test
@@ -240,19 +237,19 @@ public class AllPCHTest extends DriverTestFileBase {
       return;
     }
     // cp ${LLVM_SRC}/llvm/tools/clang/test/PCH/Inputs/case-insensitive-include.h ${TEST_TEMP_DIR}
-    RUN(TestState.Failed, "cp %S/Inputs/case-insensitive-include.h %T");
+    RUN(JavaTestBase.TestState.Failed, "cp %S/Inputs/case-insensitive-include.h %T");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -Wno-nonportable-include-path -fsyntax-only ${LLVM_SRC}/llvm/tools/clang/test/PCH/case-insensitive-include.c -include ${LLVM_SRC}/llvm/tools/clang/test/PCH/case-insensitive-include.c -I ${TEST_TEMP_DIR} -verify
-    RUN(TestState.Failed, "%clang_cc1 -Wno-nonportable-include-path -fsyntax-only %s -include %s -I %T -verify");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -Wno-nonportable-include-path -fsyntax-only %s -include %s -I %T -verify");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -emit-pch -o ${TEST_TEMP_DIR}/case-insensitive-include.c.tmp.pch ${LLVM_SRC}/llvm/tools/clang/test/PCH/case-insensitive-include.c -I ${TEST_TEMP_DIR}
-    RUN(TestState.Failed, "%clang_cc1 -emit-pch -o %t.pch %s -I %T");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -emit-pch -o %t.pch %s -I %T");
     // cp ${TEST_TEMP_DIR}/case-insensitive-include.h ${TEST_TEMP_DIR}/case-insensitive-include.c.tmp.copy
-    RUN(TestState.Failed, "cp %T/case-insensitive-include.h %t.copy");
+    RUN(JavaTestBase.TestState.Failed, "cp %T/case-insensitive-include.h %t.copy");
     // touch -r ${TEST_TEMP_DIR}/case-insensitive-include.h ${TEST_TEMP_DIR}/case-insensitive-include.c.tmp.copy
-    RUN(TestState.Failed, "touch -r %T/case-insensitive-include.h %t.copy");
+    RUN(JavaTestBase.TestState.Failed, "touch -r %T/case-insensitive-include.h %t.copy");
     // mv ${TEST_TEMP_DIR}/case-insensitive-include.c.tmp.copy ${TEST_TEMP_DIR}/case-insensitive-include.h
-    RUN(TestState.Failed, "mv %t.copy %T/case-insensitive-include.h");
+    RUN(JavaTestBase.TestState.Failed, "mv %t.copy %T/case-insensitive-include.h");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -fsyntax-only ${LLVM_SRC}/llvm/tools/clang/test/PCH/case-insensitive-include.c -include-pch ${TEST_TEMP_DIR}/case-insensitive-include.c.tmp.pch -I ${TEST_TEMP_DIR} -verify
-    RUN(TestState.Failed, "%clang_cc1 -fsyntax-only %s -include-pch %t.pch -I %T -verify");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -fsyntax-only %s -include-pch %t.pch -I %T -verify");
   }
 
   @Test
@@ -261,7 +258,7 @@ public class AllPCHTest extends DriverTestFileBase {
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -fsyntax-only -verify -include ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-categories.m -include ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-categories.m ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-categories.m
     RUN("%clang_cc1 -fsyntax-only -verify -include %s -include %s %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -fsyntax-only -verify ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-categories.m -chain-include ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-categories.m -chain-include ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-categories.m
-    RUN(TestState.Failed, "%clang_cc1 -fsyntax-only -verify %s -chain-include %s -chain-include %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -fsyntax-only -verify %s -chain-include %s -chain-include %s");
   }
 
   @Test
@@ -270,7 +267,7 @@ public class AllPCHTest extends DriverTestFileBase {
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -fsyntax-only -verify -Wno-objc-root-class -include ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-categories2.m -include ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-categories2.m ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-categories2.m
     RUN("%clang_cc1 -fsyntax-only -verify -Wno-objc-root-class -include %s -include %s %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -fsyntax-only -verify -Wno-objc-root-class ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-categories2.m -chain-include ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-categories2.m -chain-include ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-categories2.m
-    RUN(TestState.Failed, "%clang_cc1 -fsyntax-only -verify -Wno-objc-root-class %s -chain-include %s -chain-include %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -fsyntax-only -verify -Wno-objc-root-class %s -chain-include %s -chain-include %s");
   }
 
   @Test
@@ -279,14 +276,14 @@ public class AllPCHTest extends DriverTestFileBase {
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -fsyntax-only -verify -triple x86_64-apple-darwin10 -fobjc-arc ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-class-extension.m -include ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-class-extension.m -include ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-class-extension.m
     RUN("%clang_cc1 -fsyntax-only -verify -triple x86_64-apple-darwin10 -fobjc-arc %s -include %s -include %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -fsyntax-only -verify -triple x86_64-apple-darwin10 -fobjc-arc ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-class-extension.m -chain-include ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-class-extension.m -chain-include ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-class-extension.m
-    RUN(TestState.Failed, "%clang_cc1 -fsyntax-only -verify -triple x86_64-apple-darwin10 -fobjc-arc %s -chain-include %s -chain-include %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -fsyntax-only -verify -triple x86_64-apple-darwin10 -fobjc-arc %s -chain-include %s -chain-include %s");
   }
 
   @Test
   public void test_chain_conversion_lookup_cpp() throws Throwable {
     setTestFile("${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-conversion-lookup.cpp");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-conversion-lookup.cpp -emit-llvm -o - -chain-include ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-conversion-lookup.cpp -chain-include ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-conversion-lookup.cpp
-    RUN(TestState.Failed, "%clang_cc1 %s -emit-llvm -o - -chain-include %s -chain-include %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 %s -emit-llvm -o - -chain-include %s -chain-include %s");
   }
 
   @Test
@@ -397,9 +394,9 @@ public class AllPCHTest extends DriverTestFileBase {
   public void test_chain_implicit_definition_cpp() throws Throwable {
     setTestFile("${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-implicit-definition.cpp");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -emit-llvm-only -include ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-implicit-definition.cpp -include ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-implicit-definition.cpp ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-implicit-definition.cpp
-    RUN(TestState.Failed, "%clang_cc1 -emit-llvm-only -include %s -include %s %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -emit-llvm-only -include %s -include %s %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -emit-llvm-only -chain-include ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-implicit-definition.cpp -chain-include ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-implicit-definition.cpp ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-implicit-definition.cpp
-    RUN(TestState.Failed, "%clang_cc1 -emit-llvm-only -chain-include %s -chain-include %s %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -emit-llvm-only -chain-include %s -chain-include %s %s");
   }
 
   @Test
@@ -451,22 +448,22 @@ public class AllPCHTest extends DriverTestFileBase {
   public void test_chain_openmp_threadprivate_cpp() throws Throwable {
     setTestFile("${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-openmp-threadprivate.cpp");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -fopenmp -fnoopenmp-use-tls -emit-llvm -include ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-openmp-threadprivate.cpp -include ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-openmp-threadprivate.cpp ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-openmp-threadprivate.cpp -o - | ${LLVM_SRC}/build/bin/FileCheck ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-openmp-threadprivate.cpp
-    RUN(TestState.Failed, "%clang_cc1 -fopenmp -fnoopenmp-use-tls -emit-llvm -include %s -include %s %s -o -")./*|*/
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -fopenmp -fnoopenmp-use-tls -emit-llvm -include %s -include %s %s -o -")./*|*/
       I("FileCheck %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -fopenmp -fnoopenmp-use-tls -emit-llvm -chain-include ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-openmp-threadprivate.cpp -chain-include ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-openmp-threadprivate.cpp ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-openmp-threadprivate.cpp -o - | ${LLVM_SRC}/build/bin/FileCheck ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-openmp-threadprivate.cpp
-    RUN(TestState.Failed, "%clang_cc1 -fopenmp -fnoopenmp-use-tls -emit-llvm -chain-include %s -chain-include %s %s -o -")./*|*/
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -fopenmp -fnoopenmp-use-tls -emit-llvm -chain-include %s -chain-include %s %s -o -")./*|*/
       I("FileCheck %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -fopenmp -emit-llvm -include ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-openmp-threadprivate.cpp -include ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-openmp-threadprivate.cpp ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-openmp-threadprivate.cpp -o - | ${LLVM_SRC}/build/bin/FileCheck ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-openmp-threadprivate.cpp '-check-prefix=CHECK-TLS-1'
-    RUN(TestState.Failed, "%clang_cc1 -fopenmp -emit-llvm -include %s -include %s %s -o -")./*|*/
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -fopenmp -emit-llvm -include %s -include %s %s -o -")./*|*/
       I("FileCheck %s -check-prefix=CHECK-TLS-1");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -fopenmp -emit-llvm -include ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-openmp-threadprivate.cpp -include ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-openmp-threadprivate.cpp ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-openmp-threadprivate.cpp -o - | ${LLVM_SRC}/build/bin/FileCheck ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-openmp-threadprivate.cpp '-check-prefix=CHECK-TLS-2'
-    RUN(TestState.Failed, "%clang_cc1 -fopenmp -emit-llvm -include %s -include %s %s -o -")./*|*/
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -fopenmp -emit-llvm -include %s -include %s %s -o -")./*|*/
       I("FileCheck %s -check-prefix=CHECK-TLS-2");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -fopenmp -emit-llvm -chain-include ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-openmp-threadprivate.cpp -chain-include ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-openmp-threadprivate.cpp ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-openmp-threadprivate.cpp -o - | ${LLVM_SRC}/build/bin/FileCheck ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-openmp-threadprivate.cpp '-check-prefix=CHECK-TLS-1'
-    RUN(TestState.Failed, "%clang_cc1 -fopenmp -emit-llvm -chain-include %s -chain-include %s %s -o -")./*|*/
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -fopenmp -emit-llvm -chain-include %s -chain-include %s %s -o -")./*|*/
       I("FileCheck %s -check-prefix=CHECK-TLS-1");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -fopenmp -emit-llvm -chain-include ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-openmp-threadprivate.cpp -chain-include ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-openmp-threadprivate.cpp ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-openmp-threadprivate.cpp -o - | ${LLVM_SRC}/build/bin/FileCheck ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-openmp-threadprivate.cpp '-check-prefix=CHECK-TLS-2'
-    RUN(TestState.Failed, "%clang_cc1 -fopenmp -emit-llvm -chain-include %s -chain-include %s %s -o -")./*|*/
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -fopenmp -emit-llvm -chain-include %s -chain-include %s %s -o -")./*|*/
       I("FileCheck %s -check-prefix=CHECK-TLS-2");
   }
 
@@ -474,7 +471,7 @@ public class AllPCHTest extends DriverTestFileBase {
   public void test_chain_pending_instantiations_cpp() throws Throwable {
     setTestFile("${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-pending-instantiations.cpp");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-pending-instantiations.cpp -emit-llvm -triple i686-pc-linux -o - -chain-include ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-pending-instantiations.cpp -chain-include ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-pending-instantiations.cpp | ${LLVM_SRC}/build/bin/FileCheck ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-pending-instantiations.cpp
-    RUN(TestState.Failed, "%clang_cc1 %s -emit-llvm -triple i686-pc-linux -o - -chain-include %s -chain-include %s")./*|*/
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 %s -emit-llvm -triple i686-pc-linux -o - -chain-include %s -chain-include %s")./*|*/
       I("FileCheck %s");
   }
 
@@ -507,11 +504,11 @@ public class AllPCHTest extends DriverTestFileBase {
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -fsyntax-only -verify -Wno-objc-root-class ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-selectors.m -Wselector -include ${LLVM_SRC}/llvm/tools/clang/test/PCH/Inputs/chain-selectors1.h -include ${LLVM_SRC}/llvm/tools/clang/test/PCH/Inputs/chain-selectors2.h
     RUN("%clang_cc1 -fsyntax-only -verify -Wno-objc-root-class %s -Wselector -include %S/Inputs/chain-selectors1.h -include %S/Inputs/chain-selectors2.h");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -x objective-c -Wno-objc-root-class -emit-pch -o ${TEST_TEMP_DIR}/chain-selectors.m.tmp1 ${LLVM_SRC}/llvm/tools/clang/test/PCH/Inputs/chain-selectors1.h
-    RUN(TestState.Failed, "%clang_cc1 -x objective-c -Wno-objc-root-class -emit-pch -o %t1 %S/Inputs/chain-selectors1.h");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -x objective-c -Wno-objc-root-class -emit-pch -o %t1 %S/Inputs/chain-selectors1.h");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -x objective-c -Wno-objc-root-class -emit-pch -o ${TEST_TEMP_DIR}/chain-selectors.m.tmp2 ${LLVM_SRC}/llvm/tools/clang/test/PCH/Inputs/chain-selectors2.h -include-pch ${TEST_TEMP_DIR}/chain-selectors.m.tmp1
-    RUN(TestState.Failed, "%clang_cc1 -x objective-c -Wno-objc-root-class -emit-pch -o %t2 %S/Inputs/chain-selectors2.h -include-pch %t1");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -x objective-c -Wno-objc-root-class -emit-pch -o %t2 %S/Inputs/chain-selectors2.h -include-pch %t1");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -fsyntax-only -verify -Wno-objc-root-class ${LLVM_SRC}/llvm/tools/clang/test/PCH/chain-selectors.m -Wselector -include-pch ${TEST_TEMP_DIR}/chain-selectors.m.tmp2
-    RUN(TestState.Failed, "%clang_cc1 -fsyntax-only -verify -Wno-objc-root-class %s -Wselector -include-pch %t2");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -fsyntax-only -verify -Wno-objc-root-class %s -Wselector -include-pch %t2");
   }
 
   @Test
@@ -547,39 +544,39 @@ public class AllPCHTest extends DriverTestFileBase {
   public void test_changed_files_c() throws Throwable {
     setTestFile("${LLVM_SRC}/llvm/tools/clang/test/PCH/changed-files.c");
     // false
-    RUN(TestState.Failed, "false");
+    RUN(JavaTestBase.TestState.Failed, "false");
     // echo '#define m0 ""' > ${TEST_TEMP_DIR}/changed-files.c.tmp.h
-    RUN(TestState.Failed, "echo '#define m0 \"\"' > %t.h");
+    RUN(JavaTestBase.TestState.Failed, "echo '#define m0 \"\"' > %t.h");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -emit-pch -o ${TEST_TEMP_DIR}/changed-files.c.tmp.h.pch ${TEST_TEMP_DIR}/changed-files.c.tmp.h
-    RUN(TestState.Failed, "%clang_cc1 -emit-pch -o %t.h.pch %t.h");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -emit-pch -o %t.h.pch %t.h");
     // echo > ${TEST_TEMP_DIR}/changed-files.c.tmp.h
-    RUN(TestState.Failed, "echo '' > %t.h");
+    RUN(JavaTestBase.TestState.Failed, "echo '' > %t.h");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -include-pch ${TEST_TEMP_DIR}/changed-files.c.tmp.h.pch ${LLVM_SRC}/llvm/tools/clang/test/PCH/changed-files.c 2> ${TEST_TEMP_DIR}/changed-files.c.tmp.stderr
-    RUN(TestState.Failed, "not %clang_cc1 -include-pch %t.h.pch %s 2> %t.stderr");
+    RUN(JavaTestBase.TestState.Failed, "not %clang_cc1 -include-pch %t.h.pch %s 2> %t.stderr");
     // grep modified ${TEST_TEMP_DIR}/changed-files.c.tmp.stderr
-    RUN(TestState.Failed, "grep \"modified\" %t.stderr");
+    RUN(JavaTestBase.TestState.Failed, "grep \"modified\" %t.stderr");
     // echo '#define m0 000' > ${TEST_TEMP_DIR}/changed-files.c.tmp.h
-    RUN(TestState.Failed, "echo '#define m0 000' > %t.h");
+    RUN(JavaTestBase.TestState.Failed, "echo '#define m0 000' > %t.h");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -emit-pch -o ${TEST_TEMP_DIR}/changed-files.c.tmp.h.pch ${TEST_TEMP_DIR}/changed-files.c.tmp.h
-    RUN(TestState.Failed, "%clang_cc1 -emit-pch -o %t.h.pch %t.h");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -emit-pch -o %t.h.pch %t.h");
     // echo > ${TEST_TEMP_DIR}/changed-files.c.tmp.h
-    RUN(TestState.Failed, "echo '' > %t.h");
+    RUN(JavaTestBase.TestState.Failed, "echo '' > %t.h");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -include-pch ${TEST_TEMP_DIR}/changed-files.c.tmp.h.pch ${LLVM_SRC}/llvm/tools/clang/test/PCH/changed-files.c 2> ${TEST_TEMP_DIR}/changed-files.c.tmp.stderr
-    RUN(TestState.Failed, "not %clang_cc1 -include-pch %t.h.pch %s 2> %t.stderr");
+    RUN(JavaTestBase.TestState.Failed, "not %clang_cc1 -include-pch %t.h.pch %s 2> %t.stderr");
     // grep modified ${TEST_TEMP_DIR}/changed-files.c.tmp.stderr
-    RUN(TestState.Failed, "grep \"modified\" %t.stderr");
+    RUN(JavaTestBase.TestState.Failed, "grep \"modified\" %t.stderr");
     // echo '#define m0 000' > ${TEST_TEMP_DIR}/changed-files.c.tmp.h
-    RUN(TestState.Failed, "echo '#define m0 000' > %t.h");
+    RUN(JavaTestBase.TestState.Failed, "echo '#define m0 000' > %t.h");
     // echo "#define m1 'abcd'" >> ${TEST_TEMP_DIR}/changed-files.c.tmp.h
-    RUN(TestState.Failed, "echo \"#define m1 'abcd'\" >> %t.h");
+    RUN(JavaTestBase.TestState.Failed, "echo \"#define m1 'abcd'\" >> %t.h");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -emit-pch -o ${TEST_TEMP_DIR}/changed-files.c.tmp.h.pch ${TEST_TEMP_DIR}/changed-files.c.tmp.h
-    RUN(TestState.Failed, "%clang_cc1 -emit-pch -o %t.h.pch %t.h");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -emit-pch -o %t.h.pch %t.h");
     // echo > ${TEST_TEMP_DIR}/changed-files.c.tmp.h
-    RUN(TestState.Failed, "echo '' > %t.h");
+    RUN(JavaTestBase.TestState.Failed, "echo '' > %t.h");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -include-pch ${TEST_TEMP_DIR}/changed-files.c.tmp.h.pch ${LLVM_SRC}/llvm/tools/clang/test/PCH/changed-files.c 2> ${TEST_TEMP_DIR}/changed-files.c.tmp.stderr
-    RUN(TestState.Failed, "not %clang_cc1 -include-pch %t.h.pch %s 2> %t.stderr");
+    RUN(JavaTestBase.TestState.Failed, "not %clang_cc1 -include-pch %t.h.pch %s 2> %t.stderr");
     // grep modified ${TEST_TEMP_DIR}/changed-files.c.tmp.stderr
-    RUN(TestState.Failed, "grep \"modified\" %t.stderr");
+    RUN(JavaTestBase.TestState.Failed, "grep \"modified\" %t.stderr");
   }
 
   @Test
@@ -643,7 +640,7 @@ public class AllPCHTest extends DriverTestFileBase {
   public void test_cxx_chain_function_template_cpp() throws Throwable {
     setTestFile("${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-chain-function-template.cpp");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -chain-include ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-chain-function-template.cpp -chain-include ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-chain-function-template.cpp -fsyntax-only ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-chain-function-template.cpp
-    RUN(TestState.Failed, "%clang_cc1 -chain-include %s -chain-include %s -fsyntax-only %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -chain-include %s -chain-include %s -fsyntax-only %s");
   }
 
   @Test
@@ -688,11 +685,11 @@ public class AllPCHTest extends DriverTestFileBase {
   public void test_cxx_for_range_cpp() throws Throwable {
     setTestFile("${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-for-range.cpp");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -x c++ '-std=c++11' -include ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-for-range.h -fsyntax-only -emit-llvm -o - ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-for-range.cpp
-    RUN(TestState.Failed, "%clang_cc1 -x c++ -std=c++11 -include %S/cxx-for-range.h -fsyntax-only -emit-llvm -o - %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -x c++ -std=c++11 -include %S/cxx-for-range.h -fsyntax-only -emit-llvm -o - %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -x c++ '-std=c++11' -emit-pch -o ${TEST_TEMP_DIR}/cxx-for-range.cpp.tmp ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-for-range.h
-    RUN(TestState.Failed, "%clang_cc1 -x c++ -std=c++11 -emit-pch -o %t %S/cxx-for-range.h");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -x c++ -std=c++11 -emit-pch -o %t %S/cxx-for-range.h");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -x c++ '-std=c++11' -include-pch ${TEST_TEMP_DIR}/cxx-for-range.cpp.tmp -fsyntax-only -emit-llvm -o - ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-for-range.cpp
-    RUN(TestState.Failed, "%clang_cc1 -x c++ -std=c++11 -include-pch %t -fsyntax-only -emit-llvm -o - %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -x c++ -std=c++11 -include-pch %t -fsyntax-only -emit-llvm -o - %s");
   }
 
   @Test
@@ -701,13 +698,13 @@ public class AllPCHTest extends DriverTestFileBase {
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -include ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-friends.h -fsyntax-only -verify ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-friends.cpp
     RUN("%clang_cc1 -include %S/cxx-friends.h -fsyntax-only -verify %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -x c++-header -emit-pch -o ${TEST_TEMP_DIR}/cxx-friends.cpp.tmp ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-friends.h
-    RUN(TestState.Failed, "%clang_cc1 -x c++-header -emit-pch -o %t %S/cxx-friends.h");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -x c++-header -emit-pch -o %t %S/cxx-friends.h");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -include-pch ${TEST_TEMP_DIR}/cxx-friends.cpp.tmp -fsyntax-only -verify ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-friends.cpp -error-on-deserialized-decl doNotDeserialize
-    RUN(TestState.Failed, "%clang_cc1 -include-pch %t -fsyntax-only -verify %s -error-on-deserialized-decl doNotDeserialize");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -include-pch %t -fsyntax-only -verify %s -error-on-deserialized-decl doNotDeserialize");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -x c++-header -emit-pch -o ${TEST_TEMP_DIR}/cxx-friends.cpp.tmp ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-friends.h -fmodules
-    RUN(TestState.Failed, "%clang_cc1 -x c++-header -emit-pch -o %t %S/cxx-friends.h -fmodules");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -x c++-header -emit-pch -o %t %S/cxx-friends.h -fmodules");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -include-pch ${TEST_TEMP_DIR}/cxx-friends.cpp.tmp -fsyntax-only -verify ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-friends.cpp -error-on-deserialized-decl doNotDeserialize -fmodules
-    RUN(TestState.Failed, "%clang_cc1 -include-pch %t -fsyntax-only -verify %s -error-on-deserialized-decl doNotDeserialize -fmodules");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -include-pch %t -fsyntax-only -verify %s -error-on-deserialized-decl doNotDeserialize -fmodules");
   }
 
   @Test
@@ -734,23 +731,23 @@ public class AllPCHTest extends DriverTestFileBase {
   public void test_cxx_key_functions_cpp() throws Throwable {
     setTestFile("${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-key-functions.cpp");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -x c++ -include ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-key-functions.cpp -emit-llvm-only ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-key-functions.cpp
-    RUN(TestState.Failed, "%clang_cc1 -x c++ -include %s -emit-llvm-only %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -x c++ -include %s -emit-llvm-only %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -x c++ -emit-pch ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-key-functions.cpp -o ${TEST_TEMP_DIR}/cxx-key-functions.cpp.tmp
-    RUN(TestState.Failed, "%clang_cc1 -x c++ -emit-pch %s -o %t");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -x c++ -emit-pch %s -o %t");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -include-pch ${TEST_TEMP_DIR}/cxx-key-functions.cpp.tmp -emit-llvm-only ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-key-functions.cpp
-    RUN(TestState.Failed, "%clang_cc1 -include-pch %t -emit-llvm-only %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -include-pch %t -emit-llvm-only %s");
   }
 
   @Test
   public void test_cxx_mangling_cpp() throws Throwable {
     setTestFile("${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-mangling.cpp");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc '-std=c++11' -triple i386-pc-solaris2.11 -fcxx-exceptions -fexceptions -include ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-mangling.cpp ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-mangling.cpp -emit-llvm -o - | ${LLVM_SRC}/build/bin/FileCheck ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-mangling.cpp
-    RUN(TestState.Failed, "%clang_cc1 -std=c++11 -triple %itanium_abi_triple -fcxx-exceptions -fexceptions -include %s %s -emit-llvm -o -")./*|*/
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -std=c++11 -triple %itanium_abi_triple -fcxx-exceptions -fexceptions -include %s %s -emit-llvm -o -")./*|*/
       I("FileCheck %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc '-std=c++11' -triple i386-pc-solaris2.11 -fcxx-exceptions -fexceptions -x c++-header ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-mangling.cpp -emit-pch -o ${TEST_TEMP_DIR}/cxx-mangling.cpp.tmp
-    RUN(TestState.Failed, "%clang_cc1 -std=c++11 -triple %itanium_abi_triple -fcxx-exceptions -fexceptions -x c++-header %s -emit-pch -o %t");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -std=c++11 -triple %itanium_abi_triple -fcxx-exceptions -fexceptions -x c++-header %s -emit-pch -o %t");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc '-std=c++11' -triple i386-pc-solaris2.11 -fcxx-exceptions -fexceptions -include-pch ${TEST_TEMP_DIR}/cxx-mangling.cpp.tmp ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-mangling.cpp -emit-llvm -o - | ${LLVM_SRC}/build/bin/FileCheck ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-mangling.cpp
-    RUN(TestState.Failed, "%clang_cc1 -std=c++11 -triple %itanium_abi_triple -fcxx-exceptions -fexceptions -include-pch %t %s -emit-llvm -o -")./*|*/
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -std=c++11 -triple %itanium_abi_triple -fcxx-exceptions -fexceptions -include-pch %t %s -emit-llvm -o -")./*|*/
       I("FileCheck %s");
   }
 
@@ -758,11 +755,11 @@ public class AllPCHTest extends DriverTestFileBase {
   public void test_cxx_member_init_cpp() throws Throwable {
     setTestFile("${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-member-init.cpp");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -x c++ '-std=c++11' -DHEADER -DSOURCE -fsyntax-only -emit-llvm -o - ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-member-init.cpp
-    RUN(TestState.Failed, "%clang_cc1 -x c++ -std=c++11 -DHEADER -DSOURCE -fsyntax-only -emit-llvm -o - %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -x c++ -std=c++11 -DHEADER -DSOURCE -fsyntax-only -emit-llvm -o - %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -x c++ '-std=c++11' -DHEADER -emit-pch -o ${TEST_TEMP_DIR}/cxx-member-init.cpp.tmp ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-member-init.cpp
-    RUN(TestState.Failed, "%clang_cc1 -x c++ -std=c++11 -DHEADER -emit-pch -o %t %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -x c++ -std=c++11 -DHEADER -emit-pch -o %t %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -x c++ '-std=c++11' -DHEADER -include-pch ${TEST_TEMP_DIR}/cxx-member-init.cpp.tmp -fsyntax-only -emit-llvm -o - ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-member-init.cpp
-    RUN(TestState.Failed, "%clang_cc1 -x c++ -std=c++11 -DHEADER -include-pch %t -fsyntax-only -emit-llvm -o - %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -x c++ -std=c++11 -DHEADER -include-pch %t -fsyntax-only -emit-llvm -o - %s");
   }
 
   @Test
@@ -834,12 +831,12 @@ public class AllPCHTest extends DriverTestFileBase {
   public void test_cxx_required_decls_cpp() throws Throwable {
     setTestFile("${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-required-decls.cpp");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -include ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-required-decls.h ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-required-decls.cpp -triple i386-pc-solaris2.11 -emit-llvm -o - | ${LLVM_SRC}/build/bin/FileCheck ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-required-decls.cpp
-    RUN(TestState.Failed, "%clang_cc1 -include %S/cxx-required-decls.h %s -triple %itanium_abi_triple -emit-llvm -o -")./*|*/
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -include %S/cxx-required-decls.h %s -triple %itanium_abi_triple -emit-llvm -o -")./*|*/
       I("FileCheck %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -x c++-header -triple i386-pc-solaris2.11 -emit-pch -o ${TEST_TEMP_DIR}/cxx-required-decls.cpp.tmp ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-required-decls.h
-    RUN(TestState.Failed, "%clang_cc1 -x c++-header -triple %itanium_abi_triple -emit-pch -o %t %S/cxx-required-decls.h");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -x c++-header -triple %itanium_abi_triple -emit-pch -o %t %S/cxx-required-decls.h");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -include-pch ${TEST_TEMP_DIR}/cxx-required-decls.cpp.tmp ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-required-decls.cpp -triple i386-pc-solaris2.11 -emit-llvm -o - | ${LLVM_SRC}/build/bin/FileCheck ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-required-decls.cpp
-    RUN(TestState.Failed, "%clang_cc1 -include-pch %t %s -triple %itanium_abi_triple -emit-llvm -o -")./*|*/
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -include-pch %t %s -triple %itanium_abi_triple -emit-llvm -o -")./*|*/
       I("FileCheck %s");
   }
 
@@ -858,30 +855,30 @@ public class AllPCHTest extends DriverTestFileBase {
   public void test_cxx_templates_cpp() throws Throwable {
     setTestFile("${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-templates.cpp");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc '-std=c++11' -triple i386-pc-solaris2.11 -fcxx-exceptions -fexceptions -include ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-templates.h -verify ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-templates.cpp -ast-dump -o -
-    RUN(TestState.Failed, "%clang_cc1 -std=c++11 -triple %itanium_abi_triple -fcxx-exceptions -fexceptions -include %S/cxx-templates.h -verify %s -ast-dump -o -");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -std=c++11 -triple %itanium_abi_triple -fcxx-exceptions -fexceptions -include %S/cxx-templates.h -verify %s -ast-dump -o -");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc '-std=c++11' -triple i386-pc-solaris2.11 -fcxx-exceptions -fexceptions -include ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-templates.h ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-templates.cpp -emit-llvm -o - -DNO_ERRORS | ${LLVM_SRC}/build/bin/FileCheck ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-templates.cpp
-    RUN(TestState.Failed, "%clang_cc1 -std=c++11 -triple %itanium_abi_triple -fcxx-exceptions -fexceptions -include %S/cxx-templates.h %s -emit-llvm -o - -DNO_ERRORS")./*|*/
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -std=c++11 -triple %itanium_abi_triple -fcxx-exceptions -fexceptions -include %S/cxx-templates.h %s -emit-llvm -o - -DNO_ERRORS")./*|*/
       I("FileCheck %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc '-std=c++11' -triple i386-pc-solaris2.11 -fcxx-exceptions -fexceptions -x c++-header -emit-pch -o ${TEST_TEMP_DIR}/cxx-templates.cpp.tmp ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-templates.h
-    RUN(TestState.Failed, "%clang_cc1 -std=c++11 -triple %itanium_abi_triple -fcxx-exceptions -fexceptions -x c++-header -emit-pch -o %t %S/cxx-templates.h");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -std=c++11 -triple %itanium_abi_triple -fcxx-exceptions -fexceptions -x c++-header -emit-pch -o %t %S/cxx-templates.h");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc '-std=c++11' -triple i386-pc-solaris2.11 -fcxx-exceptions -fexceptions -include-pch ${TEST_TEMP_DIR}/cxx-templates.cpp.tmp -verify ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-templates.cpp -ast-dump -o -
-    RUN(TestState.Failed, "%clang_cc1 -std=c++11 -triple %itanium_abi_triple -fcxx-exceptions -fexceptions -include-pch %t -verify %s -ast-dump  -o -");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -std=c++11 -triple %itanium_abi_triple -fcxx-exceptions -fexceptions -include-pch %t -verify %s -ast-dump  -o -");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc '-std=c++11' -triple i386-pc-solaris2.11 -fcxx-exceptions -fexceptions -include-pch ${TEST_TEMP_DIR}/cxx-templates.cpp.tmp ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-templates.cpp -emit-llvm -o - -error-on-deserialized-decl doNotDeserialize -DNO_ERRORS | ${LLVM_SRC}/build/bin/FileCheck ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-templates.cpp
-    RUN(TestState.Failed, "%clang_cc1 -std=c++11 -triple %itanium_abi_triple -fcxx-exceptions -fexceptions -include-pch %t %s -emit-llvm -o - -error-on-deserialized-decl doNotDeserialize -DNO_ERRORS")./*|*/
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -std=c++11 -triple %itanium_abi_triple -fcxx-exceptions -fexceptions -include-pch %t %s -emit-llvm -o - -error-on-deserialized-decl doNotDeserialize -DNO_ERRORS")./*|*/
       I("FileCheck %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc '-std=c++11' -triple i386-pc-solaris2.11 -fcxx-exceptions -fexceptions -fmodules -x c++-header -emit-pch -o ${TEST_TEMP_DIR}/cxx-templates.cpp.tmp ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-templates.h
-    RUN(TestState.Failed, "%clang_cc1 -std=c++11 -triple %itanium_abi_triple -fcxx-exceptions -fexceptions -fmodules -x c++-header -emit-pch -o %t %S/cxx-templates.h");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -std=c++11 -triple %itanium_abi_triple -fcxx-exceptions -fexceptions -fmodules -x c++-header -emit-pch -o %t %S/cxx-templates.h");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc '-std=c++11' -triple i386-pc-solaris2.11 -fcxx-exceptions -fexceptions -fmodules -include-pch ${TEST_TEMP_DIR}/cxx-templates.cpp.tmp -verify ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-templates.cpp -ast-dump -o -
-    RUN(TestState.Failed, "%clang_cc1 -std=c++11 -triple %itanium_abi_triple -fcxx-exceptions -fexceptions -fmodules -include-pch %t -verify %s -ast-dump  -o -");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -std=c++11 -triple %itanium_abi_triple -fcxx-exceptions -fexceptions -fmodules -include-pch %t -verify %s -ast-dump  -o -");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc '-std=c++11' -triple i386-pc-solaris2.11 -fcxx-exceptions -fexceptions -fmodules -include-pch ${TEST_TEMP_DIR}/cxx-templates.cpp.tmp ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-templates.cpp -emit-llvm -o - -error-on-deserialized-decl doNotDeserialize -DNO_ERRORS '-fmodules-ignore-macro=NO_ERRORS' | ${LLVM_SRC}/build/bin/FileCheck ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-templates.cpp
-    RUN(TestState.Failed, "%clang_cc1 -std=c++11 -triple %itanium_abi_triple -fcxx-exceptions -fexceptions -fmodules -include-pch %t %s -emit-llvm -o - -error-on-deserialized-decl doNotDeserialize -DNO_ERRORS -fmodules-ignore-macro=NO_ERRORS")./*|*/
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -std=c++11 -triple %itanium_abi_triple -fcxx-exceptions -fexceptions -fmodules -include-pch %t %s -emit-llvm -o - -error-on-deserialized-decl doNotDeserialize -DNO_ERRORS -fmodules-ignore-macro=NO_ERRORS")./*|*/
       I("FileCheck %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc '-std=c++11' -triple i386-pc-solaris2.11 -fcxx-exceptions -fdelayed-template-parsing -fexceptions -x c++-header -emit-pch -o ${TEST_TEMP_DIR}/cxx-templates.cpp.tmp ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-templates.h
-    RUN(TestState.Failed, "%clang_cc1 -std=c++11 -triple %itanium_abi_triple -fcxx-exceptions -fdelayed-template-parsing -fexceptions -x c++-header -emit-pch -o %t %S/cxx-templates.h");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -std=c++11 -triple %itanium_abi_triple -fcxx-exceptions -fdelayed-template-parsing -fexceptions -x c++-header -emit-pch -o %t %S/cxx-templates.h");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc '-std=c++11' -triple i386-pc-solaris2.11 -fcxx-exceptions -fdelayed-template-parsing -fexceptions -include-pch ${TEST_TEMP_DIR}/cxx-templates.cpp.tmp -verify ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-templates.cpp -ast-dump -o -
-    RUN(TestState.Failed, "%clang_cc1 -std=c++11 -triple %itanium_abi_triple -fcxx-exceptions -fdelayed-template-parsing -fexceptions -include-pch %t -verify %s -ast-dump  -o -");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -std=c++11 -triple %itanium_abi_triple -fcxx-exceptions -fdelayed-template-parsing -fexceptions -include-pch %t -verify %s -ast-dump  -o -");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc '-std=c++11' -triple i386-pc-solaris2.11 -fcxx-exceptions -fdelayed-template-parsing -fexceptions -include-pch ${TEST_TEMP_DIR}/cxx-templates.cpp.tmp ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-templates.cpp -emit-llvm -o - -DNO_ERRORS | ${LLVM_SRC}/build/bin/FileCheck ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-templates.cpp
-    RUN(TestState.Failed, "%clang_cc1 -std=c++11 -triple %itanium_abi_triple -fcxx-exceptions -fdelayed-template-parsing -fexceptions -include-pch %t %s -emit-llvm -o - -DNO_ERRORS")./*|*/
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -std=c++11 -triple %itanium_abi_triple -fcxx-exceptions -fdelayed-template-parsing -fexceptions -include-pch %t %s -emit-llvm -o - -DNO_ERRORS")./*|*/
       I("FileCheck %s");
   }
 
@@ -933,14 +930,14 @@ public class AllPCHTest extends DriverTestFileBase {
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc '-std=c++11' -include ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-variadic-templates.h -verify ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-variadic-templates.cpp -ast-dump -o -
     RUN("%clang_cc1 -std=c++11 -include %S/cxx-variadic-templates.h -verify %s -ast-dump -o -");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc '-std=c++11' -include ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-variadic-templates.h ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-variadic-templates.cpp -emit-llvm -o - | ${LLVM_SRC}/build/bin/FileCheck ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-variadic-templates.cpp
-    RUN(TestState.Failed, "%clang_cc1 -std=c++11 -include %S/cxx-variadic-templates.h %s -emit-llvm -o -")./*|*/
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -std=c++11 -include %S/cxx-variadic-templates.h %s -emit-llvm -o -")./*|*/
       I("FileCheck %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc '-std=c++11' -x c++-header -emit-pch -o ${TEST_TEMP_DIR}/cxx-variadic-templates.cpp.tmp ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-variadic-templates.h
-    RUN(TestState.Failed, "%clang_cc1 -std=c++11 -x c++-header -emit-pch -o %t %S/cxx-variadic-templates.h");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -std=c++11 -x c++-header -emit-pch -o %t %S/cxx-variadic-templates.h");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc '-std=c++11' -include-pch ${TEST_TEMP_DIR}/cxx-variadic-templates.cpp.tmp -verify ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-variadic-templates.cpp -ast-dump -o -
-    RUN(TestState.Failed, "%clang_cc1 -std=c++11 -include-pch %t -verify %s -ast-dump  -o -");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -std=c++11 -include-pch %t -verify %s -ast-dump  -o -");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc '-std=c++11' -include-pch ${TEST_TEMP_DIR}/cxx-variadic-templates.cpp.tmp ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-variadic-templates.cpp -emit-llvm -o - | ${LLVM_SRC}/build/bin/FileCheck ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx-variadic-templates.cpp
-    RUN(TestState.Failed, "%clang_cc1 -std=c++11 -include-pch %t %s -emit-llvm -o -")./*|*/
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -std=c++11 -include-pch %t %s -emit-llvm -o -")./*|*/
       I("FileCheck %s");
   }
 
@@ -999,13 +996,13 @@ public class AllPCHTest extends DriverTestFileBase {
   public void test_cxx11_exception_spec_cpp() throws Throwable {
     setTestFile("${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx11-exception-spec.cpp");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -pedantic-errors '-std=c++11' -emit-pch ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx11-exception-spec.cpp -o ${TEST_TEMP_DIR}/cxx11-exception-spec.cpp.tmp.1
-    RUN(TestState.Failed, "%clang_cc1 -pedantic-errors -std=c++11 -emit-pch %s -o %t.1");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -pedantic-errors -std=c++11 -emit-pch %s -o %t.1");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -pedantic-errors '-std=c++11' -include-pch ${TEST_TEMP_DIR}/cxx11-exception-spec.cpp.tmp.1 -emit-pch ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx11-exception-spec.cpp -o ${TEST_TEMP_DIR}/cxx11-exception-spec.cpp.tmp.2
-    RUN(TestState.Failed, "%clang_cc1 -pedantic-errors -std=c++11 -include-pch %t.1 -emit-pch %s -o %t.2");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -pedantic-errors -std=c++11 -include-pch %t.1 -emit-pch %s -o %t.2");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -pedantic-errors '-std=c++11' -include-pch ${TEST_TEMP_DIR}/cxx11-exception-spec.cpp.tmp.2 -verify ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx11-exception-spec.cpp
-    RUN(TestState.Failed, "%clang_cc1 -pedantic-errors -std=c++11 -include-pch %t.2 -verify %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -pedantic-errors -std=c++11 -include-pch %t.2 -verify %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -pedantic-errors '-std=c++11' -include-pch ${TEST_TEMP_DIR}/cxx11-exception-spec.cpp.tmp.2 -emit-llvm-only ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx11-exception-spec.cpp
-    RUN(TestState.Failed, "%clang_cc1 -pedantic-errors -std=c++11 -include-pch %t.2 -emit-llvm-only %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -pedantic-errors -std=c++11 -include-pch %t.2 -emit-llvm-only %s");
   }
 
   @Test
@@ -1137,9 +1134,9 @@ public class AllPCHTest extends DriverTestFileBase {
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -fcxx-exceptions -fexceptions -include ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx_exprs.h '-std=c++11' -fsyntax-only -verify ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx_exprs.cpp -ast-dump
     RUN("%clang_cc1 -fcxx-exceptions -fexceptions -include %S/cxx_exprs.h -std=c++11 -fsyntax-only -verify %s -ast-dump");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -fcxx-exceptions -fexceptions -x c++-header '-std=c++11' -emit-pch -o ${TEST_TEMP_DIR}/cxx_exprs.cpp.tmp ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx_exprs.h
-    RUN(TestState.Failed, "%clang_cc1 -fcxx-exceptions -fexceptions -x c++-header -std=c++11 -emit-pch -o %t %S/cxx_exprs.h");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -fcxx-exceptions -fexceptions -x c++-header -std=c++11 -emit-pch -o %t %S/cxx_exprs.h");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -fcxx-exceptions -fexceptions '-std=c++11' -include-pch ${TEST_TEMP_DIR}/cxx_exprs.cpp.tmp -fsyntax-only -verify ${LLVM_SRC}/llvm/tools/clang/test/PCH/cxx_exprs.cpp -ast-dump
-    RUN(TestState.Failed, "%clang_cc1 -fcxx-exceptions -fexceptions -std=c++11 -include-pch %t -fsyntax-only -verify %s -ast-dump");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -fcxx-exceptions -fexceptions -std=c++11 -include-pch %t -fsyntax-only -verify %s -ast-dump");
   }
 
   @Test
@@ -1154,9 +1151,9 @@ public class AllPCHTest extends DriverTestFileBase {
   public void test_debug_info_limited_struct_c() throws Throwable {
     setTestFile("${LLVM_SRC}/llvm/tools/clang/test/PCH/debug-info-limited-struct.c");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -emit-pch -o ${TEST_TEMP_DIR}/debug-info-limited-struct.c.tmp ${LLVM_SRC}/llvm/tools/clang/test/PCH/debug-info-limited-struct.h
-    RUN(TestState.Failed, "%clang_cc1 -emit-pch -o %t %S/debug-info-limited-struct.h");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -emit-pch -o %t %S/debug-info-limited-struct.h");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -include-pch ${TEST_TEMP_DIR}/debug-info-limited-struct.c.tmp -emit-llvm ${LLVM_SRC}/llvm/tools/clang/test/PCH/debug-info-limited-struct.c '-debug-info-kind=limited' -o - | ${LLVM_SRC}/build/bin/FileCheck ${LLVM_SRC}/llvm/tools/clang/test/PCH/debug-info-limited-struct.c
-    RUN(TestState.Failed, "%clang_cc1 -include-pch %t -emit-llvm %s -debug-info-kind=limited -o -")./*|*/
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -include-pch %t -emit-llvm %s -debug-info-kind=limited -o -")./*|*/
       I("FileCheck %s");
   }
 
@@ -1168,33 +1165,33 @@ public class AllPCHTest extends DriverTestFileBase {
       return;
     }
     // rm -rf ${TEST_TEMP_DIR}/debug-info-pch-path.c.tmp
-    RUN(TestState.Failed, "rm -rf %t");
+    RUN(JavaTestBase.TestState.Failed, "rm -rf %t");
     // mkdir ${TEST_TEMP_DIR}/debug-info-pch-path.c.tmp
-    RUN(TestState.Failed, "mkdir %t");
+    RUN(JavaTestBase.TestState.Failed, "mkdir %t");
     // cd ${TEST_TEMP_DIR}/debug-info-pch-path.c.tmp
-    RUN(TestState.Failed, "cd %t");
+    RUN(JavaTestBase.TestState.Failed, "cd %t");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc '-fmodule-format=obj' -emit-pch -triple i386-pc-solaris2.11 -o prefix.pch ${LLVM_SRC}/llvm/tools/clang/test/PCH/debug-info-limited-struct.h
-    RUN(TestState.Failed, "%clang_cc1 -fmodule-format=obj -emit-pch -triple %itanium_abi_triple -o prefix.pch %S/debug-info-limited-struct.h");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -fmodule-format=obj -emit-pch -triple %itanium_abi_triple -o prefix.pch %S/debug-info-limited-struct.h");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc '-debug-info-kind=standalone' -dwarf-ext-refs '-fmodule-format=obj' -triple i386-pc-solaris2.11 -include-pch prefix.pch ${LLVM_SRC}/llvm/tools/clang/test/PCH/debug-info-pch-path.c -emit-llvm -o ${TEST_TEMP_DIR}/debug-info-pch-path.c.tmp.nodir.ll ${LLVM_SRC}/llvm/tools/clang/test/PCH/debug-info-pch-path.c
-    RUN(TestState.Failed, "%clang_cc1 -debug-info-kind=standalone -dwarf-ext-refs -fmodule-format=obj -triple %itanium_abi_triple -include-pch prefix.pch %s -emit-llvm -o %t.nodir.ll %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -debug-info-kind=standalone -dwarf-ext-refs -fmodule-format=obj -triple %itanium_abi_triple -include-pch prefix.pch %s -emit-llvm -o %t.nodir.ll %s");
     // cat ${TEST_TEMP_DIR}/debug-info-pch-path.c.tmp.nodir.ll | ${LLVM_SRC}/build/bin/FileCheck ${LLVM_SRC}/llvm/tools/clang/test/PCH/debug-info-pch-path.c '--check-prefix=CHECK-REL-NODIR'
-    RUN(TestState.Failed, "cat %t.nodir.ll")./*|*/
+    RUN(JavaTestBase.TestState.Failed, "cat %t.nodir.ll")./*|*/
       I("FileCheck %s --check-prefix=CHECK-REL-NODIR");
     // mkdir pchdir
-    RUN(TestState.Failed, "mkdir pchdir");
+    RUN(JavaTestBase.TestState.Failed, "mkdir pchdir");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc '-fmodule-format=obj' -emit-pch -triple i386-pc-solaris2.11 -o pchdir/prefix.pch ${LLVM_SRC}/llvm/tools/clang/test/PCH/debug-info-limited-struct.h
-    RUN(TestState.Failed, "%clang_cc1 -fmodule-format=obj -emit-pch -triple %itanium_abi_triple -o pchdir/prefix.pch %S/debug-info-limited-struct.h");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -fmodule-format=obj -emit-pch -triple %itanium_abi_triple -o pchdir/prefix.pch %S/debug-info-limited-struct.h");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc '-debug-info-kind=standalone' -dwarf-ext-refs '-fmodule-format=obj' -triple i386-pc-solaris2.11 -include-pch pchdir/prefix.pch ${LLVM_SRC}/llvm/tools/clang/test/PCH/debug-info-pch-path.c -emit-llvm -o ${TEST_TEMP_DIR}/debug-info-pch-path.c.tmp.rel.ll ${LLVM_SRC}/llvm/tools/clang/test/PCH/debug-info-pch-path.c
-    RUN(TestState.Failed, "%clang_cc1 -debug-info-kind=standalone -dwarf-ext-refs -fmodule-format=obj -triple %itanium_abi_triple -include-pch pchdir/prefix.pch %s -emit-llvm -o %t.rel.ll %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -debug-info-kind=standalone -dwarf-ext-refs -fmodule-format=obj -triple %itanium_abi_triple -include-pch pchdir/prefix.pch %s -emit-llvm -o %t.rel.ll %s");
     // cat ${TEST_TEMP_DIR}/debug-info-pch-path.c.tmp.rel.ll | ${LLVM_SRC}/build/bin/FileCheck ${LLVM_SRC}/llvm/tools/clang/test/PCH/debug-info-pch-path.c '--check-prefix=CHECK-REL'
-    RUN(TestState.Failed, "cat %t.rel.ll")./*|*/
+    RUN(JavaTestBase.TestState.Failed, "cat %t.rel.ll")./*|*/
       I("FileCheck %s --check-prefix=CHECK-REL");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc '-fmodule-format=obj' -emit-pch -triple i386-pc-solaris2.11 -o ${TEST_TEMP_DIR}/debug-info-pch-path.c.tmp/prefix.pch ${LLVM_SRC}/llvm/tools/clang/test/PCH/debug-info-limited-struct.h
-    RUN(TestState.Failed, "%clang_cc1 -fmodule-format=obj -emit-pch -triple %itanium_abi_triple -o %t/prefix.pch %S/debug-info-limited-struct.h");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -fmodule-format=obj -emit-pch -triple %itanium_abi_triple -o %t/prefix.pch %S/debug-info-limited-struct.h");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc '-debug-info-kind=standalone' -dwarf-ext-refs '-fmodule-format=obj' -triple i386-pc-solaris2.11 -include-pch ${TEST_TEMP_DIR}/debug-info-pch-path.c.tmp/prefix.pch ${LLVM_SRC}/llvm/tools/clang/test/PCH/debug-info-pch-path.c -emit-llvm -o ${TEST_TEMP_DIR}/debug-info-pch-path.c.tmp.abs.ll ${LLVM_SRC}/llvm/tools/clang/test/PCH/debug-info-pch-path.c
-    RUN(TestState.Failed, "%clang_cc1 -debug-info-kind=standalone -dwarf-ext-refs -fmodule-format=obj -triple %itanium_abi_triple -include-pch %t/prefix.pch %s -emit-llvm -o %t.abs.ll %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -debug-info-kind=standalone -dwarf-ext-refs -fmodule-format=obj -triple %itanium_abi_triple -include-pch %t/prefix.pch %s -emit-llvm -o %t.abs.ll %s");
     // cat ${TEST_TEMP_DIR}/debug-info-pch-path.c.tmp.abs.ll | ${LLVM_SRC}/build/bin/FileCheck ${LLVM_SRC}/llvm/tools/clang/test/PCH/debug-info-pch-path.c '--check-prefix=CHECK-ABS'
-    RUN(TestState.Failed, "cat %t.abs.ll")./*|*/
+    RUN(JavaTestBase.TestState.Failed, "cat %t.abs.ll")./*|*/
       I("FileCheck %s --check-prefix=CHECK-ABS");
   }
 
@@ -1202,13 +1199,13 @@ public class AllPCHTest extends DriverTestFileBase {
   public void test_designated_init_c() throws Throwable {
     setTestFile("${LLVM_SRC}/llvm/tools/clang/test/PCH/designated-init.c");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc ${LLVM_SRC}/llvm/tools/clang/test/PCH/designated-init.c -include ${LLVM_SRC}/llvm/tools/clang/test/PCH/designated-init.c.h -emit-llvm -o ${TEST_TEMP_DIR}/designated-init.c.tmp.withoutpch.ll
-    RUN(TestState.Failed, "%clang_cc1 %s -include %s.h -emit-llvm -o %t.withoutpch.ll");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 %s -include %s.h -emit-llvm -o %t.withoutpch.ll");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc ${LLVM_SRC}/llvm/tools/clang/test/PCH/designated-init.c.h -emit-pch -o ${TEST_TEMP_DIR}/designated-init.c.tmp.pch
-    RUN(TestState.Failed, "%clang_cc1 %s.h -emit-pch -o %t.pch");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 %s.h -emit-pch -o %t.pch");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc ${LLVM_SRC}/llvm/tools/clang/test/PCH/designated-init.c -include-pch ${TEST_TEMP_DIR}/designated-init.c.tmp.pch -emit-llvm -o ${TEST_TEMP_DIR}/designated-init.c.tmp.withpch.ll
-    RUN(TestState.Failed, "%clang_cc1 %s -include-pch %t.pch -emit-llvm -o %t.withpch.ll");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 %s -include-pch %t.pch -emit-llvm -o %t.withpch.ll");
     // diff ${TEST_TEMP_DIR}/designated-init.c.tmp.withoutpch.ll ${TEST_TEMP_DIR}/designated-init.c.tmp.withpch.ll
-    RUN(TestState.Failed, "diff %t.withoutpch.ll %t.withpch.ll");
+    RUN(JavaTestBase.TestState.Failed, "diff %t.withoutpch.ll %t.withpch.ll");
   }
 
   @Test
@@ -1273,9 +1270,9 @@ public class AllPCHTest extends DriverTestFileBase {
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -fblocks -include ${LLVM_SRC}/llvm/tools/clang/test/PCH/exprs.h -fsyntax-only -verify ${LLVM_SRC}/llvm/tools/clang/test/PCH/exprs.c
     RUN("%clang_cc1 -fblocks -include %S/exprs.h -fsyntax-only -verify %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -emit-pch -fblocks -o ${TEST_TEMP_DIR}/exprs.c.tmp ${LLVM_SRC}/llvm/tools/clang/test/PCH/exprs.h
-    RUN(TestState.Failed, "%clang_cc1 -emit-pch -fblocks -o %t %S/exprs.h");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -emit-pch -fblocks -o %t %S/exprs.h");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -fblocks -include-pch ${TEST_TEMP_DIR}/exprs.c.tmp -fsyntax-only -verify ${LLVM_SRC}/llvm/tools/clang/test/PCH/exprs.c -DWITH_PCH
-    RUN(TestState.Failed, "%clang_cc1 -fblocks -include-pch %t -fsyntax-only -verify %s -DWITH_PCH");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -fblocks -include-pch %t -fsyntax-only -verify %s -DWITH_PCH");
   }
 
   @Test
@@ -1338,9 +1335,9 @@ public class AllPCHTest extends DriverTestFileBase {
       return;
     }
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -triple mips64-none-linux-gnu -emit-pch -o ${TEST_TEMP_DIR}/floating-literal.c.tmp ${LLVM_SRC}/llvm/tools/clang/test/PCH/floating-literal.c
-    RUN(TestState.Failed, "%clang_cc1 -triple mips64-none-linux-gnu -emit-pch -o %t %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -triple mips64-none-linux-gnu -emit-pch -o %t %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -x ast -ast-print ${TEST_TEMP_DIR}/floating-literal.c.tmp | ${LLVM_SRC}/build/bin/FileCheck ${LLVM_SRC}/llvm/tools/clang/test/PCH/floating-literal.c
-    RUN(TestState.Failed, "%clang_cc1 -x ast -ast-print %t")./*|*/
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -x ast -ast-print %t")./*|*/
       I("FileCheck %s");
   }
 
@@ -1425,44 +1422,44 @@ public class AllPCHTest extends DriverTestFileBase {
   public void test_headersearch_cpp() throws Throwable {
     setTestFile("${LLVM_SRC}/llvm/tools/clang/test/PCH/headersearch.cpp");
     // rm -rf ${TEST_TEMP_DIR}/headersearch.cpp.tmp_orig ${TEST_TEMP_DIR}/headersearch.cpp.tmp_moved
-    RUN(TestState.Failed, "rm -rf %t_orig %t_moved");
+    RUN(JavaTestBase.TestState.Failed, "rm -rf %t_orig %t_moved");
     // mkdir -p ${TEST_TEMP_DIR}/headersearch.cpp.tmp_orig/sub ${TEST_TEMP_DIR}/headersearch.cpp.tmp_orig/sub2
-    RUN(TestState.Failed, "mkdir -p %t_orig/sub %t_orig/sub2");
+    RUN(JavaTestBase.TestState.Failed, "mkdir -p %t_orig/sub %t_orig/sub2");
     // echo 'struct orig_sub{char c; int i; };' > ${TEST_TEMP_DIR}/headersearch.cpp.tmp_orig/sub/orig_sub.h
-    RUN(TestState.Failed, "echo 'struct orig_sub{char c; int i; };' > %t_orig/sub/orig_sub.h");
+    RUN(JavaTestBase.TestState.Failed, "echo 'struct orig_sub{char c; int i; };' > %t_orig/sub/orig_sub.h");
     // echo 'void orig_sub2_1();' > ${TEST_TEMP_DIR}/headersearch.cpp.tmp_orig/sub2/orig_sub2_1.h
-    RUN(TestState.Failed, "echo 'void orig_sub2_1();' > %t_orig/sub2/orig_sub2_1.h");
+    RUN(JavaTestBase.TestState.Failed, "echo 'void orig_sub2_1();' > %t_orig/sub2/orig_sub2_1.h");
     // echo '#include "orig_sub2_1.h"' > ${TEST_TEMP_DIR}/headersearch.cpp.tmp_orig/sub2/orig_sub2.h
-    RUN(TestState.Failed, "echo '#include \"orig_sub2_1.h\"' > %t_orig/sub2/orig_sub2.h");
+    RUN(JavaTestBase.TestState.Failed, "echo '#include \"orig_sub2_1.h\"' > %t_orig/sub2/orig_sub2.h");
     // echo 'template <typename T> void tf() { orig_sub2_1(); T::foo(); }' >> ${TEST_TEMP_DIR}/headersearch.cpp.tmp_orig/sub2/orig_sub2.h
-    RUN(TestState.Failed, "echo 'template <typename T> void tf() { orig_sub2_1(); T::foo(); }' >> %t_orig/sub2/orig_sub2.h");
+    RUN(JavaTestBase.TestState.Failed, "echo 'template <typename T> void tf() { orig_sub2_1(); T::foo(); }' >> %t_orig/sub2/orig_sub2.h");
     // echo 'void foo() {}' > ${TEST_TEMP_DIR}/headersearch.cpp.tmp_orig/tmp2.h
-    RUN(TestState.Failed, "echo 'void foo() {}' > %t_orig/tmp2.h");
+    RUN(JavaTestBase.TestState.Failed, "echo 'void foo() {}' > %t_orig/tmp2.h");
     // echo '#include "tmp2.h"' > ${TEST_TEMP_DIR}/headersearch.cpp.tmp_orig/all.h
-    RUN(TestState.Failed, "echo '#include \"tmp2.h\"' > %t_orig/all.h");
+    RUN(JavaTestBase.TestState.Failed, "echo '#include \"tmp2.h\"' > %t_orig/all.h");
     // echo '#include "sub/orig_sub.h"' >> ${TEST_TEMP_DIR}/headersearch.cpp.tmp_orig/all.h
-    RUN(TestState.Failed, "echo '#include \"sub/orig_sub.h\"' >> %t_orig/all.h");
+    RUN(JavaTestBase.TestState.Failed, "echo '#include \"sub/orig_sub.h\"' >> %t_orig/all.h");
     // echo '#include "orig_sub2.h"' >> ${TEST_TEMP_DIR}/headersearch.cpp.tmp_orig/all.h
-    RUN(TestState.Failed, "echo '#include \"orig_sub2.h\"' >> %t_orig/all.h");
+    RUN(JavaTestBase.TestState.Failed, "echo '#include \"orig_sub2.h\"' >> %t_orig/all.h");
     // echo 'int all();' >> ${TEST_TEMP_DIR}/headersearch.cpp.tmp_orig/all.h
-    RUN(TestState.Failed, "echo 'int all();' >> %t_orig/all.h");
+    RUN(JavaTestBase.TestState.Failed, "echo 'int all();' >> %t_orig/all.h");
     // cd ${TEST_TEMP_DIR}/headersearch.cpp.tmp_orig && ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -triple i386-pc-solaris2.11 -x c++ -emit-pch -o all.h.pch -Isub2 all.h
-    RUN(TestState.Failed, "cd %t_orig");
-    RUN(TestState.Failed, "%clang_cc1 -triple %itanium_abi_triple -x c++ -emit-pch -o all.h.pch -Isub2 all.h");
+    RUN(JavaTestBase.TestState.Failed, "cd %t_orig");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -triple %itanium_abi_triple -x c++ -emit-pch -o all.h.pch -Isub2 all.h");
     // cp -R ${TEST_TEMP_DIR}/headersearch.cpp.tmp_orig ${TEST_TEMP_DIR}/headersearch.cpp.tmp_moved
-    RUN(TestState.Failed, "cp -R %t_orig %t_moved");
+    RUN(JavaTestBase.TestState.Failed, "cp -R %t_orig %t_moved");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -triple i386-pc-solaris2.11 -include-pch all.h.pch "-I${TEST_TEMP_DIR}/headersearch.cpp.tmp_moved" "-I${TEST_TEMP_DIR}/headersearch.cpp.tmp_moved/sub2" -Wpadded -emit-llvm-only ${LLVM_SRC}/llvm/tools/clang/test/PCH/headersearch.cpp 2> ${TEST_TEMP_DIR}/headersearch.cpp.tmp.stderr
-    RUN(TestState.Failed, "%clang_cc1 -triple %itanium_abi_triple -include-pch all.h.pch -I%t_moved -I%t_moved/sub2 -Wpadded -emit-llvm-only %s 2> %t.stderr");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -triple %itanium_abi_triple -include-pch all.h.pch -I%t_moved -I%t_moved/sub2 -Wpadded -emit-llvm-only %s 2> %t.stderr");
     // grep 'struct orig_sub' ${TEST_TEMP_DIR}/headersearch.cpp.tmp.stderr
-    RUN(TestState.Failed, "grep 'struct orig_sub' %t.stderr");
+    RUN(JavaTestBase.TestState.Failed, "grep 'struct orig_sub' %t.stderr");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -triple i386-pc-solaris2.11 -DREDECL -include-pch all.h.pch "-I${TEST_TEMP_DIR}/headersearch.cpp.tmp_moved" "-I${TEST_TEMP_DIR}/headersearch.cpp.tmp_moved/sub2" -emit-llvm-only ${LLVM_SRC}/llvm/tools/clang/test/PCH/headersearch.cpp 2> ${TEST_TEMP_DIR}/headersearch.cpp.tmp.stderr
-    RUN(TestState.Failed, "not %clang_cc1 -triple %itanium_abi_triple -DREDECL -include-pch all.h.pch -I%t_moved -I%t_moved/sub2 -emit-llvm-only %s 2> %t.stderr");
+    RUN(JavaTestBase.TestState.Failed, "not %clang_cc1 -triple %itanium_abi_triple -DREDECL -include-pch all.h.pch -I%t_moved -I%t_moved/sub2 -emit-llvm-only %s 2> %t.stderr");
     // grep 'void foo' ${TEST_TEMP_DIR}/headersearch.cpp.tmp.stderr
-    RUN(TestState.Failed, "grep 'void foo' %t.stderr");
+    RUN(JavaTestBase.TestState.Failed, "grep 'void foo' %t.stderr");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -triple i386-pc-solaris2.11 -DINSTANTIATION -include-pch all.h.pch "-I${TEST_TEMP_DIR}/headersearch.cpp.tmp_moved" "-I${TEST_TEMP_DIR}/headersearch.cpp.tmp_moved/sub2" -emit-llvm-only ${LLVM_SRC}/llvm/tools/clang/test/PCH/headersearch.cpp 2> ${TEST_TEMP_DIR}/headersearch.cpp.tmp.stderr
-    RUN(TestState.Failed, "not %clang_cc1 -triple %itanium_abi_triple -DINSTANTIATION -include-pch all.h.pch -I%t_moved -I%t_moved/sub2 -emit-llvm-only %s 2> %t.stderr");
+    RUN(JavaTestBase.TestState.Failed, "not %clang_cc1 -triple %itanium_abi_triple -DINSTANTIATION -include-pch all.h.pch -I%t_moved -I%t_moved/sub2 -emit-llvm-only %s 2> %t.stderr");
     // grep orig_sub2_1 ${TEST_TEMP_DIR}/headersearch.cpp.tmp.stderr
-    RUN(TestState.Failed, "grep 'orig_sub2_1' %t.stderr");
+    RUN(JavaTestBase.TestState.Failed, "grep 'orig_sub2_1' %t.stderr");
   }
 
   @Test
@@ -1478,29 +1475,29 @@ public class AllPCHTest extends DriverTestFileBase {
   public void test_include_timestamp_cpp() throws Throwable {
     setTestFile("${LLVM_SRC}/llvm/tools/clang/test/PCH/include-timestamp.cpp");
     // cp ${LLVM_SRC}/llvm/tools/clang/test/PCH/Inputs/pragma-once2-pch.h ${TEST_TEMP_DIR}
-    RUN(TestState.Failed, "cp %S/Inputs/pragma-once2-pch.h %T");
+    RUN(JavaTestBase.TestState.Failed, "cp %S/Inputs/pragma-once2-pch.h %T");
     // cp ${LLVM_SRC}/llvm/tools/clang/test/PCH/Inputs/pragma-once2.h ${TEST_TEMP_DIR}
-    RUN(TestState.Failed, "cp %S/Inputs/pragma-once2.h %T");
+    RUN(JavaTestBase.TestState.Failed, "cp %S/Inputs/pragma-once2.h %T");
     // cp ${LLVM_SRC}/llvm/tools/clang/test/PCH/include-timestamp.cpp ${TEST_TEMP_DIR}/include-timestamp.cpp.tmp1.cpp
-    RUN(TestState.Failed, "cp %s %t1.cpp");
+    RUN(JavaTestBase.TestState.Failed, "cp %s %t1.cpp");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -x c++-header -emit-pch -o ${TEST_TEMP_DIR}/include-timestamp.cpp.tmp ${TEST_TEMP_DIR}/pragma-once2-pch.h
-    RUN(TestState.Failed, "%clang_cc1 -x c++-header -emit-pch -o %t %T/pragma-once2-pch.h");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -x c++-header -emit-pch -o %t %T/pragma-once2-pch.h");
     // touch -m -a -t 201008011501 ${TEST_TEMP_DIR}/pragma-once2.h
-    RUN(TestState.Failed, "touch -m -a -t 201008011501 %T/pragma-once2.h");
+    RUN(JavaTestBase.TestState.Failed, "touch -m -a -t 201008011501 %T/pragma-once2.h");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -include-pch ${TEST_TEMP_DIR}/include-timestamp.cpp.tmp ${TEST_TEMP_DIR}/include-timestamp.cpp.tmp1.cpp 2>&1 | ${LLVM_SRC}/build/bin/FileCheck '-check-prefix=CHECK-TIMESTAMP' ${LLVM_SRC}/llvm/tools/clang/test/PCH/include-timestamp.cpp
-    RUN(TestState.Failed, "not %clang_cc1 -include-pch %t %t1.cpp 2>&1")./*|*/
+    RUN(JavaTestBase.TestState.Failed, "not %clang_cc1 -include-pch %t %t1.cpp 2>&1")./*|*/
       I("FileCheck -check-prefix=CHECK-TIMESTAMP %s");
     // llvm-bcanalyzer -dump ${TEST_TEMP_DIR}/include-timestamp.cpp.tmp | ${LLVM_SRC}/build/bin/FileCheck '-check-prefix=CHECK-BITCODE-TIMESTAMP-ON' ${LLVM_SRC}/llvm/tools/clang/test/PCH/include-timestamp.cpp
-    RUN(TestState.Failed, "llvm-bcanalyzer -dump %t")./*|*/
+    RUN(JavaTestBase.TestState.Failed, "llvm-bcanalyzer -dump %t")./*|*/
       I("FileCheck -check-prefix=CHECK-BITCODE-TIMESTAMP-ON %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -x c++-header -emit-pch -o ${TEST_TEMP_DIR}/include-timestamp.cpp.tmp ${TEST_TEMP_DIR}/pragma-once2-pch.h -fno-pch-timestamp
-    RUN(TestState.Failed, "%clang_cc1 -x c++-header -emit-pch -o %t %T/pragma-once2-pch.h -fno-pch-timestamp");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -x c++-header -emit-pch -o %t %T/pragma-once2-pch.h -fno-pch-timestamp");
     // touch -m -a -t 201008011502 ${TEST_TEMP_DIR}/pragma-once2.h
-    RUN(TestState.Failed, "touch -m -a -t 201008011502 %T/pragma-once2.h");
+    RUN(JavaTestBase.TestState.Failed, "touch -m -a -t 201008011502 %T/pragma-once2.h");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -include-pch ${TEST_TEMP_DIR}/include-timestamp.cpp.tmp ${TEST_TEMP_DIR}/include-timestamp.cpp.tmp1.cpp 2>&1
-    RUN(TestState.Failed, "%clang_cc1 -include-pch %t %t1.cpp 2>&1");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -include-pch %t %t1.cpp 2>&1");
     // llvm-bcanalyzer -dump ${TEST_TEMP_DIR}/include-timestamp.cpp.tmp | ${LLVM_SRC}/build/bin/FileCheck '-check-prefix=CHECK-BITCODE-TIMESTAMP-OFF' ${LLVM_SRC}/llvm/tools/clang/test/PCH/include-timestamp.cpp
-    RUN(TestState.Failed, "llvm-bcanalyzer -dump %t")./*|*/
+    RUN(JavaTestBase.TestState.Failed, "llvm-bcanalyzer -dump %t")./*|*/
       I("FileCheck -check-prefix=CHECK-BITCODE-TIMESTAMP-OFF %s");
   }
 
@@ -1508,9 +1505,9 @@ public class AllPCHTest extends DriverTestFileBase {
   public void test_irgen_rdar13114142_mm() throws Throwable {
     setTestFile("${LLVM_SRC}/llvm/tools/clang/test/PCH/irgen-rdar13114142.mm");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc ${LLVM_SRC}/llvm/tools/clang/test/PCH/irgen-rdar13114142.mm -triple i386-pc-solaris2.11 -emit-pch -o ${TEST_TEMP_DIR}/irgen-rdar13114142.mm.tmp.pch
-    RUN(TestState.Failed, "%clang_cc1 %s -triple %itanium_abi_triple -emit-pch -o %t.pch");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 %s -triple %itanium_abi_triple -emit-pch -o %t.pch");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc ${LLVM_SRC}/llvm/tools/clang/test/PCH/irgen-rdar13114142.mm -triple i386-pc-solaris2.11 -emit-llvm -include-pch ${TEST_TEMP_DIR}/irgen-rdar13114142.mm.tmp.pch -o - | ${LLVM_SRC}/build/bin/FileCheck ${LLVM_SRC}/llvm/tools/clang/test/PCH/irgen-rdar13114142.mm
-    RUN(TestState.Failed, "%clang_cc1 %s -triple %itanium_abi_triple -emit-llvm -include-pch %t.pch -o -")./*|*/
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 %s -triple %itanium_abi_triple -emit-llvm -include-pch %t.pch -o -")./*|*/
       I("FileCheck %s");
   }
 
@@ -1535,37 +1532,37 @@ public class AllPCHTest extends DriverTestFileBase {
       return;
     }
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -triple x86_64-apple-macosx10.9.0 -include ${LLVM_SRC}/llvm/tools/clang/test/PCH/local_static.h -fsyntax-only ${LLVM_SRC}/llvm/tools/clang/test/PCH/local_static.cpp -emit-llvm -o ${TEST_TEMP_DIR}/local_static.cpp.tmp.no_pch.ll ${LLVM_SRC}/llvm/tools/clang/test/PCH/local_static.cpp
-    RUN(TestState.Failed, "%clang_cc1 -triple x86_64-apple-macosx10.9.0 -include %S/local_static.h -fsyntax-only %s -emit-llvm -o %t.no_pch.ll %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -triple x86_64-apple-macosx10.9.0 -include %S/local_static.h -fsyntax-only %s -emit-llvm -o %t.no_pch.ll %s");
     // ${LLVM_SRC}/build/bin/FileCheck --input-file ${TEST_TEMP_DIR}/local_static.cpp.tmp.no_pch.ll ${LLVM_SRC}/llvm/tools/clang/test/PCH/local_static.cpp
-    RUN(TestState.Failed, "FileCheck --input-file %t.no_pch.ll %s");
+    RUN(JavaTestBase.TestState.Failed, "FileCheck --input-file %t.no_pch.ll %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -triple x86_64-apple-macosx10.9.0 -x c++-header -emit-pch -o ${TEST_TEMP_DIR}/local_static.cpp.tmp.pch ${LLVM_SRC}/llvm/tools/clang/test/PCH/local_static.h
-    RUN(TestState.Failed, "%clang_cc1 -triple x86_64-apple-macosx10.9.0 -x c++-header -emit-pch -o %t.pch %S/local_static.h");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -triple x86_64-apple-macosx10.9.0 -x c++-header -emit-pch -o %t.pch %S/local_static.h");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -triple x86_64-apple-macosx10.9.0 -include-pch ${TEST_TEMP_DIR}/local_static.cpp.tmp.pch -emit-llvm -o ${TEST_TEMP_DIR}/local_static.cpp.tmp.pch.ll ${LLVM_SRC}/llvm/tools/clang/test/PCH/local_static.cpp
-    RUN(TestState.Failed, "%clang_cc1 -triple x86_64-apple-macosx10.9.0 -include-pch %t.pch -emit-llvm -o %t.pch.ll %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -triple x86_64-apple-macosx10.9.0 -include-pch %t.pch -emit-llvm -o %t.pch.ll %s");
     // ${LLVM_SRC}/build/bin/FileCheck --input-file ${TEST_TEMP_DIR}/local_static.cpp.tmp.pch.ll ${LLVM_SRC}/llvm/tools/clang/test/PCH/local_static.cpp
-    RUN(TestState.Failed, "FileCheck --input-file %t.pch.ll %s");
+    RUN(JavaTestBase.TestState.Failed, "FileCheck --input-file %t.pch.ll %s");
   }
 
   @Test
   public void test_macro_redef_c() throws Throwable {
     setTestFile("${LLVM_SRC}/llvm/tools/clang/test/PCH/macro-redef.c");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc ${LLVM_SRC}/llvm/tools/clang/test/PCH/macro-redef.c -emit-pch -o ${TEST_TEMP_DIR}/macro-redef.c.tmp1.pch -verify
-    RUN(TestState.Failed, "%clang_cc1 %s -emit-pch -o %t1.pch -verify");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 %s -emit-pch -o %t1.pch -verify");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc ${LLVM_SRC}/llvm/tools/clang/test/PCH/macro-redef.c -emit-pch -o ${TEST_TEMP_DIR}/macro-redef.c.tmp2.pch -include-pch ${TEST_TEMP_DIR}/macro-redef.c.tmp1.pch -verify
-    RUN(TestState.Failed, "%clang_cc1 %s -emit-pch -o %t2.pch -include-pch %t1.pch -verify");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 %s -emit-pch -o %t2.pch -include-pch %t1.pch -verify");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -fsyntax-only ${LLVM_SRC}/llvm/tools/clang/test/PCH/macro-redef.c -include-pch ${TEST_TEMP_DIR}/macro-redef.c.tmp2.pch -verify
-    RUN(TestState.Failed, "%clang_cc1 -fsyntax-only %s -include-pch %t2.pch -verify");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -fsyntax-only %s -include-pch %t2.pch -verify");
   }
 
   @Test
   public void test_macro_undef_cpp() throws Throwable {
     setTestFile("${LLVM_SRC}/llvm/tools/clang/test/PCH/macro-undef.cpp");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -emit-pch -o ${TEST_TEMP_DIR}/macro-undef.cpp.tmp ${LLVM_SRC}/llvm/tools/clang/test/PCH/macro-undef.cpp
-    RUN(TestState.Failed, "%clang_cc1 -emit-pch -o %t %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -emit-pch -o %t %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -fsyntax-only -include-pch ${TEST_TEMP_DIR}/macro-undef.cpp.tmp ${LLVM_SRC}/llvm/tools/clang/test/PCH/macro-undef.cpp -Wuninitialized -verify
-    RUN(TestState.Failed, "%clang_cc1 -fsyntax-only -include-pch %t %s -Wuninitialized -verify");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -fsyntax-only -include-pch %t %s -Wuninitialized -verify");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -fsyntax-only -include-pch ${TEST_TEMP_DIR}/macro-undef.cpp.tmp ${LLVM_SRC}/llvm/tools/clang/test/PCH/macro-undef.cpp -Wuninitialized -fdiagnostics-parseable-fixits 2>&1 | ${LLVM_SRC}/build/bin/FileCheck ${LLVM_SRC}/llvm/tools/clang/test/PCH/macro-undef.cpp
-    RUN(TestState.Failed, "%clang_cc1 -fsyntax-only -include-pch %t %s -Wuninitialized -fdiagnostics-parseable-fixits 2>&1")./*|*/
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -fsyntax-only -include-pch %t %s -Wuninitialized -fdiagnostics-parseable-fixits 2>&1")./*|*/
       I("FileCheck %s");
   }
 
@@ -1593,9 +1590,9 @@ public class AllPCHTest extends DriverTestFileBase {
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -include ${LLVM_SRC}/llvm/tools/clang/test/PCH/method_pool.h -fsyntax-only -verify -Wno-objc-root-class ${LLVM_SRC}/llvm/tools/clang/test/PCH/method_pool.m
     RUN("%clang_cc1 -include %S/method_pool.h -fsyntax-only -verify -Wno-objc-root-class %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -x objective-c -Wno-objc-root-class -emit-pch -o ${TEST_TEMP_DIR}/method_pool.m.tmp ${LLVM_SRC}/llvm/tools/clang/test/PCH/method_pool.h
-    RUN(TestState.Failed, "%clang_cc1 -x objective-c -Wno-objc-root-class -emit-pch -o %t %S/method_pool.h");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -x objective-c -Wno-objc-root-class -emit-pch -o %t %S/method_pool.h");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -include-pch ${TEST_TEMP_DIR}/method_pool.m.tmp -fsyntax-only -verify -Wno-objc-root-class ${LLVM_SRC}/llvm/tools/clang/test/PCH/method_pool.m
-    RUN(TestState.Failed, "%clang_cc1 -include-pch %t -fsyntax-only -verify -Wno-objc-root-class %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -include-pch %t -fsyntax-only -verify -Wno-objc-root-class %s");
   }
 
   @Test
@@ -1768,14 +1765,14 @@ public class AllPCHTest extends DriverTestFileBase {
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -include ${LLVM_SRC}/llvm/tools/clang/test/PCH/objc_container.h -fsyntax-only -verify ${LLVM_SRC}/llvm/tools/clang/test/PCH/objc_container.m
     RUN("%clang_cc1 -include %S/objc_container.h -fsyntax-only -verify %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -x objective-c -emit-pch -o ${TEST_TEMP_DIR}/objc_container.m.tmp ${LLVM_SRC}/llvm/tools/clang/test/PCH/objc_container.h
-    RUN(TestState.Failed, "%clang_cc1 -x objective-c -emit-pch -o %t %S/objc_container.h");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -x objective-c -emit-pch -o %t %S/objc_container.h");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -include-pch ${TEST_TEMP_DIR}/objc_container.m.tmp -fsyntax-only -verify ${LLVM_SRC}/llvm/tools/clang/test/PCH/objc_container.m
-    RUN(TestState.Failed, "%clang_cc1 -include-pch %t -fsyntax-only -verify %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -include-pch %t -fsyntax-only -verify %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -include-pch ${TEST_TEMP_DIR}/objc_container.m.tmp -ast-print ${LLVM_SRC}/llvm/tools/clang/test/PCH/objc_container.m | ${LLVM_SRC}/build/bin/FileCheck '-check-prefix=CHECK-PRINT' ${LLVM_SRC}/llvm/tools/clang/test/PCH/objc_container.m
-    RUN(TestState.Failed, "%clang_cc1 -include-pch %t -ast-print %s")./*|*/
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -include-pch %t -ast-print %s")./*|*/
       I("FileCheck -check-prefix=CHECK-PRINT %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -include-pch ${TEST_TEMP_DIR}/objc_container.m.tmp -emit-llvm -o - ${LLVM_SRC}/llvm/tools/clang/test/PCH/objc_container.m | ${LLVM_SRC}/build/bin/FileCheck '-check-prefix=CHECK-IR' ${LLVM_SRC}/llvm/tools/clang/test/PCH/objc_container.m
-    RUN(TestState.Failed, "%clang_cc1 -include-pch %t -emit-llvm -o - %s")./*|*/
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -include-pch %t -emit-llvm -o - %s")./*|*/
       I("FileCheck -check-prefix=CHECK-IR %s");
   }
 
@@ -1796,9 +1793,9 @@ public class AllPCHTest extends DriverTestFileBase {
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -include ${LLVM_SRC}/llvm/tools/clang/test/PCH/objc_import.h -fsyntax-only -verify ${LLVM_SRC}/llvm/tools/clang/test/PCH/objc_import.m
     RUN("%clang_cc1 -include %S/objc_import.h -fsyntax-only -verify %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -x objective-c -emit-pch -o ${TEST_TEMP_DIR}/objc_import.m.tmp ${LLVM_SRC}/llvm/tools/clang/test/PCH/objc_import.h
-    RUN(TestState.Failed, "%clang_cc1 -x objective-c -emit-pch -o %t %S/objc_import.h");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -x objective-c -emit-pch -o %t %S/objc_import.h");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -include-pch ${TEST_TEMP_DIR}/objc_import.m.tmp -fsyntax-only -verify ${LLVM_SRC}/llvm/tools/clang/test/PCH/objc_import.m
-    RUN(TestState.Failed, "%clang_cc1 -include-pch %t -fsyntax-only -verify %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -include-pch %t -fsyntax-only -verify %s");
   }
 
   @Test
@@ -1814,14 +1811,14 @@ public class AllPCHTest extends DriverTestFileBase {
   public void test_objc_literals_m() throws Throwable {
     setTestFile("${LLVM_SRC}/llvm/tools/clang/test/PCH/objc_literals.m");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -emit-pch -o ${TEST_TEMP_DIR}/objc_literals.m.tmp ${LLVM_SRC}/llvm/tools/clang/test/PCH/objc_literals.m
-    RUN(TestState.Failed, "%clang_cc1 -emit-pch -o %t %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -emit-pch -o %t %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -include-pch ${TEST_TEMP_DIR}/objc_literals.m.tmp -verify ${LLVM_SRC}/llvm/tools/clang/test/PCH/objc_literals.m
-    RUN(TestState.Failed, "%clang_cc1 -include-pch %t -verify %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -include-pch %t -verify %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -include-pch ${TEST_TEMP_DIR}/objc_literals.m.tmp -ast-print ${LLVM_SRC}/llvm/tools/clang/test/PCH/objc_literals.m | ${LLVM_SRC}/build/bin/FileCheck '-check-prefix=CHECK-PRINT' ${LLVM_SRC}/llvm/tools/clang/test/PCH/objc_literals.m
-    RUN(TestState.Failed, "%clang_cc1 -include-pch %t -ast-print %s")./*|*/
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -include-pch %t -ast-print %s")./*|*/
       I("FileCheck -check-prefix=CHECK-PRINT %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -include-pch ${TEST_TEMP_DIR}/objc_literals.m.tmp -emit-llvm -o - ${LLVM_SRC}/llvm/tools/clang/test/PCH/objc_literals.m | ${LLVM_SRC}/build/bin/FileCheck '-check-prefix=CHECK-IR' ${LLVM_SRC}/llvm/tools/clang/test/PCH/objc_literals.m
-    RUN(TestState.Failed, "%clang_cc1 -include-pch %t -emit-llvm -o - %s")./*|*/
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -include-pch %t -emit-llvm -o - %s")./*|*/
       I("FileCheck -check-prefix=CHECK-IR %s");
   }
 
@@ -1829,14 +1826,14 @@ public class AllPCHTest extends DriverTestFileBase {
   public void test_objc_literals_mm() throws Throwable {
     setTestFile("${LLVM_SRC}/llvm/tools/clang/test/PCH/objc_literals.mm");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -triple i386-pc-solaris2.11 -emit-pch -x objective-c++ '-std=c++0x' -o ${TEST_TEMP_DIR}/objc_literals.mm.tmp ${LLVM_SRC}/llvm/tools/clang/test/PCH/objc_literals.mm
-    RUN(TestState.Failed, "%clang_cc1 -triple %itanium_abi_triple -emit-pch -x objective-c++ -std=c++0x -o %t %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -triple %itanium_abi_triple -emit-pch -x objective-c++ -std=c++0x -o %t %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -triple i386-pc-solaris2.11 -include-pch ${TEST_TEMP_DIR}/objc_literals.mm.tmp -x objective-c++ '-std=c++0x' -verify ${LLVM_SRC}/llvm/tools/clang/test/PCH/objc_literals.mm
-    RUN(TestState.Failed, "%clang_cc1 -triple %itanium_abi_triple -include-pch %t -x objective-c++ -std=c++0x -verify %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -triple %itanium_abi_triple -include-pch %t -x objective-c++ -std=c++0x -verify %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -triple i386-pc-solaris2.11 -include-pch ${TEST_TEMP_DIR}/objc_literals.mm.tmp -x objective-c++ '-std=c++0x' -ast-print ${LLVM_SRC}/llvm/tools/clang/test/PCH/objc_literals.mm | ${LLVM_SRC}/build/bin/FileCheck '-check-prefix=CHECK-PRINT' ${LLVM_SRC}/llvm/tools/clang/test/PCH/objc_literals.mm
-    RUN(TestState.Failed, "%clang_cc1 -triple %itanium_abi_triple -include-pch %t -x objective-c++ -std=c++0x -ast-print %s")./*|*/
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -triple %itanium_abi_triple -include-pch %t -x objective-c++ -std=c++0x -ast-print %s")./*|*/
       I("FileCheck -check-prefix=CHECK-PRINT %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -triple i386-pc-solaris2.11 -include-pch ${TEST_TEMP_DIR}/objc_literals.mm.tmp -x objective-c++ '-std=c++0x' -emit-llvm -o - ${LLVM_SRC}/llvm/tools/clang/test/PCH/objc_literals.mm | ${LLVM_SRC}/build/bin/FileCheck '-check-prefix=CHECK-IR' ${LLVM_SRC}/llvm/tools/clang/test/PCH/objc_literals.mm
-    RUN(TestState.Failed, "%clang_cc1 -triple %itanium_abi_triple -include-pch %t -x objective-c++ -std=c++0x -emit-llvm -o - %s")./*|*/
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -triple %itanium_abi_triple -include-pch %t -x objective-c++ -std=c++0x -emit-llvm -o - %s")./*|*/
       I("FileCheck -check-prefix=CHECK-IR %s");
   }
 
@@ -1846,9 +1843,9 @@ public class AllPCHTest extends DriverTestFileBase {
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -include ${LLVM_SRC}/llvm/tools/clang/test/PCH/objc_methods.h -fsyntax-only -Wno-objc-root-class -verify ${LLVM_SRC}/llvm/tools/clang/test/PCH/objc_methods.m
     RUN("%clang_cc1 -include %S/objc_methods.h -fsyntax-only -Wno-objc-root-class -verify %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -x objective-c -emit-pch -o ${TEST_TEMP_DIR}/objc_methods.m.tmp ${LLVM_SRC}/llvm/tools/clang/test/PCH/objc_methods.h
-    RUN(TestState.Failed, "%clang_cc1 -x objective-c -emit-pch -o %t %S/objc_methods.h");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -x objective-c -emit-pch -o %t %S/objc_methods.h");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -include-pch ${TEST_TEMP_DIR}/objc_methods.m.tmp -fsyntax-only -verify ${LLVM_SRC}/llvm/tools/clang/test/PCH/objc_methods.m
-    RUN(TestState.Failed, "%clang_cc1 -include-pch %t -fsyntax-only -verify %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -include-pch %t -fsyntax-only -verify %s");
   }
 
   @Test
@@ -1866,25 +1863,25 @@ public class AllPCHTest extends DriverTestFileBase {
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -include ${LLVM_SRC}/llvm/tools/clang/test/PCH/objc_property.h -fsyntax-only -verify ${LLVM_SRC}/llvm/tools/clang/test/PCH/objc_property.m
     RUN("%clang_cc1 -include %S/objc_property.h -fsyntax-only -verify %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -x objective-c -emit-pch -o ${TEST_TEMP_DIR}/objc_property.m.tmp ${LLVM_SRC}/llvm/tools/clang/test/PCH/objc_property.h
-    RUN(TestState.Failed, "%clang_cc1 -x objective-c -emit-pch -o %t %S/objc_property.h");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -x objective-c -emit-pch -o %t %S/objc_property.h");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -include-pch ${TEST_TEMP_DIR}/objc_property.m.tmp -fsyntax-only -verify ${LLVM_SRC}/llvm/tools/clang/test/PCH/objc_property.m
-    RUN(TestState.Failed, "%clang_cc1 -include-pch %t -fsyntax-only -verify %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -include-pch %t -fsyntax-only -verify %s");
   }
 
   @Test
   public void test_objc_stmts_m() throws Throwable {
     setTestFile("${LLVM_SRC}/llvm/tools/clang/test/PCH/objc_stmts.m");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -include ${LLVM_SRC}/llvm/tools/clang/test/PCH/objc_stmts.h -emit-llvm -fobjc-exceptions -o - ${LLVM_SRC}/llvm/tools/clang/test/PCH/objc_stmts.m
-    RUN(TestState.Failed, "%clang_cc1 -include %S/objc_stmts.h -emit-llvm -fobjc-exceptions -o - %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -include %S/objc_stmts.h -emit-llvm -fobjc-exceptions -o - %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -include ${LLVM_SRC}/llvm/tools/clang/test/PCH/objc_stmts.h -ast-print -fobjc-exceptions -o - ${LLVM_SRC}/llvm/tools/clang/test/PCH/objc_stmts.m | ${LLVM_SRC}/build/bin/FileCheck ${LLVM_SRC}/llvm/tools/clang/test/PCH/objc_stmts.m
-    RUN(TestState.Failed, "%clang_cc1 -include %S/objc_stmts.h -ast-print -fobjc-exceptions -o - %s")./*|*/
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -include %S/objc_stmts.h -ast-print -fobjc-exceptions -o - %s")./*|*/
       I("FileCheck %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -x objective-c -emit-pch -fobjc-exceptions -o ${TEST_TEMP_DIR}/objc_stmts.m.tmp ${LLVM_SRC}/llvm/tools/clang/test/PCH/objc_stmts.h
-    RUN(TestState.Failed, "%clang_cc1 -x objective-c -emit-pch -fobjc-exceptions -o %t %S/objc_stmts.h");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -x objective-c -emit-pch -fobjc-exceptions -o %t %S/objc_stmts.h");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -include-pch ${TEST_TEMP_DIR}/objc_stmts.m.tmp -emit-llvm -fobjc-exceptions -o - ${LLVM_SRC}/llvm/tools/clang/test/PCH/objc_stmts.m
-    RUN(TestState.Failed, "%clang_cc1 -include-pch %t -emit-llvm -fobjc-exceptions -o - %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -include-pch %t -emit-llvm -fobjc-exceptions -o - %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -include-pch ${TEST_TEMP_DIR}/objc_stmts.m.tmp -ast-print -fobjc-exceptions -o - ${LLVM_SRC}/llvm/tools/clang/test/PCH/objc_stmts.m | ${LLVM_SRC}/build/bin/FileCheck ${LLVM_SRC}/llvm/tools/clang/test/PCH/objc_stmts.m
-    RUN(TestState.Failed, "%clang_cc1 -include-pch %t -ast-print -fobjc-exceptions -o - %s")./*|*/
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -include-pch %t -ast-print -fobjc-exceptions -o - %s")./*|*/
       I("FileCheck %s");
   }
 
@@ -1892,12 +1889,12 @@ public class AllPCHTest extends DriverTestFileBase {
   public void test_objcxx_ivar_class_mm() throws Throwable {
     setTestFile("${LLVM_SRC}/llvm/tools/clang/test/PCH/objcxx-ivar-class.mm");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -include ${LLVM_SRC}/llvm/tools/clang/test/PCH/objcxx-ivar-class.h -triple i386-pc-solaris2.11 ${LLVM_SRC}/llvm/tools/clang/test/PCH/objcxx-ivar-class.mm -emit-llvm -o - | ${LLVM_SRC}/build/bin/FileCheck ${LLVM_SRC}/llvm/tools/clang/test/PCH/objcxx-ivar-class.mm
-    RUN(TestState.Failed, "%clang_cc1 -include %S/objcxx-ivar-class.h -triple %itanium_abi_triple %s -emit-llvm -o -")./*|*/
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -include %S/objcxx-ivar-class.h -triple %itanium_abi_triple %s -emit-llvm -o -")./*|*/
       I("FileCheck %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -x objective-c++-header -triple i386-pc-solaris2.11 -emit-pch -o ${TEST_TEMP_DIR}/objcxx-ivar-class.mm.tmp ${LLVM_SRC}/llvm/tools/clang/test/PCH/objcxx-ivar-class.h
-    RUN(TestState.Failed, "%clang_cc1 -x objective-c++-header -triple %itanium_abi_triple -emit-pch -o %t %S/objcxx-ivar-class.h");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -x objective-c++-header -triple %itanium_abi_triple -emit-pch -o %t %S/objcxx-ivar-class.h");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -include-pch ${TEST_TEMP_DIR}/objcxx-ivar-class.mm.tmp -triple i386-pc-solaris2.11 ${LLVM_SRC}/llvm/tools/clang/test/PCH/objcxx-ivar-class.mm -emit-llvm -o - | ${LLVM_SRC}/build/bin/FileCheck ${LLVM_SRC}/llvm/tools/clang/test/PCH/objcxx-ivar-class.mm
-    RUN(TestState.Failed, "%clang_cc1 -include-pch %t -triple %itanium_abi_triple %s -emit-llvm -o -")./*|*/
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -include-pch %t -triple %itanium_abi_triple %s -emit-llvm -o -")./*|*/
       I("FileCheck %s");
   }
 
@@ -1925,35 +1922,35 @@ public class AllPCHTest extends DriverTestFileBase {
   public void test_pch_dir_c() throws Throwable {
     setTestFile("${LLVM_SRC}/llvm/tools/clang/test/PCH/pch-dir.c");
     // rm -rf ${TEST_TEMP_DIR}/pch-dir.c.tmp.h.gch
-    RUN(TestState.Failed, "rm -rf %t.h.gch");
+    RUN(JavaTestBase.TestState.Failed, "rm -rf %t.h.gch");
     // mkdir -p ${TEST_TEMP_DIR}/pch-dir.c.tmp.h.gch
-    RUN(TestState.Failed, "mkdir -p %t.h.gch");
+    RUN(JavaTestBase.TestState.Failed, "mkdir -p %t.h.gch");
     // ${LLVM_SRC}/build/bin/clang -x c-header ${LLVM_SRC}/llvm/tools/clang/test/PCH/pch-dir.h '-DFOO=foo' -o ${TEST_TEMP_DIR}/pch-dir.c.tmp.h.gch/c.gch
-    RUN(TestState.Failed, "%clang -x c-header %S/pch-dir.h -DFOO=foo -o %t.h.gch/c.gch");
+    RUN(JavaTestBase.TestState.Failed, "%clang -x c-header %S/pch-dir.h -DFOO=foo -o %t.h.gch/c.gch");
     // ${LLVM_SRC}/build/bin/clang -x c-header ${LLVM_SRC}/llvm/tools/clang/test/PCH/pch-dir.h '-DFOO=bar' -o ${TEST_TEMP_DIR}/pch-dir.c.tmp.h.gch/cbar.gch
-    RUN(TestState.Failed, "%clang -x c-header %S/pch-dir.h -DFOO=bar -o %t.h.gch/cbar.gch");
+    RUN(JavaTestBase.TestState.Failed, "%clang -x c-header %S/pch-dir.h -DFOO=bar -o %t.h.gch/cbar.gch");
     // ${LLVM_SRC}/build/bin/clang -x c++-header '-std=c++98' ${LLVM_SRC}/llvm/tools/clang/test/PCH/pch-dir.h -o ${TEST_TEMP_DIR}/pch-dir.c.tmp.h.gch/cpp.gch
-    RUN(TestState.Failed, "%clang -x c++-header -std=c++98 %S/pch-dir.h -o %t.h.gch/cpp.gch");
+    RUN(JavaTestBase.TestState.Failed, "%clang -x c++-header -std=c++98 %S/pch-dir.h -o %t.h.gch/cpp.gch");
     // ${LLVM_SRC}/build/bin/clang -include ${TEST_TEMP_DIR}/pch-dir.c.tmp.h '-DFOO=foo' -fsyntax-only ${LLVM_SRC}/llvm/tools/clang/test/PCH/pch-dir.c -Xclang -print-stats 2> ${TEST_TEMP_DIR}/pch-dir.c.tmp.clog
-    RUN(TestState.Failed, "%clang -include %t.h -DFOO=foo -fsyntax-only %s -Xclang -print-stats 2> %t.clog");
+    RUN(JavaTestBase.TestState.Failed, "%clang -include %t.h -DFOO=foo -fsyntax-only %s -Xclang -print-stats 2> %t.clog");
     // ${LLVM_SRC}/build/bin/FileCheck '-check-prefix=CHECK-C' ${LLVM_SRC}/llvm/tools/clang/test/PCH/pch-dir.c < ${TEST_TEMP_DIR}/pch-dir.c.tmp.clog
-    RUN(TestState.Failed, "FileCheck -check-prefix=CHECK-C %s < %t.clog");
+    RUN(JavaTestBase.TestState.Failed, "FileCheck -check-prefix=CHECK-C %s < %t.clog");
     // ${LLVM_SRC}/build/bin/clang -include ${TEST_TEMP_DIR}/pch-dir.c.tmp.h '-DFOO=bar' '-DBAR=bar' -fsyntax-only ${LLVM_SRC}/llvm/tools/clang/test/PCH/pch-dir.c -Xclang -ast-print > ${TEST_TEMP_DIR}/pch-dir.c.tmp.cbarlog
-    RUN(TestState.Failed, "%clang -include %t.h -DFOO=bar -DBAR=bar -fsyntax-only %s -Xclang -ast-print > %t.cbarlog");
+    RUN(JavaTestBase.TestState.Failed, "%clang -include %t.h -DFOO=bar -DBAR=bar -fsyntax-only %s -Xclang -ast-print > %t.cbarlog");
     // ${LLVM_SRC}/build/bin/FileCheck '-check-prefix=CHECK-CBAR' ${LLVM_SRC}/llvm/tools/clang/test/PCH/pch-dir.c < ${TEST_TEMP_DIR}/pch-dir.c.tmp.cbarlog
-    RUN(TestState.Failed, "FileCheck -check-prefix=CHECK-CBAR %s < %t.cbarlog");
+    RUN(JavaTestBase.TestState.Failed, "FileCheck -check-prefix=CHECK-CBAR %s < %t.cbarlog");
     // ${LLVM_SRC}/build/bin/clang -x c++ -include ${TEST_TEMP_DIR}/pch-dir.c.tmp.h '-std=c++98' -fsyntax-only ${LLVM_SRC}/llvm/tools/clang/test/PCH/pch-dir.c -Xclang -print-stats 2> ${TEST_TEMP_DIR}/pch-dir.c.tmp.cpplog
-    RUN(TestState.Failed, "%clang -x c++ -include %t.h -std=c++98 -fsyntax-only %s -Xclang -print-stats 2> %t.cpplog");
+    RUN(JavaTestBase.TestState.Failed, "%clang -x c++ -include %t.h -std=c++98 -fsyntax-only %s -Xclang -print-stats 2> %t.cpplog");
     // ${LLVM_SRC}/build/bin/FileCheck '-check-prefix=CHECK-CPP' ${LLVM_SRC}/llvm/tools/clang/test/PCH/pch-dir.c < ${TEST_TEMP_DIR}/pch-dir.c.tmp.cpplog
-    RUN(TestState.Failed, "FileCheck -check-prefix=CHECK-CPP %s < %t.cpplog");
+    RUN(JavaTestBase.TestState.Failed, "FileCheck -check-prefix=CHECK-CPP %s < %t.cpplog");
     // ${LLVM_SRC}/build/bin/clang -x c++ '-std=c++11' -include ${TEST_TEMP_DIR}/pch-dir.c.tmp.h -fsyntax-only ${LLVM_SRC}/llvm/tools/clang/test/PCH/pch-dir.c 2> ${TEST_TEMP_DIR}/pch-dir.c.tmp.cpp11log
-    RUN(TestState.Failed, "not %clang -x c++ -std=c++11 -include %t.h -fsyntax-only %s 2> %t.cpp11log");
+    RUN(JavaTestBase.TestState.Failed, "not %clang -x c++ -std=c++11 -include %t.h -fsyntax-only %s 2> %t.cpp11log");
     // ${LLVM_SRC}/build/bin/FileCheck '-check-prefix=CHECK-NO-SUITABLE' ${LLVM_SRC}/llvm/tools/clang/test/PCH/pch-dir.c < ${TEST_TEMP_DIR}/pch-dir.c.tmp.cpp11log
-    RUN(TestState.Failed, "FileCheck -check-prefix=CHECK-NO-SUITABLE %s < %t.cpp11log");
+    RUN(JavaTestBase.TestState.Failed, "FileCheck -check-prefix=CHECK-NO-SUITABLE %s < %t.cpp11log");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -include-pch ${TEST_TEMP_DIR}/pch-dir.c.tmp.h.gch '-DFOO=baz' -fsyntax-only ${LLVM_SRC}/llvm/tools/clang/test/PCH/pch-dir.c -print-stats 2> ${TEST_TEMP_DIR}/pch-dir.c.tmp.missinglog
-    RUN(TestState.Failed, "not %clang_cc1 -include-pch %t.h.gch -DFOO=baz -fsyntax-only %s -print-stats 2> %t.missinglog");
+    RUN(JavaTestBase.TestState.Failed, "not %clang_cc1 -include-pch %t.h.gch -DFOO=baz -fsyntax-only %s -print-stats 2> %t.missinglog");
     // ${LLVM_SRC}/build/bin/FileCheck '-check-prefix=CHECK-NO-SUITABLE' ${LLVM_SRC}/llvm/tools/clang/test/PCH/pch-dir.c < ${TEST_TEMP_DIR}/pch-dir.c.tmp.missinglog
-    RUN(TestState.Failed, "FileCheck -check-prefix=CHECK-NO-SUITABLE %s < %t.missinglog");
+    RUN(JavaTestBase.TestState.Failed, "FileCheck -check-prefix=CHECK-NO-SUITABLE %s < %t.missinglog");
   }
 
   @Test
@@ -1987,9 +1984,9 @@ public class AllPCHTest extends DriverTestFileBase {
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -fsyntax-only -verify -include ${LLVM_SRC}/llvm/tools/clang/test/PCH/pending-ids.m ${LLVM_SRC}/llvm/tools/clang/test/PCH/pending-ids.m
     RUN("%clang_cc1 -fsyntax-only -verify -include %s %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc ${LLVM_SRC}/llvm/tools/clang/test/PCH/pending-ids.m -emit-pch -o ${TEST_TEMP_DIR}/pending-ids.m.tmp
-    RUN(TestState.Failed, "%clang_cc1 %s -emit-pch -o %t");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 %s -emit-pch -o %t");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -emit-llvm-only -verify ${LLVM_SRC}/llvm/tools/clang/test/PCH/pending-ids.m -include-pch ${TEST_TEMP_DIR}/pending-ids.m.tmp '-debug-info-kind=limited'
-    RUN(TestState.Failed, "%clang_cc1 -emit-llvm-only -verify %s -include-pch %t -debug-info-kind=limited");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -emit-llvm-only -verify %s -include-pch %t -debug-info-kind=limited");
   }
 
   @Test
@@ -2005,9 +2002,9 @@ public class AllPCHTest extends DriverTestFileBase {
   public void test_pr27445_cpp() throws Throwable {
     setTestFile("${LLVM_SRC}/llvm/tools/clang/test/PCH/pr27445.cpp");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -triple x86_64-windows-msvc -fms-extensions -x c++ ${LLVM_SRC}/llvm/tools/clang/test/PCH/Inputs/pr27445.h -emit-pch -o ${TEST_TEMP_DIR}/pr27445.cpp.tmp.pch
-    RUN(TestState.Failed, "%clang_cc1 -triple x86_64-windows-msvc -fms-extensions -x c++ %S/Inputs/pr27445.h -emit-pch -o %t.pch");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -triple x86_64-windows-msvc -fms-extensions -x c++ %S/Inputs/pr27445.h -emit-pch -o %t.pch");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -triple x86_64-windows-msvc -fms-extensions ${LLVM_SRC}/llvm/tools/clang/test/PCH/pr27445.cpp -include-pch ${TEST_TEMP_DIR}/pr27445.cpp.tmp.pch -emit-llvm -o - | ${LLVM_SRC}/build/bin/FileCheck ${LLVM_SRC}/llvm/tools/clang/test/PCH/pr27445.cpp
-    RUN(TestState.Failed, "%clang_cc1 -triple x86_64-windows-msvc -fms-extensions %s -include-pch %t.pch -emit-llvm -o -")./*|*/
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -triple x86_64-windows-msvc -fms-extensions %s -include-pch %t.pch -emit-llvm -o -")./*|*/
       I("FileCheck %s");
   }
 
@@ -2015,11 +2012,11 @@ public class AllPCHTest extends DriverTestFileBase {
   public void test_pr4489_c() throws Throwable {
     setTestFile("${LLVM_SRC}/llvm/tools/clang/test/PCH/pr4489.c");
     // ${LLVM_SRC}/build/bin/clang -x c-header -o ${TEST_TEMP_DIR}/pr4489.c.tmp.pch ${LLVM_SRC}/llvm/tools/clang/test/PCH/pr4489.c
-    RUN(TestState.Failed, "%clang -x c-header -o %t.pch %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang -x c-header -o %t.pch %s");
     // echo > ${TEST_TEMP_DIR}/pr4489.c.tmp.empty.c
-    RUN(TestState.Failed, "echo > %t.empty.c");
+    RUN(JavaTestBase.TestState.Failed, "echo > %t.empty.c");
     // ${LLVM_SRC}/build/bin/clang -include ${TEST_TEMP_DIR}/pr4489.c.tmp -x c ${TEST_TEMP_DIR}/pr4489.c.tmp.empty.c -emit-llvm -S -o -
-    RUN(TestState.Failed, "%clang -include %t -x c %t.empty.c -emit-llvm -S -o -");
+    RUN(JavaTestBase.TestState.Failed, "%clang -include %t -x c %t.empty.c -emit-llvm -S -o -");
   }
 
   @Test
@@ -2079,11 +2076,11 @@ public class AllPCHTest extends DriverTestFileBase {
   public void test_pragma_diag_section_cpp() throws Throwable {
     setTestFile("${LLVM_SRC}/llvm/tools/clang/test/PCH/pragma-diag-section.cpp");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc ${LLVM_SRC}/llvm/tools/clang/test/PCH/pragma-diag-section.cpp -include ${LLVM_SRC}/llvm/tools/clang/test/PCH/pragma-diag-section.cpp -verify -fsyntax-only -Wuninitialized
-    RUN(TestState.Failed, "%clang_cc1 %s -include %s -verify -fsyntax-only -Wuninitialized");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 %s -include %s -verify -fsyntax-only -Wuninitialized");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc ${LLVM_SRC}/llvm/tools/clang/test/PCH/pragma-diag-section.cpp -emit-pch -o ${TEST_TEMP_DIR}/pragma-diag-section.cpp.tmp
-    RUN(TestState.Failed, "%clang_cc1 %s -emit-pch -o %t");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 %s -emit-pch -o %t");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc ${LLVM_SRC}/llvm/tools/clang/test/PCH/pragma-diag-section.cpp -include-pch ${TEST_TEMP_DIR}/pragma-diag-section.cpp.tmp -verify -fsyntax-only -Wuninitialized
-    RUN(TestState.Failed, "%clang_cc1 %s -include-pch %t -verify -fsyntax-only -Wuninitialized");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 %s -include-pch %t -verify -fsyntax-only -Wuninitialized");
   }
 
   @Test
@@ -2158,9 +2155,9 @@ public class AllPCHTest extends DriverTestFileBase {
   public void test_preamble_c() throws Throwable {
     setTestFile("${LLVM_SRC}/llvm/tools/clang/test/PCH/preamble.c");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -emit-pch -o ${TEST_TEMP_DIR}/preamble.c.tmp ${LLVM_SRC}/llvm/tools/clang/test/PCH/Inputs/preamble.h '-DFOO=f'
-    RUN(TestState.Failed, "%clang_cc1 -emit-pch -o %t %S/Inputs/preamble.h -DFOO=f");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -emit-pch -o %t %S/Inputs/preamble.h -DFOO=f");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -include-pch ${TEST_TEMP_DIR}/preamble.c.tmp '-preamble-bytes=317,1' '-DFOO=f' -verify ${LLVM_SRC}/llvm/tools/clang/test/PCH/preamble.c -emit-llvm -o - | ${LLVM_SRC}/build/bin/FileCheck ${LLVM_SRC}/llvm/tools/clang/test/PCH/preamble.c
-    RUN(TestState.Failed, "not %clang_cc1 -include-pch %t -preamble-bytes=317,1 -DFOO=f -verify %s -emit-llvm -o -")./*|*/
+    RUN(JavaTestBase.TestState.Failed, "not %clang_cc1 -include-pch %t -preamble-bytes=317,1 -DFOO=f -verify %s -emit-llvm -o -")./*|*/
       I("FileCheck %s");
   }
 
@@ -2273,15 +2270,15 @@ public class AllPCHTest extends DriverTestFileBase {
   public void test_source_manager_stack_c() throws Throwable {
     setTestFile("${LLVM_SRC}/llvm/tools/clang/test/PCH/source-manager-stack.c");
     // echo 'int x;' > ${TEST_TEMP_DIR}/source-manager-stack.c.tmp.prefix.h
-    RUN(TestState.Failed, "echo 'int x;' > %t.prefix.h");
+    RUN(JavaTestBase.TestState.Failed, "echo 'int x;' > %t.prefix.h");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -fsyntax-only -fdiagnostics-show-note-include-stack -include ${TEST_TEMP_DIR}/source-manager-stack.c.tmp.prefix.h ${LLVM_SRC}/llvm/tools/clang/test/PCH/source-manager-stack.c 2> ${TEST_TEMP_DIR}/source-manager-stack.c.tmp.diags.no_pch.txt
-    RUN(TestState.Failed, "not %clang_cc1 -fsyntax-only -fdiagnostics-show-note-include-stack -include %t.prefix.h %s 2> %t.diags.no_pch.txt");
+    RUN(JavaTestBase.TestState.Failed, "not %clang_cc1 -fsyntax-only -fdiagnostics-show-note-include-stack -include %t.prefix.h %s 2> %t.diags.no_pch.txt");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -emit-pch -o ${TEST_TEMP_DIR}/source-manager-stack.c.tmp.prefix.pch ${TEST_TEMP_DIR}/source-manager-stack.c.tmp.prefix.h
-    RUN(TestState.Failed, "%clang_cc1 -emit-pch -o %t.prefix.pch %t.prefix.h");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -emit-pch -o %t.prefix.pch %t.prefix.h");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -fsyntax-only -fdiagnostics-show-note-include-stack -include-pch ${TEST_TEMP_DIR}/source-manager-stack.c.tmp.prefix.pch ${LLVM_SRC}/llvm/tools/clang/test/PCH/source-manager-stack.c 2> ${TEST_TEMP_DIR}/source-manager-stack.c.tmp.diags.pch.txt
-    RUN(TestState.Failed, "not %clang_cc1 -fsyntax-only -fdiagnostics-show-note-include-stack -include-pch %t.prefix.pch %s 2> %t.diags.pch.txt");
+    RUN(JavaTestBase.TestState.Failed, "not %clang_cc1 -fsyntax-only -fdiagnostics-show-note-include-stack -include-pch %t.prefix.pch %s 2> %t.diags.pch.txt");
     // diff ${TEST_TEMP_DIR}/source-manager-stack.c.tmp.diags.no_pch.txt ${TEST_TEMP_DIR}/source-manager-stack.c.tmp.diags.pch.txt
-    RUN(TestState.Failed, "diff %t.diags.no_pch.txt %t.diags.pch.txt");
+    RUN(JavaTestBase.TestState.Failed, "diff %t.diags.no_pch.txt %t.diags.pch.txt");
   }
 
   @Test
@@ -2298,11 +2295,11 @@ public class AllPCHTest extends DriverTestFileBase {
   public void test_stmts_c() throws Throwable {
     setTestFile("${LLVM_SRC}/llvm/tools/clang/test/PCH/stmts.c");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -include ${LLVM_SRC}/llvm/tools/clang/test/PCH/stmts.h -fsyntax-only -emit-llvm -o - ${LLVM_SRC}/llvm/tools/clang/test/PCH/stmts.c
-    RUN(TestState.Failed, "%clang_cc1 -include %S/stmts.h -fsyntax-only -emit-llvm -o - %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -include %S/stmts.h -fsyntax-only -emit-llvm -o - %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -emit-pch -o ${TEST_TEMP_DIR}/stmts.c.tmp ${LLVM_SRC}/llvm/tools/clang/test/PCH/stmts.h
-    RUN(TestState.Failed, "%clang_cc1 -emit-pch -o %t %S/stmts.h");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -emit-pch -o %t %S/stmts.h");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -include-pch ${TEST_TEMP_DIR}/stmts.c.tmp -fsyntax-only -emit-llvm -o - ${LLVM_SRC}/llvm/tools/clang/test/PCH/stmts.c
-    RUN(TestState.Failed, "%clang_cc1 -include-pch %t -fsyntax-only -emit-llvm -o - %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -include-pch %t -fsyntax-only -emit-llvm -o - %s");
   }
 
   @Test
@@ -2324,13 +2321,13 @@ public class AllPCHTest extends DriverTestFileBase {
       return;
     }
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -triple x86_64-apple-darwin -emit-llvm -o ${TEST_TEMP_DIR}/subscripting-literals.m.tmp.nopch.ll ${LLVM_SRC}/llvm/tools/clang/test/PCH/subscripting-literals.m
-    RUN(TestState.Failed, "%clang_cc1 -triple x86_64-apple-darwin -emit-llvm -o %t.nopch.ll %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -triple x86_64-apple-darwin -emit-llvm -o %t.nopch.ll %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -triple x86_64-apple-darwin -emit-pch -o ${TEST_TEMP_DIR}/subscripting-literals.m.tmp.pch ${LLVM_SRC}/llvm/tools/clang/test/PCH/subscripting-literals.m
-    RUN(TestState.Failed, "%clang_cc1 -triple x86_64-apple-darwin -emit-pch -o %t.pch %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -triple x86_64-apple-darwin -emit-pch -o %t.pch %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -triple x86_64-apple-darwin -emit-llvm -o ${TEST_TEMP_DIR}/subscripting-literals.m.tmp.pch.ll ${LLVM_SRC}/llvm/tools/clang/test/PCH/subscripting-literals.m -include-pch ${TEST_TEMP_DIR}/subscripting-literals.m.tmp.pch
-    RUN(TestState.Failed, "%clang_cc1 -triple x86_64-apple-darwin -emit-llvm -o %t.pch.ll %s -include-pch %t.pch");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -triple x86_64-apple-darwin -emit-llvm -o %t.pch.ll %s -include-pch %t.pch");
     // diff ${TEST_TEMP_DIR}/subscripting-literals.m.tmp.nopch.ll ${TEST_TEMP_DIR}/subscripting-literals.m.tmp.pch.ll
-    RUN(TestState.Failed, "diff %t.nopch.ll %t.pch.ll");
+    RUN(JavaTestBase.TestState.Failed, "diff %t.nopch.ll %t.pch.ll");
   }
 
   @Test
@@ -2426,9 +2423,9 @@ public class AllPCHTest extends DriverTestFileBase {
   public void test_typo_m() throws Throwable {
     setTestFile("${LLVM_SRC}/llvm/tools/clang/test/PCH/typo.m");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -x objective-c-header -emit-pch -o ${TEST_TEMP_DIR}/typo.m.tmp ${LLVM_SRC}/llvm/tools/clang/test/PCH/Inputs/typo.h
-    RUN(TestState.Failed, "%clang_cc1 -x objective-c-header -emit-pch -o %t %S/Inputs/typo.h");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -x objective-c-header -emit-pch -o %t %S/Inputs/typo.h");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -include-pch ${TEST_TEMP_DIR}/typo.m.tmp -verify ${LLVM_SRC}/llvm/tools/clang/test/PCH/typo.m
-    RUN(TestState.Failed, "%clang_cc1 -include-pch %t -verify %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -include-pch %t -verify %s");
   }
 
   @Test
@@ -2467,11 +2464,11 @@ public class AllPCHTest extends DriverTestFileBase {
       return;
     }
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc '-triple=x86_64-unknown-freebsd7.0' -include ${LLVM_SRC}/llvm/tools/clang/test/PCH/va_arg.h ${LLVM_SRC}/llvm/tools/clang/test/PCH/va_arg.c -emit-llvm -o -
-    RUN(TestState.Failed, "%clang_cc1 -triple=x86_64-unknown-freebsd7.0 -include %S/va_arg.h %s -emit-llvm -o -");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -triple=x86_64-unknown-freebsd7.0 -include %S/va_arg.h %s -emit-llvm -o -");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc '-triple=x86_64-unknown-freebsd7.0' -emit-pch -o ${TEST_TEMP_DIR}/va_arg.c.tmp ${LLVM_SRC}/llvm/tools/clang/test/PCH/va_arg.h
-    RUN(TestState.Failed, "%clang_cc1 -triple=x86_64-unknown-freebsd7.0 -emit-pch -o %t %S/va_arg.h");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -triple=x86_64-unknown-freebsd7.0 -emit-pch -o %t %S/va_arg.h");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc '-triple=x86_64-unknown-freebsd7.0' -include-pch ${TEST_TEMP_DIR}/va_arg.c.tmp ${LLVM_SRC}/llvm/tools/clang/test/PCH/va_arg.c -emit-llvm -o -
-    RUN(TestState.Failed, "%clang_cc1 -triple=x86_64-unknown-freebsd7.0 -include-pch %t %s -emit-llvm -o -");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -triple=x86_64-unknown-freebsd7.0 -include-pch %t %s -emit-llvm -o -");
   }
 
   @Test
@@ -2482,11 +2479,11 @@ public class AllPCHTest extends DriverTestFileBase {
       return;
     }
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc '-triple=x86_64-unknown-freebsd7.0' -include ${LLVM_SRC}/llvm/tools/clang/test/PCH/Inputs/va_arg.h ${LLVM_SRC}/llvm/tools/clang/test/PCH/va_arg.cpp -emit-llvm -o -
-    RUN(TestState.Failed, "%clang_cc1 -triple=x86_64-unknown-freebsd7.0 -include %S/Inputs/va_arg.h %s -emit-llvm -o -");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -triple=x86_64-unknown-freebsd7.0 -include %S/Inputs/va_arg.h %s -emit-llvm -o -");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc '-triple=x86_64-unknown-freebsd7.0' -emit-pch -x c++-header -o ${TEST_TEMP_DIR}/va_arg.cpp.tmp ${LLVM_SRC}/llvm/tools/clang/test/PCH/Inputs/va_arg.h
-    RUN(TestState.Failed, "%clang_cc1 -triple=x86_64-unknown-freebsd7.0 -emit-pch -x c++-header -o %t %S/Inputs/va_arg.h");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -triple=x86_64-unknown-freebsd7.0 -emit-pch -x c++-header -o %t %S/Inputs/va_arg.h");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc '-triple=x86_64-unknown-freebsd7.0' -include-pch ${TEST_TEMP_DIR}/va_arg.cpp.tmp ${LLVM_SRC}/llvm/tools/clang/test/PCH/va_arg.cpp -emit-llvm -o -
-    RUN(TestState.Failed, "%clang_cc1 -triple=x86_64-unknown-freebsd7.0 -include-pch %t %s -emit-llvm -o -");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -triple=x86_64-unknown-freebsd7.0 -include-pch %t %s -emit-llvm -o -");
   }
 
   @Test
@@ -2504,7 +2501,7 @@ public class AllPCHTest extends DriverTestFileBase {
   public void test_variables_h() throws Throwable {
     setTestFile("${LLVM_SRC}/llvm/tools/clang/test/PCH/variables.h");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -emit-pch -o variables.h.pch variables.h
-    RUN(TestState.Failed, "%clang_cc1 -emit-pch -o variables.h.pch variables.h");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -emit-pch -o variables.h.pch variables.h");
   }
 
   @Test

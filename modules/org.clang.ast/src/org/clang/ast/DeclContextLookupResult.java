@@ -156,7 +156,8 @@ public class DeclContextLookupResult implements Iterable<NamedDecl /*P*/>, Nativ
    FQN="clang::DeclContextLookupResult::iterator", NM="_ZN5clang23DeclContextLookupResult8iteratorE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.ast/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Serialization/ASTWriter.cpp -nm=_ZN5clang23DeclContextLookupResult8iteratorE")
   //</editor-fold>
-  public static class iterator extends /*public*/ iterator_adaptor_base<iterator, type$ptr<NamedDecl /*P*/ /*const*/ /*P*/>, std.random_access_iterator_tag, NamedDecl /*P*/ /*const*/, NamedDecl /*P*/ /*const*/> {
+  public static class iterator extends /*public*/ iterator_adaptor_base<iterator, type$ptr<NamedDecl /*P*/ /*const*/ /*P*/>,
+          std.random_access_iterator_tag, NamedDecl /*P*/ /*const*/, NamedDecl /*P*/ /*const*/> {
     private /*const*/ NamedDecl SingleElement;
   /*public:*/
     //<editor-fold defaultstate="collapsed" desc="clang::DeclContextLookupResult::iterator::iterator">

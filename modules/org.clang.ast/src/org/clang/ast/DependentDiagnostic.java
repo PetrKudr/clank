@@ -155,7 +155,7 @@ public class DependentDiagnostic implements Destructors.ClassWithDestructor {
   //</editor-fold>
   public static DependentDiagnostic /*P*/ Create(final ASTContext /*&*/ Context, 
         DeclContext /*P*/ Parent, 
-        AccessNonce _, 
+        AccessNonce acn,
         SourceLocation Loc, 
         boolean IsMemberAccess, 
         AccessSpecifier AS, 

@@ -75,12 +75,17 @@
  */
 package org.clang.tooling.core.impl;
 
+import org.clang.basic.*;
+import org.clang.basic.vfs.InMemoryFileSystem;
 import org.clank.java.*;
 import org.clank.support.*;
 import org.llvm.support.*;
 import org.llvm.adt.*;
 import org.clang.rewrite.core.*;
 import org.clang.tooling.core.*;
+
+import static org.clank.support.Native.$createJavaCleaner;
+import static org.llvm.support.MemoryBuffer.getMemBuffer;
 
 
 //<editor-fold defaultstate="collapsed" desc="static type ReplacementToolingGlobals">
@@ -114,44 +119,6 @@ public static boolean $eq_Replacement$C(final /*const*/ Replacement /*&*/ LHS, f
 }
 
 
-/// \brief Apply all replacements in \p Replaces to the Rewriter \p Rewrite.
-///
-/// Replacement applications happen independently of the success of
-/// other applications.
-///
-/// \returns true if all replacements apply. false otherwise.
-//<editor-fold defaultstate="collapsed" desc="clang::tooling::applyAllReplacements">
-@Converted(kind = Converted.Kind.AUTO_NO_BODY,
- source = "${LLVM_SRC}/llvm/tools/clang/lib/Tooling/Core/Replacement.cpp", line = 221,
- FQN="clang::tooling::applyAllReplacements", NM="_ZN5clang7tooling20applyAllReplacementsERKSt3setINS0_11ReplacementESt4lessIS2_ESaIS2_EERNS_8RewriterE",
- cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.tooling/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Tooling/Core/Replacement.cpp -nm=_ZN5clang7tooling20applyAllReplacementsERKSt3setINS0_11ReplacementESt4lessIS2_ESaIS2_EERNS_8RewriterE")
-//</editor-fold>
-public static boolean applyAllReplacements(final /*const*/ std.setType<Replacement> /*&*/ Replaces, final Rewriter /*&*/ Rewrite) {
-  throw new UnsupportedOperationException("EmptyBody");
-}
-
-
-/// \brief Apply all replacements in \p Replaces to the Rewriter \p Rewrite.
-///
-/// Replacement applications happen independently of the success of
-/// other applications.
-///
-/// \returns true if all replacements apply. false otherwise.
-
-// FIXME: Remove this function when Replacements is implemented as std::vector
-// instead of std::set.
-//<editor-fold defaultstate="collapsed" desc="clang::tooling::applyAllReplacements">
-@Converted(kind = Converted.Kind.AUTO_NO_BODY,
- source = "${LLVM_SRC}/llvm/tools/clang/lib/Tooling/Core/Replacement.cpp", line = 237,
- FQN="clang::tooling::applyAllReplacements", NM="_ZN5clang7tooling20applyAllReplacementsERKSt6vectorINS0_11ReplacementESaIS2_EERNS_8RewriterE",
- cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.tooling/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Tooling/Core/Replacement.cpp -nm=_ZN5clang7tooling20applyAllReplacementsERKSt6vectorINS0_11ReplacementESaIS2_EERNS_8RewriterE")
-//</editor-fold>
-public static boolean applyAllReplacements(final /*const*/std.vector<Replacement> /*&*/ Replaces, 
-                    final Rewriter /*&*/ Rewrite) {
-  throw new UnsupportedOperationException("EmptyBody");
-}
-
-
 /// \brief Applies all replacements in \p Replaces to \p Code.
 ///
 /// This completely ignores the path stored in each replacement. If all
@@ -159,17 +126,72 @@ public static boolean applyAllReplacements(final /*const*/std.vector<Replacement
 /// replacements applied; otherwise, an llvm::Error carrying llvm::StringError
 /// is returned (the Error message can be converted to string using
 /// `llvm::toString()` and 'std::error_code` in the `Error` should be ignored).
-//<editor-fold defaultstate="collapsed" desc="clang::tooling::applyAllReplacements">
-@Converted(kind = Converted.Kind.AUTO_NO_BODY,
- source = "${LLVM_SRC}/llvm/tools/clang/lib/Tooling/Core/Replacement.cpp", line = 252,
- FQN="clang::tooling::applyAllReplacements", NM="_ZN5clang7tooling20applyAllReplacementsEN4llvm9StringRefERKSt3setINS0_11ReplacementESt4lessIS4_ESaIS4_EE",
- cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.tooling/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Tooling/Core/Replacement.cpp -nm=_ZN5clang7tooling20applyAllReplacementsEN4llvm9StringRefERKSt3setINS0_11ReplacementESt4lessIS4_ESaIS4_EE")
-//</editor-fold>
-public static Expected<std.string> applyAllReplacements(StringRef Code, 
-                    final /*const*/ std.setType<Replacement> /*&*/ Replaces) {
-  throw new UnsupportedOperationException("EmptyBody");
-}
+public static Expected<std.string> applyAllReplacements(StringRef Code, final /*const*/ Replacements /*&*/ Replaces) {
+  if (Replaces.empty())
+    return new Expected<>(JavaDifferentiators.JD$Convertible.INSTANCE, Code.str());
 
+  JavaCleaner $c$ = $createJavaCleaner();
+
+//  IntrusiveRefCntPtr<vfs::InMemoryFileSystem> InMemoryFileSystem(
+//          new vfs::InMemoryFileSystem);
+  IntrusiveRefCntPtr<InMemoryFileSystem> InMemoryFileSystem = null;
+  FileManager Files = null;
+  DiagnosticsEngine Diagnostics = null;
+  SourceManager SourceMgr = null;
+  Rewriter Rewrite = null;
+  try {
+    InMemoryFileSystem = new IntrusiveRefCntPtr<>(new InMemoryFileSystem());
+    //  FileManager Files(FileSystemOptions(), InMemoryFileSystem);
+    Files = $c$.clean(new FileManager(new FileSystemOptions(), $c$.track(new IntrusiveRefCntPtr<>(InMemoryFileSystem))));
+//      DiagnosticsEngine Diagnostics(
+//          IntrusiveRefCntPtr<DiagnosticIDs>(new DiagnosticIDs),
+//          new DiagnosticOptions);
+    Diagnostics = new DiagnosticsEngine(new IntrusiveRefCntPtr<>(new DiagnosticIDs()), new DiagnosticOptions());
+//      SourceManager SourceMgr(Diagnostics, Files);
+    SourceMgr = new SourceManager(Diagnostics, Files);
+//      Rewriter Rewrite(SourceMgr, LangOptions());
+    Rewrite = new Rewriter(SourceMgr, new LangOptions());
+
+//      InMemoryFileSystem->addFile(
+//          "<stdin>", 0, llvm::MemoryBuffer::getMemBuffer(Code, "<stdin>"));
+    InMemoryFileSystem.$arrow().addFile(new Twine("<stdin>"), 0,
+            getMemBuffer(new StringRef(Code), new StringRef("<stdin>")));
+
+//      FileID ID = SourceMgr.createFileID(Files.getFile("<stdin>"), SourceLocation(),
+//          clang::SrcMgr::C_User);
+    FileID ID = SourceMgr.createFileID(Files.getFile(new StringRef("<stdin>")), new SourceLocation(), SrcMgr.CharacteristicKind.C_User);
+
+    //  for (auto I = Replaces.rbegin(), E = Replaces.rend(); I != E; ++I) {
+    for (std.reverse_iterator<Replacement> I = Replaces.rbegin(), E = Replaces.rend(); I.$noteq(E); I.$preInc()) {
+      //    Replacement Replace("<stdin>", I->getOffset(), I->getLength(),
+      Replacement Replace = new Replacement(new StringRef("<stdin>"), I.$arrow().getOffset(), I.$arrow().getLength(), I.$arrow().getReplacementText());
+//      if (!Replace.apply(Rewrite))
+//        return llvm::make_error<ReplacementError>(
+//              replacement_error::fail_to_apply, Replace);
+      if (!Replace.apply(Rewrite)) {
+        return new Expected<>(AdtsupportLlvmGlobals.make_error(
+                replacement_error.fail_to_apply, Replace));
+      }
+    }
+//  std::string Result;
+//  llvm::raw_string_ostream OS(Result);
+//  Rewrite.getEditBuffer(ID).write(OS);
+//  OS.flush();
+//  return Result;
+
+    std.string Result = new std.string();
+    raw_string_ostream OS = new raw_string_ostream(Result);
+    Rewrite.getEditBuffer(ID).write(OS);
+    OS.flush();
+    return new Expected<std.string>(JavaDifferentiators.JD$Convertible.INSTANCE, Result);
+  } finally {
+    if (InMemoryFileSystem != null) { InMemoryFileSystem.$destroy(); }
+    if (Files != null) { Files.$destroy(); }
+    if (Diagnostics != null) { Diagnostics.$destroy(); }
+    if (SourceMgr != null) { SourceMgr.$destroy(); }
+    if (Rewrite != null) { Rewrite.$destroy(); }
+  }
+}
 
 /// \brief Calculates how a code \p Position is shifted when \p Replaces are
 /// applied.
@@ -197,7 +219,7 @@ public static /*uint*/int shiftedCodePosition(final /*const*/ std.setType<Replac
  FQN="clang::tooling::shiftedCodePosition", NM="_ZN5clang7tooling19shiftedCodePositionERKSt6vectorINS0_11ReplacementESaIS2_EEj",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.tooling/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Tooling/Core/Replacement.cpp -nm=_ZN5clang7tooling19shiftedCodePositionERKSt6vectorINS0_11ReplacementESaIS2_EEj")
 //</editor-fold>
-public static /*uint*/int shiftedCodePosition(final /*const*/std.vector<Replacement> /*&*/ Replaces, 
+public static /*uint*/int shiftedCodePosition(final /*const*/std.vector<Replacement> /*&*/ Replaces,
                    /*uint*/int Position) {
   throw new UnsupportedOperationException("EmptyBody");
 }
@@ -216,7 +238,7 @@ public static /*uint*/int shiftedCodePosition(final /*const*/std.vector<Replacem
  FQN="clang::tooling::deduplicate", NM="_ZN5clang7tooling11deduplicateERSt6vectorINS0_11ReplacementESaIS2_EERS1_INS0_5RangeESaIS6_EE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.tooling/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Tooling/Core/Replacement.cpp -nm=_ZN5clang7tooling11deduplicateERSt6vectorINS0_11ReplacementESaIS2_EERS1_INS0_5RangeESaIS6_EE")
 //</editor-fold>
-public static void deduplicate(final std.vector<Replacement> /*&*/ Replaces, 
+public static void deduplicate(final std.vector<Replacement> /*&*/ Replaces,
            final std.vector<Range> /*&*/ Conflicts) {
   throw new UnsupportedOperationException("EmptyBody");
 }
@@ -235,26 +257,6 @@ public static void deduplicate(final std.vector<Replacement> /*&*/ Replaces,
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.tooling/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Tooling/Core/Replacement.cpp -nm=_ZN5clang7tooling22calculateChangedRangesERKSt3setINS0_11ReplacementESt4lessIS2_ESaIS2_EE")
 //</editor-fold>
 public static std.vector<Range> calculateChangedRanges(final /*const*/ std.setType<Replacement> /*&*/ Replaces) {
-  throw new UnsupportedOperationException("EmptyBody");
-}
-
-
-/// \brief Calculates the new ranges after \p Replaces are applied. These
-/// include both the original \p Ranges and the affected ranges of \p Replaces
-/// in the new code.
-///
-/// \pre Replacements must be for the same file.
-///
-/// \return The new ranges after \p Replaces are applied. The new ranges will be
-/// sorted and non-overlapping.
-//<editor-fold defaultstate="collapsed" desc="clang::tooling::calculateRangesAfterReplacements">
-@Converted(kind = Converted.Kind.AUTO_NO_BODY,
- source = "${LLVM_SRC}/llvm/tools/clang/lib/Tooling/Core/Replacement.cpp", line = 321,
- FQN="clang::tooling::calculateRangesAfterReplacements", NM="_ZN5clang7tooling32calculateRangesAfterReplacementsERKSt3setINS0_11ReplacementESt4lessIS2_ESaIS2_EERKSt6vectorINS0_5RangeESaISA_EE",
- cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.tooling/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Tooling/Core/Replacement.cpp -nm=_ZN5clang7tooling32calculateRangesAfterReplacementsERKSt3setINS0_11ReplacementESt4lessIS2_ESaIS2_EERKSt6vectorINS0_5RangeESaISA_EE")
-//</editor-fold>
-public static std.vector<Range> calculateRangesAfterReplacements(final /*const*/ std.setType<Replacement> /*&*/ Replaces, 
-                                final /*const*/std.vector<Range> /*&*/ Ranges) {
   throw new UnsupportedOperationException("EmptyBody");
 }
 
@@ -282,7 +284,7 @@ public static std.mapTypeType<std.string, std.setType<Replacement>> groupReplace
  FQN="clang::tooling::mergeReplacements", NM="_ZN5clang7tooling17mergeReplacementsERKSt3setINS0_11ReplacementESt4lessIS2_ESaIS2_EES8_",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.tooling/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Tooling/Core/Replacement.cpp -nm=_ZN5clang7tooling17mergeReplacementsERKSt3setINS0_11ReplacementESt4lessIS2_ESaIS2_EES8_")
 //</editor-fold>
-public static std.setType<Replacement> mergeReplacements(final /*const*/ std.setType<Replacement> /*&*/ First, 
+public static std.setType<Replacement> mergeReplacements(final /*const*/ std.setType<Replacement> /*&*/ First,
                  final /*const*/ std.setType<Replacement> /*&*/ Second) {
   throw new UnsupportedOperationException("EmptyBody");
 }

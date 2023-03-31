@@ -91,9 +91,9 @@ public abstract class literal_constants {
     return (byte)c;
   }  
 
-  @org.netbeans.api.annotations.common.SuppressWarnings(
-          value = "ES_COMPARING_PARAMETER_STRING_WITH_EQ",
-          justification = "comparision with interned string for assert")
+//  @org.netbeans.api.annotations.common.SuppressWarnings(
+//          value = "ES_COMPARING_PARAMETER_STRING_WITH_EQ",
+//          justification = "comparision with interned string for assert")
   public static char$ptr $(String str) {
     // TODO: return built-ins?
     assert str != null && (str == str.intern()) : "used for string constants only " + str;

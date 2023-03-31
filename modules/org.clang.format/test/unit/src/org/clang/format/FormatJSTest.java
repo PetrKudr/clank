@@ -1,43 +1,43 @@
 /**
  * This file was converted to Java from the original LLVM source file. The original
  * source file follows the LLVM Release License, outlined below.
- * 
+ *
  * ==============================================================================
  * LLVM Release License
  * ==============================================================================
  * University of Illinois/NCSA
  * Open Source License
- * 
+ *
  * Copyright (c) 2003-2017 University of Illinois at Urbana-Champaign.
  * All rights reserved.
- * 
+ *
  * Developed by:
- * 
+ *
  *     LLVM Team
- * 
+ *
  *     University of Illinois at Urbana-Champaign
- * 
+ *
  *     http://llvm.org
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal with
  * the Software without restriction, including without limitation the rights to
  * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
  * of the Software, and to permit persons to whom the Software is furnished to do
  * so, subject to the following conditions:
- * 
+ *
  *     * Redistributions of source code must retain the above copyright notice,
  *       this list of conditions and the following disclaimers.
- * 
+ *
  *     * Redistributions in binary form must reproduce the above copyright notice
  *       this list of conditions and the following disclaimers in the
  *       documentation and/or other materials provided with the distribution.
- * 
+ *
  *     * Neither the names of the LLVM Team, University of Illinois at
  *       Urbana-Champaign, nor the names of its contributors may be used to
  *       endorse or promote products derived from this Software without specific
  *       prior written permission.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
  * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
@@ -45,7 +45,7 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS WITH THE
  * SOFTWARE.
- * 
+ *
  * ==============================================================================
  * Copyrights and Licenses for Third Party Software Distributed with LLVM:
  * ==============================================================================
@@ -53,16 +53,16 @@
  * have its own individual LICENSE.TXT file in the directory in which it appears.
  * This file will describe the copyrights, license, and restrictions which apply
  * to that code.
- * 
+ *
  * The disclaimer of warranty in the University of Illinois Open Source License
  * applies to all code in the LLVM Distribution, and nothing in any of the
  * other licenses gives permission to use the names of the LLVM Team or the
  * University of Illinois to endorse or promote products derived from this
  * Software.
- * 
+ *
  * The following pieces of software have additional or alternate copyrights,
  * licenses, and/or restrictions:
- * 
+ *
  * Program             Directory
  * -------             ---------
  * Autoconf            llvm/autoconf
@@ -76,21 +76,21 @@
 
 package org.clang.format;
 
-import org.junit.Test;
+import static org.clang.format.FormatGlobals.*;
+import org.clang.format.FormatTestUtils.test;
+import static org.clang.tooling.ToolingGlobals.*;
+import org.clang.tooling.core.*;
 import org.clank.java.*;
 import org.clank.support.*;
-import org.clank.support.aliases.*;
 import org.clank.support.JavaDifferentiators.*;
-import static org.clank.support.NativePointer.*;
+import org.clank.support.JavaDifferentiators.JD$Move;
 import static org.clank.support.Native.*;
-import org.llvm.support.*;
+import static org.clank.support.NativePointer.*;
+import org.clank.support.aliases.*;
+import org.junit.Test;
 import org.llvm.adt.*;
 import org.llvm.adt.aliases.*;
-import org.clang.tooling.core.*;
-import org.clang.format.*;
-import static org.clang.format.FormatGlobals.*;
-import static org.clang.tooling.ToolingGlobals.*;
-import org.clang.format.FormatTestUtils.test;
+import org.llvm.support.*;
 
 
 //<editor-fold defaultstate="collapsed" desc="static type FormatTestJS">
@@ -117,10 +117,10 @@ public final class FormatJSTest extends ADTSupportTestBase {
    FQN="clang::format::FormatTestJS::format", NM="_ZN5clang6format12FormatTestJS6formatEN4llvm9StringRefEjjRKNS0_11FormatStyleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/unittests/Format/FormatTestJS.cpp -nm=_ZN5clang6format12FormatTestJS6formatEN4llvm9StringRefEjjRKNS0_11FormatStyleE")
   //</editor-fold>
-  protected static std.string format(StringRef Code, /*uint*/int Offset, 
+  protected static std.string format(StringRef Code, /*uint*/int Offset,
         /*uint*/int Length, final /*const*/ FormatStyle /*&*/ Style) {
     std.vector<Range> Ranges = null;
-    std.setType<Replacement> Replaces = null;
+    Replacements Replaces = null;
     Expected<std.string> Result = null;
     try {
       do {
@@ -152,7 +152,7 @@ public final class FormatJSTest extends ADTSupportTestBase {
     }
   }
 
-  
+
   //<editor-fold defaultstate="collapsed" desc="clang::format::FormatTestJS::format">
   @Converted(kind = Converted.Kind.MANUAL_COMPILATION,
    source = "${LLVM_SRC}/llvm/tools/clang/unittests/Format/FormatTestJS.cpp", line = 37,
@@ -160,15 +160,15 @@ public final class FormatJSTest extends ADTSupportTestBase {
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/unittests/Format/FormatTestJS.cpp -nm=_ZN5clang6format12FormatTestJS6formatEN4llvm9StringRefERKNS0_11FormatStyleE")
   //</editor-fold>
   protected static std.string format(StringRef Code) {
-    return format(Code, 
+    return format(Code,
         getGoogleStyle(FormatStyle.LanguageKind.LK_JavaScript));
   }
-  protected static std.string format(StringRef Code, 
+  protected static std.string format(StringRef Code,
         final /*const*/ FormatStyle /*&*/ Style/*= $c$.track(getGoogleStyle(FormatStyle::LK_JavaScript))*/) {
     return FormatJSTest.format(new StringRef(Code), 0, Code.size(), Style);
   }
 
-  
+
   //<editor-fold defaultstate="collapsed" desc="clang::format::FormatTestJS::getGoogleJSStyleWithColumns">
   @Converted(kind = Converted.Kind.AUTO,
    source = "${LLVM_SRC}/llvm/tools/clang/unittests/Format/FormatTestJS.cpp", line = 43,
@@ -186,7 +186,7 @@ public final class FormatJSTest extends ADTSupportTestBase {
     }
   }
 
-  
+
   //<editor-fold defaultstate="collapsed" desc="clang::format::FormatTestJS::verifyFormat">
   @Converted(kind = Converted.Kind.MANUAL_COMPILATION,
    source = "${LLVM_SRC}/llvm/tools/clang/unittests/Format/FormatTestJS.cpp", line = 49,
@@ -194,30 +194,30 @@ public final class FormatJSTest extends ADTSupportTestBase {
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/unittests/Format/FormatTestJS.cpp -nm=_ZN5clang6format12FormatTestJS12verifyFormatEN4llvm9StringRefERKNS0_11FormatStyleE")
   //</editor-fold>
   protected static void verifyFormat(StringRef Code) {
-    verifyFormat(Code, 
+    verifyFormat(Code,
               getGoogleStyle(FormatStyle.LanguageKind.LK_JavaScript));
   }
-  protected static void verifyFormat(StringRef Code, 
+  protected static void verifyFormat(StringRef Code,
               final /*const*/ FormatStyle /*&*/ Style/*= $c$.track(getGoogleStyle(FormatStyle::LK_JavaScript))*/) {
     std.string Result = FormatJSTest.format(new StringRef(test.messUp(new StringRef(Code))), Style);
       EXPECT_EQ(Code.str(),Result);
   }
 
-  
+
   //<editor-fold defaultstate="collapsed" desc="clang::format::FormatTestJS::verifyFormat">
   @Converted(kind = Converted.Kind.MANUAL_COMPILATION,
    source = "${LLVM_SRC}/llvm/tools/clang/unittests/Format/FormatTestJS.cpp", line = 56,
    FQN="clang::format::FormatTestJS::verifyFormat", NM="_ZN5clang6format12FormatTestJS12verifyFormatEN4llvm9StringRefES3_RKNS0_11FormatStyleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/unittests/Format/FormatTestJS.cpp -nm=_ZN5clang6format12FormatTestJS12verifyFormatEN4llvm9StringRefES3_RKNS0_11FormatStyleE")
   //</editor-fold>
-  protected static void verifyFormat(StringRef Expected, 
+  protected static void verifyFormat(StringRef Expected,
               StringRef Code) {
-    verifyFormat(Expected, 
-              Code, 
+    verifyFormat(Expected,
+              Code,
               getGoogleStyle(FormatStyle.LanguageKind.LK_JavaScript));
   }
-  protected static void verifyFormat(StringRef Expected, 
-              StringRef Code, 
+  protected static void verifyFormat(StringRef Expected,
+              StringRef Code,
               final /*const*/ FormatStyle /*&*/ Style/*= $c$.track(getGoogleStyle(FormatStyle::LK_JavaScript))*/) {
     std.string Result = FormatJSTest.format(new StringRef(Code), Style);
       EXPECT_EQ(Expected.str(),Result);
@@ -240,13 +240,13 @@ public final class FormatJSTest extends ADTSupportTestBase {
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/unittests/Format/FormatTestJS.cpp -nm=_ZN5clang6format12FormatTestJSC1Ev")
   //</editor-fold>
   public /*inline*/ FormatJSTest() {
-    // : Test() 
+    // : Test()
     //START JInit
     super(TestState.Successful);
     //END JInit
   }
 
-  
+
   @Override public String toString() {
     return "" + super.toString(); // NOI18N
   }
@@ -279,36 +279,36 @@ public void test_UnderstandsJavaScriptOperators() {
   try {
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"a == = b;"));
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"a != = b;"));
-    
+
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"a === b;"));
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"aaaaaaa ===\n    b;"), $c$.track(FormatJSTest.getGoogleJSStyleWithColumns(10))); $c$.clean();
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"a !== b;"));
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"aaaaaaa !==\n    b;"), $c$.track(FormatJSTest.getGoogleJSStyleWithColumns(10))); $c$.clean();
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"if (a + b + c +\n        d !==\n    e + f + g)\n  q();"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"if (a + b + c +\n        d !==\n    e + f + g)\n  q();"),
         $c$.track(FormatJSTest.getGoogleJSStyleWithColumns(20))); $c$.clean();
-    
+
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"a >> >= b;"));
-    
+
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"a >>> b;"));
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"aaaaaaa >>>\n    b;"), $c$.track(FormatJSTest.getGoogleJSStyleWithColumns(10))); $c$.clean();
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"a >>>= b;"));
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"aaaaaaa >>>=\n    b;"), $c$.track(FormatJSTest.getGoogleJSStyleWithColumns(10))); $c$.clean();
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"if (a + b + c +\n        d >>>\n    e + f + g)\n  q();"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"if (a + b + c +\n        d >>>\n    e + f + g)\n  q();"),
         $c$.track(FormatJSTest.getGoogleJSStyleWithColumns(20))); $c$.clean();
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x = aaaaaaaaaa ?\n    bbbbbb :\n    ccc;"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x = aaaaaaaaaa ?\n    bbbbbb :\n    ccc;"),
         $c$.track(FormatJSTest.getGoogleJSStyleWithColumns(20))); $c$.clean();
-    
+
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var b = a.map((x) => x + 1);"));
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"return ('aaa') in bbbb;"));
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x = aaaaaaaaaaaaaaaaaaaaaaaaa() in\n    aaaa.aaaaaa.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa;"));
     Style = FormatJSTest.getGoogleJSStyleWithColumns(80);
     Style.AlignOperands = true;
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x = aaaaaaaaaaaaaaaaaaaaaaaaa() in\n        aaaa.aaaaaa.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa;"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x = aaaaaaaaaaaaaaaaaaaaaaaaa() in\n        aaaa.aaaaaa.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa;"),
         Style);
     Style.BreakBeforeBinaryOperators = FormatStyle.BinaryOperatorStyle.BOS_All;
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x = aaaaaaaaaaaaaaaaaaaaaaaaa()\n            in aaaa.aaaaaa.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa;"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x = aaaaaaaaaaaaaaaaaaaaaaaaa()\n            in aaaa.aaaaaa.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa;"),
         Style);
-    
+
     // ES6 spread operator.
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"someFunction(...a);"));
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x = [1, ...a, 2];"));
@@ -428,18 +428,18 @@ public void test_ContainerLiterals() {
   // But only on the top level, otherwise its a plain object literal assignment.
   FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"function x() {\n  y = {z: 1};\n}"));
   FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"x = foo && {a: 123};"));
-  
+
   // Arrow functions in object literals.
   FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x = {y: (a) => { return a; }};"));
   FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x = {y: (a) => a};"));
-  
+
   // Computed keys.
   FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x = {[a]: 1, b: 2, [c]: 3};"));
   FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x = {\n  [a]: 1,\n  b: 2,\n  [c]: 3,\n};"));
-  
+
   // Object literals can leave out labels.
   FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"f({a}, () => {\n  g();  //\n});"));
-  
+
   // Keys can be quoted.
   FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x = {\n  a: a,\n  b: b,\n  'c': c,\n};"));
 }
@@ -474,10 +474,10 @@ public void test_SpacesInContainerLiterals() {
   try {
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var arr = [1, 2, 3];"));
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"f({a: 1, b: 2, c: 3});"));
-    
+
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var object_literal_with_long_name = {\n  a: 'aaaaaaaaaaaaaaaaaa',\n  b: 'bbbbbbbbbbbbbbbbbb'\n};"));
-    
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"f({a: 1, b: 2, c: 3});"), 
+
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"f({a: 1, b: 2, c: 3});"),
         $c$.track(getChromiumStyle(FormatStyle.LanguageKind.LK_JavaScript))); $c$.clean();
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"f({'a': [{}]});"));
   } finally {
@@ -524,19 +524,19 @@ public void test_GoogModules() {
   if (markAsSkippedIfNeed(TestState.Successful)) { return; }
   JavaCleaner $c$ = $createJavaCleaner();
   try {
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"goog.module('this.is.really.absurdly.long');"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"goog.module('this.is.really.absurdly.long');"),
         $c$.track(FormatJSTest.getGoogleJSStyleWithColumns(40))); $c$.clean();
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"goog.require('this.is.really.absurdly.long');"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"goog.require('this.is.really.absurdly.long');"),
         $c$.track(FormatJSTest.getGoogleJSStyleWithColumns(40))); $c$.clean();
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"goog.provide('this.is.really.absurdly.long');"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"goog.provide('this.is.really.absurdly.long');"),
         $c$.track(FormatJSTest.getGoogleJSStyleWithColumns(40))); $c$.clean();
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var long = goog.require('this.is.really.absurdly.long');"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var long = goog.require('this.is.really.absurdly.long');"),
         $c$.track(FormatJSTest.getGoogleJSStyleWithColumns(40))); $c$.clean();
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"goog.setTestOnly('this.is.really.absurdly.long');"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"goog.setTestOnly('this.is.really.absurdly.long');"),
         $c$.track(FormatJSTest.getGoogleJSStyleWithColumns(40))); $c$.clean();
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"goog.forwardDeclare('this.is.really.absurdly.long');"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"goog.forwardDeclare('this.is.really.absurdly.long');"),
         $c$.track(FormatJSTest.getGoogleJSStyleWithColumns(40))); $c$.clean();
-    
+
     // These should be wrapped normally.
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var MyLongClassName =\n    goog.module.get('my.long.module.name.followedBy.MyLongClassName');"));
   } finally {
@@ -585,7 +585,7 @@ public void test_GeneratorFunctions() {
   JavaCleaner $c$ = $createJavaCleaner();
   try {
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"function* f() {\n  let x = 1;\n  yield x;\n  yield* something();\n}"));
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"function*\n    f() {\n}"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"function*\n    f() {\n}"),
         $c$.track(FormatJSTest.getGoogleJSStyleWithColumns(8))); $c$.clean();
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"export function* f() {\n  yield 1;\n}\n"));
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"class X {\n  * generatorMethod() { yield x; }\n}"));
@@ -627,12 +627,12 @@ public void test_ArrayLiterals() {
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"return [\n  aaaaaaaaaaaaaaaaaaaaaaaaaaa, bbbbbbbbbbbbbbbbbbbbbbbbbbb,\n  ccccccccccccccccccccccccccc\n];"));
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"return [\n  aaaa().bbbbbbbb('A'),\n  aaaa().bbbbbbbb('B'),\n  aaaa().bbbbbbbb('C'),\n];"));
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var someVariable = SomeFunction([\n  aaaaaaaaaaaaaaaaaaaaaaaaaaa, bbbbbbbbbbbbbbbbbbbbbbbbbbb,\n  ccccccccccccccccccccccccccc\n]);"));
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var someVariable = SomeFunction([\n  [aaaaaaaaaaaaaaaaaaaaaa, bbbbbbbbbbbbbbbbbbbbbb],\n]);"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var someVariable = SomeFunction([\n  [aaaaaaaaaaaaaaaaaaaaaa, bbbbbbbbbbbbbbbbbbbbbb],\n]);"),
         $c$.track(FormatJSTest.getGoogleJSStyleWithColumns(51))); $c$.clean();
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var someVariable = SomeFunction(aaaa, [\n  aaaaaaaaaaaaaaaaaaaaaaaaaaa, bbbbbbbbbbbbbbbbbbbbbbbbbbb,\n  ccccccccccccccccccccccccccc\n]);"));
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var someVariable = SomeFunction(\n    aaaa,\n    [\n      aaaaaaaaaaaaaaaaaaaaaaaaaa, bbbbbbbbbbbbbbbbbbbbbbbbbb,\n      cccccccccccccccccccccccccc\n    ],\n    aaaa);"));
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var aaaa = aaaaa ||  // wrap\n    [];"));
-    
+
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"someFunction([], {a: a});"));
   } finally {
     $c$.$destroy();
@@ -671,23 +671,23 @@ public void test_FunctionLiterals() {
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var func =  //\n    function() {\n  return 1;\n};"));
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"return {\n  body: {\n    setAttribute: function(key, val) { this[key] = val; },\n    getAttribute: function(key) { return this[key]; },\n    style: {direction: ''}\n  }\n};"));
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"abc = xyz ? function() {\n  return 1;\n} : function() {\n  return -1;\n};"));
-    
+
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var closure = goog.bind(\n    function() {  // comment\n      foo();\n      bar();\n    },\n    this, arg1IsReallyLongAndNeeedsLineBreaks,\n    arg3IsReallyLongAndNeeedsLineBreaks);"));
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var closure = goog.bind(function() {  // comment\n  foo();\n  bar();\n}, this);"));
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"return {\n  a: 'E',\n  b: function() {\n    return function() {\n      f();  //\n    };\n  }\n};"));
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"{\n  var someVariable = function(x) {\n    return x.zIsTooLongForOneLineWithTheDeclarationLine();\n  };\n}"));
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"someLooooooooongFunction(\n    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa,\n    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa,\n    function(aaaaaaaaaaaaaaaaaaaaaaaaaaaaa) {\n      // code\n    });"));
-    
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"f({a: function() { return 1; }});"), 
+
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"f({a: function() { return 1; }});"),
         $c$.track(FormatJSTest.getGoogleJSStyleWithColumns(33))); $c$.clean();
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"f({\n  a: function() { return 1; }\n});"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"f({\n  a: function() { return 1; }\n});"),
         $c$.track(FormatJSTest.getGoogleJSStyleWithColumns(32))); $c$.clean();
-    
+
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"return {\n  a: function SomeFunction() {\n    // ...\n    return 1;\n  }\n};"));
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"this.someObject.doSomething(aaaaaaaaaaaaaaaaaaaaaaaaaa)\n    .then(goog.bind(function(aaaaaaaaaaa) {\n      someFunction();\n      someFunction();\n    }, this), aaaaaaaaaaaaaaaaa);"));
-    
+
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"someFunction(goog.bind(function() {\n  doSomething();\n  doSomething();\n}, this), goog.bind(function() {\n  doSomething();\n  doSomething();\n}, this));"));
-    
+
     // FIXME: This is bad, we should be wrapping before "function() {".
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"someFunction(function() {\n  doSomething();  // break\n})\n    .doSomethingElse(\n        // break\n        );"));
   } finally {
@@ -709,34 +709,34 @@ public void test_InliningFunctionLiterals() {
   try {
     Style = getGoogleStyle(FormatStyle.LanguageKind.LK_JavaScript);
     Style.AllowShortFunctionsOnASingleLine = FormatStyle.ShortFunctionStyle.SFS_Inline;
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var func = function() {\n  return 1;\n};"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var func = function() {\n  return 1;\n};"),
         Style);
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var func = doSomething(function() { return 1; });"), Style);
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var outer = function() {\n  var inner = function() { return 1; }\n};"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var outer = function() {\n  var inner = function() { return 1; }\n};"),
         Style);
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"function outer1(a, b) {\n  function inner1(a, b) { return a; }\n}"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"function outer1(a, b) {\n  function inner1(a, b) { return a; }\n}"),
         Style);
-    
+
     Style.AllowShortFunctionsOnASingleLine = FormatStyle.ShortFunctionStyle.SFS_All;
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var func = function() { return 1; };"), Style);
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var func = doSomething(function() { return 1; });"), Style);
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var outer = function() { var inner = function() { return 1; } };"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var outer = function() { var inner = function() { return 1; } };"),
         Style);
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"function outer1(a, b) {\n  function inner1(a, b) { return a; }\n}"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"function outer1(a, b) {\n  function inner1(a, b) { return a; }\n}"),
         Style);
-    
+
     Style.AllowShortFunctionsOnASingleLine = FormatStyle.ShortFunctionStyle.SFS_None;
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var func = function() {\n  return 1;\n};"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var func = function() {\n  return 1;\n};"),
         Style);
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var func = doSomething(function() {\n  return 1;\n});"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var func = doSomething(function() {\n  return 1;\n});"),
         Style);
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var outer = function() {\n  var inner = function() {\n    return 1;\n  }\n};"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var outer = function() {\n  var inner = function() {\n    return 1;\n  }\n};"),
         Style);
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"function outer1(a, b) {\n  function inner1(a, b) {\n    return a;\n  }\n}"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"function outer1(a, b) {\n  function inner1(a, b) {\n    return a;\n  }\n}"),
         Style);
-    
+
     Style.AllowShortFunctionsOnASingleLine = FormatStyle.ShortFunctionStyle.SFS_Empty;
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var func = function() {\n  return 1;\n};"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var func = function() {\n  return 1;\n};"),
         Style);
   } finally {
     if (Style != null) { Style.$destroy(); }
@@ -756,12 +756,12 @@ public void test_MultipleFunctionLiterals() {
   FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"promise.then(\n    function success() {\n      doFoo();\n      doBar();\n    },\n    function error() {\n      doFoo();\n      doBaz();\n    },\n    []);\n"));
   FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"promise.then(\n    function success() {\n      doFoo();\n      doBar();\n    },\n    [],\n    function error() {\n      doFoo();\n      doBaz();\n    });\n"));
   FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"promise.then(\n    [],\n    function success() {\n      doFoo();\n      doBar();\n    },\n    function error() {\n      doFoo();\n      doBaz();\n    });\n"));
-  
+
   FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"getSomeLongPromise()\n    .then(function(value) { body(); })\n    .thenCatch(function(error) {\n      body();\n      body();\n    });"));
   FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"getSomeLongPromise()\n    .then(function(value) {\n      body();\n      body();\n    })\n    .thenCatch(function(error) {\n      body();\n      body();\n    });"));
-  
+
   FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"getSomeLongPromise()\n    .then(function(value) { body(); })\n    .thenCatch(function(error) { body(); });"));
-  
+
   FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"return [aaaaaaaaaaaaaaaaaaaaaa]\n    .aaaaaaa(function() {\n      //\n    })\n    .bbbbbb();"));
 }
 
@@ -783,7 +783,7 @@ public void test_ArrowFunctions() {
   FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var aaaaaaaaaaaaaaaaaaaa = {\n  aaaaaaaaaaaaaaaaaaaaaaaaaaaa:\n      (aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa,\n       aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa) =>\n          aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa,\n};"));
   FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var a = a.aaaaaaa(\n    (a: a) => aaaaaaaaaaaaaaaaaaaaaaaaa(bbbbbbbbb) &&\n        aaaaaaaaaaaaaaaaaaaaaaaaa(bbbbbbb));"));
   FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var a = a.aaaaaaa(\n    (a: a) => aaaaaaaaaaaaaaaaaaaaa(bbbbbbbbb) ?\n        aaaaaaaaaaaaaaaaaaaaa(bbbbbbb) :\n        aaaaaaaaaaaaaaaaaaaaa(bbbbbbb));"));
-  
+
   // FIXME: This is bad, we should be wrapping before "() => {".
   FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"someFunction(() => {\n  doSomething();  // break\n})\n    .doSomethingElse(\n        // break\n        );"));
 }
@@ -838,7 +838,7 @@ public void test_WrapRespectsAutomaticSemicolonInsertion() {
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"throw aaaaa;"), $c$.track(FormatJSTest.getGoogleJSStyleWithColumns(10))); $c$.clean();
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"aaaaaaaaa++;"), $c$.track(FormatJSTest.getGoogleJSStyleWithColumns(10))); $c$.clean();
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"aaaaaaaaa--;"), $c$.track(FormatJSTest.getGoogleJSStyleWithColumns(10))); $c$.clean();
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"return [\n  aaa\n];"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"return [\n  aaa\n];"),
         $c$.track(FormatJSTest.getGoogleJSStyleWithColumns(12))); $c$.clean();
   } finally {
     $c$.$destroy();
@@ -855,25 +855,25 @@ public void test_WrapRespectsAutomaticSemicolonInsertion() {
 //</editor-fold>
 public void test_AutomaticSemicolonInsertionHeuristic() {
   if (markAsSkippedIfNeed(TestState.Successful)) { return; }
-  FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"a\nb;"), 
+  FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"a\nb;"),
       new StringRef(/*KEEP_STR*/" a \n b ;"));
-  FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"a()\nb;"), 
+  FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"a()\nb;"),
       new StringRef(/*KEEP_STR*/" a ()\n b ;"));
-  FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"a[b]\nc;"), 
+  FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"a[b]\nc;"),
       new StringRef(/*KEEP_STR*/"a [b]\nc ;"));
-  FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"1\na;"), 
+  FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"1\na;"),
       new StringRef(/*KEEP_STR*/"1 \na ;"));
-  FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"a\n1;"), 
+  FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"a\n1;"),
       new StringRef(/*KEEP_STR*/"a \n1 ;"));
-  FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"a\n'x';"), 
+  FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"a\n'x';"),
       new StringRef(/*KEEP_STR*/"a \n 'x';"));
-  FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"a++\nb;"), 
+  FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"a++\nb;"),
       new StringRef(/*KEEP_STR*/"a ++\nb ;"));
-  FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"a\n!b && c;"), 
+  FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"a\n!b && c;"),
       new StringRef(/*KEEP_STR*/"a \n ! b && c;"));
-  FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"a\nif (1) f();"), 
+  FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"a\nif (1) f();"),
       new StringRef(/*KEEP_STR*/" a\n if (1) f();"));
-  FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"a\nclass X {}"), 
+  FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"a\nclass X {}"),
       new StringRef(/*KEEP_STR*/" a\n class X {}"));
   FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var a"), new StringRef(/*KEEP_STR*/"var\na"));
   FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"x instanceof String"), new StringRef(/*KEEP_STR*/"x\ninstanceof\nString"));
@@ -904,7 +904,7 @@ public void test_ClosureStyleCasts() {
 public void test_TryCatch() {
   if (markAsSkippedIfNeed(TestState.Successful)) { return; }
   FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"try {\n  f();\n} catch (e) {\n  g();\n} finally {\n  h();\n}"));
-  
+
   // But, of course, "catch" is a perfectly fine function name in JavaScript.
   FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"someObject.catch();"));
   FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"someObject.new();"));
@@ -948,13 +948,13 @@ public void test_RegexLiteralClassification() {
   FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"/abc/.search(y);"));
   FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var regexs = {/abc/, /abc/};"));
   FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"return /abc/;"));
-  
+
   // Not regex literals.
   FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var a = a / 2 + b / 3;"));
   FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var a = a++ / 2;"));
   // Prefix unary can operate on regex literals, not that it makes sense.
   FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var a = ++/a/;"));
-  
+
   // This is a known issue, regular expressions are incorrectly detected if
   // directly following a closing parenthesis.
   FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"if (foo) / bar /.exec(baz);"));
@@ -986,7 +986,7 @@ public void test_RegexLiteralSpecialCharacters() {
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var regex = /x|y/;"));
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var regex = /a{2}/;"));
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var regex = /a{1,3}/;"));
-    
+
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var regex = /[abc]/;"));
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var regex = /[^abc]/;"));
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var regex = /[\\b]/;"));
@@ -997,7 +997,7 @@ public void test_RegexLiteralSpecialCharacters() {
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var regex = /}[\"]/;"));
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var regex = /}[/\"]/;"));
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var regex = /}[\"/]/;"));
-    
+
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var regex = /\\b/;"));
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var regex = /\\B/;"));
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var regex = /\\d/;"));
@@ -1019,11 +1019,11 @@ public void test_RegexLiteralSpecialCharacters() {
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var regex = /a\\//;\nvar x = 0;"));
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var regex = /'/g;"), new StringRef(/*KEEP_STR*/"var regex = /'/g ;"));
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var regex = /'/g;  //'"), new StringRef(/*KEEP_STR*/"var regex = /'/g ; //'"));
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var regex = /\\/*/;\nvar x = 0;"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var regex = /\\/*/;\nvar x = 0;"),
         new StringRef(/*KEEP_STR*/"var regex = /\\/*/;\nvar x=0;"));
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x = /a\\//;"), new StringRef(/*KEEP_STR*/"var x = /a\\//  \n;"));
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var regex = /\"/;"), $c$.track(FormatJSTest.getGoogleJSStyleWithColumns(16))); $c$.clean();
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var regex =\n    /\"/;"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var regex =\n    /\"/;"),
         $c$.track(FormatJSTest.getGoogleJSStyleWithColumns(15))); $c$.clean();
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var regex =  //\n    /a/;"));
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var regexs = [\n  /d/,   //\n  /aa/,  //\n];"));
@@ -1060,11 +1060,11 @@ public void test_RegexLiteralLength() {
   if (markAsSkippedIfNeed(TestState.Successful)) { return; }
   JavaCleaner $c$ = $createJavaCleaner();
   try {
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var regex = /aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/;"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var regex = /aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/;"),
         $c$.track(FormatJSTest.getGoogleJSStyleWithColumns(60))); $c$.clean();
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var regex =\n    /aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/;"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var regex =\n    /aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/;"),
         $c$.track(FormatJSTest.getGoogleJSStyleWithColumns(60))); $c$.clean();
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var regex = /\\xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/;"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var regex = /\\xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/;"),
         $c$.track(FormatJSTest.getGoogleJSStyleWithColumns(50))); $c$.clean();
   } finally {
     $c$.$destroy();
@@ -1109,7 +1109,7 @@ public void test_TypeAnnotations() {
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x: P<string, (a: number) => string>;"));
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x = {y: function(): z { return 1; }};"));
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x = {y: function(): {a: number} { return 1; }};"));
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"function someFunc(args: string[]):\n    {longReturnValue: string[]} {}"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"function someFunc(args: string[]):\n    {longReturnValue: string[]} {}"),
         $c$.track(FormatJSTest.getGoogleJSStyleWithColumns(60))); $c$.clean();
   } finally {
     $c$.$destroy();
@@ -1163,7 +1163,7 @@ public void test_ClassDeclarations() {
   FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"foo = class Name {\n  constructor() {}\n};"));
   FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"foo = class {\n  constructor() {}\n};"));
   FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"class C {\n  x: {y: Z;} = {};\n  private y: {y: Z;} = {};\n}"));
-  
+
   // ':' is not a type declaration here.
   FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"class X {\n  subs = {\n    'b': {\n      'c': 1,\n    },\n  };\n}"));
   FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"@Component({\n  moduleId: module.id,\n})\nclass SessionListComponent implements OnDestroy, OnInit {\n}"));
@@ -1182,7 +1182,7 @@ public void test_InterfaceDeclarations() {
   FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"interface I {\n  x: string;\n  enum: string[];\n  enum?: string[];\n}\nvar y;"));
   // Ensure that state is reset after parsing the interface.
   FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"interface a {}\nexport function b() {}\nvar x;"));
-  
+
   // Arrays of object type literals.
   FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"interface I {\n  o: {}[];\n}"));
 }
@@ -1257,7 +1257,7 @@ public void test_Modules() {
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"import {X as myX} from 'm';"), new StringRef(/*KEEP_STR*/"import {X as\n myX} from 'm';"));
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"import * as lib from 'some/module.js';"));
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x = {import: 1};\nx.import = 2;"));
-    
+
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"export function fn() {\n  return 'fn';\n}"));
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"export function A() {}\nexport default function B() {}\nexport function C() {}"));
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"export default () => {\n  let x = 1;\n  return x;\n}"));
@@ -1269,7 +1269,7 @@ public void test_Modules() {
     // export without 'from' is wrapped.
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"export let someRatherLongVariableName =\n    someSurprisinglyLongVariable + someOtherRatherLongVar;"));
     // ... but not if from is just an identifier.
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"export {\n  from as from,\n  someSurprisinglyLongVariable as\n      from\n};"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"export {\n  from as from,\n  someSurprisinglyLongVariable as\n      from\n};"),
         $c$.track(FormatJSTest.getGoogleJSStyleWithColumns(20))); $c$.clean();
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"export class C {\n  x: number;\n  y: string;\n}"));
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"export class X { y: number; }"));
@@ -1305,11 +1305,11 @@ public void test_ImportWrapping() {
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"import {VeryLongImportsAreAnnoying, VeryLongImportsAreAnnoying, VeryLongImportsAreAnnoying, VeryLongImportsAreAnnoying} from 'some/module.js';"));
     Style = FormatJSTest.getGoogleJSStyleWithColumns(80);
     Style.JavaScriptWrapImports = true;
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"import {\n  VeryLongImportsAreAnnoying,\n  VeryLongImportsAreAnnoying,\n  VeryLongImportsAreAnnoying,\n} from 'some/module.js';"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"import {\n  VeryLongImportsAreAnnoying,\n  VeryLongImportsAreAnnoying,\n  VeryLongImportsAreAnnoying,\n} from 'some/module.js';"),
         Style);
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"import {\n  A,\n  A,\n} from 'some/module.js';"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"import {\n  A,\n  A,\n} from 'some/module.js';"),
         Style);
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"export {\n  A,\n  A,\n} from 'some/module.js';"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"export {\n  A,\n  A,\n} from 'some/module.js';"),
         Style);
   } finally {
     if (Style != null) { Style.$destroy(); }
@@ -1329,58 +1329,58 @@ public void test_TemplateStrings() {
   JavaCleaner $c$ = $createJavaCleaner();
   try {
     // Keeps any whitespace/indentation within the template string.
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x = `hello\n     ${  name    }\n  !`;"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x = `hello\n     ${  name    }\n  !`;"),
         new StringRef(/*KEEP_STR*/"var x    =    `hello\n     ${  name    }\n  !`;"));
-    
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x =\n    `hello ${world}` >= some();"), 
+
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x =\n    `hello ${world}` >= some();"),
         $c$.track(FormatJSTest.getGoogleJSStyleWithColumns(34))); $c$.clean(); // Barely doesn't fit.
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x = `hello ${world}` >= some();"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x = `hello ${world}` >= some();"),
         $c$.track(FormatJSTest.getGoogleJSStyleWithColumns(35))); $c$.clean(); // Barely fits.
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x = `hell\303\266 ${w\303\266rld}` >= s\303\266me();"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x = `hell\303\266 ${w\303\266rld}` >= s\303\266me();"),
         $c$.track(FormatJSTest.getGoogleJSStyleWithColumns(35))); $c$.clean(); // Fits due to UTF-8.
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x = `hello\n  ${world}` >=\n    some();"), 
-        new StringRef(/*KEEP_STR*/"var x =\n    `hello\n  ${world}` >= some();"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x = `hello\n  ${world}` >=\n    some();"),
+        new StringRef(/*KEEP_STR*/"var x =\n    `hello\n  ${world}` >= some();"),
         $c$.track(FormatJSTest.getGoogleJSStyleWithColumns(21))); $c$.clean(); // Barely doesn't fit.
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x = `hello\n  ${world}` >= some();"), 
-        new StringRef(/*KEEP_STR*/"var x =\n    `hello\n  ${world}` >= some();"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x = `hello\n  ${world}` >= some();"),
+        new StringRef(/*KEEP_STR*/"var x =\n    `hello\n  ${world}` >= some();"),
         $c$.track(FormatJSTest.getGoogleJSStyleWithColumns(22))); $c$.clean(); // Barely fits.
-    
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x =\n    `h`;"), 
+
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x =\n    `h`;"),
         $c$.track(FormatJSTest.getGoogleJSStyleWithColumns(11))); $c$.clean();
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x =\n    `multi\n  line`;"), new StringRef(/*KEEP_STR*/"var x = `multi\n  line`;"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x =\n    `multi\n  line`;"), new StringRef(/*KEEP_STR*/"var x = `multi\n  line`;"),
         $c$.track(FormatJSTest.getGoogleJSStyleWithColumns(13))); $c$.clean();
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa(\n    `aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa`);"));
     // Repro for an obscure width-miscounting issue with template strings.
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"someLongVariable =\n    `${logPrefix[11]}/${logPrefix[12]}/${logPrefix[13]}${logPrefix[14]}`;"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"someLongVariable =\n    `${logPrefix[11]}/${logPrefix[12]}/${logPrefix[13]}${logPrefix[14]}`;"),
         new StringRef(/*KEEP_STR*/"someLongVariable = `${logPrefix[11]}/${logPrefix[12]}/${logPrefix[13]}${logPrefix[14]}`;"));
-    
+
     // Make sure template strings get a proper ColumnWidth assigned, even if they
     // are first token in line.
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var a = aaaaaaaaaaaaaaaaaaaaaaaaaaaa ||\n    `aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa`;"));
-    
+
     // Two template strings.
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x = `hello` == `hello`;"));
-    
+
     // Comments in template strings.
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x = `//a`;\nvar y;"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x = `//a`;\nvar y;"),
         new StringRef(/*KEEP_STR*/"var x =\n `//a`;\nvar y  ;"));
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x = `/*a`;\nvar y;"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x = `/*a`;\nvar y;"),
         new StringRef(/*KEEP_STR*/"var x =\n `/*a`;\nvar y;"));
     // Unterminated string literals in a template string.
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x = `'`;  // comment with matching quote '\nvar y;"));
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x = `\"`;  // comment with matching quote \"\nvar y;"));
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"it(`'aaaaaaaaaaaaaaa   `, aaaaaaaaa);"), 
-        new StringRef(/*KEEP_STR*/"it(`'aaaaaaaaaaaaaaa   `,   aaaaaaaaa) ;"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"it(`'aaaaaaaaaaaaaaa   `, aaaaaaaaa);"),
+        new StringRef(/*KEEP_STR*/"it(`'aaaaaaaaaaaaaaa   `,   aaaaaaaaa) ;"),
         $c$.track(FormatJSTest.getGoogleJSStyleWithColumns(40))); $c$.clean();
     // Backticks in a comment - not a template string.
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x = 1  // `/*a`;\n    ;"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x = 1  // `/*a`;\n    ;"),
         new StringRef(/*KEEP_STR*/"var x =\n 1  // `/*a`;\n    ;"));
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"/* ` */ var x = 1; /* ` */"), new StringRef(/*KEEP_STR*/"/* ` */ var x\n= 1; /* ` */"));
     // Comment spans multiple template strings.
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x = `/*a`;\nvar y = ` */ `;"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x = `/*a`;\nvar y = ` */ `;"),
         new StringRef(/*KEEP_STR*/"var x =\n `/*a`;\nvar y =\n ` */ `;"));
     // Escaped backtick.
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x = ` \\` a`;\nvar y;"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x = ` \\` a`;\nvar y;"),
         new StringRef(/*KEEP_STR*/"var x = ` \\` a`;\nvar y;"));
   } finally {
     $c$.$destroy();
@@ -1401,7 +1401,7 @@ public void test_CastSyntax() {
   try {
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x = <type>foo;"));
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x = foo as type;"));
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"let x = (a + b) as\n    LongTypeIsLong;"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"let x = (a + b) as\n    LongTypeIsLong;"),
         $c$.track(FormatJSTest.getGoogleJSStyleWithColumns(20))); $c$.clean();
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"foo = <Bar[]>[\n  1,  //\n  2\n];"));
   } finally {
@@ -1484,11 +1484,11 @@ public void test_WrapAfterParen() {
   if (markAsSkippedIfNeed(TestState.Successful)) { return; }
   JavaCleaner $c$ = $createJavaCleaner();
   try {
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"xxxxxxxxxxx(\n    aaa, aaa);"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"xxxxxxxxxxx(\n    aaa, aaa);"),
         $c$.track(FormatJSTest.getGoogleJSStyleWithColumns(20))); $c$.clean();
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"xxxxxxxxxxx(\n    aaa, aaa, aaa,\n    aaa, aaa, aaa);"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"xxxxxxxxxxx(\n    aaa, aaa, aaa,\n    aaa, aaa, aaa);"),
         $c$.track(FormatJSTest.getGoogleJSStyleWithColumns(20))); $c$.clean();
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"xxxxxxxxxxx(\n    aaaaaaaaaaaaaaaaaaaaaaaa,\n    function(x) {\n      y();  //\n    });"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"xxxxxxxxxxx(\n    aaaaaaaaaaaaaaaaaaaaaaaa,\n    function(x) {\n      y();  //\n    });"),
         $c$.track(FormatJSTest.getGoogleJSStyleWithColumns(40))); $c$.clean();
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"while (aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa &&\n       bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb) {\n}"));
   } finally {
@@ -1508,8 +1508,8 @@ public void test_JSDocAnnotations() {
   if (markAsSkippedIfNeed(TestState.Successful)) { return; }
   JavaCleaner $c$ = $createJavaCleaner();
   try {
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"/**\n * @export {this.is.a.long.path.to.a.Type}\n */"), 
-        new StringRef(/*KEEP_STR*/"/**\n * @export {this.is.a.long.path.to.a.Type}\n */"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"/**\n * @export {this.is.a.long.path.to.a.Type}\n */"),
+        new StringRef(/*KEEP_STR*/"/**\n * @export {this.is.a.long.path.to.a.Type}\n */"),
         $c$.track(FormatJSTest.getGoogleJSStyleWithColumns(20))); $c$.clean();
   } finally {
     $c$.$destroy();
@@ -1531,16 +1531,16 @@ public void test_RequoteStringsSingle() {
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x = 'foo';"), new StringRef(/*KEEP_STR*/"var x = \"foo\";"));
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x = 'fo\\'o\\'';"), new StringRef(/*KEEP_STR*/"var x = \"fo'o'\";"));
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x = 'fo\\'o\\'';"), new StringRef(/*KEEP_STR*/"var x = \"fo\\'o'\";"));
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x =\n    'foo\\'';"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x =\n    'foo\\'';"),
         // Code below is 15 chars wide, doesn't fit into the line with the
         // \ escape added.
         new StringRef(/*KEEP_STR*/"var x = \"foo'\";"), $c$.track(FormatJSTest.getGoogleJSStyleWithColumns(15))); $c$.clean();
     // Removes no-longer needed \ escape from ".
     FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x = 'fo\"o';"), new StringRef(/*KEEP_STR*/"var x = \"fo\\\"o\";"));
     // Code below fits into 15 chars *after* removing the \ escape.
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x = 'fo\"o';"), new StringRef(/*KEEP_STR*/"var x = \"fo\\\"o\";"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"var x = 'fo\"o';"), new StringRef(/*KEEP_STR*/"var x = \"fo\\\"o\";"),
         $c$.track(FormatJSTest.getGoogleJSStyleWithColumns(15))); $c$.clean();
-    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"// clang-format off\nlet x = \"double\";\n// clang-format on\nlet x = 'single';\n"), 
+    FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"// clang-format off\nlet x = \"double\";\n// clang-format on\nlet x = 'single';\n"),
         new StringRef(/*KEEP_STR*/"// clang-format off\nlet x = \"double\";\n// clang-format on\nlet x = \"single\";\n"));
   } finally {
     $c$.$destroy();
@@ -1600,7 +1600,7 @@ public void test_RequoteStringsLeave() {
 //</editor-fold>
 public void test_SupportShebangLines() {
   if (markAsSkippedIfNeed(TestState.Successful)) { return; }
-  FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"#!/usr/bin/env node\nvar x = hello();"), 
+  FormatJSTest.verifyFormat(new StringRef(/*KEEP_STR*/"#!/usr/bin/env node\nvar x = hello();"),
       new StringRef(/*KEEP_STR*/"#!/usr/bin/env node\nvar x   =  hello();"));
 }
 

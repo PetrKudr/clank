@@ -325,7 +325,7 @@ public class ConcreteTypeLoc</*class Base, *//*class*/ Derived extends ConcreteT
    FQN="clang::ConcreteTypeLoc::getInnerTypeSize", NM="_ZNK5clang15ConcreteTypeLoc16getInnerTypeSizeENS0_14HasNoInnerTypeE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.ast/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/AST/TypeLoc.cpp -nm=_ZNK5clang15ConcreteTypeLoc16getInnerTypeSizeENS0_14HasNoInnerTypeE")
   //</editor-fold>
-  private /*uint*/int getInnerTypeSize(HasNoInnerType _) /*const*/ {
+  private /*uint*/int getInnerTypeSize(HasNoInnerType hasNoInnerType) /*const*/ {
     throw new UnsupportedOperationException("Specializaton Class Must Be Used");
   }
 
@@ -336,7 +336,7 @@ public class ConcreteTypeLoc</*class Base, *//*class*/ Derived extends ConcreteT
    FQN="clang::ConcreteTypeLoc::getInnerTypeSize", NM="_ZNK5clang15ConcreteTypeLoc16getInnerTypeSizeENS_8QualTypeE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.ast/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/AST/TypeLoc.cpp -nm=_ZNK5clang15ConcreteTypeLoc16getInnerTypeSizeENS_8QualTypeE")
   //</editor-fold>
-  private /*uint*/int getInnerTypeSize(QualType _) /*const*/ {
+  private /*uint*/int getInnerTypeSize(QualType qualType) /*const*/ {
     throw new UnsupportedOperationException("Specializaton Class Must Be Used");
   }
 
@@ -358,7 +358,7 @@ public class ConcreteTypeLoc</*class Base, *//*class*/ Derived extends ConcreteT
    FQN="clang::ConcreteTypeLoc::getNextTypeAlign", NM="_ZNK5clang15ConcreteTypeLoc16getNextTypeAlignENS0_14HasNoInnerTypeE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.ast/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/AST/TypeLoc.cpp -nm=_ZNK5clang15ConcreteTypeLoc16getNextTypeAlignENS0_14HasNoInnerTypeE")
   //</editor-fold>
-  private /*uint*/int getNextTypeAlign(HasNoInnerType _) /*const*/ {
+  private /*uint*/int getNextTypeAlign(HasNoInnerType hasNoInnerType) /*const*/ {
     throw new UnsupportedOperationException("Specializaton Class Must Be Used");
   }
 
@@ -380,7 +380,7 @@ public class ConcreteTypeLoc</*class Base, *//*class*/ Derived extends ConcreteT
    FQN="clang::ConcreteTypeLoc::getNextTypeLoc", NM="_ZNK5clang15ConcreteTypeLoc14getNextTypeLocENS0_14HasNoInnerTypeE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.ast/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/AST/TypeLoc.cpp -nm=_ZNK5clang15ConcreteTypeLoc14getNextTypeLocENS0_14HasNoInnerTypeE")
   //</editor-fold>
-  private TypeLoc getNextTypeLoc(HasNoInnerType _) /*const*/ {
+  private TypeLoc getNextTypeLoc(HasNoInnerType hasNoInnerType) /*const*/ {
     throw new UnsupportedOperationException("Specializaton Class Must Be Used");
   }
 

@@ -93,7 +93,7 @@ public class/*struct*/ TSTChecker implements /*public*/ TypeLocVisitorBool<TSTCh
    FQN="(anonymous namespace)::TSTChecker::isTypeSpec", NM="_ZN12_GLOBAL__N_110TSTChecker10isTypeSpecEN5clang15TypeSpecTypeLocE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.ast/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/AST/TypeLoc.cpp -nm=_ZN12_GLOBAL__N_110TSTChecker10isTypeSpecEN5clang15TypeSpecTypeLocE")
   //</editor-fold>
-  public static boolean isTypeSpec(TypeSpecTypeLoc _) {
+  public static boolean isTypeSpec(TypeSpecTypeLoc typeSpecTypeLoc) {
     return true;
   }
 
@@ -103,7 +103,7 @@ public class/*struct*/ TSTChecker implements /*public*/ TypeLocVisitorBool<TSTCh
    FQN="(anonymous namespace)::TSTChecker::isTypeSpec", NM="_ZN12_GLOBAL__N_110TSTChecker10isTypeSpecEN5clang7TypeLocE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.ast/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/AST/TypeLoc.cpp -nm=_ZN12_GLOBAL__N_110TSTChecker10isTypeSpecEN5clang7TypeLocE")
   //</editor-fold>
-  public static boolean isTypeSpec(TypeLoc _) {
+  public static boolean isTypeSpec(TypeLoc typeLoc) {
     return false;
   }
 

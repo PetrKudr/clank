@@ -1,43 +1,43 @@
 /**
  * This file was converted to Java from the original LLVM source file. The original
  * source file follows the LLVM Release License, outlined below.
- * 
+ *
  * ==============================================================================
  * LLVM Release License
  * ==============================================================================
  * University of Illinois/NCSA
  * Open Source License
- * 
+ *
  * Copyright (c) 2003-2017 University of Illinois at Urbana-Champaign.
  * All rights reserved.
- * 
+ *
  * Developed by:
- * 
+ *
  *     LLVM Team
- * 
+ *
  *     University of Illinois at Urbana-Champaign
- * 
+ *
  *     http://llvm.org
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal with
  * the Software without restriction, including without limitation the rights to
  * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
  * of the Software, and to permit persons to whom the Software is furnished to do
  * so, subject to the following conditions:
- * 
+ *
  *     * Redistributions of source code must retain the above copyright notice,
  *       this list of conditions and the following disclaimers.
- * 
+ *
  *     * Redistributions in binary form must reproduce the above copyright notice
  *       this list of conditions and the following disclaimers in the
  *       documentation and/or other materials provided with the distribution.
- * 
+ *
  *     * Neither the names of the LLVM Team, University of Illinois at
  *       Urbana-Champaign, nor the names of its contributors may be used to
  *       endorse or promote products derived from this Software without specific
  *       prior written permission.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
  * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
@@ -45,7 +45,7 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS WITH THE
  * SOFTWARE.
- * 
+ *
  * ==============================================================================
  * Copyrights and Licenses for Third Party Software Distributed with LLVM:
  * ==============================================================================
@@ -53,16 +53,16 @@
  * have its own individual LICENSE.TXT file in the directory in which it appears.
  * This file will describe the copyrights, license, and restrictions which apply
  * to that code.
- * 
+ *
  * The disclaimer of warranty in the University of Illinois Open Source License
  * applies to all code in the LLVM Distribution, and nothing in any of the
  * other licenses gives permission to use the names of the LLVM Team or the
  * University of Illinois to endorse or promote products derived from this
  * Software.
- * 
+ *
  * The following pieces of software have additional or alternate copyrights,
  * licenses, and/or restrictions:
- * 
+ *
  * Program             Directory
  * -------             ---------
  * Autoconf            llvm/autoconf
@@ -76,18 +76,24 @@
 
 package org.clang.format.impl;
 
-import org.clank.java.*;
-import org.clank.support.*;
-import org.clank.support.JavaDifferentiators.*;
-import static org.clank.support.NativePointer.*;
-import org.llvm.support.*;
-import org.llvm.adt.aliases.*;
-import org.clang.tooling.core.*;
+import org.clang.tooling.core.Replacements;
+import java.util.Iterator;
 import org.clang.format.*;
-import static org.clang.format.impl.EncodingStatics.*;
 import static org.clang.format.FormatGlobals.*;
+import static org.clang.format.impl.EncodingStatics.*;
+import org.clang.format.impl.EncodingStatics.Encoding;
+import org.clang.tooling.core.*;
 import org.clank.java.stdimpl.StdSetType;
+import org.clank.support.*;
+import org.clank.support.JavaDifferentiators.JD$UInt_T$C$R;
 import static org.clank.support.Native.$createJavaCleaner;
+import static org.clank.support.literal_constants.$;
+import static org.clank.support.literal_constants.$COLON_LF;
+import static org.clank.support.literal_constants.$LF;
+import static org.clank.support.literal_constants.$unknown;
+import org.llvm.adt.aliases.*;
+import org.llvm.support.*;
+import org.llvm.support.Error;
 
 //<editor-fold defaultstate="collapsed" desc="clang::format::TokenAnalyzer">
 @Converted(kind = Converted.Kind.AUTO,
@@ -104,7 +110,7 @@ public abstract class TokenAnalyzer extends /*public*/ UnwrappedLineConsumer imp
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Format/TokenAnalyzer.cpp -nm=_ZN5clang6format13TokenAnalyzerC1ERKNS0_11EnvironmentERKNS0_11FormatStyleE")
   //</editor-fold>
   public TokenAnalyzer(final /*const*/ Environment /*&*/ Env, final /*const*/ FormatStyle /*&*/ Style) {
-    // : UnwrappedLineConsumer(), Style(Style), Env(Env), AffectedRangeMgr(Env.getSourceManager(), Env.getCharRanges()), UnwrappedLines(1), Encoding(encoding::detectEncoding(Env.getSourceManager().getBufferData(Env.getFileID()))) 
+    // : UnwrappedLineConsumer(), Style(Style), Env(Env), AffectedRangeMgr(Env.getSourceManager(), Env.getCharRanges()), UnwrappedLines(1), Encoding(encoding::detectEncoding(Env.getSourceManager().getBufferData(Env.getFileID())))
     //START JInit
     super();
     this.Style = new FormatStyle(Style);
@@ -125,42 +131,42 @@ public abstract class TokenAnalyzer extends /*public*/ UnwrappedLineConsumer imp
     } while (false);
   }
 
-  
+
   //<editor-fold defaultstate="collapsed" desc="clang::format::TokenAnalyzer::process">
   @Converted(kind = Converted.Kind.AUTO,
    source = "${LLVM_SRC}/llvm/tools/clang/lib/Format/TokenAnalyzer.cpp", line = 91,
    FQN="clang::format::TokenAnalyzer::process", NM="_ZN5clang6format13TokenAnalyzer7processEv",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Format/TokenAnalyzer.cpp -nm=_ZN5clang6format13TokenAnalyzer7processEv")
   //</editor-fold>
-  public std.setType<Replacement> process() {
-    std.setType<Replacement> Result = null;
+  public Replacements process() {
+    Replacements Result = null;
     FormatTokenLexer Tokens = null;
     UnwrappedLineParser Parser = null;
     try {
-      Result/*J*/= new std.setType<Replacement>();
-      Tokens/*J*/= new FormatTokenLexer(Env.getSourceManager(), Env.getFileID(), Style, 
+      Result/*J*/ = new Replacements();
+      Tokens/*J*/= new FormatTokenLexer(Env.getSourceManager(), Env.getFileID(), Style,
           Encoding);
-      
+
       Parser/*J*/= new UnwrappedLineParser(Style, Tokens.getKeywords(), Tokens.lex(), /*Deref*/this);
       Parser.parse();
       assert (UnwrappedLines.rbegin().$arrow().empty());
       for (/*uint*/int Run = 0, RunE = UnwrappedLines.size(); Run + 1 != RunE; ++Run) {
-        std.setType<Replacement> RunResult = null;
+        Replacements RunResult = null;
         try {
           do {
             if (/*::*/llvm.DebugFlag && /*::*/llvm.isCurrentDebugType(/*KEEP_STR*/"format-formatter")) {
               llvm.dbgs().$out(/*KEEP_STR*/"Run ").$out_uint(Run).$out(/*KEEP_STR*/"...\n");
             }
           } while (false);
-          SmallVector<AnnotatedLine /*P*/ > AnnotatedLines/*J*/= new SmallVector<AnnotatedLine /*P*/ >(16, (AnnotatedLine /*P*/ )null);
-          
+          SmallVector<AnnotatedLine /*P*/> AnnotatedLines/*J*/ = new SmallVector<>(16, (AnnotatedLine /*P*/) null);
+
           TokenAnnotator Annotator/*J*/= new TokenAnnotator(Style, Tokens.getKeywords());
           for (/*uint*/int i = 0, e = UnwrappedLines.$at(Run).size(); i != e; ++i) {
             AnnotatedLines.push_back(new AnnotatedLine(UnwrappedLines.$at(Run).$at(i)));
             Annotator.annotate(/*Deref*/AnnotatedLines.back());
           }
-          
-          RunResult = analyze(Annotator, AnnotatedLines, Tokens, Result);
+
+          RunResult = analyze(Annotator, AnnotatedLines, Tokens);
           do {
             if (/*::*/llvm.DebugFlag && /*::*/llvm.isCurrentDebugType(/*KEEP_STR*/"format-formatter")) {
               {
@@ -169,18 +175,25 @@ public abstract class TokenAnalyzer extends /*public*/ UnwrappedLineConsumer imp
                   llvm.dbgs().$out(I.$arrow().__toString()).$out(/*KEEP_STR*/$LF);
                 }
               }
-              ;
             }
           } while (false);
           for (/*uint*/int i = 0, e = AnnotatedLines.size(); i != e; ++i) {
             if (AnnotatedLines.$at(i) != null) { AnnotatedLines.$at(i).$destroy();};
           }
-          Result.insert$T(RunResult.begin(), RunResult.end());
+
+          for (Iterator<Replacement> it = RunResult.iterator(); it.hasNext();) {
+            Replacement R = it.next();
+            Error Err = Result.add(R);
+            if (Err.$bool()) {
+              llvm.dbgs().$out(llvm.toString(Err) + "\n");
+              return new Replacements();
+            }
+          }
         } finally {
           if (RunResult != null) { RunResult.$destroy(); }
         }
       }
-      return new std.setType<Replacement>(JD$Move.INSTANCE, Result);
+      return Result;
     } finally {
       if (Parser != null) { Parser.$destroy(); }
       if (Tokens != null) { Tokens.$destroy(); }
@@ -195,11 +208,11 @@ public abstract class TokenAnalyzer extends /*public*/ UnwrappedLineConsumer imp
    FQN="clang::format::TokenAnalyzer::analyze", NM="_ZN5clang6format13TokenAnalyzer7analyzeERNS0_14TokenAnnotatorERN4llvm15SmallVectorImplIPNS0_13AnnotatedLineEEERNS0_16FormatTokenLexerERSt3setINS_7tooling11ReplacementESt4lessISE_ESaISE_EE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Format/TokenAnalyzer.cpp -nm=_ZN5clang6format13TokenAnalyzer7analyzeERNS0_14TokenAnnotatorERN4llvm15SmallVectorImplIPNS0_13AnnotatedLineEEERNS0_16FormatTokenLexerERSt3setINS_7tooling11ReplacementESt4lessISE_ESaISE_EE")
   //</editor-fold>
-  protected abstract /*virtual*/ std.setType<Replacement> analyze(final TokenAnnotator /*&*/ Annotator, 
-         final SmallVectorImpl<AnnotatedLine /*P*/ > /*&*/ AnnotatedLines, 
-         final FormatTokenLexer /*&*/ Tokens, final std.setType<Replacement> /*&*/ Result)/* = 0*/;
+  protected abstract /*virtual*/ Replacements analyze(final TokenAnnotator /*&*/ Annotator,
+          final SmallVectorImpl<AnnotatedLine /*P*/ > /*&*/ AnnotatedLines,
+         final FormatTokenLexer /*&*/ Tokens)/* = 0*/;
 
-  
+
   //<editor-fold defaultstate="collapsed" desc="clang::format::TokenAnalyzer::consumeUnwrappedLine">
   @Converted(kind = Converted.Kind.AUTO,
    source = "${LLVM_SRC}/llvm/tools/clang/lib/Format/TokenAnalyzer.cpp", line = 128,
@@ -211,7 +224,7 @@ public abstract class TokenAnalyzer extends /*public*/ UnwrappedLineConsumer imp
     UnwrappedLines.back().push_back_T$C$R(TheLine);
   }
 
-  
+
   //<editor-fold defaultstate="collapsed" desc="clang::format::TokenAnalyzer::finishRun">
   @Converted(kind = Converted.Kind.AUTO,
    source = "${LLVM_SRC}/llvm/tools/clang/lib/Format/TokenAnalyzer.cpp", line = 133,
@@ -227,7 +240,7 @@ public abstract class TokenAnalyzer extends /*public*/ UnwrappedLineConsumer imp
     }
   }
 
-  
+
   protected FormatStyle Style;
   // Stores Style, FileID and SourceManager etc.
   protected final /*const*/ Environment /*&*/ Env;
@@ -250,7 +263,7 @@ public abstract class TokenAnalyzer extends /*public*/ UnwrappedLineConsumer imp
     //END JDestroy
   }
 
-  
+
   @Override public String toString() {
     return "" + "Style=" + Style // NOI18N
               + ", Env=" + Env // NOI18N

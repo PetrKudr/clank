@@ -1,43 +1,43 @@
 /**
  * This file was converted to Java from the original LLVM source file. The original
  * source file follows the LLVM Release License, outlined below.
- * 
+ *
  * ==============================================================================
  * LLVM Release License
  * ==============================================================================
  * University of Illinois/NCSA
  * Open Source License
- * 
+ *
  * Copyright (c) 2003-2017 University of Illinois at Urbana-Champaign.
  * All rights reserved.
- * 
+ *
  * Developed by:
- * 
+ *
  *     LLVM Team
- * 
+ *
  *     University of Illinois at Urbana-Champaign
- * 
+ *
  *     http://llvm.org
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal with
  * the Software without restriction, including without limitation the rights to
  * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
  * of the Software, and to permit persons to whom the Software is furnished to do
  * so, subject to the following conditions:
- * 
+ *
  *     * Redistributions of source code must retain the above copyright notice,
  *       this list of conditions and the following disclaimers.
- * 
+ *
  *     * Redistributions in binary form must reproduce the above copyright notice
  *       this list of conditions and the following disclaimers in the
  *       documentation and/or other materials provided with the distribution.
- * 
+ *
  *     * Neither the names of the LLVM Team, University of Illinois at
  *       Urbana-Champaign, nor the names of its contributors may be used to
  *       endorse or promote products derived from this Software without specific
  *       prior written permission.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
  * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
@@ -45,7 +45,7 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS WITH THE
  * SOFTWARE.
- * 
+ *
  * ==============================================================================
  * Copyrights and Licenses for Third Party Software Distributed with LLVM:
  * ==============================================================================
@@ -53,16 +53,16 @@
  * have its own individual LICENSE.TXT file in the directory in which it appears.
  * This file will describe the copyrights, license, and restrictions which apply
  * to that code.
- * 
+ *
  * The disclaimer of warranty in the University of Illinois Open Source License
  * applies to all code in the LLVM Distribution, and nothing in any of the
  * other licenses gives permission to use the names of the LLVM Team or the
  * University of Illinois to endorse or promote products derived from this
  * Software.
- * 
+ *
  * The following pieces of software have additional or alternate copyrights,
  * licenses, and/or restrictions:
- * 
+ *
  * Program             Directory
  * -------             ---------
  * Autoconf            llvm/autoconf
@@ -76,20 +76,19 @@
 
 package org.clang.format;
 
-import org.junit.Test;
+import static org.clang.format.FormatGlobals.*;
+import org.clang.format.FormatTestUtils.test;
+import static org.clang.tooling.ToolingGlobals.*;
+import org.clang.tooling.core.*;
 import org.clank.java.*;
 import org.clank.support.*;
-import org.clank.support.JavaDifferentiators.*;
-import static org.clank.support.NativePointer.*;
+import org.clank.support.JavaDifferentiators.JD$Move;
 import static org.clank.support.Native.*;
-import org.llvm.support.*;
+import static org.clank.support.literal_constants.$LF;
+import org.junit.Test;
 import org.llvm.adt.*;
 import org.llvm.adt.aliases.*;
-import org.clang.tooling.core.*;
-import org.clang.format.*;
-import static org.clang.format.FormatGlobals.*;
-import static org.clang.tooling.ToolingGlobals.*;
-import org.clang.format.FormatTestUtils.test;
+import org.llvm.support.*;
 
 
 //<editor-fold defaultstate="collapsed" desc="static type FormatTestJava">
@@ -116,10 +115,10 @@ public final class FormatJavaTest extends ADTSupportTestBase {
    FQN="clang::format::FormatTestJava::format", NM="_ZN5clang6format14FormatTestJava6formatEN4llvm9StringRefEjjRKNS0_11FormatStyleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/unittests/Format/FormatTestJava.cpp -nm=_ZN5clang6format14FormatTestJava6formatEN4llvm9StringRefEjjRKNS0_11FormatStyleE")
   //</editor-fold>
-  protected static std.string format(StringRef Code, /*uint*/int Offset, 
+  protected static std.string format(StringRef Code, /*uint*/int Offset,
         /*uint*/int Length, final /*const*/ FormatStyle /*&*/ Style) {
     std.vector<Range> Ranges = null;
-    std.setType<Replacement> Replaces = null;
+    Replacements Replaces = null;
     Expected<std.string> Result = null;
     try {
       do {
@@ -149,7 +148,7 @@ public final class FormatJavaTest extends ADTSupportTestBase {
     }
   }
 
-  
+
   //<editor-fold defaultstate="collapsed" desc="clang::format::FormatTestJava::format">
   @Converted(kind = Converted.Kind.AUTO,
    source = "${LLVM_SRC}/llvm/tools/clang/unittests/Format/FormatTestJava.cpp", line = 34,
@@ -157,15 +156,15 @@ public final class FormatJavaTest extends ADTSupportTestBase {
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/unittests/Format/FormatTestJava.cpp -nm=_ZN5clang6format14FormatTestJava6formatEN4llvm9StringRefERKNS0_11FormatStyleE")
   //</editor-fold>
   protected static std.string format(StringRef Code) {
-    return format(Code, 
+    return format(Code,
         getGoogleStyle(FormatStyle.LanguageKind.LK_Java));
   }
-  protected static std.string format(StringRef Code, 
+  protected static std.string format(StringRef Code,
         final /*const*/ FormatStyle /*&*/ Style/*= $c$.track(getGoogleStyle(FormatStyle::LK_Java))*/) {
     return FormatJavaTest.format(new StringRef(Code), 0, Code.size(), Style);
   }
 
-  
+
   //<editor-fold defaultstate="collapsed" desc="clang::format::FormatTestJava::getStyleWithColumns">
   @Converted(kind = Converted.Kind.AUTO,
    source = "${LLVM_SRC}/llvm/tools/clang/unittests/Format/FormatTestJava.cpp", line = 40,
@@ -183,7 +182,7 @@ public final class FormatJavaTest extends ADTSupportTestBase {
     }
   }
 
-  
+
   //<editor-fold defaultstate="collapsed" desc="clang::format::FormatTestJava::verifyFormat">
   @Converted(kind = Converted.Kind.AUTO,
    source = "${LLVM_SRC}/llvm/tools/clang/unittests/Format/FormatTestJava.cpp", line = 46,
@@ -191,10 +190,10 @@ public final class FormatJavaTest extends ADTSupportTestBase {
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/unittests/Format/FormatTestJava.cpp -nm=_ZN5clang6format14FormatTestJava12verifyFormatEN4llvm9StringRefERKNS0_11FormatStyleE")
   //</editor-fold>
   protected static void verifyFormat(StringRef Code) {
-    verifyFormat(Code, 
+    verifyFormat(Code,
               getGoogleStyle(FormatStyle.LanguageKind.LK_Java));
   }
-  protected static void verifyFormat(StringRef Code, 
+  protected static void verifyFormat(StringRef Code,
               final /*const*/ FormatStyle /*&*/ Style/*= $c$.track(getGoogleStyle(FormatStyle::LK_Java))*/) {
       EXPECT_EQ(Code.str(),FormatJavaTest.format(new StringRef(test.messUp(new StringRef(Code))), Style));
   }
@@ -216,13 +215,13 @@ public final class FormatJavaTest extends ADTSupportTestBase {
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/unittests/Format/FormatTestJava.cpp -nm=_ZN5clang6format14FormatTestJavaC1Ev")
   //</editor-fold>
   public /*inline*/ FormatJavaTest() {
-    // : Test() 
+    // : Test()
     //START JInit
     super(TestState.Successful);
     //END JInit
   }
 
-  
+
   @Override public String toString() {
     return "" + super.toString(); // NOI18N
   }
@@ -266,10 +265,10 @@ public void test_FormatsInstanceOfLikeOperators() {
   FormatStyle Style = null;
   try {
     Style = FormatJavaTest.getStyleWithColumns(50);
-    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"return aaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n    instanceof bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb;"), 
+    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"return aaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n    instanceof bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb;"),
         Style);
     Style.BreakBeforeBinaryOperators = FormatStyle.BinaryOperatorStyle.BOS_None;
-    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"return aaaaaaaaaaaaaaaaaaaaaaaaaaaaa instanceof\n    bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb;"), 
+    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"return aaaaaaaaaaaaaaaaaaaaaaaaaaaaa instanceof\n    bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb;"),
         Style);
     FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"return aaaaaaaaaaaaaaaaaaa instanceof bbbbbbbbbbbbbbbbbbbbbbb\n    && ccccccccccccccccccc instanceof dddddddddddddddddddddd;"));
   } finally {
@@ -289,7 +288,7 @@ public void test_Chromium() {
   if (markAsSkippedIfNeed(TestState.Successful)) { return; }
   JavaCleaner $c$ = $createJavaCleaner();
   try {
-    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"class SomeClass {\n    void f() {}\n    int g() {\n        return 0;\n    }\n    void h() {\n        while (true) f();\n        for (;;) f();\n        if (true) f();\n    }\n}"), 
+    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"class SomeClass {\n    void f() {}\n    int g() {\n        return 0;\n    }\n    void h() {\n        while (true) f();\n        for (;;) f();\n        if (true) f();\n    }\n}"),
         $c$.track(getChromiumStyle(FormatStyle.LanguageKind.LK_Java))); $c$.clean();
   } finally {
     $c$.$destroy();
@@ -338,20 +337,20 @@ public void test_ClassDeclarations() {
     FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"public class SomeClass {\n  private int a;\n  private int b;\n}"));
     FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"public class A {\n  class B {\n    int i;\n  }\n  class C {\n    int j;\n  }\n}"));
     FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"public class A extends B.C {}"));
-    
-    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"abstract class SomeClass\n    extends SomeOtherClass implements SomeInterface {}"), 
+
+    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"abstract class SomeClass\n    extends SomeOtherClass implements SomeInterface {}"),
         $c$.track(FormatJavaTest.getStyleWithColumns(60))); $c$.clean();
-    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"abstract class SomeClass extends SomeOtherClass\n    implements SomeInterfaceeeeeeeeeeeee {}"), 
+    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"abstract class SomeClass extends SomeOtherClass\n    implements SomeInterfaceeeeeeeeeeeee {}"),
         $c$.track(FormatJavaTest.getStyleWithColumns(60))); $c$.clean();
-    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"abstract class SomeClass\n    extends SomeOtherClass\n    implements SomeInterface {}"), 
+    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"abstract class SomeClass\n    extends SomeOtherClass\n    implements SomeInterface {}"),
         $c$.track(FormatJavaTest.getStyleWithColumns(40))); $c$.clean();
-    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"abstract class SomeClass\n    extends SomeOtherClass\n    implements SomeInterface,\n               AnotherInterface {}"), 
+    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"abstract class SomeClass\n    extends SomeOtherClass\n    implements SomeInterface,\n               AnotherInterface {}"),
         $c$.track(FormatJavaTest.getStyleWithColumns(40))); $c$.clean();
-    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"abstract class SomeClass\n    implements SomeInterface, AnotherInterface {}"), 
+    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"abstract class SomeClass\n    implements SomeInterface, AnotherInterface {}"),
         $c$.track(FormatJavaTest.getStyleWithColumns(60))); $c$.clean();
-    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"@SomeAnnotation()\nabstract class aaaaaaaaaaaa\n    extends bbbbbbbbbbbbbbb implements cccccccccccc {}"), 
+    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"@SomeAnnotation()\nabstract class aaaaaaaaaaaa\n    extends bbbbbbbbbbbbbbb implements cccccccccccc {}"),
         $c$.track(FormatJavaTest.getStyleWithColumns(76))); $c$.clean();
-    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"@SomeAnnotation()\nabstract class aaaaaaaaa<a>\n    extends bbbbbbbbbbbb<b> implements cccccccccccc {}"), 
+    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"@SomeAnnotation()\nabstract class aaaaaaaaa<a>\n    extends bbbbbbbbbbbb<b> implements cccccccccccc {}"),
         $c$.track(FormatJavaTest.getStyleWithColumns(76))); $c$.clean();
     FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"interface SomeInterface<A> extends Foo, Bar {\n  void doStuff(int theStuff);\n  void doMoreStuff(int moreStuff);\n}"));
     FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"public interface SomeInterface {\n  void doStuff(int theStuff);\n  void doMoreStuff(int moreStuff);\n}"));
@@ -411,10 +410,10 @@ public void test_ArrayInitializers() {
   try {
     FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"new int[] {1, 2, 3, 4};"));
     FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"new int[] {\n    1, 2, 3, 4,\n};"));
-    
+
     Style = FormatJavaTest.getStyleWithColumns(65);
     Style.Cpp11BracedListStyle = false;
-    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"expected = new int[] { 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,\n  100, 100, 100, 100, 100, 100, 100, 100, 100, 100 };"), 
+    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"expected = new int[] { 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,\n  100, 100, 100, 100, 100, 100, 100, 100, 100, 100 };"),
         Style);
   } finally {
     if (Style != null) { Style.$destroy(); }
@@ -451,32 +450,32 @@ public void test_Annotations() {
     FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"@Override\n@Nullable\npublic String getNameIfPresent() {}"));
     FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"@Override // comment\n@Nullable\npublic String getNameIfPresent() {}"));
     FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"@java.lang.Override // comment\n@Nullable\npublic String getNameIfPresent() {}"));
-    
+
     FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"@SuppressWarnings(value = \"unchecked\")\npublic void doSomething() {}"));
     FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"@SuppressWarnings(value = \"unchecked\")\n@Author(name = \"abc\")\npublic void doSomething() {}"));
-    
+
     FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"DoSomething(new A() {\n  @Override\n  public String toString() {}\n});"));
-    
+
     FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"void SomeFunction(@Nullable String something) {}"));
     FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"void SomeFunction(@org.llvm.Nullable String something) {}"));
-    
+
     FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"@Partial @Mock DataLoader loader;"));
-    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"@Partial\n@Mock\nDataLoader loader;"), 
+    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"@Partial\n@Mock\nDataLoader loader;"),
         $c$.track(getChromiumStyle(FormatStyle.LanguageKind.LK_Java))); $c$.clean();
     FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"@SuppressWarnings(value = \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\")\npublic static int iiiiiiiiiiiiiiiiiiiiiiii;"));
-    
+
     FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"@SomeAnnotation(\"With some really looooooooooooooong text\")\nprivate static final long something = 0L;"));
     FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"@org.llvm.Qualified(\"With some really looooooooooong text\")\nprivate static final long something = 0L;"));
-    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"@Mock\nDataLoader loooooooooooooooooooooooader =\n    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa;"), 
+    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"@Mock\nDataLoader loooooooooooooooooooooooader =\n    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa;"),
         $c$.track(FormatJavaTest.getStyleWithColumns(60))); $c$.clean();
-    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"@org.llvm.QualifiedMock\nDataLoader loooooooooooooooooooooooader =\n    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa;"), 
+    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"@org.llvm.QualifiedMock\nDataLoader loooooooooooooooooooooooader =\n    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa;"),
         $c$.track(FormatJavaTest.getStyleWithColumns(60))); $c$.clean();
     FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"@Test(a)\naaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa =\n    aaaaaaaaaaaaaaaaaaaaaaaaaaaa(aaaaaaaaaaaaaaaaaaaaaaa);"));
-    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"@SomeAnnotation(\n    aaaaaaaaaaaaaaaaa, aaaaaaaaaaaaaaaaaaaa)\nint i;"), 
+    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"@SomeAnnotation(\n    aaaaaaaaaaaaaaaaa, aaaaaaaaaaaaaaaaaaaa)\nint i;"),
         $c$.track(FormatJavaTest.getStyleWithColumns(50))); $c$.clean();
-    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"@Test\nReturnType doSomething(\n    String aaaaaaaaaaaaa, String bbbbbbbbbbbbbbb) {}"), 
+    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"@Test\nReturnType doSomething(\n    String aaaaaaaaaaaaa, String bbbbbbbbbbbbbbb) {}"),
         $c$.track(FormatJavaTest.getStyleWithColumns(60))); $c$.clean();
-    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"{\n  boolean someFunction(\n      @Param(aaaaaaaaaaaaaaaa) String aaaaa,\n      String bbbbbbbbbbbbbbb) {}\n}"), 
+    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"{\n  boolean someFunction(\n      @Param(aaaaaaaaaaaaaaaa) String aaaaa,\n      String bbbbbbbbbbbbbbb) {}\n}"),
         $c$.track(FormatJavaTest.getStyleWithColumns(60))); $c$.clean();
     FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"@Annotation(\"Some\"\n    + \" text\")\nList<Integer> list;"));
   } finally {
@@ -499,11 +498,11 @@ public void test_Generics() {
     FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"Iterable<?> a;"));
     FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"Iterable<?> a;"));
     FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"Iterable<? extends SomeObject> a;"));
-    
+
     FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"A.<B>doSomething();"));
-    
+
     FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"@Override\npublic Map<String, ?> getAll() {}"));
-    
+
     FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"public <R> ArrayList<R> get() {}"));
     FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"protected <R> ArrayList<R> get() {}"));
     FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"private <R> ArrayList<R> get() {}"));
@@ -513,12 +512,12 @@ public void test_Generics() {
     FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"public abstract <X> Foo foo();"));
     FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"<T extends B> T getInstance(Class<T> type);"));
     FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"Function<F, ? extends T> function;"));
-    
+
     FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"private Foo<X, Y>[] foos;"));
     FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"Foo<X, Y>[] foos = this.foos;"));
-    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"return (a instanceof List<?>)\n    ? aaaaaaaaaaaaaaaaaaaaaaa(aaaaaaaaaaaaaaaaaaaaa)\n    : aaaaaaaaaaaaaaaaaaaaaaa;"), 
+    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"return (a instanceof List<?>)\n    ? aaaaaaaaaaaaaaaaaaaaaaa(aaaaaaaaaaaaaaaaaaaaa)\n    : aaaaaaaaaaaaaaaaaaaaaaa;"),
         $c$.track(FormatJavaTest.getStyleWithColumns(60))); $c$.clean();
-    
+
     FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"SomeLoooooooooooooooooooooongType name =\n    SomeType.foo(someArgument)\n        .<X>method()\n        .aaaaaaaaaaaaaaaaaaa()\n        .aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa();"));
   } finally {
     $c$.$destroy();
@@ -551,7 +550,7 @@ public void test_TryCatchFinally() {
   FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"try {\n  Something();\n} catch (SomeException e) {\n  HandleException(e);\n}"));
   FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"try {\n  Something();\n} finally {\n  AlwaysDoThis();\n}"));
   FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"try {\n  Something();\n} catch (SomeException e) {\n  HandleException(e);\n} finally {\n  AlwaysDoThis();\n}"));
-  
+
   FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"try {\n  Something();\n} catch (SomeException | OtherException e) {\n  HandleException(e);\n}"));
 }
 
@@ -607,7 +606,7 @@ public void test_PackageDeclarations() {
   if (markAsSkippedIfNeed(TestState.Successful)) { return; }
   JavaCleaner $c$ = $createJavaCleaner();
   try {
-    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"package some.really.loooooooooooooooooooooong.package;"), 
+    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"package some.really.loooooooooooooooooooooong.package;"),
         $c$.track(FormatJavaTest.getStyleWithColumns(50))); $c$.clean();
   } finally {
     $c$.$destroy();
@@ -626,9 +625,9 @@ public void test_ImportDeclarations() {
   if (markAsSkippedIfNeed(TestState.Successful)) { return; }
   JavaCleaner $c$ = $createJavaCleaner();
   try {
-    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"import some.really.loooooooooooooooooooooong.imported.Class;"), 
+    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"import some.really.loooooooooooooooooooooong.imported.Class;"),
         $c$.track(FormatJavaTest.getStyleWithColumns(50))); $c$.clean();
-    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"import static some.really.looooooooooooooooong.imported.Class;"), 
+    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"import static some.really.looooooooooooooooong.imported.Class;"),
         $c$.track(FormatJavaTest.getStyleWithColumns(50))); $c$.clean();
   } finally {
     $c$.$destroy();
@@ -647,9 +646,9 @@ public void test_MethodDeclarations() {
   if (markAsSkippedIfNeed(TestState.Successful)) { return; }
   JavaCleaner $c$ = $createJavaCleaner();
   try {
-    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"void methodName(Object arg1,\n    Object arg2, Object arg3) {}"), 
+    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"void methodName(Object arg1,\n    Object arg2, Object arg3) {}"),
         $c$.track(FormatJavaTest.getStyleWithColumns(40))); $c$.clean();
-    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"void methodName(\n    Object arg1, Object arg2) {}"), 
+    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"void methodName(\n    Object arg1, Object arg2) {}"),
         $c$.track(FormatJavaTest.getStyleWithColumns(40))); $c$.clean();
   } finally {
     $c$.$destroy();
@@ -684,13 +683,13 @@ public void test_NeverAlignAfterReturn() {
   if (markAsSkippedIfNeed(TestState.Successful)) { return; }
   JavaCleaner $c$ = $createJavaCleaner();
   try {
-    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"return aaaaaaaaaaaaaaaaaaa\n    && bbbbbbbbbbbbbbbbbbb\n    && ccccccccccccccccccc;"), 
+    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"return aaaaaaaaaaaaaaaaaaa\n    && bbbbbbbbbbbbbbbbbbb\n    && ccccccccccccccccccc;"),
         $c$.track(FormatJavaTest.getStyleWithColumns(40))); $c$.clean();
-    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"return (result == null)\n    ? aaaaaaaaaaaaaaaaa\n    : bbbbbbbbbbbbbbbbb;"), 
+    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"return (result == null)\n    ? aaaaaaaaaaaaaaaaa\n    : bbbbbbbbbbbbbbbbb;"),
         $c$.track(FormatJavaTest.getStyleWithColumns(40))); $c$.clean();
-    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"return aaaaaaaaaaaaaaaaaaa()\n    .bbbbbbbbbbbbbbbbbbb()\n    .ccccccccccccccccccc();"), 
+    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"return aaaaaaaaaaaaaaaaaaa()\n    .bbbbbbbbbbbbbbbbbbb()\n    .ccccccccccccccccccc();"),
         $c$.track(FormatJavaTest.getStyleWithColumns(40))); $c$.clean();
-    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"return aaaaaaaaaaaaaaaaaaa()\n    .bbbbbbbbbbbbbbbbbbb(\n        ccccccccccccccc)\n    .ccccccccccccccccccc();"), 
+    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"return aaaaaaaaaaaaaaaaaaa()\n    .bbbbbbbbbbbbbbbbbbb(\n        ccccccccccccccc)\n    .ccccccccccccccccccc();"),
         $c$.track(FormatJavaTest.getStyleWithColumns(40))); $c$.clean();
   } finally {
     $c$.$destroy();
@@ -725,12 +724,12 @@ public void test_FormatsLambdas() {
   JavaCleaner $c$ = $createJavaCleaner();
   try {
     FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"(aaaaaaaaaa, bbbbbbbbbb) -> aaaaaaaaaa + bbbbbbbbbb;"));
-    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"(aaaaaaaaaa, bbbbbbbbbb)\n    -> aaaaaaaaaa + bbbbbbbbbb;"), 
+    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"(aaaaaaaaaa, bbbbbbbbbb)\n    -> aaaaaaaaaa + bbbbbbbbbb;"),
         $c$.track(FormatJavaTest.getStyleWithColumns(40))); $c$.clean();
     FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"Runnable someLambda = () -> DoSomething();"));
     FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"Runnable someLambda = () -> {\n  DoSomething();\n}"));
-    
-    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"Runnable someLambda =\n    (int aaaaa) -> DoSomething(aaaaa);"), 
+
+    FormatJavaTest.verifyFormat(new StringRef(/*KEEP_STR*/"Runnable someLambda =\n    (int aaaaa) -> DoSomething(aaaaa);"),
         $c$.track(FormatJavaTest.getStyleWithColumns(40))); $c$.clean();
   } finally {
     $c$.$destroy();

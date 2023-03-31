@@ -425,7 +425,7 @@ public class LookupResult implements Iterable<NamedDecl>, NativeIterable<Unresol
    FQN="clang::LookupResult::LookupResult", NM="_ZN5clang12LookupResultC1ENS0_14TemporaryTokenERKS0_",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.sema/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Sema/SemaLookup.cpp -nm=_ZN5clang12LookupResultC1ENS0_14TemporaryTokenERKS0_")
   //</editor-fold>
-  public LookupResult(TemporaryToken _, final /*const*/ LookupResult /*&*/ Other) {
+  public LookupResult(TemporaryToken temporaryToken, final /*const*/ LookupResult /*&*/ Other) {
     // : ResultKind(NotFound), Decls(), Paths(null), NamingClass(null), BaseObjectType(), SemaPtr(Other.SemaPtr), NameInfo(Other.NameInfo), NameContextRange(), LookupKind(Other.LookupKind), IDNS(Other.IDNS), Redecl(Other.Redecl), HideTags(Other.HideTags), Diagnose(false), AllowHidden(Other.AllowHidden), Shadowed(false) 
     //START JInit
     this.ResultKind = LookupResultKind.NotFound;

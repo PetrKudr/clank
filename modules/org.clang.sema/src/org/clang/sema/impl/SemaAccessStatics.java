@@ -888,9 +888,9 @@ public static CXXBasePath /*P*/ FindBestPath(final Sema /*&*/ S,
   // Derive the friend-modified access along each path.
   Next:for (std.list.iterator<CXXBasePath> PI = Paths.begin(), PE = Paths.end();
        PI.$noteq(PE); PI.$preInc()) {
-    AccessTarget.SavedInstanceContext _ = null;
+    AccessTarget.SavedInstanceContext ignored_ = null;
     try {
-      _ = Target.saveInstanceContext();
+      ignored_ = Target.saveInstanceContext();
       
       // Walk through the path backwards.
       AccessSpecifier PathAccess = FinalAccess;
@@ -939,7 +939,7 @@ public static CXXBasePath /*P*/ FindBestPath(final Sema /*&*/ S,
         }
       }
     } finally {
-      if (_ != null) { _.$destroy(); }
+      if (ignored_ != null) { ignored_.$destroy(); }
     }
   }
   assert ((!(BestPath != null) || BestPath.Access != AccessSpecifier.AS_public)) : "fell out of loop with public path";
@@ -1145,12 +1145,12 @@ public static void diagnoseBadDirectAccess(final Sema /*&*/ S,
 public static void DiagnoseAccessPath(final Sema /*&*/ S, 
                   final /*const*/ EffectiveContext /*&*/ EC, 
                   final AccessTarget /*&*/ entity) {
-  AccessTarget.SavedInstanceContext _ = null;
+  AccessTarget.SavedInstanceContext ignored_ = null;
   CXXBasePaths paths = null;
   JavaCleaner $c$ = $createJavaCleaner();
   try {
     // Save the instance context to preserve invariants.
-    _ = entity.saveInstanceContext();
+    ignored_ = entity.saveInstanceContext();
     
     // This basically repeats the main algorithm but keeps some more
     // information.
@@ -1255,7 +1255,7 @@ public static void DiagnoseAccessPath(final Sema /*&*/ S,
     }
   } finally {
     if (paths != null) { paths.$destroy(); }
-    if (_ != null) { _.$destroy(); }
+    if (ignored_ != null) { ignored_.$destroy(); }
     $c$.$destroy();
   }
 }
@@ -1350,7 +1350,7 @@ public static boolean IsMicrosoftUsingDeclarationAccessBug(final Sema /*&*/ S,
 public static AccessResult IsAccessible(final Sema /*&*/ S, 
             final /*const*/ EffectiveContext /*&*/ EC, 
             final AccessTarget /*&*/ Entity) {
-  AccessTarget.SavedInstanceContext _ = null;
+  AccessTarget.SavedInstanceContext ignored_ = null;
   CXXBasePaths Paths = null;
   try {
     // Determine the actual naming class.
@@ -1381,7 +1381,7 @@ public static AccessResult IsAccessible(final Sema /*&*/ S,
       }
     }
     
-    _ = Entity.saveInstanceContext();
+    ignored_ = Entity.saveInstanceContext();
     
     // We lower member accesses to base accesses by pretending that the
     // member is a base class of its declaring class.
@@ -1429,7 +1429,7 @@ public static AccessResult IsAccessible(final Sema /*&*/ S,
     return AccessResult.AR_inaccessible;
   } finally {
     if (Paths != null) { Paths.$destroy(); }
-    if (_ != null) { _.$destroy(); }
+    if (ignored_ != null) { ignored_.$destroy(); }
   }
 }
 

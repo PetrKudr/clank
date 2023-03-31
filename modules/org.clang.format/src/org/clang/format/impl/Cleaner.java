@@ -1,43 +1,43 @@
 /**
  * This file was converted to Java from the original LLVM source file. The original
  * source file follows the LLVM Release License, outlined below.
- * 
+ *
  * ==============================================================================
  * LLVM Release License
  * ==============================================================================
  * University of Illinois/NCSA
  * Open Source License
- * 
+ *
  * Copyright (c) 2003-2017 University of Illinois at Urbana-Champaign.
  * All rights reserved.
- * 
+ *
  * Developed by:
- * 
+ *
  *     LLVM Team
- * 
+ *
  *     University of Illinois at Urbana-Champaign
- * 
+ *
  *     http://llvm.org
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal with
  * the Software without restriction, including without limitation the rights to
  * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
  * of the Software, and to permit persons to whom the Software is furnished to do
  * so, subject to the following conditions:
- * 
+ *
  *     * Redistributions of source code must retain the above copyright notice,
  *       this list of conditions and the following disclaimers.
- * 
+ *
  *     * Redistributions in binary form must reproduce the above copyright notice
  *       this list of conditions and the following disclaimers in the
  *       documentation and/or other materials provided with the distribution.
- * 
+ *
  *     * Neither the names of the LLVM Team, University of Illinois at
  *       Urbana-Champaign, nor the names of its contributors may be used to
  *       endorse or promote products derived from this Software without specific
  *       prior written permission.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
  * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
@@ -45,7 +45,7 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS WITH THE
  * SOFTWARE.
- * 
+ *
  * ==============================================================================
  * Copyrights and Licenses for Third Party Software Distributed with LLVM:
  * ==============================================================================
@@ -53,16 +53,16 @@
  * have its own individual LICENSE.TXT file in the directory in which it appears.
  * This file will describe the copyrights, license, and restrictions which apply
  * to that code.
- * 
+ *
  * The disclaimer of warranty in the University of Illinois Open Source License
  * applies to all code in the LLVM Distribution, and nothing in any of the
  * other licenses gives permission to use the names of the LLVM Team or the
  * University of Illinois to endorse or promote products derived from this
  * Software.
- * 
+ *
  * The following pieces of software have additional or alternate copyrights,
  * licenses, and/or restrictions:
- * 
+ *
  * Program             Directory
  * -------             ---------
  * Autoconf            llvm/autoconf
@@ -76,20 +76,20 @@
 
 package org.clang.format.impl;
 
-import org.clank.java.*;
-import org.clank.support.*;
-import org.clank.support.aliases.*;
-import org.clank.support.JavaDifferentiators.*;
-import static org.clank.java.std.*;
-import static org.clank.support.NativePointer.*;
-import static org.clank.support.Native.*;
-import static org.clank.support.Unsigned.*;
-import org.llvm.adt.*;
-import org.llvm.adt.aliases.*;
-import org.clang.tooling.core.*;
+import org.clang.tooling.core.Replacements;
 import org.clang.basic.*;
 import org.clang.format.*;
-import org.clang.format.java.FormatFunctionPointers.*;
+import org.clang.format.java.FormatFunctionPointers.FormatToken2FormatToken;
+import org.clang.tooling.core.*;
+import org.clank.java.*;
+import org.clank.java.std_functional.binary_functionArgArg2Bool;
+import org.clank.support.*;
+import static org.clank.support.NativePointer.*;
+import static org.clank.support.Unsigned.*;
+import org.clank.support.aliases.*;
+import org.llvm.adt.*;
+import org.llvm.adt.aliases.*;
+import org.llvm.support.llvm;
 
 
 // This class clean up the erroneous/redundant code around the given ranges in
@@ -109,7 +109,7 @@ public class Cleaner extends /*public*/ TokenAnalyzer implements Destructors.Cla
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Format/Format.cpp -nm=_ZN5clang6format12_GLOBAL__N_17CleanerC1ERKNS0_11EnvironmentERKNS0_11FormatStyleE")
   //</editor-fold>
   public Cleaner(final /*const*/ Environment /*&*/ Env, final /*const*/ FormatStyle /*&*/ Style) {
-    // : TokenAnalyzer(Env, Style), DeletedTokens(FormatTokenLess(Env.getSourceManager())), DeletedLines() 
+    // : TokenAnalyzer(Env, Style), DeletedTokens(FormatTokenLess(Env.getSourceManager())), DeletedLines()
     //START JInit
     super(Env, Style);
     this.DeletedTokens = new std.setPtr<FormatToken /*P*/ >(new FormatTokenLess(Env.getSourceManager()));
@@ -117,7 +117,7 @@ public class Cleaner extends /*public*/ TokenAnalyzer implements Destructors.Cla
     //END JInit
   }
 
-  
+
   // FIXME: eliminate unused parameters.
   //<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::Cleaner::analyze">
   @Converted(kind = Converted.Kind.MANUAL_SEMANTIC,
@@ -125,9 +125,10 @@ public class Cleaner extends /*public*/ TokenAnalyzer implements Destructors.Cla
    FQN="clang::format::(anonymous namespace)::Cleaner::analyze", NM="_ZN5clang6format12_GLOBAL__N_17Cleaner7analyzeERNS0_14TokenAnnotatorERN4llvm15SmallVectorImplIPNS0_13AnnotatedLineEEERNS0_16FormatTokenLexerERSt3setINS_7tooling11ReplacementESt4lessISF_ESaISF_EE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Format/Format.cpp -nm=_ZN5clang6format12_GLOBAL__N_17Cleaner7analyzeERNS0_14TokenAnnotatorERN4llvm15SmallVectorImplIPNS0_13AnnotatedLineEEERNS0_16FormatTokenLexerERSt3setINS_7tooling11ReplacementESt4lessISF_ESaISF_EE")
   //</editor-fold>
-  @Override public std.setType<Replacement> analyze(final TokenAnnotator /*&*/ Annotator, 
-         final SmallVectorImpl<AnnotatedLine /*P*/ > /*&*/ AnnotatedLines, 
-         final FormatTokenLexer /*&*/ Tokens, final std.setType<Replacement> /*&*/ Result)/* override*/ {
+  @Override
+  public Replacements analyze(final TokenAnnotator /*&*/ Annotator,
+      final SmallVectorImpl<AnnotatedLine /*P*/> /*&*/ AnnotatedLines,
+      final FormatTokenLexer /*&*/ Tokens)/* override*/ {
     // FIXME: in the current implementation the granularity of affected range
     // is an annotated line. However, this is not sufficient. Furthermore,
     // redundant code introduced by replacements does not necessarily
@@ -135,11 +136,11 @@ public class Cleaner extends /*public*/ TokenAnalyzer implements Destructors.Cla
     // To determine if some redundant code is actually introduced by
     // replacements(e.g. deletions), we need to come up with a more
     // sophisticated way of computing affected ranges.
-    AffectedRangeMgr.computeAffectedLines(AnnotatedLines.begin(), 
+    AffectedRangeMgr.computeAffectedLines(AnnotatedLines.begin(),
         AnnotatedLines.end());
-    
+
     checkEmptyNamespace(AnnotatedLines);
-    
+
     for (AnnotatedLine /*P*/ /*&*/ Line : AnnotatedLines) {
       if (Line.Affected) {
         cleanupRight(Line.First, tok.TokenKind.comma, tok.TokenKind.comma);
@@ -148,7 +149,7 @@ public class Cleaner extends /*public*/ TokenAnalyzer implements Destructors.Cla
         cleanupLeft(Line.First, TokenType.TT_CtorInitializerColon, tok.TokenKind.l_brace);
       }
     }
-    
+
     return generateFixes();
   }
 
@@ -168,7 +169,7 @@ public class Cleaner extends /*public*/ TokenAnalyzer implements Destructors.Cla
     return true;
   }
 
-  
+
   // Iterate through all lines and remove any empty (nested) namespaces.
   //<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::Cleaner::checkEmptyNamespace">
   @Converted(kind = Converted.Kind.MANUAL_SEMANTIC,
@@ -181,13 +182,13 @@ public class Cleaner extends /*public*/ TokenAnalyzer implements Destructors.Cla
       final AnnotatedLine /*&*/ Line = /*Deref*/AnnotatedLines.$at(i);
       if (Line.startsWith(tok.TokenKind.kw_namespace)
          || Line.startsWith(tok.TokenKind.kw_inline, tok.TokenKind.kw_namespace)) {
-        
+
         uint$ref i_ref = create_uint$ref(i);
         checkEmptyNamespace(AnnotatedLines, i, i_ref);
         i = i_ref.$deref();
       }
     }
-    
+
     for (/*uint*/int Line : DeletedLines) {
       FormatToken /*P*/ Tok = AnnotatedLines.$at(Line).First;
       while ((Tok != null)) {
@@ -197,7 +198,7 @@ public class Cleaner extends /*public*/ TokenAnalyzer implements Destructors.Cla
     }
   }
 
-  
+
   // The function checks if the namespace, which starts from \p CurrentLine, and
   // its nested namespaces are empty and delete them if they are empty. It also
   // sets \p NewLine to the last line checked.
@@ -208,7 +209,7 @@ public class Cleaner extends /*public*/ TokenAnalyzer implements Destructors.Cla
    FQN="clang::format::(anonymous namespace)::Cleaner::checkEmptyNamespace", NM="_ZN5clang6format12_GLOBAL__N_17Cleaner19checkEmptyNamespaceERN4llvm15SmallVectorImplIPNS0_13AnnotatedLineEEEjRj",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Format/Format.cpp -nm=_ZN5clang6format12_GLOBAL__N_17Cleaner19checkEmptyNamespaceERN4llvm15SmallVectorImplIPNS0_13AnnotatedLineEEEjRj")
   //</editor-fold>
-  private boolean checkEmptyNamespace(final SmallVectorImpl<AnnotatedLine /*P*/ > /*&*/ AnnotatedLines, 
+  private boolean checkEmptyNamespace(final SmallVectorImpl<AnnotatedLine /*P*/ > /*&*/ AnnotatedLines,
                      /*uint*/int CurrentLine, final uint$ref/*uint &*/ NewLine) {
     /*uint*/int InitLine = CurrentLine;
     /*uint*/int End = AnnotatedLines.size();
@@ -228,7 +229,7 @@ public class Cleaner extends /*public*/ TokenAnalyzer implements Destructors.Cla
         break;
       }
       if (AnnotatedLines.$at(CurrentLine).startsWith(tok.TokenKind.kw_namespace)
-         || AnnotatedLines.$at(CurrentLine).startsWith(tok.TokenKind.kw_inline, 
+         || AnnotatedLines.$at(CurrentLine).startsWith(tok.TokenKind.kw_inline,
           tok.TokenKind.kw_namespace)) {
         if (!checkEmptyNamespace(AnnotatedLines, CurrentLine, NewLine)) {
           return false;
@@ -239,44 +240,44 @@ public class Cleaner extends /*public*/ TokenAnalyzer implements Destructors.Cla
       if (containsOnlyComments(/*Deref*/AnnotatedLines.$at(CurrentLine))) {
         continue;
       }
-      
+
       // If there is anything other than comments or nested namespaces in the
       // current namespace, the namespace cannot be empty.
       NewLine.$set(CurrentLine);
       return false;
     }
-    
+
     NewLine.$set(CurrentLine);
     if ($greatereq_uint(CurrentLine, End)) {
       return false;
     }
-    
+
     // Check if the empty namespace is actually affected by changed ranges.
-    if (!AffectedRangeMgr.affectsCharSourceRange(CharSourceRange.getCharRange(AnnotatedLines.$at(InitLine).First.Tok.getLocation(), 
+    if (!AffectedRangeMgr.affectsCharSourceRange(CharSourceRange.getCharRange(AnnotatedLines.$at(InitLine).First.Tok.getLocation(),
             AnnotatedLines.$at(CurrentLine).Last.Tok.getEndLoc()))) {
       return false;
     }
-    
+
     for (/*uint*/int i = InitLine; $lesseq_uint(i, CurrentLine); ++i) {
       DeletedLines.insert_T$C$R(i);
     }
-    
+
     return true;
   }
 
-  
+
   // Checks pairs {start, start->next},..., {end->previous, end} and deletes one
   // of the token in the pair if the left token has \p LK token kind and the
   // right token has \p RK token kind. If \p DeleteLeft is true, the left token
   // is deleted on match; otherwise, the right token is deleted.
-  //</*typename*/ LeftKind/* = TokenKind*/, /*typename*/ RightKind/* = TokenKind*/> 
+  //</*typename*/ LeftKind/* = TokenKind*/, /*typename*/ RightKind/* = TokenKind*/>
   //<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::Cleaner::cleanupPair">
   @Converted(kind = Converted.Kind.INSTANTIATION,
    source = "${LLVM_SRC}/llvm/tools/clang/lib/Format/Format.cpp", line = 1109,
    FQN="clang::format::(anonymous namespace)::Cleaner::cleanupPair", NM="_ZN5clang6format12_GLOBAL__N_17Cleaner11cleanupPairINS_3tok9TokenKindES5_EEvPNS0_11FormatTokenET_T0_b",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Format/Format.cpp -nm=_ZN5clang6format12_GLOBAL__N_17Cleaner11cleanupPairINS_3tok9TokenKindES5_EEvPNS0_11FormatTokenET_T0_b")
   //</editor-fold>
-  private void cleanupPair(FormatToken /*P*/ Start, /*tok.TokenKind*/char LK, /*tok.TokenKind*/char RK, 
+  private void cleanupPair(FormatToken /*P*/ Start, /*tok.TokenKind*/char LK, /*tok.TokenKind*/char RK,
              boolean DeleteLeft) {
     FormatToken2FormatToken NextNotDeleted = /*[this]*/ (final /*const*/ FormatToken /*&*/ Tok) -> {
           for (FormatToken /*P*/ Res = Tok.Next; (Res != null); Res = Res.Next)  {
@@ -303,14 +304,14 @@ public class Cleaner extends /*public*/ TokenAnalyzer implements Destructors.Cla
       Left = Right;
     }
   }
-  //</*typename*/ LeftKind/* = TokenType*/, /*typename*/ RightKind/* = TokenKind*/> 
+  //</*typename*/ LeftKind/* = TokenType*/, /*typename*/ RightKind/* = TokenKind*/>
   //<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::Cleaner::cleanupPair">
   @Converted(kind = Converted.Kind.INSTANTIATION,
    source = "${LLVM_SRC}/llvm/tools/clang/lib/Format/Format.cpp", line = 1109,
    FQN="clang::format::(anonymous namespace)::Cleaner::cleanupPair", NM="_ZN5clang6format12_GLOBAL__N_17Cleaner11cleanupPairINS0_9TokenTypeENS_3tok9TokenKindEEEvPNS0_11FormatTokenET_T0_b",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Format/Format.cpp -nm=_ZN5clang6format12_GLOBAL__N_17Cleaner11cleanupPairINS0_9TokenTypeENS_3tok9TokenKindEEEvPNS0_11FormatTokenET_T0_b")
   //</editor-fold>
-  private void cleanupPair(FormatToken /*P*/ Start, TokenType LK, /*tok.TokenKind*/char RK, 
+  private void cleanupPair(FormatToken /*P*/ Start, TokenType LK, /*tok.TokenKind*/char RK,
              boolean DeleteLeft) {
     FormatToken2FormatToken NextNotDeleted = /*[this]*/ (final /*const*/ FormatToken /*&*/ Tok) -> {
           for (FormatToken /*P*/ Res = Tok.Next; (Res != null); Res = Res.Next)  {
@@ -342,7 +343,7 @@ public class Cleaner extends /*public*/ TokenAnalyzer implements Destructors.Cla
 //   FQN="clang::format::(anonymous namespace)::Cleaner::cleanupPair", NM="Tpl__ZN5clang6format12_GLOBAL__N_17Cleaner11cleanupPairEPNS0_11FormatTokenET_T0_b",
 //   cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Format/Format.cpp -nm=Tpl__ZN5clang6format12_GLOBAL__N_17Cleaner11cleanupPairEPNS0_11FormatTokenET_T0_b")
 //  //</editor-fold>
-//  private </*typename*/ LeftKind, /*typename*/ RightKind> void cleanupPair(FormatToken /*P*/ Start, LeftKind LK, RightKind RK, 
+//  private </*typename*/ LeftKind, /*typename*/ RightKind> void cleanupPair(FormatToken /*P*/ Start, LeftKind LK, RightKind RK,
 //             boolean DeleteLeft) {
 //    FormatToken2FormatToken NextNotDeleted = /*[this]*/ (final /*const*/ FormatToken /*&*/ Tok) -> {
 //          for (FormatToken /*P*/ Res = Tok.Next; (Res != null); Res = Res.Next)  {
@@ -368,8 +369,8 @@ public class Cleaner extends /*public*/ TokenAnalyzer implements Destructors.Cla
 //    }
 //  }
 
-  
-  //</*typename*/ LeftKind/* = TokenType*/, /*typename*/ RightKind/* = TokenKind*/> 
+
+  //</*typename*/ LeftKind/* = TokenType*/, /*typename*/ RightKind/* = TokenKind*/>
   //<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::Cleaner::cleanupLeft">
   @Converted(kind = Converted.Kind.INSTANTIATION,
    source = "${LLVM_SRC}/llvm/tools/clang/lib/Format/Format.cpp", line = 1134,
@@ -390,8 +391,8 @@ public class Cleaner extends /*public*/ TokenAnalyzer implements Destructors.Cla
 //    cleanupPair(Start, LK, RK, true);
 //  }
 
-  
-  //</*typename*/ LeftKind/* = TokenKind*/, /*typename*/ RightKind/* = TokenKind*/> 
+
+  //</*typename*/ LeftKind/* = TokenKind*/, /*typename*/ RightKind/* = TokenKind*/>
   //<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::Cleaner::cleanupRight">
   @Converted(kind = Converted.Kind.INSTANTIATION,
    source = "${LLVM_SRC}/llvm/tools/clang/lib/Format/Format.cpp", line = 1139,
@@ -401,7 +402,7 @@ public class Cleaner extends /*public*/ TokenAnalyzer implements Destructors.Cla
   private void cleanupRight(FormatToken /*P*/ Start, /*tok.TokenKind*/char LK, /*tok.TokenKind*/char RK) {
     cleanupPair(Start, LK, RK, /*DeleteLeft=*/ false);
   }
-  //</*typename*/ LeftKind/* = TokenType*/, /*typename*/ RightKind/* = TokenKind*/> 
+  //</*typename*/ LeftKind/* = TokenType*/, /*typename*/ RightKind/* = TokenKind*/>
 //<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::Cleaner::cleanupRight">
   @Converted(kind = Converted.Kind.INSTANTIATION,
    source = "${LLVM_SRC}/llvm/tools/clang/lib/Format/Format.cpp", line = 1139,
@@ -422,7 +423,7 @@ public class Cleaner extends /*public*/ TokenAnalyzer implements Destructors.Cla
 //    cleanupPair(Start, LK, RK, false);
 //  }
 
-  
+
   // Delete the given token.
   //<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::Cleaner::deleteToken">
   @Converted(kind = Converted.Kind.AUTO,
@@ -436,52 +437,53 @@ public class Cleaner extends /*public*/ TokenAnalyzer implements Destructors.Cla
     }
   }
 
-  
+
   //<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::Cleaner::generateFixes">
   @Converted(kind = Converted.Kind.AUTO,
    source = "${LLVM_SRC}/llvm/tools/clang/lib/Format/Format.cpp", line = 1149,
    FQN="clang::format::(anonymous namespace)::Cleaner::generateFixes", NM="_ZN5clang6format12_GLOBAL__N_17Cleaner13generateFixesEv",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Format/Format.cpp -nm=_ZN5clang6format12_GLOBAL__N_17Cleaner13generateFixesEv")
   //</editor-fold>
-  private std.setType<Replacement> generateFixes() {
-    std.setType<Replacement> Fixes = null;
+  private Replacements generateFixes() {
     std.vector<FormatToken /*P*/ > Tokens = null;
     try {
-      Fixes/*J*/= new std.setType<Replacement>();
+      Replacements Fixes/*J*/ = new Replacements();
       Tokens/*J*/= new std.vector<FormatToken /*P*/ >((FormatToken /*P*/ )null);
-      std.copy(DeletedTokens.begin(), DeletedTokens.end(), 
+      std.copy(DeletedTokens.begin(), DeletedTokens.end(),
           std.back_inserter(Tokens));
-      
+
       // Merge multiple continuous token deletions into one big deletion so that
       // the number of replacements can be reduced. This makes computing affected
       // ranges more efficient when we run reformat on the changed code.
       /*uint*/int Idx = 0;
       while ($less_uint(Idx, Tokens.size())) {
-        JavaCleaner $c$ = $createJavaCleaner();
-        try {
-          /*uint*/int St = Idx;
-          /*uint*/int End = Idx;
-          while ($less_uint((End + 1), Tokens.size())
-             && Tokens.$at(End).Next == Tokens.$at(End + 1)) {
-            End++;
-          }
-          CharSourceRange SR = CharSourceRange.getCharRange(Tokens.$at(St).Tok.getLocation(), 
-              Tokens.$at(End).Tok.getEndLoc());
-          $c$.clean(Fixes.insert_T$RR($c$.track(new Replacement(Env.getSourceManager(), SR, new StringRef(/*KEEP_STR*/$EMPTY)))));
-          Idx = End + 1;
-        } finally {
-          $c$.$destroy();
+        /*uint*/
+        int St = Idx;
+        /*uint*/
+        int End = Idx;
+        while ($less_uint((End + 1), Tokens.size())
+            && Tokens.$at(End).Next == Tokens.$at(End + 1)) {
+          End++;
         }
+        CharSourceRange SR = CharSourceRange.getCharRange(Tokens.$at(St).Tok.getLocation(),
+            Tokens.$at(End).Tok.getEndLoc());
+        org.llvm.support.Error Err = Fixes.add(new Replacement(Env.getSourceManager(), SR, new StringRef(/*KEEP_STR*/$EMPTY)));
+        if (Err.$bool()) {
+          llvm.dbgs().$out(llvm.toString(Err) + "\n");
+          assert false : "Fixes must not conflict!";
+        }
+        Idx = End + 1;
       }
-      
-      return new std.setType<Replacement>(JD$Move.INSTANCE, Fixes);
+
+      return Fixes;
     } finally {
-      if (Tokens != null) { Tokens.$destroy(); }
-      if (Fixes != null) { Fixes.$destroy(); }
+      if (Tokens != null) {
+        Tokens.$destroy();
+      }
     }
   }
 
-  
+
   // Class for less-than inequality comparason for the set `RedundantTokens`.
   // We store tokens in the order they appear in the translation unit so that
   // we do not need to sort them in `generateFixes()`.
@@ -499,13 +501,13 @@ public class Cleaner extends /*public*/ TokenAnalyzer implements Destructors.Cla
      cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Format/Format.cpp -nm=_ZN5clang6format12_GLOBAL__N_17Cleaner15FormatTokenLessC1ERKNS_13SourceManagerE")
     //</editor-fold>
     public FormatTokenLess(final /*const*/ SourceManager /*&*/ SM) {
-      // : SM(SM) 
+      // : SM(SM)
       //START JInit
       this./*&*/SM=/*&*/SM;
       //END JInit
     }
 
-    
+
     //<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::Cleaner::FormatTokenLess::operator()">
     @Converted(kind = Converted.Kind.AUTO,
      source = "${LLVM_SRC}/llvm/tools/clang/lib/Format/Format.cpp", line = 1180,
@@ -513,7 +515,7 @@ public class Cleaner extends /*public*/ TokenAnalyzer implements Destructors.Cla
      cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Format/Format.cpp -nm=_ZNK5clang6format12_GLOBAL__N_17Cleaner15FormatTokenLessclEPKNS0_11FormatTokenES6_")
     //</editor-fold>
     public boolean $call(/*const*/ FormatToken /*P*/ LHS, /*const*/ FormatToken /*P*/ RHS) /*const*/ {
-      return SM.isBeforeInTranslationUnit(LHS.Tok.getLocation(), 
+      return SM.isBeforeInTranslationUnit(LHS.Tok.getLocation(),
           RHS.Tok.getLocation());
     }
 
@@ -525,18 +527,18 @@ public class Cleaner extends /*public*/ TokenAnalyzer implements Destructors.Cla
      cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Format/Format.cpp -nm=_ZN5clang6format12_GLOBAL__N_17Cleaner15FormatTokenLessC1ERKS3_")
     //</editor-fold>
     public /*inline*/ FormatTokenLess(final /*const*/ FormatTokenLess /*&*/ $Prm0) {
-      // : SM(.SM) 
+      // : SM(.SM)
       //START JInit
       this./*&*/SM=/*&*/$Prm0.SM;
       //END JInit
     }
 
-    
+
     @Override public String toString() {
       return "" + "SM=" + "[SourceManager]"; // NOI18N
     }
   };
-  
+
   // Tokens to be deleted.
   private std.setPtr<FormatToken /*P*/ > DeletedTokens;
   // The line numbers of lines to be deleted.
@@ -555,7 +557,7 @@ public class Cleaner extends /*public*/ TokenAnalyzer implements Destructors.Cla
     //END JDestroy
   }
 
-  
+
   @Override public String toString() {
     return "" + "DeletedTokens=" + DeletedTokens // NOI18N
               + ", DeletedLines=" + DeletedLines // NOI18N

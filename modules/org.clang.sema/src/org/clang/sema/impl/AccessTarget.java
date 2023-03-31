@@ -117,7 +117,7 @@ public class/*struct*/ AccessTarget extends /*public*/ AccessedEntity implements
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.sema/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Sema/SemaAccess.cpp -nm=_ZN12_GLOBAL__N_112AccessTargetC1ERN5clang10ASTContextENS1_4sema14AccessedEntity11MemberNonceEPNS1_13CXXRecordDeclENS1_14DeclAccessPairENS1_8QualTypeE")
   //</editor-fold>
   public AccessTarget(final ASTContext /*&*/ Context, 
-      MemberNonce _, 
+      MemberNonce ignored_,
       CXXRecordDecl /*P*/ NamingClass, 
       DeclAccessPair FoundDecl, 
       QualType BaseObjectType) {
@@ -137,7 +137,7 @@ public class/*struct*/ AccessTarget extends /*public*/ AccessedEntity implements
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.sema/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Sema/SemaAccess.cpp -nm=_ZN12_GLOBAL__N_112AccessTargetC1ERN5clang10ASTContextENS1_4sema14AccessedEntity9BaseNonceEPNS1_13CXXRecordDeclES8_NS1_15AccessSpecifierE")
   //</editor-fold>
   public AccessTarget(final ASTContext /*&*/ Context, 
-      BaseNonce _, 
+      BaseNonce ignored_,
       CXXRecordDecl /*P*/ BaseClass, 
       CXXRecordDecl /*P*/ DerivedClass, 
       AccessSpecifier Access) {

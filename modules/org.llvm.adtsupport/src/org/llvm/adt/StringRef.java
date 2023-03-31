@@ -1,43 +1,43 @@
 /**
  * This file was converted to Java from the original LLVM source file. The original
  * source file follows the LLVM Release License, outlined below.
- * 
+ *
  * ==============================================================================
  * LLVM Release License
  * ==============================================================================
  * University of Illinois/NCSA
  * Open Source License
- * 
+ *
  * Copyright (c) 2003-2017 University of Illinois at Urbana-Champaign.
  * All rights reserved.
- * 
+ *
  * Developed by:
- * 
+ *
  *     LLVM Team
- * 
+ *
  *     University of Illinois at Urbana-Champaign
- * 
+ *
  *     http://llvm.org
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal with
  * the Software without restriction, including without limitation the rights to
  * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
  * of the Software, and to permit persons to whom the Software is furnished to do
  * so, subject to the following conditions:
- * 
+ *
  *     * Redistributions of source code must retain the above copyright notice,
  *       this list of conditions and the following disclaimers.
- * 
+ *
  *     * Redistributions in binary form must reproduce the above copyright notice
  *       this list of conditions and the following disclaimers in the
  *       documentation and/or other materials provided with the distribution.
- * 
+ *
  *     * Neither the names of the LLVM Team, University of Illinois at
  *       Urbana-Champaign, nor the names of its contributors may be used to
  *       endorse or promote products derived from this Software without specific
  *       prior written permission.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
  * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
@@ -45,7 +45,7 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS WITH THE
  * SOFTWARE.
- * 
+ *
  * ==============================================================================
  * Copyrights and Licenses for Third Party Software Distributed with LLVM:
  * ==============================================================================
@@ -53,16 +53,16 @@
  * have its own individual LICENSE.TXT file in the directory in which it appears.
  * This file will describe the copyrights, license, and restrictions which apply
  * to that code.
- * 
+ *
  * The disclaimer of warranty in the University of Illinois Open Source License
  * applies to all code in the LLVM Distribution, and nothing in any of the
  * other licenses gives permission to use the names of the LLVM Team or the
  * University of Illinois to endorse or promote products derived from this
  * Software.
- * 
+ *
  * The following pieces of software have additional or alternate copyrights,
  * licenses, and/or restrictions:
- * 
+ *
  * Program             Directory
  * -------             ---------
  * Autoconf            llvm/autoconf
@@ -86,19 +86,26 @@ import org.clank.java.std.string;
 import static org.clank.java.std.strlen;
 import org.clank.support.*;
 import static org.clank.support.Casts.*;
+import org.clank.support.JavaDifferentiators.JD$Move;
 import static org.clank.support.Native.*;
+import org.clank.support.Native.ComparableLower;
 import org.clank.support.Native.NativePOD;
 import org.clank.support.Native.OpCapable;
 import static org.clank.support.NativePointer.*;
 import static org.clank.support.Unsigned.*;
 import org.clank.support.aliases.*;
-import org.clank.support.JavaDifferentiators.*;
+import static org.clank.support.literal_constants.$;
+import static org.clank.support.literal_constants.$$0;
+import static org.clank.support.literal_constants.$$9;
+import static org.clank.support.literal_constants.$$A;
+import static org.clank.support.literal_constants.$$TERM;
+import static org.clank.support.literal_constants.$$Z;
+import static org.clank.support.literal_constants.$$a;
+import static org.clank.support.literal_constants.$$z;
 import org.llvm.adt.aliases.*;
 import org.llvm.support.*;
 import static org.llvm.support.impl.StringRefStatics.*;
 import static org.llvm.support.llvm.*;
-import static org.llvm.support.llvm.getAsSignedInteger;
-import static org.llvm.support.llvm.getAsUnsignedInteger;
 
 
 /// StringRef - Represent a constant reference to a string, i.e. a character
@@ -142,7 +149,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
       return o1.compare(o2);
     }
   };
-  
+
   private static StringRef createConstStringRef(char$ptr constCharPtr) {
     if (NativeTrace.isDebugMode()) {
       return constCharPtr == null ? new ConstStringRef() : new ConstStringRef(constCharPtr);
@@ -150,7 +157,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
       return constCharPtr == null ? new StringRef() : new StringRef(constCharPtr);
     }
   }
-  
+
   static {
     assert checkBuiltIn(R$EMPTY, "");
     assert checkBuiltIn(R$SPACE, " ");
@@ -170,14 +177,14 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     assert checkBuiltIn(R$invalid_marker, "<invalid>");
     assert checkBuiltIn(R$built_in_marker, "<built-in>");
   }
-  
+
   private static boolean checkBuiltIn(StringRef b, String toCompare) {
     assert b.$eq(new StringRef(toCompare)) : "[" + Casts.toJavaString(b.Data, b.Length) + "] vs. expected [" + toCompare + "]";
     assert b.$equals(toCompare) : "[" + Casts.toJavaString(b.Data, b.Length) + "] vs. expected [" + toCompare + "]";
     assert builtInConst(b) : "not builtin [" + Casts.toJavaString(b.Data, b.Length) + "]";
     return true;
   }
-  
+
   private static boolean builtInConst(StringRef $Prm0) {
     if ($Prm0 == R$EMPTY) {
       return true;
@@ -218,7 +225,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     }
     return false;
   }
-  
+
 /*public:*/
   /*typedef const char *iterator*/;
   /*typedef const char *const_iterator*/;
@@ -227,10 +234,10 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
 /*private:*/
   /// The start of the string, in an external buffer.
   private /*const*/char$ptr/*char P*/ Data;
-  
+
   /// The length of the string.
   private /*size_t*/int Length;
-  
+
   // Workaround memcmp issue with null pointers (undefined behavior)
   // by providing a specialized version
   //<editor-fold defaultstate="collapsed" desc="llvm::StringRef::compareMemory">
@@ -273,7 +280,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
   }
 
 /*public:*/
-  
+
   /// Construct an empty string ref.
   /*implicit*/
   //<editor-fold defaultstate="collapsed" desc="llvm::StringRef::StringRef">
@@ -283,7 +290,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
    cmd = "jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.adtsupport/llvmToClangType ${LLVM_SRC}/llvm/lib/Support/StringRef.cpp -nm=_ZN4llvm9StringRefC1Ev")
   //</editor-fold>
   public StringRef() {
-    /* : Data(0), Length(0)*/ 
+    /* : Data(0), Length(0)*/
     //START JInit
     this.Data = null;
     this.Length = 0;
@@ -301,7 +308,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
   public StringRef(/*char*/byte ch) {
     throw new AssertionError("Use char$ptr constant (usually with one leading $ instead of [" + Unsigned.$uchar2ushort(ch) + "]");
   }
-  
+
   /// Construct a string ref from a cstring.
   /*implicit*/
   //<editor-fold defaultstate="collapsed" desc="llvm::StringRef::StringRef">
@@ -311,7 +318,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
    cmd = "jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.adtsupport/llvmToClangType ${LLVM_SRC}/llvm/lib/Support/StringRef.cpp -nm=_ZN4llvm9StringRefC1EPKc")
   //</editor-fold>
   public StringRef(/*const*/char$ptr/*char P*/ Str) {
-    /* : Data(Str)*/ 
+    /* : Data(Str)*/
     //START JInit
     // VV: input pointer should not be reused outside after, change it to const
     this.Data = $toConst(Str);
@@ -321,7 +328,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     trackOtherInstance();
   }
 
-  
+
   /// Construct a string ref from a pointer and length.
   /*implicit*/
   //<editor-fold defaultstate="collapsed" desc="llvm::StringRef::StringRef">
@@ -331,7 +338,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
    cmd = "jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.adtsupport/llvmToClangType ${LLVM_SRC}/llvm/lib/Support/StringRef.cpp -nm=_ZN4llvm9StringRefC1EPKcj")
   //</editor-fold>
   public StringRef(/*const*/char$ptr/*char P*/ data, /*size_t*/int length) {
-    /* : Data(data), Length(length)*/ 
+    /* : Data(data), Length(length)*/
     assert length >= 0 : "can not be negative " + length;
     //START JInit
     // VV: input pointer should not be reused outside after, change it to const
@@ -341,7 +348,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     assert (((data != null) || length == 0)) : "StringRef cannot be built from a NULL argument with non-null length";
     trackOtherInstance();
   }
-  
+
   /// Construct a string ref from an std::string.
   /*implicit*/
   //<editor-fold defaultstate="collapsed" desc="llvm::StringRef::StringRef">
@@ -351,14 +358,14 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
    cmd = "jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.adtsupport/llvmToClangType ${LLVM_SRC}/llvm/lib/Support/StringRef.cpp -nm=_ZN4llvm9StringRefC1ERKSs")
   //</editor-fold>
   public StringRef(/*const*/std.string /*&*/ Str) {
-    /* : Data(Str.data()), Length(Str.length())*/ 
+    /* : Data(Str.data()), Length(Str.length())*/
     //START JInit
     this.Data = $toConst(Str.data());
     this.Length = Str.length();
     //END JInit
     trackOtherInstance();
   }
-  
+
   // Constuct a string ref from java String
   public StringRef(String string) {
     this(string, string.length());
@@ -366,8 +373,8 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
   public StringRef(String string, int length) {
     this(create_char$ptr(string), length);
     trackCharSeqInstance();
-  }  
-  
+  }
+
   // Constuct a string ref from bytes using Len symbols
   public StringRef(byte seq[]) {
     this(seq, seq.length-1);
@@ -378,7 +385,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     this.Data = $toConst(NativePointer.create_const_char$ptr(seq));
     this.Length = Len;
     trackBytesInstance();
-  }  
+  }
 
   // Constuct a string ref from bytes using Len symbols starting from index
   public StringRef(byte seq[], int startIdx, int Len) {
@@ -386,8 +393,8 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     this.Data = $toConst(NativePointer.create_const_char$ptr(seq, startIdx));
     this.Length = Len;
     trackBytesInstance();
-  }  
-  
+  }
+
   /// @}
   /// @name Iterators
   /// @{
@@ -411,7 +418,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     return Length == 0 ? Data : Data.$add(Length);
   }
 
-  
+
   /// data - Get a pointer to the start of the string (which may not be null
   /// terminated).
   //<editor-fold defaultstate="collapsed" desc="llvm::StringRef::data">
@@ -424,7 +431,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     return Data;
   }
 
-  
+
   /// empty - Check if the string is empty.
   //<editor-fold defaultstate="collapsed" desc="llvm::StringRef::empty">
   @Converted(kind = Converted.Kind.AUTO, source = "${LLVM_SRC}/llvm/include/llvm/ADT/StringRef.h", line = 115,
@@ -436,7 +443,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     return Length == 0;
   }
 
-  
+
   /// size - Get the string size.
   //<editor-fold defaultstate="collapsed" desc="llvm::StringRef::size">
   @Converted(kind = Converted.Kind.AUTO, source = "${LLVM_SRC}/llvm/include/llvm/ADT/StringRef.h", line = 119,
@@ -448,7 +455,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     return Length;
   }
 
-  
+
   /// front - Get the first character in the string.
   //<editor-fold defaultstate="collapsed" desc="llvm::StringRef::front">
   @Converted(kind = Converted.Kind.AUTO, source = "${LLVM_SRC}/llvm/include/llvm/ADT/StringRef.h", line = 123,
@@ -461,7 +468,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     return Data.$at(0);
   }
 
-  
+
   /// back - Get the last character in the string.
   //<editor-fold defaultstate="collapsed" desc="llvm::StringRef::back">
   @Converted(kind = Converted.Kind.AUTO, source = "${LLVM_SRC}/llvm/include/llvm/ADT/StringRef.h", line = 129,
@@ -489,7 +496,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     std.copy(begin(), end(), S);
     return new StringRef(S, Length);
   }
-  
+
   /// equals - Check for string equality, this is more efficient than
   /// compare() when the relative ordering of inequal strings isn't needed.
   //<editor-fold defaultstate="collapsed" desc="llvm::StringRef::equals">
@@ -519,7 +526,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     int length = RHSWithNullTerm.length-1/*TERM*/;
     return (Length == length && compareMemory(Data, 0, RHSWithNullTerm, 0, length) == 0);
   }
-  
+
   /// equals_lower - Check for string equality, ignoring case.
   //<editor-fold defaultstate="collapsed" desc="llvm::StringRef::equals_lower">
   @Converted(kind = Converted.Kind.AUTO, source = "${LLVM_SRC}/llvm/include/llvm/ADT/StringRef.h", line = 150,
@@ -540,7 +547,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     return Length == length && compare_lower(RHS, length) == 0;
   }
 
-  
+
   /// compare - Compare two strings; the result is -1, 0, or 1 if this string
   /// is lexicographically less than, equal to, or greater than the \p RHS.
   //<editor-fold defaultstate="collapsed" desc="llvm::StringRef::compare">
@@ -560,7 +567,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
         return Res < 0 ? -1 : 1;
       }
     }
-    
+
     // Otherwise the prefixes match, so we only need to check the lengths.
     if (Length == RHS.Length) {
       return 0;
@@ -575,7 +582,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
         return Res < 0 ? -1 : 1;
       }
     }
-    
+
     // Otherwise the prefixes match, so we only need to check the lengths.
     if (Length == RHS.length()) {
       return 0;
@@ -583,9 +590,21 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     return Length < RHS.length() ? -1 : 1;
   }
 
-  
+  /// Return true if the given string is a substring of *this, and false
+  /// otherwise.
+  public boolean contains(String Other) /*const*/ {
+    return find(Other) != npos;
+  }
+
+  public boolean contains(StringRef Other) /*const*/ {
+    return find(Other) != npos;
+  }
+  public boolean contains(byte C) /*const*/ {
+    return find_first_of(C, 0) != npos;
+  }
+
   /// compare_lower - Compare two strings, ignoring case.
-  
+
   /// compare_lower - Compare strings, ignoring case.
   //<editor-fold defaultstate="collapsed" desc="llvm::StringRef::compare_lower">
   @Converted(kind = Converted.Kind.AUTO, source = "${LLVM_SRC}/llvm/lib/Support/StringRef.cpp", line = 52,
@@ -595,7 +614,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
   public int compare_lower(StringRef RHS) /*const*/ {
     if (RHS == this) {
         return 0;
-    }      
+    }
     {
       int Res = ascii_strncasecmp(Data, RHS.Data, min(Length, RHS.Length));
       if ((Res != 0)) {
@@ -607,7 +626,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     }
     return Length < RHS.Length ? -1 : 1;
   }
-  public int compare_lower(String RHS) /*const*/ {    
+  public int compare_lower(String RHS) /*const*/ {
     {
       int Res = ascii_strncasecmp(Data, RHS, min(Length, RHS.length()));
       if ((Res != 0)) {
@@ -619,7 +638,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     }
     return Length < RHS.length() ? -1 : 1;
   }
-  public int compare_lower(char$ptr RHS, int RHSLen) /*const*/ {    
+  public int compare_lower(char$ptr RHS, int RHSLen) /*const*/ {
     {
       int Res = ascii_strncasecmp(Data, RHS, min(Length, RHSLen));
       if ((Res != 0)) {
@@ -632,10 +651,10 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     return Length < RHSLen ? -1 : 1;
   }
 
-  
+
   /// compare_numeric - Compare two strings, treating sequences of digits as
   /// numbers.
-  
+
   /// compare_numeric - Compare strings, handle embedded numbers.
   //<editor-fold defaultstate="collapsed" desc="llvm::StringRef::compare_numeric">
   @Converted(kind = Converted.Kind.AUTO, source = "${LLVM_SRC}/llvm/lib/Support/StringRef.cpp", line = 73,
@@ -645,7 +664,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
   public int compare_numeric(StringRef RHS) /*const*/ {
     if (RHS == this) {
         return 0;
-    }      
+    }
     for (/*size_t*/int I = 0, E = min(Length, RHS.Length); I != E; ++I) {
       // Check for sequences of digits.
       if (ascii_isdigit(Data.$at(I)) && ascii_isdigit(RHS.Data.$at(I))) {
@@ -683,7 +702,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     return Length < RHS.Length ? -1 : 1;
   }
 
-  
+
   /// \brief Determine the edit distance between this string and another
   /// string.
   ///
@@ -702,7 +721,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
   /// or (if \p AllowReplacements is \c true) replacements needed to
   /// transform one of the given strings into the other. If zero,
   /// the strings are identical.
-  
+
   // Compute the edit distance between the two given strings.
   //<editor-fold defaultstate="collapsed" desc="llvm::StringRef::edit_distance">
   @Converted(kind = Converted.Kind.AUTO, source = "${LLVM_SRC}/llvm/lib/Support/StringRef.cpp", line = 104,
@@ -719,7 +738,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     return llvm.ComputeEditDistance(new ArrayRefChar(data(), size()), new ArrayRefChar(Other.data(), Other.size()), AllowReplacements, MaxEditDistance);
   }
 
-  
+
   /// str - Get the contents as an std::string.
   //<editor-fold defaultstate="collapsed" desc="llvm::StringRef::str">
   @Converted(kind = Converted.Kind.AUTO, source = "${LLVM_SRC}/llvm/include/llvm/ADT/StringRef.h", line = 197,
@@ -734,7 +753,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     return new std.string(Data, Length);
   }
 
-  
+
   /// @}
   /// @name Operator Overloads
   /// @{
@@ -749,7 +768,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     return Data.$at(Index);
   }
 
-  
+
   /// @}
   /// @name Type Conversions
   /// @{
@@ -762,7 +781,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     return str();
   }
 
-  
+
   /// Check if this string starts with the given \p Prefix.
   //<editor-fold defaultstate="collapsed" desc="llvm::StringRef::startswith">
   @Converted(kind = Converted.Kind.AUTO, source = "${LLVM_SRC}/llvm/include/llvm/ADT/StringRef.h", line = 224,
@@ -788,15 +807,15 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
   public boolean startswith(String Prefix) /*const*/ {
     int length = Prefix.length();
     return Length >= length && compareMemory(Data, 0, Prefix, 0, length) == 0;
-  }  
+  }
 
   public boolean startswith(char$ptr Prefix) /*const*/ {
     int length = strlen(Prefix);
     return Length >= length && compareMemory(Data, 0, Prefix, 0, length) == 0;
-  }  
-  
+  }
+
   /// Check if this string starts with the given \p Prefix, ignoring case.
-  
+
   /// Check if this string starts with the given \p Prefix, ignoring case.
   //<editor-fold defaultstate="collapsed" desc="llvm::StringRef::startswith_lower">
   @Converted(kind = Converted.Kind.AUTO, source = "${LLVM_SRC}/llvm/lib/Support/StringRef.cpp", line = 61,
@@ -813,7 +832,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     return startswith_lower(new StringRef(Prefix));
   }
 
-  
+
   /// Check if this string ends with the given \p Suffix.
   //<editor-fold defaultstate="collapsed" desc="llvm::StringRef::endswith">
   @Converted(kind = Converted.Kind.AUTO, source = "${LLVM_SRC}/llvm/include/llvm/ADT/StringRef.h", line = 234,
@@ -840,9 +859,9 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     int length = strlen(Suffix);
     return Length >= length && compareMemory(Data, this.Length - length, Suffix, 0, length) == 0;
   }
-  
+
   /// Check if this string ends with the given \p Suffix, ignoring case.
-  
+
   /// Check if this string ends with the given \p Suffix, ignoring case.
   //<editor-fold defaultstate="collapsed" desc="llvm::StringRef::endswith_lower">
   @Converted(kind = Converted.Kind.AUTO, source = "${LLVM_SRC}/llvm/lib/Support/StringRef.cpp", line = 67,
@@ -852,13 +871,13 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
   public boolean endswith_lower(StringRef Suffix) /*const*/ {
     return Length >= Suffix.Length && ascii_strncasecmp(Data, Length - Suffix.Length, Suffix.Data, 0, Suffix.Length) == 0;
   }
-  
+
   @Converted(kind = Converted.Kind.MANUAL)
   public boolean endswith_lower(String Suffix) /*const*/ {
     return Length >= Suffix.length() && ascii_strncasecmp(Data, Length - Suffix.length(), Suffix, 0, Suffix.length()) == 0;
   }
 
-  
+
   /// Search for the first character \p C in the string.
   ///
   /// \returns The index of the first occurrence of \p C, or npos if not
@@ -881,12 +900,12 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     return npos;
   }
 
-  
+
   /// Search for the first string \p Str in the string.
   ///
   /// \returns The index of the first occurrence of \p Str, or npos if not
   /// found.
-  
+
   /// find - Search for the first string \arg Str in the string.
   ///
   /// \return - The index of the first occurrence of \arg Str, or npos if not
@@ -905,7 +924,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     if (N > Length) {
       return npos;
     }
-    
+
     // For short haystacks or unsupported needles fall back to the naive algorithm
     if (Length < 16 || N > 255 || N == 0) {
       for (/*size_t*/int e = Length - N + 1, i = min(From, e); i != e; ++i)  {
@@ -918,28 +937,28 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     if (From >= Length) {
       return npos;
     }
-    
+
     // Build the bad char heuristic table, with uint8_t to reduce cache thrashing.
     int BadCharSkip[/*256*/] = $BadCharSkip();
     std.memset(BadCharSkip, N, 256);
     for (/*uint*/int i = 0; i != N - 1; ++i)  {
       BadCharSkip[$char(Str.$at(i))] = (N - 1 - i);
     }
-    
+
     /*uint*/int Len = Length - From, Pos = From;
     while (Len >= N) {
       if (compareMemory(Data, Pos, Str.Data, 0, N) == 0) {
         // See if this is the correct substring.
         return Pos;
       }
-      
+
       // Otherwise skip the appropriate number of bytes.
       /*uchar*/int Skip = BadCharSkip[$char(this.$at(Pos + N - 1))];
       assert Skip >= 0 : "must be unsigned value";
       Len -= Skip;
       Pos += Skip;
     }
-    
+
     return npos;
   }
 
@@ -956,7 +975,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     if (N > Length) {
       return npos;
     }
-    
+
     // For short haystacks or unsupported needles fall back to the naive algorithm
     if (Length < 16 || N > 255 || N == 0) {
       for (/*size_t*/int e = Length - N + 1, i = min(From, e); i != e; ++i)  {
@@ -969,31 +988,31 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     if (From >= Length) {
       return npos;
     }
-    
+
     // Build the bad char heuristic table, with uint8_t to reduce cache thrashing.
     int BadCharSkip[/*256*/] = $BadCharSkip();
     std.memset(BadCharSkip, N, 256);
     for (/*uint*/int i = 0; i != N - 1; ++i)  {
       BadCharSkip[$char(Str.$at(i))] = (N - 1 - i);
     }
-    
+
     /*uint*/int Len = Length - From, Pos = From;
     while (Len >= N) {
       if (compareMemory(Data, Pos, Str.$array(), 0, N) == 0) {
         // See if this is the correct substring.
         return Pos;
       }
-      
+
       // Otherwise skip the appropriate number of bytes.
       /*uchar*/int Skip = BadCharSkip[$char(this.$at(Pos + N - 1))];
       assert Skip >= 0 : "must be unsigned value";
       Len -= Skip;
       Pos += Skip;
     }
-    
+
     return npos;
   }
-  
+
   // JAVA: Performance
   public /*size_t*/int find(String Str) /*const*/ {
     return find(Str, 0);
@@ -1003,7 +1022,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     if (N > Length) {
       return npos;
     }
-    
+
     // For short haystacks or unsupported needles fall back to the naive algorithm
     if (Length < 16 || N > 255 || N == 0) {
       for (/*size_t*/int e = Length - N + 1, i = min(From, e); i != e; ++i)  {
@@ -1016,31 +1035,31 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     if (From >= Length) {
       return npos;
     }
-    
+
     // Build the bad char heuristic table, with uint8_t to reduce cache thrashing.
     int BadCharSkip[/*256*/] = $BadCharSkip();
     std.memset(BadCharSkip, N, 256);
     for (/*uint*/int i = 0; i != N - 1; ++i)  {
       BadCharSkip[Str.charAt(i)] = (N - 1 - i);
     }
-    
+
     /*uint*/int Len = Length - From, Pos = From;
     while (Len >= N) {
       if (compareMemory(Data, Pos, Str, 0, N) == 0) {
         // See if this is the correct substring.
         return Pos;
       }
-      
+
       // Otherwise skip the appropriate number of bytes.
       /*uchar*/int Skip = BadCharSkip[$char(this.$at(Pos + N - 1))];
       assert Skip >= 0 : "must be unsigned value";
       Len -= Skip;
       Pos += Skip;
     }
-    
+
     return npos;
   }
-  
+
   public static /*size_t*/int find(String Str, byte[] Data, /*size_t*/int DataIndex, int DataLength) /*const*/ {
     /*size_t*/int N = Str.length();
     int Length = DataLength;
@@ -1060,31 +1079,31 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     if (From >= Length) {
       return npos;
     }
-    
+
     // Build the bad char heuristic table, with uint8_t to reduce cache thrashing.
     int BadCharSkip[/*256*/] = $BadCharSkip();
     std.memset(BadCharSkip, N, 256);
     for (/*uint*/int i = 0; i != N - 1; ++i)  {
       BadCharSkip[Str.charAt(i)] = (N - 1 - i);
     }
-    
+
     /*uint*/int Len = Length - From, Pos = From;
     while (Len >= N) {
       if (compareMemory(Data, DataIndex + Pos, Str, 0, N) == 0) {
         // See if this is the correct substring.
         return DataIndex+Pos;
       }
-      
+
       // Otherwise skip the appropriate number of bytes.
       /*uchar*/int Skip = BadCharSkip[$char(Data[Pos + N - 1])];
       assert Skip >= 0 : "must be unsigned value";
       Len -= Skip;
       Pos += Skip;
     }
-    
+
     return npos;
   }
-  
+
   /// Search for the last character \p C in the string.
   ///
   /// \returns The index of the last occurrence of \p C, or npos if not
@@ -1110,12 +1129,12 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     return npos;
   }
 
-  
+
   /// Search for the last string \p Str in the string.
   ///
   /// \returns The index of the last occurrence of \p Str, or npos if not
   /// found.
-  
+
   /// rfind - Search for the last string \arg Str in the string.
   ///
   /// \return - The index of the last occurrence of \arg Str, or npos if not
@@ -1144,7 +1163,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     // TODO: this should be probably optimized
     return rfind(new StringRef(Str));
   }
-    
+
   /// Find the first character in the string that is \p C, or npos if not
   /// found. Same as find.
   //<editor-fold defaultstate="collapsed" desc="llvm::StringRef::find_first_of">
@@ -1160,12 +1179,12 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     return find(C, From);
   }
 
-  
+
   /// Find the first character in the string that is in \p Chars, or npos if
   /// not found.
   ///
   /// Complexity: O(size() + Chars.size())
-  
+
   /// find_first_of - Find the first character in the string that is in \arg
   /// Chars, or npos if not found.
   ///
@@ -1184,7 +1203,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     for (/*size_t*/int i = 0; i != Chars.size(); ++i)  {
       CharBits.set((/*uchar*/byte)Chars.$at(i));
     }
-    
+
     for (/*size_t*/int i = min(From, Length), e = Length; i != e; ++i)  {
       if (CharBits.test((/*uchar*/byte)Data.$at(i))) {
         return i;
@@ -1200,7 +1219,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     for (/*size_t*/int i = 0; i != Chars.length(); ++i)  {
       CharBits.set((/*uchar*/byte)Chars.charAt(i));
     }
-    
+
     for (/*size_t*/int i = min(From, Length), e = Length; i != e; ++i)  {
       if (CharBits.test((/*uchar*/byte)Data.$at(i))) {
         return i;
@@ -1209,10 +1228,10 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     return npos;
   }
 
-  
+
   /// Find the first character in the string that is not \p C or npos if not
   /// found.
-  
+
   /// find_first_not_of - Find the first character in the string that is not
   /// \arg C or npos if not found.
   //<editor-fold defaultstate="collapsed" desc="llvm::StringRef::find_first_not_of">
@@ -1238,7 +1257,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
   /// \p Chars, or npos if not found.
   ///
   /// Complexity: O(size() + Chars.size())
-  
+
   /// find_first_not_of - Find the first character in the string that is not
   /// in the string \arg Chars, or npos if not found.
   ///
@@ -1257,7 +1276,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     for (/*size_t*/int i = 0; i != Chars.size(); ++i)  {
       CharBits.set((/*uchar*/byte)Chars.$at(i));
     }
-    
+
     for (/*size_t*/int i = min(From, Length), e = Length; i != e; ++i)  {
       if (!CharBits.test((/*uchar*/byte)Data.$at(i))) {
         return i;
@@ -1303,12 +1322,12 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     return rfind(C, From);
   }
 
-  
+
   /// Find the last character in the string that is in \p C, or npos if not
   /// found.
   ///
   /// Complexity: O(size() + Chars.size())
-  
+
   /// find_last_of - Find the last character in the string that is in \arg C,
   /// or npos if not found.
   ///
@@ -1327,7 +1346,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     for (/*size_t*/int i = 0; i != Chars.size(); ++i)  {
       CharBits.set((/*uchar*/byte)Chars.$at(i));
     }
-    
+
     for (/*size_t*/int i = min(From, Length) - 1, e = -1; i != e; --i)  {
       if (CharBits.test((/*uchar*/byte)Data.$at(i))) {
         return i;
@@ -1353,10 +1372,10 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     }
     return npos;
   }
-  
+
   /// Find the last character in the string that is not \p C, or npos if not
   /// found.
-  
+
   /// find_last_not_of - Find the last character in the string that is not
   /// \arg C, or npos if not found.
   //<editor-fold defaultstate="collapsed" desc="llvm::StringRef::find_last_not_of">
@@ -1376,17 +1395,17 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     }
     return npos;
   }
-  
+
   public int find_last_not_of(char$ptr Blanks, int From) {
     return find_last_not_of(new StringRef(Blanks), From);
   }
 
-  
+
   /// Find the last character in the string that is not in \p Chars, or
   /// npos if not found.
   ///
   /// Complexity: O(size() + Chars.size())
-  
+
   /// find_last_not_of - Find the last character in the string that is not in
   /// \arg Chars, or npos if not found.
   ///
@@ -1405,7 +1424,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     for (/*size_t*/int i = 0, e = Chars.size(); i != e; ++i)  {
       CharBits.set((/*uchar*/byte)Chars.$at(i));
     }
-    
+
     for (/*size_t*/int i = min(From, Length) - 1, e = -1; i != e; --i)  {
       if (!CharBits.test((/*uchar*/byte)Data.$at(i))) {
         return i;
@@ -1432,7 +1451,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     return npos;
   }
 
-  
+
   /// Return the number of occurrences of \p C in the string.
   //<editor-fold defaultstate="collapsed" desc="llvm::StringRef::count">
   @Converted(kind = Converted.Kind.AUTO, source = "${LLVM_SRC}/llvm/include/llvm/ADT/StringRef.h", line = 338,
@@ -1450,10 +1469,10 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     return Count;
   }
 
-  
+
   /// Return the number of non-overlapped occurrences of \p Str in
   /// the string.
-  
+
   /// count - Return the number of non-overlapped occurrences of \arg Str in
   /// the string.
   //<editor-fold defaultstate="collapsed" desc="llvm::StringRef::count">
@@ -1499,7 +1518,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     return false;
   }
 
-  
+
   /*template <typename T> TEMPLATE*/
   //<editor-fold defaultstate="collapsed" desc="llvm::StringRef::getAsInteger">
   @Converted(kind = Converted.Kind.MANUAL_SEMANTIC, source = "${LLVM_SRC}/llvm/include/llvm/ADT/StringRef.h", line = 377,
@@ -1545,7 +1564,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     Result.$set(ULLVal.$deref() == 0 ? false : true);
     return false;
   }
-  
+
   /// Parse the current string as an integer of the specified radix.  If
   /// \p Radix is specified as zero, this does radix autosensing using
   /// extended C rules: 0 is octal, 0x is hex, 0b is binary.
@@ -1580,7 +1599,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     Result.$set($long2uint(ULLVal.$deref()));
     return false;
   }
-  
+
   /*template <typename T> TEMPLATE*/
   //<editor-fold defaultstate="collapsed" desc="llvm::StringRef::getAsInteger">
   @Converted(kind = Converted.Kind.AUTO, source = "${LLVM_SRC}/llvm/include/llvm/ADT/StringRef.h", line = 347,
@@ -1595,7 +1614,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     return false;
   }
 
-  
+
   /// Parse the current string as an integer of the specified \p Radix, or of
   /// an autosensed radix if the \p Radix given is 0.  The current value in
   /// \p Result is discarded, and the storage is changed to be wide enough to
@@ -1617,51 +1636,51 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     APInt CharAP = null;
     try {
       StringRef Str = new StringRef(this);
-      
+
       // Autosense radix if not specified.
       if (Radix == 0) {
         Radix = GetAutoSenseRadix(Str);
       }
       assert (Radix > 1) : Radix <= 36;
-      
+
       // Empty strings (after the radix autosense) are invalid.
       if (Str.empty()) {
         return true;
       }
-      
+
       // Skip leading zeroes.  This can be a significant improvement if
       // it means we don't need > 64 bits.
       while (!Str.empty() && Str.front() == $$0) {
         Str.$assign$substr(1);
       }
-      
+
       // If it was nothing but zeroes....
       if (Str.empty()) {
         Result.$assign(new APInt(64, 0));
         return false;
       }
-      
+
       // (Over-)estimate the required number of bits.
       /*uint*/int Log2Radix = 0;
       while ((1/*U*/ << Log2Radix) < Radix) {
         Log2Radix++;
       }
       boolean IsPowerOf2Radix = ((1/*U*/ << Log2Radix) == Radix);
-      
+
       /*uint*/int BitWidth = Log2Radix * Str.size();
       if (BitWidth < Result.getBitWidth()) {
         BitWidth = Result.getBitWidth(); // don't shrink the result
       } else if (BitWidth > Result.getBitWidth()) {
         Result.$assign(Result.zext(BitWidth));
       }
-      
+
       RadixAP/*J*/= new APInt(); CharAP/*J*/= new APInt(); // unused unless !IsPowerOf2Radix
       if (!IsPowerOf2Radix) {
         // These must have the same bit-width as Result.
         RadixAP.$assign(new APInt(BitWidth, Radix));
         CharAP.$assign(new APInt(BitWidth, 0));
       }
-      
+
       // Parse all the bytes of the string given this radix.
       Result.$assign(0);
       while (!Str.empty()) {
@@ -1675,13 +1694,13 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
         } else {
           return true;
         }
-        
+
         // If the parsed value is larger than the integer radix, the string is
         // invalid.
         if (CharVal >= Radix) {
           return true;
         }
-        
+
         // Add in this character.
         if (IsPowerOf2Radix) {
           Result.$lshiftassign(Log2Radix);
@@ -1691,10 +1710,10 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
           CharAP.$assign(CharVal);
           Result.$addassign(CharAP);
         }
-        
+
         Str.$assign$substr(1);
       }
-      
+
       return false;
     } finally {
       if (CharAP != null) { CharAP.$destroy(); }
@@ -1702,9 +1721,9 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     }
   }
 
-  
+
   // Convert the given ASCII string to lowercase.
-  
+
   //===----------------------------------------------------------------------===//
   // String Operations
   //===----------------------------------------------------------------------===//
@@ -1726,7 +1745,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     }
   }
 
-  
+
   /// Convert the given ASCII string to uppercase.
   //<editor-fold defaultstate="collapsed" desc="llvm::StringRef::upper">
   @Converted(kind = Converted.Kind.AUTO, source = "${LLVM_SRC}/llvm/lib/Support/StringRef.cpp", line = 125,
@@ -1746,7 +1765,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     }
   }
 
-  
+
   /// Return a reference to the substring from [Start, Start + N).
   ///
   /// \param Start The index of the starting character in the substring; if
@@ -1782,8 +1801,8 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     this.Length = min(NewLen, Length - NewStart);
     return this;
   }
-  
-  
+
+
   /// Return a StringRef equal to 'this' but with the first \p N elements
   /// dropped.
   //<editor-fold defaultstate="collapsed" desc="llvm::StringRef::drop_front">
@@ -1800,7 +1819,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     return substr(N);
   }
 
-  
+
   /// Return a StringRef equal to 'this' but with the last \p N elements
   /// dropped.
   //<editor-fold defaultstate="collapsed" desc="llvm::StringRef::drop_back">
@@ -1824,7 +1843,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     return $assign$substr(0, size() - N);
   }
 
-  
+
   /// Return a reference to the substring from [Start, End).
   ///
   /// \param Start The index of the starting character in the substring; if
@@ -1860,7 +1879,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     }
     return std.make_pair(slice(0, Idx), slice(Idx + 1, npos));
   }
-  
+
   public std.pairTypeType<StringRef, StringRef> split(/*char*/char Separator) /*const*/ {
     return split($(Separator));
   }
@@ -1884,7 +1903,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     return std.make_pair(slice(0, Idx), slice(Idx + Separator.size(), npos));
   }
 
-  
+
   /// Split into substrings around the occurrences of a separator string.
   ///
   /// Each substring is stored in \p A. If \p MaxSplit is >= 0, at most
@@ -1913,7 +1932,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
   }
   public void split(SmallVectorImpl<StringRef> /*&*/ A, StringRef Separators, int MaxSplit/*= -1*/, boolean KeepEmpty/*= true*/) /*const*/ {
     StringRef rest = new StringRef(this);
-    
+
     // rest.data() is used to distinguish cases like "a," that splits into
     // "a" + "" and "a" that splits into "a" + 0.
     for (int splits = 0; rest.data() != null && (MaxSplit < 0 || splits < MaxSplit); ++splits) {
@@ -1946,7 +1965,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
   public void split(SmallVectorImpl<StringRef> /*&*/ A, String Separators, int MaxSplit/*= -1*/, boolean KeepEmpty/*= true*/) /*const*/ {
     split(A, new StringRef(Separators), MaxSplit);
   }
-  
+
   public void split(SmallVectorImpl<StringRef> /*&*/ A, byte[] Separators) /*const*/ {
     split(A, new StringRef(Separators));
   }
@@ -1965,7 +1984,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     return std.make_pair(slice(0, Idx), slice(Idx + 1, npos));
   }
 
-  
+
   /// Return string with consecutive characters in \p Chars starting from
   /// the left removed.
   //<editor-fold defaultstate="collapsed" desc="llvm::StringRef::ltrim">
@@ -1984,7 +2003,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     return drop_front(std.min_uint(Length, find_first_not_of(delim)));
   }
 
-  
+
   /// Return string with consecutive characters in \p Chars starting from
   /// the right removed.
   //<editor-fold defaultstate="collapsed" desc="llvm::StringRef::rtrim">
@@ -2002,7 +2021,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
   public StringRef rtrim(String Chars) /*const*/ {
     return drop_back(Length - std.min_uint(Length, find_last_not_of(Chars) + 1));
   }
-  
+
 
   /// Return string with consecutive characters in \p Chars starting from
   /// the left and right removed.
@@ -2026,7 +2045,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
    cmd = "jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.adtsupport/llvmToClangType ${LLVM_SRC}/llvm/lib/Support/StringRef.cpp -nm=_ZN4llvm9StringRefC1ERKS0_")
   //</editor-fold>
   public /*inline*/ StringRef(/*const*/StringRef /*&*/ $Prm0)/* throw()*/ {
-    /* : Data(.Data), Length(.Length)*/ 
+    /* : Data(.Data), Length(.Length)*/
     //START JInit
     assert Native.$assertConstPtr($Prm0.Data);
     this.Data = /*PERF: do not clone*/$Prm0.Data;
@@ -2034,7 +2053,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     //END JInit
     trackCopiedInstance();
   }
-  
+
   //<editor-fold defaultstate="collapsed" desc="llvm::StringRef::StringRef">
   @Converted(kind = Converted.Kind.AUTO, source = "${LLVM_SRC}/llvm/include/llvm/ADT/StringRef.h", line = 41,
    old_source = "${LLVM_SRC}/llvm/include/llvm/ADT/StringRef.h", old_line = 40,
@@ -2042,7 +2061,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
    cmd = "jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.adtsupport/llvmToClangType ${LLVM_SRC}/llvm/lib/Support/StringRef.cpp -nm=_ZN4llvm9StringRefC1EOS0_")
   //</editor-fold>
   public /*inline*/ StringRef(JD$Move _dparam, StringRef /*&&*/$Prm0) {
-    /* : Data(static_cast<StringRef &&>().Data), Length(static_cast<StringRef &&>().Length)*/ 
+    /* : Data(static_cast<StringRef &&>().Data), Length(static_cast<StringRef &&>().Length)*/
     //START JInit
     assert Native.$assertConstPtr($Prm0.Data);
     this.Data = /*PERF: do not clone*/$Prm0.Data;
@@ -2075,7 +2094,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     this.Length = $Prm0.length();
     return /*Deref*/this;
   }
-  
+
   //<editor-fold defaultstate="collapsed" desc="llvm::StringRef::operator=">
   @Converted(kind = Converted.Kind.AUTO, source = "${LLVM_SRC}/llvm/include/llvm/ADT/StringRef.h", line = 41,
    old_source = "${LLVM_SRC}/llvm/include/llvm/ADT/StringRef.h", old_line = 40,
@@ -2131,7 +2150,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     assert !builtInConst(this) : "can not modify const " + this + " into " + Str + "; probably constant was used incorrectly in outer call";
     this.Data = $toConst(Str);
     assert ((Str != null)) : "StringRef cannot be built from a NULL argument";
-    this.Length = Length; // invoking strlen(NULL) is undefined behavior    
+    this.Length = Length; // invoking strlen(NULL) is undefined behavior
     return /*Deref*/this;
   }
 
@@ -2145,7 +2164,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
       }
     }
     return true;
-  }  
+  }
 
   public String toJavaString() {
     return Casts.toJavaString(Data, Length);
@@ -2158,7 +2177,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
   @Override
   public String toString() {
     return "StringRef{" + toJavaString() + "}";
-  }    
+  }
 
   @Override
   public Boolean $op(Op k, Object obj) {
@@ -2212,7 +2231,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
   public boolean $eq(StringRef other) {
     return $eq_StringRef(this, other);
   }
-  
+
   public void $release() {
     this.Data = null;
     this.Length = 0;
@@ -2239,7 +2258,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
   private static void trackBytesInstance() {
     if (NativeTrace.STATISTICS) bytesInstances++;
   }
-  
+
   public static void clearStatistics() {
     copiedInstances = 0;
     charSeqInstances = 0;
@@ -2258,27 +2277,27 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     out.$out(String.format("%22s created:\t", StringRef.class.getSimpleName()+" others")).$out(NativeTrace.formatNumber(otherInstances)).$out(".\n");
     NativeTrace.dumpStatisticValue(StringRef.class.getSimpleName(), Value);
     return Value;
-  }   
-  
+  }
+
   private static final ThreadLocal<int[]> $BadCharSkipArrays = new ThreadLocal<int[]>() {
     @Override
     protected int[] initialValue() {
       return new$int(256);
     }
-    
+
   };
-  
+
   private static int[] $BadCharSkip() {
     return $BadCharSkipArrays.get();
   }
-  
+
   private static final boolean CHECK_STRING_REF = Boolean.getBoolean("clank.check.string.ref");
   private static void checkStringRef(StringRef check) {
     if (CHECK_STRING_REF) {
       if (check.Data instanceof char$ptr$CharSequence) {
         Exception exception = new Exception("use String-based method instead for " + check);
         for (StackTraceElement stackTraceElement : exception.getStackTrace()) {
-          String methodName = stackTraceElement.getMethodName(); 
+          String methodName = stackTraceElement.getMethodName();
           String className = stackTraceElement.getClassName();
           if (methodName.equals("<clinit>") && className.equals("org.llvm.adt.StringRef")) {
             // skip asserts from static initializer
@@ -2336,7 +2355,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     assert !builtInConst(RHS) && !(RHS instanceof ConstStringRef): "can not modify const " + RHS + "; probably constant was used incorrectly in outer call";
     int Tmp = this.Length;
     this.Length = RHS.Length;
-    RHS.Length = Tmp;    
+    RHS.Length = Tmp;
     char$ptr TmpData = this.Data;
     this.Data = RHS.Data;
     RHS.Data = TmpData;
@@ -2356,7 +2375,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     private ConstStringRef() {
       super();
     }
-    
+
     public ConstStringRef(char$ptr Str) {
       super(Str);
     }
@@ -2395,7 +2414,7 @@ public class StringRef implements OpCapable, NativePOD<StringRef>, ComparableLow
     public StringRef $assign$substr(int NewStart, int NewLen) {
       throw new UnsupportedOperationException("Attempt to modify constant StringRef");
     }
-    
+
     @Override
     public void $release() {
       throw new UnsupportedOperationException("Attempt to modify constant StringRef");

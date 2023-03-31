@@ -76,6 +76,7 @@
 package org.clang.astmatchers.test;
 
 import org.clang.tools.driver.test.DriverTestFileBase;
+import org.clank.java.JavaTestBase;
 import org.junit.*;
 
 /**
@@ -86,7 +87,7 @@ import org.junit.*;
 public class AllAstMatchersTest extends DriverTestFileBase {
   private static final String TEST_LOCATION = "${LLVM_SRC}/llvm/tools/clang/test/???/";
   public AllAstMatchersTest() {
-    super(TEST_LOCATION, TestState.Successful);
+    super(TEST_LOCATION, JavaTestBase.TestState.Successful);
   }
   
   public static void main(String[] args) {
@@ -96,7 +97,6 @@ public class AllAstMatchersTest extends DriverTestFileBase {
             "${SPUTNIK}/modules/org.clang.astmatchers/test/unit/src/org/clang/astmatchers/test/AllAstMatchersTest.txt");
   }  
 
-  @Override
   protected boolean keepStacksForUnimplementedMethods() {
     return false;
   }

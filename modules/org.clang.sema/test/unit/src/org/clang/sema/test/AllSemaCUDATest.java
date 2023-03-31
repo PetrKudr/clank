@@ -76,6 +76,7 @@
 package org.clang.sema.test;
 
 import org.clang.tools.driver.test.DriverTestFileBase;
+import org.clank.java.JavaTestBase;
 import org.junit.*;
 
 /**
@@ -85,7 +86,7 @@ import org.junit.*;
 public class AllSemaCUDATest extends DriverTestFileBase {
   private static final String TEST_LOCATION = "${LLVM_SRC}/llvm/tools/clang/test/SemaCUDA/";
   public AllSemaCUDATest() {
-    super(TEST_LOCATION, TestState.Successful);
+    super(TEST_LOCATION, JavaTestBase.TestState.Successful);
   }
   
   public static void main(String[] args) {
@@ -94,7 +95,6 @@ public class AllSemaCUDATest extends DriverTestFileBase {
             "${SPUTNIK}/modules/org.clang.sema/test/unit/src/org/clang/sema/test/AllSemaCUDATest.txt");
   }  
   
-  @Override
   protected boolean keepStacksForUnimplementedMethods() {
     return false;
   }
@@ -143,9 +143,9 @@ public class AllSemaCUDATest extends DriverTestFileBase {
       return;
     }
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -triple nvptx-unknown-cuda -fsyntax-only -fcuda-is-device -verify ${LLVM_SRC}/llvm/tools/clang/test/SemaCUDA/asm-constraints-mixed.cu
-    RUN(TestState.Failed, "%clang_cc1 -triple nvptx-unknown-cuda -fsyntax-only -fcuda-is-device -verify %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -triple nvptx-unknown-cuda -fsyntax-only -fcuda-is-device -verify %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -triple x86_64-unknown-linux-gnu -fsyntax-only -verify ${LLVM_SRC}/llvm/tools/clang/test/SemaCUDA/asm-constraints-mixed.cu
-    RUN(TestState.Failed, "%clang_cc1 -triple x86_64-unknown-linux-gnu -fsyntax-only -verify %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -triple x86_64-unknown-linux-gnu -fsyntax-only -verify %s");
   }
 
   @Test
@@ -180,9 +180,9 @@ public class AllSemaCUDATest extends DriverTestFileBase {
       return;
     }
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -triple x86_64-unknown-unknown -aux-triple nvptx64-unknown-cuda -fsyntax-only -verify ${LLVM_SRC}/llvm/tools/clang/test/SemaCUDA/builtins.cu
-    RUN(TestState.Failed, "%clang_cc1 -triple x86_64-unknown-unknown -aux-triple nvptx64-unknown-cuda -fsyntax-only -verify %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -triple x86_64-unknown-unknown -aux-triple nvptx64-unknown-cuda -fsyntax-only -verify %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -triple nvptx64-unknown-cuda -fcuda-is-device -aux-triple x86_64-unknown-unknown -fsyntax-only -verify ${LLVM_SRC}/llvm/tools/clang/test/SemaCUDA/builtins.cu
-    RUN(TestState.Failed, "%clang_cc1 -triple nvptx64-unknown-cuda -fcuda-is-device -aux-triple x86_64-unknown-unknown -fsyntax-only -verify %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -triple nvptx64-unknown-cuda -fcuda-is-device -aux-triple x86_64-unknown-unknown -fsyntax-only -verify %s");
   }
 
   @Test
@@ -223,7 +223,7 @@ public class AllSemaCUDATest extends DriverTestFileBase {
       return;
     }
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -verify ${LLVM_SRC}/llvm/tools/clang/test/SemaCUDA/device-var-init.cu -triple nvptx64-nvidia-cuda -fcuda-is-device -std=c++11 ${LLVM_SRC}/llvm/tools/clang/test/SemaCUDA/device-var-init.cu
-    RUN(TestState.Failed, "%clang_cc1 -verify %s -triple nvptx64-nvidia-cuda -fcuda-is-device -std=c++11 %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -verify %s -triple nvptx64-nvidia-cuda -fcuda-is-device -std=c++11 %s");
   }
 
   @Test
@@ -238,9 +238,9 @@ public class AllSemaCUDATest extends DriverTestFileBase {
       return;
     }
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -triple x86_64-unknown-linux-gnu -fsyntax-only -verify ${LLVM_SRC}/llvm/tools/clang/test/SemaCUDA/function-overload.cu
-    RUN(TestState.Failed, "%clang_cc1 -triple x86_64-unknown-linux-gnu -fsyntax-only -verify %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -triple x86_64-unknown-linux-gnu -fsyntax-only -verify %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -triple nvptx64-nvidia-cuda -fsyntax-only -fcuda-is-device -verify ${LLVM_SRC}/llvm/tools/clang/test/SemaCUDA/function-overload.cu
-    RUN(TestState.Failed, "%clang_cc1 -triple nvptx64-nvidia-cuda -fsyntax-only -fcuda-is-device -verify %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -triple nvptx64-nvidia-cuda -fsyntax-only -fcuda-is-device -verify %s");
   }
 
   @Test
@@ -309,7 +309,7 @@ public class AllSemaCUDATest extends DriverTestFileBase {
   public void test_launch_bounds_cu() throws Throwable {
     setTestFile("${LLVM_SRC}/llvm/tools/clang/test/SemaCUDA/launch_bounds.cu");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -std=c++11 -fsyntax-only -verify ${LLVM_SRC}/llvm/tools/clang/test/SemaCUDA/launch_bounds.cu
-    RUN(TestState.Failed, "%clang_cc1 -std=c++11 -fsyntax-only -verify %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -std=c++11 -fsyntax-only -verify %s");
   }
 
   @Test
@@ -341,7 +341,7 @@ public class AllSemaCUDATest extends DriverTestFileBase {
   public void test_pr27778_cu() throws Throwable {
     setTestFile("${LLVM_SRC}/llvm/tools/clang/test/SemaCUDA/pr27778.cu");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -fsyntax-only ${LLVM_SRC}/llvm/tools/clang/test/SemaCUDA/pr27778.cu
-    RUN(TestState.Failed, "%clang_cc1 -fsyntax-only %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -fsyntax-only %s");
   }
 
   @Test
@@ -371,11 +371,11 @@ public class AllSemaCUDATest extends DriverTestFileBase {
       return;
     }
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -triple nvptx64-nvidia-cuda -fcuda-is-device -fsyntax-only -verify -DEXPECT_VA_ARG_ERR -DEXPECT_VARARG_ERR ${LLVM_SRC}/llvm/tools/clang/test/SemaCUDA/vararg.cu
-    RUN(TestState.Failed, "%clang_cc1 -triple nvptx64-nvidia-cuda -fcuda-is-device -fsyntax-only -verify -DEXPECT_VA_ARG_ERR -DEXPECT_VARARG_ERR %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -triple nvptx64-nvidia-cuda -fcuda-is-device -fsyntax-only -verify -DEXPECT_VA_ARG_ERR -DEXPECT_VARARG_ERR %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -triple nvptx64-nvidia-cuda -fcuda-is-device -fsyntax-only -fcuda-allow-variadic-functions -verify -DEXPECT_VA_ARG_ERR ${LLVM_SRC}/llvm/tools/clang/test/SemaCUDA/vararg.cu
-    RUN(TestState.Failed, "%clang_cc1 -triple nvptx64-nvidia-cuda -fcuda-is-device -fsyntax-only -fcuda-allow-variadic-functions -verify -DEXPECT_VA_ARG_ERR %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -triple nvptx64-nvidia-cuda -fcuda-is-device -fsyntax-only -fcuda-allow-variadic-functions -verify -DEXPECT_VA_ARG_ERR %s");
     // ${LLVM_SRC}/build/bin/clang -cc1 -internal-isystem ${LLVM_SRC}/build/lib/clang/3.9.0/include -nostdsysteminc -triple x86_64-unknown-linux-gnu -fsyntax-only -verify -DEXPECT_VARARG_ERR ${LLVM_SRC}/llvm/tools/clang/test/SemaCUDA/vararg.cu
-    RUN(TestState.Failed, "%clang_cc1 -triple x86_64-unknown-linux-gnu -fsyntax-only -verify -DEXPECT_VARARG_ERR %s");
+    RUN(JavaTestBase.TestState.Failed, "%clang_cc1 -triple x86_64-unknown-linux-gnu -fsyntax-only -verify -DEXPECT_VARARG_ERR %s");
   }
   
 }

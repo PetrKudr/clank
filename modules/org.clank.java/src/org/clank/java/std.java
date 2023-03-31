@@ -1,43 +1,43 @@
 /**
  * This file was converted to Java from the original LLVM source file. The original
  * source file follows the LLVM Release License, outlined below.
- * 
+ *
  * ==============================================================================
  * LLVM Release License
  * ==============================================================================
  * University of Illinois/NCSA
  * Open Source License
- * 
+ *
  * Copyright (c) 2003-2017 University of Illinois at Urbana-Champaign.
  * All rights reserved.
- * 
+ *
  * Developed by:
- * 
+ *
  *     LLVM Team
- * 
+ *
  *     University of Illinois at Urbana-Champaign
- * 
+ *
  *     http://llvm.org
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal with
  * the Software without restriction, including without limitation the rights to
  * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
  * of the Software, and to permit persons to whom the Software is furnished to do
  * so, subject to the following conditions:
- * 
+ *
  *     * Redistributions of source code must retain the above copyright notice,
  *       this list of conditions and the following disclaimers.
- * 
+ *
  *     * Redistributions in binary form must reproduce the above copyright notice
  *       this list of conditions and the following disclaimers in the
  *       documentation and/or other materials provided with the distribution.
- * 
+ *
  *     * Neither the names of the LLVM Team, University of Illinois at
  *       Urbana-Champaign, nor the names of its contributors may be used to
  *       endorse or promote products derived from this Software without specific
  *       prior written permission.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
  * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
@@ -45,7 +45,7 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS WITH THE
  * SOFTWARE.
- * 
+ *
  * ==============================================================================
  * Copyrights and Licenses for Third Party Software Distributed with LLVM:
  * ==============================================================================
@@ -53,16 +53,16 @@
  * have its own individual LICENSE.TXT file in the directory in which it appears.
  * This file will describe the copyrights, license, and restrictions which apply
  * to that code.
- * 
+ *
  * The disclaimer of warranty in the University of Illinois Open Source License
  * applies to all code in the LLVM Distribution, and nothing in any of the
  * other licenses gives permission to use the names of the LLVM Team or the
  * University of Illinois to endorse or promote products derived from this
  * Software.
- * 
+ *
  * The following pieces of software have additional or alternate copyrights,
  * licenses, and/or restrictions:
- * 
+ *
  * Program             Directory
  * -------             ---------
  * Autoconf            llvm/autoconf
@@ -76,8 +76,6 @@
 
 package org.clank.java;
 
-import org.clank.java.stdimpl.StdMap;
-import org.clank.java.stdimpl.StdMultiMapUIntType;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -92,20 +90,37 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.function.Supplier;
 import org.clank.java.StdFunctionPointers.BinaryOperation;
-import org.clank.support.JavaDifferentiators.*;
 import org.clank.java.impl.*;
 import org.clank.java.stdimpl.*;
 import org.clank.java.stdimpl.aliases.*;
 import org.clank.support.*;
-import org.clank.support.Native;
-import static org.clank.support.Native.*;
-import org.clank.support.Native.ComparatorLower;
-import org.clank.support.Native.assignable;
-import org.clank.support.NativeCallback.*;
-import static org.clank.support.NativePointer.*;
-import org.clank.support.aliases.*;
 import static org.clank.support.Casts.$char;
+import org.clank.support.JavaDifferentiators.JD$FAKE;
+import org.clank.support.JavaDifferentiators.JD$Initializer_list$_Key_T1$C$R_T2$C$R;
+import org.clank.support.JavaDifferentiators.JD$Move;
+import org.clank.support.JavaDifferentiators.JD$NoCloneInput;
+import org.clank.support.JavaDifferentiators.JD$Reverse_iterator$_Iter$C;
+import org.clank.support.JavaDifferentiators.JD$T$C$P_T2$C$R;
+import static org.clank.support.Native.*;
+import org.clank.support.Native.ComparableGreater;
+import org.clank.support.Native.ComparableLower;
+import org.clank.support.Native.ComparatorLower;
+import org.clank.support.Native.NativeComparable;
+import org.clank.support.Native.NativeIterable;
+import org.clank.support.NativeCallback.AssignIterator;
+import org.clank.support.NativeCallback.BoolPredicate;
+import org.clank.support.NativeCallback.CharBoolPredicate;
+import org.clank.support.NativeCallback.Converter;
+import org.clank.support.NativeCallback.TypeType2Bool;
+import org.clank.support.NativeCallback.UIntBoolPredicate;
+import org.clank.support.NativeCallback.UIntUIntBoolPredicate;
+import org.clank.support.NativeCallback.UShortBoolPredicate;
+import org.clank.support.NativeCallback.Void2Void;
+import static org.clank.support.NativePointer.*;
 import static org.clank.support.Unsigned.*;
+import org.clank.support.aliases.*;
+import static org.clank.support.literal_constants.$;
+import static org.clank.support.literal_constants.$$TERM;
 
 public class std extends std_algo implements std_ptr, std_pair, std_deque, std_functional, std_list, std_map, std_unordered_map, std_optional {
   public static boolean $noteq_vector$_Tp$_Alloc$C(vectorString a, vectorString b){
@@ -127,7 +142,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     assert val != null;
     return /*&*/val;
   }
-  
+
   public static /*uint*/int abs(int val) {
     return Math.abs(val);
   }
@@ -135,10 +150,10 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
   public static /*ulong*/long abs(long val) {
     return Math.abs(val);
   }
-  
-  public static <T> void merge(std.vector.iterator<T> begin, std.vector.iterator<T> end, 
-          type$ptr<T> begin0, type$ptr<T> end0, 
-          back_insert_iterator<T> back_inserter, 
+
+  public static <T> void merge(std.vector.iterator<T> begin, std.vector.iterator<T> end,
+          type$ptr<T> begin0, type$ptr<T> end0,
+          back_insert_iterator<T> back_inserter,
           TypeType2Bool<T> beforeThanCompare) {
     throw new UnsupportedOperationException("Not supported yet.");
   }
@@ -157,11 +172,11 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
    * @param first
    * @param last
    * @param comp
-   * @return 
+   * @return
    */
   public static <_InputIterator extends type$iterator<?, ?>, T>  _InputIterator min_element(_InputIterator first, _InputIterator last, Compare<T> comp) {
     if (first.$eq(last)) return last;
- 
+
     _InputIterator smallest = $tryClone(first);
     first = $tryClone(first);
     first.$preInc();
@@ -204,21 +219,21 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
 //    return (byte)((First ? 0x8000 : 0) | (Second ? 1 : 0));
 //  }
   public static class integral_constant<Type> {
-    
+
     public final Type value;
 
     public integral_constant(Type value) {
       this.value = value;
     }
   }
-  
+
   public static class integral_constant_bool {
     public final boolean value;
     public integral_constant_bool(boolean value) {
       this.value = value;
     }
   }
-  
+
   public static class integral_constant_bool_true {
     public static final boolean value = true;
     public integral_constant_bool_true() {}
@@ -226,7 +241,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
       assert value == true;
     }
   }
-  
+
   public static class integral_constant_bool_false {
     public static final boolean value = false;
     public integral_constant_bool_false() {}
@@ -234,10 +249,10 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
       assert value == false;
     }
   }
-  
+
   public static class once_flag {
   }
-  
+
   public static char$ptr $new_uint(/*uint*/int size) {
     return create_char$ptr(new$char(size));
   }
@@ -270,7 +285,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
   public static void atexit(Void2Void callback) {
     AtExitCallbacks.add(callback);
   }
-  
+
   public static void abort() {
     exit(1);
   }
@@ -278,11 +293,11 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
   public static /*uint*/int alarm(/*uint*/int seconds) {
     return 0;
   }
-  
+
   public static <_Tp> _Tp forward(_Tp __t) {
     return __t;
   }
-  
+
   /**
    *  @brief  Convert a value to an xvalue.
    *  @param  __t  A thing of arbitrary type.
@@ -292,27 +307,27 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     // just convert to X-Value in native, so leave param as is Java
     return __t;
   }
-  
+
   public static boolean move(boolean val) {
     return val;
   }
-  
+
   public static long move(long val) {
     return val;
   }
-  
+
   public static int move(int val) {
     return val;
   }
-  
+
   public static byte move(byte val) {
     return val;
   }
-  
+
   public static char move(char val) {
     return val;
   }
-  
+
   public static short move(short val) {
     return val;
   }
@@ -333,21 +348,21 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
   //  public final class reference extends int$ref/*int &*//*&*/{ };
 
 //    public move_iterator() {
-//      // : _M_current() 
+//      // : _M_current()
 //      //START JInit
 //      this._M_current = /*ParenListExpr*/new _Iterator();
 //      //END JInit
 //    }
 
     public /*explicit*/ move_iterator(type$ptr<_Tp> __i) {
-      // : _M_current(__i) 
+      // : _M_current(__i)
       //START JInit
       this._M_current = __i.clone();
       //END JInit
     }
 
     public move_iterator(final /*const*/ move_iterator<_Tp> /*&*/ __i) {
-      // : _M_current(__i.base()) 
+      // : _M_current(__i.base())
       //START JInit
       this._M_current = __i.base().clone();
       //END JInit
@@ -447,7 +462,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     if (true) throw new UnsupportedOperationException("Must be unfolded in caller");
     return new std.pairIntBool(f, s);
   }
-  
+
   public static <F> pairUIntType<F> tie_uint_type(int f, F s) {
     if (true) throw new UnsupportedOperationException("Must be unfolded in caller");
     return new std.pairUIntType<>(f, s);
@@ -511,7 +526,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
       return INT_MAX;
     }
   }
-  
+
 //  public static interface StdAtomic<_Tp> {
 //    _Tp $preInc();
 //  }
@@ -523,12 +538,12 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
   public static double round(double d) {
     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
   }
-  
+
   /* Put the 1 minute, 5 minute and 15 minute load averages into the first
    NELEM elements of LOADAVG.  Return the number written (never more than
    three, but may be less than NELEM), or -1 if an error occurred.  */
   public static int getloadavg(double __loadavg[], int __nelem) {
-    throw new UnsupportedOperationException("EmptyBody."); 
+    throw new UnsupportedOperationException("EmptyBody.");
   }
 
   /**
@@ -632,7 +647,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
   public static long strtol(/*const char P*/char$ptr str, /*char PP*/ type$ptr<char$ptr> end, int base) {
     return StdStrToNumber.strtol(str, end, base);
   }
-  
+
   /**
    * The qsort() function sorts an array with nmemb elements of size
    * size. The base argument points to the start of the array.
@@ -674,11 +689,11 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
   public static <T> void qsort(type$iterator<?,T> Start, type$iterator<?,T> End, Comparator<T> compar) {
     throw new UnsupportedOperationException("EmptyBody qsort " + std.distance(Start, End) + " " + (Start == null ? "<null>" : Start.getClass()));
   }
-  
+
   public static <T> void stable_sort(type$ptr<T> begin, type$ptr<T> end, Compare<T> comparator) {
     StdQuicksort._stablesort(begin, end.$sub(begin), comparator);
   }
-  
+
   public static void stable_sort(uint$ptr begin, uint$ptr end, Compare<Integer> comparator) {
     int size = end.$sub(begin);
     type$ptr<Integer> tmp = create_type$ptr(new Integer[size]);
@@ -696,7 +711,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
   public static<T>  void stable_sort(StdVector.iterator<T> begin, StdVector.iterator<T> end) {
     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
   }
-  
+
   public static<T>  void stable_sort(std.vector.iterator<T> begin, std.vector.iterator<T> end, Comparator<T> compar) {
     stable_sort(begin.toPointer(), end.$sub(begin), -1, compar);
   }
@@ -740,7 +755,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
       throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
   }
-  
+
   /**
    * Comparison function used in std.sort
    * @param <T>
@@ -749,17 +764,17 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
   public interface Compare<T> extends ComparatorLower<T, T> {
     // TODO: rename to less
     boolean compare(T a, T b);
-    
+
     default boolean $call(T first, T second) {
       return compare(first, second);
     }
-    
+
     @Override
     default boolean $less(T first, T second) {
       return compare(first, second);
     }
   }
-  
+
   @FunctionalInterface
   public interface CompareTypePtr<T> extends Comparator<type$ptr<T>> {
     int $compare$ptr(type$ptr<T> LHS, type$ptr<T> RHS);
@@ -767,21 +782,21 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
       return $compare$ptr(lhs, rhs);
     }
   }
-  
+
   public static final class DefaultCompare implements Compare<ComparableLower> {
-    
+
     public static final DefaultCompare INSTANCE = new DefaultCompare();
-    
+
     @Override
     public boolean compare(ComparableLower a, ComparableLower b) {
       return a.$less(b);
     }
-    
+
     private DefaultCompare() {}
   }
-  
+
   private static class CompareBasedComparator<T> implements Comparator<T> {
-    
+
     private final Compare<T> compare;
 
     public CompareBasedComparator(Compare<T> compare) {
@@ -801,13 +816,13 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
       return 0;
     }
   }
-  
+
   private static class CompareLowerComparator<T extends ComparableLower> implements Comparator<T> {
     @Override
     public int compare(T o1, T o2) {
       if (o1 == o2) {
         return 0;
-      }      
+      }
       if (o1.$less(o2)) {
         return -1;
       } else if (o2.$less(o1)) {
@@ -817,30 +832,30 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     }
   }
   public static final CompareLowerComparator COMPARE_LOWER_COMPARATOR = new CompareLowerComparator();
-  
+
   public static <T extends ComparableLower, Iter extends type$iterator<Iter, T>> void sort(Iter/*<t>*/ first, Iter/*<t>*/ last) {
     StdQuicksortIters._quicksort(first, last.$sub(first), COMPARE_LOWER_COMPARATOR);
   }
   public static <T extends ComparableLower, Iter extends type$iterator<Iter, T>> void sort(Iter/*<t>*/ first, Iter/*<t>*/ last, Comparator<T> comp) {
     StdQuicksortIters._quicksort(first, last.$sub(first), comp);
   }
-  
+
   public static  void sort(uint$ptr first, uint$ptr last) {
     throw new UnsupportedOperationException("EmptyBody");
   }
-  
+
   public static <T, Iter extends type$iterator<Iter, T>> void sort(Iter/*<t>*/ first, Iter/*<t>*/ last, Compare<? super T> compar) {
     StdQuicksortIters._quicksort(first, last.$sub(first), new CompareBasedComparator(compar));
   }
-  
+
   public static <T extends ComparableLower, Iter extends type$iterator<Iter, T>> void stable_sort(Iter/*<t>*/ first, Iter/*<t>*/ last) {
     StdQuicksortIters._stablesort(first, last.$sub(first), COMPARE_LOWER_COMPARATOR);
   }
-  
+
   public static <T, Iter extends type$iterator<Iter, T>> void stable_sort(Iter/*<t>*/ first, Iter/*<t>*/ last, Compare<? super T> compar) {
     StdQuicksortIters._stablesort(first, last.$sub(first), new CompareBasedComparator(compar));
   }
-  
+
   /**
    *  @brief Find two adjacent values in a sequence using a predicate.
    *  @ingroup non_mutating_algorithms
@@ -868,7 +883,22 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     }
     return $tryClone(__last);
   }
-  
+
+  public static uint$ptr adjacent_find(uint$ptr __first, uint$ptr __last, TypeType2Bool __binary_pred) {
+    if (__first.$eq(__last)) {
+      return $tryClone(__last);
+    }
+    __first = $tryClone(__first);
+    uint$ptr __next = $tryClone(__first);
+    while (__next.$preInc().$noteq(__last)) {
+      if (__binary_pred.$call(__first.$star(), __next.$star())) {
+        return __first;
+      }
+      __first.$preInc();
+    }
+    return $tryClone(__last);
+  }
+
   /**
    *  @brief Remove consecutive duplicate values from a sequence.
    *  @ingroup mutating_algorithms
@@ -883,26 +913,26 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
    *  Elements between the end of the resulting sequence and @p __last
    *  are still present, but their value is unspecified.
   */
-  public static <T extends NativeComparable, _ForwardIterator extends type$iterator<_ForwardIterator, T>> 
+  public static <T extends NativeComparable, _ForwardIterator extends type$iterator<_ForwardIterator, T>>
         _ForwardIterator unique(_ForwardIterator/*<t>*/ __first, _ForwardIterator/*<t>*/ __last, boolean isPointerLike) {
     return unique(
-            __first, 
-            __last, 
+            __first,
+            __last,
             (Val1, Val2)->(isPointerLike ? Native.$eq_ptr(Val1, Val2) : Native.$eq(Val1, Val2)),
             isPointerLike
     );
   }
 
-  public static <T, _ForwardIterator extends type$iterator<_ForwardIterator, T>> 
+  public static <T, _ForwardIterator extends type$iterator<_ForwardIterator, T>>
         _ForwardIterator unique$ptr(_ForwardIterator/*<t>*/ __first, _ForwardIterator/*<t>*/ __last) {
     return unique(
-            __first, 
-            __last, 
+            __first,
+            __last,
             (Val1, Val2)->(Native.$eq_ptr(Val1, Val2)),
             true
     );
   }
-  
+
   /**
    *  @brief Remove consecutive values from a sequence using a predicate.
    *  @ingroup mutating_algorithms
@@ -918,8 +948,8 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
    *  Elements between the end of the resulting sequence and @p __last
    *  are still present, but their value is unspecified.
   */
-  public static <T, _ForwardIterator extends type$iterator<_ForwardIterator, T>> 
-        _ForwardIterator unique(_ForwardIterator/*<t>*/ __first, _ForwardIterator/*<t>*/ __last, 
+  public static <T, _ForwardIterator extends type$iterator<_ForwardIterator, T>>
+        _ForwardIterator unique(_ForwardIterator/*<t>*/ __first, _ForwardIterator/*<t>*/ __last,
                 TypeType2Bool __binary_pred, boolean isPointerLike) {
     // Skip the beginning, if already unique.
     __first = std.adjacent_find(__first, __last, __binary_pred);
@@ -938,7 +968,26 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     }
     return __dest.$preInc();
   }
-        
+
+  public static uint$ptr unique(uint$ptr __first, uint$ptr __last, TypeType2Bool<Integer> __binary_pred) {
+    // Skip the beginning, if already unique.
+    __first = std.adjacent_find(__first, __last, __binary_pred);
+    if (__first.$eq(__last)) {
+      return $tryClone(__last);
+    }
+
+    // Do the real copy work.
+    uint$ptr __dest = $tryClone(__first);
+    __first.$preInc();
+    while (__first.$preInc().$noteq(__last)) {
+      if (!__binary_pred.$call(__dest.$star(), __first.$star())) {
+        __dest.$preInc();
+        __dest.star$ref().$set($tryMove(__dest.$star(), __first.$star(), false));
+      }
+    }
+    return __dest.$preInc();
+  }
+
   public static uint$ptr unique(uint$ptr first, uint$ptr last) {
     throw new UnsupportedOperationException("EmptyBody");
   }
@@ -993,11 +1042,11 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
   public static char$ptr begin(byte[] __arr) {
     return create_char$ptr(__arr);
   }
-  
+
   public static char$ptr end(byte[] __arr) {
     return create_char$ptr(__arr, __arr.length);
   }
-  
+
   /**
    *  @brief  Return an iterator pointing to one past the last element
    *          of the array.
@@ -1050,14 +1099,14 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
    *
    * This function returns the first of such occurrences. For an
    * algorithm that returns the last instead, see find_end.
-   * 
+   *
    * @param <ForwardIterator1>
    * @param <ForwardIterator2>
    * @param first1
    * @param last1
    * @param first2
    * @param last2
-   * @return 
+   * @return
    */
   public static <ForwardIterator1 extends char$iterator<?>, ForwardIterator2 extends char$iterator<?>>
     ForwardIterator1 search( ForwardIterator1 first1, ForwardIterator1 last1,
@@ -1108,7 +1157,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     // ret
     return end;
   }
-  
+
   /**
    * std::find
    *
@@ -1116,7 +1165,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
    * @param end
    * @param c
    * @return
-   */  
+   */
   public static char$ptr find(char$ptr start, char$ptr end, /*char*/byte c) {
     char$ptr cur = $tryClone(start);
     while (!cur.$eq(end)) {
@@ -1156,15 +1205,15 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
           }
       }
     }
-    return true;    
+    return true;
   }
-  
+
   public static <_ForwardIterator extends type$iterator<?, ?>, _Tp> pair<_ForwardIterator, _ForwardIterator> equal_range(_ForwardIterator __first1, _ForwardIterator __last1, _Tp _val) {
     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
   }
-  
+
   /**
-   * Returns a range containing all elements equivalent to value in the range [first, last). 
+   * Returns a range containing all elements equivalent to value in the range [first, last).
    * @param <_ForwardIterator>
    * @param <_Tp>
    * @param <_Compare>
@@ -1185,7 +1234,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     _ForwardIterator upper_bound = std.<_ForwardIterator, _Tp>upper_bound(__first1, __last1, _val, __comp);
     return std.make_pair(lower_bound, upper_bound);
   }
-  
+
 //  public static <Iterator> Iterator find(Iterator start, Iterator end, Object c) {
 //    throw new UnsupportedOperationException();
 //  }
@@ -1205,37 +1254,37 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
   public static <_InputIterator extends abstract_iterator<?>> void advance(_InputIterator/*&*/ it, /*size_t*/int Distance) {
     it.$inc(Distance);
   }
-  
+
   public static <_InputIterator extends std.iterator<?, ?>> void advance(_InputIterator/*&*/ it, /*size_t*/int Distance) {
     throw new UnsupportedOperationException("EmptyBody");
   }
-  
+
   /**
    * next/prev do not modify input interator (as std::advance), but return the new one.
    * @param <_ForwardIterator>
    * @param it
-   * @return 
+   * @return
    */
   public static <_ForwardIterator extends abstract_iterator<?>> _ForwardIterator next(_ForwardIterator it) {
     return next(it, 1);
   }
-  
+
   public static <_ForwardIterator extends abstract_iterator<?>> _ForwardIterator next(_ForwardIterator it, long __n) {
     it = $Clone(it);
     std.advance(it, (int)__n);
     return it;
   }
-  
+
   public static <_ForwardIterator extends abstract_iterator<?>> _ForwardIterator next(_ForwardIterator it, int __n) {
     it = $Clone(it);
     std.advance(it, __n);
     return it;
   }
-  
+
   public static <_ForwardIterator extends abstract_iterator<?>> _ForwardIterator prev(_ForwardIterator it) {
     return prev(it, 1);
   }
-  
+
   public static <_ForwardIterator extends abstract_iterator<?>> _ForwardIterator prev(_ForwardIterator it, int __n) {
     it = $Clone(it);
     std.advance(it, -__n);
@@ -1283,7 +1332,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     }
     return result;
   }
-    
+
   public static <T, UnaryOperation extends NativeCallback.Type2RetType<T, T>>
     type$ptr<T> transform (type$iterator<?, T> first1, type$iterator<?, T> last1, type$ptr<T> result, UnaryOperation op)
   {
@@ -1296,7 +1345,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     }
     return result;
   }
-    
+
   public static <T1, T2, OutputIterator extends back_insert_iterator<T2>, UnaryOperation extends NativeCallback.Type2RetType<T1, T2>>
     OutputIterator transform (type$iterator<?, T1> first1, type$iterator<?, T1> last1, OutputIterator result, UnaryOperation op)
   {
@@ -1327,10 +1376,10 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     return find(__first, __last, __val, false);
   }
   public static <_InputIterator extends type$iterator<?, _Tp>, _Tp> _InputIterator find(_InputIterator __first, _InputIterator __last, Object __val, boolean isPointerLike) {
-    return find(__first, __last, __val, 
-            isPointerLike ? 
-                     (p1, p2)->p1==p2 
-                    : 
+    return find(__first, __last, __val,
+            isPointerLike ?
+                     (p1, p2)->p1==p2
+                    :
                      (o1, o2)->Native.$eq(o1, o2)
     );
   }
@@ -1383,9 +1432,9 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
           cur$Idx = middle$Idx;
         }
       }
-    }    
+    }
   }
-  
+
 //  public static /*char$ptr*/void rotate(char$ptr first, char$ptr middle, char$ptr last ) {
 //    if (!($eq(first, middle) || $eq(middle, last))) {
 //      char$ptr _first = first.clone();
@@ -1402,9 +1451,9 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
 //          _current = _middle.clone();
 //        }
 //      }
-//    }    
+//    }
 //  }
-  
+
   public static <ForwardIt  extends type$iterator> ForwardIt rotate( ForwardIt first, ForwardIt n_first, ForwardIt last ) {
     NativeTrace.traceNotImplemented("std.rotate type$iterator");
 //    throw new UnsupportedOperationException();
@@ -1420,15 +1469,15 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
   /**
    * The strrchr() function locates the last occurrence of c (converted
    * to a char) in the string pointed to by s. The terminating null
-   * character is considered to be part of the string. 
-   * 
+   * character is considered to be part of the string.
+   *
    * Return value
    * The strrchr() function returns a pointer to the located character,
    * or a null pointer if c does not occur in the string.
    *
    * @param str
    * @param ch
-   * @return 
+   * @return
    */
   public static char$ptr strrchr(char$ptr str, byte ch) {
     int idx = 0;
@@ -1451,12 +1500,12 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
   }
 
   /**
-   * 
+   *
    *
    * The strchr() function locates the ﬁrst occurrence of c (converted
    * to a char) in the string pointed to by s. The terminating null
-   * character is considered to be part of the string. 
-   * 
+   * character is considered to be part of the string.
+   *
    * Return value
    *
    * The strchr() function returns a pointer to the located character,
@@ -1464,7 +1513,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
    *
    * @param str
    * @param ch
-   * @return 
+   * @return
    */
   public static char$ptr strchr(char$ptr str, byte ch) {
     int idx = 0;
@@ -1481,7 +1530,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
   public static char$ptr strchr(char$ptr str, char ch) {
     return strchr(str, (byte) ch);
   }
-  
+
   public static char$ptr strchr(CharSequence str, int ch) {
     for (int i = 0; i < str.length(); i++) {
       if (str.charAt(i) == (char)ch) {
@@ -1606,7 +1655,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     while (len < max_len && (str.$at(len) != $$TERM)) {
       len++;
     }
-    return len;    
+    return len;
   }
 
   public static int strlen(CharSequence str) {
@@ -1616,7 +1665,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
   public static int strlen(/*char*/byte buf[]) {
     return strlen(buf, 0);
   }
-  
+
   public static int strlen(/*char*/byte buf[], int fromIdx) {
     int len = 0;
     while (buf[fromIdx++] != $$TERM) {
@@ -1642,14 +1691,14 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     }
     return len;
   }
-  
+
   // char *strncpy( char *dest, const char *src, std::size_t count );
   /**
-   * Copies at most count characters of the byte string pointed to by src 
-   * (including the terminating null character) to character array pointed 
+   * Copies at most count characters of the byte string pointed to by src
+   * (including the terminating null character) to character array pointed
    * to by dest.
    *
-   *  If count is reached before the entire string src was copied, the resulting 
+   *  If count is reached before the entire string src was copied, the resulting
    *  character array is not null-terminated.
    *
    *  If, after copying the terminating null character from src, count is not
@@ -1661,7 +1710,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
    *  dest 	- 	pointer to the character array to copy to
    *  src 	- 	pointer to the byte string to copy from
    *  count 	- 	maximum number of characters to copy
-   *  
+   *
    *  Return value
    *  dest
    */
@@ -1681,7 +1730,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
   public static char$ptr strncpy(char$ptr dest, String src, /*uint*/int count) {
     return strncpy(dest, create_char$ptr(src), count);
   }
-  
+
   /* Return the length of the initial segment of S which
      consists entirely of characters not in REJECT.  */
   public static /*size_t*/int strcspn(/*const*/char$ptr/*char P*/ string, /*const*/char$ptr/*char P*/ reject) {
@@ -1701,7 +1750,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     return i;
   }
 
-  
+
   /*
    *----------------------------------------------------------------------
    *
@@ -1735,7 +1784,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     }
     return s.$sub(string);
   }
-  
+
   /**
    * Searches within the first num bytes of the block of memory pointed by ptr
    * for the first occurrence of value (interpreted as an unsigned char), and
@@ -1753,7 +1802,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
    * pointed by ptr. If the value is not found, the function returns a null
    * pointer.
    */
-  public static char$ptr memchr(char$ptr ptr, /*uchar*/byte value, /*size_t*/int num) {    
+  public static char$ptr memchr(char$ptr ptr, /*uchar*/byte value, /*size_t*/int num) {
     for (int i = 0; i < num; i++) {
       if (ptr.$at(i) == value) {
         return ptr.$add(i);
@@ -1761,7 +1810,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     }
     return null;
   }
-  
+
   public static pairBoolChar make_pair_bool_char(boolean a, byte b) {
     return new std.pairBoolChar(a, b);
   }
@@ -1826,7 +1875,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
   public static <T> pairUIntType<T> make_pair_uint_T(/*uint*/int a, T b) {
     return new std.pairUIntType<T>(a, b);
   }
-  
+
   public static <T> pairULongType<T> make_pair_ulong_T(/*ulong*/long a, T b) {
     return new std.pairULongType<T>(a, b);
   }
@@ -1931,11 +1980,11 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     assert nullptr == null;
     return new std.pairPtrBool(nullptr, b);
   }
-  
+
   public static <A, B> pairTypeType<A, B> make_pair(A a, B b) {
     return new std.pairTypeType<A, B>(a, b);
   }
-  
+
   public static <A, B> pairTypeType<A, B> make_pair_T_T(A a, B b) {
     return new std.pairTypeType<A, B>(a, b);
   }
@@ -1943,15 +1992,15 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
   public static <T, V> pairTypeType<T, V> make_pair_T2T_T(T a, V b) {
     return new std.pairTypeType(a, b);
   }
-  
+
   public static <T, V> pairTypeType<T, V> make_pair_T_T2T(T a, V b) {
     return new std.pairTypeType(a, b);
   }
-  
+
   public static <T, V> pairTypeType<T, V> make_pair_Ptr2T_T(T a, V b) {
     return new std.pairTypeType(a, b);
   }
-  
+
   public static <T, V> pairTypeType<T, V> make_pair_T_Ptr2T(T a, V b) {
     return new std.pairTypeType(a, b);
   }
@@ -1959,24 +2008,24 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
   public static <T, V> pairTypeType<T, V> make_pair_Ptr2T_Ptr2T(T a, V b) {
     return new std.pairTypeType(a, b);
   }
-  
+
   public static <T, V> pairTypeType<T, V> make_pair_T_nullptr_t2T(T a, V b) {
     return new std.pairTypeType(a, b);
   }
-  
+
   public static <A, B> pairTypeType<A, B> make_pair_E_T(A a, B b) {
     return new std.pairTypeType<A, B>(a, b);
   }
-  
+
   public static <A, B> pairTypePtr<A, B> make_pair_E_Ptr(A a, B/*P*/ b) {
     assert !(b instanceof void$ptr) : "unexpected as JavaPtr: " + b.getClass();
     return new std.pairTypePtr<A, B>(a, b);
   }
-  
+
   public static <A, B> pairTypeType<A, B> make_pair_T_E(A a, B/*P*/ b) {
     return new std.pairTypeType<A, B>(a, b);
   }
-  
+
   public static <A, B> pairPtrType<A, B> make_pair_Ptr_E(A a, B/*P*/ b) {
     assert !(a instanceof void$ptr) : "unexpected as JavaPtr: " + a.getClass();
     return new std.pairPtrType<A, B>(a, b);
@@ -1986,12 +2035,12 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     assert !(b instanceof void$ptr) : "unexpected as JavaPtr: " + b.getClass();
     return new std.pairTypePtr<A, B>(a, b);
   }
-  
+
   public static <A, B> pairTypePtr<A, B> make_pair_T2T_Ptr(A a, B/*P*/ b) {
     assert !(b instanceof void$ptr) : "unexpected as JavaPtr: " + b.getClass();
     return new std.pairTypePtr<A, B>(a, b);
   }
-  
+
   public static <T, V> pairPtrPtr<T, V> make_pair_Ptr_Ptr(T/*P*/ a, V/*P*/ b) {
     assert !(a instanceof void$ptr) : "unexpected as JavaPtr: " + a.getClass();
     assert !(b instanceof void$ptr) : "unexpected as JavaPtr: " + b.getClass();
@@ -2002,7 +2051,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     assert !(a instanceof void$ptr) : "unexpected as JavaPtr: " + a.getClass();
     return new std.pairPtrType(a, b);
   }
-  
+
   public static <T1, T2> pairTypePtr<T1, T2> make_pair_T_nullptr_t(T1 a, T2/*P*/ nullptr) {
     assert nullptr == null;
     return new std.pairTypePtr(a, nullptr);
@@ -2012,7 +2061,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     assert nullptr == null;
     return new std.pairPtrType(nullptr, b);
   }
-  
+
   public static <T1, T2> pairPtrPtr<T1, T2> make_pair_nullptr_t_nullptr_t(T1/*P*/ nullptr1, T2/*P*/ nullptr2) {
     assert nullptr1 == null;
     assert nullptr2 == null;
@@ -2028,27 +2077,27 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     assert !(a instanceof void$ptr) : "unexpected as JavaPtr: " + a.getClass();
     return new std.pairPtrUInt(a, b);
   }
-  
+
   public static <T> pairPtrUInt<T> make_pair_Ptr_ulong2uint(T/*P*/ a, /*ulong*/long b) {
     assert !(a instanceof void$ptr) : "unexpected as JavaPtr: " + a.getClass();
     return new std.pairPtrUInt(a, $ulong2uint(b));
   }
-  
+
   public static <T> pairPtrULong<T> make_pair_Ptr_uint2ulong(T/*P*/ a, /*uint*/int ui) {
     assert !(a instanceof void$ptr) : "unexpected as JavaPtr: " + a.getClass();
     return new std.pairPtrULong(a, $uint2ulong(ui));
   }
-  
+
   public static <T> pairPtrUInt<T> make_pair_Ptr_bool2uint(T/*P*/ a, boolean b) {
     assert !(a instanceof void$ptr) : "unexpected as JavaPtr: " + a.getClass();
     return new std.pairPtrUInt(a, b ? 1 : 0);
   }
-  
+
   public static <T>  pairPtrULong<T> make_pair_Ptr_ulong(T/*P*/ a, /*unsigned long*/long b) {
     assert !(a instanceof void$ptr) : "unexpected as JavaPtr: " + a.getClass();
     return new std.pairPtrULong<T>(a, b);
   }
-  
+
   public static <T>  pairPtrULLong<T> make_pair_Ptr_ullong(T/*P*/ a, /*unsigned long long*/long b) {
     assert !(a instanceof void$ptr) : "unexpected as JavaPtr: " + a.getClass();
     return new  pairPtrULLong<T>(a, b);
@@ -2075,19 +2124,19 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
   public static <T> boolean $eq_pair$_T1$_T2$C(T pair1, T pair2) {
     return Native.$eq(pair1, pair2);
   }
-  
+
   public static <T> boolean $noteq_pair$_T1$_T2$C(T pair1, T pair2) {
     return !$eq_pair$_T1$_T2$C(pair1, pair2);
   }
-  
+
   public static boolean $eq_pair$_T1$_T2$C(pairUIntUInt pair1, pairUIntUInt pair2) {
     return pair1.$eq(pair2);
   }
-  
+
   public static boolean $noteq_pair$_T1$_T2$C(pairUIntUInt pair1, pairUIntUInt pair2) {
     return !$eq_pair$_T1$_T2$C(pair1, pair2);
   }
-  
+
   public static <T> T multiplies(T T1, T T2) {
     throw new UnsupportedOperationException();
   }
@@ -2097,7 +2146,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
   public static <T> T minus(T T1, T T2) {
     throw new UnsupportedOperationException();
   }
-  
+
   /**
    *  @brief Determines whether an element exists in a range.
    *  @ingroup binary_search_algorithms
@@ -2119,7 +2168,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     _ForwardIterator __i = std.lower_bound(__first, __last, __val);
     return __i.$noteq(__last) && !(Native.$less(__val, __i.$star()));
   }
-  
+
   public static <T, Iter extends type$iterator<Iter, T>>
   boolean binary_search(Iter __first, Iter __last, T __val, Compare<? super T> compar) {
     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -2246,7 +2295,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
    * val, or end() if every element is less than
    * @a val.
    * @ingroup binary_search_algorithms
-   */  
+   */
   public static int$ptr lower_bound_int(int$ptr __first, int$ptr __last, int __val) {
     int __lower_index = lower_bound_int(__first, 0, std.distance(__first, __last), __val);
     return __first.$add(__lower_index);
@@ -2274,7 +2323,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     }
     return __first;
   }
-  
+
   public static int lower_bound_int(int[] ptr, int __first, int __last, int __val) {
     int __len = std.distance(__first, __last);
 
@@ -2290,7 +2339,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     }
     return __first;
   }
-  
+
   public static <_ForwardIterator extends type$iterator<?, ?>, _Tp> _ForwardIterator upper_bound(_ForwardIterator __first, _ForwardIterator __last, _Tp __val) {
     return upper_bound(__first, __last, __val, new Native.ComparatorLower<_Tp,Object>() {
 
@@ -2300,7 +2349,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
       }
     });
   }
-  
+
   public static <_ForwardIterator extends type$iterator<?, ?>, _Tp> _ForwardIterator upper_bound(_ForwardIterator __first, _ForwardIterator __last, _Tp __val, Native.ComparatorLower<?,?> comp) {
     Native.ComparatorLower __comp = comp;
     int __len = std.distance(__first, __last);
@@ -2417,7 +2466,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     }
     return __first;
   }
-  
+
   public static <P> type$ptr<P> upper_bound(type$ptr<P> __first, type$ptr<P> __last, P __val, ComparatorLower<P, P> __comp) {
     int __len = std.distance(__first, __last);
     int __half;
@@ -2508,7 +2557,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     }
     return out;
   }
-  
+
   public static <T> int distance(type$ptr<T> __first, type$ptr<T> __last) {
     if (__first == null && __last == null) {
       return 0;
@@ -2522,16 +2571,16 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     }
     return out;
   }
-  
+
   public static <_InputIterator extends abstract_iterator> int distance(_InputIterator __first, _InputIterator __last, JD$FAKE dummy) {
     if (__first == null && __last == null) {
       return 0;
     }
     int dist = distanceImpl(__first, __last);
     assert dist == distanceImpl(__first, __last) : "inconsistent std::distance. Incorrect interator clone/$noteq implementation? " + __first.getClass() + " && " + __last.getClass();
-    return dist;    
+    return dist;
   }
-  
+
   private static <_InputIterator extends abstract_iterator> int distanceImpl(_InputIterator __first, _InputIterator __last) {
     assert (__first != null && __last != null);
     int dist = 0;
@@ -2542,13 +2591,13 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
       ++dist;
     }
 
-    return dist;    
+    return dist;
   }
-  
+
   public static int distance(int __first, int __last) {
       return __last - __first;
   }
-  
+
   public static /*uid_t*/int getuid() {
     // FIXME: use user's hashcode for now
     String user = System.getProperty("user.name");
@@ -2571,7 +2620,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     }
     return __last;
   }
-  
+
   /**
    *  @brief Copies the range [first,last) into result.
    *  @param  __first  An input iterator.
@@ -2581,13 +2630,13 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
    *
    *  Like copy(), but does not require an initialized output range.
   */
-  public static <OutIter extends type$iterator<OutIter, ? super T>, T> OutIter 
+  public static <OutIter extends type$iterator<OutIter, ? super T>, T> OutIter
         uninitialized_copy(type$iterator<?, ? extends T> __first, type$iterator<?, ? extends T> __last, OutIter __result) {
     // in JAVA it is like copy
     return copy(__first, __last, __result);
   }
 
-  public static <OutIter extends type$iterator<?, T>, T> OutIter 
+  public static <OutIter extends type$iterator<?, T>, T> OutIter
         uninitialized_copy_n(type$iterator<?, T> __first, int n, OutIter __result) {
     type$iterator<?, ? extends T> first = __first.clone();
     OutIter result = $tryClone(__result);
@@ -2598,27 +2647,27 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     }
     return result;
   }
-        
-  public static <OutIter extends char$iterator, T> OutIter 
+
+  public static <OutIter extends char$iterator, T> OutIter
         uninitialized_copy(char$iterator<?> __first, char$iterator<?> __last, OutIter __result) {
     return copy(__first, __last, __result);
   }
-        
-  public static <OutIter extends int$iterator> OutIter 
+
+  public static <OutIter extends int$iterator> OutIter
         uninitialized_copy(int$iterator<?> __first, int$iterator<?> __last, OutIter __result) {
     return copy(__first, __last, __result);
   }
-        
-  public static <OutIter extends uint$iterator, T> OutIter 
+
+  public static <OutIter extends uint$iterator, T> OutIter
         uninitialized_copy(uint$iterator<?> __first, uint$iterator<?> __last, OutIter __result) {
     return copy(__first, __last, __result);
   }
-  
-  public static <OutIter extends ulong$iterator, T> OutIter 
+
+  public static <OutIter extends ulong$iterator, T> OutIter
         uninitialized_copy(ulong$iterator<?> __first, ulong$iterator<?> __last, OutIter __result) {
     return copy(__first, __last, __result);
   }
-  
+
   /**
    *  @brief Copies the range [first,last) into result.
    *  @ingroup mutating_algorithms
@@ -2641,7 +2690,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     return copy(__first, __last, __result, true);
   }
   public static <OutIter extends type$iterator<OutIter, ? super T>, T> OutIter copy(
-          type$iterator<?, ? extends T> __first, type$iterator<?, ? extends T> __last, OutIter __result, boolean isDataPointerLike) 
+          type$iterator<?, ? extends T> __first, type$iterator<?, ? extends T> __last, OutIter __result, boolean isDataPointerLike)
   {
     if (__first.$eq(__last)) {
       return __result;
@@ -2665,13 +2714,13 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     }
     return result;
   }
-  public static <OutIter extends type$iterator<OutIter, OutTy>, OutTy, InTy> OutIter 
+  public static <OutIter extends type$iterator<OutIter, OutTy>, OutTy, InTy> OutIter
         copy(type$iterator<?, ? extends InTy> __first, type$iterator<?, ? extends InTy> __last, OutIter __result, Converter<InTy, OutTy> __converter) {
     OutIter result = __result.clone();
     if (__first == null) {
       assert __last == null;
       return result;
-    }    
+    }
     type$iterator<?, ? extends InTy> first = __first.clone();
     type$iterator<?, ? extends InTy> last = __last;
     while (first.$noteq(last)) {
@@ -2681,13 +2730,13 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     }
     return result;
   }
-  public static <OutIter extends type$iterator<OutIter, OutTy>, OutTy, InTy> OutIter 
+  public static <OutIter extends type$iterator<OutIter, OutTy>, OutTy, InTy> OutIter
         copy(type$iterator<?, ? extends InTy> __first, type$iterator<?, ? extends InTy> __last, OutIter __result, AssignIterator<InTy, OutTy> __assign) {
     OutIter result = __result.clone();
     if (__first == null) {
       assert __last == null;
       return result;
-    }    
+    }
     type$iterator<?, ? extends InTy> first = __first.clone();
     type$iterator<?, ? extends InTy> last = __last;
     while (first.$noteq(last)) {
@@ -2708,7 +2757,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     if (__first == null) {
       assert __last == null;
       return result;
-    }    
+    }
     bool$iterator<?> first = __first.clone();
     bool$iterator<?> last = __last;
     while (first.$noteq(last)) {
@@ -2726,7 +2775,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
       ++ptrFromIdx;++destIdx;
     }
   }
-  
+
   public static <OutIter extends char$iterator> OutIter copy(char$iterator<?> __first, char$iterator<?> __last, OutIter __result, boolean isDataPointerLike) {
     assert isDataPointerLike == false;
     return copy(__first, __last, __result);
@@ -2737,7 +2786,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     if (__first == null) {
       assert __last == null;
       return result;
-    }    
+    }
     char$iterator<?> first = __first.clone();
     char$iterator<?> last = __last;
     while (first.$noteq(last)) {
@@ -2758,7 +2807,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     if (__first == null) {
       assert __last == null;
       return result;
-    }    
+    }
     int$iterator<?> first = __first.clone();
     int$iterator<?> last = __last;
     while (first.$noteq(last)) {
@@ -2779,7 +2828,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     if (__first == null) {
       assert __last == null;
       return result;
-    }    
+    }
     ulong$iterator<?> first = __first.clone();
     ulong$iterator<?> last = __last;
     while (first.$noteq(last)) {
@@ -2800,7 +2849,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     if (__first == null) {
       assert __last == null;
       return result;
-    }    
+    }
     long$iterator<?> first = __first.clone();
     long$iterator<?> last = __last;
     while (first.$noteq(last)) {
@@ -2821,7 +2870,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     if (__first == null) {
       assert __last == null;
       return result;
-    }    
+    }
     short$iterator<?> first = __first.clone();
     short$iterator<?> last = __last;
     while (first.$noteq(last)) {
@@ -2842,7 +2891,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     if (__first == null) {
       assert __last == null;
       return result;
-    }    
+    }
     float$iterator<?> first = __first.clone();
     float$iterator<?> last = __last;
     while (first.$noteq(last)) {
@@ -2863,7 +2912,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     if (__first == null) {
       assert __last == null;
       return result;
-    }    
+    }
     double$iterator<?> first = __first.clone();
     double$iterator<?> last = __last;
     while (first.$noteq(last)) {
@@ -2884,7 +2933,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     if (__first == null) {
       assert __last == null;
       return result;
-    }    
+    }
     uchar$iterator<?> first = __first.clone();
     uchar$iterator<?> last = __last;
     while (first.$noteq(last)) {
@@ -2926,7 +2975,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     if (__first == null) {
       assert __last == null;
       return result;
-    }    
+    }
     ushort$iterator<?> first = __first.clone();
     ushort$iterator<?> last = __last;
     while (first.$noteq(last)) {
@@ -2945,27 +2994,27 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
   public static void copy(boolean[] from, int startFrom, int count, boolean[] to, int toIndex) {
     NativePointer.copy$Object(from, startFrom, to, toIndex, count);
   }
-  
+
   public static void copy(byte[] from, int startFrom, int count, byte[] to, int toIndex) {
     NativePointer.copy$Object(from, startFrom, to, toIndex, count);
   }
-  
+
   public static void copy(char[] from, int startFrom, int count, char[] to, int toIndex) {
     NativePointer.copy$Object(from, startFrom, to, toIndex, count);
   }
-  
+
   public static void copy(short[] from, int startFrom, int count, short[] to, int toIndex) {
     NativePointer.copy$Object(from, startFrom, to, toIndex, count);
   }
-  
+
   public static void copy(int[] from, int startFrom, int count, int[] to, int toIndex) {
     NativePointer.copy$Object(from, startFrom, to, toIndex, count);
   }
-  
+
   public static void copy(long[] from, int startFrom, int count, long[] to, int toIndex) {
     NativePointer.copy$Object(from, startFrom, to, toIndex, count);
   }
-  
+
   public static void copy(float[] from, int startFrom, int count, float[] to, int toIndex) {
     NativePointer.copy$Object(from, startFrom, to, toIndex, count);
   }
@@ -2973,11 +3022,11 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
   public static void copy(double[] from, int startFrom, int count, double[] to, int toIndex) {
     NativePointer.copy$Object(from, startFrom, to, toIndex, count);
   }
-  
+
   public static <OutIter> OutIter copy(std.iterator __first, std.iterator __last, OutIter __result) {
     throw new UnsupportedOperationException("EmptyBody");
   }
-  
+
   /**
    *  @brief Copies the range [first,last) into result.
    *  @ingroup mutating_algorithms
@@ -2999,7 +3048,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
   public static <OutIter extends type$iterator<OutIter, T>, T> OutIter copy_backward(
           type$iterator<?, T> __first, type$iterator<?, T> __last, OutIter __result) {
     return copy_backward(__first, __last, __result, true);
-  }      
+  }
   public static <OutIter extends type$iterator<OutIter, T>, T> OutIter copy_backward(
           type$iterator<?, T> __first, type$iterator<?, T> __last, OutIter __result, boolean isDataPointerLike)
   {
@@ -3048,7 +3097,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
       dest.$set(destIdx, src.$at(srcFromIdx));
     }
   }
-  
+
   public static <OutIter extends char$iterator<OutIter>> OutIter copy_backward(char$iterator<?> __first, char$iterator<?> __last, OutIter __result, boolean isDataPointerLike) {
     assert isDataPointerLike == false;
     return copy_backward(__first, __last, __result);
@@ -3358,7 +3407,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
       __first.$preInc();
     }
   }
-  
+
   public static void uninitialized_fill_n(int$iterator<?> __first, int __n, int __value) {
     __first = $tryClone(__first);
     for (/*size_t*/int i = 0; i < __n; i++) {
@@ -3366,7 +3415,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
       __first.$preInc();
     }
   }
-  
+
   public static void uninitialized_fill_n(ulong$iterator<?> __first, int __n, long __value) {
     __first = $tryClone(__first);
     for (/*size_t*/int i = 0; i < __n; i++) {
@@ -3391,7 +3440,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
   {
     return equal(__first1, __last1, __first2, false);
   }
-  
+
   public static boolean equal(type$iterator __first1, type$iterator __last1, type$iterator __first2, boolean isDataPointerLike)
   {
     type$iterator first1 = (type$iterator)__first1.clone();
@@ -3636,7 +3685,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
       array.$set(i, val);
     }
   }
-  
+
   public static void memset(char$ptr array, int val, /*size_t*/int len) {
     assert (len % NativeType.BYTES_IN_INT == 0);
     for (/*size_t*/int i = 0; i < len / NativeType.BYTES_IN_BYTE; i++) {
@@ -3741,7 +3790,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
 //    __b.$assign(tmp);
 //  }
 //
-  
+
   // NOTE: use swap(NativeSwappable, NativeSwappable) instead if need to swap values
   public static <_Tp> void swap(type$ref<_Tp> __a, type$ref<_Tp> __b) {
       _Tp tmp = __a.$deref();
@@ -3760,7 +3809,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     __a.$set(__b.$deref());
     __b.$set(tmp);
   }
-  
+
   public static <_Tp> void swap(uint$ptr __a, uint$ptr __b) {
     /*uint*/uint$ptr tmp = $tryMove(__a);
     __a.$assignMove(__b);
@@ -3772,7 +3821,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     __a.$assignMove(__b);
     __b.$assignMove(tmp);
   }
-  
+
   // special methods to handle all primitive types
   public static void swap(long L, long R) {
     throw new UnsupportedOperationException("use $ref-based methods or swap manually instead");
@@ -3781,7 +3830,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
   public static void swap(boolean L, boolean R) {
     throw new UnsupportedOperationException("use $ref-based methods or swap manually instead");
   }
-  
+
   public static void swap(NativeSwappable L, NativeSwappable R) {
     L.swap(R);
   }
@@ -3819,7 +3868,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     }
     return create_type$ptr(array);
   }
-  
+
   public static <T> type$ptr<T> calloc(/*size_t*/int elemNum, /*size_t*/int elemSize) {
     return malloc(elemNum * elemSize, (T) null);
   }
@@ -3831,34 +3880,34 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
    */
   public static final class tm {/* see ctime(3) */
     public final int tm_sec;  // seconds after the minute – [0, 61](until C++11) / [0, 60] (since C++11)
-    public final int tm_min;  // minutes after the hour – [0, 59] 
-    public final int tm_hour; // hours since midnight – [0, 23] 
-    public final int tm_mday; // day of the month – [1, 31] 
-    public final int tm_mon;  // months since January – [0, 11] 
-    public final int tm_year; // years since 1900 
-    public final int tm_wday; // days since Sunday – [0, 6] 
+    public final int tm_min;  // minutes after the hour – [0, 59]
+    public final int tm_hour; // hours since midnight – [0, 23]
+    public final int tm_mday; // day of the month – [1, 31]
+    public final int tm_mon;  // months since January – [0, 11]
+    public final int tm_year; // years since 1900
+    public final int tm_wday; // days since Sunday – [0, 6]
     public final int tm_yday; // days since January 1 – [0, 365]
-    public final int tm_isdst;// Daylight Saving Time flag. The value is positive if DST is in effect, zero if not and negative if no information is available 
+    public final int tm_isdst;// Daylight Saving Time flag. The value is positive if DST is in effect, zero if not and negative if no information is available
     final long millis_orig; // original millis used to create this tm
     private tm(long millis) {
       Calendar cal = Calendar.getInstance();
       cal.setTimeInMillis(millis);
       millis_orig = millis;
-  
+
       tm_sec = cal.get(Calendar.SECOND);
       assert tm_sec >= 0 && tm_sec <= 60 : "tm_sec="+tm_sec;
       tm_min = cal.get(Calendar.MINUTE);
       assert tm_min >= 0 && tm_min <= 59 : "tm_min="+tm_min;
       tm_hour = cal.get(Calendar.HOUR_OF_DAY);
       assert tm_hour >= 0 && tm_hour <= 23 : "tm_hour="+tm_hour;
-      tm_mday = cal.get(Calendar.DAY_OF_MONTH);        
+      tm_mday = cal.get(Calendar.DAY_OF_MONTH);
       assert tm_mday >= 1 && tm_mday <= 31 : "tm_mday="+tm_mday;
       tm_mon = cal.get(Calendar.MONTH);
       assert tm_mon >= 0 && tm_mon <= 11 : "tm_mon="+tm_mon;
       tm_year = cal.get(Calendar.YEAR) - 1900;// in Java actual year, we need since 1900
-      
+
       // in Java constants are from 1 (Monday) to 7 (Sunday)
-      // but we need days since Sunday – [0, 6] 
+      // but we need days since Sunday – [0, 6]
       tm_wday = cal.get(Calendar.DAY_OF_WEEK) % 7;
       assert tm_wday >= 0 && tm_wday <= 6 : "tm_wday="+tm_wday;
       // in Java The first day of the year has value 1. We need from 0
@@ -3869,7 +3918,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
 
     @Override
     public String toString() {
-      return "tm{" + 
+      return "tm{" +
         "tm_sec=" + tm_sec + ",\n"
         + " tm_min=" + tm_min + ",\n"
         + " tm_hour=" + tm_hour + ",\n"
@@ -3883,9 +3932,9 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
   }
 
   /**
-   * 
+   *
    * @param __timer
-   * @return 
+   * @return
    */
   public static /*time_t*/long time(long$ptr/*time_t P*/__timer) {
     long out = System.currentTimeMillis();
@@ -3896,12 +3945,12 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
   }
 
   /**
-   * Converts given time since epoch as std::time_t value into calendar time, 
-   * expressed in local time. 
-   * 
-   * @param__timer pointer to a time_t object to convert 
-   * @return pointer to a static internal std::tm object on success, or NULL otherwise. 
-   * The structure may be shared between std::gmtime, std::localtime, and std::ctime, and may be overwritten on each invocation. 
+   * Converts given time since epoch as std::time_t value into calendar time,
+   * expressed in local time.
+   *
+   * @param__timer pointer to a time_t object to convert
+   * @return pointer to a static internal std::tm object on success, or NULL otherwise.
+   * The structure may be shared between std::gmtime, std::localtime, and std::ctime, and may be overwritten on each invocation.
    */
   public static tm localtime(long/*const time_t P*/__timer) {
     return new tm(__timer);
@@ -3909,16 +3958,16 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
 
   /**
    *  It converts the calendar time t into a null-terminated string of the form
-    "Wed Jun 30 21:49:08 1993\n" 
+    "Wed Jun 30 21:49:08 1993\n"
    * @param __tp
-   * @return 
+   * @return
    */
   public static char$ptr asctime(tm __tp) {
 
       Date date = new Date(__tp.millis_orig);
-      SimpleDateFormat ft = 
+      SimpleDateFormat ft =
       new SimpleDateFormat ("EEE MMM dd HH:mm:ss yyyy");
-      String format = ft.format(date) + "\n"; 
+      String format = ft.format(date) + "\n";
       return create_char$ptr(format);
   }
 
@@ -3947,16 +3996,16 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     public bitset(JD$Move _diff, bitset other) {
       super(other);
     }
-    
+
     public void $assign(bitset other) {
       throw new UnsupportedOperationException("EmptyBody");
     }
   }
 
   public static final class unordered_setULong /*extends StdSetType<T> */{
-    
+
   }
-  
+
   public static final class unordered_setType<T> extends StdSetType<T> {
 
     public unordered_setType() {
@@ -3977,9 +4026,9 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
 
     public unordered_setType(setType<T> other) {
       super(other);
-    }    
+    }
   }
-  
+
   public static final class setType<T> extends StdSetType<T> {
 
     public setType() {}
@@ -3987,7 +4036,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     public setType(Comparator<T> comparator) {
       super(comparator);
     }
-    
+
     public setType(std.binary_functionArgArg2Bool<T, T> comparator) {
       super(binary2Comparator(comparator));
     }
@@ -3995,11 +4044,11 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     public setType(std.setType<T> other) {
       super(other);
     }
-    
+
     public setType(JD$Move diff, std.setType<T> other) {
       super(other);
     }
-    
+
     public setType(type$iterator<?, T> B, type$iterator<?, T> E) {
       super();
       insert(B, E);
@@ -4022,7 +4071,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
       super.insert(begin, end);
     }
   }
-  
+
   public static final class setPtr<T> extends StdSetPtr<T> {
 
     public setPtr() {
@@ -4032,7 +4081,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     public setPtr(Comparator<T> comparator) {
       super(comparator);
     }
-    
+
     public setPtr(std.binary_functionArgArg2Bool<T, T> comparator) {
       super(binary2Comparator(comparator));
     }
@@ -4040,11 +4089,11 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     public setPtr(std.setPtr<T> other) {
       super(other);
     }
-    
+
     public setPtr(JD$Move diff, std.setPtr<T> other) {
       super(other);
     }
-    
+
     public setPtr(type$iterator<?, T> B, type$iterator<?, T> E) {
       super(Native::compare$JavaRef);
       insert(B, E);
@@ -4067,7 +4116,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
       super.insert(begin, end);
     }
   }
-  
+
   public static final class setInt extends StdSetInt {
 
     public setInt() {}
@@ -4079,7 +4128,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     public setInt(std.setInt other) {
       super(other);
     }
-    
+
     public setInt(JD$Initializer_list$_Key_T1$C$R_T2$C$R diff, int[] other) {
       clear();
       for(int i = 0; i < other.length; i++) {
@@ -4092,7 +4141,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
       return new setInt(this);
     }
   }
-  
+
   public static final class setUInt extends StdSetUInt {
 
     public setUInt() {}
@@ -4118,9 +4167,9 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
   public static <T1, T2> boolean $less_pair(pair<T1, T2> one, pair<T1, T2> other, ComparatorLower<T1, T1> c1, ComparatorLower<T2, T2> c2) {
     return c1.$less(one.first, other.first) || (!c1.$less(other.first, one.first) && c2.$less(one.second, other.second));
   }
-  
+
   public static <T1 extends ComparableLower, T2 extends ComparableLower> boolean $less_pair(pair<T1, T2> one, pair<T1, T2> other) {
-    return one.first.$less(other.first) || (!other.first.$less(one.first) && one.second.$less(other.second));    
+    return one.first.$less(other.first) || (!other.first.$less(one.first) && one.second.$less(other.second));
   }
 
   public static <T1 extends ComparableLower, T2 extends ComparableLower> boolean $less_pair$_T1$_T2$C(pair<T1, T2> one, pair<T1, T2> other) {
@@ -4134,7 +4183,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
   public static <T1, T2> boolean $less_tuple_T_T(pair<T1, T2> one, pair<T1, T2> other, ComparatorLower<T1, T1> c1, ComparatorLower<T2, T2> c2) {
     return c1.$less(one.first, other.first) || (!c1.$less(other.first, one.first) && c2.$less(one.second, other.second));
   }
-  
+
   public static boolean $less_tuple$C(pairIntBool one, pairIntBool other) {
     return (one.first < other.first) || (!(one.first < other.first) && !one.second && other.second);
   }
@@ -4146,24 +4195,24 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
   public static boolean $greater_tuple$C(pairIntBool one, pairIntBool other) {
     return (one.first > other.first) || (!(one.first > other.first) && one.second && !other.second);
   }
-          
+
   public static boolean $less_tuple_int$C(pairIntInt one, pairIntInt other) {
     return Unsigned.$less_int(one.first, other.first) || (!Unsigned.$less_int(other.first, one.first) && Unsigned.$less_int(one.second, other.second));
   }
-  
+
   public static boolean $less_tuple_uint$C(pairUIntUInt one, pairUIntUInt other) {
     return Unsigned.$less_uint(one.first, other.first) || (!Unsigned.$less_uint(other.first, one.first) && Unsigned.$less_uint(one.second, other.second));
   }
-  
+
   public static final class tuple extends StdTuple {
     public tuple(tuple other) {
       super(other);
     }
-    
+
     public tuple(Object ... elements) {
       super(elements);
     }
-    
+
     public tuple(boolean isDataPointerLike, Object ... elements) {
       super(isDataPointerLike, elements);
     }
@@ -4172,11 +4221,11 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
   public static tuple make_tuple(Object ... elements) {
     return new tuple(elements);
   }
-  
+
   public static tuple make_tuple_Ptrs(Object ... elements) {
     return new tuple(true, elements);
   }
-  
+
   public static Object get(int idx, tuple t) {
     return t.$getAt(idx);
   }
@@ -4206,16 +4255,16 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
    *  which is a typedef for the second Sequence parameter, and @c
    *  push, @c pop, and @c top, which are standard %stack/FILO
    *  operations.
-  */  
+  */
   public static class stack<_Tp> implements NativeComparable<stack>, Destructors.ClassWithDestructor {
 //      _Tp _stack[];
       private final java.util.Deque<_Tp> _stack = new java.util.LinkedList<_Tp>();
       private final boolean isDataPointerLike;
-      
+
       public stack(_Tp DUMMY_defaultValue_UNUSED) {
         this.isDataPointerLike = (DUMMY_defaultValue_UNUSED == null);
       }
-      
+
       /**
        *  @brief  Add data to the top of the %stack.
        *  @param  x  Data to be added.
@@ -4303,7 +4352,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
         assert !iteratorOther.hasNext();
         return true;
       }
-      
+
       @Override
       public void $destroy() {
         if (!isDataPointerLike) {
@@ -4313,7 +4362,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
         }
       }
   }
-  
+
   /** DUMMY */
   public static class stackInt implements NativeComparable<stackInt>, Destructors.ClassWithDestructor {
     private final java.util.Deque<Integer> _stack = new java.util.LinkedList<Integer>();
@@ -4343,7 +4392,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
           _stack.push(value);
           return value;
         }
-        
+
       };
     }
     public int pop() {
@@ -4362,13 +4411,13 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     pairBoolPtr.clearStatistics();
 
     pairUShortUInt.clearStatistics();
-    
+
     pairIntInt.clearStatistics();
     pairIntUInt.clearStatistics();
     pairIntType.clearStatistics();
     pairIntPtr.clearStatistics();
     pairLongLong.clearStatistics();
-    
+
     pairTypeBool.clearStatistics();
     pairPtrBool.clearStatistics();
     pairTypeChar.clearStatistics();
@@ -4385,7 +4434,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     pairPtrULong.clearStatistics();
     pairTypeULLong.clearStatistics();
     pairPtrULLong.clearStatistics();
-    
+
     pairUCharType.clearStatistics();
     pairUCharPtr.clearStatistics();
     pairUIntBool.clearStatistics();
@@ -4419,19 +4468,19 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     Value += pairPtrPtr.printStatistics(out);
     Value += pairPtrType.printStatistics(out);
     Value += pairTypePtr.printStatistics(out);
-    
+
     Value += pairBoolChar.printStatistics(out);
     Value += pairBoolType.printStatistics(out);
     Value += pairBoolPtr.printStatistics(out);
 
     Value += pairUShortUInt.printStatistics(out);
-    
+
     Value += pairIntInt.printStatistics(out);
     Value += pairIntUInt.printStatistics(out);
     Value += pairIntType.printStatistics(out);
     Value += pairIntPtr.printStatistics(out);
     Value += pairLongLong.printStatistics(out);
-    
+
     Value += pairTypeBool.printStatistics(out);
     Value += pairTypeChar.printStatistics(out);
     Value += pairTypeUChar.printStatistics(out);
@@ -4443,7 +4492,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     Value += pairPtrULong.printStatistics(out);
     Value += pairTypeULLong.printStatistics(out);
     Value += pairPtrULLong.printStatistics(out);
-    
+
     Value += pairPtrBool.printStatistics(out);
     Value += pairPtrChar.printStatistics(out);
     Value += pairPtrUChar.printStatistics(out);
@@ -4451,7 +4500,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     Value += pairPtrUInt.printStatistics(out);
     Value += pairPtrLong.printStatistics(out);
     Value += pairPtrULong.printStatistics(out);
-    
+
     Value += pairUCharType.printStatistics(out);
     Value += pairUCharPtr.printStatistics(out);
     Value += pairUIntBool.printStatistics(out);
@@ -4464,13 +4513,13 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     NativeTrace.dumpStatisticValue(out, "TotalLibStdPairsValue", Value);
     return Value;
   }
-  
+
   public static class input_iterator_tag {
 
     public input_iterator_tag() {
     }
   }
-  
+
   public static class output_iterator_tag {
 
     public output_iterator_tag() {
@@ -4484,7 +4533,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     public forward_iterator_tag(JD$Move _dparm, Object dummy) {
     }
   }
-  
+
   @FunctionalInterface
   public static interface hash<Key> {
     /*size_t*/int $call(Key key);
@@ -4497,16 +4546,16 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
   }
 
   public interface less<T> extends binary_functionBoolean<T> {
-    
+
     @Override
     default boolean $call(/*const*/T /*&*/ lhs, /*const*/ T /*&*/ rhs) /*const*/ {
       return Native.$less(lhs, rhs);
     }
   }
-  
+
   /// One of the @link comparison_functors comparison functors@endlink.
   public interface equal_to<T> extends binary_functionBoolean<T> {
-    
+
     @Override
     default boolean $call(/*const*/T /*&*/ lhs, /*const*/ T /*&*/ rhs) /*const*/ {
       return Native.$eq(lhs, rhs);
@@ -4542,7 +4591,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
   public static interface ConvertableToStdString {
     public std.string std$string();
   }
-  
+
   public static final class string extends StdString {
 
     /**
@@ -4598,7 +4647,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     public string(string other) {
       super(other);
     }
-    
+
     public string(JD$Move _dparam, string other) {
       super(_dparam, other);
     }
@@ -4618,35 +4667,35 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     public string(char$iterator<?> begin, char$iterator<?> end) {
       super(begin, end);
     }
-    
+
     public string(char$iterator<?> from, /*size_t*/int StartIdx, /*size_t*/int Size) {
       super((char$ptr)from, StartIdx, Size);
     }
-    
+
     public string(byte[] from, /*size_t*/int StartIdx, /*size_t*/int Size) {
       this(from, StartIdx, Size, false);
     }
-    
+
     public string(byte[] from, /*size_t*/int StartIdx, /*size_t*/int Size, boolean _const) {
       super(from, StartIdx, Size, _const);
     }
-    
+
     public string(char$iterator<?> from, /*size_t*/int StartIdx, /*size_t*/int Size, boolean _const) {
       super((char$ptr)from, StartIdx, Size, _const);
     }
-    
+
     public byte[] $array() {
       return array.$array();
     }
-    
-    public char$ptr insert(char$ptr __p, byte __c) {    
+
+    public char$ptr insert(char$ptr __p, byte __c) {
       return super.insert(__p, $char(__c));
     }
 
     public char$ptr ptr$at(int index) {
       return data().$add(index);
     }
-    
+
     public int find_T_size_type$_CharT(/*char*/byte ch) {
       return find_T_rebind$_CharT(ch);
     }
@@ -4671,7 +4720,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     public std.string append(std.string __extra) {
       return super.append(__extra.data());
     }
-    
+
     public std.string append(int c, byte s) {
       byte[] buf = new byte[c+1];
       for(int i = 0; i < c; i++) {
@@ -4702,12 +4751,12 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
       throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
   }
-  
+
   // bool operator < (string&, string&)
   public static boolean $less_string(std.string LHS, std.string RHS) {
     return LHS.$less(RHS);
   }
-  
+
   // bool operator < (const string&, const string&)
   public static boolean $less_string$C(std.string LHS, std.string RHS) {
     return LHS.$less(RHS);
@@ -4737,7 +4786,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     }
     return __first;
   }
-  
+
   /**
    *  @brief Find the first element in a sequence for which a
    *         predicate is true.
@@ -4795,7 +4844,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     }
     return __result;
   }
-  
+
   /**
    *  @brief Remove elements from a sequence.
    *  @ingroup mutating_algorithms
@@ -4818,7 +4867,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     remove(_ForwardIterator __first, _ForwardIterator __last,
 	      final _Tp __value) {
       return remove_if(
-              __first, 
+              __first,
               __last,
               new BoolPredicate<_Tp>() {
                 @Override
@@ -4906,7 +4955,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
   public static <T> back_insert_iterator<T> back_inserter(NativeContainer<T> container) {
     return new back_insert_iterator<T>(container);
   }
-  
+
   public static back_insert_iteratorChar back_inserter(NativeContainerChar container) {
     return new back_insert_iteratorChar(container);
   }
@@ -4923,14 +4972,14 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
    *  save typing.
    */
   public static class back_insert_iterator<T> implements type$iterator<back_insert_iterator<T>, T>, iterator<output_iterator_tag, T> {
-    
+
     protected final NativeContainer<T> container;
 
     /// A nested typedef for the type of whatever container you used.
     //typedef _Container          container_type;
 
-    /// The only way to create this %iterator is with a container.     
-    public back_insert_iterator(NativeContainer<T>/*&*/ __x) { 
+    /// The only way to create this %iterator is with a container.
+    public back_insert_iterator(NativeContainer<T>/*&*/ __x) {
       assert __x != null;
       this.container = __x;
     }
@@ -4960,10 +5009,10 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
 
     // JAVA: returns (T) null to comply with type$iterator interface.
     /// Simply returns *this.
-    public T $star() { 
-      return null; 
+    public T $star() {
+      return null;
     }
-    
+
     private final type$ref<T> $T_REF = new type$ref<T>() {
       @Override
       public T $deref() {
@@ -4976,43 +5025,43 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
         return null;
       }
     };
-    
-    public type$ref<T> star$ref() { 
-      return $T_REF; 
+
+    public type$ref<T> star$ref() {
+      return $T_REF;
     }
 
     /// Simply returns *this.  (This %iterator does not @a move.)
     public back_insert_iterator<T>
-    $preInc() { 
-      return this; 
+    $preInc() {
+      return this;
     }
 
     /// Simply returns *this.  (This %iterator does not @a move.)
     public back_insert_iterator<T>
-    $postInc() { 
-      return this; 
+    $postInc() {
+      return this;
     }
 
     @Override
     public back_insert_iterator<T> clone() {
       return this;
-    }    
+    }
 
     @Override
     public boolean $eq(Object other) {
       return this == other;
     }
   }
-  
+
   public static class back_insert_iteratorChar implements char$iterator<back_insert_iteratorChar>, iterator<output_iterator_tag, Byte> {
-    
+
     protected final NativeContainerChar container;
 
     /// A nested typedef for the type of whatever container you used.
     //typedef _Container          container_type;
 
-    /// The only way to create this %iterator is with a container.     
-    public back_insert_iteratorChar(NativeContainerChar/*&*/ __x) { 
+    /// The only way to create this %iterator is with a container.
+    public back_insert_iteratorChar(NativeContainerChar/*&*/ __x) {
       this.container = __x;
     }
 
@@ -5041,8 +5090,8 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
 
     // JAVA: returns 0 to comply with char$iterator interface.
     /// Simply returns *this.
-    public byte $star() { 
-      return 0; 
+    public byte $star() {
+      return 0;
     }
 
     private final char$ref $T_REF = new char$ref() {
@@ -5058,28 +5107,28 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
       }
     };
 
-    public char$ref star$ref() { 
-      return $T_REF; 
+    public char$ref star$ref() {
+      return $T_REF;
     }
 
     /// Simply returns *this.  (This %iterator does not @a move.)
     public back_insert_iteratorChar
-    $preInc() { 
-      return this; 
+    $preInc() {
+      return this;
     }
 
     /// Simply returns *this.  (This %iterator does not @a move.)
     public back_insert_iteratorChar
-    $postInc() { 
-      return this; 
+    $postInc() {
+      return this;
     }
 
     @Override
     public back_insert_iteratorChar clone() {
       return this;
-    }    
+    }
   }
-  
+
   public static <T extends ComparableGreater> T max(T left, T right) {
     return left.$greater(right) ? left : right;
   }
@@ -5087,7 +5136,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
   public static <T extends Native.ComparableLower> T max(T left, T right) {
     return left.$less(right) ? right : left;
   }
-  
+
   public static <T extends Native.ComparableLowerGreater> T max(T left, T right) {
     return left.$less(right) ? right : left;
   }
@@ -5107,11 +5156,11 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
   public static int max(int left, int right) {
     return left > right ? left : right;
   }
-  
+
   public static /*uint*/int max_uint(/*uint*/int left, /*uint*/int right) {
     return Unsigned.$greatereq_uint(left, right) ? left : right;
   }
-  
+
   public static <T extends ComparableGreater> T min(T left, T right) {
     return left.$greater(right) ? right : left;
   }
@@ -5119,11 +5168,11 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
   public static <T extends Native.ComparableLower> T min(T left, T right) {
     return left.$less(right) ? left : right;
   }
-  
+
   public static <T extends Native.ComparableLowerGreater> T min(T left, T right) {
     return left.$less(right) ? left : right;
   }
-  
+
   public static long min(long left, long right) {
     return left < right ? left : right;
   }
@@ -5207,11 +5256,11 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
   public static std.string $add_str_T(std.string left, CharSequence right) {
     return new std.string(left).$addassign(right);
   }
-  
+
   public static std.string $add_str$C_T(string left,  CharSequence right) {
     return new std.string(left).$addassign(right);
-  }  
-  
+  }
+
   public static std.string $add_str$C_T(string left,  char$ptr right) {
     return new std.string(left).$addassign(new std.string(right, strlen(right)));
   }
@@ -5247,7 +5296,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
   public static std.string $add_string$C_T$C$P(std.string left, String right) {
     return $add_string_T(left, right);
   }
-  
+
   public static std.string $add_string$C_T$C$P(std.string left, char$ptr right) {
     return $add_string_T(left, right);
   }
@@ -5267,7 +5316,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
   public static std.string $add_string_T(std.string left, /*char*/byte right) {
     return new std.string(left).$addassign(right);
   }
-  
+
   public static std.string $add_str_T(std.string left, String right) {
     return new std.string(left).$addassign(right);
   }
@@ -5296,7 +5345,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
   public static boolean $noteq_str(std.string left, std.string right) {
     return left.$noteq(right);
   }
-  
+
   public static boolean $noteq_str$C(std.string left, std.string right) {
     return left.$noteq(right);
   }
@@ -5312,19 +5361,19 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
   public static boolean $eq_str$C_T(std.string left, String right) {
     return left.$op(Native.OpCapable.Op.EQ, right);
   }
-  
+
   public static boolean $eq_string$C_T$C$P(std.string left, String right) {
     return $eq_str$C_T(left, right);
   }
-  
+
   public static boolean $eq_string$C_T$C$P(std.string left, char$iterator<?> right) {
     return $eq_str_T(left, right);
   }
-  
+
   public static boolean $eq_string$C_T(std.string left, String right) {
     return $eq_str$C_T(left, right);
   }
-  
+
   public static <T> boolean $eq_T_str(CharSequence left, std.string right) {
     return right.$op(Native.OpCapable.Op.EQ, left);
   }
@@ -5335,7 +5384,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     }
     return left.$op(Native.OpCapable.Op.EQ, right);
   }
-  
+
   public static boolean $eq_str$C_T(std.string left, char$iterator<?> right) {
     return $eq_str_T(left, right);
   }
@@ -5346,11 +5395,11 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     }
     return right.$op(Native.OpCapable.Op.EQ, left);
   }
-  
-  public static boolean $eq_T_string$C(char$iterator<?> left, std.string right) { 
+
+  public static boolean $eq_T_string$C(char$iterator<?> left, std.string right) {
     return $eq_T_str(left, right);
   }
-  
+
   public static boolean $eq_vector$_Tp$_Alloc$C(vectorString left, vectorString right) {
     return left.$eq(right);
   }
@@ -5358,11 +5407,11 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
   public static <T> boolean $eq_vector$_Tp$_Alloc$C(vector<T> left, vector<T> right) {
     return left.$eq(right);
   }
-  
+
   public static <T> boolean $less_vector$_Tp$_Alloc$C(vector<T> left, vector<T> right) {
     return left.$less(right);
   }
-  
+
   public static <T, Comp extends ComparatorLower<T,T>> boolean $less_vector$_Tp$_Alloc$C(vector<T> left, vector<T> right, Comp __comp) {
     StdVector.iterator<T> __first1 = left.begin();
     StdVector.iterator<T> __first2 = right.begin();
@@ -5379,11 +5428,11 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     return $eq_iter(__first1, __last1) && $noteq_iter(__first2, __last2);
   }
 
-  public static boolean $eq_T$C$P_string$C(char$iterator<?> left, std.string right) { 
+  public static boolean $eq_T$C$P_string$C(char$iterator<?> left, std.string right) {
     return $eq_T_str(left, right);
   }
 
-  public static boolean $eq_T_str$C(char$iterator<?> left, std.string right) { 
+  public static boolean $eq_T_str$C(char$iterator<?> left, std.string right) {
     return $eq_T_str(left, right);
   }
 
@@ -5394,16 +5443,16 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
   public static <T> boolean $eq_T_str(T left, std.string right) {
     throw new UnsupportedOperationException("Not supported yet for " + left.getClass()); //To change body of generated methods, choose Tools | Templates.
   }
-  
+
   public static <T> boolean $noteq_unique_ptr$C_nullptr_t(unique_ptr<T> ptr, T object) {
     assert object == null : "T must be null";
     return ptr.$arrow() != object;
   }
-  
+
   public static <T> boolean $noteq_unique_ptr$_Tp$_Dp$C_nullptr_t(unique_ptr<T> ptr, T object) {
     return $noteq_unique_ptr$C_nullptr_t(ptr, object);
   }
-  
+
   public static <T> boolean $noteq_unique_ptr_nullptr_t(unique_ptr<T> ptr, T object) {
     assert object == null : "T must be null";
     return ptr.$arrow() != object;
@@ -5432,27 +5481,27 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
   public static boolean $noteq_str_T(std.string left, char$iterator<?> right) {
     return !$eq_str_T(left, right);
   }
-  
+
   public static boolean $noteq_string$C_T(std.string left, char$iterator<?> right) {
     return !$eq_str_T(left, right);
   }
-  
+
   public static boolean $noteq_string$C_T$C$P(std.string left, String right) {
     return !$eq_str_T(left, right);
   }
-  
+
   public static boolean $noteq_string$C_T(std.string left, String right) {
     return !$eq_str_T(left, right);
   }
-  
+
   public static boolean $noteq_str$C_T(std.string left, char$iterator<?> right) {
     return !$eq_str_T(left, right);
   }
-  
+
   public static boolean $noteq_str$C_T(std.string left, String right) {
     return !$eq_str_T(left, right);
   }
-  
+
   public static <T> boolean $noteq_T_str(T left, std.string right) {
     return ! $eq_T_str(left, right);
   }
@@ -5479,7 +5528,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     }
     return __n;
   }
-  
+
   public static <T> int count(type$iterator<?, T> __first, type$iterator<?, T> __last, T t) {
     __first = $Clone(__first);
     int __n = 0;
@@ -5490,7 +5539,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     }
     return __n;
   }
-  
+
   public static <T> int count_if(type$iterator<?, T> __first, type$iterator<?, T> __last, BoolPredicate<T> __pred) {
     __first = $Clone(__first);
     int __n = 0;
@@ -5505,7 +5554,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
   public static <T1, T2> boolean $eq_pair(std.pair<T1, T2> left, std.pair<T1, T2> right) {
     return left.$eq(right);
   }
-  
+
   public static <T1, T2> boolean $eq_pair$C(std.pair<T1, T2> left, std.pair<T1, T2> right) {
     return $eq_pair(left, right);
   }
@@ -5517,7 +5566,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
   public static <T> int $sub___normal_iterator$C(vector.iterator<T> __lhs, vector.iterator<T> __rhs) {
     return __lhs.$sub(__rhs);
   }
-  
+
   public static int $sub___normal_iterator$C(char$ptr __lhs, char$ptr __rhs) {
     return __lhs.$sub(__rhs);
   }
@@ -5528,7 +5577,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     }
     return XE.$sub(XI);
   }
-  
+
   public static <T> boolean $noteq__Deque_iterator$_Tp$_Ref$_Ptr$C(deque.iterator<T> XE, deque.iterator<T> XI) {
     return !XE.$eq(XI);
   }
@@ -5543,7 +5592,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
   public static boolean $noteq___normal_iterator(abstract_iterator<?> __lhs, abstract_iterator<?> __rhs) {
     return !$eq___normal_iterator(__lhs, __rhs);
   }
-  
+
   public static <T> boolean $noteq___normal_iterator(vector.iterator<T> __lhs, vector.iterator<T> __rhs) {
     return !$eq___normal_iterator(__lhs, __rhs);
   }
@@ -5564,7 +5613,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
 
   public static <T> boolean $eq___normal_iterator$C(vector.iterator<T> __lhs, vector.iterator<T> __rhs) {
     return $eq___normal_iterator(__lhs, __rhs);
-  }  
+  }
   public static <T> boolean $eq___normal_iterator(vector.iterator<T> __lhs, vector.iterator<T> __rhs) {
     return __lhs.$eq(__rhs);
   }
@@ -5576,7 +5625,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     return __lhs.$eq(__rhs);
   }
 
-  
+
   public static <T> void$ptr __builtin_memcpy(T to[], T from[]) {
     throw new IllegalArgumentException("Use method with trailing isPointerLike paramter");
   }
@@ -5603,7 +5652,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
   }
   public static void __builtin_memcpy(byte to[], byte from[], int size) {
     memcpy(to, from, size);
-  }  
+  }
   public static void memcpy(byte to[], byte from[], int size) {
     memcpy(to, 0, from, 0, size);
   }
@@ -5626,7 +5675,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
       int End = (int)size + StartIdx;
       for (int i = StartIdx, j = fromIdx; i < End; i++, j++) {
         to[i] = from.$at(j);
-      }    
+      }
     }
   }
 
@@ -5645,7 +5694,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
       int End = (int)size + StartIdx;
       for (int i = StartIdx, j = fromIdx; i < End; i++, j++) {
         to[i] = from.$at(j);
-      }    
+      }
     }
   }
 
@@ -5679,10 +5728,10 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     int size = std.distance(end, begin);
     return memmove(dst, begin, size);
   }
-  
+
   // Moves the elements in the range [first, last), to another range beginning
   // at d_first. After this operation the elements in the moved-from range will
-  // still contain valid values of the appropriate type, but not necessarily 
+  // still contain valid values of the appropriate type, but not necessarily
   // the same values as before the move.
   public static <OutIter extends type$iterator<OutIter, T>, T> OutIter move(type$iterator<?, T> first, type$iterator<?, T> last, OutIter result, boolean isDataPointerLike) {
     result = result.clone();
@@ -5779,7 +5828,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     }
     return to;
   }
-  
+
   @Deprecated // Use memcpy with specified trailing isDataPointerLike
   public static void$ptr memcpy(type$ptr to, type$ptr from, /*size_t*/int size) {
     return memcpy(to, from, size, true/*PointerLike*/);
@@ -5816,7 +5865,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     }
     return to;
   }
-  
+
   public static void$ptr memcpy(int$ptr to, int$ptr from, /*size_t*/int size, boolean isPointerLike) { assert !isPointerLike; return memcpy(to, from, size); }
   public static void$ptr memcpy(int$ptr to, int$ptr from, /*size_t*/int size) {
     assert (size % NativeType.BYTES_IN_INT == 0) : "size="+size;
@@ -5834,7 +5883,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     return to;
   }
 
-  public static void$ptr memcpy(ulong$ptr to, ulong$ptr from, /*size_t*/int size, boolean isPointerLike) { assert !isPointerLike; return memcpy(to, from, size); }  
+  public static void$ptr memcpy(ulong$ptr to, ulong$ptr from, /*size_t*/int size, boolean isPointerLike) { assert !isPointerLike; return memcpy(to, from, size); }
   public static void$ptr memcpy(ulong$ptr to, ulong$ptr from, /*size_t*/int size) {
     assert (size % NativeType.BYTES_IN_ULINT == 0) : "size="+size;
     for (int i = 0; i < size / NativeType.BYTES_IN_ULINT; i++) {
@@ -5907,11 +5956,11 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     }
     return Res;
   }
-  
+
   public static int memcmp(char$ptr str1, char$ptr str2, /*size_t*/int len) {
     return memcmp(str1, 0, str2, 0, len);
   }
-  
+
   public static int memcmp(char$ptr str1, /*size_t*/int str1Idx, char$ptr str2, /*size_t*/int str2Idx, /*size_t*/int _len) {
     int pos = 0, len = (int)_len;
     byte ch1 = 0, ch2 = 0;
@@ -5920,7 +5969,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     }
     return pos == len ? 0 : $uchar2ushort(ch1) - $uchar2ushort(ch2); // works for ascii chars
   }
-  
+
   public static int memcmp(uint$ptr ptr1, uint$ptr ptr2, /*size_t*/int size) {
     int pos = 0, len = size / NativeType.BYTES_IN_UINT, val1 = 0, val2 = 0;
     while (pos < len && (val1 = ptr1.$at(pos)) == (val2 = ptr2.$at(pos))) {
@@ -6019,7 +6068,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
   public static int memcmp(char$ptr str1, byte[] str2, int str2Idx, /*size_t*/int len) {
     return memcmp(str1, 0, str2, str2Idx, len);
   }
-  
+
   public static int memcmp(char$ptr str1, int str1Idx, byte[] str2, int str2Idx, /*size_t*/int len) {
     int pos = 0;
     byte ch1 = $$TERM, ch2 = $$TERM;
@@ -6039,7 +6088,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     }
     return pos == len ? 0 : ch1 - ch2; // works for ascii chars
   }
-  
+
   public static int memcmp(char$ptr ptr, CharSequence Str, /*size_t*/int len) {
     return memcmp(ptr, 0, Str, 0, len);
   }
@@ -6092,11 +6141,11 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     }
     return create_char$ptr_utf8(env);
   }
-  
+
   /**
    * prepare std.getenv for unit test run.
    * @param envs collection of "KEY=VALUE" strings
-   */  
+   */
   public static void set_unit_test_env(List<String> envs) {
     assert NativeTrace.isUnitTestMode();
     ConcurrentMap<String, char$ptr> ENV = get$$env.$$SET_ENV.ENV;
@@ -6125,18 +6174,18 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
       }
     }
   }
-  
+
   public static char$ptr setenv(char$ptr env, char$ptr value, int opt) {
     return setenv(Native.$toString(env), Native.$toString(value), opt);
   }
-  
+
   public static char$ptr setenv(String env, String value, int opt) {
     ConcurrentMap<String, char$ptr> ENV = get$$env.$$SET_ENV.ENV;
     char$ptr $value = $toConst(create_char$ptr_utf8(value));
     char$ptr $prev = ENV.put(env, $value);
     return $prev;
   }
-  
+
   public static char$ptr unsetenv(char$ptr env) {
     return unsetenv(Native.$toString(env));
   }
@@ -6145,7 +6194,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     char$ptr $prev = ENV.remove(key);
     return $prev;
   }
-  
+
   private static final class get$$env {
     private static final class $$SET_ENV {
       private static final ConcurrentMap<String, char$ptr> ENV = new ConcurrentHashMap<String, char$ptr>();
@@ -6184,7 +6233,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     ar[index1] = ar[index2];
     ar[index2] = v1;
   }
-  
+
   /**
    *  @brief Swaps the contents of two iterators.
    *  @ingroup mutating_algorithms
@@ -6220,7 +6269,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
       lhs.star$ref().$set(rhs.$star());
       rhs.star$ref().$set(tmp);
   }
-  
+
   public static int isalnum(int ch) {
     return std.max(isalpha(ch), isdigit(ch));
   };
@@ -6369,21 +6418,21 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
       __first.star$ref().$set(__value);
     }
   }
-  
+
   public static void fill(char$iterator<?> __first, char$iterator<?> __last, /*char*/byte __value) {
     __first = $tryClone(__first);
     for (; __first.$noteq(__last); __first.$preInc()) {
       __first.star$ref().$set((byte)__value);
     }
   }
-  
+
   public static <T> void fill(type$ptr<T> __first, type$ptr<T> __last, T __value) {
     __first = $tryClone(__first);
     for (; __first.$noteq(__last); __first.$preInc()) {
       __first.$set(0, $tryClone(__value));
     }
   }
-  
+
   /**
    *  @brief  Determines whether the elements of a sequence are sorted.
    *  @ingroup sorting_algorithms
@@ -6423,7 +6472,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
   ) {
       return std.__is_sorted_until(__first, __last, __iter_less_iter());
   }
-  
+
   private static <T> type$iterator<?, T> __is_sorted_until(
           type$iterator<?, T> __first, type$iterator<?, T> __last,
           TypeType2Bool<type$iterator<?, T>> __comp
@@ -6431,7 +6480,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     if (__first.$eq(__last)) {
       return __last;
     }
-    
+
     type$iterator<?, T> __next = $tryClone(__first);
     for (__next.$preInc(); __next.$noteq(__last); __first = $tryClone(__next), __next.$preInc()) {
       if (__comp.$call(__next, __first)) {
@@ -6440,29 +6489,29 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     }
     return __next;
   }
-  
-  private static <T> _Iter_less_iter<T> __iter_less_iter() { 
-    return new _Iter_less_iter(); 
+
+  private static <T> _Iter_less_iter<T> __iter_less_iter() {
+    return new _Iter_less_iter();
   }
-  
+
   private static final class _Iter_less_adapter<T> implements TypeType2Bool<type$iterator<?, T>> {
     private final TypeType2Bool<T> wrapped;
 
     public _Iter_less_adapter(TypeType2Bool<T> wrapped) {
       this.wrapped = wrapped;
     }
-    
+
     @Override
     public boolean $call(type$iterator<?, T> a, type$iterator<?, T> b) {
       return wrapped.$call(a.$star(), b.$star());
-    } 
+    }
   }
-  
+
   private static final class _Iter_less_iter<T> implements TypeType2Bool<type$iterator<?, T>> {
     @Override
     public boolean $call(type$iterator<?, T> a, type$iterator<?, T> b) {
       return Native.$less(a.$star(), b.$star());
-    } 
+    }
   }
 
   /**
@@ -6481,12 +6530,12 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     // no tryClone needed here! T val was created by JConvert as param to make_unique
     return new std.unique_ptr<T>(val);
   }
-  
+
   public static <T> std.unique_ptr_array<T> make_unique(T val[]) {
     // TODO: probably no tryClone needed here!
     return new std.unique_ptr_array<T>(val);
   }
-  
+
   public static <T> boolean any_of(type$iterator<?, T> first, type$iterator<?, T> last, NativeCallback.BoolPredicate<T> predicate) {
     for(type$iterator<?, T> next = $tryClone(first); next.$noteq(last); next.$preInc()) {
       if (predicate.$call(next.$star())) {
@@ -6495,7 +6544,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     }
     return false;
   }
-  
+
   public static <T> boolean all_of(std.vector.iterator<T> first, std.vector.iterator<T> last, NativeCallback.BoolPredicate<T> predicate) {
     first = $tryClone(first);
     while (first.$noteq(last)) {
@@ -6521,11 +6570,11 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
   public static <T> boolean none_of(std.vector.iterator<T> first, std.vector.iterator<T> last, NativeCallback.BoolPredicate<T> predicate) {
     return Native.$eq_iter(last, find_if(first, last, predicate));
   }
-  
+
   public static <T> boolean none_of(type$ptr<T> first, type$ptr<T> last, NativeCallback.BoolPredicate<T> predicate) {
     return Native.$eq_iter(last, find_if(first, last, predicate));
   }
-  
+
   /**
    *  @brief  Common %iterator class.
    *
@@ -6547,7 +6596,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
 //      typedef _Pointer   pointer;
 //      /// This type represents a reference-to-value_type.
 //      typedef _Reference reference;
-    
+
     default void $iterator() {}
     default void $iterator(iterator other) {}
     default void $iterator(JD$Move param, iterator other) {}
@@ -6563,11 +6612,11 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     public reverse_iterator(JD$NoCloneInput _dparm, type$iterator<?, T> delegate) {
       super(_dparm, delegate);
     }
-    
+
     public reverse_iterator(reverse_iterator<T> other) {
       super((StdReverseIterator<T>)other);
     }
-    
+
     public reverse_iterator(JD$Reverse_iterator$_Iter$C diff, reverse_iterator<T> other) {
       super((StdReverseIterator<T>)other);
     }
@@ -6726,7 +6775,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     public vector(vector<T> other) {
       super(other);
     }
-    
+
     public vector(JD$Move _dparam, vector<T> other) {
       super(_dparam, other);
     }
@@ -6785,7 +6834,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     public vectorUChar(JD$Move _dparam, vectorUChar other) {
       super(_dparam, other);
     }
-    
+
     public void insert$T(iterator I, char$iterator<?> begin, char$iterator<?> end) {
       throw new UnsupportedOperationException("EmptyBody: cast char to uchar iterators");
     }
@@ -6830,11 +6879,11 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     public vectorChar(vectorChar other) {
       super(other);
     }
-    
+
     public vectorChar(JD$Move _dparam, vectorChar other) {
       super(_dparam, other);
     }
-    
+
     public byte[] $array() {
       return array;
     }
@@ -6879,10 +6928,10 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     public vectorUShort(vectorUShort other) {
       super(other);
     }
-    
+
     public vectorUShort(JD$Move _dparam, vectorUShort other) {
       super(_dparam, other);
-    }    
+    }
   }
 
   public final static class vectorShort extends StdVectorShort {
@@ -6924,10 +6973,10 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     public vectorShort(vectorShort other) {
       super(other);
     }
-    
+
     public vectorShort(JD$Move _dparam, vectorShort other) {
       super(_dparam, other);
-    }    
+    }
   }
 
   // vector<unsigned int>
@@ -6970,16 +7019,16 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     public vectorUInt(vectorUInt other) {
       super(other);
     }
-    
+
     public vectorUInt(JD$Move _dparam, vectorUInt other) {
       super(_dparam, other);
     }
-    
+
     public void assign$T(ulong$iterator<?> __first, ulong$iterator<?> __last) {
       clear();
       append(__first, __last);
-    }  
-    
+    }
+
     public void append(ulong$iterator<?> in_start, ulong$iterator<?> in_end) {
       assert checkAlive();
       int NumInputs = std.distance(in_start, in_end);
@@ -6998,7 +7047,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
       }
     }
   }
-  
+
   // vector<unsigned long int>
   public final static class vectorULong extends StdVectorULong {
 
@@ -7042,7 +7091,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
 
     public vectorULong(JD$Move _dparam, vectorULong other) {
       super(_dparam, other);
-    }    
+    }
   }
 
   // vector<long>
@@ -7088,7 +7137,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
 
     public vectorLong(JD$Move _dparam, vectorLong other) {
       super(_dparam, other);
-    }    
+    }
   }
 
   // vector<int>
@@ -7134,7 +7183,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
 
     public vectorInt(JD$Move _dparam, vectorInt other) {
       super(_dparam, other);
-    }    
+    }
   }
 
   // vector<float>
@@ -7180,7 +7229,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
 
     public vectorFloat(JD$Move _dparam, vectorFloat other) {
       super(_dparam, other);
-    }    
+    }
   }
 
   // vector<double>
@@ -7226,7 +7275,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
 
     public vectorDouble(JD$Move _dparam, vectorDouble other) {
       super(_dparam, other);
-    }    
+    }
   }
 
   // vector<bool>
@@ -7272,7 +7321,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
 
     public vectorBool(JD$Move _dparam, vectorBool other) {
       super(_dparam, other);
-    }    
+    }
   }
 
   public static final class vectorString extends StdVectorString {
@@ -7332,7 +7381,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     public void push_back(char$ptr val) {
       push_back(new std.string(val));
     }
-    
+
     public iterator insertChar$ptrs(iterator I, type$iterator<?, char$ptr> From, type$iterator<?, char$ptr> To) {
       std.string strings[] = new std.string[std.distance(From, To)];
       int index = 0;
@@ -7342,9 +7391,9 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
       }
       return insert(I, create_type$ptr(strings), create_type$ptr(strings, strings.length));
     }
-    
+
     @Override public /*size_t*/int $sizeof() {
-      int oneElemSize = NativeType.sizeof(defaultValue);; 
+      int oneElemSize = NativeType.sizeof(defaultValue);;
       for (std.string elem : array) {
         if (elem != defaultValue) {
           oneElemSize = NativeType.sizeof(elem);
@@ -7352,7 +7401,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
         }
       }
       return capacity() * oneElemSize;
-    }    
+    }
   }
 
   public static final class vectorCharPtr extends StdVectorCharPtr {
@@ -7388,11 +7437,11 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     public vectorCharPtr(vectorCharPtr other) {
       super(other);
     }
-    
+
     public vectorCharPtr(JD$Move _dparam, vectorCharPtr other) {
       super(_dparam, other);
-    } 
-    
+    }
+
     public void push_back(CharSequence val) {
       push_back(create_char$ptr(val));
     }
@@ -7400,13 +7449,13 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     public void push_back(std.string val) {
       push_back(val.c_str());
     }
-      
+
   }
 
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc="Maps">
-  
+
   // Adapts binary_function to comparator
   /*package*/ static <T> Comparator<T> binary2Comparator(final std.binary_functionArgArg2Bool<T, T> fun) {
     return new Comparator<T>() {
@@ -7419,7 +7468,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
       }
     };
   }
-  
+
   public static final class multimapUIntType<ValueT> extends StdMultiMapUIntType<ValueT> {
 
     public multimapUIntType(ValueT defVal) {
@@ -7427,7 +7476,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     }
 
   }
-  
+
   public static final class multimapULongType<ValueT> extends StdMultiMapULongType<ValueT> {
 
     public multimapULongType(ValueT defVal) {
@@ -7435,7 +7484,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     }
 
   }
-  
+
   public static final class priority_queue<_Tp> {
     private PriorityQueue<_Tp> _delegate;
 
@@ -7454,7 +7503,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     public _Tp top() {
       return _delegate.peek();
     }
-    
+
     public void $destroy() {
     }
 
@@ -7468,7 +7517,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     public queue(boolean isDataPointerLike) {
       delegate = new std.deque(isDataPointerLike);
     }
-    
+
     public void push(T val) {
       delegate.push_back(val);
     }
@@ -7488,7 +7537,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     public T front() {
       return delegate.front();
     }
-    
+
     public T back() {
       return delegate.back();
     }
@@ -7496,7 +7545,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     public T pop() {
       return delegate.pop_front();
     }
-    
+
     public int size() {
       return delegate.size();
     }
@@ -7510,13 +7559,13 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
       return "" + delegate;
     }
   }
-  
+
   public static final class queueDouble {
     private final std.vectorDouble delegate;
     public queueDouble() {
       delegate = new std.vectorDouble();
     }
-    
+
     public void push(double val) {
       delegate.push_back(val);
     }
@@ -7536,7 +7585,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
     public double front() {
       return delegate.front();
     }
-    
+
     public double back() {
       return delegate.back();
     }
@@ -7546,7 +7595,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
       delegate.erase(delegate.begin());
       return res;
     }
-    
+
     public int size() {
       return delegate.size();
     }
@@ -7555,11 +7604,11 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
       delegate.$destroy();
     }
   }
-  
+
   // FIXME: need to introduce hash_map infra
   @Deprecated
   public static final class hash_map<KeyT, ValueT> extends StdMap<KeyT, ValueT> {
-    
+
     public hash_map(ValueT defaultValue) {
       super(defaultValue);
       throw new UnsupportedOperationException("FIXME: generate template/aliases for hash_map");
@@ -7569,7 +7618,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
       super(comparator, defaultValue);
       throw new UnsupportedOperationException("FIXME: generate template/aliases for hash_map");
     }
-    
+
     public hash_map(std.binary_functionArgArg2Bool<KeyT, KeyT> comparator, ValueT defaultValue) {
       super(binary2Comparator(comparator), defaultValue);
       throw new UnsupportedOperationException("FIXME: generate template/aliases for hash_map");
@@ -7580,11 +7629,11 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
       throw new UnsupportedOperationException("FIXME: generate template/aliases for hash_map");
     }
   }
-  
+
   // FIXME: need to introduce unordered_map infra
   @Deprecated
   public static final class unordered_map<KeyT, ValueT> extends StdMap<KeyT, ValueT> {
-    
+
     public unordered_map(ValueT defaultValue) {
       super(defaultValue);
       throw new UnsupportedOperationException("FIXME: generate template/aliases for unordered_map");
@@ -7594,7 +7643,7 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
       super(comparator, defaultValue);
       throw new UnsupportedOperationException("FIXME: generate template/aliases for unordered_map");
     }
-    
+
     public unordered_map(std.binary_functionArgArg2Bool<KeyT, KeyT> comparator, ValueT defaultValue) {
       super(binary2Comparator(comparator), defaultValue);
       throw new UnsupportedOperationException("FIXME: generate template/aliases for unordered_map");
@@ -7605,40 +7654,40 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
       throw new UnsupportedOperationException("FIXME: generate template/aliases for unordered_map");
     }
   }
-  
+
   public static class multiplies<T> implements BinaryOperation<T> {
     private final BinaryOperation<T> delegate;
-    
+
     public multiplies(BinaryOperation<T> delegate) {
       this.delegate = delegate;
     }
-    
+
     @Override
     public T $call(T O1, T O2) {
       return delegate.$call(O1, O2);
     }
   }
-  
+
   public static class plus<T> implements BinaryOperation<T> {
     private final BinaryOperation<T> delegate;
-    
+
     public plus(BinaryOperation<T> delegate) {
       this.delegate = delegate;
     }
-    
+
     @Override
     public T $call(T O1, T O2) {
       return delegate.$call(O1, O2);
     }
   }
-  
+
   public static class minus<T> implements BinaryOperation<T> {
     private final BinaryOperation<T> delegate;
-    
+
     public minus(BinaryOperation<T> delegate) {
       this.delegate = delegate;
     }
-    
+
     @Override
     public T $call(T O1, T O2) {
       return delegate.$call(O1, O2);
@@ -7657,13 +7706,13 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
       return fn.$call(value, arg2);
     }
   }
-  
+
   public static <ArgumentType1, ArgumentType2> binder1st<ArgumentType1, ArgumentType2> bind1st(
           binary_functionArgArg2Bool<ArgumentType1, ArgumentType2> fn,
           ArgumentType1/*&*/ value) {
     return new binder1st(fn, value);
   }
-  
+
   public static class arrayUInt implements NativeCloneable<arrayUInt> {
     private final int size;
     private int[] array;
@@ -7691,15 +7740,15 @@ public class std extends std_algo implements std_ptr, std_pair, std_deque, std_f
       return array;
     }
   }
-  
+
   public static class piecewise_construct_t {}
-  public static piecewise_construct_t piecewise_construct = new piecewise_construct_t();  
-    
+  public static piecewise_construct_t piecewise_construct = new piecewise_construct_t();
+
   /*package*/ static <T> Supplier<T> getSupplier(T val) {
     if (val != null) {
       assert NativeTrace.assertDefaultValue(val);
       return ()->$tryClone(val);
     }
     return null;
-  }  
+  }
 }

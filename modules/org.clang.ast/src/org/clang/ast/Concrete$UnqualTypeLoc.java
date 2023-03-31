@@ -374,7 +374,7 @@ public abstract class Concrete$UnqualTypeLoc</*class Base, *//*class*/ Derived e
    FQN="clang::ConcreteTypeLoc::getInnerTypeSize", NM="_ZNK5clang15ConcreteTypeLoc16getInnerTypeSizeENS0_14HasNoInnerTypeE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.ast/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/AST/TypeLoc.cpp -nm=_ZNK5clang15ConcreteTypeLoc16getInnerTypeSizeENS0_14HasNoInnerTypeE")
   //</editor-fold>
-  private /*uint*/int getInnerTypeSize(HasNoInnerType _) /*const*/ {
+  private /*uint*/int getInnerTypeSize(HasNoInnerType hasNoInnerType) /*const*/ {
     return 0;
   }
 
@@ -385,9 +385,9 @@ public abstract class Concrete$UnqualTypeLoc</*class Base, *//*class*/ Derived e
    FQN="clang::ConcreteTypeLoc::getInnerTypeSize", NM="_ZNK5clang15ConcreteTypeLoc16getInnerTypeSizeENS_8QualTypeE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.ast/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/AST/TypeLoc.cpp -nm=_ZNK5clang15ConcreteTypeLoc16getInnerTypeSizeENS_8QualTypeE")
   //</editor-fold>
-  private /*uint*/int getInnerTypeSize(QualType _) /*const*/ {
-    if (_ instanceof HasNoInnerType) {
-      return getInnerTypeSize((HasNoInnerType)_);
+  private /*uint*/int getInnerTypeSize(QualType qualType) /*const*/ {
+    if (qualType instanceof HasNoInnerType) {
+      return getInnerTypeSize((HasNoInnerType)qualType);
     }
     return getInnerTypeLoc().getFullDataSize();
   }
@@ -410,7 +410,7 @@ public abstract class Concrete$UnqualTypeLoc</*class Base, *//*class*/ Derived e
    FQN="clang::ConcreteTypeLoc::getNextTypeAlign", NM="_ZNK5clang15ConcreteTypeLoc16getNextTypeAlignENS0_14HasNoInnerTypeE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.ast/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/AST/TypeLoc.cpp -nm=_ZNK5clang15ConcreteTypeLoc16getNextTypeAlignENS0_14HasNoInnerTypeE")
   //</editor-fold>
-  private /*uint*/int getNextTypeAlign(HasNoInnerType _) /*const*/ {
+  private /*uint*/int getNextTypeAlign(HasNoInnerType hasNoInnerType) /*const*/ {
     return 1;
   }
 
@@ -435,7 +435,7 @@ public abstract class Concrete$UnqualTypeLoc</*class Base, *//*class*/ Derived e
    FQN="clang::ConcreteTypeLoc::getNextTypeLoc", NM="_ZNK5clang15ConcreteTypeLoc14getNextTypeLocENS0_14HasNoInnerTypeE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.ast/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/AST/TypeLoc.cpp -nm=_ZNK5clang15ConcreteTypeLoc14getNextTypeLocENS0_14HasNoInnerTypeE")
   //</editor-fold>
-  private TypeLoc getNextTypeLoc(HasNoInnerType _) /*const*/ {
+  private TypeLoc getNextTypeLoc(HasNoInnerType hasNoInnerType) /*const*/ {
     return new TypeLoc();
   }
 

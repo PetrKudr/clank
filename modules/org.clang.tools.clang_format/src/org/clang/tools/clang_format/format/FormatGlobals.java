@@ -79,6 +79,7 @@ import org.clank.java.*;
 import org.clank.support.*;
 import org.clank.support.aliases.*;
 import org.clank.support.JavaDifferentiators.*;
+
 import static org.clank.java.io.*;
 import static org.llvm.adt.ADTAliases.*;
 import static org.llvm.support.llvm.*;
@@ -267,8 +268,8 @@ public static void outputReplacementXML(StringRef Text) {
  FQN="clang::format::outputReplacementsXML", NM="_ZN5clang6formatL21outputReplacementsXMLERKSt3setINS_7tooling11ReplacementESt4lessIS3_ESaIS3_EE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.tools.clang_format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/tools/clang-format/ClangFormat.cpp -nm=_ZN5clang6formatL21outputReplacementsXMLERKSt3setINS_7tooling11ReplacementESt4lessIS3_ESaIS3_EE")
 //</editor-fold>
-public static void outputReplacementsXML(final /*const*/ std.setType<Replacement> /*&*/ Replaces) {
-  for (final /*const*/ Replacement /*&*/ R : Replaces) {
+public static void outputReplacementsXML(final /*const*/ Replacements /*&*/ Replaces) {
+  for (final /*const*/ Replacement /*&*/ R : Replaces.Replaces) {
     outs().$out(/*KEEP_STR*/"<replacement ").$out(
         /*KEEP_STR*/"offset='"
     ).$out_uint(R.getOffset()).$out(/*KEEP_STR*/"' ").$out(
@@ -291,9 +292,9 @@ public static boolean format(StringRef FileName) {
   ErrorOr<std.unique_ptr<MemoryBuffer> > CodeOrErr = null;
   std.vector<Range> Ranges = null;
   FormatStyle $FormatStyle = null;
-  std.setType<Replacement> Replaces = null;
+  Replacements Replaces = null;
   Expected<std.string> ChangedCode = null;
-  std.setType<Replacement> FormatChanges = null;
+  Replacements FormatChanges = null;
   JavaCleaner $c$ = $createJavaCleaner();
   try {
     CodeOrErr = MemoryBuffer.getFileOrSTDIN(new Twine(FileName));
@@ -313,7 +314,8 @@ public static boolean format(StringRef FileName) {
       return true;
     }
     StringRef AssumedFileName = ($eq_StringRef(/*NO_COPY*/FileName, /*STRINGREF_STR*/"-")) ? new StringRef(AssumeFileName) : new StringRef(FileName);
-    $FormatStyle = org.clang.format.FormatGlobals.getStyle(new StringRef(Style), new StringRef(AssumedFileName), new StringRef(FallbackStyle));
+    $FormatStyle = org.clang.format.FormatGlobals.getStyle(new StringRef(Style), new StringRef(AssumedFileName),
+            new StringRef(FallbackStyle), Code.$arrow().getBuffer());
     if (SortIncludes.getNumOccurrences() != 0) {
       $FormatStyle.SortIncludes = SortIncludes.$T();
     }
@@ -325,21 +327,20 @@ public static boolean format(StringRef FileName) {
       $c$.clean(llvm.errs().$out(llvm.__toString($c$.track(ChangedCode.takeError()))).$out(/*KEEP_STR*/$LF));
       return true;
     }
-    for (final /*const*/ Replacement /*&*/ R : Replaces)  {
-      Ranges.push_back_T$RR(/*{ */new Range(R.getOffset(), R.getLength())/* }*/);
-    }
+
+    Ranges = ToolingGlobals.calculateRangesAfterReplacements(Replaces, Ranges);
     
     bool$ptr IncompleteFormat = create_bool$ptr(false);
     FormatChanges = reformat($FormatStyle, new StringRef(ChangedCode.$star()), new ArrayRef<Range>(Ranges, false), 
         new StringRef(AssumedFileName), /*AddrOf*/IncompleteFormat);
-    $c$.clean(Replaces.$assignMove($c$.track(ToolingGlobals.mergeReplacements(Replaces, FormatChanges))));
+    $c$.clean(Replaces.$assignMove($c$.track(Replaces.merge(FormatChanges))));
     if (OutputXML.$T()) {
       outs().$out(/*KEEP_STR*/"<?xml version='1.0'?>\n<replacements xml:space='preserve' incomplete_format='").$out(
           (IncompleteFormat.$star() ? $true : $false)
       ).$out(/*KEEP_STR*/"'>\n");
       if (Cursor.getNumOccurrences() != 0) {
         outs().$out(/*KEEP_STR*/"<cursor>").$out_uint(
-            ToolingGlobals.shiftedCodePosition(FormatChanges, CursorPosition.$star())
+                FormatChanges.getShiftedCodePosition(CursorPosition.$star())
         ).$out(
             /*KEEP_STR*/"</cursor>\n"
         );
@@ -372,7 +373,7 @@ public static boolean format(StringRef FileName) {
         } else {
           if (Cursor.getNumOccurrences() != 0) {
             outs().$out(/*KEEP_STR*/"{ \"Cursor\": ").$out_uint(
-                ToolingGlobals.shiftedCodePosition(FormatChanges, CursorPosition.$star())
+                  FormatChanges.getShiftedCodePosition(CursorPosition.$star())
             ).$out(
                 /*KEEP_STR*/", \"IncompleteFormat\": "
             ).$out(

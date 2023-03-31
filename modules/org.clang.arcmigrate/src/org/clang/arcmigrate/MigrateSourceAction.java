@@ -76,8 +76,6 @@
 
 package org.clang.arcmigrate;
 
-import org.*;
-import org.clang.*;
 import org.clang.ast.ASTConsumer;
 import org.clang.frontend.ASTFrontendAction;
 import org.clang.frontend.CompilerInstance;

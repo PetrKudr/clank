@@ -1,43 +1,43 @@
 /**
  * This file was converted to Java from the original LLVM source file. The original
  * source file follows the LLVM Release License, outlined below.
- * 
+ *
  * ==============================================================================
  * LLVM Release License
  * ==============================================================================
  * University of Illinois/NCSA
  * Open Source License
- * 
+ *
  * Copyright (c) 2003-2017 University of Illinois at Urbana-Champaign.
  * All rights reserved.
- * 
+ *
  * Developed by:
- * 
+ *
  *     LLVM Team
- * 
+ *
  *     University of Illinois at Urbana-Champaign
- * 
+ *
  *     http://llvm.org
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal with
  * the Software without restriction, including without limitation the rights to
  * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
  * of the Software, and to permit persons to whom the Software is furnished to do
  * so, subject to the following conditions:
- * 
+ *
  *     * Redistributions of source code must retain the above copyright notice,
  *       this list of conditions and the following disclaimers.
- * 
+ *
  *     * Redistributions in binary form must reproduce the above copyright notice
  *       this list of conditions and the following disclaimers in the
  *       documentation and/or other materials provided with the distribution.
- * 
+ *
  *     * Neither the names of the LLVM Team, University of Illinois at
  *       Urbana-Champaign, nor the names of its contributors may be used to
  *       endorse or promote products derived from this Software without specific
  *       prior written permission.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
  * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
@@ -45,7 +45,7 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS WITH THE
  * SOFTWARE.
- * 
+ *
  * ==============================================================================
  * Copyrights and Licenses for Third Party Software Distributed with LLVM:
  * ==============================================================================
@@ -53,16 +53,16 @@
  * have its own individual LICENSE.TXT file in the directory in which it appears.
  * This file will describe the copyrights, license, and restrictions which apply
  * to that code.
- * 
+ *
  * The disclaimer of warranty in the University of Illinois Open Source License
  * applies to all code in the LLVM Distribution, and nothing in any of the
  * other licenses gives permission to use the names of the LLVM Team or the
  * University of Illinois to endorse or promote products derived from this
  * Software.
- * 
+ *
  * The following pieces of software have additional or alternate copyrights,
  * licenses, and/or restrictions:
- * 
+ *
  * Program             Directory
  * -------             ---------
  * Autoconf            llvm/autoconf
@@ -76,18 +76,17 @@
 
 package org.clang.format;
 
-import org.junit.Test;
+import static org.clang.format.FormatGlobals.*;
+import org.clang.format.FormatTestUtils.test;
+import static org.clang.tooling.ToolingGlobals.*;
+import org.clang.tooling.core.*;
 import org.clank.java.*;
 import org.clank.support.*;
-import static org.clank.support.NativePointer.*;
-import org.llvm.support.*;
+import static org.clank.support.literal_constants.$LF;
+import org.junit.Test;
 import org.llvm.adt.*;
 import org.llvm.adt.aliases.*;
-import org.clang.tooling.core.*;
-import org.clang.format.*;
-import static org.clang.format.FormatGlobals.*;
-import static org.clang.tooling.ToolingGlobals.*;
-import org.clang.format.FormatTestUtils.test;
+import org.llvm.support.*;
 
 
 //<editor-fold defaultstate="collapsed" desc="static type FormatTestProto">
@@ -114,10 +113,10 @@ public final class FormatProtoTest extends ADTSupportTestBase {
    FQN="clang::format::FormatTestProto::format", NM="_ZN5clang6format15FormatTestProto6formatEN4llvm9StringRefEjjRKNS0_11FormatStyleE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/unittests/Format/FormatTestProto.cpp -nm=_ZN5clang6format15FormatTestProto6formatEN4llvm9StringRefEjjRKNS0_11FormatStyleE")
   //</editor-fold>
-  protected static std.string format(StringRef Code, /*uint*/int Offset, 
+  protected static std.string format(StringRef Code, /*uint*/int Offset,
         /*uint*/int Length, final /*const*/ FormatStyle /*&*/ Style) {
     std.vector<Range> Ranges = null;
-    std.setType<Replacement> Replaces = null;
+    Replacements Replaces = null;
     Expected<std.string> Result = null;
     try {
       do {
@@ -147,7 +146,7 @@ public final class FormatProtoTest extends ADTSupportTestBase {
     }
   }
 
-  
+
   //<editor-fold defaultstate="collapsed" desc="clang::format::FormatTestProto::format">
   @Converted(kind = Converted.Kind.AUTO,
    source = "${LLVM_SRC}/llvm/tools/clang/unittests/Format/FormatTestProto.cpp", line = 34,
@@ -165,7 +164,7 @@ public final class FormatProtoTest extends ADTSupportTestBase {
     }
   }
 
-  
+
   //<editor-fold defaultstate="collapsed" desc="clang::format::FormatTestProto::verifyFormat">
   @Converted(kind = Converted.Kind.AUTO,
    source = "${LLVM_SRC}/llvm/tools/clang/unittests/Format/FormatTestProto.cpp", line = 40,
@@ -193,13 +192,13 @@ public final class FormatProtoTest extends ADTSupportTestBase {
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/unittests/Format/FormatTestProto.cpp -nm=_ZN5clang6format15FormatTestProtoC1Ev")
   //</editor-fold>
   public /*inline*/ FormatProtoTest() {
-    // : Test() 
+    // : Test()
     //START JInit
     super(TestState.Successful);
     //END JInit
   }
 
-  
+
   @Override public String toString() {
     return "" + super.toString(); // NOI18N
   }
@@ -217,7 +216,7 @@ public void test_FormatsMessages() {
   FormatProtoTest.verifyFormat(new StringRef(/*KEEP_STR*/"message SomeMessage {\n  required int32 field1 = 1;\n}"));
   FormatProtoTest.verifyFormat(new StringRef(/*KEEP_STR*/"message SomeMessage {\n  required .absolute.Reference field1 = 1;\n}"));
   FormatProtoTest.verifyFormat(new StringRef(/*KEEP_STR*/"message SomeMessage {\n  required int32 field1 = 1;\n  optional string field2 = 2 [default = \"2\"]\n}"));
-  
+
   FormatProtoTest.verifyFormat(new StringRef(/*KEEP_STR*/"message SomeMessage {\n  optional really.really.long.qualified.type.aaa.aaaaaaa\n      fiiiiiiiiiiiiiiiiiiiiiiiiield = 1;\n  optional\n      really.really.long.qualified.type.aaa.aaaaaaa.aaaaaaaa\n          another_fiiiiiiiiiiiiiiiiiiiiield = 2;\n}"));
 }
 
@@ -312,7 +311,7 @@ public void test_FormatsOptions() {
   FormatProtoTest.verifyFormat(new StringRef(/*KEEP_STR*/"option (MyProto.options) = {\n  field_a: OK\n  field_b: \"OK\"\n  field_c: \"OK\"\n  msg_field: {field_d: 123 field_e: OK}\n};"));
   FormatProtoTest.verifyFormat(new StringRef(/*KEEP_STR*/"option (MyProto.options) = {\n  field_a: OK  // Comment\n  field_b: \"OK\"\n  field_c: \"OK\"\n  msg_field: {field_d: 123}\n};"));
   FormatProtoTest.verifyFormat(new StringRef(/*KEEP_STR*/"option (MyProto.options) = {\n  field_c: \"OK\"\n  msg_field{field_d: 123}\n};"));
-  
+
   // Support syntax with <> instead of {}.
   FormatProtoTest.verifyFormat(new StringRef(/*KEEP_STR*/"option (MyProto.options) = {\n  field_c: \"OK\",\n  msg_field: <field_d: 123>\n};"));
 }
@@ -354,9 +353,9 @@ public void test_ExtendingMessage() {
 public void test_FormatsImports() {
   if (markAsSkippedIfNeed(TestState.Successful)) { return; }
   FormatProtoTest.verifyFormat(new StringRef(/*KEEP_STR*/"import \"a.proto\";\nimport \"b.proto\";\n// comment\nmessage A {\n}"));
-  
+
   FormatProtoTest.verifyFormat(new StringRef(/*KEEP_STR*/"import public \"a.proto\";\nimport \"b.proto\";\n// comment\nmessage A {\n}"));
-  
+
   // Missing semicolons should not confuse clang-format.
   FormatProtoTest.verifyFormat(new StringRef(/*KEEP_STR*/"import \"a.proto\"\nimport \"b.proto\"\n// comment\nmessage A {\n}"));
 }

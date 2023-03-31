@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="public-package-jars">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../clank.suite/build/public-package-jars/org-netbeans-api-annotations-common.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../clank.suite/build/public-package-jars/org-openide-util-lookup.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

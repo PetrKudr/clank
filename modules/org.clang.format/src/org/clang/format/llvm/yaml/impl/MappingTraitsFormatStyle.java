@@ -243,6 +243,7 @@ public class/*struct*/ MappingTraitsFormatStyle implements MappingTraits<FormatS
     $IO.mapOptional$NotYamlConvertible($("ReflowComments"), new ScalarTraitsBool(), Style.ReflowComments_ref);
     $IO.mapOptional$NotYamlConvertible($("SortIncludes"), new ScalarTraitsBool(), Style.SortIncludes_ref);
     $IO.mapOptional$NotYamlConvertible($("SpaceAfterCStyleCast"), new ScalarTraitsBool(), Style.SpaceAfterCStyleCast_ref);
+    $IO.mapOptional$NotYamlConvertible($("SpaceAfterTemplateKeyword"), new ScalarTraitsBool(), Style.SpaceAfterTemplateKeyword_ref);
     $IO.mapOptional$NotYamlConvertible($("SpaceBeforeAssignmentOperators"), new ScalarTraitsBool(), 
         Style.SpaceBeforeAssignmentOperators_ref);
     $IO.mapOptional$NotYamlConvertible($("SpaceBeforeParens"), new ScalarEnumerationTraitsSpaceBeforeParensOptions(), Style.SpaceBeforeParens_ref);

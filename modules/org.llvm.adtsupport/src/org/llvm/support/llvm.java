@@ -1,43 +1,43 @@
 /**
  * This file was converted to Java from the original LLVM source file. The original
  * source file follows the LLVM Release License, outlined below.
- * 
+ *
  * ==============================================================================
  * LLVM Release License
  * ==============================================================================
  * University of Illinois/NCSA
  * Open Source License
- * 
+ *
  * Copyright (c) 2003-2017 University of Illinois at Urbana-Champaign.
  * All rights reserved.
- * 
+ *
  * Developed by:
- * 
+ *
  *     LLVM Team
- * 
+ *
  *     University of Illinois at Urbana-Champaign
- * 
+ *
  *     http://llvm.org
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal with
  * the Software without restriction, including without limitation the rights to
  * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
  * of the Software, and to permit persons to whom the Software is furnished to do
  * so, subject to the following conditions:
- * 
+ *
  *     * Redistributions of source code must retain the above copyright notice,
  *       this list of conditions and the following disclaimers.
- * 
+ *
  *     * Redistributions in binary form must reproduce the above copyright notice
  *       this list of conditions and the following disclaimers in the
  *       documentation and/or other materials provided with the distribution.
- * 
+ *
  *     * Neither the names of the LLVM Team, University of Illinois at
  *       Urbana-Champaign, nor the names of its contributors may be used to
  *       endorse or promote products derived from this Software without specific
  *       prior written permission.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
  * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
@@ -45,7 +45,7 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS WITH THE
  * SOFTWARE.
- * 
+ *
  * ==============================================================================
  * Copyrights and Licenses for Third Party Software Distributed with LLVM:
  * ==============================================================================
@@ -53,16 +53,16 @@
  * have its own individual LICENSE.TXT file in the directory in which it appears.
  * This file will describe the copyrights, license, and restrictions which apply
  * to that code.
- * 
+ *
  * The disclaimer of warranty in the University of Illinois Open Source License
  * applies to all code in the LLVM Distribution, and nothing in any of the
  * other licenses gives permission to use the names of the LLVM Team or the
  * University of Illinois to endorse or promote products derived from this
  * Software.
- * 
+ *
  * The following pieces of software have additional or alternate copyrights,
  * licenses, and/or restrictions:
- * 
+ *
  * Program             Directory
  * -------             ---------
  * Autoconf            llvm/autoconf
@@ -76,7 +76,6 @@
 
 package org.llvm.support;
 
-import static org.clank.support.Native.$AddrOf;
 import java.io.File;
 import java.util.Comparator;
 import java.util.Locale;
@@ -84,16 +83,36 @@ import java.util.UnknownFormatConversionException;
 import org.clank.java.*;
 import static org.clank.java.built_in.__builtin_huge_valf;
 import static org.clank.java.std.*;
+import org.clank.java.std.CompareTypePtr;
+import org.clank.java.std.reverse_iterator;
+import org.clank.java.std.setPtr;
+import org.clank.java.std.setType;
+import org.clank.java.std.vector;
+import org.clank.java.std_errors.errc;
+import org.clank.java.std_ptr.unique_ptr;
 import org.clank.support.*;
 import static org.clank.support.Casts.*;
+import static org.clank.support.Native.$AddrOf;
 import static org.clank.support.Native.$tryClone;
 import org.clank.support.Native.NativeIterable;
 import org.clank.support.Native.NativeReverseIterable;
-import org.clank.support.NativeCallback.*;
+import org.clank.support.NativeCallback.BoolPredicate;
+import org.clank.support.NativeCallback.Converter;
+import org.clank.support.NativeCallback.UIntBoolPredicate;
 import static org.clank.support.NativePointer.*;
 import static org.clank.support.NativeType.*;
 import static org.clank.support.Unsigned.*;
 import org.clank.support.aliases.*;
+import static org.clank.support.literal_constants.$;
+import static org.clank.support.literal_constants.$$0;
+import static org.clank.support.literal_constants.$$0xFE;
+import static org.clank.support.literal_constants.$$0xFF;
+import static org.clank.support.literal_constants.$$9;
+import static org.clank.support.literal_constants.$$A;
+import static org.clank.support.literal_constants.$$F;
+import static org.clank.support.literal_constants.$$LF;
+import static org.clank.support.literal_constants.$$a;
+import static org.clank.support.literal_constants.$$f;
 import org.llvm.adt.*;
 import org.llvm.adt.ADTFunctionPointers.fatal_error_handler_t;
 import org.llvm.adt.aliases.*;
@@ -103,9 +122,10 @@ import org.llvm.mc.MCAsmInfo;
 import org.llvm.mc.MCContext;
 import org.llvm.mc.MCStreamer;
 import org.llvm.mc.mcparser.MCAsmParser;
+import static org.llvm.support.ConvertUTFGlobals.*;
 import org.llvm.support.ConvertUTFGlobals.ConversionFlags;
 import org.llvm.support.ConvertUTFGlobals.ConversionResult;
-import static org.llvm.support.ConvertUTFGlobals.*;
+import org.llvm.support.Error;
 import org.llvm.support.endian.EndianGlobals;
 import org.llvm.support.impl.AtomicOrderingLlvmGlobals;
 import org.llvm.support.impl.CastingLlvmGlobals;
@@ -139,7 +159,7 @@ public static NoneType None = NoneType.None;
   @FunctionalInterface public interface JavaDumpCallback<T> {
     public void dump(T $this, raw_ostream Out);
   }
-  
+
   // when class or it's base class provides dump(raw_ostream Out) method:
   // use this method in Java toString implementation like
   // "Val=[" + llvm.DumpJavaString(this, ValClass::dump) + "]
@@ -152,23 +172,23 @@ public static NoneType None = NoneType.None;
       Out.flush();
     } finally {
       Out.$destroy();
-    }    
+    }
     return Result.toJavaString();
   }
-  
+
 private llvm() {}
 
 public static final boolean DebugFlag = false;
 public static final boolean LLVM_ON_WIN32 = isWindows();
 public static final boolean LLVM_ENABLE_THREADS = false; // compile time -D directive
 
-public static void LLVM_BUILTIN_TRAP() {
-  throw new UnsupportedOperationException("EmptyBody");
-}
+  public static void LLVM_BUILTIN_TRAP() {
+    throw new UnsupportedOperationException("EmptyBody");
+  }
 
-public static void consumeError(Error err) {
-  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-}
+  public static void consumeError(Error Err) {
+    Err.$bool();
+  }
 
 // JAVA
 private static boolean isWindows() {
@@ -233,7 +253,7 @@ private static boolean isWindows() {
  cmd = "jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.adtsupport/llvmToClangType ${LLVM_SRC}/llvm/lib/Support/StringExtras.cpp -nm=_ZN4llvmL18BitReverseTable256E")
 //</editor-fold>
 public static /*const*//*uchar*/short BitReverseTable256[/*256*/] = new /*const*//*uchar*/short [/*256*/] {
-  0, 0 + 2 * 64, 0 + 1 * 64, 0 + 3 * 64, 0 + 2 * 16, 0 + 2 * 16 + 2 * 64, 0 + 2 * 16 + 1 * 64, 0 + 2 * 16 + 3 * 64, 0 + 1 * 16, 0 + 1 * 16 + 2 * 64, 0 + 1 * 16 + 1 * 64, 0 + 1 * 16 + 3 * 64, 0 + 3 * 16, 0 + 3 * 16 + 2 * 64, 0 + 3 * 16 + 1 * 64, 0 + 3 * 16 + 3 * 64, 0 + 2 * 4, 0 + 2 * 4 + 2 * 64, 0 + 2 * 4 + 1 * 64, 0 + 2 * 4 + 3 * 64, 0 + 2 * 4 + 2 * 16, 0 + 2 * 4 + 2 * 16 + 2 * 64, 0 + 2 * 4 + 2 * 16 + 1 * 64, 0 + 2 * 4 + 2 * 16 + 3 * 64, 0 + 2 * 4 + 1 * 16, 0 + 2 * 4 + 1 * 16 + 2 * 64, 0 + 2 * 4 + 1 * 16 + 1 * 64, 0 + 2 * 4 + 1 * 16 + 3 * 64, 0 + 2 * 4 + 3 * 16, 0 + 2 * 4 + 3 * 16 + 2 * 64, 0 + 2 * 4 + 3 * 16 + 1 * 64, 0 + 2 * 4 + 3 * 16 + 3 * 64, 0 + 1 * 4, 0 + 1 * 4 + 2 * 64, 0 + 1 * 4 + 1 * 64, 0 + 1 * 4 + 3 * 64, 0 + 1 * 4 + 2 * 16, 0 + 1 * 4 + 2 * 16 + 2 * 64, 0 + 1 * 4 + 2 * 16 + 1 * 64, 0 + 1 * 4 + 2 * 16 + 3 * 64, 0 + 1 * 4 + 1 * 16, 0 + 1 * 4 + 1 * 16 + 2 * 64, 0 + 1 * 4 + 1 * 16 + 1 * 64, 0 + 1 * 4 + 1 * 16 + 3 * 64, 0 + 1 * 4 + 3 * 16, 0 + 1 * 4 + 3 * 16 + 2 * 64, 0 + 1 * 4 + 3 * 16 + 1 * 64, 0 + 1 * 4 + 3 * 16 + 3 * 64, 0 + 3 * 4, 0 + 3 * 4 + 2 * 64, 0 + 3 * 4 + 1 * 64, 0 + 3 * 4 + 3 * 64, 0 + 3 * 4 + 2 * 16, 0 + 3 * 4 + 2 * 16 + 2 * 64, 0 + 3 * 4 + 2 * 16 + 1 * 64, 0 + 3 * 4 + 2 * 16 + 3 * 64, 0 + 3 * 4 + 1 * 16, 0 + 3 * 4 + 1 * 16 + 2 * 64, 0 + 3 * 4 + 1 * 16 + 1 * 64, 0 + 3 * 4 + 1 * 16 + 3 * 64, 0 + 3 * 4 + 3 * 16, 0 + 3 * 4 + 3 * 16 + 2 * 64, 0 + 3 * 4 + 3 * 16 + 1 * 64, 0 + 3 * 4 + 3 * 16 + 3 * 64, 2, 2 + 2 * 64, 2 + 1 * 64, 2 + 3 * 64, 2 + 2 * 16, 2 + 2 * 16 + 2 * 64, 2 + 2 * 16 + 1 * 64, 2 + 2 * 16 + 3 * 64, 2 + 1 * 16, 2 + 1 * 16 + 2 * 64, 2 + 1 * 16 + 1 * 64, 2 + 1 * 16 + 3 * 64, 2 + 3 * 16, 2 + 3 * 16 + 2 * 64, 2 + 3 * 16 + 1 * 64, 2 + 3 * 16 + 3 * 64, 2 + 2 * 4, 2 + 2 * 4 + 2 * 64, 2 + 2 * 4 + 1 * 64, 2 + 2 * 4 + 3 * 64, 2 + 2 * 4 + 2 * 16, 2 + 2 * 4 + 2 * 16 + 2 * 64, 2 + 2 * 4 + 2 * 16 + 1 * 64, 2 + 2 * 4 + 2 * 16 + 3 * 64, 2 + 2 * 4 + 1 * 16, 2 + 2 * 4 + 1 * 16 + 2 * 64, 2 + 2 * 4 + 1 * 16 + 1 * 64, 2 + 2 * 4 + 1 * 16 + 3 * 64, 2 + 2 * 4 + 3 * 16, 2 + 2 * 4 + 3 * 16 + 2 * 64, 2 + 2 * 4 + 3 * 16 + 1 * 64, 2 + 2 * 4 + 3 * 16 + 3 * 64, 2 + 1 * 4, 2 + 1 * 4 + 2 * 64, 2 + 1 * 4 + 1 * 64, 2 + 1 * 4 + 3 * 64, 2 + 1 * 4 + 2 * 16, 2 + 1 * 4 + 2 * 16 + 2 * 64, 2 + 1 * 4 + 2 * 16 + 1 * 64, 2 + 1 * 4 + 2 * 16 + 3 * 64, 2 + 1 * 4 + 1 * 16, 2 + 1 * 4 + 1 * 16 + 2 * 64, 2 + 1 * 4 + 1 * 16 + 1 * 64, 2 + 1 * 4 + 1 * 16 + 3 * 64, 2 + 1 * 4 + 3 * 16, 2 + 1 * 4 + 3 * 16 + 2 * 64, 2 + 1 * 4 + 3 * 16 + 1 * 64, 2 + 1 * 4 + 3 * 16 + 3 * 64, 2 + 3 * 4, 2 + 3 * 4 + 2 * 64, 2 + 3 * 4 + 1 * 64, 2 + 3 * 4 + 3 * 64, 2 + 3 * 4 + 2 * 16, 2 + 3 * 4 + 2 * 16 + 2 * 64, 2 + 3 * 4 + 2 * 16 + 1 * 64, 2 + 3 * 4 + 2 * 16 + 3 * 64, 2 + 3 * 4 + 1 * 16, 2 + 3 * 4 + 1 * 16 + 2 * 64, 2 + 3 * 4 + 1 * 16 + 1 * 64, 2 + 3 * 4 + 1 * 16 + 3 * 64, 2 + 3 * 4 + 3 * 16, 2 + 3 * 4 + 3 * 16 + 2 * 64, 2 + 3 * 4 + 3 * 16 + 1 * 64, 2 + 3 * 4 + 3 * 16 + 3 * 64, 1, 1 + 2 * 64, 1 + 1 * 64, 1 + 3 * 64, 1 + 2 * 16, 1 + 2 * 16 + 2 * 64, 1 + 2 * 16 + 1 * 64, 1 + 2 * 16 + 3 * 64, 1 + 1 * 16, 1 + 1 * 16 + 2 * 64, 1 + 1 * 16 + 1 * 64, 1 + 1 * 16 + 3 * 64, 1 + 3 * 16, 1 + 3 * 16 + 2 * 64, 1 + 3 * 16 + 1 * 64, 1 + 3 * 16 + 3 * 64, 1 + 2 * 4, 1 + 2 * 4 + 2 * 64, 1 + 2 * 4 + 1 * 64, 1 + 2 * 4 + 3 * 64, 1 + 2 * 4 + 2 * 16, 1 + 2 * 4 + 2 * 16 + 2 * 64, 1 + 2 * 4 + 2 * 16 + 1 * 64, 1 + 2 * 4 + 2 * 16 + 3 * 64, 1 + 2 * 4 + 1 * 16, 1 + 2 * 4 + 1 * 16 + 2 * 64, 1 + 2 * 4 + 1 * 16 + 1 * 64, 1 + 2 * 4 + 1 * 16 + 3 * 64, 1 + 2 * 4 + 3 * 16, 1 + 2 * 4 + 3 * 16 + 2 * 64, 1 + 2 * 4 + 3 * 16 + 1 * 64, 1 + 2 * 4 + 3 * 16 + 3 * 64, 1 + 1 * 4, 1 + 1 * 4 + 2 * 64, 1 + 1 * 4 + 1 * 64, 1 + 1 * 4 + 3 * 64, 1 + 1 * 4 + 2 * 16, 1 + 1 * 4 + 2 * 16 + 2 * 64, 1 + 1 * 4 + 2 * 16 + 1 * 64, 1 + 1 * 4 + 2 * 16 + 3 * 64, 1 + 1 * 4 + 1 * 16, 1 + 1 * 4 + 1 * 16 + 2 * 64, 1 + 1 * 4 + 1 * 16 + 1 * 64, 1 + 1 * 4 + 1 * 16 + 3 * 64, 1 + 1 * 4 + 3 * 16, 1 + 1 * 4 + 3 * 16 + 2 * 64, 1 + 1 * 4 + 3 * 16 + 1 * 64, 1 + 1 * 4 + 3 * 16 + 3 * 64, 1 + 3 * 4, 1 + 3 * 4 + 2 * 64,  
+  0, 0 + 2 * 64, 0 + 1 * 64, 0 + 3 * 64, 0 + 2 * 16, 0 + 2 * 16 + 2 * 64, 0 + 2 * 16 + 1 * 64, 0 + 2 * 16 + 3 * 64, 0 + 1 * 16, 0 + 1 * 16 + 2 * 64, 0 + 1 * 16 + 1 * 64, 0 + 1 * 16 + 3 * 64, 0 + 3 * 16, 0 + 3 * 16 + 2 * 64, 0 + 3 * 16 + 1 * 64, 0 + 3 * 16 + 3 * 64, 0 + 2 * 4, 0 + 2 * 4 + 2 * 64, 0 + 2 * 4 + 1 * 64, 0 + 2 * 4 + 3 * 64, 0 + 2 * 4 + 2 * 16, 0 + 2 * 4 + 2 * 16 + 2 * 64, 0 + 2 * 4 + 2 * 16 + 1 * 64, 0 + 2 * 4 + 2 * 16 + 3 * 64, 0 + 2 * 4 + 1 * 16, 0 + 2 * 4 + 1 * 16 + 2 * 64, 0 + 2 * 4 + 1 * 16 + 1 * 64, 0 + 2 * 4 + 1 * 16 + 3 * 64, 0 + 2 * 4 + 3 * 16, 0 + 2 * 4 + 3 * 16 + 2 * 64, 0 + 2 * 4 + 3 * 16 + 1 * 64, 0 + 2 * 4 + 3 * 16 + 3 * 64, 0 + 1 * 4, 0 + 1 * 4 + 2 * 64, 0 + 1 * 4 + 1 * 64, 0 + 1 * 4 + 3 * 64, 0 + 1 * 4 + 2 * 16, 0 + 1 * 4 + 2 * 16 + 2 * 64, 0 + 1 * 4 + 2 * 16 + 1 * 64, 0 + 1 * 4 + 2 * 16 + 3 * 64, 0 + 1 * 4 + 1 * 16, 0 + 1 * 4 + 1 * 16 + 2 * 64, 0 + 1 * 4 + 1 * 16 + 1 * 64, 0 + 1 * 4 + 1 * 16 + 3 * 64, 0 + 1 * 4 + 3 * 16, 0 + 1 * 4 + 3 * 16 + 2 * 64, 0 + 1 * 4 + 3 * 16 + 1 * 64, 0 + 1 * 4 + 3 * 16 + 3 * 64, 0 + 3 * 4, 0 + 3 * 4 + 2 * 64, 0 + 3 * 4 + 1 * 64, 0 + 3 * 4 + 3 * 64, 0 + 3 * 4 + 2 * 16, 0 + 3 * 4 + 2 * 16 + 2 * 64, 0 + 3 * 4 + 2 * 16 + 1 * 64, 0 + 3 * 4 + 2 * 16 + 3 * 64, 0 + 3 * 4 + 1 * 16, 0 + 3 * 4 + 1 * 16 + 2 * 64, 0 + 3 * 4 + 1 * 16 + 1 * 64, 0 + 3 * 4 + 1 * 16 + 3 * 64, 0 + 3 * 4 + 3 * 16, 0 + 3 * 4 + 3 * 16 + 2 * 64, 0 + 3 * 4 + 3 * 16 + 1 * 64, 0 + 3 * 4 + 3 * 16 + 3 * 64, 2, 2 + 2 * 64, 2 + 1 * 64, 2 + 3 * 64, 2 + 2 * 16, 2 + 2 * 16 + 2 * 64, 2 + 2 * 16 + 1 * 64, 2 + 2 * 16 + 3 * 64, 2 + 1 * 16, 2 + 1 * 16 + 2 * 64, 2 + 1 * 16 + 1 * 64, 2 + 1 * 16 + 3 * 64, 2 + 3 * 16, 2 + 3 * 16 + 2 * 64, 2 + 3 * 16 + 1 * 64, 2 + 3 * 16 + 3 * 64, 2 + 2 * 4, 2 + 2 * 4 + 2 * 64, 2 + 2 * 4 + 1 * 64, 2 + 2 * 4 + 3 * 64, 2 + 2 * 4 + 2 * 16, 2 + 2 * 4 + 2 * 16 + 2 * 64, 2 + 2 * 4 + 2 * 16 + 1 * 64, 2 + 2 * 4 + 2 * 16 + 3 * 64, 2 + 2 * 4 + 1 * 16, 2 + 2 * 4 + 1 * 16 + 2 * 64, 2 + 2 * 4 + 1 * 16 + 1 * 64, 2 + 2 * 4 + 1 * 16 + 3 * 64, 2 + 2 * 4 + 3 * 16, 2 + 2 * 4 + 3 * 16 + 2 * 64, 2 + 2 * 4 + 3 * 16 + 1 * 64, 2 + 2 * 4 + 3 * 16 + 3 * 64, 2 + 1 * 4, 2 + 1 * 4 + 2 * 64, 2 + 1 * 4 + 1 * 64, 2 + 1 * 4 + 3 * 64, 2 + 1 * 4 + 2 * 16, 2 + 1 * 4 + 2 * 16 + 2 * 64, 2 + 1 * 4 + 2 * 16 + 1 * 64, 2 + 1 * 4 + 2 * 16 + 3 * 64, 2 + 1 * 4 + 1 * 16, 2 + 1 * 4 + 1 * 16 + 2 * 64, 2 + 1 * 4 + 1 * 16 + 1 * 64, 2 + 1 * 4 + 1 * 16 + 3 * 64, 2 + 1 * 4 + 3 * 16, 2 + 1 * 4 + 3 * 16 + 2 * 64, 2 + 1 * 4 + 3 * 16 + 1 * 64, 2 + 1 * 4 + 3 * 16 + 3 * 64, 2 + 3 * 4, 2 + 3 * 4 + 2 * 64, 2 + 3 * 4 + 1 * 64, 2 + 3 * 4 + 3 * 64, 2 + 3 * 4 + 2 * 16, 2 + 3 * 4 + 2 * 16 + 2 * 64, 2 + 3 * 4 + 2 * 16 + 1 * 64, 2 + 3 * 4 + 2 * 16 + 3 * 64, 2 + 3 * 4 + 1 * 16, 2 + 3 * 4 + 1 * 16 + 2 * 64, 2 + 3 * 4 + 1 * 16 + 1 * 64, 2 + 3 * 4 + 1 * 16 + 3 * 64, 2 + 3 * 4 + 3 * 16, 2 + 3 * 4 + 3 * 16 + 2 * 64, 2 + 3 * 4 + 3 * 16 + 1 * 64, 2 + 3 * 4 + 3 * 16 + 3 * 64, 1, 1 + 2 * 64, 1 + 1 * 64, 1 + 3 * 64, 1 + 2 * 16, 1 + 2 * 16 + 2 * 64, 1 + 2 * 16 + 1 * 64, 1 + 2 * 16 + 3 * 64, 1 + 1 * 16, 1 + 1 * 16 + 2 * 64, 1 + 1 * 16 + 1 * 64, 1 + 1 * 16 + 3 * 64, 1 + 3 * 16, 1 + 3 * 16 + 2 * 64, 1 + 3 * 16 + 1 * 64, 1 + 3 * 16 + 3 * 64, 1 + 2 * 4, 1 + 2 * 4 + 2 * 64, 1 + 2 * 4 + 1 * 64, 1 + 2 * 4 + 3 * 64, 1 + 2 * 4 + 2 * 16, 1 + 2 * 4 + 2 * 16 + 2 * 64, 1 + 2 * 4 + 2 * 16 + 1 * 64, 1 + 2 * 4 + 2 * 16 + 3 * 64, 1 + 2 * 4 + 1 * 16, 1 + 2 * 4 + 1 * 16 + 2 * 64, 1 + 2 * 4 + 1 * 16 + 1 * 64, 1 + 2 * 4 + 1 * 16 + 3 * 64, 1 + 2 * 4 + 3 * 16, 1 + 2 * 4 + 3 * 16 + 2 * 64, 1 + 2 * 4 + 3 * 16 + 1 * 64, 1 + 2 * 4 + 3 * 16 + 3 * 64, 1 + 1 * 4, 1 + 1 * 4 + 2 * 64, 1 + 1 * 4 + 1 * 64, 1 + 1 * 4 + 3 * 64, 1 + 1 * 4 + 2 * 16, 1 + 1 * 4 + 2 * 16 + 2 * 64, 1 + 1 * 4 + 2 * 16 + 1 * 64, 1 + 1 * 4 + 2 * 16 + 3 * 64, 1 + 1 * 4 + 1 * 16, 1 + 1 * 4 + 1 * 16 + 2 * 64, 1 + 1 * 4 + 1 * 16 + 1 * 64, 1 + 1 * 4 + 1 * 16 + 3 * 64, 1 + 1 * 4 + 3 * 16, 1 + 1 * 4 + 3 * 16 + 2 * 64, 1 + 1 * 4 + 3 * 16 + 1 * 64, 1 + 1 * 4 + 3 * 16 + 3 * 64, 1 + 3 * 4, 1 + 3 * 4 + 2 * 64,
 1 + 3 * 4 + 1 * 64, 1 + 3 * 4 + 3 * 64, 1 + 3 * 4 + 2 * 16, 1 + 3 * 4 + 2 * 16 + 2 * 64, 1 + 3 * 4 + 2 * 16 + 1 * 64, 1 + 3 * 4 + 2 * 16 + 3 * 64, 1 + 3 * 4 + 1 * 16, 1 + 3 * 4 + 1 * 16 + 2 * 64, 1 + 3 * 4 + 1 * 16 + 1 * 64, 1 + 3 * 4 + 1 * 16 + 3 * 64, 1 + 3 * 4 + 3 * 16, 1 + 3 * 4 + 3 * 16 + 2 * 64, 1 + 3 * 4 + 3 * 16 + 1 * 64, 1 + 3 * 4 + 3 * 16 + 3 * 64, 3, 3 + 2 * 64, 3 + 1 * 64, 3 + 3 * 64, 3 + 2 * 16, 3 + 2 * 16 + 2 * 64, 3 + 2 * 16 + 1 * 64, 3 + 2 * 16 + 3 * 64, 3 + 1 * 16, 3 + 1 * 16 + 2 * 64, 3 + 1 * 16 + 1 * 64, 3 + 1 * 16 + 3 * 64, 3 + 3 * 16, 3 + 3 * 16 + 2 * 64, 3 + 3 * 16 + 1 * 64, 3 + 3 * 16 + 3 * 64, 3 + 2 * 4, 3 + 2 * 4 + 2 * 64, 3 + 2 * 4 + 1 * 64, 3 + 2 * 4 + 3 * 64, 3 + 2 * 4 + 2 * 16, 3 + 2 * 4 + 2 * 16 + 2 * 64, 3 + 2 * 4 + 2 * 16 + 1 * 64, 3 + 2 * 4 + 2 * 16 + 3 * 64, 3 + 2 * 4 + 1 * 16, 3 + 2 * 4 + 1 * 16 + 2 * 64, 3 + 2 * 4 + 1 * 16 + 1 * 64, 3 + 2 * 4 + 1 * 16 + 3 * 64, 3 + 2 * 4 + 3 * 16, 3 + 2 * 4 + 3 * 16 + 2 * 64, 3 + 2 * 4 + 3 * 16 + 1 * 64, 3 + 2 * 4 + 3 * 16 + 3 * 64, 3 + 1 * 4, 3 + 1 * 4 + 2 * 64, 3 + 1 * 4 + 1 * 64, 3 + 1 * 4 + 3 * 64, 3 + 1 * 4 + 2 * 16, 3 + 1 * 4 + 2 * 16 + 2 * 64, 3 + 1 * 4 + 2 * 16 + 1 * 64, 3 + 1 * 4 + 2 * 16 + 3 * 64, 3 + 1 * 4 + 1 * 16, 3 + 1 * 4 + 1 * 16 + 2 * 64, 3 + 1 * 4 + 1 * 16 + 1 * 64, 3 + 1 * 4 + 1 * 16 + 3 * 64, 3 + 1 * 4 + 3 * 16, 3 + 1 * 4 + 3 * 16 + 2 * 64, 3 + 1 * 4 + 3 * 16 + 1 * 64, 3 + 1 * 4 + 3 * 16 + 3 * 64, 3 + 3 * 4, 3 + 3 * 4 + 2 * 64, 3 + 3 * 4 + 1 * 64, 3 + 3 * 4 + 3 * 64, 3 + 3 * 4 + 2 * 16, 3 + 3 * 4 + 2 * 16 + 2 * 64, 3 + 3 * 4 + 2 * 16 + 1 * 64, 3 + 3 * 4 + 2 * 16 + 3 * 64, 3 + 3 * 4 + 1 * 16, 3 + 3 * 4 + 1 * 16 + 2 * 64, 3 + 3 * 4 + 1 * 16 + 1 * 64, 3 + 3 * 4 + 1 * 16 + 3 * 64, 3 + 3 * 4 + 3 * 16, 3 + 3 * 4 + 3 * 16 + 2 * 64, 3 + 3 * 4 + 3 * 16 + 1 * 64, 3 + 3 * 4 + 3 * 16 + 3 * 64
 };
 //<editor-fold defaultstate="collapsed" desc="llvm::huge_valf">
@@ -287,12 +307,12 @@ public static /*inline*/ /*size_t*/int alignmentAdjustment(char$ptr/*void P*/ Pt
  cmd = "jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.adtsupport/llvmToClangType ${LLVM_SRC}/llvm/lib/Support/APFloat.cpp -nm=_ZN4llvm9alignAddrEPvm")
 //</editor-fold>
 public static /*inline*/ int/*uintptr_t*/ alignAddr(char$ptr/*void P*/ Addr, /*size_t*/int Alignment) {
-  assert ((Alignment != 0) && isPowerOf2_32((int/*uint64_t*/)Alignment)) : "Alignment is not a power of two!";  
+  assert ((Alignment != 0) && isPowerOf2_32((int/*uint64_t*/)Alignment)) : "Alignment is not a power of two!";
   assert ((int/*uintptr_t*/)Native.$ptr_index(Addr) + Alignment - 1 >= (int/*uintptr_t*/)Native.$ptr_index(Addr));
-  
+
   return (((int/*uintptr_t*/)Native.$ptr_index(Addr) + Alignment - 1) & ~(int/*uintptr_t*/)(Alignment - 1));
 }
-        
+
 /// Helper functions for StringRef::getAsInteger.
 //<editor-fold defaultstate="collapsed" desc="llvm::getAsUnsignedInteger">
 @Converted(kind = Converted.Kind.MANUAL, source = "${LLVM_SRC}/llvm/lib/Support/StringRef.cpp", line = 378,
@@ -305,12 +325,12 @@ public static boolean getAsUnsignedInteger(StringRef Str, /*uint*/int Radix, /*u
   if (Radix == 0) {
     Radix = GetAutoSenseRadix(Str);
   }
-  
+
   // Empty strings (after the radix autosense) are invalid.
   if (Str.empty()) {
     return true;
   }
-  
+
   // Parse all the bytes of the string given this radix.  Watch for overflow.
   Result.$set(0);
   while (!Str.empty()) {
@@ -324,25 +344,25 @@ public static boolean getAsUnsignedInteger(StringRef Str, /*uint*/int Radix, /*u
     } else {
       return true;
     }
-    
+
     // If the parsed value is larger than the integer radix, the string is
     // invalid.
     if (CharVal >= Radix) {
       return true;
     }
-    
+
     // Add in this character.
     /*ullong*/long PrevResult = Result.$deref();
     Result.$set(Result.$deref() * Radix + CharVal);
-    
+
     // Check for overflow by shifting back and seeing if bits were lost.
     if ((Result.$deref() / Radix) < PrevResult) {
       return true;
     }
-    
+
     Str = Str.substr(1);
   }
-  
+
   return false;
 }
 
@@ -354,7 +374,7 @@ public static boolean getAsUnsignedInteger(StringRef Str, /*uint*/int Radix, /*u
 //</editor-fold>
 public static boolean getAsSignedInteger(StringRef Str, /*uint*/int Radix, /*llong*/llong$ref/*&*/ Result) {
   /*ullong*/ullong$ref ULLVal = NativePointer.create_ullong$ref(0);
-  
+
   // Handle positive strings first.
   if (Str.empty() || Str.front() != $('-')) {
     if (getAsUnsignedInteger(Str, Radix, ULLVal)
@@ -365,7 +385,7 @@ public static boolean getAsSignedInteger(StringRef Str, /*uint*/int Radix, /*llo
     Result.$set(ULLVal.$deref());
     return false;
   }
-  
+
   // Get the positive part of the value.
   if (getAsUnsignedInteger(Str.substr(1), Radix, ULLVal)
     // Reject values so large they'd overflow as negative signed, but allow
@@ -374,10 +394,20 @@ public static boolean getAsSignedInteger(StringRef Str, /*uint*/int Radix, /*llo
      || ((/*llong*/long)-ULLVal.$deref()) > 0) {
     return true;
   }
-  
+
   Result.$set(-ULLVal.$deref());
   return false;
 }
+
+  public static String toString(Error Err) {
+    //  SmallVector<std::string, 2> Errors;
+    //  handleAllErrors(std::move(E), [&Errors](const ErrorInfoBase &EI) {
+    //    Errors.push_back(EI.message());
+    //  });
+    //  return join(Errors.begin(), Errors.end(), "\n");
+
+    throw new UnsupportedOperationException("llvm::toString(Error) is not implemeneted yet");
+  }
 
 
 //<editor-fold defaultstate="collapsed" desc="llvm::MCAsmParser::Run">
@@ -385,7 +415,7 @@ public static boolean getAsSignedInteger(StringRef Str, /*uint*/int Radix, /*llo
  old_source = "${LLVM_SRC}/llvm/include/llvm/MC/MCParser/MCAsmParser.h", old_line = 201,
  FQN = "llvm::createMCAsmParser", NM = "_ZN4llvm17createMCAsmParserERNS_9SourceMgrERNS_9MCContextERNS_10MCStreamerERKNS_9MCAsmInfoE",
  cmd = "jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.adtsupport/llvmToClangType ${LLVM_SRC}/llvm/lib/MC/MCParser/MCAsmParser.cpp -nm=_ZN4llvm17createMCAsmParserERNS_9SourceMgrERNS_9MCContextERNS_10MCStreamerERKNS_9MCAsmInfoE")
-//</editor-fold>  
+//</editor-fold>
 public static MCAsmParser /*P*/ createMCAsmParser(SourceMgr /*&*/ $Prm0, MCContext /*&*/ $Prm1, MCStreamer /*&*/ $Prm2, /*const*/MCAsmInfo /*&*/ $Prm3) {
   throw new UnsupportedOperationException();
 }
@@ -592,12 +622,12 @@ public static class/*struct*/ ScopedFatalErrorHandler implements Destructors.Cla
   public /*explicit*/ ScopedFatalErrorHandler(fatal_error_handler_t handler) {
     this(handler, (Object/*void P*/ )null);
   }
-  public /*explicit*/ ScopedFatalErrorHandler(fatal_error_handler_t handler, 
+  public /*explicit*/ ScopedFatalErrorHandler(fatal_error_handler_t handler,
       Object/*void P*/ user_data/*= 0*/) {
     install_fatal_error_handler(handler, user_data);
   }
 
-  
+
   //<editor-fold defaultstate="collapsed" desc="llvm::ScopedFatalErrorHandler::~ScopedFatalErrorHandler">
   @Converted(kind = Converted.Kind.AUTO, source = "${LLVM_SRC}/llvm/include/llvm/Support/ErrorHandling.h", line = 61,
    FQN = "llvm::ScopedFatalErrorHandler::~ScopedFatalErrorHandler", NM = "_ZN4llvm23ScopedFatalErrorHandlerD0Ev",
@@ -906,7 +936,7 @@ public static </*typename*/ T>  /*size_t*/int findFirstSet(T Val, ZeroBehavior Z
 ///
 /// \param ZB the behavior on an input of 0. Only ZB_Max and ZB_Undefined are
 ///   valid arguments.
-//</*typename*/ T/* = unsigned long long*/> 
+//</*typename*/ T/* = unsigned long long*/>
 //<editor-fold defaultstate="collapsed" desc="llvm::findFirstSet">
 @Converted(kind = Converted.Kind.AUTO,
  source = "${LLVM_SRC}/llvm/include/llvm/Support/MathExtras.h", line = 194,
@@ -920,7 +950,7 @@ public static /*uint*/int findFirstSet(/*ullong*/long Val, ZeroBehavior ZB) {
   if (ZB == ZeroBehavior.ZB_Max && Val == $int2ullong(0)) {
     return (/*uint*/int)std.numeric_limitsULLong./*ullong*/max();
   }
-  
+
   return countTrailingZeros_uint64_t_ZeroBehavior(Val, ZeroBehavior.ZB_Undefined);
 }
 
@@ -952,7 +982,7 @@ public static </*typename*/ T>  /*size_t*/int findLastSet(T Val, ZeroBehavior ZB
 ///
 /// \param ZB the behavior on an input of 0. Only ZB_Max and ZB_Undefined are
 ///   valid arguments.
-//</*typename*/ T/* = unsigned long long*/> 
+//</*typename*/ T/* = unsigned long long*/>
 //<editor-fold defaultstate="collapsed" desc="llvm::findLastSet">
 @Converted(kind = Converted.Kind.MANUAL_SEMANTIC,
  source = "${LLVM_SRC}/llvm/include/llvm/Support/MathExtras.h", line = 208,
@@ -961,12 +991,12 @@ public static </*typename*/ T>  /*size_t*/int findLastSet(T Val, ZeroBehavior ZB
 //</editor-fold>
 public static /*uint*/int findLastSet(/*ullong*/long Val) {
   return findLastSet(Val, ZeroBehavior.ZB_Max);
-}        
+}
 public static /*uint*/int findLastSet(/*ullong*/long Val, ZeroBehavior ZB) {
   if (ZB == ZeroBehavior.ZB_Max && Val == $int2ullong(0)) {
     return (/*uint*/int)std.numeric_limitsULLong./*<ullong*/max();
   }
-  
+
   // Use ^ instead of - because both gcc and llvm can remove the associated ^
   // in the __builtin_clz intrinsic on x86.
   return countLeadingZeros(Val, ZeroBehavior.ZB_Undefined)
@@ -1017,7 +1047,7 @@ public static <T> iterator_range<T> reverse$NotHasRBegin(iterator_range<T> Compo
   final type$iterator<? extends type$iterator, T> end = Components.end();
 // reverse_iterator subtracts 1 in $star(), so we don't need this
 //  if (beg.$noteq(end)) {
-//    beg.$preDec(); 
+//    beg.$preDec();
 //    end.$preDec();
 //  }
   final reverse_iterator rbeg = new reverse_iterator(end);
@@ -1093,7 +1123,7 @@ public static /*inline*/ boolean isShiftedInt(long/*int64_t*/ x, /*uint*/int N, 
 
 /// isUInt - Checks if an unsigned integer fits into the given bit width.
 //<editor-fold defaultstate="collapsed" desc="llvm::isUInt">
-@Converted(kind = Converted.Kind.MANUAL_SEMANTIC, 
+@Converted(kind = Converted.Kind.MANUAL_SEMANTIC,
  source = "${LLVM_SRC}/llvm/include/llvm/Support/MathExtras.h", line = 300,
  FQN = "llvm::isUInt", NM = "_ZN4llvm6isUIntILj8EEEby",
  cmd = "jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.adtsupport/llvmToClangType ${LLVM_SRC}/llvm/lib/Support/Twine.cpp -nm=_ZN4llvm6isUIntILj8EEEby")
@@ -1961,7 +1991,7 @@ public static /*inline*/ </*class*/ T, /*class*/ U> boolean $eq_IntrusiveRefCntP
 public static /*inline*/ </*class*/ T, /*class*/ U> boolean $eq_IntrusiveRefCntPtr$T$C_T1$P(/*const*/IntrusiveRefCntPtr<T> /*&*/ A, U /*P*/ B) {
   return A.get() == B;
 }
-        
+
 /*template <class T, class U> TEMPLATE*/
 //<editor-fold defaultstate="collapsed" desc="llvm::operator!=">
 @Converted(kind = Converted.Kind.AUTO_NO_BODY, source = "${LLVM_SRC}/llvm/include/llvm/ADT/IntrusiveRefCntPtr.h", line = 203,
@@ -2312,7 +2342,7 @@ public static ArrayRefUInt makeArrayRef$UInt(int value, boolean isDataPointerLik
 @Converted(kind = Converted.Kind.AUTO_NO_BODY, source = "${LLVM_SRC}/llvm/include/llvm/ADT/ArrayRef.h", line = 278,
  cmd = "jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.adtsupport/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/PPCaching.cpp -filter=llvm::makeArrayRef")
 //</editor-fold>
-public static </*typename*/ T> ArrayRef<T> makeArrayRef(/*const*/type$iterator<?, T> /*P*/ begin, /*const*/type$iterator<?, T> /*P*/ end) {  
+public static </*typename*/ T> ArrayRef<T> makeArrayRef(/*const*/type$iterator<?, T> /*P*/ begin, /*const*/type$iterator<?, T> /*P*/ end) {
   throw new UnsupportedOperationException("EmptyBody");
 }
 public static </*typename*/ T> ArrayRef<T> makeArrayRef(/*const*/std.vector.iterator<T> /*P*/ begin, /*const*/std.vector.iterator<T> /*P*/ end, boolean isDataPointerLike) {
@@ -2407,11 +2437,11 @@ public static ArrayRefULong makeArrayRef$ULong(/*const*//*ulong*/long[] arr) {
   return makeArrayRef$ULLong(arr, arr.length);
 }
 public static ArrayRefULong makeArrayRef$ULong(/*const*//*ulong*/long[] arr, /*size_t*/int N) {
-  assert N >= 0 : "must be non negative " + N;  
+  assert N >= 0 : "must be non negative " + N;
   return new ArrayRefULong(arr, N);
 }
 public static ArrayRefULong makeArrayRef$ULong(/*const*//*ulong*/ulong$ptr arr, /*size_t*/int N) {
-  assert N >= 0 : "must be non negative " + N;  
+  assert N >= 0 : "must be non negative " + N;
   return new ArrayRefULong(arr, N);
 }
 
@@ -2422,11 +2452,11 @@ public static ArrayRefULong makeArrayRef$ULLong(/*const*//*ulong*/long[] arr) {
   return makeArrayRef$ULLong(arr, arr.length);
 }
 public static ArrayRefULong makeArrayRef$ULLong(/*const*//*ulong*/long[] arr, /*size_t*/int N) {
-  assert N >= 0 : "must be non negative " + N;  
+  assert N >= 0 : "must be non negative " + N;
   return new ArrayRefULong(arr, N);
 }
 public static ArrayRefULong makeArrayRef$ULLong(/*const*//*ulong*/ulong$ptr arr, /*size_t*/int N) {
-  assert N >= 0 : "must be non negative " + N;  
+  assert N >= 0 : "must be non negative " + N;
   return new ArrayRefULong(arr, N);
 }
 /*template <typename T> TEMPLATE*/
@@ -2533,8 +2563,8 @@ public static /*inline*/ </*class*/ FromType, /*class*/ ToType> mapped_iterator<
  FQN="llvm::map_iterator", NM="Tpl__ZN4llvm12map_iteratorERKT_T0_",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.adtsupport/llvmToClangType -body-delegate ${LLVM_SRC}/llvm/tools/clang/lib/AST/APValue.cpp -nm=Tpl__ZN4llvm12map_iteratorERKT_T0_")
 //</editor-fold>
-public static /*inline*/ </*class*/ FromType, /*class*/ ToType> 
-        mapped_iterator<FromType, ToType> 
+public static /*inline*/ </*class*/ FromType, /*class*/ ToType>
+        mapped_iterator<FromType, ToType>
         map_iterator(/*const*/type$iterator<?, FromType> /*&*/ I, Converter<FromType, ToType> F) {
   return /*delegate*/org.llvm.adt.impl.STLExtrasLlvmGlobals.
     map_iterator(I, F);
@@ -2641,7 +2671,7 @@ private static final Comparator<?> array_pod_sort_comparatorCallback = new Compa
     return array_pod_sort_comparator(o1, o2);
   }
 };
-        
+
 /*template <typename T> TEMPLATE*/
 
 /// get_array_pod_sort_comparator - This is an internal helper function used to
@@ -2682,13 +2712,13 @@ public static /*inline*/ </*class*/ T> void array_pod_sort(type$ptr<T> Start, ty
     return;
   }
   qsort($AddrOf(Start), End.$sub(Start), /*NativeType.sizeof(Start.$star())*/-1, get_array_pod_sort_comparator(Start.$star()));
-//  qsort(/*AddrOf*/Start.$star(), End - Start, sizeof (Start.$star()), 
+//  qsort(/*AddrOf*/Start.$star(), End - Start, sizeof (Start.$star()),
 //      get_array_pod_sort_comparator(Start.$star()));
 }
 public static /*inline*/ void array_pod_sort(uint$ptr Start, uint$ptr End) {
   if (std.distance(Start, End) < 2) {
     return;
-  }  
+  }
   stable_sort($AddrOf(Start), End, (Integer f, Integer s)->(Unsigned.$compare_uint(f, s) < 0));
 }
 
@@ -2697,7 +2727,7 @@ public static /*inline*/ void array_pod_sort(uint$ptr Start, uint$ptr End) {
 @Converted(kind = Converted.Kind.MANUAL, source = "${LLVM_SRC}/llvm/include/llvm/ADT/STLExtras.h", line = 297,
  cmd = "jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.adtsupport/llvmToClangType ${LLVM_SRC}/llvm/lib/Support/APInt.cpp -filter=llvm::array_pod_sort")
 //</editor-fold>
-public static /*inline*/ <T> void array_pod_sort(type$ptr<T> Start, type$ptr<T> End, 
+public static /*inline*/ <T> void array_pod_sort(type$ptr<T> Start, type$ptr<T> End,
               Comparator<T> Compare) {
   // Don't dereference start iterator of empty sequence.
   if (std.distance(Start, End) < 2) {
@@ -2705,15 +2735,15 @@ public static /*inline*/ <T> void array_pod_sort(type$ptr<T> Start, type$ptr<T> 
   }
   qsort($AddrOf(Start), End.$sub(Start), /*NativeType.sizeof(Start.$star())*/-1, Compare);
 }
-public static /*inline*/ <T> void array_pod_sort(type$ptr<T> Start, type$ptr<T> End, 
+public static /*inline*/ <T> void array_pod_sort(type$ptr<T> Start, type$ptr<T> End,
               CompareTypePtr<T> Compare) {
   array_pod_sort(Start, End, (Comparator<T>)Compare);
 }
-public static /*inline*/ <T> void array_pod_sort(type$iterator<?,T> Start, type$iterator<?,T> End) {  
+public static /*inline*/ <T> void array_pod_sort(type$iterator<?,T> Start, type$iterator<?,T> End) {
   array_pod_sort(Start, End, Native::compare$less$Objects);
 }
 
-public static /*inline*/ <T> void array_pod_sort(type$iterator<?,T> Start, type$iterator<?,T> End, 
+public static /*inline*/ <T> void array_pod_sort(type$iterator<?,T> Start, type$iterator<?,T> End,
               Comparator<T> Compare) {
   int distance = std.distance(Start, End);
   if (distance < 2) {
@@ -2915,17 +2945,17 @@ public static final StringRef STRING_REF_DELIMETERS = new StringRef(" \t\n\013\0
  cmd = "jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.adtsupport/llvmToClangType ${LLVM_SRC}/llvm/lib/Support/StringExtras.cpp -nm=_ZN4llvm8getTokenENS_9StringRefES0_")
 //</editor-fold>
 public static std.pair<StringRef, StringRef> getToken(StringRef Source) {
-  return getToken(Source, 
+  return getToken(Source,
         STRING_REF_DELIMETERS);
 }
-public static std.pair<StringRef, StringRef> getToken(StringRef Source, 
+public static std.pair<StringRef, StringRef> getToken(StringRef Source,
         StringRef Delimiters/*= " \t\n\013\014\015"*/) {
   // Figure out where the token starts.
   /*size_t*/int Start = Source.find_first_not_of(new StringRef(Delimiters));
-  
+
   // Find the next occurrence of the delimiter.
   /*size_t*/int End = Source.find_first_of(new StringRef(Delimiters), Start);
-  
+
   return std.make_pair(Source.slice(Start, End), Source.substr(End));
 }
 
@@ -2937,14 +2967,14 @@ public static std.pair<StringRef, StringRef> getToken(StringRef Source,
  FQN = "llvm::SplitString", NM = "_ZN4llvm11SplitStringENS_9StringRefERNS_15SmallVectorImplIS0_EES0_",
  cmd = "jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.adtsupport/llvmToClangType ${LLVM_SRC}/llvm/lib/Support/StringExtras.cpp -nm=_ZN4llvm11SplitStringENS_9StringRefERNS_15SmallVectorImplIS0_EES0_")
 //</editor-fold>
-public static void SplitString(StringRef Source, 
+public static void SplitString(StringRef Source,
            SmallVectorImpl<StringRef> /*&*/ OutFragments) {
-  SplitString(Source, 
-           OutFragments, 
+  SplitString(Source,
+           OutFragments,
            STRING_REF_DELIMETERS);
 }
-public static void SplitString(StringRef Source, 
-           SmallVectorImpl<StringRef> /*&*/ OutFragments, 
+public static void SplitString(StringRef Source,
+           SmallVectorImpl<StringRef> /*&*/ OutFragments,
            StringRef Delimiters/*= " \t\n\013\014\015"*/) {
   std.pair<StringRef, StringRef> S = getToken(new StringRef(Source), new StringRef(Delimiters));
   while (!S.first.empty()) {
@@ -3065,21 +3095,21 @@ public static /*inline*/ String format_uint(/*const*/String/*char P*/ Fmt, /*con
     NativeTrace.registerReason(e);
     NativeTrace.traceNotImplemented("This format string is not supported: " + Fmt);
     return Fmt;
-  }  
+  }
 }
 
 @Converted(kind = Converted.Kind.MANUAL_ADDED)
 public static /*inline*/ String format_uchar(/*const*/String/*char P*/ Fmt, /*const*//*uchar*/byte /*&*/ Val) {
   // JAVA: helper sutable for the most cases
   // JAVA: helper sutable for the most cases
-  try {  
+  try {
     return String.format(/*llvm.format(*/io.Cpp2JavaFormatString(Fmt), $uchar2uint(Val));
   } catch (UnknownFormatConversionException e) {
     // no luck with format string...
     NativeTrace.registerReason(e);
     NativeTrace.traceNotImplemented("This format string is not supported: " + Fmt);
     return Fmt;
-  }  
+  }
 }
 
 public static /*inline*/ String format(/*const*/String/*char P*/ Fmt, /*const*/Object... /*&*/ Vals) {
@@ -3232,7 +3262,7 @@ public static <T extends NativeType.SizeofCapable> /*size_t*/int capacity_in_byt
  FQN = "llvm::ConvertUTF8toWide", NM = "_ZN4llvm17ConvertUTF8toWideEjNS_9StringRefERPcRPKh",
  cmd = "jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.adtsupport/llvmToClangType ${LLVM_SRC}/llvm/lib/Support/ConvertUTFWrapper.cpp -nm=_ZN4llvm17ConvertUTF8toWideEjNS_9StringRefERPcRPKh")
 //</editor-fold>
-public static boolean ConvertUTF8toWide(/*uint*/int WideCharWidth, StringRef Source, 
+public static boolean ConvertUTF8toWide(/*uint*/int WideCharWidth, StringRef Source,
                  type$ref<char$ptr>/*char P&*/ ResultPtr, /*const*/type$ref<char$ptr>/*UTF8 P&*/ ErrorPtr) {
   assert (WideCharWidth == 1 || WideCharWidth == 2 || WideCharWidth == 4);
    ConversionResult result = ConversionResult.conversionOK;
@@ -3252,7 +3282,7 @@ public static boolean ConvertUTF8toWide(/*uint*/int WideCharWidth, StringRef Sou
     // using reinterpret_cast.
     ushort$ptr/*UTF16 P*/ targetStart = $tryClone(reinterpret_cast(ushort$ptr/*UTF16 P*/ .class, ResultPtr.$deref()));
      ConversionFlags flags = ConversionFlags.strictConversion;
-    result = ConvertUTF8toUTF16(sourceStart.$addr(), sourceStart.$add(Source.size()), 
+    result = ConvertUTF8toUTF16(sourceStart.$addr(), sourceStart.$add(Source.size()),
         targetStart.$addr(), targetStart.$add(Source.size()), flags);
     if (result == ConversionResult.conversionOK) {
       ResultPtr.$set(reinterpret_cast(char$ptr/*char P*/ .class, targetStart));
@@ -3265,7 +3295,7 @@ public static boolean ConvertUTF8toWide(/*uint*/int WideCharWidth, StringRef Sou
     // using reinterpret_cast.
     uint$ptr/*UTF32 P*/ targetStart = $tryClone(reinterpret_cast(uint$ptr/*UTF32 P*/ .class, ResultPtr.$deref()));
      ConversionFlags flags = ConversionFlags.strictConversion;
-    result = ConvertUTF8toUTF32(sourceStart.$addr(), sourceStart.$add(Source.size()), 
+    result = ConvertUTF8toUTF32(sourceStart.$addr(), sourceStart.$add(Source.size()),
         targetStart.$addr(), targetStart.$add(Source.size()), flags);
     if (result == ConversionResult.conversionOK) {
       ResultPtr.$set(reinterpret_cast(char$ptr/*char P*/ .class, targetStart));
@@ -3298,13 +3328,13 @@ public static boolean ConvertCodePointToUTF8(/*uint*/int Source, type$ref<char$p
   /*const*/uint$ptr/*UTF32 P*/ SourceEnd = $tryClone(SourceStart.$add(1));
   char$ptr/*UTF8 P*/ TargetStart = $tryClone(reinterpret_cast(char$ptr/*UTF8 P*/ .class, ResultPtr.$deref()));
   char$ptr/*UTF8 P*/ TargetEnd = $tryClone(TargetStart.$add(4));
-   ConversionResult CR = ConvertUTF32toUTF8(SourceStart.$addr(), SourceEnd, 
-      TargetStart.$addr(), TargetEnd, 
+   ConversionResult CR = ConvertUTF32toUTF8(SourceStart.$addr(), SourceEnd,
+      TargetStart.$addr(), TargetEnd,
       ConversionFlags.strictConversion);
   if (CR != ConversionResult.conversionOK) {
     return false;
   }
-  
+
   ResultPtr.$set(reinterpret_cast(char$ptr/*char P*/ .class, TargetStart));
   return true;
 }
@@ -3329,16 +3359,16 @@ public static boolean ConvertCodePointToUTF8(/*uint*/int Source, type$ref<char$p
  FQN = "llvm::convertUTF8Sequence", NM = "_ZN4llvmL19convertUTF8SequenceEPPKhS1_Pj15ConversionFlags",
  cmd = "jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.adtsupport/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Lex/Preprocessor.cpp -nm=_ZN4llvmL19convertUTF8SequenceEPPKhS1_Pj15ConversionFlags")
 //</editor-fold>
-public static /*inline*/  ConversionResult convertUTF8Sequence(/*const*/type$ptr<char$ptr>/*UTF8 P P*/ source, 
-                   /*const*/char$ptr/*UTF8 P*/ sourceEnd, 
-                   int[]/*UTF32 P*/ CodePoint, 
+public static /*inline*/  ConversionResult convertUTF8Sequence(/*const*/type$ptr<char$ptr>/*UTF8 P P*/ source,
+                   /*const*/char$ptr/*UTF8 P*/ sourceEnd,
+                   int[]/*UTF32 P*/ CodePoint,
                     ConversionFlags flags) {
   return convertUTF8Sequence(source, sourceEnd, create_uint$ptr(CodePoint), flags);
 }
 
-public static /*inline*/  ConversionResult convertUTF8Sequence(/*const*/type$ptr<char$ptr>/*UTF8 P P*/ source, 
-                   /*const*/char$ptr/*UTF8 P*/ sourceEnd, 
-                   uint$ptr/*UTF32*/ target, 
+public static /*inline*/  ConversionResult convertUTF8Sequence(/*const*/type$ptr<char$ptr>/*UTF8 P P*/ source,
+                   /*const*/char$ptr/*UTF8 P*/ sourceEnd,
+                   uint$ptr/*UTF32*/ target,
                     ConversionFlags flags) {
   if (source.$star().$eq(sourceEnd)) {
     return ConversionResult.sourceExhausted;
@@ -3496,7 +3526,7 @@ public static /*uint*/int ComputeEditDistance(ArrayRefChar FromArray, ArrayRefCh
     for (/*size_t*/int x = 1; x <= n; ++x) {
       if (AllowReplacements) {
         Current.$set(x, std.min(
-                            (Previous.$at(x - 1) + ((FromArray.$at(y - 1) == ToArray.$at(x - 1) ? 0/*U*/ : 1/*U*/))), 
+                            (Previous.$at(x - 1) + ((FromArray.$at(y - 1) == ToArray.$at(x - 1) ? 0/*U*/ : 1/*U*/))),
                             (std.min(Current.$at(x - 1), Previous.$at(x)) + 1)
                         )
                     );
@@ -3565,7 +3595,7 @@ public static <T> /*uint*/int ComputeEditDistance(ArrayRef<T> FromArray, ArrayRe
     for (/*size_t*/int x = 1; x <= n; ++x) {
       if (AllowReplacements) {
         Current.$set(x, std.min(
-                            (Previous.$at(x - 1) + ((FromArray.$at(y - 1) == ToArray.$at(x - 1) ? 0/*U*/ : 1/*U*/))), 
+                            (Previous.$at(x - 1) + ((FromArray.$at(y - 1) == ToArray.$at(x - 1) ? 0/*U*/ : 1/*U*/))),
                             (std.min(Current.$at(x - 1), Previous.$at(x)) + 1)
                         )
                     );
@@ -3651,7 +3681,7 @@ public static </*class*/ Iter extends type$iterator<?, Type>, Type> iterator_ran
     make_range(p);
 }
 
-        
+
 /// InitializeAllTargets - The main program should call this function if it
 /// wants access to all available target machines that LLVM is configured to
 /// support, to make them available via the TargetRegistry.
@@ -3661,10 +3691,10 @@ public static </*class*/ Iter extends type$iterator<?, Type>, Type> iterator_ran
 @Converted(kind = Converted.Kind.BODY_DELEGATE, source = "${LLVM_SRC}/llvm/include/llvm/Support/TargetSelect.h", line = 63,
  FQN = "llvm::InitializeAllTargets", NM = "_ZN4llvm20InitializeAllTargetsEv",
  cmd = "jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.adtsupport/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/tools/driver/driver.cpp -nm=_ZN4llvm20InitializeAllTargetsEv")
-//</editor-fold>  
-public static void InitializeAllTargets() {  
+//</editor-fold>
+public static void InitializeAllTargets() {
   /*delegate*/org.llvm.support.target.impl.TargetSelectLlvmGlobals.
-    InitializeAllTargets();  
+    InitializeAllTargets();
 }
 
 /// InitializeAllTargetMCs - The main program should call this function if it
@@ -3676,7 +3706,7 @@ public static void InitializeAllTargets() {
 @Converted(kind = Converted.Kind.DUMMY, source = "${LLVM_SRC}/llvm/include/llvm/Support/TargetSelect.h", line = 76,
  FQN = "llvm::InitializeAllTargetMCs", NM = "_ZN4llvm22InitializeAllTargetMCsEv",
  cmd = "jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.adtsupport/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/tools/driver/driver.cpp -nm=_ZN4llvm22InitializeAllTargetMCsEv")
-//</editor-fold>  
+//</editor-fold>
 public static void InitializeAllTargetMCs() {
   NativeTrace.traceNotImplemented("llvm.InitializeAllTargetMCs");
 //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -3691,7 +3721,7 @@ public static void InitializeAllTargetMCs() {
 @Converted(kind = Converted.Kind.DUMMY, source = "${LLVM_SRC}/llvm/include/llvm/Support/TargetSelect.h", line = 86,
  FQN = "llvm::InitializeAllAsmPrinters", NM = "_ZN4llvm24InitializeAllAsmPrintersEv",
  cmd = "jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.adtsupport/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/tools/driver/driver.cpp -nm=_ZN4llvm24InitializeAllAsmPrintersEv")
-//</editor-fold>  
+//</editor-fold>
 public static void InitializeAllAsmPrinters() {
   NativeTrace.traceNotImplemented("llvm.InitializeAllAsmPrinters");
 //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -3706,7 +3736,7 @@ public static void InitializeAllAsmPrinters() {
 @Converted(kind = Converted.Kind.DUMMY, source = "${LLVM_SRC}/llvm/include/llvm/Support/TargetSelect.h", line = 96,
  FQN = "llvm::InitializeAllAsmParsers", NM = "_ZN4llvm23InitializeAllAsmParsersEv",
  cmd = "jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.adtsupport/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/tools/driver/driver.cpp -nm=_ZN4llvm23InitializeAllAsmParsersEv")
-//</editor-fold>  
+//</editor-fold>
 public static void InitializeAllAsmParsers() {
   NativeTrace.traceNotImplemented("llvm.InitializeAllAsmParsers");
 //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -3865,7 +3895,7 @@ public enum endianness {
 /*}*/
 //JAVA: namespace detail {
 public static final class detail {
-  
+
   // We call out to an external function to actually print the message as the
   // printing code uses Allocator.h in its implementation.
   //<editor-fold defaultstate="collapsed" desc="llvm::detail::printBumpPtrAllocatorStats">
@@ -3874,7 +3904,7 @@ public static final class detail {
    FQN = "llvm::detail::printBumpPtrAllocatorStats", NM = "_ZN4llvm6detail26printBumpPtrAllocatorStatsEjjj",
    cmd = "jclank.sh -java-options=${SPUTNIK}/modules/org.llvm.adtsupport/llvmToClangType ${LLVM_SRC}/llvm/lib/Support/Allocator.cpp -nm=_ZN4llvm6detail26printBumpPtrAllocatorStatsEjjj")
   //</editor-fold>
-  public static void printBumpPtrAllocatorStats(/*uint*/int NumSlabs, /*size_t*/int BytesAllocated, 
+  public static void printBumpPtrAllocatorStats(/*uint*/int NumSlabs, /*size_t*/int BytesAllocated,
                             /*size_t*/int TotalMemory) {
     printBumpPtrAllocatorStats("", errs(), NumSlabs, BytesAllocated, TotalMemory, 0, 0);
   }
@@ -3970,7 +4000,7 @@ public static class/*struct*/ packed_endian_specific_integral</*typename*/ value
     this.endian = endian;
     this.alignment = alignment;
   }
-    
+
   //<editor-fold defaultstate="collapsed" desc="llvm::support::detail::packed_endian_specific_integral::operator type-parameter-0-0">
   @Converted(kind = Converted.Kind.AUTO, source = "${LLVM_SRC}/llvm/include/llvm/Support/Endian.h", line = 86,
    FQN = "llvm::support::detail::packed_endian_specific_integral::operator type-parameter-0-0", NM = "_ZNK4llvm7support6detail31packed_endian_specific_integralcvT_Ev",
@@ -4003,29 +4033,29 @@ public static final class endian extends EndianGlobals {
 //} JAVA: end of namespace endian
 
 /*typedef detail::packed_endian_specific_integral<uint8_t, endianness.little, unaligned> ulittle8_t*/
-public final static class ulittle8_t extends detail.packed_endian_specific_integral<Byte/*uint8_t*/>{ 
+public final static class ulittle8_t extends detail.packed_endian_specific_integral<Byte/*uint8_t*/>{
 
     public ulittle8_t(char$ptr buffer) {
       super(buffer, Byte.class, endianness.little, unaligned);
     }
-  
+
 };
 /*typedef detail::packed_endian_specific_integral<uint16_t, endianness.little, unaligned> ulittle16_t*/
-public final static class ulittle16_t extends detail.packed_endian_specific_integral<Character/*uint16_t*/>{ 
+public final static class ulittle16_t extends detail.packed_endian_specific_integral<Character/*uint16_t*/>{
 
     public ulittle16_t(char$ptr buffer) {
       super(buffer, Character.class, endianness.little, unaligned);
     }
 };
 /*typedef detail::packed_endian_specific_integral<uint32_t, endianness.little, unaligned> ulittle32_t*/
-public final static class ulittle32_t extends detail.packed_endian_specific_integral<Integer/*uint32_t*/>{ 
+public final static class ulittle32_t extends detail.packed_endian_specific_integral<Integer/*uint32_t*/>{
 
     public ulittle32_t(char$ptr buffer) {
       super(buffer, Integer.class, endianness.little, unaligned);
     }
 };
 /*typedef detail::packed_endian_specific_integral<uint64_t, endianness.little, unaligned> ulittle64_t*/
-public final static class ulittle64_t extends detail.packed_endian_specific_integral<Long/*uint64_t*/>{ 
+public final static class ulittle64_t extends detail.packed_endian_specific_integral<Long/*uint64_t*/>{
 
     public ulittle64_t(char$ptr buffer) {
       super(buffer, Long.class, endianness.little, unaligned);
@@ -4037,17 +4067,17 @@ public final static class little8_t extends detail.packed_endian_specific_integr
     public little8_t(char$ptr buffer) {
       super(buffer, Byte.class, endianness.little, unaligned);
     }
-  
+
 };
 /*typedef detail::packed_endian_specific_integral<int16_t, endianness.little, unaligned> little16_t*/
-public final static class little16_t extends detail.packed_endian_specific_integral<Short/*int16_t*/>{ 
+public final static class little16_t extends detail.packed_endian_specific_integral<Short/*int16_t*/>{
 
     public little16_t(char$ptr buffer) {
 			super(buffer, Short.class, endianness.little, unaligned);
     }
 };
 /*typedef detail::packed_endian_specific_integral<int32_t, endianness.little, unaligned> little32_t*/
-public final static class little32_t extends detail.packed_endian_specific_integral<Integer/*int32_t*/>{ 
+public final static class little32_t extends detail.packed_endian_specific_integral<Integer/*int32_t*/>{
 
     public little32_t(char$ptr buffer) {
 			super(buffer, Integer.class, endianness.little, unaligned);
@@ -4055,7 +4085,7 @@ public final static class little32_t extends detail.packed_endian_specific_integ
 
 };
 /*typedef detail::packed_endian_specific_integral<int64_t, endianness.little, unaligned> little64_t*/
-public final static class little64_t extends detail.packed_endian_specific_integral<Long>{ 
+public final static class little64_t extends detail.packed_endian_specific_integral<Long>{
 
     public little64_t(char$ptr buffer) {
 			super(buffer,Long.class/*int64_t*/, endianness.little, unaligned);
@@ -4063,7 +4093,7 @@ public final static class little64_t extends detail.packed_endian_specific_integ
 
 };
 /*typedef detail::packed_endian_specific_integral<uint8_t, endianness.little, aligned> aligned_ulittle8_t*/
-public final static class aligned_ulittle8_t extends detail.packed_endian_specific_integral<Byte/*uint8_t*/>{ 
+public final static class aligned_ulittle8_t extends detail.packed_endian_specific_integral<Byte/*uint8_t*/>{
 
     public aligned_ulittle8_t(char$ptr buffer) {
 			super(buffer,Byte.class/*uint8_t*/, endianness.little, aligned);
@@ -4071,7 +4101,7 @@ public final static class aligned_ulittle8_t extends detail.packed_endian_specif
 
 };
 /*typedef detail::packed_endian_specific_integral<uint16_t, endianness.little, aligned> aligned_ulittle16_t*/
-public final static class aligned_ulittle16_t extends detail.packed_endian_specific_integral<Character/*uint16_t*/>{ 
+public final static class aligned_ulittle16_t extends detail.packed_endian_specific_integral<Character/*uint16_t*/>{
 
     public aligned_ulittle16_t(char$ptr buffer) {
 			super(buffer,Character.class/*uint16_t*/, endianness.little, aligned);
@@ -4079,7 +4109,7 @@ public final static class aligned_ulittle16_t extends detail.packed_endian_speci
 
 };
 /*typedef detail::packed_endian_specific_integral<uint32_t, endianness.little, aligned> aligned_ulittle32_t*/
-public final static class aligned_ulittle32_t extends detail.packed_endian_specific_integral<Long/*uint32_t*/>{ 
+public final static class aligned_ulittle32_t extends detail.packed_endian_specific_integral<Long/*uint32_t*/>{
 
     public aligned_ulittle32_t(char$ptr buffer) {
 			super(buffer, Long.class/*uint32_t*/, endianness.little, aligned);
@@ -4087,7 +4117,7 @@ public final static class aligned_ulittle32_t extends detail.packed_endian_speci
 
 };
 /*typedef detail::packed_endian_specific_integral<uint64_t, endianness.little, aligned> aligned_ulittle64_t*/
-public final static class aligned_ulittle64_t extends detail.packed_endian_specific_integral<Long/*uint64_t*/>{ 
+public final static class aligned_ulittle64_t extends detail.packed_endian_specific_integral<Long/*uint64_t*/>{
 
     public aligned_ulittle64_t(char$ptr buffer) {
 			super(buffer, Long.class/*uint64_t*/, endianness.little, aligned);
@@ -4103,7 +4133,7 @@ public final static class aligned_little8_t extends detail.packed_endian_specifi
 
 };
 /*typedef detail::packed_endian_specific_integral<int16_t, endianness.little, aligned> aligned_little16_t*/
-public final static class aligned_little16_t extends detail.packed_endian_specific_integral<Short/*int16_t*/>{ 
+public final static class aligned_little16_t extends detail.packed_endian_specific_integral<Short/*int16_t*/>{
 
     public aligned_little16_t(char$ptr buffer) {
 			super(buffer, Short.class/*int16_t*/, endianness.little, aligned);
@@ -4111,7 +4141,7 @@ public final static class aligned_little16_t extends detail.packed_endian_specif
 
 };
 /*typedef detail::packed_endian_specific_integral<int32_t, endianness.little, aligned> aligned_little32_t*/
-public final static class aligned_little32_t extends detail.packed_endian_specific_integral<Integer/*int32_t*/>{ 
+public final static class aligned_little32_t extends detail.packed_endian_specific_integral<Integer/*int32_t*/>{
 
     public aligned_little32_t(char$ptr buffer) {
 			super(buffer,Integer.class/*int32_t*/, endianness.little, aligned);
@@ -4135,7 +4165,7 @@ public final static class ubig8_t extends detail.packed_endian_specific_integral
 
 };
 /*typedef detail::packed_endian_specific_integral<uint16_t, endianness.big, unaligned> ubig16_t*/
-public final static class ubig16_t extends detail.packed_endian_specific_integral<Character/*uint16_t*/>{ 
+public final static class ubig16_t extends detail.packed_endian_specific_integral<Character/*uint16_t*/>{
 
     public ubig16_t(char$ptr buffer) {
 			super(buffer,Character.class/*uint16_t*/, endianness.big, unaligned);
@@ -4143,7 +4173,7 @@ public final static class ubig16_t extends detail.packed_endian_specific_integra
 
 };
 /*typedef detail::packed_endian_specific_integral<uint32_t, endianness.big, unaligned> ubig32_t*/
-public final static class ubig32_t extends detail.packed_endian_specific_integral<Long/*uint32_t*/>{ 
+public final static class ubig32_t extends detail.packed_endian_specific_integral<Long/*uint32_t*/>{
 
     public ubig32_t(char$ptr buffer) {
 			super(buffer, Long.class/*uint32_t*/, endianness.big, unaligned);
@@ -4151,7 +4181,7 @@ public final static class ubig32_t extends detail.packed_endian_specific_integra
 
 };
 /*typedef detail::packed_endian_specific_integral<uint64_t, endianness.big, unaligned> ubig64_t*/
-public final static class ubig64_t extends detail.packed_endian_specific_integral<Long/*uint64_t*/>{ 
+public final static class ubig64_t extends detail.packed_endian_specific_integral<Long/*uint64_t*/>{
 
     public ubig64_t(char$ptr buffer) {
 			super(buffer,Long.class/*uint64_t*/, endianness.big, unaligned);
@@ -4167,7 +4197,7 @@ public final static class big8_t extends detail.packed_endian_specific_integral<
 
 };
 /*typedef detail::packed_endian_specific_integral<int16_t, endianness.big, unaligned> big16_t*/
-public final static class big16_t extends detail.packed_endian_specific_integral<Short/*int16_t*/>{ 
+public final static class big16_t extends detail.packed_endian_specific_integral<Short/*int16_t*/>{
 
     public big16_t(char$ptr buffer) {
 			super(buffer,Short.class/*int16_t*/, endianness.big, unaligned);
@@ -4183,7 +4213,7 @@ public final static class big32_t extends detail.packed_endian_specific_integral
 
 };
 /*typedef detail::packed_endian_specific_integral<int64_t, endianness.big, unaligned> big64_t*/
-public final static class big64_t extends detail.packed_endian_specific_integral<Long/*int64_t*/>{ 
+public final static class big64_t extends detail.packed_endian_specific_integral<Long/*int64_t*/>{
 
     public big64_t(char$ptr buffer) {
 			super(buffer,Long.class/*int64_t*/, endianness.big, unaligned);
@@ -4191,7 +4221,7 @@ public final static class big64_t extends detail.packed_endian_specific_integral
 
 };
 /*typedef detail::packed_endian_specific_integral<uint8_t, endianness.big, aligned> aligned_ubig8_t*/
-public final static class aligned_ubig8_t extends detail.packed_endian_specific_integral<Byte/*uint8_t*/>{ 
+public final static class aligned_ubig8_t extends detail.packed_endian_specific_integral<Byte/*uint8_t*/>{
 
     public aligned_ubig8_t(char$ptr buffer) {
 			super(buffer,Byte.class/*uint8_t*/, endianness.big, aligned);
@@ -4199,7 +4229,7 @@ public final static class aligned_ubig8_t extends detail.packed_endian_specific_
 
 };
 /*typedef detail::packed_endian_specific_integral<uint16_t, endianness.big, aligned> aligned_ubig16_t*/
-public final static class aligned_ubig16_t extends detail.packed_endian_specific_integral<Character/*uint16_t*/>{ 
+public final static class aligned_ubig16_t extends detail.packed_endian_specific_integral<Character/*uint16_t*/>{
 
     public aligned_ubig16_t(char$ptr buffer) {
 			super(buffer,Character.class/*uint16_t*/, endianness.big, aligned);
@@ -4207,7 +4237,7 @@ public final static class aligned_ubig16_t extends detail.packed_endian_specific
 
 };
 /*typedef detail::packed_endian_specific_integral<uint32_t, endianness.big, aligned> aligned_ubig32_t*/
-public final static class aligned_ubig32_t extends detail.packed_endian_specific_integral<Long/*uint32_t*/>{ 
+public final static class aligned_ubig32_t extends detail.packed_endian_specific_integral<Long/*uint32_t*/>{
 
     public aligned_ubig32_t(char$ptr buffer) {
 			super(buffer,Long.class/*uint32_t*/, endianness.big, aligned);
@@ -4223,7 +4253,7 @@ public final static class aligned_ubig64_t extends detail.packed_endian_specific
 
 };
 /*typedef detail::packed_endian_specific_integral<int8_t, endianness.big, aligned> aligned_big8_t*/
-public final static class aligned_big8_t extends detail.packed_endian_specific_integral<Byte/*int8_t*/>{ 
+public final static class aligned_big8_t extends detail.packed_endian_specific_integral<Byte/*int8_t*/>{
 
     public aligned_big8_t(char$ptr buffer) {
 			super(buffer,Byte.class/*int8_t*/, endianness.big, aligned);
@@ -4231,7 +4261,7 @@ public final static class aligned_big8_t extends detail.packed_endian_specific_i
 
 };
 /*typedef detail::packed_endian_specific_integral<int16_t, endianness.big, aligned> aligned_big16_t*/
-public final static class aligned_big16_t extends detail.packed_endian_specific_integral<Short/*int16_t*/>{ 
+public final static class aligned_big16_t extends detail.packed_endian_specific_integral<Short/*int16_t*/>{
 
     public aligned_big16_t(char$ptr buffer) {
 			super(buffer,Short.class/*int16_t*/, endianness.big, aligned);
@@ -4247,7 +4277,7 @@ public final static class aligned_big32_t extends detail.packed_endian_specific_
 
 };
 /*typedef detail::packed_endian_specific_integral<int64_t, endianness.big, aligned> aligned_big64_t*/
-public final static class aligned_big64_t extends detail.packed_endian_specific_integral<Long/*int64_t*/>{ 
+public final static class aligned_big64_t extends detail.packed_endian_specific_integral<Long/*int64_t*/>{
 
     public aligned_big64_t(char$ptr buffer) {
 			super(buffer,Long.class/*int64_t*/, endianness.big, aligned);
@@ -4255,7 +4285,7 @@ public final static class aligned_big64_t extends detail.packed_endian_specific_
 
 };
 /*typedef detail::packed_endian_specific_integral<uint16_t, __native, unaligned> unaligned_uint16_t*/
-public final static class unaligned_uint16_t extends detail.packed_endian_specific_integral<Character/*uint16_t*/>{ 
+public final static class unaligned_uint16_t extends detail.packed_endian_specific_integral<Character/*uint16_t*/>{
 
     public unaligned_uint16_t(char$ptr buffer) {
 			super(buffer,Character.class/*uint16_t*/, endianness.__native, unaligned);
@@ -4263,7 +4293,7 @@ public final static class unaligned_uint16_t extends detail.packed_endian_specif
 
 };
 /*typedef detail::packed_endian_specific_integral<uint32_t, __native, unaligned> unaligned_uint32_t*/
-public final static class unaligned_uint32_t extends detail.packed_endian_specific_integral<Integer/*uint32_t*/>{ 
+public final static class unaligned_uint32_t extends detail.packed_endian_specific_integral<Integer/*uint32_t*/>{
 
     public unaligned_uint32_t(char$ptr buffer) {
 			super(buffer,Integer.class/*uint32_t*/, endianness.__native, unaligned);
@@ -4271,7 +4301,7 @@ public final static class unaligned_uint32_t extends detail.packed_endian_specif
 
 };
 /*typedef detail::packed_endian_specific_integral<uint64_t, __native, unaligned> unaligned_uint64_t*/
-public final static class unaligned_uint64_t extends detail.packed_endian_specific_integral<Long/*uint64_t*/>{ 
+public final static class unaligned_uint64_t extends detail.packed_endian_specific_integral<Long/*uint64_t*/>{
 
     public unaligned_uint64_t(char$ptr buffer) {
 			super(buffer,Long.class/*uint64_t*/, endianness.__native, unaligned);
@@ -4282,7 +4312,7 @@ public final static class unaligned_uint64_t extends detail.packed_endian_specif
     }
 };
 /*typedef detail::packed_endian_specific_integral<int16_t, __native, unaligned> unaligned_int16_t*/
-public final static class unaligned_int16_t extends detail.packed_endian_specific_integral<Short/*int16_t*/>{ 
+public final static class unaligned_int16_t extends detail.packed_endian_specific_integral<Short/*int16_t*/>{
 
     public unaligned_int16_t(char$ptr buffer) {
 			super(buffer,Short.class/*int16_t*/, endianness.__native, unaligned);
@@ -4290,7 +4320,7 @@ public final static class unaligned_int16_t extends detail.packed_endian_specifi
 
 };
 /*typedef detail::packed_endian_specific_integral<int32_t, __native, unaligned> unaligned_int32_t*/
-public final static class unaligned_int32_t extends detail.packed_endian_specific_integral<Integer/*int32_t*/>{ 
+public final static class unaligned_int32_t extends detail.packed_endian_specific_integral<Integer/*int32_t*/>{
 
     public unaligned_int32_t(char$ptr buffer) {
 			super(buffer,Integer.class/*int32_t*/, endianness.__native, unaligned);
@@ -4298,7 +4328,7 @@ public final static class unaligned_int32_t extends detail.packed_endian_specifi
 
 };
 /*typedef detail::packed_endian_specific_integral<int64_t, __native, unaligned> unaligned_int64_t*/
-public final static class unaligned_int64_t extends detail.packed_endian_specific_integral<Long/*int64_t*/>{ 
+public final static class unaligned_int64_t extends detail.packed_endian_specific_integral<Long/*int64_t*/>{
 
     public unaligned_int64_t(char$ptr buffer) {
 			super(buffer,Long.class/*int64_t*/, endianness.__native, unaligned);
@@ -4331,7 +4361,7 @@ public final static class unaligned_int64_t extends detail.packed_endian_specifi
 public static void install_fatal_error_handler(fatal_error_handler_t handler) {
   org.llvm.support.impl.ErrorHandlingLlvmGlobals.install_fatal_error_handler(handler);
 }
-public static void install_fatal_error_handler(fatal_error_handler_t handler, 
+public static void install_fatal_error_handler(fatal_error_handler_t handler,
                            Object/*void P*/ user_data/*= null*/) {
   org.llvm.support.impl.ErrorHandlingLlvmGlobals.install_fatal_error_handler(handler, user_data);
 }
@@ -4354,7 +4384,7 @@ public static void remove_fatal_error_handler() {
 ///
 /// If no error handler is installed the default is to print the message to
 /// standard error, followed by a newline.
-/// After the error handler is called this function will call exit(1), it 
+/// After the error handler is called this function will call exit(1), it
 /// does not return.
 //<editor-fold defaultstate="collapsed" desc="llvm::report_fatal_error">
 @Converted(kind = Converted.Kind.AUTO_NO_BODY, source = "${LLVM_SRC}/llvm/lib/Support/ErrorHandling.cpp", line = 61,
@@ -4425,7 +4455,7 @@ public static void llvm_unreachable_internal(/*const*/char$ptr/*char P*/ msg/*= 
 public static void llvm_unreachable_internal(/*const*/char$ptr/*char P*/ msg/*= null*/, /*const*/char$ptr/*char P*/ file/*= null*/) {
   org.llvm.support.impl.ErrorHandlingLlvmGlobals.llvm_unreachable_internal(msg, file);
 }
-public static void llvm_unreachable_internal(/*const*/char$ptr/*char P*/ msg/*= null*/, /*const*/char$ptr/*char P*/ file/*= null*/, 
+public static void llvm_unreachable_internal(/*const*/char$ptr/*char P*/ msg/*= null*/, /*const*/char$ptr/*char P*/ file/*= null*/,
                          /*uint*/int line/*= 0*/) {
   org.llvm.support.impl.ErrorHandlingLlvmGlobals.llvm_unreachable_internal(msg, file, line);
 }
@@ -4468,7 +4498,7 @@ public static FormattedString right_justify(StringRef Str, int Width) {
 /// Wrapper function around std::transform to apply a function to a range and
 /// store the result elsewhere.
 @Converted(kind = Converted.Kind.MANUAL, source = "${LLVM_SRC}/llvm/include/llvm/ADT/STLExtras.h", line = 525)
-public static <T, UnaryOperation extends NativeCallback.Type2RetType<T, T>> 
+public static <T, UnaryOperation extends NativeCallback.Type2RetType<T, T>>
         type$ptr<T> transform(NativeIterable<type$ptr<T>> range, type$ptr<T> result, UnaryOperation op) {
   return std.transform(range.begin(), range.end(), result, op);
 }

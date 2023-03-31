@@ -1,43 +1,43 @@
 /**
  * This file was converted to Java from the original LLVM source file. The original
  * source file follows the LLVM Release License, outlined below.
- * 
+ *
  * ==============================================================================
  * LLVM Release License
  * ==============================================================================
  * University of Illinois/NCSA
  * Open Source License
- * 
+ *
  * Copyright (c) 2003-2017 University of Illinois at Urbana-Champaign.
  * All rights reserved.
- * 
+ *
  * Developed by:
- * 
+ *
  *     LLVM Team
- * 
+ *
  *     University of Illinois at Urbana-Champaign
- * 
+ *
  *     http://llvm.org
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal with
  * the Software without restriction, including without limitation the rights to
  * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
  * of the Software, and to permit persons to whom the Software is furnished to do
  * so, subject to the following conditions:
- * 
+ *
  *     * Redistributions of source code must retain the above copyright notice,
  *       this list of conditions and the following disclaimers.
- * 
+ *
  *     * Redistributions in binary form must reproduce the above copyright notice
  *       this list of conditions and the following disclaimers in the
  *       documentation and/or other materials provided with the distribution.
- * 
+ *
  *     * Neither the names of the LLVM Team, University of Illinois at
  *       Urbana-Champaign, nor the names of its contributors may be used to
  *       endorse or promote products derived from this Software without specific
  *       prior written permission.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
  * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
@@ -45,7 +45,7 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS WITH THE
  * SOFTWARE.
- * 
+ *
  * ==============================================================================
  * Copyrights and Licenses for Third Party Software Distributed with LLVM:
  * ==============================================================================
@@ -53,16 +53,16 @@
  * have its own individual LICENSE.TXT file in the directory in which it appears.
  * This file will describe the copyrights, license, and restrictions which apply
  * to that code.
- * 
+ *
  * The disclaimer of warranty in the University of Illinois Open Source License
  * applies to all code in the LLVM Distribution, and nothing in any of the
  * other licenses gives permission to use the names of the LLVM Team or the
  * University of Illinois to endorse or promote products derived from this
  * Software.
- * 
+ *
  * The following pieces of software have additional or alternate copyrights,
  * licenses, and/or restrictions:
- * 
+ *
  * Program             Directory
  * -------             ---------
  * Autoconf            llvm/autoconf
@@ -77,9 +77,10 @@
 package org.clang.format;
 
 import org.clank.java.*;
-import org.clank.support.*;
-import org.clank.support.JavaDifferentiators.*;
 import static org.clank.java.std.*;
+import org.clank.java.std.string;
+import org.clank.support.*;
+import org.clank.support.JavaDifferentiators.JD$Move;
 import org.clank.support.Native.NativePOD;
 import org.clank.support.aliases.*;
 
@@ -167,13 +168,13 @@ public class/*struct*/ FormatStyle implements Destructors.ClassWithDestructor, N
     @Override public final /*uint*/int getValue() { return value;}
     //</editor-fold>
   };
-  
+
   /// \brief If ``true``, horizontally aligns arguments after an open bracket.
   ///
   /// This applies to round brackets (parentheses), angle brackets and square
   /// brackets.
   public BracketAlignmentStyle AlignAfterOpenBracket = BracketAlignmentStyle.BAS_Align;
-  
+
   /// \brief If ``true``, aligns consecutive assignments.
   ///
   /// This will align the assignment operators of consecutive lines. This
@@ -184,7 +185,7 @@ public class/*struct*/ FormatStyle implements Destructors.ClassWithDestructor, N
   ///   int ccc  = 23;
   /// \endcode
   public boolean AlignConsecutiveAssignments;
-  
+
   /// \brief If ``true``, aligns consecutive declarations.
   ///
   /// This will align the declaration names of consecutive lines. This
@@ -195,11 +196,11 @@ public class/*struct*/ FormatStyle implements Destructors.ClassWithDestructor, N
   ///   std::string ccc = 23;
   /// \endcode
   public boolean AlignConsecutiveDeclarations;
-  
+
   /// \brief If ``true``, aligns escaped newlines as far left as possible.
   /// Otherwise puts them into the right-most column.
   public boolean AlignEscapedNewlinesLeft;
-  
+
   /// \brief If ``true``, horizontally align operands of binary and ternary
   /// expressions.
   ///
@@ -210,22 +211,22 @@ public class/*struct*/ FormatStyle implements Destructors.ClassWithDestructor, N
   ///             ccccccccccccccc;
   /// \endcode
   public boolean AlignOperands;
-  
+
   /// \brief If ``true``, aligns trailing comments.
   public boolean AlignTrailingComments;
-  
+
   /// \brief Allow putting all parameters of a function declaration onto
   /// the next line even if ``BinPackParameters`` is ``false``.
   public boolean AllowAllParametersOfDeclarationOnNextLine;
-  
+
   /// \brief Allows contracting simple braced statements to a single line.
   ///
   /// E.g., this allows ``if (a) { return; }`` to be put on a single line.
   public boolean AllowShortBlocksOnASingleLine;
-  
+
   /// \brief If ``true``, short case labels will be contracted to a single line.
   public boolean AllowShortCaseLabelsOnASingleLine;
-  
+
   /// \brief Different styles for merging short functions containing at most one
   /// statement.
   //<editor-fold defaultstate="collapsed" desc="clang::format::FormatStyle::ShortFunctionStyle">
@@ -287,18 +288,18 @@ public class/*struct*/ FormatStyle implements Destructors.ClassWithDestructor, N
     @Override public final /*uint*/int getValue() { return value;}
     //</editor-fold>
   };
-  
+
   /// \brief Dependent on the value, ``int f() { return 0; }`` can be put on a
   /// single line.
   public ShortFunctionStyle AllowShortFunctionsOnASingleLine = ShortFunctionStyle.SFS_None;
-  
+
   /// \brief If ``true``, ``if (a) return;`` can be put on a single line.
   public boolean AllowShortIfStatementsOnASingleLine;
-  
+
   /// \brief If ``true``, ``while (true) continue;`` can be put on a single
   /// line.
   public boolean AllowShortLoopsOnASingleLine;
-  
+
   /// \brief Different ways to break after the function definition return type.
   //<editor-fold defaultstate="collapsed" desc="clang::format::FormatStyle::DefinitionReturnTypeBreakingStyle">
   @Converted(kind = Converted.Kind.AUTO,
@@ -358,7 +359,7 @@ public class/*struct*/ FormatStyle implements Destructors.ClassWithDestructor, N
     @Override public final /*uint*/int getValue() { return value;}
     //</editor-fold>
   };
-  
+
   /// \brief Different ways to break after the function definition or
   /// declaration return type.
   //<editor-fold defaultstate="collapsed" desc="clang::format::FormatStyle::ReturnTypeBreakingStyle">
@@ -423,14 +424,14 @@ public class/*struct*/ FormatStyle implements Destructors.ClassWithDestructor, N
     @Override public final /*uint*/int getValue() { return value;}
     //</editor-fold>
   };
-  
+
   /// \brief The function definition return type breaking style to use.  This
   /// option is deprecated and is retained for backwards compatibility.
   public DefinitionReturnTypeBreakingStyle AlwaysBreakAfterDefinitionReturnType = DefinitionReturnTypeBreakingStyle.DRTBS_None;
-  
+
   /// \brief The function declaration return type breaking style to use.
   public ReturnTypeBreakingStyle AlwaysBreakAfterReturnType = ReturnTypeBreakingStyle.RTBS_None;
-  
+
   /// \brief If ``true``, always break before multiline string literals.
   ///
   /// This flag is mean to make cases where there are multiple multiline strings
@@ -438,19 +439,19 @@ public class/*struct*/ FormatStyle implements Destructors.ClassWithDestructor, N
   /// the string at that point leads to it being indented
   /// ``ContinuationIndentWidth`` spaces from the start of the line.
   public boolean AlwaysBreakBeforeMultilineStrings;
-  
+
   /// \brief If ``true``, always break after the ``template<...>`` of a template
   /// declaration.
   public boolean AlwaysBreakTemplateDeclarations;
-  
+
   /// \brief If ``false``, a function call's arguments will either be all on the
   /// same line or will have one line each.
   public boolean BinPackArguments;
-  
+
   /// \brief If ``false``, a function declaration's or function definition's
   /// parameters will either all be on the same line or will have one line each.
   public boolean BinPackParameters;
-  
+
   /// \brief The style of breaking before or after binary operators.
   //<editor-fold defaultstate="collapsed" desc="clang::format::FormatStyle::BinaryOperatorStyle">
   @Converted(kind = Converted.Kind.AUTO,
@@ -509,10 +510,10 @@ public class/*struct*/ FormatStyle implements Destructors.ClassWithDestructor, N
     @Override public final /*uint*/int getValue() { return value;}
     //</editor-fold>
   };
-  
+
   /// \brief The way to wrap binary operators.
   public BinaryOperatorStyle BreakBeforeBinaryOperators = BinaryOperatorStyle.BOS_None;
-  
+
   /// \brief Different ways to attach braces to their surrounding context.
   //<editor-fold defaultstate="collapsed" desc="clang::format::FormatStyle::BraceBreakingStyle">
   @Converted(kind = Converted.Kind.AUTO,
@@ -586,10 +587,10 @@ public class/*struct*/ FormatStyle implements Destructors.ClassWithDestructor, N
     @Override public final /*uint*/int getValue() { return value;}
     //</editor-fold>
   };
-  
+
   /// \brief The brace breaking style to use.
   public BraceBreakingStyle BreakBeforeBraces = BraceBreakingStyle.BS_Attach;
-  
+
   /// \brief Precise control over the wrapping of braces.
   //<editor-fold defaultstate="collapsed" desc="clang::format::FormatStyle::BraceWrappingFlags">
   @Converted(kind = Converted.Kind.AUTO,
@@ -627,7 +628,7 @@ public class/*struct*/ FormatStyle implements Destructors.ClassWithDestructor, N
      cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Format/Format.cpp -nm=_ZN5clang6format11FormatStyle18BraceWrappingFlagsC1ERKS2_")
     //</editor-fold>
     public /*inline*/ BraceWrappingFlags(final /*const*/ BraceWrappingFlags /*&*/ $Prm0) {
-      // : AfterClass(.AfterClass), AfterControlStatement(.AfterControlStatement), AfterEnum(.AfterEnum), AfterFunction(.AfterFunction), AfterNamespace(.AfterNamespace), AfterObjCDeclaration(.AfterObjCDeclaration), AfterStruct(.AfterStruct), AfterUnion(.AfterUnion), BeforeCatch(.BeforeCatch), BeforeElse(.BeforeElse), IndentBraces(.IndentBraces) 
+      // : AfterClass(.AfterClass), AfterControlStatement(.AfterControlStatement), AfterEnum(.AfterEnum), AfterFunction(.AfterFunction), AfterNamespace(.AfterNamespace), AfterObjCDeclaration(.AfterObjCDeclaration), AfterStruct(.AfterStruct), AfterUnion(.AfterUnion), BeforeCatch(.BeforeCatch), BeforeElse(.BeforeElse), IndentBraces(.IndentBraces)
       //START JInit
       this.AfterClass = $Prm0.AfterClass;
       this.AfterControlStatement = $Prm0.AfterControlStatement;
@@ -650,7 +651,7 @@ public class/*struct*/ FormatStyle implements Destructors.ClassWithDestructor, N
      cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Format/Format.cpp -nm=_ZN5clang6format11FormatStyle18BraceWrappingFlagsC1EOS2_")
     //</editor-fold>
     public /*inline*/ BraceWrappingFlags(JD$Move _dparam, final BraceWrappingFlags /*&&*/$Prm0) {
-      // : AfterClass(static_cast<BraceWrappingFlags &&>().AfterClass), AfterControlStatement(static_cast<BraceWrappingFlags &&>().AfterControlStatement), AfterEnum(static_cast<BraceWrappingFlags &&>().AfterEnum), AfterFunction(static_cast<BraceWrappingFlags &&>().AfterFunction), AfterNamespace(static_cast<BraceWrappingFlags &&>().AfterNamespace), AfterObjCDeclaration(static_cast<BraceWrappingFlags &&>().AfterObjCDeclaration), AfterStruct(static_cast<BraceWrappingFlags &&>().AfterStruct), AfterUnion(static_cast<BraceWrappingFlags &&>().AfterUnion), BeforeCatch(static_cast<BraceWrappingFlags &&>().BeforeCatch), BeforeElse(static_cast<BraceWrappingFlags &&>().BeforeElse), IndentBraces(static_cast<BraceWrappingFlags &&>().IndentBraces) 
+      // : AfterClass(static_cast<BraceWrappingFlags &&>().AfterClass), AfterControlStatement(static_cast<BraceWrappingFlags &&>().AfterControlStatement), AfterEnum(static_cast<BraceWrappingFlags &&>().AfterEnum), AfterFunction(static_cast<BraceWrappingFlags &&>().AfterFunction), AfterNamespace(static_cast<BraceWrappingFlags &&>().AfterNamespace), AfterObjCDeclaration(static_cast<BraceWrappingFlags &&>().AfterObjCDeclaration), AfterStruct(static_cast<BraceWrappingFlags &&>().AfterStruct), AfterUnion(static_cast<BraceWrappingFlags &&>().AfterUnion), BeforeCatch(static_cast<BraceWrappingFlags &&>().BeforeCatch), BeforeElse(static_cast<BraceWrappingFlags &&>().BeforeElse), IndentBraces(static_cast<BraceWrappingFlags &&>().IndentBraces)
       //START JInit
       this.AfterClass = $Prm0.AfterClass;
       this.AfterControlStatement = $Prm0.AfterControlStatement;
@@ -884,48 +885,48 @@ public class/*struct*/ FormatStyle implements Destructors.ClassWithDestructor, N
                 + ", IndentBraces=" + IndentBraces; // NOI18N
     }
   };
-  
+
   /// \brief Control of individual brace wrapping cases.
   ///
   /// If ``BreakBeforeBraces`` is set to ``BS_Custom``, use this to specify how
   /// each individual brace case should be handled. Otherwise, this is ignored.
   public BraceWrappingFlags BraceWrapping;
-  
+
   /// \brief If ``true``, ternary operators will be placed after line breaks.
   public boolean BreakBeforeTernaryOperators;
-  
+
   /// \brief Always break constructor initializers before commas and align
   /// the commas with the colon.
   public boolean BreakConstructorInitializersBeforeComma;
-  
+
   /// \brief Break after each annotation on a field in Java files.
   public boolean BreakAfterJavaFieldAnnotations;
-  
+
   /// \brief Allow breaking string literals when formatting.
   public boolean BreakStringLiterals;
-  
+
   /// \brief The column limit.
   ///
   /// A column limit of ``0`` means that there is no column limit. In this case,
   /// clang-format will respect the input's line breaking decisions within
   /// statements unless they contradict other rules.
   public /*uint*/int ColumnLimit;
-  
+
   /// \brief A regular expression that describes comments with special meaning,
   /// which should not be split into lines or otherwise changed.
   public std.string CommentPragmas;
-  
+
   /// \brief If the constructor initializers don't fit on a line, put each
   /// initializer on its own line.
   public boolean ConstructorInitializerAllOnOneLineOrOnePerLine;
-  
+
   /// \brief The number of characters to use for indentation of constructor
   /// initializer lists.
   public /*uint*/int ConstructorInitializerIndentWidth;
-  
+
   /// \brief Indent width for line continuations.
   public /*uint*/int ContinuationIndentWidth;
-  
+
   /// \brief If ``true``, format braced lists as best suited for C++11 braced
   /// lists.
   ///
@@ -940,15 +941,15 @@ public class/*struct*/ FormatStyle implements Destructors.ClassWithDestructor, N
   /// the parentheses of a function call with that name. If there is no name,
   /// a zero-length name is assumed.
   public boolean Cpp11BracedListStyle;
-  
+
   /// \brief If ``true``, analyze the formatted file for the most common
   /// alignment of ``&`` and ``*``. ``PointerAlignment`` is then used only as
   /// fallback.
   public boolean DerivePointerAlignment;
-  
+
   /// \brief Disables formatting completely.
   public boolean DisableFormat;
-  
+
   /// \brief If ``true``, clang-format detects whether function calls and
   /// definitions are formatted with one parameter per line.
   ///
@@ -960,7 +961,7 @@ public class/*struct*/ FormatStyle implements Destructors.ClassWithDestructor, N
   /// NOTE: This is an experimental flag, that might go away or be renamed. Do
   /// not use this in config files, etc. Use at your own risk.
   public boolean ExperimentalAutoDetectBinPacking;
-  
+
   /// \brief A vector of macros that should be interpreted as foreach loops
   /// instead of as function calls.
   ///
@@ -977,7 +978,7 @@ public class/*struct*/ FormatStyle implements Destructors.ClassWithDestructor, N
   ///
   /// For example: BOOST_FOREACH.
   public std.vectorString ForEachMacros;
-  
+
   /// \brief See documentation of ``IncludeCategories``.
   //<editor-fold defaultstate="collapsed" desc="clang::format::FormatStyle::IncludeCategory">
   @Converted(kind = Converted.Kind.AUTO,
@@ -1007,7 +1008,7 @@ public class/*struct*/ FormatStyle implements Destructors.ClassWithDestructor, N
      cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Format/Format.cpp -nm=_ZN5clang6format11FormatStyle15IncludeCategoryC1ERKS2_")
     //</editor-fold>
     public /*inline*/ IncludeCategory(final /*const*/ IncludeCategory /*&*/ $Prm0) {
-      // : Regex(.Regex), Priority(.Priority) 
+      // : Regex(.Regex), Priority(.Priority)
       //START JInit
       this.Regex = new std.string($Prm0.Regex);
       this.Priority = $Prm0.Priority;
@@ -1021,7 +1022,7 @@ public class/*struct*/ FormatStyle implements Destructors.ClassWithDestructor, N
      cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Format/Format.cpp -nm=_ZN5clang6format11FormatStyle15IncludeCategoryC1EOS2_")
     //</editor-fold>
     public /*inline*/ IncludeCategory(JD$Move _dparam, final IncludeCategory /*&&*/$Prm0) {
-      // : Regex(static_cast<IncludeCategory &&>().Regex), Priority(static_cast<IncludeCategory &&>().Priority) 
+      // : Regex(static_cast<IncludeCategory &&>().Regex), Priority(static_cast<IncludeCategory &&>().Priority)
       //START JInit
       this.Regex = new std.string(JD$Move.INSTANCE, $Prm0.Regex);
       this.Priority = $Prm0.Priority;
@@ -1059,7 +1060,7 @@ public class/*struct*/ FormatStyle implements Destructors.ClassWithDestructor, N
      cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Format/Format.cpp -nm=_ZN5clang6format11FormatStyle15IncludeCategoryC1Ev")
     //</editor-fold>
     public /*inline*/ IncludeCategory() {
-      // : Regex() 
+      // : Regex()
       //START JInit
       this.Regex = new std.string();
       //END JInit
@@ -1093,7 +1094,7 @@ public class/*struct*/ FormatStyle implements Destructors.ClassWithDestructor, N
       public int $set(int value) {
         Priority = value;
         return Priority;
-      }     
+      }
     };
 
     // EXTRA MEMBERS: END
@@ -1104,7 +1105,7 @@ public class/*struct*/ FormatStyle implements Destructors.ClassWithDestructor, N
                 + ", Priority=" + Priority; // NOI18N
     }
   };
-  
+
   /// \brief Regular expressions denoting the different ``#include`` categories
   /// used for ordering ``#includes``.
   ///
@@ -1132,7 +1133,7 @@ public class/*struct*/ FormatStyle implements Destructors.ClassWithDestructor, N
   ///       Priority:        1
   /// \endcode
   public std.vector<IncludeCategory> IncludeCategories;
-  
+
   /// \brief Specify a regular expression of suffixes that are allowed in the
   /// file-to-main-include mapping.
   ///
@@ -1145,20 +1146,20 @@ public class/*struct*/ FormatStyle implements Destructors.ClassWithDestructor, N
   /// For example, if configured to "(_test)?$", then a header a.h would be seen
   /// as the "main" include in both a.cc and a_test.cc.
   public std.string IncludeIsMainRegex;
-  
+
   /// \brief Indent case labels one level from the switch statement.
   ///
   /// When ``false``, use the same indentation level as for the switch statement.
   /// Switch statement body is always indented one level more than case labels.
   public boolean IndentCaseLabels;
-  
+
   /// \brief The number of columns to use for indentation.
   public /*uint*/int IndentWidth;
-  
+
   /// \brief Indent if a function definition or declaration is wrapped after the
   /// type.
   public boolean IndentWrappedFunctionNames;
-  
+
   /// \brief Quotation styles for JavaScript strings. Does not affect template
   /// strings.
   //<editor-fold defaultstate="collapsed" desc="clang::format::FormatStyle::JavaScriptQuoteStyle">
@@ -1218,16 +1219,16 @@ public class/*struct*/ FormatStyle implements Destructors.ClassWithDestructor, N
     @Override public final /*uint*/int getValue() { return value;}
     //</editor-fold>
   };
-  
+
   /// \brief The JavaScriptQuoteStyle to use for JavaScript strings.
   public JavaScriptQuoteStyle JavaScriptQuotes = JavaScriptQuoteStyle.JSQS_Leave;
-  
+
   /// \brief Whether to wrap JavaScript import/export statements.
   public boolean JavaScriptWrapImports;
-  
+
   /// \brief If true, empty lines at the start of blocks are kept.
   public boolean KeepEmptyLinesAtTheStartOfBlocks;
-  
+
   /// \brief Supported languages.
   ///
   /// When stored in a configuration file, specifies the language, that the
@@ -1248,9 +1249,11 @@ public class/*struct*/ FormatStyle implements Destructors.ClassWithDestructor, N
     LK_Java(LK_Cpp.getValue() + 1),
     /// Should be used for JavaScript.
     LK_JavaScript(LK_Java.getValue() + 1),
+    /// Should be used for ObjC
+    LK_ObjC(LK_JavaScript.getValue() + 1),
     /// Should be used for Protocol Buffers
     /// (https://developers.google.com/protocol-buffers/).
-    LK_Proto(LK_JavaScript.getValue() + 1),
+    LK_Proto(LK_ObjC.getValue() + 1),
     /// Should be used for TableGen code.
     LK_TableGen(LK_Proto.getValue() + 1);
 
@@ -1297,19 +1300,19 @@ public class/*struct*/ FormatStyle implements Destructors.ClassWithDestructor, N
     @Override public final /*uint*/int getValue() { return value;}
     //</editor-fold>
   };
-  
+
   /// \brief Language, this format style is targeted at.
   public LanguageKind Language = LanguageKind.LK_None;
-  
+
   /// \brief A regular expression matching macros that start a block.
   public std.string MacroBlockBegin;
-  
+
   /// \brief A regular expression matching macros that end a block.
   public std.string MacroBlockEnd;
-  
+
   /// \brief The maximum number of consecutive empty lines to keep.
   public /*uint*/int MaxEmptyLinesToKeep;
-  
+
   /// \brief Different ways to indent namespace contents.
   //<editor-fold defaultstate="collapsed" desc="clang::format::FormatStyle::NamespaceIndentationKind">
   @Converted(kind = Converted.Kind.AUTO,
@@ -1368,40 +1371,40 @@ public class/*struct*/ FormatStyle implements Destructors.ClassWithDestructor, N
     @Override public final /*uint*/int getValue() { return value;}
     //</editor-fold>
   };
-  
+
   /// \brief The indentation used for namespaces.
   public NamespaceIndentationKind NamespaceIndentation = NamespaceIndentationKind.NI_None;
-  
+
   /// \brief The number of characters to use for indentation of ObjC blocks.
   public /*uint*/int ObjCBlockIndentWidth;
-  
+
   /// \brief Add a space after ``@property`` in Objective-C, i.e. use
   /// ``@property (readonly)`` instead of ``@property(readonly)``.
   public boolean ObjCSpaceAfterProperty;
-  
+
   /// \brief Add a space in front of an Objective-C protocol list, i.e. use
   /// ``Foo <Protocol>`` instead of ``Foo<Protocol>``.
   public boolean ObjCSpaceBeforeProtocolList;
-  
+
   /// \brief The penalty for breaking a function call after ``call(``.
   public /*uint*/int PenaltyBreakBeforeFirstCallParameter;
-  
+
   /// \brief The penalty for each line break introduced inside a comment.
   public /*uint*/int PenaltyBreakComment;
-  
+
   /// \brief The penalty for breaking before the first ``<<``.
   public /*uint*/int PenaltyBreakFirstLessLess;
-  
+
   /// \brief The penalty for each line break introduced inside a string literal.
   public /*uint*/int PenaltyBreakString;
-  
+
   /// \brief The penalty for each character outside of the column limit.
   public /*uint*/int PenaltyExcessCharacter;
-  
+
   /// \brief Penalty for putting the return type of a function onto its own
   /// line.
   public /*uint*/int PenaltyReturnTypeOnItsOwnLine;
-  
+
   /// \brief The ``&`` and ``*`` alignment style.
   //<editor-fold defaultstate="collapsed" desc="clang::format::FormatStyle::PointerAlignmentStyle">
   @Converted(kind = Converted.Kind.AUTO,
@@ -1460,22 +1463,25 @@ public class/*struct*/ FormatStyle implements Destructors.ClassWithDestructor, N
     @Override public final /*uint*/int getValue() { return value;}
     //</editor-fold>
   };
-  
+
   /// \brief Pointer and reference alignment style.
   public PointerAlignmentStyle PointerAlignment = PointerAlignmentStyle.PAS_Left;
-  
+
   /// \brief If ``true``, clang-format will attempt to re-flow comments.
   public boolean ReflowComments;
-  
+
   /// \brief If ``true``, clang-format will sort ``#includes``.
   public boolean SortIncludes;
-  
+
   /// \brief If ``true``, a space may be inserted after C style casts.
   public boolean SpaceAfterCStyleCast;
-  
+
+  /// \brief If \c true, a space will be inserted after the 'template' keyword.
+  public boolean SpaceAfterTemplateKeyword;
+
   /// \brief If ``false``, spaces will be removed before assignment operators.
   public boolean SpaceBeforeAssignmentOperators;
-  
+
   /// \brief Different ways to put a space before opening parentheses.
   //<editor-fold defaultstate="collapsed" desc="clang::format::FormatStyle::SpaceBeforeParensOptions">
   @Converted(kind = Converted.Kind.AUTO,
@@ -1538,13 +1544,13 @@ public class/*struct*/ FormatStyle implements Destructors.ClassWithDestructor, N
     @Override public final /*uint*/int getValue() { return value;}
     //</editor-fold>
   };
-  
+
   /// \brief Defines in which cases to put a space before opening parentheses.
   public SpaceBeforeParensOptions SpaceBeforeParens = SpaceBeforeParensOptions.SBPO_Never;
-  
+
   /// \brief If ``true``, spaces may be inserted into ``()``.
   public boolean SpaceInEmptyParentheses;
-  
+
   /// \brief The number of spaces before trailing line comments
   /// (``//`` - comments).
   ///
@@ -1552,24 +1558,24 @@ public class/*struct*/ FormatStyle implements Destructors.ClassWithDestructor, N
   /// those commonly have different usage patterns and a number of special
   /// cases.
   public /*uint*/int SpacesBeforeTrailingComments;
-  
+
   /// \brief If ``true``, spaces will be inserted after ``<`` and before ``>``
   /// in template argument lists.
   public boolean SpacesInAngles;
-  
+
   /// \brief If ``true``, spaces are inserted inside container literals (e.g.
   /// ObjC and Javascript array and dict literals).
   public boolean SpacesInContainerLiterals;
-  
+
   /// \brief If ``true``, spaces may be inserted into C style casts.
   public boolean SpacesInCStyleCastParentheses;
-  
+
   /// \brief If ``true``, spaces will be inserted after ``(`` and before ``)``.
   public boolean SpacesInParentheses;
-  
+
   /// \brief If ``true``, spaces will be inserted after ``[`` and before ``]``.
   public boolean SpacesInSquareBrackets;
-  
+
   /// \brief Supported language standards.
   //<editor-fold defaultstate="collapsed" desc="clang::format::FormatStyle::LanguageStandard">
   @Converted(kind = Converted.Kind.AUTO,
@@ -1628,14 +1634,14 @@ public class/*struct*/ FormatStyle implements Destructors.ClassWithDestructor, N
     @Override public final /*uint*/int getValue() { return value;}
     //</editor-fold>
   };
-  
+
   /// \brief Format compatible with this standard, e.g. use ``A<A<int> >``
   /// instead of ``A<A<int>>`` for ``LS_Cpp03``.
   public LanguageStandard Standard = LanguageStandard.LS_Cpp03;
-  
+
   /// \brief The number of columns used for tab stops.
   public /*uint*/int TabWidth;
-  
+
   /// \brief Different ways to use tab in formatting.
   //<editor-fold defaultstate="collapsed" desc="clang::format::FormatStyle::UseTabStyle">
   @Converted(kind = Converted.Kind.AUTO,
@@ -1697,10 +1703,10 @@ public class/*struct*/ FormatStyle implements Destructors.ClassWithDestructor, N
     @Override public final /*uint*/int getValue() { return value;}
     //</editor-fold>
   };
-  
+
   /// \brief The way to use tab characters in the resulting file.
   public UseTabStyle UseTab = UseTabStyle.UT_Never;
-  
+
   //<editor-fold defaultstate="collapsed" desc="clang::format::FormatStyle::operator==">
   @Converted(kind = Converted.Kind.AUTO,
    source = "${LLVM_SRC}/llvm/tools/clang/include/clang/Format/Format.h", line = 633,
@@ -1775,6 +1781,7 @@ public class/*struct*/ FormatStyle implements Destructors.ClassWithDestructor, N
        && PenaltyReturnTypeOnItsOwnLine == R.PenaltyReturnTypeOnItsOwnLine
        && PointerAlignment == R.PointerAlignment
        && SpaceAfterCStyleCast == R.SpaceAfterCStyleCast
+       && SpaceAfterTemplateKeyword == R.SpaceAfterTemplateKeyword
        && SpaceBeforeAssignmentOperators == R.SpaceBeforeAssignmentOperators
        && SpaceBeforeParens == R.SpaceBeforeParens
        && SpaceInEmptyParentheses == R.SpaceInEmptyParentheses
@@ -1795,7 +1802,7 @@ public class/*struct*/ FormatStyle implements Destructors.ClassWithDestructor, N
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Format/Format.cpp -nm=_ZN5clang6format11FormatStyleC1ERKS1_")
   //</editor-fold>
   public /*inline*/ FormatStyle(final /*const*/ FormatStyle /*&*/ $Prm0) {
-    // : AccessModifierOffset(.AccessModifierOffset), AlignAfterOpenBracket(.AlignAfterOpenBracket), AlignConsecutiveAssignments(.AlignConsecutiveAssignments), AlignConsecutiveDeclarations(.AlignConsecutiveDeclarations), AlignEscapedNewlinesLeft(.AlignEscapedNewlinesLeft), AlignOperands(.AlignOperands), AlignTrailingComments(.AlignTrailingComments), AllowAllParametersOfDeclarationOnNextLine(.AllowAllParametersOfDeclarationOnNextLine), AllowShortBlocksOnASingleLine(.AllowShortBlocksOnASingleLine), AllowShortCaseLabelsOnASingleLine(.AllowShortCaseLabelsOnASingleLine), AllowShortFunctionsOnASingleLine(.AllowShortFunctionsOnASingleLine), AllowShortIfStatementsOnASingleLine(.AllowShortIfStatementsOnASingleLine), AllowShortLoopsOnASingleLine(.AllowShortLoopsOnASingleLine), AlwaysBreakAfterDefinitionReturnType(.AlwaysBreakAfterDefinitionReturnType), AlwaysBreakAfterReturnType(.AlwaysBreakAfterReturnType), AlwaysBreakBeforeMultilineStrings(.AlwaysBreakBeforeMultilineStrings), AlwaysBreakTemplateDeclarations(.AlwaysBreakTemplateDeclarations), BinPackArguments(.BinPackArguments), BinPackParameters(.BinPackParameters), BreakBeforeBinaryOperators(.BreakBeforeBinaryOperators), BreakBeforeBraces(.BreakBeforeBraces), BraceWrapping(.BraceWrapping), BreakBeforeTernaryOperators(.BreakBeforeTernaryOperators), BreakConstructorInitializersBeforeComma(.BreakConstructorInitializersBeforeComma), BreakAfterJavaFieldAnnotations(.BreakAfterJavaFieldAnnotations), BreakStringLiterals(.BreakStringLiterals), ColumnLimit(.ColumnLimit), CommentPragmas(.CommentPragmas), ConstructorInitializerAllOnOneLineOrOnePerLine(.ConstructorInitializerAllOnOneLineOrOnePerLine), ConstructorInitializerIndentWidth(.ConstructorInitializerIndentWidth), ContinuationIndentWidth(.ContinuationIndentWidth), Cpp11BracedListStyle(.Cpp11BracedListStyle), DerivePointerAlignment(.DerivePointerAlignment), DisableFormat(.DisableFormat), ExperimentalAutoDetectBinPacking(.ExperimentalAutoDetectBinPacking), ForEachMacros(.ForEachMacros), IncludeCategories(.IncludeCategories), IncludeIsMainRegex(.IncludeIsMainRegex), IndentCaseLabels(.IndentCaseLabels), IndentWidth(.IndentWidth), IndentWrappedFunctionNames(.IndentWrappedFunctionNames), JavaScriptQuotes(.JavaScriptQuotes), JavaScriptWrapImports(.JavaScriptWrapImports), KeepEmptyLinesAtTheStartOfBlocks(.KeepEmptyLinesAtTheStartOfBlocks), Language(.Language), MacroBlockBegin(.MacroBlockBegin), MacroBlockEnd(.MacroBlockEnd), MaxEmptyLinesToKeep(.MaxEmptyLinesToKeep), NamespaceIndentation(.NamespaceIndentation), ObjCBlockIndentWidth(.ObjCBlockIndentWidth), ObjCSpaceAfterProperty(.ObjCSpaceAfterProperty), ObjCSpaceBeforeProtocolList(.ObjCSpaceBeforeProtocolList), PenaltyBreakBeforeFirstCallParameter(.PenaltyBreakBeforeFirstCallParameter), PenaltyBreakComment(.PenaltyBreakComment), PenaltyBreakFirstLessLess(.PenaltyBreakFirstLessLess), PenaltyBreakString(.PenaltyBreakString), PenaltyExcessCharacter(.PenaltyExcessCharacter), PenaltyReturnTypeOnItsOwnLine(.PenaltyReturnTypeOnItsOwnLine), PointerAlignment(.PointerAlignment), ReflowComments(.ReflowComments), SortIncludes(.SortIncludes), SpaceAfterCStyleCast(.SpaceAfterCStyleCast), SpaceBeforeAssignmentOperators(.SpaceBeforeAssignmentOperators), SpaceBeforeParens(.SpaceBeforeParens), SpaceInEmptyParentheses(.SpaceInEmptyParentheses), SpacesBeforeTrailingComments(.SpacesBeforeTrailingComments), SpacesInAngles(.SpacesInAngles), SpacesInContainerLiterals(.SpacesInContainerLiterals), SpacesInCStyleCastParentheses(.SpacesInCStyleCastParentheses), SpacesInParentheses(.SpacesInParentheses), SpacesInSquareBrackets(.SpacesInSquareBrackets), Standard(.Standard), TabWidth(.TabWidth), UseTab(.UseTab) 
+    // : AccessModifierOffset(.AccessModifierOffset), AlignAfterOpenBracket(.AlignAfterOpenBracket), AlignConsecutiveAssignments(.AlignConsecutiveAssignments), AlignConsecutiveDeclarations(.AlignConsecutiveDeclarations), AlignEscapedNewlinesLeft(.AlignEscapedNewlinesLeft), AlignOperands(.AlignOperands), AlignTrailingComments(.AlignTrailingComments), AllowAllParametersOfDeclarationOnNextLine(.AllowAllParametersOfDeclarationOnNextLine), AllowShortBlocksOnASingleLine(.AllowShortBlocksOnASingleLine), AllowShortCaseLabelsOnASingleLine(.AllowShortCaseLabelsOnASingleLine), AllowShortFunctionsOnASingleLine(.AllowShortFunctionsOnASingleLine), AllowShortIfStatementsOnASingleLine(.AllowShortIfStatementsOnASingleLine), AllowShortLoopsOnASingleLine(.AllowShortLoopsOnASingleLine), AlwaysBreakAfterDefinitionReturnType(.AlwaysBreakAfterDefinitionReturnType), AlwaysBreakAfterReturnType(.AlwaysBreakAfterReturnType), AlwaysBreakBeforeMultilineStrings(.AlwaysBreakBeforeMultilineStrings), AlwaysBreakTemplateDeclarations(.AlwaysBreakTemplateDeclarations), BinPackArguments(.BinPackArguments), BinPackParameters(.BinPackParameters), BreakBeforeBinaryOperators(.BreakBeforeBinaryOperators), BreakBeforeBraces(.BreakBeforeBraces), BraceWrapping(.BraceWrapping), BreakBeforeTernaryOperators(.BreakBeforeTernaryOperators), BreakConstructorInitializersBeforeComma(.BreakConstructorInitializersBeforeComma), BreakAfterJavaFieldAnnotations(.BreakAfterJavaFieldAnnotations), BreakStringLiterals(.BreakStringLiterals), ColumnLimit(.ColumnLimit), CommentPragmas(.CommentPragmas), ConstructorInitializerAllOnOneLineOrOnePerLine(.ConstructorInitializerAllOnOneLineOrOnePerLine), ConstructorInitializerIndentWidth(.ConstructorInitializerIndentWidth), ContinuationIndentWidth(.ContinuationIndentWidth), Cpp11BracedListStyle(.Cpp11BracedListStyle), DerivePointerAlignment(.DerivePointerAlignment), DisableFormat(.DisableFormat), ExperimentalAutoDetectBinPacking(.ExperimentalAutoDetectBinPacking), ForEachMacros(.ForEachMacros), IncludeCategories(.IncludeCategories), IncludeIsMainRegex(.IncludeIsMainRegex), IndentCaseLabels(.IndentCaseLabels), IndentWidth(.IndentWidth), IndentWrappedFunctionNames(.IndentWrappedFunctionNames), JavaScriptQuotes(.JavaScriptQuotes), JavaScriptWrapImports(.JavaScriptWrapImports), KeepEmptyLinesAtTheStartOfBlocks(.KeepEmptyLinesAtTheStartOfBlocks), Language(.Language), MacroBlockBegin(.MacroBlockBegin), MacroBlockEnd(.MacroBlockEnd), MaxEmptyLinesToKeep(.MaxEmptyLinesToKeep), NamespaceIndentation(.NamespaceIndentation), ObjCBlockIndentWidth(.ObjCBlockIndentWidth), ObjCSpaceAfterProperty(.ObjCSpaceAfterProperty), ObjCSpaceBeforeProtocolList(.ObjCSpaceBeforeProtocolList), PenaltyBreakBeforeFirstCallParameter(.PenaltyBreakBeforeFirstCallParameter), PenaltyBreakComment(.PenaltyBreakComment), PenaltyBreakFirstLessLess(.PenaltyBreakFirstLessLess), PenaltyBreakString(.PenaltyBreakString), PenaltyExcessCharacter(.PenaltyExcessCharacter), PenaltyReturnTypeOnItsOwnLine(.PenaltyReturnTypeOnItsOwnLine), PointerAlignment(.PointerAlignment), ReflowComments(.ReflowComments), SortIncludes(.SortIncludes), SpaceAfterCStyleCast(.SpaceAfterCStyleCast), SpaceBeforeAssignmentOperators(.SpaceBeforeAssignmentOperators), SpaceBeforeParens(.SpaceBeforeParens), SpaceInEmptyParentheses(.SpaceInEmptyParentheses), SpacesBeforeTrailingComments(.SpacesBeforeTrailingComments), SpacesInAngles(.SpacesInAngles), SpacesInContainerLiterals(.SpacesInContainerLiterals), SpacesInCStyleCastParentheses(.SpacesInCStyleCastParentheses), SpacesInParentheses(.SpacesInParentheses), SpacesInSquareBrackets(.SpacesInSquareBrackets), Standard(.Standard), TabWidth(.TabWidth), UseTab(.UseTab)
     //START JInit
     this.AccessModifierOffset = $Prm0.AccessModifierOffset;
     this.AlignAfterOpenBracket = $Prm0.AlignAfterOpenBracket;
@@ -1881,7 +1888,7 @@ public class/*struct*/ FormatStyle implements Destructors.ClassWithDestructor, N
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Format/Format.cpp -nm=_ZN5clang6format11FormatStyleC1EOS1_")
   //</editor-fold>
   public /*inline*/ FormatStyle(JD$Move _dparam, final FormatStyle /*&&*/$Prm0) {
-    // : AccessModifierOffset(static_cast<FormatStyle &&>().AccessModifierOffset), AlignAfterOpenBracket(static_cast<FormatStyle &&>().AlignAfterOpenBracket), AlignConsecutiveAssignments(static_cast<FormatStyle &&>().AlignConsecutiveAssignments), AlignConsecutiveDeclarations(static_cast<FormatStyle &&>().AlignConsecutiveDeclarations), AlignEscapedNewlinesLeft(static_cast<FormatStyle &&>().AlignEscapedNewlinesLeft), AlignOperands(static_cast<FormatStyle &&>().AlignOperands), AlignTrailingComments(static_cast<FormatStyle &&>().AlignTrailingComments), AllowAllParametersOfDeclarationOnNextLine(static_cast<FormatStyle &&>().AllowAllParametersOfDeclarationOnNextLine), AllowShortBlocksOnASingleLine(static_cast<FormatStyle &&>().AllowShortBlocksOnASingleLine), AllowShortCaseLabelsOnASingleLine(static_cast<FormatStyle &&>().AllowShortCaseLabelsOnASingleLine), AllowShortFunctionsOnASingleLine(static_cast<FormatStyle &&>().AllowShortFunctionsOnASingleLine), AllowShortIfStatementsOnASingleLine(static_cast<FormatStyle &&>().AllowShortIfStatementsOnASingleLine), AllowShortLoopsOnASingleLine(static_cast<FormatStyle &&>().AllowShortLoopsOnASingleLine), AlwaysBreakAfterDefinitionReturnType(static_cast<FormatStyle &&>().AlwaysBreakAfterDefinitionReturnType), AlwaysBreakAfterReturnType(static_cast<FormatStyle &&>().AlwaysBreakAfterReturnType), AlwaysBreakBeforeMultilineStrings(static_cast<FormatStyle &&>().AlwaysBreakBeforeMultilineStrings), AlwaysBreakTemplateDeclarations(static_cast<FormatStyle &&>().AlwaysBreakTemplateDeclarations), BinPackArguments(static_cast<FormatStyle &&>().BinPackArguments), BinPackParameters(static_cast<FormatStyle &&>().BinPackParameters), BreakBeforeBinaryOperators(static_cast<FormatStyle &&>().BreakBeforeBinaryOperators), BreakBeforeBraces(static_cast<FormatStyle &&>().BreakBeforeBraces), BraceWrapping(static_cast<FormatStyle &&>().BraceWrapping), BreakBeforeTernaryOperators(static_cast<FormatStyle &&>().BreakBeforeTernaryOperators), BreakConstructorInitializersBeforeComma(static_cast<FormatStyle &&>().BreakConstructorInitializersBeforeComma), BreakAfterJavaFieldAnnotations(static_cast<FormatStyle &&>().BreakAfterJavaFieldAnnotations), BreakStringLiterals(static_cast<FormatStyle &&>().BreakStringLiterals), ColumnLimit(static_cast<FormatStyle &&>().ColumnLimit), CommentPragmas(static_cast<FormatStyle &&>().CommentPragmas), ConstructorInitializerAllOnOneLineOrOnePerLine(static_cast<FormatStyle &&>().ConstructorInitializerAllOnOneLineOrOnePerLine), ConstructorInitializerIndentWidth(static_cast<FormatStyle &&>().ConstructorInitializerIndentWidth), ContinuationIndentWidth(static_cast<FormatStyle &&>().ContinuationIndentWidth), Cpp11BracedListStyle(static_cast<FormatStyle &&>().Cpp11BracedListStyle), DerivePointerAlignment(static_cast<FormatStyle &&>().DerivePointerAlignment), DisableFormat(static_cast<FormatStyle &&>().DisableFormat), ExperimentalAutoDetectBinPacking(static_cast<FormatStyle &&>().ExperimentalAutoDetectBinPacking), ForEachMacros(static_cast<FormatStyle &&>().ForEachMacros), IncludeCategories(static_cast<FormatStyle &&>().IncludeCategories), IncludeIsMainRegex(static_cast<FormatStyle &&>().IncludeIsMainRegex), IndentCaseLabels(static_cast<FormatStyle &&>().IndentCaseLabels), IndentWidth(static_cast<FormatStyle &&>().IndentWidth), IndentWrappedFunctionNames(static_cast<FormatStyle &&>().IndentWrappedFunctionNames), JavaScriptQuotes(static_cast<FormatStyle &&>().JavaScriptQuotes), JavaScriptWrapImports(static_cast<FormatStyle &&>().JavaScriptWrapImports), KeepEmptyLinesAtTheStartOfBlocks(static_cast<FormatStyle &&>().KeepEmptyLinesAtTheStartOfBlocks), Language(static_cast<FormatStyle &&>().Language), MacroBlockBegin(static_cast<FormatStyle &&>().MacroBlockBegin), MacroBlockEnd(static_cast<FormatStyle &&>().MacroBlockEnd), MaxEmptyLinesToKeep(static_cast<FormatStyle &&>().MaxEmptyLinesToKeep), NamespaceIndentation(static_cast<FormatStyle &&>().NamespaceIndentation), ObjCBlockIndentWidth(static_cast<FormatStyle &&>().ObjCBlockIndentWidth), ObjCSpaceAfterProperty(static_cast<FormatStyle &&>().ObjCSpaceAfterProperty), ObjCSpaceBeforeProtocolList(static_cast<FormatStyle &&>().ObjCSpaceBeforeProtocolList), PenaltyBreakBeforeFirstCallParameter(static_cast<FormatStyle &&>().PenaltyBreakBeforeFirstCallParameter), PenaltyBreakComment(static_cast<FormatStyle &&>().PenaltyBreakComment), PenaltyBreakFirstLessLess(static_cast<FormatStyle &&>().PenaltyBreakFirstLessLess), PenaltyBreakString(static_cast<FormatStyle &&>().PenaltyBreakString), PenaltyExcessCharacter(static_cast<FormatStyle &&>().PenaltyExcessCharacter), PenaltyReturnTypeOnItsOwnLine(static_cast<FormatStyle &&>().PenaltyReturnTypeOnItsOwnLine), PointerAlignment(static_cast<FormatStyle &&>().PointerAlignment), ReflowComments(static_cast<FormatStyle &&>().ReflowComments), SortIncludes(static_cast<FormatStyle &&>().SortIncludes), SpaceAfterCStyleCast(static_cast<FormatStyle &&>().SpaceAfterCStyleCast), SpaceBeforeAssignmentOperators(static_cast<FormatStyle &&>().SpaceBeforeAssignmentOperators), SpaceBeforeParens(static_cast<FormatStyle &&>().SpaceBeforeParens), SpaceInEmptyParentheses(static_cast<FormatStyle &&>().SpaceInEmptyParentheses), SpacesBeforeTrailingComments(static_cast<FormatStyle &&>().SpacesBeforeTrailingComments), SpacesInAngles(static_cast<FormatStyle &&>().SpacesInAngles), SpacesInContainerLiterals(static_cast<FormatStyle &&>().SpacesInContainerLiterals), SpacesInCStyleCastParentheses(static_cast<FormatStyle &&>().SpacesInCStyleCastParentheses), SpacesInParentheses(static_cast<FormatStyle &&>().SpacesInParentheses), SpacesInSquareBrackets(static_cast<FormatStyle &&>().SpacesInSquareBrackets), Standard(static_cast<FormatStyle &&>().Standard), TabWidth(static_cast<FormatStyle &&>().TabWidth), UseTab(static_cast<FormatStyle &&>().UseTab) 
+    // : AccessModifierOffset(static_cast<FormatStyle &&>().AccessModifierOffset), AlignAfterOpenBracket(static_cast<FormatStyle &&>().AlignAfterOpenBracket), AlignConsecutiveAssignments(static_cast<FormatStyle &&>().AlignConsecutiveAssignments), AlignConsecutiveDeclarations(static_cast<FormatStyle &&>().AlignConsecutiveDeclarations), AlignEscapedNewlinesLeft(static_cast<FormatStyle &&>().AlignEscapedNewlinesLeft), AlignOperands(static_cast<FormatStyle &&>().AlignOperands), AlignTrailingComments(static_cast<FormatStyle &&>().AlignTrailingComments), AllowAllParametersOfDeclarationOnNextLine(static_cast<FormatStyle &&>().AllowAllParametersOfDeclarationOnNextLine), AllowShortBlocksOnASingleLine(static_cast<FormatStyle &&>().AllowShortBlocksOnASingleLine), AllowShortCaseLabelsOnASingleLine(static_cast<FormatStyle &&>().AllowShortCaseLabelsOnASingleLine), AllowShortFunctionsOnASingleLine(static_cast<FormatStyle &&>().AllowShortFunctionsOnASingleLine), AllowShortIfStatementsOnASingleLine(static_cast<FormatStyle &&>().AllowShortIfStatementsOnASingleLine), AllowShortLoopsOnASingleLine(static_cast<FormatStyle &&>().AllowShortLoopsOnASingleLine), AlwaysBreakAfterDefinitionReturnType(static_cast<FormatStyle &&>().AlwaysBreakAfterDefinitionReturnType), AlwaysBreakAfterReturnType(static_cast<FormatStyle &&>().AlwaysBreakAfterReturnType), AlwaysBreakBeforeMultilineStrings(static_cast<FormatStyle &&>().AlwaysBreakBeforeMultilineStrings), AlwaysBreakTemplateDeclarations(static_cast<FormatStyle &&>().AlwaysBreakTemplateDeclarations), BinPackArguments(static_cast<FormatStyle &&>().BinPackArguments), BinPackParameters(static_cast<FormatStyle &&>().BinPackParameters), BreakBeforeBinaryOperators(static_cast<FormatStyle &&>().BreakBeforeBinaryOperators), BreakBeforeBraces(static_cast<FormatStyle &&>().BreakBeforeBraces), BraceWrapping(static_cast<FormatStyle &&>().BraceWrapping), BreakBeforeTernaryOperators(static_cast<FormatStyle &&>().BreakBeforeTernaryOperators), BreakConstructorInitializersBeforeComma(static_cast<FormatStyle &&>().BreakConstructorInitializersBeforeComma), BreakAfterJavaFieldAnnotations(static_cast<FormatStyle &&>().BreakAfterJavaFieldAnnotations), BreakStringLiterals(static_cast<FormatStyle &&>().BreakStringLiterals), ColumnLimit(static_cast<FormatStyle &&>().ColumnLimit), CommentPragmas(static_cast<FormatStyle &&>().CommentPragmas), ConstructorInitializerAllOnOneLineOrOnePerLine(static_cast<FormatStyle &&>().ConstructorInitializerAllOnOneLineOrOnePerLine), ConstructorInitializerIndentWidth(static_cast<FormatStyle &&>().ConstructorInitializerIndentWidth), ContinuationIndentWidth(static_cast<FormatStyle &&>().ContinuationIndentWidth), Cpp11BracedListStyle(static_cast<FormatStyle &&>().Cpp11BracedListStyle), DerivePointerAlignment(static_cast<FormatStyle &&>().DerivePointerAlignment), DisableFormat(static_cast<FormatStyle &&>().DisableFormat), ExperimentalAutoDetectBinPacking(static_cast<FormatStyle &&>().ExperimentalAutoDetectBinPacking), ForEachMacros(static_cast<FormatStyle &&>().ForEachMacros), IncludeCategories(static_cast<FormatStyle &&>().IncludeCategories), IncludeIsMainRegex(static_cast<FormatStyle &&>().IncludeIsMainRegex), IndentCaseLabels(static_cast<FormatStyle &&>().IndentCaseLabels), IndentWidth(static_cast<FormatStyle &&>().IndentWidth), IndentWrappedFunctionNames(static_cast<FormatStyle &&>().IndentWrappedFunctionNames), JavaScriptQuotes(static_cast<FormatStyle &&>().JavaScriptQuotes), JavaScriptWrapImports(static_cast<FormatStyle &&>().JavaScriptWrapImports), KeepEmptyLinesAtTheStartOfBlocks(static_cast<FormatStyle &&>().KeepEmptyLinesAtTheStartOfBlocks), Language(static_cast<FormatStyle &&>().Language), MacroBlockBegin(static_cast<FormatStyle &&>().MacroBlockBegin), MacroBlockEnd(static_cast<FormatStyle &&>().MacroBlockEnd), MaxEmptyLinesToKeep(static_cast<FormatStyle &&>().MaxEmptyLinesToKeep), NamespaceIndentation(static_cast<FormatStyle &&>().NamespaceIndentation), ObjCBlockIndentWidth(static_cast<FormatStyle &&>().ObjCBlockIndentWidth), ObjCSpaceAfterProperty(static_cast<FormatStyle &&>().ObjCSpaceAfterProperty), ObjCSpaceBeforeProtocolList(static_cast<FormatStyle &&>().ObjCSpaceBeforeProtocolList), PenaltyBreakBeforeFirstCallParameter(static_cast<FormatStyle &&>().PenaltyBreakBeforeFirstCallParameter), PenaltyBreakComment(static_cast<FormatStyle &&>().PenaltyBreakComment), PenaltyBreakFirstLessLess(static_cast<FormatStyle &&>().PenaltyBreakFirstLessLess), PenaltyBreakString(static_cast<FormatStyle &&>().PenaltyBreakString), PenaltyExcessCharacter(static_cast<FormatStyle &&>().PenaltyExcessCharacter), PenaltyReturnTypeOnItsOwnLine(static_cast<FormatStyle &&>().PenaltyReturnTypeOnItsOwnLine), PointerAlignment(static_cast<FormatStyle &&>().PointerAlignment), ReflowComments(static_cast<FormatStyle &&>().ReflowComments), SortIncludes(static_cast<FormatStyle &&>().SortIncludes), SpaceAfterCStyleCast(static_cast<FormatStyle &&>().SpaceAfterCStyleCast), SpaceBeforeAssignmentOperators(static_cast<FormatStyle &&>().SpaceBeforeAssignmentOperators), SpaceBeforeParens(static_cast<FormatStyle &&>().SpaceBeforeParens), SpaceInEmptyParentheses(static_cast<FormatStyle &&>().SpaceInEmptyParentheses), SpacesBeforeTrailingComments(static_cast<FormatStyle &&>().SpacesBeforeTrailingComments), SpacesInAngles(static_cast<FormatStyle &&>().SpacesInAngles), SpacesInContainerLiterals(static_cast<FormatStyle &&>().SpacesInContainerLiterals), SpacesInCStyleCastParentheses(static_cast<FormatStyle &&>().SpacesInCStyleCastParentheses), SpacesInParentheses(static_cast<FormatStyle &&>().SpacesInParentheses), SpacesInSquareBrackets(static_cast<FormatStyle &&>().SpacesInSquareBrackets), Standard(static_cast<FormatStyle &&>().Standard), TabWidth(static_cast<FormatStyle &&>().TabWidth), UseTab(static_cast<FormatStyle &&>().UseTab)
     //START JInit
     this.AccessModifierOffset = $Prm0.AccessModifierOffset;
     this.AlignAfterOpenBracket = $Prm0.AlignAfterOpenBracket;
@@ -2152,7 +2159,7 @@ public class/*struct*/ FormatStyle implements Destructors.ClassWithDestructor, N
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Format/Format.cpp -nm=_ZN5clang6format11FormatStyleC1Ev")
   //</editor-fold>
   public /*inline*/ FormatStyle() {
-    // : BraceWrapping(), CommentPragmas(), ForEachMacros(), IncludeCategories(), IncludeIsMainRegex(), MacroBlockBegin(), MacroBlockEnd() 
+    // : BraceWrapping(), CommentPragmas(), ForEachMacros(), IncludeCategories(), IncludeIsMainRegex(), MacroBlockBegin(), MacroBlockEnd()
     //START JInit
     this.BraceWrapping = new BraceWrappingFlags();
     this.CommentPragmas = new std.string();
@@ -2172,33 +2179,33 @@ public class/*struct*/ FormatStyle implements Destructors.ClassWithDestructor, N
     public LanguageKind $deref() {
       return Language;
     }
-  
+
     @Override
     public LanguageKind $set(LanguageKind value) {
       Language = value;
       return Language;
     }
   };
-  
+
   public  org.clank.support.aliases.type$ref<DefinitionReturnTypeBreakingStyle> AlwaysBreakAfterDefinitionReturnType_ref = new  org.clank.support.aliases.type$ref<DefinitionReturnTypeBreakingStyle>(){
     @Override
     public DefinitionReturnTypeBreakingStyle $deref() {
       return AlwaysBreakAfterDefinitionReturnType;
     }
-  
+
     @Override
     public DefinitionReturnTypeBreakingStyle $set(DefinitionReturnTypeBreakingStyle value) {
       AlwaysBreakAfterDefinitionReturnType = value;
       return AlwaysBreakAfterDefinitionReturnType;
     }
   };
-  
+
   public  org.clank.support.aliases.type$ref<ReturnTypeBreakingStyle> AlwaysBreakAfterReturnType_ref = new  org.clank.support.aliases.type$ref<ReturnTypeBreakingStyle>(){
     @Override
     public ReturnTypeBreakingStyle $deref() {
       return AlwaysBreakAfterReturnType;
     }
-  
+
     @Override
     public ReturnTypeBreakingStyle $set(ReturnTypeBreakingStyle value) {
       AlwaysBreakAfterReturnType = value;
@@ -2316,6 +2323,18 @@ public class/*struct*/ FormatStyle implements Destructors.ClassWithDestructor, N
     public boolean $set(boolean value) {
       AllowShortCaseLabelsOnASingleLine = value;
       return AllowShortCaseLabelsOnASingleLine;
+    }
+  };
+  public bool$ref SpaceAfterTemplateKeyword_ref = new bool$ref() {
+    @Override
+    public boolean $deref() {
+      return SpaceAfterTemplateKeyword;
+    }
+
+    @Override
+    public boolean $set(boolean value) {
+      SpaceAfterTemplateKeyword = value;
+      return SpaceAfterTemplateKeyword;
     }
   };
   public bool$ref AllowShortIfStatementsOnASingleLine_ref = new bool$ref(){
@@ -2985,11 +3004,11 @@ public class/*struct*/ FormatStyle implements Destructors.ClassWithDestructor, N
   //public std.vectorString ForEachMacros;
   //public std.vector<IncludeCategory> IncludeCategories;
   //public BraceWrappingFlags BraceWrapping;
-  
-  
+
+
   // EXTRA MEMBERS: END
   //////////////////////////////////////////////////////////////
-  
+
   @Override public String toString() {
     return "" + "AccessModifierOffset=" + AccessModifierOffset // NOI18N
               + ", AlignAfterOpenBracket=" + AlignAfterOpenBracket // NOI18N

@@ -1,43 +1,43 @@
 /**
  * This file was converted to Java from the original LLVM source file. The original
  * source file follows the LLVM Release License, outlined below.
- * 
+ *
  * ==============================================================================
  * LLVM Release License
  * ==============================================================================
  * University of Illinois/NCSA
  * Open Source License
- * 
+ *
  * Copyright (c) 2003-2017 University of Illinois at Urbana-Champaign.
  * All rights reserved.
- * 
+ *
  * Developed by:
- * 
+ *
  *     LLVM Team
- * 
+ *
  *     University of Illinois at Urbana-Champaign
- * 
+ *
  *     http://llvm.org
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal with
  * the Software without restriction, including without limitation the rights to
  * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
  * of the Software, and to permit persons to whom the Software is furnished to do
  * so, subject to the following conditions:
- * 
+ *
  *     * Redistributions of source code must retain the above copyright notice,
  *       this list of conditions and the following disclaimers.
- * 
+ *
  *     * Redistributions in binary form must reproduce the above copyright notice
  *       this list of conditions and the following disclaimers in the
  *       documentation and/or other materials provided with the distribution.
- * 
+ *
  *     * Neither the names of the LLVM Team, University of Illinois at
  *       Urbana-Champaign, nor the names of its contributors may be used to
  *       endorse or promote products derived from this Software without specific
  *       prior written permission.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
  * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
@@ -45,7 +45,7 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS WITH THE
  * SOFTWARE.
- * 
+ *
  * ==============================================================================
  * Copyrights and Licenses for Third Party Software Distributed with LLVM:
  * ==============================================================================
@@ -53,16 +53,16 @@
  * have its own individual LICENSE.TXT file in the directory in which it appears.
  * This file will describe the copyrights, license, and restrictions which apply
  * to that code.
- * 
+ *
  * The disclaimer of warranty in the University of Illinois Open Source License
  * applies to all code in the LLVM Distribution, and nothing in any of the
  * other licenses gives permission to use the names of the LLVM Team or the
  * University of Illinois to endorse or promote products derived from this
  * Software.
- * 
+ *
  * The following pieces of software have additional or alternate copyrights,
  * licenses, and/or restrictions:
- * 
+ *
  * Program             Directory
  * -------             ---------
  * Autoconf            llvm/autoconf
@@ -76,19 +76,20 @@
 
 package org.clang.format.impl;
 
+import org.clang.basic.*;
+import org.clang.format.*;
+import org.clang.format.impl.EncodingStatics.Encoding;
+import static org.clang.format.impl.FormatStatics.*;
 import org.clank.java.*;
 import org.clank.support.*;
 import org.clank.support.JavaDifferentiators.*;
-import static org.llvm.adt.ADTAliases.*;
-import static org.llvm.support.llvm.*;
-import static org.clank.support.NativePointer.*;
+import org.clank.support.JavaDifferentiators.JD$Move;
 import static org.clank.support.Unsigned.*;
-import org.llvm.support.*;
+import static org.clank.support.literal_constants.$DBL_QUOTE;
 import org.llvm.adt.*;
-import org.clang.basic.*;
-import org.clang.format.*;
-import static org.clang.format.impl.EncodingStatics.*;
-import static org.clang.format.impl.FormatStatics.*;
+import static org.llvm.adt.ADTAliases.*;
+import org.llvm.support.*;
+import static org.llvm.support.llvm.*;
 
 //<editor-fold defaultstate="collapsed" desc="clang::format::ContinuationIndenter">
 @Converted(kind = Converted.Kind.AUTO,
@@ -106,13 +107,13 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
    FQN="clang::format::ContinuationIndenter::ContinuationIndenter", NM="_ZN5clang6format20ContinuationIndenterC1ERKNS0_11FormatStyleERKNS0_18AdditionalKeywordsERKNS_13SourceManagerERNS0_17WhitespaceManagerENS0_8encoding8EncodingEb",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Format/ContinuationIndenter.cpp -nm=_ZN5clang6format20ContinuationIndenterC1ERKNS0_11FormatStyleERKNS0_18AdditionalKeywordsERKNS_13SourceManagerERNS0_17WhitespaceManagerENS0_8encoding8EncodingEb")
   //</editor-fold>
-  public ContinuationIndenter(final /*const*/ FormatStyle /*&*/ Style, 
-      final /*const*/ AdditionalKeywords /*&*/ Keywords, 
-      final /*const*/ SourceManager /*&*/ SourceMgr, 
-      final WhitespaceManager /*&*/ Whitespaces, 
-      /*enum_conversion.properties: ADD FQN MAPPING FOR ENUM[encoding::Encoding] using FQN clang::format::encoding::Encoding*/Encoding $Encoding, 
+  public ContinuationIndenter(final /*const*/ FormatStyle /*&*/ Style,
+      final /*const*/ AdditionalKeywords /*&*/ Keywords,
+      final /*const*/ SourceManager /*&*/ SourceMgr,
+      final WhitespaceManager /*&*/ Whitespaces,
+      /*enum_conversion.properties: ADD FQN MAPPING FOR ENUM[encoding::Encoding] using FQN clang::format::encoding::Encoding*/Encoding $Encoding,
       boolean BinPackInconclusiveFunctions) {
-    // : Style(Style), Keywords(Keywords), SourceMgr(SourceMgr), Whitespaces(Whitespaces), Encoding(Encoding), BinPackInconclusiveFunctions(BinPackInconclusiveFunctions), CommentPragmasRegex(Style.CommentPragmas) 
+    // : Style(Style), Keywords(Keywords), SourceMgr(SourceMgr), Whitespaces(Whitespaces), Encoding(Encoding), BinPackInconclusiveFunctions(BinPackInconclusiveFunctions), CommentPragmasRegex(Style.CommentPragmas)
     //START JInit
     this.Style = new FormatStyle(Style);
     this./*&*/Keywords=/*&*/Keywords;
@@ -124,7 +125,7 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
     //END JInit
   }
 
-  
+
   /// \brief Get the initial state, i.e. the state after placing \p Line's
   /// first token at \p FirstIndent.
   //<editor-fold defaultstate="collapsed" desc="clang::format::ContinuationIndenter::getInitialState">
@@ -133,8 +134,8 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
    FQN="clang::format::ContinuationIndenter::getInitialState", NM="_ZN5clang6format20ContinuationIndenter15getInitialStateEjPKNS0_13AnnotatedLineEb",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Format/ContinuationIndenter.cpp -nm=_ZN5clang6format20ContinuationIndenter15getInitialStateEjPKNS0_13AnnotatedLineEb")
   //</editor-fold>
-  public LineState getInitialState(/*uint*/int FirstIndent, 
-                 /*const*/ AnnotatedLine /*P*/ Line, 
+  public LineState getInitialState(/*uint*/int FirstIndent,
+                 /*const*/ AnnotatedLine /*P*/ Line,
                  boolean DryRun) {
     LineState State = null;
     try {
@@ -143,15 +144,15 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
       State.Column = FirstIndent;
       State.Line = Line;
       State.NextToken = Line.First;
-      State.Stack.push_back_T$RR(new ParenState(FirstIndent, Line.Level, FirstIndent, 
-              /*AvoidBinPacking=*/ false, 
+      State.Stack.push_back_T$RR(new ParenState(FirstIndent, Line.Level, FirstIndent,
+              /*AvoidBinPacking=*/ false,
               /*NoLineBreak=*/ false));
       State.LineContainsContinuedForLoopSection = false;
       State.StartOfStringLiteral = 0;
       State.StartOfLineLevel = 0;
       State.LowestLevelOnLine = 0;
       State.IgnoreStackForComparison = false;
-      
+
       // The first token has already been indented and thus consumed.
       moveStateToNextToken(State, DryRun, /*Newline=*/ false);
       return new LineState(JD$Move.INSTANCE, State);
@@ -160,7 +161,7 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
     }
   }
 
-  
+
   // FIXME: canBreak and mustBreak aren't strictly indentation-related. Find a
   // better home.
   /// \brief Returns \c true, if a line break after \p State is allowed.
@@ -200,7 +201,7 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
     if (Current.isMemberAccess() && State.Stack.back$Const().ContainsUnwrappedBuilder) {
       return false;
     }
-    
+
     // Don't create a 'hanging' indent if there are multiple blocks in a single
     // statement.
     if (Previous.is_TokenKind(tok.TokenKind.l_brace) && $greater_uint(State.Stack.size(), 1)
@@ -208,7 +209,7 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
        && State.Stack.$at$Const(State.Stack.size() - 2).HasMultipleNestedBlocks) {
       return false;
     }
-    
+
     // Don't break after very short return types (e.g. "void") as that is often
     // unexpected.
     if (Current.is_TokenType(TokenType.TT_FunctionDeclarationName) && $less_uint(State.Column, 6)) {
@@ -216,11 +217,11 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
         return false;
       }
     }
-    
+
     return !State.Stack.back$Const().NoLineBreak;
   }
 
-  
+
   /// \brief Returns \c true, if a line break after \p State is mandatory.
   //<editor-fold defaultstate="collapsed" desc="clang::format::ContinuationIndenter::mustBreak">
   @Converted(kind = Converted.Kind.AUTO,
@@ -273,11 +274,15 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
        || Style.BreakConstructorInitializersBeforeComma || Style.ColumnLimit != 0)) {
       return true;
     }
+    if (Current.is_TokenType(TokenType.TT_ObjCMethodExpr) && !Previous.is_TokenType(TokenType.TT_SelectorName)
+       && State.Line.startsWith(TokenType.TT_ObjCMethodSpecifier)) {
+      return true;
+    }
     if (Current.is_TokenType(TokenType.TT_SelectorName) && State.Stack.back$Const().ObjCSelectorNameFound
        && State.Stack.back$Const().BreakBeforeParameter) {
       return true;
     }
-    
+
     /*uint*/int NewLineColumn = getNewLineColumn(State);
     if (Current.isMemberAccess() && Style.ColumnLimit != 0
        && $greater_uint(State.Column + getLengthToNextOperator(Current), Style.ColumnLimit)
@@ -296,7 +301,7 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
        && nextIsMultilineString(State)) {
       return true;
     }
-    
+
     // Using CanBreakBefore here and below takes care of the decision whether the
     // current style uses wrapping before or after operators for the given
     // operator.
@@ -324,7 +329,7 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
        && State.Stack.back$Const().BreakBeforeParameter) {
       return true;
     }
-    
+
     // Same as above, but for the first "<<" operator.
     if (Current.is_TokenKind(tok.TokenKind.lessless) && Current.isNot(TokenType.TT_OverloadedOperator)
        && State.Stack.back$Const().BreakBeforeParameter
@@ -346,7 +351,7 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
         return true;
       }
     }
-    
+
     // If the return type spans multiple lines, wrap before the function name.
     if ((Current.is_TokenType(TokenType.TT_FunctionDeclarationName)
        || (Current.is_TokenKind(tok.TokenKind.kw_operator) && !Previous.is_TokenKind(tok.TokenKind.coloncolon)))
@@ -358,7 +363,7 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
        || State.Stack.back$Const().BreakBeforeParameter)) {
       return true;
     }
-    
+
     // The following could be precomputed as they do not depend on the state.
     // However, as they should take effect only if the UnwrappedLine does not fit
     // into the ColumnLimit, they are checked here in the ContinuationIndenter.
@@ -372,11 +377,11 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
        || $eq_StringRef(/*NO_COPY*/Previous.TokenText, /*STRINGREF_STR*/"'\\n'"))))) {
       return true;
     }
-    
+
     return false;
   }
 
-  
+
   /// \brief Appends the next token to \p State and updates information
   /// necessary for indentation.
   ///
@@ -391,14 +396,14 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
    FQN="clang::format::ContinuationIndenter::addTokenToState", NM="_ZN5clang6format20ContinuationIndenter15addTokenToStateERNS0_9LineStateEbbj",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Format/ContinuationIndenter.cpp -nm=_ZN5clang6format20ContinuationIndenter15addTokenToStateERNS0_9LineStateEbbj")
   //</editor-fold>
-  public /*uint*/int addTokenToState(final LineState /*&*/ State, boolean Newline, 
+  public /*uint*/int addTokenToState(final LineState /*&*/ State, boolean Newline,
                  boolean DryRun) {
-    return addTokenToState(State, Newline, 
-                 DryRun, 
+    return addTokenToState(State, Newline,
+                 DryRun,
                  0);
   }
-  public /*uint*/int addTokenToState(final LineState /*&*/ State, boolean Newline, 
-                 boolean DryRun, 
+  public /*uint*/int addTokenToState(final LineState /*&*/ State, boolean Newline,
+                 boolean DryRun,
                  /*uint*/int ExtraSpaces/*= 0*/) {
     final /*const*/ FormatToken /*&*/ Current = /*Deref*/State.NextToken;
     assert (!State.Stack.empty());
@@ -419,18 +424,18 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
       moveStateToNextToken(State, DryRun, /*Newline=*/ false);
       return 0;
     }
-    
+
     /*uint*/int Penalty = 0;
     if (Newline) {
       Penalty = addTokenOnNewLine(State, DryRun);
     } else {
       addTokenOnCurrentLine(State, DryRun, ExtraSpaces);
     }
-    
+
     return moveStateToNextToken(State, DryRun, Newline) + Penalty;
   }
 
-  
+
   /// \brief Get the column limit for this line. This is the style's column
   /// limit, potentially reduced for preprocessor definitions.
   //<editor-fold defaultstate="collapsed" desc="clang::format::ContinuationIndenter::getColumnLimit">
@@ -453,7 +458,7 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
    FQN="clang::format::ContinuationIndenter::moveStateToNextToken", NM="_ZN5clang6format20ContinuationIndenter20moveStateToNextTokenERNS0_9LineStateEbb",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Format/ContinuationIndenter.cpp -nm=_ZN5clang6format20ContinuationIndenter20moveStateToNextTokenERNS0_9LineStateEbb")
   //</editor-fold>
-  private /*uint*/int moveStateToNextToken(final LineState /*&*/ State, 
+  private /*uint*/int moveStateToNextToken(final LineState /*&*/ State,
                       boolean DryRun, boolean Newline) {
     assert Native.$bool(State.Stack.size());
     final /*const*/ FormatToken /*&*/ Current = /*Deref*/State.NextToken;
@@ -520,10 +525,10 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
       State.Stack.back().NestedBlockIndent
          = State.Column + Current.ColumnWidth + 1;
     }
-    
+
     // Insert scopes created by fake parenthesis.
     /*const*/ FormatToken /*P*/ Previous = Current.getPreviousNonComment();
-    
+
     // Add special behavior to support a format commonly used for JavaScript
     // closures:
     //   SomeFunction(function() {
@@ -547,7 +552,7 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
          = !Newline
          && (Previous.isNot(tok.TokenKind.l_paren) || $greater_uint(Previous.ParameterCount, 1));
     }
-    
+
     moveStatePastFakeLParens(State, Newline);
     moveStatePastScopeOpener(State, Newline);
     moveStatePastScopeCloser(State);
@@ -561,7 +566,7 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
        && !Current.isStringLiteral()) {
       State.StartOfStringLiteral = 0;
     }
-    
+
     State.Column += Current.ColumnWidth;
     State.NextToken = State.NextToken.Next;
     /*uint*/int Penalty = breakProtrudingToken(Current, State, DryRun);
@@ -580,11 +585,11 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
     if ((Previous != null) && Previous.Role.$bool()) {
       Penalty += Previous.Role.$arrow().formatAfterToken(State, this, DryRun);
     }
-    
+
     return Penalty;
   }
 
-  
+
   /// \brief Update 'State' according to the next token's fake left parentheses.
   //<editor-fold defaultstate="collapsed" desc="clang::format::ContinuationIndenter::moveStatePastFakeLParens">
   @Converted(kind = Converted.Kind.AUTO,
@@ -592,11 +597,11 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
    FQN="clang::format::ContinuationIndenter::moveStatePastFakeLParens", NM="_ZN5clang6format20ContinuationIndenter24moveStatePastFakeLParensERNS0_9LineStateEb",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Format/ContinuationIndenter.cpp -nm=_ZN5clang6format20ContinuationIndenter24moveStatePastFakeLParensERNS0_9LineStateEb")
   //</editor-fold>
-  private void moveStatePastFakeLParens(final LineState /*&*/ State, 
+  private void moveStatePastFakeLParens(final LineState /*&*/ State,
                           boolean Newline) {
     final /*const*/ FormatToken /*&*/ Current = /*Deref*/State.NextToken;
     /*const*/ FormatToken /*P*/ Previous = Current.getPreviousNonComment();
-    
+
     // Don't add extra indentation for the first fake parenthesis after
     // 'return', assignments or opening <({[. The indentation for these cases
     // is special cased.
@@ -605,12 +610,12 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
        || (Previous.getPrecedence() == prec.Level.Assignment
        && Style.AlignOperands)
        || Previous.is_TokenType(TokenType.TT_ObjCMethodExpr)));
-    for (std.reverse_iterator</*const*/ prec.Level> I = Current.FakeLParens.rbegin$Const(), 
+    for (std.reverse_iterator</*const*/ prec.Level> I = Current.FakeLParens.rbegin$Const(),
         E = Current.FakeLParens.rend$Const();
          $noteq_reverse_iterator$C(I, E); I.$preInc()) {
       ParenState NewParenState = new ParenState(State.Stack.back());
       NewParenState.ContainsLineBreak = false;
-      
+
       // Indent from 'LastSpace' unless these are fake parentheses encapsulating
       // a builder type call after 'return' or, if the alignment after opening
       // brackets is disabled.
@@ -621,10 +626,10 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
          && (Style.AlignAfterOpenBracket != FormatStyle.BracketAlignmentStyle.BAS_DontAlign
          || I.$star() != prec.Level.Comma || Current.NestingLevel == 0)) {
         NewParenState.Indent
-           = std.max(std.max(State.Column, NewParenState.Indent), 
+           = std.max(std.max(State.Column, NewParenState.Indent),
             State.Stack.back().LastSpace);
       }
-      
+
       // Don't allow the RHS of an operator to be split over multiple lines unless
       // there is a line-break right after the operator.
       // Exclude relational operators, as there, it is always more desirable to
@@ -642,7 +647,7 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
           NewParenState.NoLineBreak = true;
         }
       }
-      
+
       // Do not indent relative to the fake parentheses inserted for "." or "->".
       // This is a special case to make the following to statements consistent:
       //   OuterFunction(InnerFunctionCall( // break
@@ -656,7 +661,7 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
          && Style.AlignAfterOpenBracket != FormatStyle.BracketAlignmentStyle.BAS_DontAlign) {
         NewParenState.StartOfFunctionCall = State.Column;
       }
-      
+
       // Always indent conditional expressions. Never indent expression where
       // the 'operator' is ',', ';' or an assignment (i.e. *I <=
       // prec::Assignment) as those have different indentation rules. Indent
@@ -693,7 +698,7 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
     }
   }
 
-  
+
   /// \brief Update 'State' according to the next token being one of "(<{[".
   //<editor-fold defaultstate="collapsed" desc="clang::format::ContinuationIndenter::moveStatePastScopeOpener">
   @Converted(kind = Converted.Kind.AUTO,
@@ -701,7 +706,7 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
    FQN="clang::format::ContinuationIndenter::moveStatePastScopeOpener", NM="_ZN5clang6format20ContinuationIndenter24moveStatePastScopeOpenerERNS0_9LineStateEb",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Format/ContinuationIndenter.cpp -nm=_ZN5clang6format20ContinuationIndenter24moveStatePastScopeOpenerERNS0_9LineStateEb")
   //</editor-fold>
-  private void moveStatePastScopeOpener(final LineState /*&*/ State, 
+  private void moveStatePastScopeOpener(final LineState /*&*/ State,
                           boolean Newline) {
     final /*const*/ FormatToken /*&*/ Current = /*Deref*/State.NextToken;
     if (!Current.opensScope()) {
@@ -711,13 +716,13 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
       moveStateToNewBlock(State);
       return;
     }
-    
+
     /*uint*/int NewIndent;
     /*uint*/int NewIndentLevel = State.Stack.back().IndentLevel;
     /*uint*/int LastSpace = State.Stack.back().LastSpace;
     boolean AvoidBinPacking;
     boolean BreakBeforeParameter = false;
-    /*uint*/int NestedBlockIndent = std.max(State.Stack.back().StartOfFunctionCall, 
+    /*uint*/int NestedBlockIndent = std.max(State.Stack.back().StartOfFunctionCall,
         State.Stack.back().NestedBlockIndent);
     if (Current.isOneOf(tok.TokenKind.l_brace, TokenType.TT_ArrayInitializerLSquare)) {
       if (Current.opensBlockOrBlockTypeList(Style)) {
@@ -741,9 +746,9 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
       }
     } else {
       NewIndent = Style.ContinuationIndentWidth
-         + std.max(State.Stack.back().LastSpace, 
+         + std.max(State.Stack.back().LastSpace,
           State.Stack.back().StartOfFunctionCall);
-      
+
       // Ensure that different different brackets force relative alignment, e.g.:
       // void SomeFunction(vector<  // break
       //                       int> v);
@@ -754,7 +759,7 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
         NewIndent = std.max(NewIndent, State.Stack.back().Indent);
         LastSpace = std.max(LastSpace, State.Stack.back().Indent);
       }
-      
+
       AvoidBinPacking
          = (State.Line.MustBeDeclaration && !Style.BinPackParameters)
          || (!State.Line.MustBeDeclaration && !Style.BinPackArguments)
@@ -787,12 +792,16 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
     // Generally inherit NoLineBreak from the current scope to nested scope.
     // However, don't do this for non-empty nested blocks, dict literals and
     // array literals as these follow different indentation rules.
+
+    FormatToken Previous = Current.getPreviousNonComment();
     boolean NoLineBreak = Current.Children.empty()
        && !Current.isOneOf(TokenType.TT_DictLiteral, TokenType.TT_ArrayInitializerLSquare)
        && (State.Stack.back().NoLineBreak
-       || (Current.is_TokenType(TokenType.TT_TemplateOpener)
-       && State.Stack.back().ContainsUnwrappedBuilder));
-    State.Stack.push_back_T$RR(new ParenState(NewIndent, NewIndentLevel, LastSpace, 
+         || (Current.is_TokenType(TokenType.TT_TemplateOpener)
+             && State.Stack.back().ContainsUnwrappedBuilder)
+         || (Current.is_TokenKind(tok.TokenKind.l_brace)
+             && !Newline && Previous != null && Previous.is_TokenKind(tok.TokenKind.comma)));
+    State.Stack.push_back_T$RR(new ParenState(NewIndent, NewIndentLevel, LastSpace,
             AvoidBinPacking, NoLineBreak));
     State.Stack.back().NestedBlockIndent = NestedBlockIndent;
     State.Stack.back().BreakBeforeParameter = BreakBeforeParameter;
@@ -811,7 +820,7 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
     if (!Current.closesScope()) {
       return;
     }
-    
+
     // If we encounter a closing ), ], } or >, we can remove a level from our
     // stacks.
     if ($greater_uint(State.Stack.size(), 1)
@@ -840,14 +849,14 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
     /*uint*/int NestedBlockIndent = State.Stack.back().NestedBlockIndent;
     // ObjC block sometimes follow special indentation rules.
     /*uint*/int NewIndent = NestedBlockIndent + (State.NextToken.is_TokenType(TokenType.TT_ObjCBlockLBrace) ? Style.ObjCBlockIndentWidth : Style.IndentWidth);
-    State.Stack.push_back_T$RR(new ParenState(NewIndent, /*NewIndentLevel=*/ State.Stack.back().IndentLevel + 1, 
-            State.Stack.back().LastSpace, /*AvoidBinPacking=*/ true, 
+    State.Stack.push_back_T$RR(new ParenState(NewIndent, /*NewIndentLevel=*/ State.Stack.back().IndentLevel + 1,
+            State.Stack.back().LastSpace, /*AvoidBinPacking=*/ true,
             /*NoLineBreak=*/ false));
     State.Stack.back().NestedBlockIndent = NestedBlockIndent;
     State.Stack.back().BreakBeforeParameter = true;
   }
 
-  
+
   /// \brief If the current token sticks out over the end of the line, break
   /// it if possible.
   ///
@@ -863,8 +872,8 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
    FQN="clang::format::ContinuationIndenter::breakProtrudingToken", NM="_ZN5clang6format20ContinuationIndenter20breakProtrudingTokenERKNS0_11FormatTokenERNS0_9LineStateEb",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Format/ContinuationIndenter.cpp -nm=_ZN5clang6format20ContinuationIndenter20breakProtrudingTokenERKNS0_11FormatTokenERNS0_9LineStateEb")
   //</editor-fold>
-  private /*uint*/int breakProtrudingToken(final /*const*/ FormatToken /*&*/ Current, 
-                      final LineState /*&*/ State, 
+  private /*uint*/int breakProtrudingToken(final /*const*/ FormatToken /*&*/ Current,
+                      final LineState /*&*/ State,
                       boolean DryRun) {
     std.unique_ptr<BreakableToken> Token = null;
     try {
@@ -873,7 +882,7 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
       if (Current.isNot(TokenType.TT_BlockComment) && Current.IsMultiline) {
         return addMultilineToken(Current, State);
       }
-      
+
       // Don't break implicit string literals or import statements.
       if (Current.is_TokenType(TokenType.TT_ImplicitStringLiteral)
          || State.Line.Type == LineType.LT_ImportStatement) {
@@ -882,7 +891,7 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
       if (!Current.isStringLiteral() && !Current.is_TokenKind(tok.TokenKind.comment)) {
         return 0;
       }
-      
+
       Token/*J*/= new std.unique_ptr<BreakableToken>();
       /*uint*/int StartColumn = State.Column - Current.ColumnWidth;
       /*uint*/int ColumnLimit = getColumnLimit(State);
@@ -894,7 +903,7 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
            || !Style.BreakStringLiterals) {
           return 0;
         }
-        
+
         // Don't break string literals inside preprocessor directives (except for
         // #define directives, as their contents are stored in separate lines and
         // are not affected by this check).
@@ -908,7 +917,7 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
         if (Current.IsUnterminatedLiteral) {
           return 0;
         }
-        
+
         StringRef Text = new StringRef(Current.TokenText);
         StringRef Prefix/*J*/= new StringRef();
         StringRef Postfix/*J*/= new StringRef();
@@ -928,7 +937,7 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
            || Text.startswith(/*NO_COPY*/Prefix.$assignMove(/*STRINGREF_STR*/"u8\""))
            || Text.startswith(/*NO_COPY*/Prefix.$assignMove(/*STRINGREF_STR*/"L\""))))
            || (Text.startswith(/*NO_COPY*/Prefix.$assignMove(/*STRINGREF_STR*/"_T(\"")) && Text.endswith(/*NO_COPY*/Postfix.$assignMove(/*STRINGREF_STR*/"\")")))) {
-          Token.reset(new BreakableStringLiteral(Current, State.Line.Level, StartColumn, new StringRef(Prefix), new StringRef(Postfix), 
+          Token.reset(new BreakableStringLiteral(Current, State.Line.Level, StartColumn, new StringRef(Prefix), new StringRef(Postfix),
                   State.Line.InPPDirective, Encoding, Style));
         } else {
           return 0;
@@ -938,7 +947,7 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
            || CommentPragmasRegex.find(/*match(*/Current.TokenText.substr(2))) {
           return addMultilineToken(Current, State);
         }
-        Token.reset(new BreakableBlockComment(Current, State.Line.Level, StartColumn, Current.OriginalColumn, 
+        Token.reset(new BreakableBlockComment(Current, State.Line.Level, StartColumn, Current.OriginalColumn,
                 !(Current.Previous != null), State.Line.InPPDirective, Encoding, Style));
       } else if (Current.is_TokenType(TokenType.TT_LineComment)
          && (Current.Previous == null
@@ -947,8 +956,8 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
            || CommentPragmasRegex.find(/*match(*/Current.TokenText.substr(2))) {
           return 0;
         }
-        Token.reset(new BreakableLineComment(Current, State.Line.Level, 
-                StartColumn, /*InPPDirective=*/ false, 
+        Token.reset(new BreakableLineComment(Current, State.Line.Level,
+                StartColumn, /*InPPDirective=*/ false,
                 Encoding, Style));
         // We don't insert backslashes when breaking line comments.
         ColumnLimit = Style.ColumnLimit;
@@ -958,7 +967,7 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
       if ($greatereq_uint(Current.UnbreakableTailLength, ColumnLimit)) {
         return 0;
       }
-      
+
       /*uint*/int RemainingSpace = ColumnLimit - Current.UnbreakableTailLength;
       boolean BreakInserted = false;
       /*uint*/int Penalty = 0;
@@ -983,7 +992,7 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
           }
           assert (Split.first != 0);
           /*uint*/int NewRemainingTokenColumns = Token.$arrow().getLineLengthAfterSplit(LineIndex, TailOffset + Split.first + Split.second, StringRef.npos);
-          
+
           // We can remove extra whitespace instead of breaking the line.
           if ($lesseq_uint(RemainingTokenColumns + 1 - Split.second, RemainingSpace)) {
             RemainingTokenColumns = 0;
@@ -992,7 +1001,7 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
             }
             break;
           }
-          
+
           // When breaking before a tab character, it may be moved by a few columns,
           // but will still be expanded to the next tab stop, so we don't save any
           // columns.
@@ -1013,7 +1022,7 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
           BreakInserted = true;
         }
       }
-      
+
       State.Column = RemainingTokenColumns;
       if (BreakInserted) {
         // If we break the token inside a parameter list, we need to break before
@@ -1024,9 +1033,9 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
             State.Stack.$at(i).BreakBeforeParameter = true;
           }
         }
-        
+
         Penalty += Current.isStringLiteral() ? Style.PenaltyBreakString : Style.PenaltyBreakComment;
-        
+
         State.Stack.back().LastSpace = StartColumn;
       }
       return Penalty;
@@ -1035,7 +1044,7 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
     }
   }
 
-  
+
   /// \brief Appends the next token to \p State and updates information
   /// necessary for indentation.
   ///
@@ -1049,7 +1058,7 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
    FQN="clang::format::ContinuationIndenter::addTokenOnCurrentLine", NM="_ZN5clang6format20ContinuationIndenter21addTokenOnCurrentLineERNS0_9LineStateEbj",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Format/ContinuationIndenter.cpp -nm=_ZN5clang6format20ContinuationIndenter21addTokenOnCurrentLineERNS0_9LineStateEbj")
   //</editor-fold>
-  private void addTokenOnCurrentLine(final LineState /*&*/ State, boolean DryRun, 
+  private void addTokenOnCurrentLine(final LineState /*&*/ State, boolean DryRun,
                        /*uint*/int ExtraSpaces) {
     final FormatToken /*&*/ Current = /*Deref*/State.NextToken;
     final /*const*/ FormatToken /*&*/ Previous = /*Deref*/State.NextToken.Previous;
@@ -1070,15 +1079,15 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
         State.Stack.back().LastSpace = State.Stack.back().VariablePos;
       }
     }
-    
+
     /*uint*/int Spaces = Current.SpacesRequiredBefore + ExtraSpaces;
     if (!DryRun) {
-      Whitespaces.replaceWhitespace(Current, /*Newlines=*/ 0, /*IndentLevel=*/ 0, 
+      Whitespaces.replaceWhitespace(Current, /*Newlines=*/ 0, /*IndentLevel=*/ 0,
           Spaces, State.Column + Spaces);
     }
     if (Current.is_TokenType(TokenType.TT_SelectorName)
        && !State.Stack.back().ObjCSelectorNameFound) {
-      /*uint*/int MinIndent = std.max(State.FirstIndent + Style.ContinuationIndentWidth, 
+      /*uint*/int MinIndent = std.max(State.FirstIndent + Style.ContinuationIndentWidth,
           State.Stack.back().Indent);
       /*uint*/int FirstColonPos = State.Column + Spaces + Current.ColumnWidth;
       if (Current.LongestObjCSelectorName == 0) {
@@ -1089,7 +1098,7 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
         State.Stack.back().ColonPos = FirstColonPos;
       }
     }
-    
+
     // In "AlwaysBreak" mode, enforce wrapping directly after the parenthesis by
     // disallowing any further line breaks if there is no line break after the
     // opening parenthesis. Don't break if it doesn't conserve columns.
@@ -1097,7 +1106,7 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
        && Previous.isOneOf(tok.TokenKind.l_paren, TokenType.TT_TemplateOpener, tok.TokenKind.l_square)
        && $greater_uint(State.Column, getNewLineColumn(State))
        && (!(Previous.Previous != null)
-       || !Previous.Previous.isOneOf(tok.TokenKind.kw_for, tok.TokenKind.kw_while, 
+       || !Previous.Previous.isOneOf(tok.TokenKind.kw_for, tok.TokenKind.kw_while,
         tok.TokenKind.kw_switch))
       // Don't do this for simple (no expressions) one-argument function calls
       // as that feels like needlessly wasting whitespace, e.g.:
@@ -1136,7 +1145,7 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
       // indexes.
       State.Stack.back().NoLineBreak = true;
     }
-    
+
     State.Column += Spaces;
     if (Current.isNot(tok.TokenKind.comment) && Previous.is_TokenKind(tok.TokenKind.l_paren)
        && (Previous.Previous != null)
@@ -1150,7 +1159,7 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
        && !Previous.is_TokenType(TokenType.TT_OverloadedOperator))
        || (Previous.is_TokenKind(tok.TokenKind.colon) && Previous.is_TokenType(TokenType.TT_ObjCMethodExpr)))) {
       State.Stack.back().LastSpace = State.Column;
-    } else if ((Previous.isOneOf(TokenType.TT_BinaryOperator, TokenType.TT_ConditionalExpr, 
+    } else if ((Previous.isOneOf(TokenType.TT_BinaryOperator, TokenType.TT_ConditionalExpr,
         TokenType.TT_CtorInitializerColon))
        && ((Previous.getPrecedence() != prec.Level.Assignment
        && (Previous.isNot(tok.TokenKind.lessless) || Previous.OperatorIndex != 0
@@ -1181,7 +1190,7 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
     }
   }
 
-  
+
   /// \brief Appends the next token to \p State and updates information
   /// necessary for indentation.
   ///
@@ -1195,15 +1204,15 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
    FQN="clang::format::ContinuationIndenter::addTokenOnNewLine", NM="_ZN5clang6format20ContinuationIndenter17addTokenOnNewLineERNS0_9LineStateEb",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Format/ContinuationIndenter.cpp -nm=_ZN5clang6format20ContinuationIndenter17addTokenOnNewLineERNS0_9LineStateEb")
   //</editor-fold>
-  private /*uint*/int addTokenOnNewLine(final LineState /*&*/ State, 
+  private /*uint*/int addTokenOnNewLine(final LineState /*&*/ State,
                    boolean DryRun) {
     final FormatToken /*&*/ Current = /*Deref*/State.NextToken;
     final /*const*/ FormatToken /*&*/ Previous = /*Deref*/State.NextToken.Previous;
-    
+
     // Extra penalty that needs to be added because of the way certain line
     // breaks are chosen.
     /*uint*/int Penalty = 0;
-    
+
     /*const*/ FormatToken /*P*/ PreviousNonComment = Current.getPreviousNonComment();
     /*const*/ FormatToken /*P*/ NextNonComment = Previous.getNextNonComment();
     if (!(NextNonComment != null)) {
@@ -1215,9 +1224,9 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
       Penalty += 15;
     }
     State.Stack.back().ContainsLineBreak = true;
-    
+
     Penalty += State.NextToken.SplitPenalty;
-    
+
     // Breaking before the first "<<" is generally not desirable if the LHS is
     // short. Also always add the penalty if the LHS is split over mutliple lines
     // to avoid unnecessary line breaks that just work around this penalty.
@@ -1227,9 +1236,9 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
        || State.Stack.back().BreakBeforeParameter)) {
       Penalty += Style.PenaltyBreakFirstLessLess;
     }
-    
+
     State.Column = getNewLineColumn(State);
-    
+
     // Indent nested blocks relative to this column, unless in a very specific
     // JavaScript special case where:
     //
@@ -1257,7 +1266,7 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
           State.Stack.back().AlignColons = false;
         } else {
           State.Stack.back().ColonPos
-             = (Style.IndentWrappedFunctionNames ? std.max(State.Stack.back().Indent, 
+             = (Style.IndentWrappedFunctionNames ? std.max(State.Stack.back().Indent,
               State.FirstIndent + Style.ContinuationIndentWidth) : State.Stack.back().Indent)
              + NextNonComment.LongestObjCSelectorName;
         }
@@ -1282,7 +1291,8 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
            + Style.ContinuationIndentWidth;
       }
     }
-    if ((Previous.isOneOf(tok.TokenKind.comma, tok.TokenKind.semi)
+    if ((PreviousNonComment != null
+       && PreviousNonComment.isOneOf(tok.TokenKind.comma, tok.TokenKind.semi)
        && !State.Stack.back().AvoidBinPacking)
        || Previous.is_TokenType(TokenType.TT_BinaryOperator)) {
       State.Stack.back().BreakBeforeParameter = false;
@@ -1300,8 +1310,8 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
     }
     if (!DryRun) {
       /*uint*/int Newlines = std.max(1/*U*/, std.min_uint(Current.NewlinesBefore, Style.MaxEmptyLinesToKeep + 1));
-      Whitespaces.replaceWhitespace(Current, Newlines, 
-          State.Stack.back().IndentLevel, State.Column, 
+      Whitespaces.replaceWhitespace(Current, Newlines,
+          State.Stack.back().IndentLevel, State.Column,
           State.Column, State.Line.InPPDirective);
     }
     if (!Current.isTrailingComment()) {
@@ -1313,13 +1323,14 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
       // always indent relative to the RHS.
       State.Stack.back().LastSpace += 3; // 3 -> width of "<< ".
     }
-    
+
     State.StartOfLineLevel = Current.NestingLevel;
     State.LowestLevelOnLine = Current.NestingLevel;
-    
+
     // Any break on this level means that the parent level has been broken
     // and we need to avoid bin packing there.
     boolean NestedBlockSpecialCase = Style.Language != FormatStyle.LanguageKind.LK_Cpp
+            && Style.Language != FormatStyle.LanguageKind.LK_ObjC
        && Current.is_TokenKind(tok.TokenKind.r_brace) && $greater_uint(State.Stack.size(), 1)
        && State.Stack.$at(State.Stack.size() - 2).NestedBlockInlined;
     if (!NestedBlockSpecialCase) {
@@ -1331,12 +1342,12 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
        && !PreviousNonComment.isOneOf(tok.TokenKind.comma, tok.TokenKind.semi)
        && (PreviousNonComment.isNot(TokenType.TT_TemplateCloser)
        || Current.NestingLevel != 0)
-       && !PreviousNonComment.isOneOf(TokenType.TT_BinaryOperator, TokenType.TT_FunctionAnnotationRParen, TokenType.TT_JavaAnnotation, 
+       && !PreviousNonComment.isOneOf(TokenType.TT_BinaryOperator, TokenType.TT_FunctionAnnotationRParen, TokenType.TT_JavaAnnotation,
         TokenType.TT_LeadingJavaAnnotation)
        && Current.isNot(TokenType.TT_BinaryOperator) && !PreviousNonComment.opensScope()) {
       State.Stack.back().BreakBeforeParameter = true;
     }
-    
+
     // If we break after { or the [ of an array initializer, we should also break
     // before the corresponding } or ].
     if ((PreviousNonComment != null)
@@ -1354,11 +1365,11 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
         State.Stack.back().BreakBeforeParameter = true;
       }
     }
-    
+
     return Penalty;
   }
 
-  
+
   /// \brief Calculate the new column for a line wrap before the next token.
   //<editor-fold defaultstate="collapsed" desc="clang::format::ContinuationIndenter::getNewLineColumn">
   @Converted(kind = Converted.Kind.AUTO,
@@ -1380,11 +1391,11 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
     if (!(NextNonComment != null)) {
       NextNonComment = /*AddrOf*/Current;
     }
-    
+
     // Java specific bits.
     if (Style.Language == FormatStyle.LanguageKind.LK_Java
        && Current.isOneOf(Keywords.kw_implements, Keywords.kw_extends)) {
-      return std.max(State.Stack.back$Const().LastSpace, 
+      return std.max(State.Stack.back$Const().LastSpace,
           State.Stack.back$Const().Indent + Style.ContinuationIndentWidth);
     }
     if (NextNonComment.is_TokenKind(tok.TokenKind.l_brace) && NextNonComment.BlockKind == BraceBlockKind.BK_Block) {
@@ -1432,7 +1443,7 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
     }
     if (((PreviousNonComment != null)
        && (PreviousNonComment.ClosesTemplateDeclaration
-       || PreviousNonComment.isOneOf(TokenType.TT_AttributeParen, TokenType.TT_FunctionAnnotationRParen, TokenType.TT_JavaAnnotation, 
+       || PreviousNonComment.isOneOf(TokenType.TT_AttributeParen, TokenType.TT_FunctionAnnotationRParen, TokenType.TT_JavaAnnotation,
         TokenType.TT_LeadingJavaAnnotation)))
        || (!Style.IndentWrappedFunctionNames
        && NextNonComment.isOneOf(tok.TokenKind.kw_operator, TokenType.TT_FunctionDeclarationName))) {
@@ -1443,7 +1454,7 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
         if (NextNonComment.LongestObjCSelectorName == 0) {
           return State.Stack.back$Const().Indent;
         }
-        return (Style.IndentWrappedFunctionNames ? std.max(State.Stack.back$Const().Indent, 
+        return (Style.IndentWrappedFunctionNames ? std.max(State.Stack.back$Const().Indent,
             State.FirstIndent + Style.ContinuationIndentWidth) : State.Stack.back$Const().Indent)
            + NextNonComment.LongestObjCSelectorName
            - NextNonComment.ColumnWidth;
@@ -1462,7 +1473,7 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
       }
       return ContinuationIndent;
     }
-    
+
     // This ensure that we correctly format ObjC methods calls without inputs,
     // i.e. where the last element isn't selector like: [callee method];
     if (NextNonComment.is_TokenKind(tok.TokenKind.identifier) && NextNonComment.FakeRParens == 0
@@ -1496,7 +1507,7 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
     return State.Stack.back$Const().Indent;
   }
 
-  
+
   /// \brief Adds a multiline token to the \p State.
   ///
   /// \returns Extra penalty for the first line of the literal: last line is
@@ -1508,17 +1519,17 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
    FQN="clang::format::ContinuationIndenter::addMultilineToken", NM="_ZN5clang6format20ContinuationIndenter17addMultilineTokenERKNS0_11FormatTokenERNS0_9LineStateE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Format/ContinuationIndenter.cpp -nm=_ZN5clang6format20ContinuationIndenter17addMultilineTokenERKNS0_11FormatTokenERNS0_9LineStateE")
   //</editor-fold>
-  private /*uint*/int addMultilineToken(final /*const*/ FormatToken /*&*/ Current, 
+  private /*uint*/int addMultilineToken(final /*const*/ FormatToken /*&*/ Current,
                    final LineState /*&*/ State) {
     if (!Current.IsMultiline) {
       return 0;
     }
-    
+
     // Break before further function parameters on all levels.
     for (/*uint*/int i = 0, e = State.Stack.size(); i != e; ++i)  {
       State.Stack.$at(i).BreakBeforeParameter = true;
     }
-    
+
     /*uint*/int ColumnsUsed = State.Column;
     // We can only affect layout of the first and the last line, so the penalty
     // for all other lines is constant, and we ignore it.
@@ -1529,7 +1540,7 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
     return 0;
   }
 
-  
+
   /// \brief Returns \c true if the next token starts a multiline string
   /// literal.
   ///
@@ -1567,7 +1578,7 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
     return false;
   }
 
-  
+
   private FormatStyle Style;
   private final /*const*/ AdditionalKeywords /*&*/ Keywords;
   private final /*const*/ SourceManager /*&*/ SourceMgr;
@@ -1589,7 +1600,7 @@ public class ContinuationIndenter implements Destructors.ClassWithDestructor {
   }
 
 
-  
+
   @Override public String toString() {
     return "" + "Style=" + Style // NOI18N
               + ", Keywords=" + Keywords // NOI18N

@@ -153,7 +153,7 @@ public class RequiredArgs {
    FQN="clang::CodeGen::RequiredArgs::RequiredArgs", NM="_ZN5clang7CodeGen12RequiredArgsC1ENS1_5All_tE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.codegen/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/CodeGen/CGCall.cpp -nm=_ZN5clang7CodeGen12RequiredArgsC1ENS1_5All_tE")
   //</editor-fold>
-  public RequiredArgs(All_t _) {
+  public RequiredArgs(All_t ignored_) {
     // : NumRequired(~0UU) 
     //START JInit
     this.NumRequired = ~0/*U*/;

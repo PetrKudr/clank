@@ -106,7 +106,6 @@ public class Environment implements Destructors.ClassWithDestructor {
     // : ID(ID), FileName(), CharRanges(Ranges.begin(), Ranges.end()), SM(SM), FileMgr(), VirtualSM(), Diagnostics() 
     //START JInit
     this.ID = new FileID(ID);
-    this.FileName = new StringRef();
     this.CharRanges = new SmallVector<CharSourceRange/*,8*/>(JD$T.INSTANCE, 8, Ranges.begin(), Ranges.end(), new CharSourceRange());
     this./*&*/SM=/*&*/SM;
     this.FileMgr = new std.unique_ptr<FileManager>();
@@ -129,7 +128,6 @@ public class Environment implements Destructors.ClassWithDestructor {
     // : ID(ID), FileName(), CharRanges(CharRanges.begin(), CharRanges.end()), SM(* VirtualSM), FileMgr(std::move(FileMgr)), VirtualSM(std::move(VirtualSM)), Diagnostics(std::move(Diagnostics)) 
     //START JInit
     this.ID = new FileID(ID);
-    this.FileName = new StringRef();
     this.CharRanges = new SmallVector<CharSourceRange/*,8*/>(JD$T.INSTANCE, 8, CharRanges.begin$Const(), CharRanges.end$Const(), new CharSourceRange());
     this./*&*/SM=/*&*/VirtualSM.$star();
     this.FileMgr = new std.unique_ptr<FileManager>(JD$Move.INSTANCE, std.move(FileMgr));
@@ -208,17 +206,6 @@ public class Environment implements Destructors.ClassWithDestructor {
   }
 
   
-  //<editor-fold defaultstate="collapsed" desc="clang::format::Environment::getFileName">
-  @Converted(kind = Converted.Kind.AUTO,
-   source = "${LLVM_SRC}/llvm/tools/clang/lib/Format/TokenAnalyzer.h", line = 60,
-   FQN="clang::format::Environment::getFileName", NM="_ZNK5clang6format11Environment11getFileNameEv",
-   cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Format/TokenAnalyzer.cpp -nm=_ZNK5clang6format11Environment11getFileNameEv")
-  //</editor-fold>
-  public StringRef getFileName() /*const*/ {
-    return new StringRef(FileName);
-  }
-
-  
   //<editor-fold defaultstate="collapsed" desc="clang::format::Environment::getCharRanges">
   @Converted(kind = Converted.Kind.AUTO,
    source = "${LLVM_SRC}/llvm/tools/clang/lib/Format/TokenAnalyzer.h", line = 62,
@@ -242,7 +229,6 @@ public class Environment implements Destructors.ClassWithDestructor {
 
 /*private:*/
   private FileID ID;
-  private StringRef FileName;
   private SmallVector<CharSourceRange/*,8*/> CharRanges;
   private final SourceManager /*&*/ SM;
   
@@ -270,7 +256,6 @@ public class Environment implements Destructors.ClassWithDestructor {
   
   @Override public String toString() {
     return "" + "ID=" + ID // NOI18N
-              + ", FileName=" + FileName // NOI18N
               + ", CharRanges=" + CharRanges // NOI18N
               + ", SM=" + "[SourceManager]" // NOI18N
               + ", FileMgr=" + "[Unique_ptr$FileManager]" // NOI18N

@@ -99,6 +99,7 @@ public class/*struct*/ ScalarEnumerationTraitsLanguageKind implements ScalarEnum
     $IO.enumCase_T$R_char$ptr$C_T$C(Value, $("Cpp"), FormatStyle.LanguageKind.LK_Cpp);
     $IO.enumCase_T$R_char$ptr$C_T$C(Value, $("Java"), FormatStyle.LanguageKind.LK_Java);
     $IO.enumCase_T$R_char$ptr$C_T$C(Value, $("JavaScript"), FormatStyle.LanguageKind.LK_JavaScript);
+    $IO.enumCase_T$R_char$ptr$C_T$C(Value, $("ObjC"), FormatStyle.LanguageKind.LK_ObjC);
     $IO.enumCase_T$R_char$ptr$C_T$C(Value, $("Proto"), FormatStyle.LanguageKind.LK_Proto);
     $IO.enumCase_T$R_char$ptr$C_T$C(Value, $("TableGen"), FormatStyle.LanguageKind.LK_TableGen);
   }

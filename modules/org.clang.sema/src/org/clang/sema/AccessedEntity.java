@@ -214,7 +214,7 @@ public class AccessedEntity implements Destructors.ClassWithDestructor {
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.sema/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Sema/DelayedDiagnostic.cpp -nm=_ZN5clang4sema14AccessedEntityC1ERNS_17PartialDiagnostic16StorageAllocatorENS1_11MemberNonceEPNS_13CXXRecordDeclENS_14DeclAccessPairENS_8QualTypeE")
   //</editor-fold>
   public AccessedEntity(final PartialDiagnostic.StorageAllocator /*&*/ Allocator, 
-      MemberNonce _, 
+      MemberNonce ignored_,
       CXXRecordDecl /*P*/ NamingClass, 
       DeclAccessPair FoundDecl, 
       QualType BaseObjectType) {
@@ -237,7 +237,7 @@ public class AccessedEntity implements Destructors.ClassWithDestructor {
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.sema/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Sema/DelayedDiagnostic.cpp -nm=_ZN5clang4sema14AccessedEntityC1ERNS_17PartialDiagnostic16StorageAllocatorENS1_9BaseNonceEPNS_13CXXRecordDeclES7_NS_15AccessSpecifierE")
   //</editor-fold>
   public AccessedEntity(final PartialDiagnostic.StorageAllocator /*&*/ Allocator, 
-      BaseNonce _, 
+      BaseNonce ignored_,
       CXXRecordDecl /*P*/ BaseClass, 
       CXXRecordDecl /*P*/ DerivedClass, 
       AccessSpecifier Access) {

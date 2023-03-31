@@ -1,43 +1,43 @@
 /**
  * This file was converted to Java from the original LLVM source file. The original
  * source file follows the LLVM Release License, outlined below.
- * 
+ *
  * ==============================================================================
  * LLVM Release License
  * ==============================================================================
  * University of Illinois/NCSA
  * Open Source License
- * 
+ *
  * Copyright (c) 2003-2017 University of Illinois at Urbana-Champaign.
  * All rights reserved.
- * 
+ *
  * Developed by:
- * 
+ *
  *     LLVM Team
- * 
+ *
  *     University of Illinois at Urbana-Champaign
- * 
+ *
  *     http://llvm.org
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal with
  * the Software without restriction, including without limitation the rights to
  * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
  * of the Software, and to permit persons to whom the Software is furnished to do
  * so, subject to the following conditions:
- * 
+ *
  *     * Redistributions of source code must retain the above copyright notice,
  *       this list of conditions and the following disclaimers.
- * 
+ *
  *     * Redistributions in binary form must reproduce the above copyright notice
  *       this list of conditions and the following disclaimers in the
  *       documentation and/or other materials provided with the distribution.
- * 
+ *
  *     * Neither the names of the LLVM Team, University of Illinois at
  *       Urbana-Champaign, nor the names of its contributors may be used to
  *       endorse or promote products derived from this Software without specific
  *       prior written permission.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
  * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
@@ -45,7 +45,7 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS WITH THE
  * SOFTWARE.
- * 
+ *
  * ==============================================================================
  * Copyrights and Licenses for Third Party Software Distributed with LLVM:
  * ==============================================================================
@@ -53,16 +53,16 @@
  * have its own individual LICENSE.TXT file in the directory in which it appears.
  * This file will describe the copyrights, license, and restrictions which apply
  * to that code.
- * 
+ *
  * The disclaimer of warranty in the University of Illinois Open Source License
  * applies to all code in the LLVM Distribution, and nothing in any of the
  * other licenses gives permission to use the names of the LLVM Team or the
  * University of Illinois to endorse or promote products derived from this
  * Software.
- * 
+ *
  * The following pieces of software have additional or alternate copyrights,
  * licenses, and/or restrictions:
- * 
+ *
  * Program             Directory
  * -------             ---------
  * Autoconf            llvm/autoconf
@@ -76,19 +76,25 @@
 
 package org.clang.format.impl;
 
+import org.clang.tooling.core.Replacements;
+import org.clang.basic.*;
+import static org.clang.basic.BasicClangGlobals.*;
+import org.clang.format.*;
+import org.clang.format.java.FormatFunctionPointers.SourceLocationUIntStringRef2Void;
+import org.clang.tooling.core.*;
 import org.clank.java.*;
 import org.clank.support.*;
-import org.clank.support.aliases.*;
-import static org.clank.support.NativePointer.*;
 import static org.clank.support.Native.*;
 import static org.clank.support.Unsigned.*;
+import org.clank.support.aliases.*;
+import static org.clank.support.literal_constants.$$CR;
+import static org.clank.support.literal_constants.$$DBL_QUOTE;
+import static org.clank.support.literal_constants.$$LF;
+import static org.clank.support.literal_constants.$$SGL_QUOTE;
+import static org.clank.support.literal_constants.$DBL_QUOTE;
+import static org.clank.support.literal_constants.$SGL_QUOTE;
 import org.llvm.adt.*;
 import org.llvm.adt.aliases.*;
-import org.clang.tooling.core.*;
-import org.clang.basic.*;
-import org.clang.format.*;
-import static org.clang.basic.BasicClangGlobals.*;
-import org.clang.format.java.FormatFunctionPointers.*;
 
 //<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::Formatter">
 @Converted(kind = Converted.Kind.AUTO,
@@ -104,52 +110,59 @@ public class Formatter extends /*public*/ TokenAnalyzer implements Destructors.C
    FQN="clang::format::(anonymous namespace)::Formatter::Formatter", NM="_ZN5clang6format12_GLOBAL__N_19FormatterC1ERKNS0_11EnvironmentERKNS0_11FormatStyleEPb",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Format/Format.cpp -nm=_ZN5clang6format12_GLOBAL__N_19FormatterC1ERKNS0_11EnvironmentERKNS0_11FormatStyleEPb")
   //</editor-fold>
-  public Formatter(final /*const*/ Environment /*&*/ Env, final /*const*/ FormatStyle /*&*/ Style, 
+  public Formatter(final /*const*/ Environment /*&*/ Env, final /*const*/ FormatStyle /*&*/ Style,
       bool$ptr/*bool P*/ IncompleteFormat) {
-    // : TokenAnalyzer(Env, Style), IncompleteFormat(IncompleteFormat) 
+    // : TokenAnalyzer(Env, Style), IncompleteFormat(IncompleteFormat)
     //START JInit
     super(Env, Style);
     this.IncompleteFormat = $tryClone(IncompleteFormat);
     //END JInit
   }
 
-  
   //<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::Formatter::analyze">
   @Converted(kind = Converted.Kind.AUTO,
    source = "${LLVM_SRC}/llvm/tools/clang/lib/Format/Format.cpp", line = 800,
    FQN="clang::format::(anonymous namespace)::Formatter::analyze", NM="_ZN5clang6format12_GLOBAL__N_19Formatter7analyzeERNS0_14TokenAnnotatorERN4llvm15SmallVectorImplIPNS0_13AnnotatedLineEEERNS0_16FormatTokenLexerERSt3setINS_7tooling11ReplacementESt4lessISF_ESaISF_EE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Format/Format.cpp -nm=_ZN5clang6format12_GLOBAL__N_19Formatter7analyzeERNS0_14TokenAnnotatorERN4llvm15SmallVectorImplIPNS0_13AnnotatedLineEEERNS0_16FormatTokenLexerERSt3setINS_7tooling11ReplacementESt4lessISF_ESaISF_EE")
   //</editor-fold>
-  @Override public std.setType<Replacement> analyze(final TokenAnnotator /*&*/ Annotator, 
-         final SmallVectorImpl<AnnotatedLine /*P*/ > /*&*/ AnnotatedLines, 
-         final FormatTokenLexer /*&*/ Tokens, final std.setType<Replacement> /*&*/ Result)/* override*/ {
+  @Override
+  public Replacements analyze(final TokenAnnotator /*&*/ Annotator,
+      final SmallVectorImpl<AnnotatedLine /*P*/> /*&*/ AnnotatedLines,
+      final FormatTokenLexer /*&*/ Tokens)/* override*/ {
     WhitespaceManager Whitespaces = null;
     ContinuationIndenter Indenter = null;
     JavaCleaner $c$ = $createJavaCleaner();
     try {
+      Replacements Result = new Replacements();
       deriveLocalStyle(AnnotatedLines);
-      AffectedRangeMgr.computeAffectedLines(AnnotatedLines.begin(), 
+      AffectedRangeMgr.computeAffectedLines(AnnotatedLines.begin(),
           AnnotatedLines.end());
-      if (Style.Language == FormatStyle.LanguageKind.LK_JavaScript
-         && Style.JavaScriptQuotes != FormatStyle.JavaScriptQuoteStyle.JSQS_Leave) {
-        requoteJSStringLiteral(AnnotatedLines, Result);
-      }
-      
       for (/*uint*/int i = 0, e = AnnotatedLines.size(); i != e; ++i) {
         Annotator.calculateFormattingInformation(/*Deref*/AnnotatedLines.$at(i));
       }
-      
+
       Annotator.setCommentLineLevels(AnnotatedLines);
-      
-      Whitespaces/*J*/= new WhitespaceManager(Env.getSourceManager(), Style, 
+
+      Whitespaces/*J*/= new WhitespaceManager(Env.getSourceManager(), Style,
           Formatter.inputUsesCRLF(Env.getSourceManager().getBufferData(Env.getFileID())));
-      Indenter/*J*/= new ContinuationIndenter(Style, Tokens.getKeywords(), 
-          Env.getSourceManager(), Whitespaces, Encoding, 
+      Indenter/*J*/= new ContinuationIndenter(Style, Tokens.getKeywords(),
+          Env.getSourceManager(), Whitespaces, Encoding,
           BinPackInconclusiveFunctions);
-      $c$.clean($c$.track(new UnwrappedLineFormatter(/*AddrOf*/Indenter, /*AddrOf*/Whitespaces, Style, Tokens.getKeywords(), 
+      $c$.clean($c$.track(new UnwrappedLineFormatter(/*AddrOf*/Indenter, /*AddrOf*/Whitespaces, Style, Tokens.getKeywords(),
           IncompleteFormat)).
           format(AnnotatedLines));
-      return new std.setType<Replacement>(Whitespaces.generateReplacements());
+
+      // for (const auto &R : Whitespaces.generateReplacements())
+      //   if (Result.add(R))
+      //     return Result;
+      // return Result;
+      for (Replacement R : Whitespaces.generateReplacements()) {
+        if (Result.add(R).$bool()) {
+          return Result;
+        }
+      }
+
+      return Result;
     } finally {
       if (Indenter != null) { Indenter.$destroy(); }
       if (Whitespaces != null) { Whitespaces.$destroy(); }
@@ -167,7 +180,7 @@ public class Formatter extends /*public*/ TokenAnalyzer implements Destructors.C
    FQN="clang::format::(anonymous namespace)::Formatter::requoteJSStringLiteral", NM="_ZN5clang6format12_GLOBAL__N_19Formatter22requoteJSStringLiteralERN4llvm15SmallVectorImplIPNS0_13AnnotatedLineEEERSt3setINS_7tooling11ReplacementESt4lessISB_ESaISB_EE",
    cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Format/Format.cpp -nm=_ZN5clang6format12_GLOBAL__N_19Formatter22requoteJSStringLiteralERN4llvm15SmallVectorImplIPNS0_13AnnotatedLineEEERSt3setINS_7tooling11ReplacementESt4lessISB_ESaISB_EE")
   //</editor-fold>
-  private void requoteJSStringLiteral(final SmallVectorImpl<AnnotatedLine /*P*/ > /*&*/ Lines, 
+  private void requoteJSStringLiteral(final SmallVectorImpl<AnnotatedLine /*P*/ > /*&*/ Lines,
                         final std.setType<Replacement> /*&*/ Result) {
     for (AnnotatedLine /*P*/ Line : Lines) {
       requoteJSStringLiteral(Line.Children, Result);
@@ -187,24 +200,24 @@ public class Formatter extends /*public*/ TokenAnalyzer implements Destructors.C
            && !Input.startswith(/*STRINGREF_STR*/"'"))) {
           continue;
         }
-        
+
         // Change start and end quote.
         boolean IsSingle = Style.JavaScriptQuotes == FormatStyle.JavaScriptQuoteStyle.JSQS_Single;
         SourceLocation Start = FormatTok.Tok.getLocation();
         SourceLocationUIntStringRef2Void Replace = /*[&, &Result, this]*/ (SourceLocation Start$1, /*uint*/int Length, StringRef ReplacementText) -> {
               JavaCleaner $c$ = $createJavaCleaner();
               try {
-                $c$.clean(Result.insert_T$RR($c$.track(new Replacement(Env.getSourceManager(), new SourceLocation(Start$1), 
+                $c$.clean(Result.insert_T$RR($c$.track(new Replacement(Env.getSourceManager(), new SourceLocation(Start$1),
                         Length, new StringRef(ReplacementText)))));
               } finally {
                 $c$.$destroy();
               }
             };
         Replace.$call(new SourceLocation(Start), 1, /*STRINGREF_STR*/IsSingle ? new StringRef($SGL_QUOTE) : new StringRef($DBL_QUOTE));
-        Replace.$call(FormatTok.Tok.getEndLoc().getLocWithOffset(-1), 1, 
+        Replace.$call(FormatTok.Tok.getEndLoc().getLocWithOffset(-1), 1,
             /*STRINGREF_STR*/IsSingle ? new StringRef($SGL_QUOTE) : new StringRef($DBL_QUOTE)
         );
-        
+
         // Escape internal quotes.
         /*size_t*/int ColumnWidth = FormatTok.TokenText.size();
         boolean Escaped = false;
@@ -236,7 +249,7 @@ public class Formatter extends /*public*/ TokenAnalyzer implements Destructors.C
             break;
           }
         }
-        
+
         // For formatting, count the number of non-escaped single quotes in them
         // and adjust ColumnWidth to take the added escapes into account.
         // FIXME(martinprobst): this might conflict with code breaking a long
@@ -247,7 +260,7 @@ public class Formatter extends /*public*/ TokenAnalyzer implements Destructors.C
     }
   }
 
-  
+
   //<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::Formatter::inputUsesCRLF">
   @Converted(kind = Converted.Kind.AUTO,
    source = "${LLVM_SRC}/llvm/tools/clang/lib/Format/Format.cpp", line = 907,
@@ -258,7 +271,7 @@ public class Formatter extends /*public*/ TokenAnalyzer implements Destructors.C
     return $greater_uint(Text.count($$CR) * 2, Text.count($$LF));
   }
 
-  
+
   //<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::Formatter::hasCpp03IncompatibleFormat">
   @Converted(kind = Converted.Kind.AUTO,
    source = "${LLVM_SRC}/llvm/tools/clang/lib/Format/Format.cpp", line = 911,
@@ -285,7 +298,7 @@ public class Formatter extends /*public*/ TokenAnalyzer implements Destructors.C
     return false;
   }
 
-  
+
   //<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::Formatter::countVariableAlignments">
   @Converted(kind = Converted.Kind.AUTO,
    source = "${LLVM_SRC}/llvm/tools/clang/lib/Format/Format.cpp", line = 929,
@@ -301,7 +314,7 @@ public class Formatter extends /*public*/ TokenAnalyzer implements Destructors.C
           continue;
         }
         boolean SpaceBefore = $noteq_SourceLocation$C(Tok.WhitespaceRange.getBegin(), Tok.WhitespaceRange.getEnd());
-        boolean SpaceAfter = $noteq_SourceLocation$C(Tok.Next.WhitespaceRange.getBegin(), 
+        boolean SpaceAfter = $noteq_SourceLocation$C(Tok.Next.WhitespaceRange.getBegin(),
             Tok.Next.WhitespaceRange.getEnd());
         if (SpaceBefore && !SpaceAfter) {
           ++AlignmentDiff;
@@ -314,7 +327,7 @@ public class Formatter extends /*public*/ TokenAnalyzer implements Destructors.C
     return AlignmentDiff;
   }
 
-  
+
   //<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::Formatter::deriveLocalStyle">
   @Converted(kind = Converted.Kind.AUTO,
    source = "${LLVM_SRC}/llvm/tools/clang/lib/Format/Format.cpp", line = 949,
@@ -336,7 +349,7 @@ public class Formatter extends /*public*/ TokenAnalyzer implements Destructors.C
         if (Tok.PackingKind == ParameterPackingKind.PPK_OnePerLine) {
           HasOnePerLineFunction = true;
         }
-        
+
         Tok = Tok.Next;
       }
     }
@@ -350,7 +363,7 @@ public class Formatter extends /*public*/ TokenAnalyzer implements Destructors.C
        = HasBinPackedFunction || !HasOnePerLineFunction;
   }
 
-  
+
   private boolean BinPackInconclusiveFunctions;
   private bool$ptr/*bool P*/ IncompleteFormat;
   //<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::Formatter::~Formatter">
@@ -363,7 +376,7 @@ public class Formatter extends /*public*/ TokenAnalyzer implements Destructors.C
     super.$destroy();
   }
 
-  
+
   @Override public String toString() {
     return "" + "BinPackInconclusiveFunctions=" + BinPackInconclusiveFunctions // NOI18N
               + ", IncompleteFormat=" + IncompleteFormat // NOI18N

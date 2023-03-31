@@ -73,7 +73,7 @@
  * ARM contributions   llvm/lib/Target/ARM/LICENSE.TXT
  * md5 contributions   llvm/lib/Support/MD5.cpp llvm/include/llvm/Support/MD5.h
  */
-package z;
+package unit.src.z;
 
 import org.junit.Ignore;
 

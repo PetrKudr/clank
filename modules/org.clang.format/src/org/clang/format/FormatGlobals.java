@@ -1,43 +1,43 @@
 /**
  * This file was converted to Java from the original LLVM source file. The original
  * source file follows the LLVM Release License, outlined below.
- * 
+ *
  * ==============================================================================
  * LLVM Release License
  * ==============================================================================
  * University of Illinois/NCSA
  * Open Source License
- * 
+ *
  * Copyright (c) 2003-2017 University of Illinois at Urbana-Champaign.
  * All rights reserved.
- * 
+ *
  * Developed by:
- * 
+ *
  *     LLVM Team
- * 
+ *
  *     University of Illinois at Urbana-Champaign
- * 
+ *
  *     http://llvm.org
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal with
  * the Software without restriction, including without limitation the rights to
  * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
  * of the Software, and to permit persons to whom the Software is furnished to do
  * so, subject to the following conditions:
- * 
+ *
  *     * Redistributions of source code must retain the above copyright notice,
  *       this list of conditions and the following disclaimers.
- * 
+ *
  *     * Redistributions in binary form must reproduce the above copyright notice
  *       this list of conditions and the following disclaimers in the
  *       documentation and/or other materials provided with the distribution.
- * 
+ *
  *     * Neither the names of the LLVM Team, University of Illinois at
  *       Urbana-Champaign, nor the names of its contributors may be used to
  *       endorse or promote products derived from this Software without specific
  *       prior written permission.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
  * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
@@ -45,7 +45,7 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS WITH THE
  * SOFTWARE.
- * 
+ *
  * ==============================================================================
  * Copyrights and Licenses for Third Party Software Distributed with LLVM:
  * ==============================================================================
@@ -53,16 +53,16 @@
  * have its own individual LICENSE.TXT file in the directory in which it appears.
  * This file will describe the copyrights, license, and restrictions which apply
  * to that code.
- * 
+ *
  * The disclaimer of warranty in the University of Illinois Open Source License
  * applies to all code in the LLVM Distribution, and nothing in any of the
  * other licenses gives permission to use the names of the LLVM Team or the
  * University of Illinois to endorse or promote products derived from this
  * Software.
- * 
+ *
  * The following pieces of software have additional or alternate copyrights,
  * licenses, and/or restrictions:
- * 
+ *
  * Program             Directory
  * -------             ---------
  * Autoconf            llvm/autoconf
@@ -75,34 +75,38 @@
  */
 package org.clang.format;
 
-import org.clank.java.*;
-import org.clank.support.*;
-import org.clank.support.aliases.*;
-import org.clank.support.JavaDifferentiators.*;
-import static org.clank.java.io.*;
-import static org.clank.java.std.*;
-import static org.clank.support.NativePointer.*;
-import static org.clank.support.Native.*;
-import static org.clank.support.Unsigned.*;
-import org.llvm.support.*;
-import org.llvm.adt.*;
-import org.llvm.adt.aliases.*;
-import org.clang.tooling.core.*;
-import org.clang.basic.*;
-import org.clang.basic.vfs.*;
-import org.llvm.support.yaml.*;
-import static org.clang.basic.vfs.VfsGlobals.*;
-import static org.clang.format.impl.FormatStatics.*;
-import org.clang.format.java.FormatFunctionPointers.*;
+import org.clang.basic.LangOptions;
+import org.clang.basic.vfs.FileSystem;
+import org.clang.basic.vfs.Status;
+import static org.clang.basic.vfs.VfsGlobals.getRealFileSystem;
 import static org.clang.format.FormatGlobals.*;
 import org.clang.format.impl.Cleaner;
 import org.clang.format.impl.Environment;
+import static org.clang.format.impl.FormatStatics.*;
 import org.clang.format.impl.Formatter;
-import org.clang.format.llvm.yaml.impl.MappingTraitsFormatStyle;
+import org.clang.format.java.FormatFunctionPointers.FormatStyleStringRefvectorStringRef2Replacements;
+import org.clang.format.llvm.yaml.impl.*;
+import org.clang.tooling.core.*;
+import org.clank.java.*;
+import org.clank.java.std.string;
+import static org.clank.java.std_errors.$eq_error_code$C;
+import org.clank.support.*;
+import org.clank.support.JavaDifferentiators.JD$Move;
+import org.clank.support.JavaDifferentiators.JD$T$C$P_T2$C$R;
+import static org.clank.support.Native.*;
+import static org.clank.support.Unsigned.*;
+import org.clank.support.aliases.*;
+import static org.clank.support.literal_constants.$;
+import static org.clank.support.literal_constants.$COMMA_SPACE;
+import static org.clank.support.literal_constants.$DOT_STAR;
+import static org.clank.support.literal_constants.$LF;
+import org.llvm.adt.*;
+import org.llvm.adt.aliases.*;
+import org.llvm.support.*;
 import org.llvm.support.sys.fs;
 import org.llvm.support.sys.path;
+import org.llvm.support.yaml.*;
 import static org.llvm.support.yaml.YamlGlobals.*;
-import org.clang.format.llvm.yaml.impl.*;
 
 
 //<editor-fold defaultstate="collapsed" desc="static type FormatGlobals">
@@ -174,7 +178,7 @@ public static FormatStyle getLLVMStyle() {
     LLVMStyle.BreakBeforeTernaryOperators = true;
     LLVMStyle.BreakBeforeBraces = FormatStyle.BraceBreakingStyle.BS_Attach;
     LLVMStyle.BraceWrapping.$assignMove(new FormatStyle.BraceWrappingFlags(
-          false, false, false, false, false, false, 
+          false, false, false, false, false, false,
           false, false, false, false, false));
     LLVMStyle.BreakAfterJavaFieldAnnotations = false;
     LLVMStyle.BreakConstructorInitializersBeforeComma = false;
@@ -191,8 +195,8 @@ public static FormatStyle getLLVMStyle() {
     LLVMStyle.ForEachMacros.push_back_T$RR(new std.string(JD$T$C$P_T2$C$R.INSTANCE, /*KEEP_STR*/"Q_FOREACH"));
     LLVMStyle.ForEachMacros.push_back_T$RR(new std.string(JD$T$C$P_T2$C$R.INSTANCE, /*KEEP_STR*/"BOOST_FOREACH"));
     $c$.clean(LLVMStyle.IncludeCategories.$assign($c$.track(new /*const*/ FormatStyle.IncludeCategory [/*3*/] {
-          new FormatStyle.IncludeCategory(new string($("^\"(llvm|llvm-c|clang|clang-c)/")), 2), 
-          new FormatStyle.IncludeCategory(new string($("^(<|\"(gtest|isl|json)/)")), 3), 
+          new FormatStyle.IncludeCategory(new string($("^\"(llvm|llvm-c|clang|clang-c)/")), 2),
+          new FormatStyle.IncludeCategory(new string($("^(<|\"(gtest|isl|json)/)")), 3),
           new FormatStyle.IncludeCategory(new string($DOT_STAR), 1)})));
     LLVMStyle.IncludeIsMainRegex.$assign_T$C$P(/*KEEP_STR*/"$");
     LLVMStyle.IndentCaseLabels = false;
@@ -219,20 +223,21 @@ public static FormatStyle getLLVMStyle() {
     LLVMStyle.SpacesInContainerLiterals = true;
     LLVMStyle.SpacesInCStyleCastParentheses = false;
     LLVMStyle.SpaceAfterCStyleCast = false;
+    LLVMStyle.SpaceAfterTemplateKeyword = true;
     LLVMStyle.SpaceBeforeParens = FormatStyle.SpaceBeforeParensOptions.SBPO_ControlStatements;
     LLVMStyle.SpaceBeforeAssignmentOperators = true;
     LLVMStyle.SpacesInAngles = false;
-    
+
     LLVMStyle.PenaltyBreakComment = 300;
     LLVMStyle.PenaltyBreakFirstLessLess = 120;
     LLVMStyle.PenaltyBreakString = 1000;
     LLVMStyle.PenaltyExcessCharacter = 1000000;
     LLVMStyle.PenaltyReturnTypeOnItsOwnLine = 60;
     LLVMStyle.PenaltyBreakBeforeFirstCallParameter = 19;
-    
+
     LLVMStyle.DisableFormat = false;
     LLVMStyle.SortIncludes = true;
-    
+
     return new FormatStyle(JD$Move.INSTANCE, LLVMStyle);
   } finally {
     if (LLVMStyle != null) { LLVMStyle.$destroy(); }
@@ -257,7 +262,7 @@ public static FormatStyle getGoogleStyle(FormatStyle.LanguageKind Language) {
   try {
     GoogleStyle = getLLVMStyle();
     GoogleStyle.Language = Language;
-    
+
     GoogleStyle.AccessModifierOffset = -1;
     GoogleStyle.AlignEscapedNewlinesLeft = true;
     GoogleStyle.AllowShortIfStatementsOnASingleLine = true;
@@ -278,7 +283,7 @@ public static FormatStyle getGoogleStyle(FormatStyle.LanguageKind Language) {
     GoogleStyle.PointerAlignment = FormatStyle.PointerAlignmentStyle.PAS_Left;
     GoogleStyle.SpacesBeforeTrailingComments = 2;
     GoogleStyle.Standard = FormatStyle.LanguageStandard.LS_Auto;
-    
+
     GoogleStyle.PenaltyReturnTypeOnItsOwnLine = 200;
     GoogleStyle.PenaltyBreakBeforeFirstCallParameter = 1;
     if (Language == FormatStyle.LanguageKind.LK_Java) {
@@ -295,10 +300,10 @@ public static FormatStyle getGoogleStyle(FormatStyle.LanguageKind Language) {
     } else if (Language == FormatStyle.LanguageKind.LK_JavaScript) {
       GoogleStyle.AlignAfterOpenBracket = FormatStyle.BracketAlignmentStyle.BAS_AlwaysBreak;
       GoogleStyle.AlignOperands = false;
-      GoogleStyle.AllowShortFunctionsOnASingleLine = FormatStyle.ShortFunctionStyle.SFS_Inline;
+      GoogleStyle.AllowShortFunctionsOnASingleLine = FormatStyle.ShortFunctionStyle.SFS_Empty;
       GoogleStyle.AlwaysBreakBeforeMultilineStrings = false;
       GoogleStyle.BreakBeforeTernaryOperators = false;
-      GoogleStyle.CommentPragmas.$assign_T$C$P(/*KEEP_STR*/"@(export|requirecss|return|see|visibility) ");
+      GoogleStyle.CommentPragmas.$assign_T$C$P(/*KEEP_STR*/"(taze:|@(export|requirecss|return|returns|see|visibility)) ");
       GoogleStyle.MaxEmptyLinesToKeep = 3;
       GoogleStyle.NamespaceIndentation = FormatStyle.NamespaceIndentationKind.NI_All;
       GoogleStyle.SpacesInContainerLiterals = false;
@@ -307,8 +312,10 @@ public static FormatStyle getGoogleStyle(FormatStyle.LanguageKind Language) {
     } else if (Language == FormatStyle.LanguageKind.LK_Proto) {
       GoogleStyle.AllowShortFunctionsOnASingleLine = FormatStyle.ShortFunctionStyle.SFS_None;
       GoogleStyle.SpacesInContainerLiterals = false;
+    } else if (Language == FormatStyle.LanguageKind.LK_ObjC) {
+      GoogleStyle.ColumnLimit = 100;
     }
-    
+
     return new FormatStyle(JD$Move.INSTANCE, GoogleStyle);
   } finally {
     if (GoogleStyle != null) { GoogleStyle.$destroy(); }
@@ -334,6 +341,9 @@ public static FormatStyle getChromiumStyle(FormatStyle.LanguageKind Language) {
       ChromiumStyle.BreakAfterJavaFieldAnnotations = true;
       ChromiumStyle.ContinuationIndentWidth = 8;
       ChromiumStyle.IndentWidth = 4;
+    } else if (Language == FormatStyle.LanguageKind.LK_JavaScript) {
+      ChromiumStyle.AllowShortIfStatementsOnASingleLine = false;
+      ChromiumStyle.AllowShortLoopsOnASingleLine = false;
     } else {
       ChromiumStyle.AllowAllParametersOfDeclarationOnNextLine = false;
       ChromiumStyle.AllowShortFunctionsOnASingleLine = FormatStyle.ShortFunctionStyle.SFS_Inline;
@@ -365,10 +375,12 @@ public static FormatStyle getMozillaStyle() {
     MozillaStyle.AllowAllParametersOfDeclarationOnNextLine = false;
     MozillaStyle.AllowShortFunctionsOnASingleLine = FormatStyle.ShortFunctionStyle.SFS_Inline;
     MozillaStyle.AlwaysBreakAfterReturnType
-       = FormatStyle.ReturnTypeBreakingStyle.RTBS_TopLevelDefinitions;
+       = FormatStyle.ReturnTypeBreakingStyle.RTBS_TopLevel;
     MozillaStyle.AlwaysBreakAfterDefinitionReturnType
        = FormatStyle.DefinitionReturnTypeBreakingStyle.DRTBS_TopLevel;
     MozillaStyle.AlwaysBreakTemplateDeclarations = true;
+    MozillaStyle.BinPackParameters = false;
+    MozillaStyle.BinPackArguments = false;
     MozillaStyle.BreakBeforeBraces = FormatStyle.BraceBreakingStyle.BS_Mozilla;
     MozillaStyle.BreakConstructorInitializersBeforeComma = true;
     MozillaStyle.ConstructorInitializerIndentWidth = 2;
@@ -379,6 +391,7 @@ public static FormatStyle getMozillaStyle() {
     MozillaStyle.ObjCSpaceBeforeProtocolList = false;
     MozillaStyle.PenaltyReturnTypeOnItsOwnLine = 200;
     MozillaStyle.PointerAlignment = FormatStyle.PointerAlignmentStyle.PAS_Left;
+    MozillaStyle.SpaceAfterTemplateKeyword = false;
     return new FormatStyle(JD$Move.INSTANCE, MozillaStyle);
   } finally {
     if (MozillaStyle != null) { MozillaStyle.$destroy(); }
@@ -412,7 +425,6 @@ public static FormatStyle getWebKitStyle() {
     Style.ObjCBlockIndentWidth = 4;
     Style.ObjCSpaceAfterProperty = true;
     Style.PointerAlignment = FormatStyle.PointerAlignmentStyle.PAS_Left;
-    Style.Standard = FormatStyle.LanguageStandard.LS_Cpp03;
     return new FormatStyle(JD$Move.INSTANCE, Style);
   } finally {
     if (Style != null) { Style.$destroy(); }
@@ -480,7 +492,7 @@ public static FormatStyle getNoStyle() {
  FQN="clang::format::getPredefinedStyle", NM="_ZN5clang6format18getPredefinedStyleEN4llvm9StringRefENS0_11FormatStyle12LanguageKindEPS3_",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Format/Format.cpp -nm=_ZN5clang6format18getPredefinedStyleEN4llvm9StringRefENS0_11FormatStyle12LanguageKindEPS3_")
 //</editor-fold>
-public static boolean getPredefinedStyle(StringRef Name, FormatStyle.LanguageKind Language, 
+public static boolean getPredefinedStyle(StringRef Name, FormatStyle.LanguageKind Language,
                   FormatStyle /*P*/ Style) {
   if (Name.equals_lower(/*STRINGREF_STR*/"llvm")) {
     JavaCleaner $c$ = $createJavaCleaner();
@@ -534,7 +546,7 @@ public static boolean getPredefinedStyle(StringRef Name, FormatStyle.LanguageKin
   } else {
     return false;
   }
-  
+
   Style.Language = Language;
   return true;
 }
@@ -563,7 +575,7 @@ public static std.error_code parseConfiguration(StringRef Text, FormatStyle /*P*
     if (Text.trim().empty()) {
       return make_error_code(ParseError.Error);
     }
-    
+
     Styles/*J*/= new std.vector<FormatStyle>(new FormatStyle());
     $Input/*J*/= new Input(new StringRef(Text));
     // DocumentListTraits<vector<FormatStyle>> uses the context to get default
@@ -575,7 +587,7 @@ public static std.error_code parseConfiguration(StringRef Text, FormatStyle /*P*
     if ($Input.error().$bool()) {
       return $Input.error();
     }
-    
+
     for (/*uint*/int i = 0; $less_uint(i, Styles.size()); ++i) {
       // Ensures that only the first configuration can skip the Language option.
       if (Styles.$at(i).Language == FormatStyle.LanguageKind.LK_None && i != 0) {
@@ -648,34 +660,32 @@ public static std.string configurationAsText(final /*const*/ FormatStyle /*&*/ S
  FQN="clang::format::sortIncludes", NM="_ZN5clang6format12sortIncludesERKNS0_11FormatStyleEN4llvm9StringRefENS4_8ArrayRefINS_7tooling5RangeEEES5_Pj",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Format/Format.cpp -nm=_ZN5clang6format12sortIncludesERKNS0_11FormatStyleEN4llvm9StringRefENS4_8ArrayRefINS_7tooling5RangeEEES5_Pj")
 //</editor-fold>
-public static std.setType<Replacement> sortIncludes(final /*const*/ FormatStyle /*&*/ Style, StringRef Code, 
-            ArrayRef<Range> Ranges, 
-            StringRef FileName) {
-  return sortIncludes(Style, Code, 
-            Ranges, 
+public static Replacements sortIncludes(
+      final /*const*/ FormatStyle /*&*/ Style,
+      StringRef Code,
+      ArrayRef<Range> Ranges,
+      StringRef FileName) {
+  return sortIncludes(Style, Code,
+            Ranges,
             FileName, (uint$ptr/*uint P*/ )null);
 }
-public static std.setType<Replacement> sortIncludes(final /*const*/ FormatStyle /*&*/ Style, StringRef Code, 
-            ArrayRef<Range> Ranges, 
-            StringRef FileName, uint$ptr/*uint P*/ Cursor/*= null*/) {
-  std.setType<Replacement> Replaces = null;
-  JavaCleaner $c$ = $createJavaCleaner();
-  try {
-    Replaces/*J*/= new std.setType<Replacement>();
+
+  public static Replacements sortIncludes(
+      final /*const*/ FormatStyle /*&*/ Style,
+      StringRef Code,
+      ArrayRef<Range> Ranges,
+      StringRef FileName,
+      uint$ptr/*uint P*/ Cursor/*= null*/) {
+    Replacements Replaces/*J*/ = new Replacements();
     if (!Style.SortIncludes) {
-      return new std.setType<Replacement>(JD$Move.INSTANCE, Replaces);
+      return Replaces;
     }
     if (Style.Language == FormatStyle.LanguageKind.LK_JavaScript) {
       return sortJavaScriptImports(Style, new StringRef(Code), new ArrayRef<Range>(Ranges), new StringRef(FileName));
     }
-    $c$.clean($c$.track(sortCppIncludes(Style, new StringRef(Code), new ArrayRef<Range>(Ranges), new StringRef(FileName), Replaces, Cursor)));
-    return new std.setType<Replacement>(JD$Move.INSTANCE, Replaces);
-  } finally {
-    if (Replaces != null) { Replaces.$destroy(); }
-    $c$.$destroy();
+    sortCppIncludes(Style, new StringRef(Code), new ArrayRef<Range>(Ranges), new StringRef(FileName), Replaces, Cursor);
+    return Replaces;
   }
-}
-
 
 /// \brief Returns the replacements corresponding to applying and formatting
 /// \p Replaces on success; otheriwse, return an llvm::Error carrying
@@ -686,9 +696,9 @@ public static std.setType<Replacement> sortIncludes(final /*const*/ FormatStyle 
  FQN="clang::format::formatReplacements", NM="_ZN5clang6format18formatReplacementsEN4llvm9StringRefERKSt3setINS_7tooling11ReplacementESt4lessIS5_ESaIS5_EERKNS0_11FormatStyleE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Format/Format.cpp -nm=_ZN5clang6format18formatReplacementsEN4llvm9StringRefERKSt3setINS_7tooling11ReplacementESt4lessIS5_ESaIS5_EERKNS0_11FormatStyleE")
 //</editor-fold>
-public static Expected<std.setType<Replacement> > formatReplacements(StringRef Code, final /*const*/ std.setType<Replacement> /*&*/ Replaces, 
-                  final /*const*/ FormatStyle /*&*/ Style) {
-  Expected<std.setType<Replacement/*, std.less<Replacement>*//*, default_cls_allocator*/> > SortedReplaces = null;
+public static Expected<Replacements> formatReplacements(StringRef Code, final /*const*/ Replacements /*&*/ Replaces,
+      final /*const*/ FormatStyle /*&*/ Style) {
+  Expected<Replacements> SortedReplaces = null;
   try {
     // We need to use lambda function here since there are two versions of
     // `sortIncludes`.
@@ -699,12 +709,12 @@ public static Expected<std.setType<Replacement> > formatReplacements(StringRef C
     if (!SortedReplaces.$bool()) {
       JavaCleaner $c$ = $createJavaCleaner();
       try {
-        return $c$.clean(new Expected<std.setType<Replacement> >($c$.track(SortedReplaces.takeError())));
+        return $c$.clean(new Expected<>($c$.track(SortedReplaces.takeError())));
       } finally {
         $c$.$destroy();
       }
     }
-    
+
     // We need to use lambda function here since there are two versions of
     // `reformat`.
     FormatStyleStringRefvectorStringRef2Replacements Reformat = /*[]*/ (final /*const*/ FormatStyle /*&*/ Style$1, StringRef Code$1, std.vector<Range> Ranges, StringRef FileName) -> {
@@ -720,8 +730,20 @@ public static Expected<std.setType<Replacement> > formatReplacements(StringRef C
 /// \brief Returns the replacements corresponding to applying \p Replaces and
 /// cleaning up the code after that on success; otherwise, return an llvm::Error
 /// carrying llvm::StringError.
-/// This also inserts a C++ #include directive into the correct block if the
-/// replacement corresponding to the header insertion has offset UINT_MAX.
+/// This also supports inserting/deleting C++ #include directives:
+/// - If a replacement has offset UINT_MAX, length 0, and a replacement text
+///   that is an #include directive, this will insert the #include into the
+///   correct block in the \p Code. When searching for points to insert new
+///   header, this ignores #include's after the #include block(s) in the
+///   beginning of a file to avoid inserting headers into code sections where
+///   new #include's should not be added by default. These code sections
+///   include:
+///     - raw string literals (containing #include).
+///     - #if blocks.
+///     - Special #include's among declarations (e.g. functions).
+/// - If a replacement has offset UINT_MAX, length 1, and a replacement text
+///   that is the name of the header to be removed, the header will be removed
+///   from \p Code if it exists.
 // anonymous namespace
 //<editor-fold defaultstate="collapsed" desc="clang::format::cleanupAroundReplacements">
 @Converted(kind = Converted.Kind.MANUAL_SEMANTIC,
@@ -729,9 +751,10 @@ public static Expected<std.setType<Replacement> > formatReplacements(StringRef C
  FQN="clang::format::cleanupAroundReplacements", NM="_ZN5clang6format25cleanupAroundReplacementsEN4llvm9StringRefERKSt3setINS_7tooling11ReplacementESt4lessIS5_ESaIS5_EERKNS0_11FormatStyleE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Format/Format.cpp -nm=_ZN5clang6format25cleanupAroundReplacementsEN4llvm9StringRefERKSt3setINS_7tooling11ReplacementESt4lessIS5_ESaIS5_EERKNS0_11FormatStyleE")
 //</editor-fold>
-public static Expected<std.setType<Replacement> > cleanupAroundReplacements(StringRef Code, final /*const*/ std.setType<Replacement> /*&*/ Replaces, 
-                         final /*const*/ FormatStyle /*&*/ Style) {
-  std.setType<Replacement> NewReplaces = null;
+public static Expected<Replacements> cleanupAroundReplacements(StringRef Code,
+      final /*const*/ Replacements /*&*/ Replaces,
+      final /*const*/ FormatStyle /*&*/ Style) {
+  Replacements NewReplaces = null;
   try {
     // We need to use lambda function here since there are two versions of
     // `cleanup`.
@@ -747,7 +770,7 @@ public static Expected<std.setType<Replacement> > cleanupAroundReplacements(Stri
 }
 
 
-/// \brief Reformats the given \p Ranges in the file \p ID.
+/// \brief Reformats the given \p Ranges in \p Code.
 ///
 /// Each range is extended on either end to its next bigger logic unit, i.e.
 /// everything that might influence its formatting or might be influenced by its
@@ -759,76 +782,62 @@ public static Expected<std.setType<Replacement> > cleanupAroundReplacements(Stri
 /// If ``IncompleteFormat`` is non-null, its value will be set to true if any
 /// of the affected ranges were not formatted due to a non-recoverable syntax
 /// error.
-//<editor-fold defaultstate="collapsed" desc="clang::format::reformat">
-@Converted(kind = Converted.Kind.AUTO,
- source = "${LLVM_SRC}/llvm/tools/clang/lib/Format/Format.cpp", line = 1614,
- FQN="clang::format::reformat", NM="_ZN5clang6format8reformatERKNS0_11FormatStyleERNS_13SourceManagerENS_6FileIDEN4llvm8ArrayRefINS_15CharSourceRangeEEEPb",
- cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Format/Format.cpp -nm=_ZN5clang6format8reformatERKNS0_11FormatStyleERNS_13SourceManagerENS_6FileIDEN4llvm8ArrayRefINS_15CharSourceRangeEEEPb")
-//</editor-fold>
-public static std.setType<Replacement> reformat(final /*const*/ FormatStyle /*&*/ Style, final SourceManager /*&*/ SM, 
-        FileID ID, ArrayRef<CharSourceRange> Ranges) {
-  return reformat(Style, SM, 
-        ID, Ranges, 
-        (bool$ptr/*bool P*/ )null);
-}
-public static std.setType<Replacement> reformat(final /*const*/ FormatStyle /*&*/ Style, final SourceManager /*&*/ SM, 
-        FileID ID, ArrayRef<CharSourceRange> Ranges, 
-        bool$ptr/*bool P*/ IncompleteFormat/*= null*/) {
-  FormatStyle Expanded = null;
-  Environment Env = null;
-  Formatter Format = null;
-  try {
-    Expanded = expandPresets(Style);
-    if (Expanded.DisableFormat) {
-      return new std.setType<Replacement>();
-    }
-    
-    Env/*J*/= new Environment(SM, new FileID(ID), new ArrayRef<CharSourceRange>(Ranges));
-    Format/*J*/= new Formatter(Env, Expanded, IncompleteFormat);
-    return Format.process();
-  } finally {
-    if (Format != null) { Format.$destroy(); }
-    if (Env != null) { Env.$destroy(); }
-    if (Expanded != null) { Expanded.$destroy(); }
-  }
-}
 
-
-/// \brief Reformats the given \p Ranges in \p Code.
-///
-/// Otherwise identical to the reformat() function using a file ID.
 //<editor-fold defaultstate="collapsed" desc="clang::format::reformat">
 @Converted(kind = Converted.Kind.AUTO,
  source = "${LLVM_SRC}/llvm/tools/clang/lib/Format/Format.cpp", line = 1626,
  FQN="clang::format::reformat", NM="_ZN5clang6format8reformatERKNS0_11FormatStyleEN4llvm9StringRefENS4_8ArrayRefINS_7tooling5RangeEEES5_Pb",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Format/Format.cpp -nm=_ZN5clang6format8reformatERKNS0_11FormatStyleEN4llvm9StringRefENS4_8ArrayRefINS_7tooling5RangeEEES5_Pb")
 //</editor-fold>
-public static std.setType<Replacement> reformat(final /*const*/ FormatStyle /*&*/ Style, StringRef Code, 
-        ArrayRef<Range> Ranges) {
-  return reformat(Style, Code, 
-        Ranges, 
+public static Replacements reformat(
+      final /*const*/ FormatStyle /*&*/ Style,
+      StringRef Code,
+      ArrayRef<Range> Ranges) {
+  return reformat(Style, Code,
+        Ranges,
         new StringRef(/*KEEP_STR*/"<stdin>"), (bool$ptr/*bool P*/ )null);
 }
-public static std.setType<Replacement> reformat(final /*const*/ FormatStyle /*&*/ Style, StringRef Code, 
-        ArrayRef<Range> Ranges, 
-        StringRef FileName/*= "<stdin>"*/) {
-  return reformat(Style, Code, 
-        Ranges, 
+  public static Replacements reformat(
+      final /*const*/ FormatStyle /*&*/ Style,
+      StringRef Code,
+      ArrayRef<Range> Ranges,
+      StringRef FileName/*= "<stdin>"*/) {
+  return reformat(Style, Code,
+        Ranges,
         FileName, (bool$ptr/*bool P*/ )null);
 }
-public static std.setType<Replacement> reformat(final /*const*/ FormatStyle /*&*/ Style, StringRef Code, 
-        ArrayRef<Range> Ranges, 
-        StringRef FileName/*= "<stdin>"*/, bool$ptr/*bool P*/ IncompleteFormat/*= null*/) {
+  public static Replacements reformat(final /*const*/ FormatStyle /*&*/ Style,
+      StringRef Code,
+      ArrayRef<Range> Ranges,
+      StringRef FileName/*= "<stdin>"*/,
+      bool$ptr/*bool P*/ IncompleteFormat/*= null*/) {
   FormatStyle Expanded = null;
   std.unique_ptr<Environment> Env = null;
   Formatter Format = null;
   try {
     Expanded = expandPresets(Style);
     if (Expanded.DisableFormat) {
-      return new std.setType<Replacement>();
+      return new Replacements();
     }
-    
     Env = Environment.CreateVirtualEnvironment(new StringRef(Code), new StringRef(FileName), new ArrayRef<Range>(Ranges));
+
+// JavaScript -- no transpile
+//  if (Style.Language == FormatStyle::LK_JavaScript &&
+//      Style.JavaScriptQuotes != FormatStyle::JSQS_Leave) {
+//    JavaScriptRequoter Requoter(*Env, Expanded);
+//    tooling::Replacements Requotes = Requoter.process();
+//    if (!Requotes.empty()) {
+//      auto NewCode = applyAllReplacements(Code, Requotes);
+//      if (NewCode) {
+//        auto NewEnv = Environment::CreateVirtualEnvironment(
+//            *NewCode, FileName,
+//            tooling::calculateRangesAfterReplacements(Requotes, Ranges));
+//        Formatter Format(*NewEnv, Expanded, IncompleteFormat);
+//        return Requotes.merge(Format.process());
+//      }
+//    }
+//   }
+
     Format/*J*/= new Formatter(Env.$star(), Expanded, IncompleteFormat);
     return Format.process();
   } finally {
@@ -839,49 +848,22 @@ public static std.setType<Replacement> reformat(final /*const*/ FormatStyle /*&*
 }
 
 
-/// \brief Clean up any erroneous/redundant code in the given \p Ranges in the
-/// file \p ID.
-///
-/// Returns the ``Replacements`` that clean up all \p Ranges in the file \p ID.
-//<editor-fold defaultstate="collapsed" desc="clang::format::cleanup">
-@Converted(kind = Converted.Kind.AUTO,
- source = "${LLVM_SRC}/llvm/tools/clang/lib/Format/Format.cpp", line = 1639,
- FQN="clang::format::cleanup", NM="_ZN5clang6format7cleanupERKNS0_11FormatStyleERNS_13SourceManagerENS_6FileIDEN4llvm8ArrayRefINS_15CharSourceRangeEEE",
- cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Format/Format.cpp -nm=_ZN5clang6format7cleanupERKNS0_11FormatStyleERNS_13SourceManagerENS_6FileIDEN4llvm8ArrayRefINS_15CharSourceRangeEEE")
-//</editor-fold>
-public static std.setType<Replacement> cleanup(final /*const*/ FormatStyle /*&*/ Style, final SourceManager /*&*/ SM, 
-       FileID ID, ArrayRef<CharSourceRange> Ranges) {
-  Environment Env = null;
-  Cleaner Clean = null;
-  try {
-    Env/*J*/= new Environment(SM, new FileID(ID), new ArrayRef<CharSourceRange>(Ranges));
-    Clean/*J*/= new Cleaner(Env, Style);
-    return Clean.process();
-  } finally {
-    if (Clean != null) { Clean.$destroy(); }
-    if (Env != null) { Env.$destroy(); }
-  }
-}
-
-
 /// \brief Clean up any erroneous/redundant code in the given \p Ranges in \p
 /// Code.
 ///
-/// Otherwise identical to the cleanup() function using a file ID.
+/// Returns the ``Replacements`` that clean up all \p Ranges in \p Code.
 //<editor-fold defaultstate="collapsed" desc="clang::format::cleanup">
 @Converted(kind = Converted.Kind.AUTO,
  source = "${LLVM_SRC}/llvm/tools/clang/lib/Format/Format.cpp", line = 1646,
  FQN="clang::format::cleanup", NM="_ZN5clang6format7cleanupERKNS0_11FormatStyleEN4llvm9StringRefENS4_8ArrayRefINS_7tooling5RangeEEES5_",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Format/Format.cpp -nm=_ZN5clang6format7cleanupERKNS0_11FormatStyleEN4llvm9StringRefENS4_8ArrayRefINS_7tooling5RangeEEES5_")
 //</editor-fold>
-public static std.setType<Replacement> cleanup(final /*const*/ FormatStyle /*&*/ Style, StringRef Code, 
-       ArrayRef<Range> Ranges) {
-  return cleanup(Style, Code, 
-       Ranges, 
+public static Replacements cleanup(final /*const*/ FormatStyle /*&*/ Style, StringRef Code,       ArrayRef<Range> Ranges) {
+  return cleanup(Style, Code,
+       Ranges,
        new StringRef(/*KEEP_STR*/"<stdin>"));
 }
-public static std.setType<Replacement> cleanup(final /*const*/ FormatStyle /*&*/ Style, StringRef Code, 
-       ArrayRef<Range> Ranges, 
+  public static Replacements cleanup(final /*const*/ FormatStyle /*&*/ Style, StringRef Code,       ArrayRef<Range> Ranges,
        StringRef FileName/*= "<stdin>"*/) {
   std.unique_ptr<Environment> Env = null;
   Cleaner Clean = null;
@@ -919,8 +901,8 @@ public static LangOptions getFormattingLangOpts(final /*const*/ FormatStyle /*&*
   LangOpts.Bool = true;
   LangOpts.ObjC1 = true;
   LangOpts.ObjC2 = true;
-  LangOpts.MicrosoftExt = true; // To get kw___try, kw___finally.
-  LangOpts.DeclSpecKeyword = true; // To get __declspec.
+  LangOpts.MicrosoftExt = true;     // To get kw___try, kw___finally.
+  LangOpts.DeclSpecKeyword = true;  // To get __declspec.
   return LangOpts;
 }
 
@@ -952,13 +934,19 @@ public static LangOptions getFormattingLangOpts(final /*const*/ FormatStyle /*&*
  FQN="clang::format::getStyle", NM="_ZN5clang6format8getStyleEN4llvm9StringRefES2_S2_PNS_3vfs10FileSystemE",
  cmd="jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/lib/Format/Format.cpp -nm=_ZN5clang6format8getStyleEN4llvm9StringRefES2_S2_PNS_3vfs10FileSystemE")
 //</editor-fold>
-public static FormatStyle getStyle(StringRef StyleName, StringRef FileName, 
+public static FormatStyle getStyle(StringRef StyleName, StringRef FileName,
         StringRef FallbackStyle) {
-  return getStyle(StyleName, FileName, 
-        FallbackStyle, (FileSystem /*P*/ )null);
+  return getStyle(StyleName, FileName,
+        FallbackStyle, new StringRef(""), (FileSystem /*P*/ )null);
 }
-public static FormatStyle getStyle(StringRef StyleName, StringRef FileName, 
-        StringRef FallbackStyle, FileSystem /*P*/ FS/*= null*/) {
+public static FormatStyle getStyle(StringRef StyleName, StringRef FileName,
+        StringRef Code, StringRef FallbackStyle) {
+  return getStyle(StyleName, FileName,
+        FallbackStyle, new StringRef(""), (FileSystem /*P*/ )null);
+}
+public static FormatStyle getStyle(StringRef StyleName, StringRef FileName,
+        StringRef FallbackStyle, StringRef Code /* ="" */,
+        FileSystem /*P*/ FS/*= null*/) {
   FormatStyle Style = null;
   try {
     if (!(FS != null)) {
@@ -971,6 +959,15 @@ public static FormatStyle getStyle(StringRef StyleName, StringRef FileName,
     }
     Style = getLLVMStyle();
     Style.Language = getLanguageByFileName(new StringRef(FileName));
+
+    // This is a very crude detection of whether a header contains ObjC code that
+    // should be improved over time and probably be done on tokens, not one the
+    // bare content of the file.
+    if (Style.Language == FormatStyle.LanguageKind.LK_Cpp && FileName.endswith(".h")
+        && (Code.contains("\n- (") || Code.contains("\n+ ("))) {
+      Style.Language = FormatStyle.LanguageKind.LK_ObjC;
+    }
+
     if (!getPredefinedStyle(new StringRef(FallbackStyle), Style.Language, /*AddrOf*/Style)) {
       llvm.errs().$out(/*KEEP_STR*/"Invalid fallback style \"").$out(/*NO_COPY*/FallbackStyle).$out(
           /*KEEP_STR*/"\" using LLVM style\n"
@@ -997,29 +994,37 @@ public static FormatStyle getStyle(StringRef StyleName, StringRef FileName,
       }
       return new FormatStyle(JD$Move.INSTANCE, Style);
     }
-    
+
     // Look for .clang-format/_clang-format file in the file's parent directories.
     SmallString/*128*/ UnsuitableConfigFiles/*J*/= new SmallString/*128*/(128);
-    SmallString/*128*/ Path/*J*/= new SmallString/*128*/(new StringRef(FileName), 128);
-    fs.make_absolute(Path);
+    SmallString/*128*/ Path/*J*/ = new SmallString/*128*/(new StringRef(FileName), 128);
+    { // to limit EC visibility
+      std.error_code EC = FS.makeAbsolute(Path);
+      if (EC.$bool()) {
+        llvm.dbgs()
+            .$out(EC.message())
+            .$out($LF);
+        return Style;
+      }
+    }
     for (StringRef Directory = Path.$StringRef(); !Directory.empty();
          Directory.$assignMove(path.parent_path(/*NO_COPY*/Directory))) {
-      
+
       ErrorOr<Status> Status = FS.status(new Twine(Directory));
       if (!Status.$bool()
          || Status.$arrow().getType() != fs.file_type.directory_file) {
         continue;
       }
-      
+
       SmallString/*128*/ ConfigFile/*J*/= new SmallString/*128*/(new StringRef(Directory), 128);
-      
+
       path.append(ConfigFile, new Twine(/*KEEP_STR*/".clang-format"));
       do {
         if (/*::*/llvm.DebugFlag && /*::*/llvm.isCurrentDebugType(/*KEEP_STR*/"format-formatter")) {
           llvm.dbgs().$out(/*KEEP_STR*/"Trying ").$out(ConfigFile).$out(/*KEEP_STR*/"...\n");
         }
       } while (false);
-      
+
       Status.$assignMove(FS.status(new Twine(ConfigFile.str())));
       boolean IsFile = Status.$bool() && (Status.$arrow().getType() == fs.file_type.regular_file);
       if (!IsFile) {

@@ -74,7 +74,7 @@
  * md5 contributions   llvm/lib/Support/MD5.cpp llvm/include/llvm/Support/MD5.h
  */
 
-package org.clang.parse.test;
+package unit.src.org.clang.parse.test;
 
 import org.clang.tools.driver.test.DriverTestFileBase;
 import org.junit.*;

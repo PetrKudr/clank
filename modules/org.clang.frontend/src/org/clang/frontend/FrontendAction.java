@@ -76,29 +76,42 @@
 
 package org.clang.frontend;
 
-import org.clank.java.*;
-import org.clank.support.*;
-import org.clank.support.JavaDifferentiators.*;
-import org.llvm.adt.java.ADTJavaDifferentiators.*;
-import static org.clank.java.std.*;
-import static org.llvm.adt.ADTAliases.*;
-import static org.clank.support.NativePointer.*;
-import static org.clank.support.Native.*;
-import org.llvm.support.*;
-import org.llvm.adt.*;
-import org.clang.ast.*;
-import static org.clang.basic.BasicClangGlobals.*;
-import static org.clang.frontend.FrontendClangGlobals.*;
+import org.clang.ast.ASTConsumer;
+import org.clang.ast.ASTContext;
+import org.clang.ast.ExternalASTSource;
 import org.clang.basic.*;
-import org.clang.basic.vfs.*;
-import org.clang.lex.*;
-import org.clang.sema.*;
-import org.clang.serialization.*;
-import org.clang.serialization.GlobalModuleIndex;
-import org.clang.frontend.*;
-import org.clang.frontend.impl.*;
-import org.llvm.support.sys.*;
-import org.clang.frontend.llvm.*;
+import org.clang.basic.vfs.FileSystem;
+import org.clang.frontend.impl.DeserializedDeclsChecker;
+import org.clang.frontend.impl.DeserializedDeclsDumper;
+import org.clang.frontend.llvm.FrontendPluginRegistry;
+import org.clang.lex.Preprocessor;
+import org.clang.lex.PreprocessorOptions;
+import org.clang.sema.ExternalSemaSource;
+import org.clang.sema.Sema;
+import org.clank.java.std;
+import org.clank.support.Converted;
+import org.clank.support.Destructors;
+import org.clank.support.JavaCleaner;
+import org.clank.support.JavaDifferentiators.JD$Move;
+import org.clank.support.JavaDifferentiators.JD$NullPtr;
+import org.clank.support.JavaDifferentiators.JD$Unique_ptr$_Up$_Ep;
+import org.llvm.adt.IntrusiveRefCntPtr;
+import org.llvm.adt.SmallString;
+import org.llvm.adt.StringRef;
+import org.llvm.adt.Twine;
+import org.llvm.adt.java.ADTJavaDifferentiators.JD$Timer;
+import org.llvm.support.TimeRegion;
+import org.llvm.support.llvm;
+import org.llvm.support.sys.fs;
+import org.llvm.support.sys.path;
+
+import static org.clang.basic.BasicClangGlobals.$out_DiagnosticBuilder$C_StringRef;
+import static org.clang.frontend.FrontendClangGlobals.*;
+import static org.clank.java.std.$eq_T$C$P_string$C;
+import static org.clank.java.std.unique_ptr;
+import static org.clank.support.Native.$createJavaCleaner;
+import static org.clank.support.NativePointer.$LF;
+import static org.llvm.adt.ADTAliases.JD$IntrusiveRefCntPtr$X$C;
 
 
 /// Abstract base class for actions which can be performed by the frontend.

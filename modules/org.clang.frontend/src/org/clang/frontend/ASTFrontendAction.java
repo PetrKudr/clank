@@ -76,11 +76,10 @@
 
 package org.clang.frontend;
 
-import org.clank.support.*;
-import org.clang.sema.*;
-import org.clang.frontend.*;
-;
-import static org.clang.parse.ParseClangGlobals.*;
+import org.clang.sema.CodeCompleteConsumer;
+import org.clank.support.Converted;
+import org.clank.support.Destructors;
+import parse.ParseClangGlobals;
 
 
 /// \brief Abstract base class to use for AST consumer-based frontend actions.
@@ -130,7 +129,7 @@ public abstract class ASTFrontendAction extends /*public*/ FrontendAction implem
       CI.createSema(getTranslationUnitKind(), CompletionConsumer);
     }
     
-    ParseAST(CI.getSema(), CI.getFrontendOpts().ShowStats, 
+    ParseClangGlobals.ParseAST(CI.getSema(), CI.getFrontendOpts().ShowStats,
         CI.getFrontendOpts().SkipFunctionBodies);
   }
 

@@ -1,43 +1,43 @@
 /**
  * This file was converted to Java from the original LLVM source file. The original
  * source file follows the LLVM Release License, outlined below.
- * 
+ *
  * ==============================================================================
  * LLVM Release License
  * ==============================================================================
  * University of Illinois/NCSA
  * Open Source License
- * 
+ *
  * Copyright (c) 2003-2017 University of Illinois at Urbana-Champaign.
  * All rights reserved.
- * 
+ *
  * Developed by:
- * 
+ *
  *     LLVM Team
- * 
+ *
  *     University of Illinois at Urbana-Champaign
- * 
+ *
  *     http://llvm.org
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal with
  * the Software without restriction, including without limitation the rights to
  * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
  * of the Software, and to permit persons to whom the Software is furnished to do
  * so, subject to the following conditions:
- * 
+ *
  *     * Redistributions of source code must retain the above copyright notice,
  *       this list of conditions and the following disclaimers.
- * 
+ *
  *     * Redistributions in binary form must reproduce the above copyright notice
  *       this list of conditions and the following disclaimers in the
  *       documentation and/or other materials provided with the distribution.
- * 
+ *
  *     * Neither the names of the LLVM Team, University of Illinois at
  *       Urbana-Champaign, nor the names of its contributors may be used to
  *       endorse or promote products derived from this Software without specific
  *       prior written permission.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
  * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
@@ -45,7 +45,7 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS WITH THE
  * SOFTWARE.
- * 
+ *
  * ==============================================================================
  * Copyrights and Licenses for Third Party Software Distributed with LLVM:
  * ==============================================================================
@@ -53,16 +53,16 @@
  * have its own individual LICENSE.TXT file in the directory in which it appears.
  * This file will describe the copyrights, license, and restrictions which apply
  * to that code.
- * 
+ *
  * The disclaimer of warranty in the University of Illinois Open Source License
  * applies to all code in the LLVM Distribution, and nothing in any of the
  * other licenses gives permission to use the names of the LLVM Team or the
  * University of Illinois to endorse or promote products derived from this
  * Software.
- * 
+ *
  * The following pieces of software have additional or alternate copyrights,
  * licenses, and/or restrictions:
- * 
+ *
  * Program             Directory
  * -------             ---------
  * Autoconf            llvm/autoconf
@@ -83,8 +83,9 @@ import org.clank.java.std;
 import org.clank.java.std.Compare;
 import org.clank.support.Destructors;
 import org.clank.support.Native;
-import org.clank.support.NativeCloneable;
 import static org.clank.support.Native.*;
+import org.clank.support.Native.NativeComparable;
+import org.clank.support.NativeCloneable;
 import org.clank.support.aliases.JavaIterator;
 import org.clank.support.aliases.type$iterator;
 import org.clank.support.aliases.type$ptr;
@@ -96,13 +97,13 @@ import org.clank.support.aliases.type$ref;
  */
 public class StdSetType<T> implements Native.assignable<std.setType<T>>, NativeCloneable<std.setType<T>>,
         NativeComparable<std.setType<T>>, Destructors.ClassWithDestructor, Iterable<T> {
-  
+
   protected std.mapTypePtr<T, T> map;
 
   protected StdSetType() {
     this.map = new std.mapTypePtr();
   }
-  
+
   protected StdSetType(Comparator<T> comparator) {
     this.map = new std.mapTypePtr(comparator);
   }
@@ -120,7 +121,7 @@ public class StdSetType<T> implements Native.assignable<std.setType<T>>, NativeC
   public /*uint*/int size() {
     return map.size();
   }
-  
+
   public boolean empty() {
     return map.empty();
   }
@@ -129,7 +130,7 @@ public class StdSetType<T> implements Native.assignable<std.setType<T>>, NativeC
     std.pairTypeBool<std.mapTypePtr.iterator<T, T>> mapPair = map.insert$T$RR(std.make_pair_T_Ptr($tryMove(elem), (T) null));
     return std.make_pair_T_bool(new iterator<T>(mapPair.first), mapPair.second);
   }
-  
+
   public std.pairTypeBool<iterator<T>> insert(T elem) {
     std.pairTypeBool<std.mapTypePtr.iterator<T, T>> mapPair = map.insert(std.make_pair_T_Ptr($tryClone(elem), (T) null));
     return std.make_pair_T_bool(new iterator<T>(mapPair.first), mapPair.second);
@@ -143,18 +144,18 @@ public class StdSetType<T> implements Native.assignable<std.setType<T>>, NativeC
     for (; $noteq_iter(I, E); I.$preInc())  {
       map.insert(std.make_pair_T_Ptr($tryClone(I.$star()), (T) null));
     }
-  }    
-  
+  }
+
   // iterator lower_bound( const Key& key );
   public iterator<T> lower_bound(T key) {
     return new iterator(map.lower_bound(key));
   }
-  
+
   // iterator upper_bound( const Key& key );
   public iterator<T> upper_bound(T key) {
     return new iterator(map.upper_bound(key));
   }
-  
+
   // key_compare key_comp() const;
   public Compare<T> key_comp() {
     return (T t1, T t2)->map.keyComparator().compare(t1, t2) < 0;
@@ -163,11 +164,11 @@ public class StdSetType<T> implements Native.assignable<std.setType<T>>, NativeC
   public boolean erase(T elem) {
     return map.erase(elem);
   }
-  
+
   public void erase(iterator<T> iter) {
     map.erase(iter.delegate);
   }
-  
+
   public void erase(iterator<T> from, iterator<T> to) {
     from = $tryClone(from);
     while (from.$noteq(to)) {
@@ -175,11 +176,11 @@ public class StdSetType<T> implements Native.assignable<std.setType<T>>, NativeC
       from.$preInc();
     }
   }
-  
+
   public void clear() {
     map.clear();
   }
-  
+
   public iterator<T> find(T elem) {
     return new iterator(map.find(elem));
   }
@@ -191,7 +192,7 @@ public class StdSetType<T> implements Native.assignable<std.setType<T>>, NativeC
   public iterator<T> end() {
     return new iterator(map.end());
   }
-  
+
   public final std.reverse_iterator<T> rbegin() {
     throw new RuntimeException("NOT IMPLEMNTED!");
   }
@@ -217,10 +218,10 @@ public class StdSetType<T> implements Native.assignable<std.setType<T>>, NativeC
   @Override
   public boolean $eq(std.setType<T> other) {
     return this.map.$eq(other.map);
-  }  
+  }
 
   public static class iterator<T> implements type$iterator<iterator<T>, T> {
-    
+
     private std.mapTypePtr.iterator<T, T> delegate;
 
     public iterator(std.mapTypePtr.iterator<T, T> iter) {
@@ -239,7 +240,7 @@ public class StdSetType<T> implements Native.assignable<std.setType<T>>, NativeC
     @Override
     public type$ref<T> star$ref() {
       return new type$ref<T>() {
-        
+
         private std.mapTypePtr.iterator<T, T> localIter = $tryClone(delegate);
 
         @Override
@@ -259,20 +260,20 @@ public class StdSetType<T> implements Native.assignable<std.setType<T>>, NativeC
         }
       };
     }
-    
+
     @Override
     public iterator<T> $preInc() {
       delegate.$preInc();
       return this;
-    }      
-    
+    }
+
     @Override
     public iterator<T> $postInc() {
       iterator<T> cloned = clone();
       $preInc();
       return cloned;
-    }      
-    
+    }
+
     @Override
     public boolean $eq(Object other) {
       if (other instanceof iterator) {
@@ -289,12 +290,12 @@ public class StdSetType<T> implements Native.assignable<std.setType<T>>, NativeC
     @Override
     public iterator<T> clone() {
       return new iterator($tryClone(delegate));
-    }            
+    }
 
     @Override
     public iterator<T> const_clone() {
       return new iterator($tryConstClone(delegate));
-    }            
+    }
 
     @Override
     public int $sub(iterator<T> iter) {
@@ -303,22 +304,27 @@ public class StdSetType<T> implements Native.assignable<std.setType<T>>, NativeC
 
     @Override
     public iterator<T> $preDec() {
-      throw new UnsupportedOperationException("Not supported.");
+      delegate.$preDec();
+      return this;
     }
 
     @Override
     public iterator<T> $postDec() {
-      throw new UnsupportedOperationException("Not supported.");
+      iterator<T> cloned = clone();
+      $preDec();
+      return cloned;
     }
 
     @Override
     public iterator<T> $inc(int amount) {
-      throw new UnsupportedOperationException("Not supported.");
+      delegate.$inc(amount);
+      return this;
     }
 
     @Override
     public iterator<T> $dec(int amount) {
-      throw new UnsupportedOperationException("Not supported.");
+      delegate.$dec(amount);
+      return this;
     }
 
     @Override
