@@ -96,6 +96,7 @@ import java.util.logging.Logger;
 import org.clank.support.NativeTrace;
 import static org.junit.Assert.assertTrue;
 import org.junit.Assume;
+import org.llvm.adt.ADTSupportTestBase;
 
 /**
  *
@@ -127,7 +128,7 @@ public class DriverTestFileBase extends DriverTestBase {
   protected void setTestFile(String path) {
     assert testFilePath == null : "not cleaned " + testFilePath;
     assert testFileName == null : "not cleaned " + testFileName;
-    testFilePath = substituteEnvironmentVariables(path);
+    testFilePath = DriverTestBase.substituteEnvironmentVariables(path);
     testFileName = new File(testFilePath).getName();
     testTmpFilePath = new File(super.getTestTemporaryFolder(), testFileName + ".tmp").getAbsolutePath();
     setCurrentWorkingDir(super.getTestTemporaryFolder());
@@ -167,7 +168,7 @@ public class DriverTestFileBase extends DriverTestBase {
     printAllTestFiles(true, testLocation, acceptor, System.out, "System.out");
   }
   public static void printAllTestFiles(boolean recursive, String testLocation, TestFileAcceptor acceptor, String absFilePath) {
-    String path = substituteEnvironmentVariables(absFilePath.trim());
+    String path = DriverTestBase.substituteEnvironmentVariables(absFilePath.trim());
     try (PrintStream FOS = new PrintStream(new FileOutputStream(path))) {
       printAllTestFiles(recursive, testLocation, acceptor, FOS, path);
     } catch (FileNotFoundException ex) {
@@ -203,8 +204,8 @@ public class DriverTestFileBase extends DriverTestBase {
         String cmd = runCmd.origCmd;
         int pipe = getPipeIndex(cmd);
         String firstCmd = pipe > 0 ? cmd.substring(0, pipe).trim() : cmd;
-        assert firstCmd.startsWith(RUN) : "must start with RUN " + firstCmd + " for " + testFile.filePath;
-        firstCmd = firstCmd.substring(RUN.length()).trim();
+        assert firstCmd.startsWith(DriverTestBase.RUN) : "must start with RUN " + firstCmd + " for " + testFile.filePath;
+        firstCmd = firstCmd.substring(DriverTestBase.RUN.length()).trim();
         OS.print("    RUN(\"" + escape(firstCmd) + "\")");
         while (pipe > 0) {
           OS.println("./*|*/");
@@ -258,7 +259,7 @@ public class DriverTestFileBase extends DriverTestBase {
   }
 
   private static List<TestFile> extractTestFiles(boolean recursive, String testLocation, TestFileAcceptor acceptor) {
-    String testFileOrFolder = substituteEnvironmentVariables(testLocation);
+    String testFileOrFolder = DriverTestBase.substituteEnvironmentVariables(testLocation);
     Path testFileOrFolderPath = Paths.get(testFileOrFolder);
     assertTrue("does not exist " + testFileOrFolder, Files.exists(testFileOrFolderPath));
     List<TestFile> testFiles = new ArrayList<>();
@@ -278,7 +279,7 @@ public class DriverTestFileBase extends DriverTestBase {
       for (Path path : directoryStream) {
         if (Files.isRegularFile(path)) {
           handleRegularTestFile(path, acceptor, foundTestFiles);
-        } else if (maxDirectoryDepth > 0 && !isIgnored(path)) {
+        } else if (maxDirectoryDepth > 0 && !DriverTestBase.isIgnored(path)) {
           extractTestFilesFromDirectory(maxDirectoryDepth-1, path, foundTestFiles, acceptor);
         }
       }
@@ -289,7 +290,7 @@ public class DriverTestFileBase extends DriverTestBase {
   private static void handleRegularTestFile(Path path, TestFileAcceptor acceptor, List<TestFile> foundTestFiles) {
     assertTrue("must be regular file " + path, Files.isRegularFile(path));
     assertTrue("must be readable " + path, Files.isReadable(path));
-    Collection<String> cmds = getRunLines(path);
+    Collection<String> cmds = DriverTestBase.getRunLines(path);
     if (!cmds.isEmpty()) {
       TestFile test = TestFile.create(path, cmds);
       if (acceptor.accept(test)) {
@@ -308,7 +309,7 @@ public class DriverTestFileBase extends DriverTestBase {
 
   private static boolean canExecuteByNativeCmd(String arg) {
     assert !canExecuteByClank(arg) : arg;
-    assert !canEmulateInJava(arg) : arg;
+    assert !DriverTestBase.canEmulateInJava(arg) : arg;
     switch (arg) {
       case "mkdir":
       case "grep":
@@ -370,137 +371,137 @@ public class DriverTestFileBase extends DriverTestBase {
       return true;
     }    
     switch (token) {
-      case REQUIRES_DISABLED:
+      case DriverTestBase.REQUIRES_DISABLED:
         // test is unconditionally disabled
         return false;
-      case REQUIRES_CONSOLE:
+      case DriverTestBase.REQUIRES_CONSOLE:
         // /dev/tty is created in test folder
         return true;
-      case REQUIRES_ASSERTS:
+      case DriverTestBase.REQUIRES_ASSERTS:
         // 
         return NativeTrace.isDebugMode();
-      case REQUIRES_ANSI_ESCAPE_SEQUENCE:
+      case DriverTestBase.REQUIRES_ANSI_ESCAPE_SEQUENCE:
         // 
         return true;
-      case REQUIRES_CAN_REMOVE_OPENED_FILE:
+      case DriverTestBase.REQUIRES_CAN_REMOVE_OPENED_FILE:
         // if platform.system() not in ['Windows']:
         return true;
-      case REQUIRES_DEV_FD_FS:
+      case DriverTestBase.REQUIRES_DEV_FD_FS:
         // if os.path.exists("/dev/fd/0") and sys.platform not in ['cygwin']:
         return true;
-      case REQUIRES_EXAMPLES:
+      case DriverTestBase.REQUIRES_EXAMPLES:
         // if config.clang_examples:
         return true;
-      case REQUIRES_PLUGINS:
+      case DriverTestBase.REQUIRES_PLUGINS:
         // 
         return true;
-      case REQUIRES_SHELL:
+      case DriverTestBase.REQUIRES_SHELL:
         // 
         return true;
-      case REQUIRES_NATIVE:
+      case DriverTestBase.REQUIRES_NATIVE:
         // 
         return true;
-      case REQUIRES_CRASH_RECOVERY:
+      case DriverTestBase.REQUIRES_CRASH_RECOVERY:
         // 
         return true;
-      case REQUIRES_BACKTRACE:
+      case DriverTestBase.REQUIRES_BACKTRACE:
         // 
         return true;
-      case REQUIRES_LONG_TESTS:
+      case DriverTestBase.REQUIRES_LONG_TESTS:
         // disable long running tests to speed up test-time
         return false;
-      case REQUIRES_UTF8_CAPABLE_TERMINAL:
+      case DriverTestBase.REQUIRES_UTF8_CAPABLE_TERMINAL:
         // 
         return true;
-      case REQUIRES_SYSTEM_DARWIN:
+      case DriverTestBase.REQUIRES_SYSTEM_DARWIN:
         // 
-        return getHostTriple().isOSDarwin();
-      case REQUIRES_SYSTEM_WINDOWS:
+        return ADTSupportTestBase.getHostTriple().isOSDarwin();
+      case DriverTestBase.REQUIRES_SYSTEM_WINDOWS:
         // 
-        return getHostTriple().isOSWindows();
-      case REQUIRES_CASE_SENSITIVE_FILESYSTEM:
+        return ADTSupportTestBase.getHostTriple().isOSWindows();
+      case DriverTestBase.REQUIRES_CASE_SENSITIVE_FILESYSTEM:
         return NativeTrace.isSystemCaseSensitive();
-      case REQUIRES_CASE_INSENSITIVE_FILESYSTEM:
+      case DriverTestBase.REQUIRES_CASE_INSENSITIVE_FILESYSTEM:
         return !NativeTrace.isSystemCaseSensitive();
-      case REQUIRES_NON_PS4_SDK:
-        return !getHostTriple().isPS4();
-      case REQUIRES_NON_MS_SDK:
-        return !getHostTriple().isOSWindows();
-      case REQUIRES_CLANG_DRIVER:
+      case DriverTestBase.REQUIRES_NON_PS4_SDK:
+        return !ADTSupportTestBase.getHostTriple().isPS4();
+      case DriverTestBase.REQUIRES_NON_MS_SDK:
+        return !ADTSupportTestBase.getHostTriple().isOSWindows();
+      case DriverTestBase.REQUIRES_CLANG_DRIVER:
         // 
         return true;
-      case REQUIRES_ZLIB:
+      case DriverTestBase.REQUIRES_ZLIB:
         // 
         return true;
-      case REQUIRES_NOZLIB:
+      case DriverTestBase.REQUIRES_NOZLIB:
         // 
         return false;
-      case REQUIRES_X86_REGISTERED_TARGET:
+      case DriverTestBase.REQUIRES_X86_REGISTERED_TARGET:
         // 
         return true;
-      case REQUIRES_AARCH64_REGISTERED_TARGET:
-        switch(getHostTriple().getArch()) {
+      case DriverTestBase.REQUIRES_AARCH64_REGISTERED_TARGET:
+        switch(ADTSupportTestBase.getHostTriple().getArch()) {
           case aarch64:
           case aarch64_be:
             return true;
           default:
             return false;
         }
-      case REQUIRES_ARM_REGISTERED_TARGET:
-        switch(getHostTriple().getArch()) {
+      case DriverTestBase.REQUIRES_ARM_REGISTERED_TARGET:
+        switch(ADTSupportTestBase.getHostTriple().getArch()) {
           case arm:
           case armeb:
             return true;
           default:
             return false;
         }
-      case REQUIRES_LP64:
-        return getHostTriple().isArch64Bit();
-      case REQUIRES_MIPS_REGISTERED_TARGET:
-        switch(getHostTriple().getArch()) {
+      case DriverTestBase.REQUIRES_LP64:
+        return ADTSupportTestBase.getHostTriple().isArch64Bit();
+      case DriverTestBase.REQUIRES_MIPS_REGISTERED_TARGET:
+        switch(ADTSupportTestBase.getHostTriple().getArch()) {
           case mips:
           case mips64:
-          case mips64el:          
-          case mipsel:          
+          case mips64el:
+          case mipsel:
             return true;
           default:
             return false;
         }
-      case REQUIRES_HEXAGON_REGISTERED_TARGET:
-        switch(getHostTriple().getArch()) {
+      case DriverTestBase.REQUIRES_HEXAGON_REGISTERED_TARGET:
+        switch(ADTSupportTestBase.getHostTriple().getArch()) {
           case hexagon:
             return true;
           default:
             return false;
         }
-      case REQUIRES_NVPTX_REGISTERED_TARGET:
-        return getHostTriple().isNVPTX();
-      case REQUIRES_POWERPC_REGISTERED_TARGET:
-        switch(getHostTriple().getArch()) {
+      case DriverTestBase.REQUIRES_NVPTX_REGISTERED_TARGET:
+        return ADTSupportTestBase.getHostTriple().isNVPTX();
+      case DriverTestBase.REQUIRES_POWERPC_REGISTERED_TARGET:
+        switch(ADTSupportTestBase.getHostTriple().getArch()) {
           case ppc:
           case ppc64:
-          case ppc64le:          
+          case ppc64le:
             return true;
           default:
             return false;
         }
-      case REQUIRES_AMDGPU_REGISTERED_TARGET:
-        switch(getHostTriple().getArch()) {
+      case DriverTestBase.REQUIRES_AMDGPU_REGISTERED_TARGET:
+        switch(ADTSupportTestBase.getHostTriple().getArch()) {
           case amdgcn:
-          case r600:        
+          case r600:
             return true;
           default:
             return false;
         }
-      case REQUIRES_SYSTEMZ_REGISTERED_TARGET:
-        switch(getHostTriple().getArch()) {
+      case DriverTestBase.REQUIRES_SYSTEMZ_REGISTERED_TARGET:
+        switch(ADTSupportTestBase.getHostTriple().getArch()) {
           case systemz:
             return true;
           default:
             return false;
         }
-      case REQUIRES_XCORE_REGISTERED_TARGET:
-        switch(getHostTriple().getArch()) {
+      case DriverTestBase.REQUIRES_XCORE_REGISTERED_TARGET:
+        switch(ADTSupportTestBase.getHostTriple().getArch()) {
           case xcore:
             return true;
           default:
@@ -536,18 +537,18 @@ public class DriverTestFileBase extends DriverTestBase {
     AtomicBoolean expectZeroExitCode = new AtomicBoolean(true);
     assert !runCmd.contains(" | ") : "pipe is not expected " + runCmd;
     // satisfy prepareArgs
-    assert !runCmd.startsWith(RUN) : "runCmd has unexpected prefix " + RUN + " " + runCmd + " for getTestFilePath()";
-    runCmd = RUN + runCmd;
-    String[] args = prepareRunArgs(getTestFilePath(), getTestTmpFilePath(), runCmd, expectZeroExitCode, false);
+    assert !runCmd.startsWith(DriverTestBase.RUN) : "runCmd has unexpected prefix " + DriverTestBase.RUN + " " + runCmd + " for getTestFilePath()";
+    runCmd = DriverTestBase.RUN + runCmd;
+    String[] args = DriverTestBase.prepareRunArgs(getTestFilePath(), getTestTmpFilePath(), runCmd, expectZeroExitCode, false);
     List<String> envs = new ArrayList<String>(0);
-    String[] javaArgs = extractEnvironmentVariables(input, args, envs);
+    String[] javaArgs = DriverTestBase.extractEnvironmentVariables(input, args, envs);
     String runner = javaArgs[0];
     super.setEnvironment(envs);
     assert args != null;
     assert args.length > 0;
     if (canExecuteByClank(runner)) {
       invokeCompiler(expectZeroExitCode.get(), input, javaArgs);
-    } else if (canEmulateInJava(runner)) {
+    } else if (DriverTestBase.canEmulateInJava(runner)) {
       invokeJavaEmulation(expectZeroExitCode.get(), input, javaArgs);
     } else if (canExecuteByNativeCmd(runner)) {
       invokeCmd(expectZeroExitCode.get(), input, args);
@@ -589,7 +590,7 @@ public class DriverTestFileBase extends DriverTestBase {
     private static int CreatedTestFileIndex = 0;    
     protected static TestFile create(Path path, Collection<String> cmds) {
       String filePath = path.toString();
-      filePath = replaceSrcPrefix(filePath);
+      filePath = DriverTestBase.replaceSrcPrefix(filePath);
       String fileName = path.getFileName().toString();
       String testCaseName = escapeFileNameToTestName(fileName);
       testCaseName = TEST_PREFIX + testCaseName;
@@ -649,15 +650,15 @@ public class DriverTestFileBase extends DriverTestBase {
     protected static RunCommand create(Path path, String cmd, int idx) {
       String filePath = path.toString();
       String fileName = path.getFileName().toString();
-      String tmpFile = TEST_TEMP_DIR + "/" + fileName + ".tmp";
+      String tmpFile = DriverTestBase.TEST_TEMP_DIR + "/" + fileName + ".tmp";
       AtomicBoolean expectZeroExitCode = new AtomicBoolean(true);
-      if (cmd.startsWith(RUN)) {
-        String[] args = prepareRunArgs(filePath, tmpFile, cmd, expectZeroExitCode, false);
-        String expandedCmd = argsToString(args);
+      if (cmd.startsWith(DriverTestBase.RUN)) {
+        String[] args = DriverTestBase.prepareRunArgs(filePath, tmpFile, cmd, expectZeroExitCode, false);
+        String expandedCmd = DriverTestBase.argsToString(args);
         return new RunCommand(cmd, expandedCmd, args);
       } else {
-        assert cmd.startsWith(REQUIRES);
-        String token = cmd.replace(REQUIRES, "").trim();
+        assert cmd.startsWith(DriverTestBase.REQUIRES);
+        String token = cmd.replace(DriverTestBase.REQUIRES, "").trim();
         return new RunCommand(cmd, token);
       }
     }
@@ -740,7 +741,7 @@ public class DriverTestFileBase extends DriverTestBase {
 
     @Override
     public boolean accept(TestFile test) {
-      return test.hasAnyOf(DASH_E, DASH_EOnly, DASH_DUMP_TOKENS);
+      return test.hasAnyOf(DriverTestBase.DASH_E, DriverTestBase.DASH_EOnly, DriverTestBase.DASH_DUMP_TOKENS);
     }
 
     @Override

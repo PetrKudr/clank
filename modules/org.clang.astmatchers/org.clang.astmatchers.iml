@@ -14,5 +14,15 @@
     <orderEntry type="module" module-name="org.clang.ast" />
     <orderEntry type="module" module-name="org.clank.java" />
     <orderEntry type="library" name="public-package-jars" level="project" />
+    <orderEntry type="module" module-name="org.clang.tools.driver" scope="TEST" />
+    <orderEntry type="module-library" scope="TEST">
+      <library>
+        <CLASSES>
+          <root url="jar://$MAVEN_REPOSITORY$/junit/junit/4.13.1/junit-4.13.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>

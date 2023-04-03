@@ -98,6 +98,7 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.clang.config.config;
+import org.clank.java.JavaTestBase;
 import org.clank.java.std;
 import org.clank.support.CollectionUtils;
 import org.clank.support.NativeCallback.Converter;
@@ -151,7 +152,7 @@ public class DriverTestBase extends ADTSupportTestBase {
       for(String arg : args) {
         String converted = ExpandEnvMacrosToString.$call(arg);
         if (converted != null && !converted.isEmpty()) {
-          if ("grep".equals(converted) && isSolaris()) {
+          if ("grep".equals(converted) && ADTSupportTestBase.isSolaris()) {
             // on Solaris grep is not powerful enough, use ggrep instead
             converted = "ggrep";
           }
@@ -188,9 +189,9 @@ public class DriverTestBase extends ADTSupportTestBase {
       files += "\nIN:" + input.getAbsolutePath();
     }
     if (expectZeroExitCode) {
-      ASSERT_TRUE(exitCode == 0, "Error Exit Code " + exitCode + " when expected 0. Check files" + files);
+      JavaTestBase.ASSERT_TRUE(exitCode == 0, "Error Exit Code " + exitCode + " when expected 0. Check files" + files);
     } else {
-      ASSERT_FALSE(exitCode == 0, "Exit Code must be non zero. Check files" + files);
+      JavaTestBase.ASSERT_FALSE(exitCode == 0, "Exit Code must be non zero. Check files" + files);
     }
   }
 
@@ -217,13 +218,13 @@ public class DriverTestBase extends ADTSupportTestBase {
     }
     switch (cmd) {
       case CHANGE_DIR:
-        ASSERT_TRUE(list.size() > 0);
+        JavaTestBase.ASSERT_TRUE(list.size() > 0);
         String path = list.get(1);
         int exitCode = setCurrentWorkingDir(path);
         ASSERT_EXIT_CODE(expectZeroExitCode, exitCode, input);
         break;
       default:
-        ASSERT_TRUE(false, "Unknown command [" + cmd + "] " + Arrays.toString(args));
+        JavaTestBase.ASSERT_TRUE(false, "Unknown command [" + cmd + "] " + Arrays.toString(args));
     }
   }
   
@@ -239,7 +240,7 @@ public class DriverTestBase extends ADTSupportTestBase {
       if (input != null) {
         redirects[0] = new StringRef(input.getAbsolutePath());
       }
-      int exitCode = sys.ExecuteAndWait(new StringRef(args[0]), create_type$ptr(cppArgs), null, create_type$ptr(redirects), 0, 0, null, null);
+      int exitCode = sys.ExecuteAndWait(new StringRef(args[0]), NativePointer.create_type$ptr(cppArgs), null, NativePointer.create_type$ptr(redirects), 0, 0, null, null);
       ASSERT_EXIT_CODE(expectZeroExitCode, exitCode, null);
     } finally {
       llvm.remove_fatal_error_handler();
@@ -498,15 +499,15 @@ public class DriverTestBase extends ADTSupportTestBase {
         {
           if (false) {
             String[] tmp = new String[cmds.length + 1];
-            copy$Object(cmds, 0, tmp, 0, i);
-            copy$Object(cmds, i, tmp, i+1, cmds.length - i);
+            NativePointer.copy$Object(cmds, 0, tmp, 0, i);
+            NativePointer.copy$Object(cmds, i, tmp, i+1, cmds.length - i);
             cmds = tmp;
             cmds[i++] = CLANG_REPLACEMENT;
             cmds[i] = CLANG_CC1_REPLACEMENT_1;
           } else {
             String[] tmp = new String[cmds.length + 4];
-            copy$Object(cmds, 0, tmp, 0, i);
-            copy$Object(cmds, i, tmp, i+4, cmds.length - i);
+            NativePointer.copy$Object(cmds, 0, tmp, 0, i);
+            NativePointer.copy$Object(cmds, i, tmp, i+4, cmds.length - i);
             cmds = tmp;
             cmds[i++] = CLANG_REPLACEMENT;
             cmds[i++] = CLANG_CC1_REPLACEMENT_1;
@@ -519,8 +520,8 @@ public class DriverTestBase extends ADTSupportTestBase {
         case CLANG_CPP_PLACEHOLDER:
         {
           String[] tmp = new String[cmds.length + 1];
-          copy$Object(cmds, 0, tmp, 0, i);
-          copy$Object(cmds, i, tmp, i+1, cmds.length - i);
+          NativePointer.copy$Object(cmds, 0, tmp, 0, i);
+          NativePointer.copy$Object(cmds, i, tmp, i+1, cmds.length - i);
           cmds = tmp;
           cmds[i++] = CLANG_REPLACEMENT;
           cmds[i] = CLANG_CPP_REPLACEMENT;
@@ -529,8 +530,8 @@ public class DriverTestBase extends ADTSupportTestBase {
         case CLANG_CL_PLACEHOLDER:
         {
           String[] tmp = new String[cmds.length + 1];
-          copy$Object(cmds, 0, tmp, 0, i);
-          copy$Object(cmds, i, tmp, i+1, cmds.length - i);
+          NativePointer.copy$Object(cmds, 0, tmp, 0, i);
+          NativePointer.copy$Object(cmds, i, tmp, i+1, cmds.length - i);
           cmds = tmp;
           cmds[i++] = CLANG_REPLACEMENT;
           cmds[i] = CLANG_CL_REPLACEMENT;
@@ -539,8 +540,8 @@ public class DriverTestBase extends ADTSupportTestBase {
         case CLANGXX_PLACEHOLDER:
         {
           String[] tmp = new String[cmds.length + 1];
-          copy$Object(cmds, 0, tmp, 0, i);
-          copy$Object(cmds, i, tmp, i+1, cmds.length - i);
+          NativePointer.copy$Object(cmds, 0, tmp, 0, i);
+          NativePointer.copy$Object(cmds, i, tmp, i+1, cmds.length - i);
           cmds = tmp;
           cmds[i++] = CLANG_REPLACEMENT;
           cmds[i] = CLANGXX_REPLACEMENT;
