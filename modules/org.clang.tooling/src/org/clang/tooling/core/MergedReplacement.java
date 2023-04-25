@@ -145,7 +145,7 @@ public class MergedReplacement {
   }
 
   public Replacement asReplacement() /*const*/ {
-    return new Replacement(FilePath, Offset, Length, new StringRef(Text));
+    return new Replacement(new StringRef(FilePath), Offset, Length, new StringRef(Text));
   }
 
 }

@@ -194,11 +194,11 @@ public class StdSetType<T> implements Native.assignable<std.setType<T>>, NativeC
   }
 
   public final std.reverse_iterator<T> rbegin() {
-    throw new RuntimeException("NOT IMPLEMNTED!");
+    return new std.reverse_iterator<>(end());
   }
 
   public final std.reverse_iterator<T> rend() {
-    throw new RuntimeException("NOT IMPLEMNTED!");
+    return new std.reverse_iterator<>(begin());
   }
 
   public boolean count(T elem) {

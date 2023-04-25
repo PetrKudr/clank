@@ -4,8 +4,6 @@
  */
 package org.clang.tooling.core;
 
-import java.util.Iterator;
-import java.util.function.BiFunction;
 import org.clank.java.std;
 import org.clank.java.std.setType;
 import org.clank.java.std.vector;
@@ -14,15 +12,18 @@ import org.clank.support.Destructors;
 import org.clank.support.JavaCleaner;
 import org.clank.support.JavaDifferentiators;
 import org.clank.support.JavaDifferentiators.JD$Move;
-import static org.clank.support.Native.$createJavaCleaner;
 import org.llvm.adt.StringRef;
 import org.llvm.adt.Twine;
 import org.llvm.support.AdtsupportLlvmGlobals;
 import org.llvm.support.Error;
 import org.llvm.support.Expected;
 
+import java.util.Iterator;
+import java.util.function.BiFunction;
+
+import static org.clank.support.Native.$createJavaCleaner;
+
 /**
- *
  * @author petrkudriavtsev
  */
 /// Maintains a set of replacements that are conflict-free.
@@ -32,7 +33,9 @@ public class Replacements implements Destructors.ClassWithDestructor, Iterable {
 //private:
   //using ReplacementsImpl = std::set<Replacement>;
 
-//public:
+  public setType<Replacement> Replaces;
+
+  //public:
   //using const_iterator = ReplacementsImpl::const_iterator;
   //using const_reverse_iterator = ReplacementsImpl::const_reverse_iterator;
   public Replacements() {
@@ -45,21 +48,25 @@ public class Replacements implements Destructors.ClassWithDestructor, Iterable {
   }
 
   private Replacements(setType.iterator<Replacement> Begin,
-      setType.iterator<Replacement> End) {
+                       setType.iterator<Replacement> End) {
     Replaces = new setType<>(Begin, End);
   }
 
   public Replacements(JD$Move _dparam, final Replacements /*&&*/ other) {
+    Replaces = new setType<>();
+
     Replaces.$assignMove(other.Replaces);
+  }
+
+  public Replacements(final Replacements /*const &*/ other) {
+    Replaces = new setType<>();
+
+    Replaces.$assign(other.Replaces);
   }
 
   public Replacements /*&*/ $assignMove(Replacements /*&&*/ other) {
     Replaces.$assignMove(other.Replaces);
     return this;
-  }
-
-  public Replacements(final Replacements /*const &*/ other) {
-    Replaces.$assign(other.Replaces);
   }
 
   public Replacements /*&*/ $assign(final Replacements /*const &*/ other) {
@@ -113,12 +120,12 @@ public class Replacements implements Destructors.ClassWithDestructor, Iterable {
     // Check the file path.
     if (!Replaces.empty() && R.getFilePath().$noteq(Replaces.begin().$arrow().getFilePath())) {
       return AdtsupportLlvmGlobals.make_error(
-          replacement_error.wrong_file_path, R, /*P*/ Replaces.begin().$star());
+              replacement_error.wrong_file_path, R, /*P*/ Replaces.begin().$star());
     }
 
     // Special-case header insertions.
     if (R.getOffset() == std.numeric_limitsUInt.max()) {
-      Replaces.insert(R);
+      Replaces.insert(new Replacement(R));
       return Error.success();
     }
 
@@ -129,7 +136,7 @@ public class Replacements implements Destructors.ClassWithDestructor, Iterable {
     // replacement cannot overlap.
     // Replacement AtEnd(R.getFilePath(), R.getOffset() + R.getLength(), 0, "");
     Replacement AtEnd = new Replacement(R.getFilePath(),
-        R.getOffset() + R.getLength(), 0, new StringRef(""));
+            R.getOffset() + R.getLength(), 0, new StringRef(""));
 
     JavaCleaner $c$ = $createJavaCleaner();
 
@@ -151,22 +158,18 @@ public class Replacements implements Destructors.ClassWithDestructor, Iterable {
         // if ((R.getReplacementText() + I -> getReplacementText()).str()
         // != (I -> getReplacementText() + R.getReplacementText()).str())
 
-        std.string v1 = $c$.clean($c$.track(
-            new Twine(R.getReplacementText()))
-            .concat($c$.track(
-                new Twine(I.$arrow().getReplacementText()))).str());
-        std.string v2 = $c$.clean($c$.track(
-            new Twine(I.$arrow().getReplacementText()))
-            .concat($c$.track(
-                new Twine(R.getReplacementText()))).str());
+        std.string v1 = new Twine(R.getReplacementText())
+                .concat(new Twine(I.$arrow().getReplacementText())).str();
+        std.string v2 = new Twine(I.$arrow().getReplacementText())
+                .concat(new Twine(R.getReplacementText())).str();
 
         if (v1.$eq(v2)) {
           return AdtsupportLlvmGlobals.make_error(
-              replacement_error.insert_conflict, R, /*P*/ I.$star());
+                  replacement_error.insert_conflict, R, /*P*/ I.$star());
         }
         // If insertions are order-independent, we can merge them.
         Replacement NewR = new Replacement(R.getFilePath(), R.getOffset(), 0,
-            new StringRef(v1));
+                new StringRef(v1));
 
         // Insertion `R` is adjacent to a non-insertion replacement `I`, so they
         // are order-independent. It is safe to assume that `R` will not conflict
@@ -176,7 +179,7 @@ public class Replacements implements Destructors.ClassWithDestructor, Iterable {
         // since it is a lower bound of `AtEnd` and ordered before the current `I`
         // in the set).
         Replaces.erase(I);
-        Replaces.insert(NewR);
+        Replaces.insert(new Replacement(NewR));
         return Error.success();
       }
     }
@@ -200,10 +203,8 @@ public class Replacements implements Destructors.ClassWithDestructor, Iterable {
     //        .overlapsWith(Range(R2.getOffset(), R2.getLength()));
     //  };
     BiFunction<Replacement, Replacement, Boolean> Overlap
-        = (/*const Replacement &*/R1, /*const Replacement &*/ R2) -> {
-      return new Range(R1.getOffset(), R1.getLength())
-          .overlapsWith(new Range(R2.getOffset(), R2.getLength()));
-        };
+            = (/*const Replacement &*/R1, /*const Replacement &*/ R2) -> new Range(R1.getOffset(), R1.getLength())
+            .overlapsWith(new Range(R2.getOffset(), R2.getLength()));
 
     // If the previous entry does not overlap, we know that entries before it
     // can also not overlap.
@@ -239,7 +240,7 @@ public class Replacements implements Destructors.ClassWithDestructor, Iterable {
       Replacements OverlapReplaces = new Replacements(MergeBegin, MergeEnd);
       try {
         Expected<Replacements> Merged
-            = OverlapReplaces.mergeIfOrderIndependent(R);
+                = OverlapReplaces.mergeIfOrderIndependent(R);
 
         try {
           if (!Merged.$bool()) {
@@ -265,8 +266,8 @@ public class Replacements implements Destructors.ClassWithDestructor, Iterable {
     //    return empty() ? ReplacesToMerge : *this;
     if (empty() || ReplacesToMerge.empty())
       return empty()
-          ? new Replacements(ReplacesToMerge)
-          : new Replacements(this);
+              ? new Replacements(ReplacesToMerge)
+              : new Replacements(this);
 
     //  auto &First = Replaces;
     std.setType<Replacement> First = Replaces;
@@ -288,25 +289,25 @@ public class Replacements implements Destructors.ClassWithDestructor, Iterable {
     iterator<Replacement> FirstI = First.begin();
     iterator<Replacement> SecondI = Second.begin();
     while (FirstI.$noteq(First.end()) || SecondI.$noteq(Second.end())) {
-      boolean NextIsFirst = SecondI.equals(Second.end())
-          || (FirstI.$noteq(First.end())
+      boolean NextIsFirst = SecondI.$eq(Second.end())
+              || (FirstI.$noteq(First.end())
               && FirstI.$arrow().getOffset() < SecondI.$arrow().getOffset() + Delta);
 //    MergedReplacement Merged(NextIsFirst ? *FirstI : *SecondI, NextIsFirst,
 //                             Delta);
       MergedReplacement Merged =
-          new MergedReplacement(NextIsFirst ? FirstI.$star() : SecondI.$star(),
-          NextIsFirst, Delta);
+              new MergedReplacement(NextIsFirst ? FirstI.$star() : SecondI.$star(),
+                      NextIsFirst, Delta);
 
 //    ++(NextIsFirst ? FirstI : SecondI);
       if (NextIsFirst)
-        FirstI.$inc(1);
+        FirstI.$preInc();
       else
-        SecondI.$inc(1);
+        SecondI.$preInc();
 
 //    while ((Merged.mergeSecond() && SecondI != Second.end()) ||
 //           (!Merged.mergeSecond() && FirstI != First.end())) {
       while ((Merged.mergeSecond() && SecondI.$noteq(Second.end())) ||
-          (!Merged.mergeSecond() && FirstI.$noteq(First.end()))) {
+              (!Merged.mergeSecond() && FirstI.$noteq(First.end()))) {
 //      auto &I = Merged.mergeSecond() ? SecondI : FirstI;
         iterator<Replacement> /*&*/ I = Merged.mergeSecond() ? SecondI : FirstI;
 //      if (Merged.endsBefore(*I))
@@ -374,7 +375,7 @@ public class Replacements implements Destructors.ClassWithDestructor, Iterable {
         continue;
       }
       if (R.getOffset() < Position &&
-          R.getOffset() + R.getReplacementText().size() <= Position) {
+              R.getOffset() + R.getReplacementText().size() <= Position) {
         Position = R.getOffset() + R.getReplacementText().size();
         if (!R.getReplacementText().empty()) {
           Position--;
@@ -438,28 +439,28 @@ public class Replacements implements Destructors.ClassWithDestructor, Iterable {
   public Replacements getCanonicalReplacements() /*const*/ {
     // std::vector<Replacement> NewReplaces;
     std.vector<Replacement> NewReplaces
-        = new std.vector(/*default value*/ new Replacement());
+            = new std.vector(/*default value*/ new Replacement());
     // Merge adjacent replacements.
 
-  //  for (const auto &R : Replaces) {
-  //    if (NewReplaces.empty()) {
-  //      NewReplaces.push_back(R);
-  //      continue;
-  //    }
-  //    auto &Prev = NewReplaces.back();
-  //    unsigned PrevEnd = Prev.getOffset() + Prev.getLength();
-  //    if (PrevEnd < R.getOffset()) {
-  //      NewReplaces.push_back(R);
-  //    } else {
-  //      assert(PrevEnd == R.getOffset() &&
-  //             "Existing replacements must not overlap.");
-  //      Replacement NewR(
-  //          R.getFilePath(), Prev.getOffset(), Prev.getLength() + R.getLength(),
-  //          (Prev.getReplacementText() + R.getReplacementText()).str());
-  //      Prev = NewR;
-  //    }
-  //  }
-  for (Replacement R : Replaces) {
+    //  for (const auto &R : Replaces) {
+    //    if (NewReplaces.empty()) {
+    //      NewReplaces.push_back(R);
+    //      continue;
+    //    }
+    //    auto &Prev = NewReplaces.back();
+    //    unsigned PrevEnd = Prev.getOffset() + Prev.getLength();
+    //    if (PrevEnd < R.getOffset()) {
+    //      NewReplaces.push_back(R);
+    //    } else {
+    //      assert(PrevEnd == R.getOffset() &&
+    //             "Existing replacements must not overlap.");
+    //      Replacement NewR(
+    //          R.getFilePath(), Prev.getOffset(), Prev.getLength() + R.getLength(),
+    //          (Prev.getReplacementText() + R.getReplacementText()).str());
+    //      Prev = NewR;
+    //    }
+    //  }
+    for (Replacement R : Replaces) {
       if (NewReplaces.empty()) {
         NewReplaces.push_back(R);
         continue;
@@ -471,9 +472,9 @@ public class Replacements implements Destructors.ClassWithDestructor, Iterable {
       } else {
         assert PrevEnd == R.getOffset();
         Replacement NewR = new Replacement(
-            R.getFilePath(), Prev.getOffset(),
-            Prev.getLength() + R.getLength(),
-            new StringRef(new Twine(Prev.getReplacementText()).concat(new Twine(R.getReplacementText())).str())
+                R.getFilePath(), Prev.getOffset(),
+                Prev.getLength() + R.getLength(),
+                new StringRef(new Twine(Prev.getReplacementText()).concat(new Twine(R.getReplacementText())).str())
         );
         Prev.$assign(NewR);
       }
@@ -490,14 +491,14 @@ public class Replacements implements Destructors.ClassWithDestructor, Iterable {
   // with `Replaces` and returns the merged replacements; otherwise, returns an
   // error.
   public Expected<Replacements>
-      mergeIfOrderIndependent(/*const*/Replacement /*&*/ R) /*const*/ {
+  mergeIfOrderIndependent(/*const*/Replacement /*&*/ R) /*const*/ {
     //    Replacements Rs(R);
     Replacements Rs = new Replacements(R);
     // A Replacements set containing a single replacement that is `R` referring to
     // the code after the existing replacements `Replaces` are applied.
     // Replacements RsShiftedByReplaces(getReplacementInChangedCode(R));
     Replacements RsShiftedByReplaces
-        = new Replacements(getReplacementInChangedCode(R));
+            = new Replacements(getReplacementInChangedCode(R));
     // A Replacements set that is `Replaces` referring to the code after `R` is
     // applied.
     // Replacements ReplacesShiftedByRs;
@@ -527,10 +528,8 @@ public class Replacements implements Destructors.ClassWithDestructor, Iterable {
     //    return llvm::make_error<ReplacementError>(replacement_error::overlap_conflict,
     //                                              R, *Replaces.begin());
     return new Expected(AdtsupportLlvmGlobals.make_error(
-          replacement_error.overlap_conflict, R, /*P*/ Replaces.begin().$star()));
+            replacement_error.overlap_conflict, R, /*P*/ Replaces.begin().$star()));
   }
-
-  public setType<Replacement> Replaces;
 
   @Override
   public void $destroy() {
@@ -540,4 +539,4 @@ public class Replacements implements Destructors.ClassWithDestructor, Iterable {
       throw new IllegalStateException("Replaces can't be null!");
     }
   }
-};
+}

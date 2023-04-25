@@ -492,7 +492,7 @@ public static void sortCppIncludes(
     int /*uint*/ CursorIndex = 0;
     // The offset from cursor to the end of line.
     int /*uint*/ CursorToEOLOffset = 0;
-    if (Cursor.$bool()) {
+    if (Cursor != null) {
       // std::tie(CursorIndex, CursorToEOLOffset) =
       //   FindCursorIndex(Includes, Indices, *Cursor);
       std.pair<Integer/*uint*/, Integer/*uint*/> p = FindCursorIndex(Includes, Indices, Cursor.$star());
@@ -526,16 +526,12 @@ public static void sortCppIncludes(
       $addassign_string_StringRef(result, /*NO_COPY*/Includes.$at$Const(Index).Text);
       // if (Cursor && CursorIndex == Index)
       //   *Cursor = IncludesBeginOffset + result.size() - CursorToEOLOffset;
-      if (Cursor.$bool() && CursorIndex == Index) {
+      if (Cursor != null && CursorIndex == Index) {
         Cursor.star$ref().$assign(IncludesBeginOffset + result.size() - CursorToEOLOffset);
       }
     }
 
-    // Sorting #includes shouldn't change their total number of characters.
-    // This would otherwise mess up 'Ranges'.
-    assert (result.size() == Includes.back$Const().Offset + Includes.back$Const().Text.size() - Includes.front$Const().Offset);
-
-    org.llvm.support.Error Err = Replaces.add(new Replacement(new StringRef(FileName), Includes.front$Const().Offset, result.size(), new StringRef(result)));
+    org.llvm.support.Error Err = Replaces.add(new Replacement(new StringRef(FileName), Includes.front$Const().Offset, IncludesBlockSize, new StringRef(result)));
     // FIXME: better error handling. For now, just skip the replacement for the
     // release version.
     if (Err.$bool()) {
@@ -864,8 +860,7 @@ public static Replacements fixCppIncludeInsertions(StringRef Code, final /*const
     HeaderInsertions/*J*/ = new Replacements();
     HeadersToDelete = new std.setType<>(StringRef.COMPARATOR);
     Result = new Replacements();
-    for (Iterator<Replacement> it = Replaces.iterator(); it.hasNext();) {
-      Replacement R = it.next();
+    for (Replacement R : Replaces.Replaces) {
       if (isHeaderInsertion(R)) {
         // Replacements from \p Replaces must be conflict-free already, so we can
         // simply consume the error.
@@ -991,7 +986,7 @@ public static Replacements fixCppIncludeInsertions(StringRef Code, final /*const
         // When inserting headers at end of the code, also append '\n' to the code
         // if it does not end with '\n'.
         if (NeedNewLineAtEnd && Offset == Code.size()) {
-          NewInclude = new std.string("\n" + NewInclude);
+          NewInclude = new std.string("\n").$addassign(NewInclude);
           NeedNewLineAtEnd = false;
         }
         Replacement NewReplace = new Replacement(new StringRef(FileName), Offset, 0, new StringRef(NewInclude));
@@ -1014,7 +1009,6 @@ public static Replacements fixCppIncludeInsertions(StringRef Code, final /*const
     if (Categories != null) { Categories.$destroy(); }
     if (DefineRegex != null) { DefineRegex.$destroy(); }
     if (IncludeRegex != null) { IncludeRegex.$destroy(); }
-    if (Result != null) { Result.$destroy(); }
     if (HeaderInsertions != null) { HeaderInsertions.$destroy(); }
   }
 }

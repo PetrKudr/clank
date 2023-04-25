@@ -197,7 +197,6 @@ public abstract class TokenAnalyzer extends /*public*/ UnwrappedLineConsumer imp
     } finally {
       if (Parser != null) { Parser.$destroy(); }
       if (Tokens != null) { Tokens.$destroy(); }
-      if (Result != null) { Result.$destroy(); }
     }
   }
 

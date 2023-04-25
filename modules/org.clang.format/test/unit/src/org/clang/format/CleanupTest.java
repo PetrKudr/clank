@@ -110,8 +110,8 @@ public final class CleanupTest extends ADTSupportTestBase {
 //JAVA: namespace format {
 //JAVA: namespace (anonymous) {
 
-  protected /*const*/ std.string FileName/* = "fix.cpp"*/;
-  protected FormatStyle Style/* = getLLVMStyle()*/;
+  private final/*const*/ std.string FileName/* = "fix.cpp"*/;
+  private final FormatStyle Style/* = getLLVMStyle()*/;
 
   //  //<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::CleanUpReplacementsTest::CleanUpReplacementsTest">
 //  @Converted(kind = Converted.Kind.AUTO,
@@ -157,7 +157,6 @@ public final class CleanupTest extends ADTSupportTestBase {
     throw new UnsupportedOperationException("<<<DeclJavaPrinter::VisitFunctionDecl NULL BODY IN USED Translation Unit>>>");
   }
 //}
-  ;
 
   ////<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::CleanupTest">
 //@Converted(kind = Converted.Kind.AUTO,
@@ -173,25 +172,24 @@ public final class CleanupTest extends ADTSupportTestBase {
           FQN = "clang::format::(anonymous namespace)::CleanupTest::cleanup", NM = "_ZN5clang6format12_GLOBAL__N_111CleanupTest7cleanupEN4llvm9StringRefERKSt6vectorINS_7tooling5RangeESaIS7_EERKNS0_11FormatStyleE",
           cmd = "jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/unittests/Format/CleanupTest.cpp -nm=_ZN5clang6format12_GLOBAL__N_111CleanupTest7cleanupEN4llvm9StringRefERKSt6vectorINS_7tooling5RangeESaIS7_EERKNS0_11FormatStyleE")
   //</editor-fold>
-  protected std.string cleanup(StringRef Code,
-                               final /*const*/std.vector<Range> /*&*/ Ranges) {
+  private std.string cleanup(StringRef Code,
+                             final /*const*/std.vector<Range> /*&*/ Ranges) {
     return cleanup(Code,
             Ranges,
             getLLVMStyle());
   }
 
-  ;
-
-  protected std.string cleanup(StringRef Code,
-                               final /*const*/std.vector<Range> /*&*/ Ranges,
-                               final /*const*/ FormatStyle /*&*/ Style/*= $c$.track(getLLVMStyle())*/) {
+  private std.string cleanup(StringRef Code,
+                             final /*const*/std.vector<Range> /*&*/ Ranges,
+                             final /*const*/ FormatStyle /*&*/ Style/*= $c$.track(getLLVMStyle())*/) {
     Replacements Replaces = null;
     Expected<std.string> Result = null;
     try {
       Replaces = FormatGlobals.cleanup(Style, new StringRef(Code), new ArrayRef<Range>(Ranges, false));
 
       Result = applyAllReplacements(new StringRef(Code), Replaces);
-      EXPECT_TRUE(((/*static_cast*/boolean) (Result.$bool())));
+      /*static_cast*/
+      EXPECT_TRUE(Result.$bool());
       return new std.string(Result.$star());
     } finally {
       if (Result != null) {
@@ -220,8 +218,6 @@ public final class CleanupTest extends ADTSupportTestBase {
     return cleanup(new StringRef(Code), Ranges);
   }
 
-  ;
-
   //<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::CleanupTest::~CleanupTest">
   @Converted(kind = Converted.Kind.AUTO,
           source = "${LLVM_SRC}/llvm/tools/clang/unittests/Format/CleanupTest.cpp", line = 21,
@@ -233,14 +229,10 @@ public final class CleanupTest extends ADTSupportTestBase {
     super.$destroy();
   }
 
-  ;
-
   @Override
   public String toString() {
-    return "" + super.toString(); // NOI18N
+    return super.toString(); // NOI18N
   }
-
-  ;
 
   @Test
 //<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::CleanupTest_DeleteEmptyNamespaces_Test::TestBody">
@@ -267,8 +259,6 @@ public final class CleanupTest extends ADTSupportTestBase {
     }
   }
 
-  ;
-
   @Test
 //<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::CleanupTest_NamespaceWithSyntaxError_Test::TestBody">
   @Converted(kind = Converted.Kind.AUTO,
@@ -293,8 +283,6 @@ public final class CleanupTest extends ADTSupportTestBase {
       }
     }
   }
-
-  ;
 
   @Test
 //<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::CleanupTest_EmptyNamespaceNotAffected_Test::TestBody">
@@ -324,8 +312,6 @@ public final class CleanupTest extends ADTSupportTestBase {
     }
   }
 
-  ;
-
   @Test
 //<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::CleanupTest_EmptyNamespaceWithCommentsNoBreakBeforeBrace_Test::TestBody">
   @Converted(kind = Converted.Kind.AUTO,
@@ -350,8 +336,6 @@ public final class CleanupTest extends ADTSupportTestBase {
       }
     }
   }
-
-  ;
 
   @Test
 //<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::CleanupTest_EmptyNamespaceWithCommentsBreakBeforeBrace_Test::TestBody">
@@ -386,7 +370,6 @@ public final class CleanupTest extends ADTSupportTestBase {
 
 
 // FIXME: delete comments too.
-  ;
 
   @Test
 //<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::CleanupTest_CtorInitializationSimpleRedundantComma_Test::TestBody">
@@ -428,8 +411,6 @@ public final class CleanupTest extends ADTSupportTestBase {
       }
     }
   }
-
-  ;
 
   @Test
 //<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::CleanupTest_ListSimpleRedundantComma_Test::TestBody">
@@ -623,8 +604,8 @@ public final class CleanupTest extends ADTSupportTestBase {
           FQN = "clang::format::(anonymous namespace)::CleanUpReplacementsTest::createReplacement", NM = "_ZN5clang6format12_GLOBAL__N_123CleanUpReplacementsTest17createReplacementEjjN4llvm9StringRefE",
           cmd = "jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/unittests/Format/CleanupTest.cpp -nm=_ZN5clang6format12_GLOBAL__N_123CleanUpReplacementsTest17createReplacementEjjN4llvm9StringRefE")
   //</editor-fold>
-  protected Replacement createReplacement(/*uint*/int Offset, /*uint*/int Length,
-                                                  StringRef Text) {
+  private Replacement createReplacement(/*uint*/int Offset, /*uint*/int Length,
+                                                StringRef Text) {
     return new Replacement(new StringRef(FileName), Offset, Length, new StringRef(Text));
   }
 
@@ -634,11 +615,11 @@ public final class CleanupTest extends ADTSupportTestBase {
           FQN = "clang::format::(anonymous namespace)::CleanUpReplacementsTest::createInsertion", NM = "_ZN5clang6format12_GLOBAL__N_123CleanUpReplacementsTest15createInsertionEN4llvm9StringRefE",
           cmd = "jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/unittests/Format/CleanupTest.cpp -nm=_ZN5clang6format12_GLOBAL__N_123CleanUpReplacementsTest15createInsertionEN4llvm9StringRefE")
   //</editor-fold>
-  protected Replacement createInsertion(String HeaderName) {
+  private Replacement createInsertion(String HeaderName) {
     return createInsertion(new StringRef(create_char$ptr_utf8(HeaderName), HeaderName.length()));
   }
 
-  protected Replacement createInsertion(StringRef HeaderName) {
+  private Replacement createInsertion(StringRef HeaderName) {
     return createReplacement(UINT_MAX, 0, new StringRef(HeaderName));
   }
 
@@ -648,20 +629,23 @@ public final class CleanupTest extends ADTSupportTestBase {
           FQN = "clang::format::(anonymous namespace)::CleanUpReplacementsTest::apply", NM = "_ZN5clang6format12_GLOBAL__N_123CleanUpReplacementsTest5applyEN4llvm9StringRefESt3setINS_7tooling11ReplacementESt4lessIS7_ESaIS7_EE",
           cmd = "jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/unittests/Format/CleanupTest.cpp -nm=_ZN5clang6format12_GLOBAL__N_123CleanUpReplacementsTest5applyEN4llvm9StringRefESt3setINS_7tooling11ReplacementESt4lessIS7_ESaIS7_EE")
   //</editor-fold>
-  protected /*inline*/ std.string apply(std.string Code,
+  private
+  /*inline*/ std.string apply(std.string Code,
           /*const*/ Replacements Replaces) {
     return apply(new StringRef(Code), Replaces);
   }
 
-  protected /*inline*/ std.string apply(StringRef Code,
+  private/*inline*/ std.string apply(StringRef Code,
           /*const*/ Replacements Replaces) {
     Expected<Replacements> CleanReplaces = null;
     Expected<std.string> Result = null;
     try {
       CleanReplaces = cleanupAroundReplacements(new StringRef(Code), Replaces, Style);
-      EXPECT_TRUE(((/*static_cast*/boolean) (CleanReplaces.$bool())));
+      /*static_cast*/
+      EXPECT_TRUE(CleanReplaces.$bool());
       Result = applyAllReplacements(new StringRef(Code), CleanReplaces.$star());
-      EXPECT_TRUE(((/*static_cast*/boolean) (Result.$bool())));
+      /*static_cast*/
+      EXPECT_TRUE(Result.$bool());
       return new std.string(Result.$star());
     } finally {
       if (Result != null) {
@@ -692,7 +676,8 @@ public final class CleanupTest extends ADTSupportTestBase {
           FQN = "clang::format::(anonymous namespace)::CleanUpReplacementsTest::formatAndApply", NM = "_ZN5clang6format12_GLOBAL__N_123CleanUpReplacementsTest14formatAndApplyEN4llvm9StringRefESt3setINS_7tooling11ReplacementESt4lessIS7_ESaIS7_EE",
           cmd = "jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/unittests/Format/CleanupTest.cpp -nm=_ZN5clang6format12_GLOBAL__N_123CleanUpReplacementsTest14formatAndApplyEN4llvm9StringRefESt3setINS_7tooling11ReplacementESt4lessIS7_ESaIS7_EE")
   //</editor-fold>
-  protected /*inline*/ std.string formatAndApply(StringRef Code,
+  private
+  /*inline*/ std.string formatAndApply(StringRef Code,
           /*const*/ Replacements Replaces) {
     Expected<Replacements> CleanReplaces = null;
     Expected<Replacements> FormattedReplaces = null;
@@ -700,11 +685,14 @@ public final class CleanupTest extends ADTSupportTestBase {
     try {
 
       CleanReplaces = cleanupAroundReplacements(new StringRef(Code), Replaces, Style);
-      EXPECT_TRUE(((/*static_cast*/boolean) (CleanReplaces.$bool())));
+      /*static_cast*/
+      EXPECT_TRUE(CleanReplaces.$bool());
       FormattedReplaces = formatReplacements(new StringRef(Code), CleanReplaces.$star(), Style);
-      EXPECT_TRUE(((/*static_cast*/boolean) (FormattedReplaces.$bool())));
+      /*static_cast*/
+      EXPECT_TRUE(FormattedReplaces.$bool());
       Result = applyAllReplacements(new StringRef(Code), FormattedReplaces.$star());
-      EXPECT_TRUE(((/*static_cast*/boolean) (Result.$bool())));
+      /*static_cast*/
+      EXPECT_TRUE(Result.$bool());
       return new std.string(Result.$star());
     } finally {
       if (Result != null) {
@@ -726,7 +714,6 @@ public final class CleanupTest extends ADTSupportTestBase {
 //              + super.toString(); // NOI18N
 //  }
 //};
-  ;
 
   //<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::CleanUpReplacementsTest::getOffset">
   @Converted(kind = Converted.Kind.AUTO,
@@ -734,7 +721,7 @@ public final class CleanupTest extends ADTSupportTestBase {
           FQN = "clang::format::(anonymous namespace)::CleanUpReplacementsTest::getOffset", NM = "_ZN5clang6format12_GLOBAL__N_123CleanUpReplacementsTest9getOffsetEN4llvm9StringRefEii",
           cmd = "jclank.sh -java-options=${SPUTNIK}/modules/org.clang.format/llvmToClangType ${LLVM_SRC}/llvm/tools/clang/unittests/Format/CleanupTest.cpp -nm=_ZN5clang6format12_GLOBAL__N_123CleanUpReplacementsTest9getOffsetEN4llvm9StringRefEii")
   //</editor-fold>
-  protected int getOffset(StringRef Code, int Line, int Column) {
+  private int getOffset(StringRef Code, int Line, int Column) {
     RewriterTestContext Context = null;
     try {
       Context/*J*/ = new RewriterTestContext();
@@ -747,8 +734,6 @@ public final class CleanupTest extends ADTSupportTestBase {
       }
     }
   }
-
-  ;
 
   @Test
 //<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::CleanUpReplacementsTest_FixOnlyAffectedCodeAfterReplacements_Test::TestBody">
@@ -779,8 +764,6 @@ public final class CleanupTest extends ADTSupportTestBase {
     }
   }
 
-  ;
-
   @Test
 //<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::CleanUpReplacementsTest_NoExistingIncludeWithoutDefine_Test::TestBody">
   @Converted(kind = Converted.Kind.AUTO,
@@ -806,8 +789,6 @@ public final class CleanupTest extends ADTSupportTestBase {
       $c$.$destroy();
     }
   }
-
-  ;
 
   @Test
 //<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::CleanUpReplacementsTest_NoExistingIncludeWithDefine_Test::TestBody">
@@ -836,8 +817,6 @@ public final class CleanupTest extends ADTSupportTestBase {
     }
   }
 
-  ;
-
   @Test
 //<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::CleanUpReplacementsTest_InsertBeforeCategoryWithLowerPriority_Test::TestBody">
   @Converted(kind = Converted.Kind.AUTO,
@@ -864,8 +843,6 @@ public final class CleanupTest extends ADTSupportTestBase {
       $c$.$destroy();
     }
   }
-
-  ;
 
   @Test
 //<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::CleanUpReplacementsTest_InsertAfterMainHeader_Test::TestBody">
@@ -894,8 +871,6 @@ public final class CleanupTest extends ADTSupportTestBase {
     }
   }
 
-  ;
-
   @Test
 //<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::CleanUpReplacementsTest_InsertBeforeSystemHeaderLLVM_Test::TestBody">
   @Converted(kind = Converted.Kind.AUTO,
@@ -921,8 +896,6 @@ public final class CleanupTest extends ADTSupportTestBase {
       $c$.$destroy();
     }
   }
-
-  ;
 
   @Test
 //<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::CleanUpReplacementsTest_InsertAfterSystemHeaderGoogle_Test::TestBody">
@@ -950,8 +923,6 @@ public final class CleanupTest extends ADTSupportTestBase {
       $c$.$destroy();
     }
   }
-
-  ;
 
   @Test
 //<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::CleanUpReplacementsTest_InsertOneIncludeLLVMStyle_Test::TestBody">
@@ -981,8 +952,6 @@ public final class CleanupTest extends ADTSupportTestBase {
     }
   }
 
-  ;
-
   @Test
 //<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::CleanUpReplacementsTest_InsertMultipleIncludesLLVMStyle_Test::TestBody">
   @Converted(kind = Converted.Kind.AUTO,
@@ -1009,8 +978,6 @@ public final class CleanupTest extends ADTSupportTestBase {
       $c$.$destroy();
     }
   }
-
-  ;
 
   @Test
 //<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::CleanUpReplacementsTest_InsertNewSystemIncludeGoogleStyle_Test::TestBody">
@@ -1041,8 +1008,6 @@ public final class CleanupTest extends ADTSupportTestBase {
     }
   }
 
-  ;
-
   @Test
 //<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::CleanUpReplacementsTest_InsertMultipleIncludesGoogleStyle_Test::TestBody">
   @Converted(kind = Converted.Kind.MANUAL_COMPILATION,
@@ -1071,8 +1036,6 @@ public final class CleanupTest extends ADTSupportTestBase {
       $c$.$destroy();
     }
   }
-
-  ;
 
   @Test
 //<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::CleanUpReplacementsTest_InsertMultipleNewHeadersAndSortLLVM_Test::TestBody">
@@ -1106,8 +1069,6 @@ public final class CleanupTest extends ADTSupportTestBase {
     }
   }
 
-  ;
-
   @Test
 //<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::CleanUpReplacementsTest_InsertMultipleNewHeadersAndSortGoogle_Test::TestBody">
   @Converted(kind = Converted.Kind.MANUAL_COMPILATION,
@@ -1140,8 +1101,6 @@ public final class CleanupTest extends ADTSupportTestBase {
       $c$.$destroy();
     }
   }
-
-  ;
 
   @Test
 //<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::CleanUpReplacementsTest_FormatCorrectLineWhenHeadersAreInserted_Test::TestBody">
@@ -1191,8 +1150,6 @@ public final class CleanupTest extends ADTSupportTestBase {
     }
   }
 
-  ;
-
   @Test
 //<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::CleanUpReplacementsTest_NotConfusedByDefine_Test::TestBody">
   @Converted(kind = Converted.Kind.AUTO,
@@ -1218,8 +1175,6 @@ public final class CleanupTest extends ADTSupportTestBase {
       $c$.$destroy();
     }
   }
-
-  ;
 
   @Test
 //<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::CleanUpReplacementsTest_SkippedTopComment_Test::TestBody">
@@ -1247,8 +1202,6 @@ public final class CleanupTest extends ADTSupportTestBase {
     }
   }
 
-  ;
-
   @Test
 //<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::CleanUpReplacementsTest_SkippedMixedComments_Test::TestBody">
   @Converted(kind = Converted.Kind.AUTO,
@@ -1274,8 +1227,6 @@ public final class CleanupTest extends ADTSupportTestBase {
       $c$.$destroy();
     }
   }
-
-  ;
 
   @Test
 //<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::CleanUpReplacementsTest_MultipleBlockCommentsInOneLine_Test::TestBody">
@@ -1303,8 +1254,6 @@ public final class CleanupTest extends ADTSupportTestBase {
     }
   }
 
-  ;
-
   @Test
 //<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::CleanUpReplacementsTest_CodeAfterComments_Test::TestBody">
   @Converted(kind = Converted.Kind.AUTO,
@@ -1330,8 +1279,6 @@ public final class CleanupTest extends ADTSupportTestBase {
       $c$.$destroy();
     }
   }
-
-  ;
 
   @Test
 //<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::CleanUpReplacementsTest_FakeHeaderGuardIfDef_Test::TestBody">
@@ -1359,8 +1306,6 @@ public final class CleanupTest extends ADTSupportTestBase {
     }
   }
 
-  ;
-
   @Test
 //<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::CleanUpReplacementsTest_RealHeaderGuardAfterComments_Test::TestBody">
   @Converted(kind = Converted.Kind.AUTO,
@@ -1387,8 +1332,6 @@ public final class CleanupTest extends ADTSupportTestBase {
     }
   }
 
-  ;
-
   @Test
 //<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::CleanUpReplacementsTest_IfNDefWithNoDefine_Test::TestBody">
   @Converted(kind = Converted.Kind.AUTO,
@@ -1414,8 +1357,6 @@ public final class CleanupTest extends ADTSupportTestBase {
       $c$.$destroy();
     }
   }
-
-  ;
 
   @Test
 //<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::CleanUpReplacementsTest_HeaderGuardWithComment_Test::TestBody">
@@ -1446,7 +1387,6 @@ public final class CleanupTest extends ADTSupportTestBase {
 
 // FIXME: although this case does not crash, the insertion is wrong. A '\n'
 // should be inserted between the two #includes.
-  ;
 
   @Test
 //<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::CleanUpReplacementsTest_EmptyCode_Test::TestBody">
@@ -1474,8 +1414,6 @@ public final class CleanupTest extends ADTSupportTestBase {
     }
   }
 
-  ;
-
   @Test
 //<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::CleanUpReplacementsTest_NoNewLineAtTheEndOfCode_Test::TestBody">
   @Converted(kind = Converted.Kind.AUTO,
@@ -1491,7 +1429,8 @@ public final class CleanupTest extends ADTSupportTestBase {
     JavaCleaner $c$ = $createJavaCleaner();
     try {
       std.string Code = new std.string(JD$T$C$P_T2$C$R.INSTANCE, /*KEEP_STR*/"#include <map>");
-      std.string Expected = new std.string(JD$T$C$P_T2$C$R.INSTANCE, /*KEEP_STR*/"#include <map>#include <vector>\n");
+      std.string Expected = new std.string(JD$T$C$P_T2$C$R.INSTANCE, /*KEEP_STR*/"#include <map>\n" +
+              "#include <vector>\n");
       Replaces = $c$.clean(toReplacements(/*{ */new std.setType<>(JD$Initializer_list$_Key_T1$C$R_T2$C$R.INSTANCE, $c$.track(new /*const*/ Replacement[/*1*/]{$c$.track(createInsertion(new StringRef(/*KEEP_STR*/"#include <vector>")))}))/* }*/));
       EXPECT_EQ(Expected, apply(new StringRef(Code), Replaces));
     } finally {
@@ -1501,8 +1440,6 @@ public final class CleanupTest extends ADTSupportTestBase {
       $c$.$destroy();
     }
   }
-
-  ;
 
   @Test
 //<editor-fold defaultstate="collapsed" desc="clang::format::(anonymous namespace)::CleanUpReplacementsTest_SkipExistingHeaders_Test::TestBody">
